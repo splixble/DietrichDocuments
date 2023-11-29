@@ -21,11 +21,11 @@ EDUCATION
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 
 WORK HISTORY 
-Microsoft Corporation Redmond, Washington February 2004-present
+Microsoft Corporation Redmond, Washington February 2004-February 2005
 Software Development Engineer in Test
 Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources. Wrote first version as a Perl script that generates HTML web pages, later adding interactive capabilities with Javascript. Rewrote the tool as a C# .NET Framework solution, and integrated it with other .NET components used in the development of Microsoft’s Visual Studio .NET product. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. (Windows XP, C#, .NET Framework, XML, Perl, DHTML, JavaScript)
-Developing other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. (Windows XP, C#, .NET Framework, XML, Perl)
-Monitoring automated test runs of Phoenix, a platform for compiler design and analysis. Reproducing, simplifying, and diagnosing test failures, then writing them up as bug reports. (Windows XP, Windows 2003 Server, Visual C++ .NET, C#, MSIL, Perl, NT batch script, Product Studio, WinDbg, Source Depot)
+Developed other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. (Windows XP, C#, .NET Framework, XML, Perl)
+Monitored automated test runs of Phoenix, a platform for compiler design and analysis. Reproduced, simplified, and diagnosed test failures, then wrote them up as bug reports. (Windows XP, Windows 2003 Server, Visual C++ .NET, C#, MSIL, Perl, NT batch script, Product Studio, WinDbg, Source Depot)
 Franklin Revere Seattle, Washington, April-October 2003 
 Software Development Engineer
 Developed server software in Perl and C++ for internet-based consumer financial service. (Windows 2000 & 98, Perl, Visual C++, ATL, cURL, OpenSSL)
