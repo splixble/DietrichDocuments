@@ -21,7 +21,8 @@ WORK HISTORY
 
 Dietrich Neuman Software Services Portland, Oregon, January 2002–present 
 Freelance Website Developer and Software Consultant
-Designing and developing professional websites for several clients (see home.attbi.com/~NeumanSoftware). CGI scripting in Perl, interaction with third-party database host. (Dreamweaver 4.0, Netscape Composer, Paint Shop Pro 7.0, PhotoFinish, Javascript, Perl, HTML)
+Designing and developing inventory tracking system for art and antique dealer: a database integrated with a web-based catalog system and Excel. (Windows XP & 98,  MS Access 2000, SQL, MS Excel, Visual Basic 6.0, Dreamweaver 4.0) 
+Designing and developing professional websites for clients (see home.attbi.com/~NeumanSoftware). CGI scripting in Perl, interaction with third-party database host. (Windows XP & 98,  Dreamweaver 4.0, Netscape Composer, Paint Shop Pro 7.0, PhotoFinish, Javascript, Perl, HTML)
 
 Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, February–September 2001
 Software Development Engineer (Contractor)
@@ -37,8 +38,6 @@ Developed and maintained the following Internet banking software, at up to four 
 •	“Pluggable” DLL components for the app; architected the SDK library for development of the DLL’s
  
 (NT, Visual C++, MFC, STL, COM, DCOM, SQL Server)
-
- 
 Mentor Graphics	 Wilsonville, Oregon, 1998–1999
 Software Engineer (Contractor)
 Developed QA software for Falcon Framework, a software library used by commercial circuit board design and verification applications on several UNIX platforms and Windows NT. Ported QA suites from UNIX to NT. Cleaned up earlier porting work to make QA suites portable, automatic, and able to be run predictably and easily. Systematized and documented building and testing procedures.  (NT, HPUX, Solaris, SunOs, NuTCracker, C++, Korn shell, TET, gmake, CVS, HTML)
