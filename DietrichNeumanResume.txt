@@ -11,8 +11,8 @@ Creating, maintaining, and documenting application software in a team environmen
 Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
 Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE
-Languages: C++, C, Pascal, Visual BASIC, JavaScript, Perl, Korn shell, VAX Macro, VMS DCL, FORTRAN
-Operating Systems: Windows XP, 2000,  NT, 98 & 95; HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
+Languages: C++, C, C#, Pascal, Visual Basic, JavaScript, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
+Operating Systems: Windows XP, 2000, NT, 98 & 95; HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
 Networks: TCP-IP, Ethernet, DECNET, Novell, QNX
 Database Systems: MS SQL Server, ODBC, MS Access, ORACLE, RDM, DBase III
 HARDWARE EXPERIENCE 
@@ -21,16 +21,20 @@ EDUCATION
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 
 WORK HISTORY 
-NUServices Seattle, Washington, April 2003-present
+Microsoft Corporation Redmond, Washington February 2004-present
+Software Development Engineer in Test
+Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources. Wrote first version as a Perl script that generates HTML web pages, later adding interactive capabilities with Javascript. Rewrote the tool as a C# .NET Framework solution, and integrated it with other .NET components used in the development of Microsoft’s Visual Studio .NET product. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. (Windows XP, C#, .NET Framework, XML, Perl, DHTML, JavaScript)
+Developing other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. (Windows XP, C#, .NET Framework, XML, Perl)
+Monitoring automated test runs of Phoenix, a platform for compiler design and analysis. Reproducing, simplifying, and diagnosing test failures, then writing them up as bug reports. (Windows XP, Windows 2003 Server, Visual C++ .NET, C#, MSIL, Perl, NT batch script, Product Studio, WinDbg, Source Depot)
+Franklin Revere Seattle, Washington, April-October 2003 
 Software Development Engineer
-Developing server software for internet-based consumer financial service. (Windows 2000 & 98, Visual C++, ATL, cURL, OpenSSL)
+Developed server software in Perl and C++ for internet-based consumer financial service. (Windows 2000 & 98, Perl, Visual C++, ATL, cURL, OpenSSL)
 
-Dietrich Neuman Software Services Portland, Oregon, January 2002-present 
+Dietrich Neuman Software Services Portland, Oregon, January 2002-August 2004 
 Freelance Software Developer and Consultant
-Designing and developing professional websites for clients (see home.attbi.com/~NeumanSoftware). CGI scripting in Perl, interaction with third-party database hosts. (Windows XP & 98,  Dreamweaver 4.0, Javascript, Perl, Paint Shop Pro 7.0, PhotoFinish, HTML)
+Designed and developed professional websites for clients (see www.midgard.net/~dietrich/pro). CGI scripting in Perl, interaction with third-party database hosts. (Windows XP & 98,  Dreamweaver 4.0, Javascript, Perl, Paint Shop Pro 7.0, PhotoFinish, HTML)
 Designed and developed inventory tracking systems for art and antique dealers: MS Access databases integrated with a web-based catalog system and Excel. (Windows XP & 98,  MS Access 2000, Visual Basic 6.0, SQL, Perl, MS Excel, Dreamweaver 4.0) 
 
- 
 Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, February-September 2001
 Software Development Engineer 
 Developed an Internet client application that synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  (NT, Visual C++, MFC, WinInet, Puma Intellisync SDK)
