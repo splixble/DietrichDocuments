@@ -1,8 +1,10 @@
 Dietrich Neuman
-2950 S.E. Yamhill Street
-Portland, Oregon  97214
-Phone: (503) 736-3209 
+400 West Mercer Street
+Apartment 404
+Seattle, Washington 98119
+Phone: (206) 285-5673
 Email: dietrich@midgard.net
+
 
 STRENGTHS 
 Creating, maintaining, and documenting application software in a team environment, with a focus on quality, clarity, flexibility and future maintainability. 
