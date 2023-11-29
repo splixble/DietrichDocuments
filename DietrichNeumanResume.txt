@@ -8,24 +8,31 @@ Creating, maintaining, and documenting application software in a team environmen
 Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
 Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE
-Languages: Visual C++, C, Pascal, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
-Operating Systems: Windows NT (3.51 and 4.0), VMS, OpenVMS, MS-DOS, SCO UNIX, SunOS, RSX, TSX, RSTS, QNX
+Languages: Visual C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
+Operating Systems: Windows NT (3.51 and 4.0), HPUX, SunOS, Solaris, AIX VMS, OpenVMS, MS-DOS, SCO UNIX, , RSX, TSX, RSTS, QNX
 Networks: Ethernet, TCP-IP, DECNET, Novell, QNX
 Database Systems: ODBC, RDM, MS Access, ORACLE, DBase III, ACCENT R
-Word Processors and Editors: Microsoft Word for PC and Mac, EVE, EDT, vi, MacWrite, Windows Write, Word Perfect
 HARDWARE EXPERIENCE
-PC, VAX, Alpha AXP, IBM PC, Macintosh,  PDP-11, Sun workstation
+PC, HP 9000, Sparc, IBM RS-6000, VAX, Alpha AXP, IBM PC, Macintosh,  PDP-11, Sun workstation
 EDUCATION
 Bachelor of Science in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 WORK HISTORY
 
-USNR	 Woodland, Washington, 1995 – Present
-Software Engineer (Independent Contractor)
-Lead software engineer for a Windows NT-based table editing system, which sends and receives the structure and content of database tables originating on various Ethernet-linked hardware systems, using Berkeley TCP-IP sockets and an in-house client-server protocol.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  Wrote and maintained extension DLL libraries to represent table data graphically.  Currently enhancing system to store and retrieve tables using ODBC.  (Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid)
-Designed and wrote utility on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that code, designed and wrote a server to exchange tables between the NT-based table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers to be used by other NT-based client applications.  (VAX ELN, Pascal)
+Mentor Graphics	 Wilsonville, Oregon, 1998 – Present
+Software Engineer, Quality Assurance Engineer (Contractor)
+Maintained and improved QA systems for Falcon Framework, a software library used by commercial circuit board design and verification software. Falcon Framework and its QA runs on several UNIX platforms, as well as Windows NT using NuTCracker (a UNIX emulation platform). Ported QA software from UNIX to NT and from NuTCracker 3.2 to 4.1. Cleaned up earlier porting work to make QA suites portable, automated, and able to be run predictably and easily. (NT, HPUX, Solaris, SunOs, NuTCracker, C++, TET, gmake, CVS)
+Enabled the source code of the library software, printing utility, and QA suites to be built entirely in the Microsoft Developer Studio, with the resulting executables identical to those built under Mentor's internal build environment.  (NT, Visual C++)
+Corrected software defects in Falcon Framework on NT and UNIX platforms.  Maintained software revision streams in CVS, branching and merging changes by off-site developers after deducing the revision level of their baseline. 
+Performed QA for several UNIX and NT product releases, according to ISO 9001-compliant procedures.
+Documented and publicized all building and testing procedures that I had to figure out myself.
+
  
+USNR	 Woodland, Washington, 1995 – 1998
+Software Engineer (Contractor)
+Lead software engineer for a Windows NT-based table editing system, which sends and receives the structure and content of database tables originating on various Ethernet-linked hardware systems, using Berkeley TCP-IP sockets and an in-house client-server protocol.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  Wrote and maintained extension DLL libraries to represent table data graphically.  Enhanced system to store and retrieve tables using ODBC.  (Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid)
+Designed and wrote utility on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that code, designed and wrote a server to exchange tables between the NT-based table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers to be used by other NT-based client applications.  (VAX ELN, Pascal)
 Magellan Communications   Sunnyvale, California, 1994
-Lead Quality Assurance Engineer, Software Engineer (Independent Contractor)
+Lead Quality Assurance Engineer, Software Engineer (Contractor)
 Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  (MS Word for Macintosh, QNX, PDP-11, C)
 Maintained and debugged source code, and integrated several engineers’ code changes into an RCS source code control system.  Maintained Makefiles. (QNX, C, RCS, make)
 
