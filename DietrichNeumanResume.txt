@@ -1,0 +1,48 @@
+Dietrich Neuman
+3208 S.W. Kelly Avenue
+Portland, Oregon  97201
+Phone: (503) 228-5681
+
+STRENGTHS
+Creating, maintaining, and documenting application software in a team environment, with a focus on quality, clarity, flexibility and future maintainability. 
+Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
+Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
+SOFTWARE EXPERIENCE
+Languages: Visual C++, C, Pascal, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
+Operating Systems: Windows NT (3.51 and 4.0), VMS, OpenVMS, MS-DOS, SCO UNIX, SunOS, RSX, TSX, RSTS, QNX
+Networks: Ethernet, DECNET, Novell, QNX
+Database Systems: RDM, MS Access, ORACLE, DBase III, ACCENT R, FileMaker Pro
+Word Processors and Editors: Microsoft Word for PC and Mac, EVE, EDT, vi, MacWrite, Windows Write, Word Perfect
+HARDWARE EXPERIENCE
+PC, VAX, Alpha AXP, IBM PC, Macintosh,  PDP-11, Sun workstation
+EDUCATION
+Bachelor of Science in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
+WORK HISTORY
+
+USNR	 Woodland, Washington, 1995 – Present
+Software Engineer (Independent Contractor)
+Lead software engineer for a Windows NT-based table editing system, which sends and receives the structure and content of database tables originating on various hardware systems linked by Ethernet, using Berkeley sockets and an in-house client-server protocol.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  Wrote and maintained extension DLL's to represent table data graphically.  Currently redesigning system so that all table data access is encapsulated in a DLL library useable by other applications.  (Windows NT, Visual C++ 4.0 with MFC, Objective Grid)
+Designed and wrote utility on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that code, designed and wrote a server to exchange tables between the NT-based table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers to be used by other NT-based client applications.  (VAX ELN, Pascal)
+ 
+Magellan Communications   Sunnyvale, California, 1994
+Lead Quality Assurance Engineer, Software Engineer (Independent Contractor)
+Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  (MS Word for Macintosh, QNX, PDP-11, C)
+Maintained and debugged source code, and integrated several engineers¹ code changes into an RCS source code control system.  Maintained Makefiles. (QNX, C, RCS, make)
+
+National Information Systems, Inc.   San Jose, California, 1991 ­ 1993
+Database Software Engineer, Quality Assurance Manager, 
+Application Programmer/Analyst
+Designed and implemented a client-server interface for RDM, a multi-platform relational database and application development system with over 1000 installations.  This interface enables RDM to access remote RDM and ORACLE database tables over DECNET and other networks.  (VMS, C, Embedded SQL, ORACLE, DECNET, VMS RTL and System Services, p2c)
+Ported RDM from VAX VMS to Alpha AXP OpenVMS.  (C, Pascal, VMS System Services)
+Performed extensive debugging of RDM, involving every level of development from assembler code to customers¹ developed applications.  100% responsible for all maintenance development of RDM under VMS.  (VMS, MS-DOS, UNIX, C, Pascal, VAX Macro, VMS System Services, VMS Patch, VMS Debugger, CodeView)
+Developed new features, enhancements, and innovations to RDM, including screen refresh optimization, control-C trapping, and multi-user record access. (C, Pascal, VMS System Services, VMS RMS)
+Quality Assurance Manager and lead Release Engineer for two major releases of RDM.  Primary author of release notes for both.  (VMS, MS-DOS, UNIX, RDM, EVE, MS Word)
+Designed, implemented and maintained the RCS source control system in VAX DCL for RDM. (VMS, UNIX, RCS, VMS DCL)
+Lead customer support engineer for ProRDM, a high-level language interface for RDM.   Performed telephone, dial-up, written, and on-site support services.  (VMS, RDM, MS-DOS, Novell, UNIX, EVE, MS Word)
+
+Interactive Technology, Inc.   Beaverton, Oregon, 1986 ­ 1991
+Database Software Engineer, Quality Assurance Manager, Technical Writer
+Maintained, debugged, and wrote enhancements to RDM, as at NIS.  Quality Assurance Manager  and Release Engineer for three major releases of RDM, and lead customer support engineer for ProRDM.  (VMS, MS-DOS, UNIX, RSX, TSX, RSTS, Pascal, C, VAX Macro, DEC Test Manager)
+Designed and implemented enhanced B*tree indexing system for RDM.  (Pascal, VMS RMS) 
+Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (MS Word, C)
+
