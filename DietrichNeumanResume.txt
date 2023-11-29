@@ -2,7 +2,7 @@ Dietrich Neuman
 2950 S.E. Yamhill Street
 Portland, Oregon  97214
 Phone: (503) 736-3209 
-Email: dietrichneuman@yahoo.com
+Email: neumansoftware@attbi.com
 
 STRENGTHS 
 Creating, maintaining, and documenting application software in a team environment, with a focus on quality, clarity, flexibility and future maintainability. 
@@ -21,7 +21,7 @@ WORK HISTORY
 
 Dietrich Neuman Software Services Portland, Oregon, January 2002–present 
 Freelance Website Developer and Software Consultant
-Developing websites for several professional clients.
+Designing and developing professional websites for several clients (see home.attbi.com/~NeumanSoftware). CGI scripting in Perl, interaction with third-party database host. (Dreamweaver 4.0, Netscape Composer, Paint Shop Pro 7.0, PhotoFinish, Javascript, Perl, HTML)
 
 Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, February–September 2001
 Software Development Engineer (Contractor)
@@ -75,5 +75,4 @@ Designed and implemented enhanced B*tree indexing system for RDM.  (Pascal, VMS 
 Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (C)
 
 SIDE PROJECTS 
-•	Designing and developing a web site for AAA Estate Sales, Appraisals, & Auctions, using Dreamweaver 4.0, Netscape Composer, PhotoFinish, Corel Photo House, and HTML. (January 2002–present, freelance professional work)
 •	Helped design and create a web site for a small health food company using Microsoft Front Page, HTML, and JavaScript (2001, nonprofessional).
