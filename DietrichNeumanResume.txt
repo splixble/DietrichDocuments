@@ -2,13 +2,14 @@ Dietrich Neuman
 2950 S.E. Yamhill Street
 Portland, Oregon  97214
 Phone: (503) 736-3209 
+Email: dietrichneuman@yahoo.com
 
 STRENGTHS 
 Creating, maintaining, and documenting application software in a team environment, with a focus on quality, clarity, flexibility and future maintainability. 
 Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
 Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
-SOFTWARE EXPERIENCE 
-Languages: C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
+SOFTWARE EXPERIENCE
+Languages: C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN	
 Operating Systems: Windows NT (3.51 & 4.0), Windows 98 & 95, HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
 Networks: TCP-IP, Ethernet, DECNET, Novell, QNX
 Database Systems: MS SQL Server, ODBC, MS Access, ORACLE, RDM, DBase III
@@ -18,11 +19,12 @@ EDUCATION
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 WORK HISTORY 
 
-Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, 2001 – Present
+Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, February–September 2001
 Software Development Engineer (Contractor)
-Developing an Internet client application which synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  As the team’s senior C++/MFC engineer, providing technical advice and guidance to teammates on a daily basis. (NT, Visual C++, MFC, WinInet, Puma Intellisync SDK)
+Developed an Internet client application that synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  (NT, Visual C++, MFC, WinInet, Puma Intellisync SDK)
+As the team’s senior C++/MFC engineer, provided technical advice and guidance to teammates on a daily basis. (NT, Visual C++, MFC)
 
-Harland Financial Solutions (formerly Concentrex) 	Portland, Oregon, 1999 - 2000
+Harland Financial Solutions (formerly Concentrex) 	Portland, Oregon, 1999–2000
 E-Commerce Software Engineer
 Developed and maintained the following Internet banking software, at up to four concurrent release levels:
  
@@ -32,26 +34,28 @@ Developed and maintained the following Internet banking software, at up to four 
  
 (NT, Visual C++, MFC, STL, COM, DCOM, SQL Server)
 
-Mentor Graphics	 Wilsonville, Oregon, 1998 – 1999
+ 
+Mentor Graphics	 Wilsonville, Oregon, 1998–1999
 Software Engineer (Contractor)
 Developed QA software for Falcon Framework, a software library used by commercial circuit board design and verification applications on several UNIX platforms and Windows NT. Ported QA suites from UNIX to NT. Cleaned up earlier porting work to make QA suites portable, automatic, and able to be run predictably and easily. Systematized and documented building and testing procedures.  (NT, HPUX, Solaris, SunOs, NuTCracker, C++, Korn shell, TET, gmake, CVS, HTML)
 Corrected software defects on NT and UNIX platforms.  Maintained code revision streams in CVS, branching and merging changes by off-site developers after deducing their baseline revision level. (CVS) 
 
-USNR	 Woodland, Washington, 1995 – 1998
+USNR	 Woodland, Washington, 1995–1998
 Software Engineer (Contractor)
 Primary engineer for a Windows NT-based, networked table editing system.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  It featured: 
 •	Multi-threaded network client layer, to send and receive tables (structure and data) originating on various Ethernet-linked hardware systems, using TCP-IP sockets and an in-house client-server protocol 
 •	Windows-standard user interface, with extension DLL libraries to represent table data graphically
 •	Data storage in SQL database tables, via ODBC interface
-(Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid)
+•	An installation package I developed with InstallShield 
+(Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid, InstallShield)
 Designed and wrote multi-threaded utility on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that utility, wrote a server to exchange tables between the aforementioned table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers used by other NT-based client applications.  (VAX ELN, Pascal)
-						
+
 Magellan Communications   Sunnyvale, California, 1994
 Quality Assurance Engineer, Software Engineer (Contractor)
 Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  (QNX, PDP-11, C)
 Maintained and debugged source code, and integrated several engineers’ code changes into an RCS source code control system.  Maintained Makefiles. (QNX, C, RCS, make)
 
-National Information Systems, Inc.   San Jose, California, 1991 ­ 1993
+National Information Systems, Inc.   San Jose, California, 1991–1993
 Database Software Engineer, Application Programmer/Analyst
 Designed and implemented a client-server interface for RDM, a multi-platform relational database and application development system with over 1000 installations.  This interface enables RDM to access remote RDM and ORACLE database tables over DECNET and other networks.  (VMS, C, Embedded SQL, ORACLE, DECNET, VMS RTL and System Services, p2c)
 Ported RDM from VAX VMS to Alpha AXP OpenVMS.  (C, Pascal, VMS System Services)
@@ -60,14 +64,14 @@ Developed new features, enhancements, and innovations to RDM, including screen r
 Created and maintained RCS-based source control system in VAX DCL for RDM. (VMS, RCS, DCL)
 Lead customer support engineer for ProRDM, a high-level language interface for RDM.   Performed telephone, dial-up, written, and on-site support services.  (VMS, RDM, MS-DOS, Novell)
 
-Interactive Technology, Inc.   Beaverton, Oregon, 1986 ­ 1991
+Interactive Technology, Inc.   Beaverton, Oregon, 1986–1991
 Database Software Engineer, Technical Writer
 Maintained, debugged, and wrote enhancements to RDM, as at NIS.  Quality Assurance Manager and Release Engineer for three major releases of RDM, and lead customer support engineer for ProRDM.  (VMS, MS-DOS, UNIX, RSX, TSX, RSTS, Pascal, C, VAX Macro, DEC Test Manager)
 Designed and implemented enhanced B*tree indexing system for RDM.  (Pascal, VMS RMS) 
 Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (C)
 
- SIDE PROJECTS 
+SIDE PROJECTS 
 •	Helped design and create a web site for a small health food company using Microsoft Front Page, HTML, and JavaScript (2001).
-•	Wrote private web site using HTML and several image processing applications (2000).
+•	Wrote personal web site using HTML and several image processing applications (2000).
 
 
