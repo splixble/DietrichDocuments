@@ -8,8 +8,8 @@ Creating, maintaining, and documenting application software in a team environmen
 Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
 Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE
-Languages: Visual C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
-Operating Systems: Windows NT (3.51 and 4.0), HPUX, SunOS, Solaris, AIX VMS, OpenVMS, MS-DOS, SCO UNIX, , RSX, TSX, RSTS, QNX
+Languages: C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
+Operating Systems: Windows NT (3.51 and 4.0), HPUX, SunOS, Solaris, AIX, VMS, OpenVMS, MS-DOS, SCO UNIX, , RSX, TSX, RSTS, QNX
 Networks: Ethernet, TCP-IP, DECNET, Novell, QNX
 Database Systems: ODBC, RDM, MS Access, ORACLE, DBase III, ACCENT R
 HARDWARE EXPERIENCE
@@ -20,20 +20,21 @@ WORK HISTORY
 
 Mentor Graphics	 Wilsonville, Oregon, 1998 – Present
 Software Engineer, Quality Assurance Engineer (Contractor)
-Maintained and improved QA systems for Falcon Framework, a software library used by commercial circuit board design and verification software. Falcon Framework and its QA runs on several UNIX platforms, as well as Windows NT using NuTCracker (a UNIX emulation platform). Ported QA software from UNIX to NT and from NuTCracker 3.2 to 4.1. Cleaned up earlier porting work to make QA suites portable, automated, and able to be run predictably and easily. (NT, HPUX, Solaris, SunOs, NuTCracker, C++, TET, gmake, CVS)
-Enabled the source code of the library software, printing utility, and QA suites to be built entirely in the Microsoft Developer Studio, with the resulting executables identical to those built under Mentor's internal build environment.  (NT, Visual C++)
-Corrected software defects in Falcon Framework on NT and UNIX platforms.  Maintained software revision streams in CVS, branching and merging changes by off-site developers after deducing the revision level of their baseline. 
+Maintained and improved QA systems for Falcon Framework, a software library used by commercial circuit board design and verification software, which runs on several UNIX platforms as well as Windows NT using NuTCracker (a UNIX emulation platform). Ported QA software from UNIX to NT and from NuTCracker 3.2 to 4.1. Cleaned up earlier porting work to make QA suites portable, automated, and able to be run predictably and easily. (NT, HPUX, Solaris, SunOs, NuTCracker, C++, Korn shell, TET, gmake, CVS)
+Maintained parallel code to enable the library software, printing utility, and QA suites to be built entirely in the Microsoft Developer Studio, with the resulting executables identical to those built under Mentor's internal build environment.  (NT, Visual C++ 5.0)
+Corrected software defects on NT and UNIX platforms.  Maintained code revision streams in CVS, branching and merging changes by off-site developers after deducing their baseline revision level. (CVS) 
 Performed QA for several UNIX and NT product releases, according to ISO 9001-compliant procedures.
-Documented and publicized all building and testing procedures that I had to figure out myself.
+Documented and internally publicized all building and testing procedures that I had to figure out myself.
 
  
 USNR	 Woodland, Washington, 1995 – 1998
 Software Engineer (Contractor)
-Lead software engineer for a Windows NT-based table editing system, which sends and receives the structure and content of database tables originating on various Ethernet-linked hardware systems, using Berkeley TCP-IP sockets and an in-house client-server protocol.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  Wrote and maintained extension DLL libraries to represent table data graphically.  Enhanced system to store and retrieve tables using ODBC.  (Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid)
+Lead software engineer for a Windows NT-based table editing system, which sends and receives the structure and content of database tables originating on various Ethernet-linked hardware systems, using Berkeley TCP-IP sockets and an in-house client-server protocol.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  Wrote and maintained extension DLL libraries to represent table data graphically.  Implemented storage of data in SQL database via ODBC.  (Windows NT, Visual C++ 4.0 with MFC, ODBC, Objective Grid)
 Designed and wrote utility on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that code, designed and wrote a server to exchange tables between the NT-based table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers to be used by other NT-based client applications.  (VAX ELN, Pascal)
+
 Magellan Communications   Sunnyvale, California, 1994
 Lead Quality Assurance Engineer, Software Engineer (Contractor)
-Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  (MS Word for Macintosh, QNX, PDP-11, C)
+Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  (QNX, PDP-11, C)
 Maintained and debugged source code, and integrated several engineers’ code changes into an RCS source code control system.  Maintained Makefiles. (QNX, C, RCS, make)
 
 National Information Systems, Inc.   San Jose, California, 1991 ­ 1993
@@ -41,15 +42,15 @@ Database Software Engineer, Quality Assurance Manager,
 Application Programmer/Analyst
 Designed and implemented a client-server interface for RDM, a multi-platform relational database and application development system with over 1000 installations.  This interface enables RDM to access remote RDM and ORACLE database tables over DECNET and other networks.  (VMS, C, Embedded SQL, ORACLE, DECNET, VMS RTL and System Services, p2c)
 Ported RDM from VAX VMS to Alpha AXP OpenVMS.  (C, Pascal, VMS System Services)
-Performed extensive debugging of RDM, involving every level of development from assembler code to customers’ developed applications.  100% responsible for all maintenance development of RDM under VMS.  (VMS, MS-DOS, UNIX, C, Pascal, VAX Macro, VMS System Services, VMS Patch, VMS Debugger, CodeView)
+Performed extensive debugging of RDM, involving every level of development from assembler code to customers’ developed applications.  Responsible for all maintenance development of RDM under VMS.  (VMS, MS-DOS, UNIX, C, Pascal, VAX Macro, VMS System Services, VMS Debugger, CodeView)
 Developed new features, enhancements, and innovations to RDM, including screen refresh optimization, control-C trapping, and multi-user record access. (C, Pascal, VMS System Services, VMS RMS)
-Quality Assurance Manager and lead Release Engineer for two major releases of RDM.  Primary author of release notes for both.  (VMS, MS-DOS, UNIX, RDM, EVE, MS Word)
-Designed, implemented and maintained the RCS source control system in VAX DCL for RDM. (VMS, UNIX, RCS, VMS DCL)
-Lead customer support engineer for ProRDM, a high-level language interface for RDM.   Performed telephone, dial-up, written, and on-site support services.  (VMS, RDM, MS-DOS, Novell, UNIX, EVE, MS Word)
+Quality Assurance Manager and lead Release Engineer for two major releases of RDM.  Primary author of release notes for both.  (VMS, MS-DOS, UNIX, RDM)
+Created and maintained RCS-based source control system in VAX DCL for RDM. (VMS, RCS, DCL)
+Lead customer support engineer for ProRDM, a high-level language interface for RDM.   Performed telephone, dial-up, written, and on-site support services.  (VMS, RDM, MS-DOS, Novell)
 
 Interactive Technology, Inc.   Beaverton, Oregon, 1986 ­ 1991
 Database Software Engineer, Quality Assurance Manager, Technical Writer
 Maintained, debugged, and wrote enhancements to RDM, as at NIS.  Quality Assurance Manager and Release Engineer for three major releases of RDM, and lead customer support engineer for ProRDM.  (VMS, MS-DOS, UNIX, RSX, TSX, RSTS, Pascal, C, VAX Macro, DEC Test Manager)
 Designed and implemented enhanced B*tree indexing system for RDM.  (Pascal, VMS RMS) 
-Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (MS Word, C)
+Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (C)
 
