@@ -9,7 +9,7 @@ Developing innovative methods for diagnosing and tracking down bugs at all level
 Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE 
 Languages: C++, C, Pascal, Korn shell, VAX Macro, VMS DCL, Visual BASIC, FORTRAN
-Operating Systems: Windows NT (3.51 and 4.0), HPUX, SunOS, Solaris, AIX, VMS, MS-DOS
+Operating Systems: Windows NT (3.51 & 4.0), Windows 98 & 95, HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
 Networks: TCP-IP, Ethernet, DECNET, Novell, QNX
 Database Systems: MS SQL Server, ODBC, MS Access, ORACLE, RDM, DBase III
 HARDWARE EXPERIENCE 
@@ -20,14 +20,14 @@ WORK HISTORY
 
 Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, 2001 – Present
 Software Development Engineer (Contractor)
-Developing an Internet client application which synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  As the team’s senior C++/MFC engineer, providing technical advice and guidance to teammates on a daily basis. (NT, Visual C++, MFC)
+Developing an Internet client application which synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  As the team’s senior C++/MFC engineer, providing technical advice and guidance to teammates on a daily basis. (NT, Visual C++, MFC, WinInet, Puma Intellisync SDK)
 
 Harland Financial Solutions (formerly Concentrex) 	Portland, Oregon, 1999 - 2000
 E-Commerce Software Engineer
-Developed and maintained the following on-line banking software, at up to four concurrent release levels:
+Developed and maintained the following Internet banking software, at up to four concurrent release levels:
  
 •	GUI application for remote administration of the financial transaction server
-•	COM/DCOM client and server components to perform the app’s financial and database transactions 
+•	COM/DCOM client and server middleware components, to perform the app’s financial and database transactions and handle requests from web server
 •	“Pluggable” DLL components for the app; architected the SDK library for development of the DLL’s
  
 (NT, Visual C++, MFC, STL, COM, DCOM, SQL Server)
@@ -65,3 +65,9 @@ Database Software Engineer, Technical Writer
 Maintained, debugged, and wrote enhancements to RDM, as at NIS.  Quality Assurance Manager and Release Engineer for three major releases of RDM, and lead customer support engineer for ProRDM.  (VMS, MS-DOS, UNIX, RSX, TSX, RSTS, Pascal, C, VAX Macro, DEC Test Manager)
 Designed and implemented enhanced B*tree indexing system for RDM.  (Pascal, VMS RMS) 
 Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.  (C)
+
+ SIDE PROJECTS 
+•	Helped design and create a web site for a small health food company using Microsoft Front Page, HTML, and JavaScript (2001).
+•	Wrote private web site using HTML and several image processing applications (2000).
+
+
