@@ -20,20 +20,22 @@ EDUCATION
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 
 WORK HISTORY 
-CGI Montreal, Quebec (telecommuting from home) July 2021-present
+CGI Montreal, Quebec (remote from Portland, Oregon) July 2021-present
 Senior Consultant (software development engineer)
-Resumed the same duties I had at Nexelis, as my job was subcontracted to CGI.
-Reworked in-house applications and software libraries I had written at Nexelis, replacing their database back-end  (Advanced Revelation) with a SQL Server back-end, and adapting them to a new laboratory and IT environment. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)  
+Designed, implemented, and maintained Winforms C# .NET applications with SQL Server back-ends for a clinical research laboratory, which used reusable code libraries I had written as a Nexelis employee. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Git)
+Reworked in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with a SQL Server back-end, and adapting them to a new laboratory and IT environment. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)  
+Maintained in-house applications I had written as a Nexelis employee. (Windows 10, C#, .NET 4.8, SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005/2014, Revelation, Crystal Reports for .NET, Perforce)
 As part of decommissioning of the Nexelis Seattle lab, migrated data, software, and processes to a recently created laboratory and IT environment, while assisting in the initial setup of the environment. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)
 
 Nexelis Seattle, Washington September 2005-July 2021
 Senior Software Engineer
-Designed and implemented several Winforms C# .NET applications with SQL Server back-ends for a clinical research laboratory, for purposes that included clinical study setup, clinical data extraction, project management, financial projection, system access privilege management, logging usage of applications by users, and more. Developed reusable code libraries for these applications, which provided the following features:
+Designed and implemented Winforms C# .NET in-house applications with SQL Server back-ends for a clinical research laboratory, for purposes that included clinical study setup, clinical data extraction, project management, financial projection, system access privilege management, logging usage of applications by users, and more. Developed reusable code libraries for these applications, which provided the following features:
 •	Forms.NET user interface with data binding
 •	Multi-level data security based on Windows Login credentials
 •	Paginated images of forms and DataGridView objects for printing
 •	DataGridView object data exportable to XML Excel spreadsheet documents
 (Windows XP/7/10, C#, .NET 2.0/3.5/4.0/4., SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005/2014, Revelation, Crystal Reports for .NET, Perforce)  
+Designed, implemented, and administered SQL Server databases used by the in-house applications I developed, with C# assemblies, triggers, and other advanced features. (MS SQL Server 2005/2014)
 Developed a 21 CFR Part 11-compliant database client application in C#/.NET 2.0, and a SQL Server 2005 database, to monitor refrigeration unit temperatures and present aggregated data, for regular review and auditing, in Forms.NET forms and SQL Server Reporting Services reports. (Windows XP/7/10, C#, .NET 2.0, MS SQL Server 2005, SQL Server Reporting Services, Perforce)  
 Designed and implemented a Mirror Database, a dynamically maintained read-only database that mirrors the data in the tables in the company’s laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server. (Windows XP/7/10, C#, .NET, TSQL, MS SQL Server 2005/2014, Revelation, Revelation BASIC+)
 Designed and implemented an Audit Logging system, to capture each data change in a SQL Server tables and log it in another SQL Server table, at either the .NET application end or the SQL Server end (TSQL Trigger code). (Windows XP/7/10, C#, .NET, TSQL, MS SQL Server)
