@@ -21,6 +21,10 @@ EDUCATION
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 
 WORK HISTORY 
+Microsoft Corporation Redmond, Washington June 2005-present
+Programmer-Writer
+Writing and editing Microsoft ADO.NET documentation, which is published in application help files and MSDN. Maintaining and OLE DB and ODBC documentation. Correcting and clarifying documentation in response to documentation change requests. Resolving issues covered in documentation by creating test applications and communicating with developers. (Windows XP, C#, C++ .NET, Visual Basic .NET, .NET 2.0 Framework, ADO.NET, OLE DB, SQL Server 2005, XML, DocStudio, Product Studio)  
+Writing and maintaining published sample applications in C#, C++ .NET, and Visual Basic .NET, using SQL Server 2005. (Windows XP, C#, C++ .NET, Visual Basic .NET, .NET 2.0 Framework, ADO.NET, SQL Server 2005, Source Depot)  
 Microsoft Corporation Redmond, Washington February 2004-February 2005
 Software Development Engineer in Test
 Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources. Wrote first version as a Perl script that generates HTML web pages, later adding interactive capabilities with Javascript. Rewrote the tool as a C# .NET Framework solution, and integrated it with other .NET components used in the development of Microsoft’s Visual Studio .NET product. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. (Windows XP, C#, .NET Framework, XML, Perl, DHTML, JavaScript)
