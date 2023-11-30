@@ -7,9 +7,9 @@ Email: dietrich@byandlarge.org
 
 
 STRENGTHS 
-Creating, maintaining, and documenting application software in a team environment, with a focus on quality, clarity, flexibility and future maintainability. 
-Developing innovative methods for diagnosing and tracking down bugs at all levels of abstraction, from machine code to final application.
-Working with support technicians, sales people, marketing managers, engineers and end users to produce software that is innovative, reliable and responsive to changing needs.
+Creating, maintaining, and documenting application software, with a focus on quality, clarity, flexibility and future maintainability, at all stages of the software life cycle.
+Building IT solutions by selecting platform infrastructure, adapting existing software, and writing new software, as appropriate to the needs of the project.
+Working with technical, administrative, and marketing departments, as well as end users, to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE
 Languages: C#, C++, Visual C++ .NET, Managed C++, C, Pascal, Visual Basic, SQL, T-SQL, JavaScript, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
 Operating Systems: Windows XP .NET, 2000, NT, 98 & 95; HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
