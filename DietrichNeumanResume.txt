@@ -12,7 +12,7 @@ Working with technical, administrative, and marketing departments, as well as en
 SOFTWARE EXPERIENCE
 Languages: C#, C++, Visual C++ .NET, Managed C++, C, Objective C, Pascal, Visual Basic, VBA, Revelation BASIC+, SQL, T-SQL, JavaScript, Java, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
 Operating Systems: Windows (10, 7, XP, 2000, NT, 98 & 95); HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
-Networks: TCP-IP, Ethernet, DECNET, Novell, QNX
+Networks: TCP-IP, Serial Port, Ethernet, DECNET, Novell, QNX
 Database Systems: MS SQL Server, MS Access, ODBC, ORACLE, Revelation, RDM, DBase III
 HARDWARE EXPERIENCE 
 PC, HP 9000, Sparc, IBM RS-6000, VAX, Alpha AXP, IBM PC, Macintosh,  PDP-11, Sun workstation
@@ -38,7 +38,7 @@ Designed and implemented an Audit Logging system, to capture each data change in
 Created a utility in Visual Basic Script to generate and print bar-code labels from data read from text files. (Visual Basic Script 6.0)
 Maintained code of a smartphone application for both the Android and iPhone platforms. (Windows 7, Java, Objective C)
 Created the company’s first software development environment by acquiring and configuring Visual Studio 2005, SQL Server 2005, and Perforce.
-Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces. (Microsoft Word)
+Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces. (Microsoft Word, Microsoft Visio)
 
 Microsoft Corporation Redmond, Washington June 2005-August 2005
 Programmer-Writer
