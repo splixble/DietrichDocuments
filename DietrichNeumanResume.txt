@@ -1,14 +1,12 @@
 Dietrich Neuman
 2950 Southeast Yamhill Street
-Portland, Oregon 97219
+Portland, Oregon 97214
 Phone: (206) 930-7266
 Email: DietrichNeuman@gmail.com
 
 
 STRENGTHS 
-Creating, maintaining, and documenting application software, with a focus on quality, clarity, flexibility and future maintainability, at all stages of the software life cycle.
-Building IT solutions by selecting platform infrastructure, adapting existing software, and writing new software, as appropriate to the needs of the project.
-Working with technical, administrative, and marketing departments, as well as end users, to produce software that is innovative, reliable and responsive to changing needs.
+I am a full-stack software developer with extensive experience developing Window applications, from the UI layer (C# .NET, VB, C++, JavaScript, others) to the back end (SQL Server and other SQL databases), at all stages of the software development life cycle. With my broad background documenting, testing, maintaining, and supporting software as well, I excel in environments where I can “wear many hats”. Whether I’m working from a formal specification or an ad-hoc user request, I have always aimed to make software easier and more powerful for the user.
 SOFTWARE EXPERIENCE
 Languages: C#, C++, Visual C++ .NET, Managed C++, C, Objective C, Pascal, Visual Basic, VBA, Revelation BASIC+, SQL, T-SQL, JavaScript, Java, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
 Operating Systems: Windows (10, 7, XP, 2000, NT, 98 & 95); HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
@@ -23,7 +21,7 @@ WORK HISTORY
 CGI Montreal, Quebec (remote from Portland, Oregon) July 2021-present
 Senior Consultant (software development engineer)
 Designed, implemented, and maintained Winforms C# .NET applications with SQL Server back-ends for a clinical research laboratory, which used reusable code libraries I had written as a Nexelis employee. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Git)
-Reworked in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with a SQL Server back-end, and adapting them to a new laboratory and IT environment. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)  
+Reworked in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with a SQL Server back-end, and adapting them to a new laboratory and IT environment.(Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)  
 Maintained in-house applications I had written as a Nexelis employee. (Windows 10, C#, .NET 4.8, SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005/2014, Revelation, Crystal Reports for .NET, Perforce)
 As part of decommissioning of the Nexelis Seattle lab, migrated data, software, and processes to a recently created laboratory and IT environment, while assisting in the initial setup of the environment. (Windows 10, C#, .NET 4.8, SQL, T-SQL, MS SQL Server 2019, Revelation, Perforce, Git)
 
@@ -34,11 +32,11 @@ Designed and implemented Winforms C# .NET in-house applications with SQL Server 
 •	Multi-level data security based on Windows Login credentials
 •	Paginated images of forms and DataGridView objects for printing
 •	DataGridView object data exportable to XML Excel spreadsheet documents
-(Windows XP/7/10, C#, .NET 2.0/3.5/4.0/4., SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005/2014, Revelation, Crystal Reports for .NET, Perforce)  
+(Windows XP/7/10, C#, .NET 2.0/3.5/4.0/4., SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005/2014, Revelation, COM/OLE, Crystal Reports for .NET, Perforce)  
 Designed, implemented, and administered SQL Server databases used by the in-house applications I developed, with C# assemblies, triggers, and other advanced features. (MS SQL Server 2005/2014)
 Developed a 21 CFR Part 11-compliant database client application in C#/.NET 2.0, and a SQL Server 2005 database, to monitor refrigeration unit temperatures and present aggregated data, for regular review and auditing, in Forms.NET forms and SQL Server Reporting Services reports. (Windows XP/7/10, C#, .NET 2.0, MS SQL Server 2005, SQL Server Reporting Services, Perforce)  
 Designed and implemented a Mirror Database, a dynamically maintained read-only database that mirrors the data in the tables in the company’s laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server. (Windows XP/7/10, C#, .NET, TSQL, MS SQL Server 2005/2014, Revelation, Revelation BASIC+)
-Designed and implemented an Audit Logging system, to capture each data change in a SQL Server tables and log it in another SQL Server table, at either the .NET application end or the SQL Server end (TSQL Trigger code). (Windows XP/7/10, C#, .NET, TSQL, MS SQL Server)
+Designed and implemented an Audit Logging system, to capture each data change in SQL Server tables and log it in another SQL Server table, at either the .NET application end or the SQL Server end (TSQL Trigger code). (Windows XP/7/10, C#, .NET, TSQL, MS SQL Server)
 Wrote Javascript code to generate dynamic HTML in the company’s website. (Javascript, DHTML)
 Created a utility in Visual Basic Script to generate and print bar-code labels from data read from text files. (Visual Basic Script 6.0)
 Maintained code of a smartphone application for both the Android and iPhone platforms. (Windows 7, Java, Objective C)
@@ -62,15 +60,15 @@ Developed server software in Perl and C++ for internet-based consumer financial 
 
 Dietrich Neuman Software Services Portland, Oregon, January 2002-August 2003 
 Freelance Software Developer and Consultant
-Designed and developed professional websites for clients (see www.midgard.net/~dietrich/pro). CGI scripting in Perl, interaction with third-party database hosts. (Windows XP & 98,  Dreamweaver 4.0, Javascript, Perl, Paint Shop Pro 7.0, PhotoFinish, HTML)
-Designed and developed inventory tracking systems for art and antique dealers: MS Access databases integrated with a web-based catalog system and Excel. (Windows XP & 98,  MS Access 2000, Visual Basic 6.0, SQL, Perl, MS Excel, Dreamweaver 4.0) 
+Designed and developed professional websites for clients, with CGI scripting in Perl, interaction with third-party database hosts. (Windows XP &98,  Dreamweaver 4.0, Javascript, Perl, Paint Shop Pro 7.0, PhotoFinish, HTML)
+Designed and developed inventory tracking systems for art and antique dealers: MS Access databases integrated with a web-based catalog system and Excel. (Windows XP &98,  MS Access 2000, Visual Basic 6.0, SQL, Perl, MS Excel, Dreamweaver 4.0) 
 
-Professional Data Exchange, Inc. (ProDX) 	Portland, Oregon, February-September 2001
+Professional Data Exchange, Inc. (ProDX)	Portland, Oregon, February-September 2001
 Software Development Engineer 
 Developed an Internet client application that synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  (NT, Visual C++, MFC, WinInet, Puma Intellisync SDK)
 As the team's senior C++/MFC engineer, provided technical advice and guidance to teammates on a daily basis. (NT, Visual C++, MFC)
 
-Harland Financial Solutions (formerly Concentrex) 	Portland, Oregon, 1999-2000
+Harland Financial Solutions (formerly Concentrex)	Portland, Oregon, 1999-2000
 E-Commerce Software Engineer
 Developed and maintained the following Internet banking software, at up to four concurrent release levels:
 •	GUI application for remote administration of the financial transaction server
