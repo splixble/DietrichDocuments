@@ -1,9 +1,8 @@
 Dietrich Neuman
-400 West Mercer Street
-Apartment 404
-Seattle, Washington 98119
-Phone: (206) 285-5673
-Email: dietrich@byandlarge.org
+2950 Southeast Yamhill Street
+Portland, Oregon 97219
+Phone: (206) 930-7266
+Email: DietrichNeuman@gmail.com
 
 
 STRENGTHS 
@@ -11,40 +10,47 @@ Creating, maintaining, and documenting application software, with a focus on qua
 Building IT solutions by selecting platform infrastructure, adapting existing software, and writing new software, as appropriate to the needs of the project.
 Working with technical, administrative, and marketing departments, as well as end users, to produce software that is innovative, reliable and responsive to changing needs.
 SOFTWARE EXPERIENCE
-Languages: C#, C++, Visual C++ .NET, Managed C++, C, Pascal, Visual Basic, SQL, T-SQL, JavaScript, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
-Operating Systems: Windows XP .NET, 2000, NT, 98 & 95; HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
+Languages: C#, C++, Visual C++ .NET, Managed C++, C, Objective C, Pascal, Visual Basic, VBA, Revelation BASIC+, SQL, T-SQL, JavaScript, Java, Perl, NT Batch, Korn shell, VAX Macro, VMS DCL, FORTRAN
+Operating Systems: Windows (10, 7, XP, 2000, NT, 98 & 95); HPUX, Solaris, SunOS, AIX, VMS, MS-DOS
 Networks: TCP-IP, Ethernet, DECNET, Novell, QNX
-Database Systems: MS SQL Server, MS Access, ODBC, ORACLE, RDM, DBase III
+Database Systems: MS SQL Server, MS Access, ODBC, ORACLE, Revelation, RDM, DBase III
 HARDWARE EXPERIENCE 
 PC, HP 9000, Sparc, IBM RS-6000, VAX, Alpha AXP, IBM PC, Macintosh,  PDP-11, Sun workstation
 EDUCATION 
 BS in Computer and Information Science, minors in Mathematics and English, University of Oregon, 1986
 
 WORK HISTORY 
-Pacific Biometrics, Inc. Seattle, Washington September 2005-present
-Software Engineer
-Designed and implemented a project management and financial projection application for a clinical research laboratory. Grew the initial application, a set of Access 97 tables and forms, by adding new tables, reports, and Visual Basic for Applications (VBA) validations.  Ported the database, by then containing over 100 tables, to SQL Server 2005. Wrote the client application in C#/.NET 2.0, with the following features:
+CGI Montreal, Quebec (telecommuting from home) July 2021-present
+Senior Consultant (software development engineer)
+Resumed the same duties I had at Nexelis, as my job was subcontracted to CGI.
+
+Nexelis Seattle, Washington September 2005-July 2021
+Senior Software Engineer
+Designed and implemented several Winforms C# .NET applications with SQL Server back-ends for a clinical research laboratory, for purposes that included clinical study setup, clinical data extraction, project management, financial projection, system access privilege management, logging usage of applications by users, and more. Developed reusable code libraries for these applications, which provided the following features:
 •	Forms.NET user interface with data binding
 •	Multi-level data security based on Windows Login credentials
-•	Generated SQL Server Trigger functions for edit logging
 •	Paginated images of forms and DataGridView objects for printing
 •	DataGridView object data exportable to XML Excel spreadsheet documents
-(Windows XP, C#, .NET 2.0, SQL, T-SQL, Visual Basic for Applications, MS SQL Server 2005, MS Access 97, Crystal Reports for .NET, Perforce)  
-Developed a 21 CFR Part 11-compliant database client application in C#/.NET 2.0, and a SQL Server 2005 database, to monitor refrigeration unit temperatures and present aggregated data, for regular review and auditing, in Forms.NET forms and SQL Server Reporting Services reports. (Windows XP, C#, NET 2.0, MS SQL Server 2005, SQL Server Reporting Services, Perforce)  
-
-Wrote Javascript code to generate dynamic HTML in the company’s website. (Javascript, DHTML)
+(Windows XP/7/10, C#, .NET 2.0, SQL, T-SQL, Visual Basic for Applications, MS SQL Server, Revelation, Crystal Reports for .NET, Perforce)  
+Developed a 21 CFR Part 11-compliant database client application in C#/.NET 2.0, and a SQL Server 2005 database, to monitor refrigeration unit temperatures and present aggregated data, for regular review and auditing, in Forms.NET forms and SQL Server Reporting Services reports. (Windows XP/7/10, C#, NET 2.0, MS SQL Server 2005, SQL Server Reporting Services, Perforce)  
+Designed and implemented a Mirror Database, a dynamically maintained read-only database that mirrors the data in the tables in the company’s laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server. (Windows XP/7/10, C#, NET, TSQL, MS SQL Server, Revelation, Revelation BASIC+)
+Designed and implemented an Audit Logging system, to capture each data change in a SQL Server tables and log it in another SQL Server table, at either the .NET application end or the SQL Server end (TSQL Trigger code). (Windows XP/7/10, C#, NET, TSQL, MS SQL Server)Wrote Javascript code to generate dynamic HTML in the company’s website. (Javascript, DHTML)
 Created a utility in Visual Basic Script to generate and print bar-code labels from data read from text files. (Visual Basic Script 6.0)
+Maintained code of a smartphone application for both the Android and iPhone platforms. (Windows 7, Java, Objective C)
 Created the company’s first software development environment by acquiring and configuring Visual Studio 2005, SQL Server 2005, and Perforce.
-Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for two laboratory instrument data interfaces. (Microsoft Word)
+Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces. (Microsoft Word)
+
 Microsoft Corporation Redmond, Washington June 2005-August 2005
 Programmer-Writer
 Wrote and edited Microsoft ADO.NET documentation, which is published in application help files and MSDN. Maintained OLE DB and ODBC documentation. Corrected and clarified documentation in response to documentation change requests. Resolved documentation issues by creating test applications and communicating with developers. (Windows XP, C#, C++ .NET, Visual Basic .NET, .NET 2.0 Framework, ADO.NET, OLE DB, SQL Server 2005, XML, DocStudio, Product Studio)  
 Wrote and maintained sample applications used in published ADO.NET documentation, in C#, C++ .NET, and Visual Basic .NET, using SQL Server 2005. (Windows XP, C#, C++ .NET, Visual Basic .NET, .NET 2.0 Framework, ADO.NET, SQL Server 2005, Source Depot)  
+
 Microsoft Corporation Redmond, Washington February 2004-February 2005
 Software Development Engineer in Test
 Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources. Wrote first version as a Perl script that generates HTML web pages, later adding interactive capabilities with Javascript. Rewrote the tool as a C# .NET Framework solution, and integrated it with other .NET components used in the development of Microsoft’s Visual Studio .NET product. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. (Windows XP, C#, .NET Framework, XML, Perl, DHTML, JavaScript)
 Developed other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. (Windows XP, C#, .NET Framework, XML, Perl)
 Monitored automated test runs of Phoenix, a platform for compiler design and analysis. Reproduced, simplified, and diagnosed test failures, then wrote them up as bug reports. (Windows XP, Windows 2003 Server, Visual C++ .NET, Managed C++, C#, MSIL, Perl, NT batch script, Product Studio, WinDbg, Source Depot)
+
 Franklin Revere Seattle, Washington, April-October 2003 
 Software Development Engineer
 Developed server software in Perl and C++ for internet-based consumer financial service. (Windows 2000 & 98, Perl, Visual C++, ATL, cURL, OpenSSL)
