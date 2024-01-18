@@ -16,7 +16,7 @@ Senior Consultant (software engineer)	July 2021 – present
 CGI 	Montreal, Quebec (remote from Portland) 
 Performed consulting work for the following clients:
 •	Delpharm (Boucherville, Quebec)
-Customized a STARLIMS installation, with edits to server scripts in STARLIMS Scripting Language and client scripts in Jscript .NET, to solve usability problems.
+Customized a STARLIMS installation, with edits to server scripts in STARLIMS Scripting Language and client scripts in JavaScript, to solve usability problems.
 •	Adjuvia Therapeutics (San Francisco, California)
 Completed and enhanced an Access database application, migrating its back-end tables from Access to SharePoint lists.
 •	Nexelis, a Q² Solutions Company (previous employer; Seattle, Washington)
@@ -34,7 +34,7 @@ Designed and implemented a suite of Winforms C# .NET/SQL Server in-house laborat
 •	Audit logging at either the front or back (SQL Server) end
 Administered and enhanced the SQL Server databases I had designed for the in-house applications, adding C# assemblies, triggers, and other advanced features. 
 Designed and implemented a Mirror Database, to maintain a real time copy of the data in the company’s Revelation Software laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server.
-Wrote Javascript code to generate dynamic HTML for the company’s website.
+Wrote JavaScript code to generate dynamic HTML for the company’s website.
 Created a utility in Visual Basic Script 6.0 to generate and print bar-code labels from data read from text files. 
 Maintained Java and Objective C code of a smartphone application for both the Android and iPhone platforms.
 Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces.
@@ -48,7 +48,7 @@ Wrote and maintained sample applications used in published ADO.NET documentation
 Software Development Engineer in Test	February 2004 – February 2005
 Excell Data Corporation (agency)	Bellevue, Washington
 Contracted to Microsoft Corporation, Redmond, Washington 
-Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources, first as a Perl script to generate HTML/Javascript web pages, then as a C# .NET application, integrated with other .NET components used in Microsoft’s development of .NET Framework 2.0. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. 
+Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources, first as a Perl script to generate HTML/JavaScript web pages, then as a C# .NET application, integrated with other .NET components used in Microsoft’s development of .NET Framework 2.0. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. 
 Developed other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. 
 Monitored automated test runs of Phoenix, a platform for compiler design and analysis. Reproduced, simplified, and diagnosed test failures, then wrote them up as bug reports. 
 
