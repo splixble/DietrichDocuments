@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MySqlNewDataSet" targetNamespace="http://tempuri.org/MySqlNewDataSet.xsd" xmlns:mstns="http://tempuri.org/MySqlNewDataSet.xsd" xmlns="http://tempuri.org/MySqlNewDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="MainConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="MainConnectionString (Settings)" PropertyReference="ApplicationSettings.Songs.Properties.Settings.GlobalReference.Default.MainConnectionString" Provider="System.Data.Odbc" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="songsTableAdapter" GeneratorDataComponentClassName="songsTableAdapter" Name="songs" UserDataComponentName="songsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MainConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TitlePrefix, Title, Code, `Key`, Comment, PageNumberOriginal, Category, `Songbook Only`, ID, Artist, SongKey, SongbookOnly, PageNumber, OriginalKey
+FROM            songs</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TitlePrefix" DataSetColumn="TitlePrefix" />
+              <Mapping SourceColumn="Title" DataSetColumn="Title" />
+              <Mapping SourceColumn="Code" DataSetColumn="Code" />
+              <Mapping SourceColumn="Key" DataSetColumn="Key" />
+              <Mapping SourceColumn="Comment" DataSetColumn="Comment" />
+              <Mapping SourceColumn="PageNumberOriginal" DataSetColumn="PageNumberOriginal" />
+              <Mapping SourceColumn="Category" DataSetColumn="Category" />
+              <Mapping SourceColumn="Songbook Only" DataSetColumn="Songbook Only" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Artist" DataSetColumn="Artist" />
+              <Mapping SourceColumn="SongKey" DataSetColumn="SongKey" />
+              <Mapping SourceColumn="SongbookOnly" DataSetColumn="SongbookOnly" />
+              <Mapping SourceColumn="PageNumber" DataSetColumn="PageNumber" />
+              <Mapping SourceColumn="OriginalKey" DataSetColumn="OriginalKey" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MainConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TitlePrefix, Title, Code, `Key`, Comment, PageNumberOriginal, Category, `Songbook Only`, ID, Artist, SongKey, SongbookOnly, PageNumber, OriginalKey
+FROM            songs
+WHERE        (TitlePrefix = '$id')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MySqlNewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="MySqlNewDataSet" msprop:Generator_DataSetName="MySqlNewDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="songs" msprop:Generator_RowEvHandlerName="songsRowChangeEventHandler" msprop:Generator_RowDeletedName="songsRowDeleted" msprop:Generator_RowDeletingName="songsRowDeleting" msprop:Generator_RowEvArgName="songsRowChangeEvent" msprop:Generator_TablePropName="songs" msprop:Generator_RowChangedName="songsRowChanged" msprop:Generator_RowChangingName="songsRowChanging" msprop:Generator_TableClassName="songsDataTable" msprop:Generator_RowClassName="songsRow" msprop:Generator_TableVarName="tablesongs" msprop:Generator_UserTableName="songs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TitlePrefix" msprop:Generator_ColumnPropNameInRow="TitlePrefix" msprop:Generator_ColumnPropNameInTable="TitlePrefixColumn" msprop:Generator_ColumnVarNameInTable="columnTitlePrefix" msprop:Generator_UserColumnName="TitlePrefix" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Code" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_UserColumnName="Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Key" msprop:Generator_ColumnPropNameInRow="Key" msprop:Generator_ColumnPropNameInTable="KeyColumn" msprop:Generator_ColumnVarNameInTable="columnKey" msprop:Generator_UserColumnName="Key" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Comment" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnVarNameInTable="columnComment" msprop:Generator_UserColumnName="Comment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PageNumberOriginal" msprop:Generator_ColumnPropNameInRow="PageNumberOriginal" msprop:Generator_ColumnPropNameInTable="PageNumberOriginalColumn" msprop:Generator_ColumnVarNameInTable="columnPageNumberOriginal" msprop:Generator_UserColumnName="PageNumberOriginal" type="xs:int" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_UserColumnName="Category" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Songbook_x0020_Only" msprop:Generator_ColumnPropNameInRow="Songbook_Only" msprop:Generator_ColumnPropNameInTable="Songbook_OnlyColumn" msprop:Generator_ColumnVarNameInTable="columnSongbook_Only" msprop:Generator_UserColumnName="Songbook Only" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="Artist" msprop:Generator_ColumnPropNameInRow="Artist" msprop:Generator_ColumnPropNameInTable="ArtistColumn" msprop:Generator_ColumnVarNameInTable="columnArtist" msprop:Generator_UserColumnName="Artist" type="xs:int" minOccurs="0" />
+              <xs:element name="SongKey" msprop:Generator_ColumnPropNameInRow="SongKey" msprop:Generator_ColumnPropNameInTable="SongKeyColumn" msprop:Generator_ColumnVarNameInTable="columnSongKey" msprop:Generator_UserColumnName="SongKey" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SongbookOnly" msprop:Generator_ColumnPropNameInRow="SongbookOnly" msprop:Generator_ColumnPropNameInTable="SongbookOnlyColumn" msprop:Generator_ColumnVarNameInTable="columnSongbookOnly" msprop:Generator_UserColumnName="SongbookOnly" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PageNumber" msprop:Generator_ColumnPropNameInRow="PageNumber" msprop:Generator_ColumnPropNameInTable="PageNumberColumn" msprop:Generator_ColumnVarNameInTable="columnPageNumber" msprop:Generator_UserColumnName="PageNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OriginalKey" msprop:Generator_ColumnPropNameInRow="OriginalKey" msprop:Generator_ColumnPropNameInTable="OriginalKeyColumn" msprop:Generator_ColumnVarNameInTable="columnOriginalKey" msprop:Generator_UserColumnName="OriginalKey" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:songs" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

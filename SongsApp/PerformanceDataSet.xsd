@@ -10,7 +10,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="performancesTableAdapter" GeneratorDataComponentClassName="performancesTableAdapter" Name="performances" UserDataComponentName="performancesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `performances` WHERE ((`ID` = @p1) AND (`PerformanceDate` = @p2) AND (`Venue` = @p3) AND ((@p4 = 1 AND `Comment` IS NULL) OR (`Comment` = @p5)) AND ((@p6 = 1 AND `Series` IS NULL) OR (`Series` = @p7)))</CommandText>
@@ -72,7 +72,7 @@ ORDER BY PerformanceDate</CommandText>
               <Mapping SourceColumn="Series" DataSetColumn="Series" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByID">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy" UserSourceName="FillByID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Comment, ID, PerformanceDate, Series, Venue FROM performances WHERE (ID = @ID)</CommandText>
@@ -86,7 +86,7 @@ ORDER BY PerformanceDate</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="performanceseriesTableAdapter" GeneratorDataComponentClassName="performanceseriesTableAdapter" Name="performanceseries" UserDataComponentName="performanceseriesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performanceseries" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performanceseries" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `performanceseries` WHERE ((`SeriesName` = @p1) AND (`StartDate` = @p2) AND ((@p3 = 1 AND `VenueIfAny` IS NULL) OR (`VenueIfAny` = @p4)) AND ((@p5 = 1 AND `Comment` IS NULL) OR (`Comment` = @p6)) AND (`ID` = @p7))</CommandText>
@@ -147,7 +147,7 @@ FROM            performanceseries</CommandText>
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performanceseries" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByID">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.performanceseries" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy" UserSourceName="FillByID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        SeriesName, StartDate, VenueIfAny, Comment, ID
@@ -163,7 +163,7 @@ WHERE        (ID = @ID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="venuesTableAdapter" GeneratorDataComponentClassName="venuesTableAdapter" Name="venues" UserDataComponentName="venuesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.venues" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.venues" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `venues` WHERE ((`ID` = @p1) AND (`Name` = @p2) AND ((@p3 = 1 AND `Comment` IS NULL) OR (`Comment` = @p4)))</CommandText>
@@ -215,7 +215,7 @@ FROM            venues</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="songperformancesTableAdapter" GeneratorDataComponentClassName="songperformancesTableAdapter" Name="songperformances" UserDataComponentName="songperformancesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.songperformances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.songperformances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `songperformances` WHERE ((`ID` = @p1) AND (`Performance` = @p2) AND (`Song` = @p3) AND ((@p4 = 1 AND `Comment` IS NULL) OR (`Comment` = @p5)))</CommandText>
@@ -269,7 +269,7 @@ FROM            songperformances</CommandText>
               <Mapping SourceColumn="Comment" DataSetColumn="Comment" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.songperformances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPerformance" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByPerformance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByPerformance">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.songperformances" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPerformance" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByPerformance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy" UserSourceName="FillByPerformance">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, Performance, Song, Comment

@@ -35,8 +35,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>4.3.6.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>4.3.6.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -112,10 +112,18 @@
     <Compile Include="ListingForm.Designer.cs">
       <DependentUpon>ListingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MySqlDataSet.cs">
+      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MySqlDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MySqlNewDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySqlNewDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="PerformanceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -199,6 +207,17 @@
     </None>
     <None Include="MySqlDataSet.xss">
       <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MySqlNewDataSet.xsc">
+      <DependentUpon>MySqlNewDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MySqlNewDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MySqlNewDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MySqlNewDataSet.xss">
+      <DependentUpon>MySqlNewDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
