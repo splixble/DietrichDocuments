@@ -5,13 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.Odbc;
+using MySql.Data.MySqlClient;
 
 namespace Songs
 {
     public partial class SongsForm : Form
     {
-        OdbcDataAdapter _SongsAdap;
+        MySqlDataAdapter _SongsAdap;
 
         int _ContextMenuRow = -1;
         int _ContextMenuColumn = -1;
@@ -32,7 +32,7 @@ namespace Songs
         public SongsForm()
         {
             InitializeComponent();
-            _SongsAdap = new OdbcDataAdapter("",  global::Songs.Properties.Settings.Default.MainConnectionString);
+            _SongsAdap = new MySqlDataAdapter("",  global::Songs.Properties.Settings.Default.songbookConnectionString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace Songs
             dataSet1.songs.Clear();
             _SongsAdap.SelectCommand.CommandText =
                 "SELECT TitlePrefix, Title, Code, SongKey, OriginalKey, Comment, PageNumber, Category, Song" +
-                "bookOnly, ID, Artist FROM songs " + tbWhereClause.Text;
+                "bookOnly, ID, Artist, InTablet FROM songs " + tbWhereClause.Text;
             _SongsAdap.Fill(dataSet1.songs);
             // was: this.songsTableAdapter.Fill(this.dataSet1.songs);
             grid1.Sort(titleDataGridViewTextBoxColumn, ListSortDirection.Ascending);
@@ -355,7 +355,7 @@ namespace Songs
         private void performancesListingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListingForm form = new ListingForm();
-            form.ShowPerformanceList();
+            form.ShowPerformanceList(true);
         }
 
         private void comboSongFinder_SelectionChangeCommitted(object sender, EventArgs e)
@@ -399,5 +399,15 @@ namespace Songs
             form.ShowPerformanceTotalsList();
         }
 
+        private void songsBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bandGigsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowPerformanceList(false);
+        }
     }
 }

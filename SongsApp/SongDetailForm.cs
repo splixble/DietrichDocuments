@@ -28,6 +28,7 @@ namespace Songs
             InitializeComponent();
 
             Utils.AllowNullFields(this.alternateArtistsDataSet.AlternateArtists);
+            Utils.AllowNullFields(dataSet1.flaggedsongs);
         }
 
         public DialogResult ShowDialog(int songID, string artistName)

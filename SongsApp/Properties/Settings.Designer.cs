@@ -75,5 +75,46 @@ namespace Songs.Properties {
                 return ((string)(this["songbookConnectionString_newer"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=LOCALHOST;user id=root;database=songbook")]
+        public string songbookConnectionString_5Nov22 {
+            get {
+                return ((string)(this["songbookConnectionString_5Nov22"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=songbook")]
+        public string songbookConnectionString1 {
+            get {
+                return ((string)(this["songbookConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=athapas;database=songbook")]
+        public string songbookConnectionString2 {
+            get {
+                return ((string)(this["songbookConnectionString2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=TestUser@SPEEPMASTER;password=Mustard3;database=songbook" +
+            ";persistsecurityinfo=True")]
+        public string songbookConnectionString3 {
+            get {
+                return ((string)(this["songbookConnectionString3"]));
+            }
+        }
     }
 }

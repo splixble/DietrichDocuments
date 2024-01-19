@@ -39,11 +39,7 @@ namespace Songs
             this.songsTableAdapter = new Songs.MySqlDataSetTableAdapters.songsTableAdapter();
             this.btnSave = new System.Windows.Forms.Button();
             this.gridFlags = new System.Windows.Forms.DataGridView();
-            this.FlagID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.flagsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.songDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.flaggedSongIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.flagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flaggedsongsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flaggedsongsTableAdapter = new Songs.MySqlDataSetTableAdapters.flaggedsongsTableAdapter();
             this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
@@ -56,11 +52,16 @@ namespace Songs
             this.alternateArtistsDataSet = new Songs.AlternateArtistsDataSet();
             this.alternateArtistsTableAdapter = new Songs.AlternateArtistsDataSetTableAdapters.AlternateArtistsTableAdapter();
             this.viewArtistNameForListBoxTableAdapter = new Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
+            this.FlagID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.songDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flaggedSongIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFlags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flagsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flaggedsongsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -126,7 +127,7 @@ namespace Songs
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(403, 368);
+            this.btnSave.Location = new System.Drawing.Point(440, 368);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -147,44 +148,13 @@ namespace Songs
             this.gridFlags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridFlags.Location = new System.Drawing.Point(0, 0);
             this.gridFlags.Name = "gridFlags";
-            this.gridFlags.Size = new System.Drawing.Size(466, 190);
+            this.gridFlags.Size = new System.Drawing.Size(503, 190);
             this.gridFlags.TabIndex = 4;
-            // 
-            // FlagID
-            // 
-            this.FlagID.DataPropertyName = "FlagID";
-            this.FlagID.DataSource = this.flagsBindingSource;
-            this.FlagID.DisplayMember = "FlagName";
-            this.FlagID.HeaderText = "Flag";
-            this.FlagID.Name = "FlagID";
-            this.FlagID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.FlagID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.FlagID.ValueMember = "FlagID";
-            this.FlagID.Width = 160;
             // 
             // flagsBindingSource
             // 
             this.flagsBindingSource.DataMember = "flags";
             this.flagsBindingSource.DataSource = this.dataSet1;
-            // 
-            // songDataGridViewTextBoxColumn
-            // 
-            this.songDataGridViewTextBoxColumn.DataPropertyName = "Song";
-            this.songDataGridViewTextBoxColumn.HeaderText = "Song";
-            this.songDataGridViewTextBoxColumn.Name = "songDataGridViewTextBoxColumn";
-            // 
-            // flaggedSongIDDataGridViewTextBoxColumn
-            // 
-            this.flaggedSongIDDataGridViewTextBoxColumn.DataPropertyName = "FlaggedSongID";
-            this.flaggedSongIDDataGridViewTextBoxColumn.HeaderText = "FlaggedSongID";
-            this.flaggedSongIDDataGridViewTextBoxColumn.Name = "flaggedSongIDDataGridViewTextBoxColumn";
-            this.flaggedSongIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // flagIDDataGridViewTextBoxColumn
-            // 
-            this.flagIDDataGridViewTextBoxColumn.DataPropertyName = "FlagID";
-            this.flagIDDataGridViewTextBoxColumn.HeaderText = "FlagID";
-            this.flagIDDataGridViewTextBoxColumn.Name = "flagIDDataGridViewTextBoxColumn";
             // 
             // flaggedsongsBindingSource
             // 
@@ -202,9 +172,9 @@ namespace Songs
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(12, 58);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -216,7 +186,7 @@ namespace Songs
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridFlags);
-            this.splitContainer1.Size = new System.Drawing.Size(466, 304);
+            this.splitContainer1.Size = new System.Drawing.Size(503, 304);
             this.splitContainer1.SplitterDistance = 110;
             this.splitContainer1.TabIndex = 6;
             // 
@@ -230,7 +200,7 @@ namespace Songs
             this.gridAltArtists.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridAltArtists.Location = new System.Drawing.Point(0, 0);
             this.gridAltArtists.Name = "gridAltArtists";
-            this.gridAltArtists.Size = new System.Drawing.Size(466, 110);
+            this.gridAltArtists.Size = new System.Drawing.Size(503, 110);
             this.gridAltArtists.TabIndex = 0;
             // 
             // ArtistIDColumn
@@ -275,12 +245,46 @@ namespace Songs
             // 
             this.viewArtistNameForListBoxTableAdapter.ClearBeforeFill = true;
             // 
+            // FlagID
+            // 
+            this.FlagID.DataPropertyName = "FlagID";
+            this.FlagID.DataSource = this.flagsBindingSource;
+            this.FlagID.DisplayMember = "FlagName";
+            this.FlagID.HeaderText = "Flag";
+            this.FlagID.Name = "FlagID";
+            this.FlagID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.FlagID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.FlagID.ValueMember = "FlagID";
+            this.FlagID.Width = 180;
+            // 
+            // songDataGridViewTextBoxColumn
+            // 
+            this.songDataGridViewTextBoxColumn.DataPropertyName = "Song";
+            this.songDataGridViewTextBoxColumn.HeaderText = "Song";
+            this.songDataGridViewTextBoxColumn.Name = "songDataGridViewTextBoxColumn";
+            this.songDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // flaggedSongIDDataGridViewTextBoxColumn
+            // 
+            this.flaggedSongIDDataGridViewTextBoxColumn.DataPropertyName = "FlaggedSongID";
+            this.flaggedSongIDDataGridViewTextBoxColumn.HeaderText = "FlaggedSongID";
+            this.flaggedSongIDDataGridViewTextBoxColumn.Name = "flaggedSongIDDataGridViewTextBoxColumn";
+            this.flaggedSongIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.flaggedSongIDDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // flagIDDataGridViewTextBoxColumn
+            // 
+            this.flagIDDataGridViewTextBoxColumn.DataPropertyName = "FlagID";
+            this.flagIDDataGridViewTextBoxColumn.HeaderText = "FlagID";
+            this.flagIDDataGridViewTextBoxColumn.Name = "flagIDDataGridViewTextBoxColumn";
+            this.flagIDDataGridViewTextBoxColumn.Width = 90;
+            // 
             // SongDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.ClientSize = new System.Drawing.Size(490, 403);
+            this.ClientSize = new System.Drawing.Size(527, 403);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblArtist);
@@ -290,8 +294,8 @@ namespace Songs
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SongDetailForm";
             this.Text = "Song Detail Form";
-            this.Load += new System.EventHandler(this.SongDetailForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SongDetailForm_FormClosing);
+            this.Load += new System.EventHandler(this.SongDetailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFlags)).EndInit();
@@ -299,6 +303,7 @@ namespace Songs
             ((System.ComponentModel.ISupportInitialize)(this.flaggedsongsBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridAltArtists)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).EndInit();
@@ -325,10 +330,6 @@ namespace Songs
         private Songs.MySqlDataSetTableAdapters.flaggedsongsTableAdapter flaggedsongsTableAdapter;
         private System.Windows.Forms.BindingSource flagsBindingSource;
         private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
-        private System.Windows.Forms.DataGridViewComboBoxColumn FlagID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn songDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn flaggedSongIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn flagIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView gridAltArtists;
         private System.Windows.Forms.BindingSource alternateArtistsDataSetBindingSource;
@@ -338,5 +339,9 @@ namespace Songs
         private System.Windows.Forms.BindingSource viewArtistNameForListBoxBindingSource;
         private Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
         private System.Windows.Forms.DataGridViewComboBoxColumn ArtistIDColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn FlagID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn flaggedSongIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn flagIDDataGridViewTextBoxColumn;
     }
 }

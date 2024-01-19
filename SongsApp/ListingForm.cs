@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.Odbc;
+using MySql.Data.MySqlClient;
 
 namespace Songs
 {
@@ -102,10 +102,9 @@ namespace Songs
                 songsWhereClause = "WHERE Cover = 0";
 
             ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
-            string query = "SELECT SongFull, SongFullArtistFirst, ArtistFirstName, ArtistLastName, Title, TitlePrefix, ID, Code " + 
-                "FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
-            OdbcDataAdapter songsAdap = new OdbcDataAdapter(query, 
-                global::Songs.Properties.Settings.Default.MainConnectionString);
+            string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
+            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query, 
+                global::Songs.Properties.Settings.Default.songbookConnectionString);
             songsAdap.Fill(tblSongs);
 
             foreach (ViewSongsDataSet.viewsongssinglefieldRow rowSong in tblSongs)
@@ -117,12 +116,10 @@ namespace Songs
         public void ShowListByArtist(string songsWhereClause)
         {
             ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
-            string query = "SELECT SongFull, SongFullArtistFirst, ArtistFirstName, ArtistLastName, "+
-                "Title, TitlePrefix, ID, Code, TitleAndInfo, FullArtistName " +
-                "FROM ViewSongsSingleField " + songsWhereClause + 
+            string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + 
                 " ORDER BY ArtistLastName, ArtistFirstName, Title, TitlePrefix";
-            OdbcDataAdapter songsAdap = new OdbcDataAdapter(query,
-                global::Songs.Properties.Settings.Default.MainConnectionString);
+            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query,
+                global::Songs.Properties.Settings.Default.songbookConnectionString);
             songsAdap.Fill(tblSongs);
 
             string lastArtist = "";
@@ -142,7 +139,7 @@ namespace Songs
             ShowDialog();
         }
 
-        public void ShowPerformanceList()
+        public void ShowPerformanceList(bool songsILead)
         {
             ViewSongsDataSet.viewsongssinglefieldDataTable songTable = new ViewSongsDataSet.viewsongssinglefieldDataTable();
             ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter songAdap =
@@ -152,7 +149,7 @@ namespace Songs
             PerformanceDataSet.performancesDataTable perfsTable = new PerformanceDataSet.performancesDataTable();
             PerformanceDataSetTableAdapters.performancesTableAdapter perfAdap =
                 new Songs.PerformanceDataSetTableAdapters.performancesTableAdapter();
-            perfAdap.Fill(perfsTable);
+            perfAdap.FillByDidILead(perfsTable, songsILead ? 1 : 0);
 
             PerformanceDataSet.venuesDataTable venuesTable = new PerformanceDataSet.venuesDataTable();
             PerformanceDataSetTableAdapters.venuesTableAdapter venuesAdap =

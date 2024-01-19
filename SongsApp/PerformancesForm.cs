@@ -32,7 +32,7 @@ namespace Songs
         public PerformancesForm()
         {
             InitializeComponent();
-            _PerformancesAdap = new OdbcDataAdapter("", global::Songs.Properties.Settings.Default.MainConnectionString);
+            _PerformancesAdap = new OdbcDataAdapter("", global::Songs.Properties.Settings.Default.songbookConnectionString);
         }
 
         private void PerformancesForm_Load(object sender, EventArgs e)
@@ -132,6 +132,11 @@ namespace Songs
         {
             _ContextMenuRow = e.RowIndex;
             _ContextMenuColumn = e.ColumnIndex;
+        }
+
+        private void performancesBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -44,6 +44,7 @@ namespace Songs
             this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.seriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).BeginInit();
@@ -55,7 +56,7 @@ namespace Songs
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(697, 342);
+            this.btnSave.Location = new System.Drawing.Point(801, 342);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -65,9 +66,9 @@ namespace Songs
             // 
             // grid1
             // 
-            this.grid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grid1.AutoGenerateColumns = false;
             this.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -75,12 +76,13 @@ namespace Songs
             this.performanceDateDataGridViewTextBoxColumn,
             this.VenueColumn,
             this.commentDataGridViewTextBoxColumn,
-            this.seriesDataGridViewTextBoxColumn});
+            this.seriesDataGridViewTextBoxColumn,
+            this.DidILead});
             this.grid1.ContextMenuStrip = this.contextMenuStrip1;
             this.grid1.DataSource = this.performancesBindingSource;
             this.grid1.Location = new System.Drawing.Point(12, 12);
             this.grid1.Name = "grid1";
-            this.grid1.Size = new System.Drawing.Size(760, 324);
+            this.grid1.Size = new System.Drawing.Size(864, 324);
             this.grid1.TabIndex = 2;
             this.grid1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentDoubleClick);
             this.grid1.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.grid1_CellContextMenuStripNeeded);
@@ -100,12 +102,12 @@ namespace Songs
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.detailToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 26);
             // 
             // detailToolStripMenuItem
             // 
             this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            this.detailToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.detailToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.detailToolStripMenuItem.Text = "&Detail";
             this.detailToolStripMenuItem.Click += new System.EventHandler(this.detailToolStripMenuItem_Click);
             // 
@@ -113,6 +115,7 @@ namespace Songs
             // 
             this.performancesBindingSource.DataMember = "performances";
             this.performancesBindingSource.DataSource = this.performanceDataSet;
+            this.performancesBindingSource.CurrentChanged += new System.EventHandler(this.performancesBindingSource_CurrentChanged);
             this.performancesBindingSource.CurrentItemChanged += new System.EventHandler(this.performancesBindingSource_CurrentItemChanged);
             // 
             // performancesTableAdapter
@@ -162,19 +165,30 @@ namespace Songs
             this.seriesDataGridViewTextBoxColumn.HeaderText = "Series";
             this.seriesDataGridViewTextBoxColumn.Name = "seriesDataGridViewTextBoxColumn";
             // 
+            // DidILead
+            // 
+            this.DidILead.DataPropertyName = "DidILead";
+            this.DidILead.FalseValue = "0";
+            this.DidILead.HeaderText = "Did I lead?";
+            this.DidILead.Name = "DidILead";
+            this.DidILead.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DidILead.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DidILead.TrueValue = "1";
+            this.DidILead.Width = 40;
+            // 
             // PerformancesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(784, 377);
+            this.ClientSize = new System.Drawing.Size(888, 377);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grid1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PerformancesForm";
             this.Text = "Performances Form";
-            this.Load += new System.EventHandler(this.PerformancesForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PerformancesForm_FormClosing);
+            this.Load += new System.EventHandler(this.PerformancesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).EndInit();
@@ -200,5 +214,6 @@ namespace Songs
         private System.Windows.Forms.DataGridViewComboBoxColumn VenueColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn seriesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DidILead;
     }
 }
