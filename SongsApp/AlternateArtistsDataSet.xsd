@@ -10,7 +10,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AlternateArtistsTableAdapter" GeneratorDataComponentClassName="AlternateArtistsTableAdapter" Name="AlternateArtists" UserDataComponentName="AlternateArtistsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.alternateartists" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.alternateartists" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `alternateartists` WHERE ((`ID` = @p1) AND (`SongID` = @p2) AND (`ArtistID` = @p3))</CommandText>
@@ -57,7 +57,7 @@ FROM            AlternateArtists</CommandText>
               <Mapping SourceColumn="ArtistID" DataSetColumn="ArtistID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.alternateartists" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySong" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBySong" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBySong">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.alternateartists" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySong" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBySong" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy" UserSourceName="FillBySong">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, SongID, ArtistID
