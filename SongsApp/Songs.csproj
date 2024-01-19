@@ -1,0 +1,266 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E89535D-1F29-441F-BE22-02A7D0EAC34A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Songs</RootNamespace>
+    <AssemblyName>Songs</AssemblyName>
+    <ManifestCertificateThumbprint>46E3E3D1B74E9267D24A6AAB24841A678E3E9C76</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Songs_1_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>greentele32.ico</ApplicationIcon>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlternateArtistsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ArtistsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArtistsForm.Designer.cs">
+      <DependentUpon>ArtistsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FlagsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlagsForm.Designer.cs">
+      <DependentUpon>FlagsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListingForm.Designer.cs">
+      <DependentUpon>ListingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceDetailForm.Designer.cs">
+      <DependentUpon>PerformanceDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformancesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformancesForm.Designer.cs">
+      <DependentUpon>PerformancesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SongDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SongDetailForm.Designer.cs">
+      <DependentUpon>SongDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SongsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SongsForm.Designer.cs">
+      <DependentUpon>SongsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ArtistsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArtistsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlagsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FlagsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListingForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ListingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceDetailForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PerformanceDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformancesForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PerformancesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SongDetailForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SongDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SongsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SongsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>
+      </SubType>
+    </None>
+    <None Include="Songs_TemporaryKey.pfx" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="ViewFlagsDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSongsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GreenTele32.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tele.ico" />
+    <None Include="Resources\GreenTeleIcon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="greentele32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AlternateArtistsDataSet.xsc">
+      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AlternateArtistsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AlternateArtistsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AlternateArtistsDataSet.xss">
+      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="greentele16.ico" />
+    <None Include="PerformanceDataSet.xsc">
+      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PerformanceDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PerformanceDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PerformanceDataSet.xss">
+      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Songs_1_TemporaryKey.pfx" />
+    <None Include="ViewFlagsDataSource.xsc">
+      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="ViewFlagsDataSource.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ViewFlagsDataSource.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ViewFlagsDataSource.xss">
+      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="ViewSongsDataSet.xsc">
+      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ViewSongsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ViewSongsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ViewSongsDataSet.xss">
+      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
