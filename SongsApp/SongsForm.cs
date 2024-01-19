@@ -393,5 +393,11 @@ namespace Songs
             form.ShowListByEachFlag();
         }
 
+        private void performanceTotalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowPerformanceTotalsList();
+        }
+
     }
 }

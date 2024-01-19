@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ViewSongPerformanceTotalsDataSet" targetNamespace="http://tempuri.org/ViewSongPerformanceTotalsDataSet.xsd" xmlns:mstns="http://tempuri.org/ViewSongPerformanceTotalsDataSet.xsd" xmlns="http://tempuri.org/ViewSongPerformanceTotalsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="MainConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="MainConnectionString (Settings)" PropertyReference="ApplicationSettings.Songs.Properties.Settings.GlobalReference.Default.MainConnectionString" Provider="System.Data.Odbc">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewSongPerformanceTotalsTableAdapter" GeneratorDataComponentClassName="ViewSongPerformanceTotalsTableAdapter" Name="ViewSongPerformanceTotals" UserDataComponentName="ViewSongPerformanceTotalsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MainConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewSongPerformanceTotals" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="False" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     SongID, TitleAndArtist, Total, FirstPerformed, LastPerformed
+FROM         ViewSongPerformanceTotals
+ORDER BY Total DESC, TitleAndArtist</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SongID" DataSetColumn="SongID" />
+              <Mapping SourceColumn="TitleAndArtist" DataSetColumn="TitleAndArtist" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="FirstPerformed" DataSetColumn="FirstPerformed" />
+              <Mapping SourceColumn="LastPerformed" DataSetColumn="LastPerformed" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ViewSongPerformanceTotalsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ViewSongPerformanceTotalsDataSet" msprop:Generator_DataSetName="ViewSongPerformanceTotalsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ViewSongPerformanceTotals" msprop:Generator_UserTableName="ViewSongPerformanceTotals" msprop:Generator_RowDeletedName="ViewSongPerformanceTotalsRowDeleted" msprop:Generator_TableClassName="ViewSongPerformanceTotalsDataTable" msprop:Generator_RowChangedName="ViewSongPerformanceTotalsRowChanged" msprop:Generator_RowClassName="ViewSongPerformanceTotalsRow" msprop:Generator_RowChangingName="ViewSongPerformanceTotalsRowChanging" msprop:Generator_RowEvArgName="ViewSongPerformanceTotalsRowChangeEvent" msprop:Generator_RowEvHandlerName="ViewSongPerformanceTotalsRowChangeEventHandler" msprop:Generator_TablePropName="ViewSongPerformanceTotals" msprop:Generator_TableVarName="tableViewSongPerformanceTotals" msprop:Generator_RowDeletingName="ViewSongPerformanceTotalsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SongID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="SongID" msprop:Generator_ColumnPropNameInRow="SongID" msprop:Generator_ColumnVarNameInTable="columnSongID" msprop:Generator_ColumnPropNameInTable="SongIDColumn" type="xs:int" />
+              <xs:element name="TitleAndArtist" msprop:Generator_UserColumnName="TitleAndArtist" msprop:Generator_ColumnPropNameInRow="TitleAndArtist" msprop:Generator_ColumnVarNameInTable="columnTitleAndArtist" msprop:Generator_ColumnPropNameInTable="TitleAndArtistColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Total" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInTable="TotalColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="FirstPerformed" msdata:ReadOnly="true" msprop:Generator_UserColumnName="FirstPerformed" msprop:Generator_ColumnPropNameInRow="FirstPerformed" msprop:Generator_ColumnVarNameInTable="columnFirstPerformed" msprop:Generator_ColumnPropNameInTable="FirstPerformedColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LastPerformed" msdata:ReadOnly="true" msprop:Generator_UserColumnName="LastPerformed" msprop:Generator_ColumnPropNameInRow="LastPerformed" msprop:Generator_ColumnVarNameInTable="columnLastPerformed" msprop:Generator_ColumnPropNameInTable="LastPerformedColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ViewSongPerformanceTotals" />
+      <xs:field xpath="mstns:SongID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

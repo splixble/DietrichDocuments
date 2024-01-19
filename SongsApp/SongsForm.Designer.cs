@@ -61,6 +61,7 @@ namespace Songs
             this.tOCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listByArtistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listByFlagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.songsTableAdapter = new Songs.DataSet1TableAdapters.songsTableAdapter();
             this.viewArtistNameForListBoxTableAdapter = new Songs.DataSet1TableAdapters.ViewArtistNameForListBoxTableAdapter();
@@ -76,7 +77,7 @@ namespace Songs
             this.viewSongsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsDataSet = new Songs.ViewSongsDataSet();
             this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.listByFlagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -300,21 +301,21 @@ namespace Songs
             // artistsToolStripMenuItem
             // 
             this.artistsToolStripMenuItem.Name = "artistsToolStripMenuItem";
-            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.artistsToolStripMenuItem.Text = "&Artists";
             this.artistsToolStripMenuItem.Click += new System.EventHandler(this.artistsToolStripMenuItem_Click);
             // 
             // flagsToolStripMenuItem
             // 
             this.flagsToolStripMenuItem.Name = "flagsToolStripMenuItem";
-            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.flagsToolStripMenuItem.Text = "&Flags";
             this.flagsToolStripMenuItem.Click += new System.EventHandler(this.flagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem
             // 
             this.performancesToolStripMenuItem.Name = "performancesToolStripMenuItem";
-            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.performancesToolStripMenuItem.Text = "&Performances";
             this.performancesToolStripMenuItem.Click += new System.EventHandler(this.performancesToolStripMenuItem_Click);
             // 
@@ -325,7 +326,8 @@ namespace Songs
             this.listToolStripMenuItem,
             this.listByArtistToolStripMenuItem,
             this.listByFlagsToolStripMenuItem,
-            this.performancesToolStripMenuItem1});
+            this.performancesToolStripMenuItem1,
+            this.performanceTotalsToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.reportToolStripMenuItem.Text = "&Report";
@@ -333,28 +335,35 @@ namespace Songs
             // tOCToolStripMenuItem
             // 
             this.tOCToolStripMenuItem.Name = "tOCToolStripMenuItem";
-            this.tOCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tOCToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.tOCToolStripMenuItem.Text = "&TOC";
             this.tOCToolStripMenuItem.Click += new System.EventHandler(this.tOCToolStripMenuItem_Click);
             // 
             // listToolStripMenuItem
             // 
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-            this.listToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.listToolStripMenuItem.Text = "&List";
             this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
             // 
             // listByArtistToolStripMenuItem
             // 
             this.listByArtistToolStripMenuItem.Name = "listByArtistToolStripMenuItem";
-            this.listByArtistToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listByArtistToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.listByArtistToolStripMenuItem.Text = "List by &Artist";
             this.listByArtistToolStripMenuItem.Click += new System.EventHandler(this.listByArtistToolStripMenuItem_Click);
+            // 
+            // listByFlagsToolStripMenuItem
+            // 
+            this.listByFlagsToolStripMenuItem.Name = "listByFlagsToolStripMenuItem";
+            this.listByFlagsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.listByFlagsToolStripMenuItem.Text = "List by &Flags";
+            this.listByFlagsToolStripMenuItem.Click += new System.EventHandler(this.listByFlagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem1
             // 
             this.performancesToolStripMenuItem1.Name = "performancesToolStripMenuItem1";
-            this.performancesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.performancesToolStripMenuItem1.Size = new System.Drawing.Size(178, 22);
             this.performancesToolStripMenuItem1.Text = "&Performances";
             this.performancesToolStripMenuItem1.Click += new System.EventHandler(this.performancesListingToolStripMenuItem_Click);
             // 
@@ -470,12 +479,12 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // listByFlagsToolStripMenuItem
+            // performanceTotalsToolStripMenuItem
             // 
-            this.listByFlagsToolStripMenuItem.Name = "listByFlagsToolStripMenuItem";
-            this.listByFlagsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.listByFlagsToolStripMenuItem.Text = "List by &Flags";
-            this.listByFlagsToolStripMenuItem.Click += new System.EventHandler(this.listByFlagsToolStripMenuItem_Click);
+            this.performanceTotalsToolStripMenuItem.Name = "performanceTotalsToolStripMenuItem";
+            this.performanceTotalsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.performanceTotalsToolStripMenuItem.Text = "Performance Tota&ls";
+            this.performanceTotalsToolStripMenuItem.Click += new System.EventHandler(this.performanceTotalsToolStripMenuItem_Click);
             // 
             // SongsForm
             // 
@@ -563,6 +572,7 @@ namespace Songs
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem listByArtistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listByFlagsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem performanceTotalsToolStripMenuItem;
     }
 }
 

@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationVersion>2.4.0.0</ApplicationVersion>
+    <ApplicationVersion>2.5.2.0</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -184,6 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ViewSongPerformanceTotalsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewSongsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,7 +210,9 @@
     <None Include="Resources\GreenTeleIcon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="greentele32.ico" />
+    <Content Include="greentele32.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="AlternateArtistsDataSet.xsc">
@@ -219,7 +226,9 @@
     <None Include="AlternateArtistsDataSet.xss">
       <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="greentele16.ico" />
+    <Content Include="greentele16.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="PerformanceDataSet.xsc">
       <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
     </None>
@@ -242,6 +251,17 @@
     </None>
     <None Include="ViewFlagsDataSource.xss">
       <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="ViewSongPerformanceTotalsDataSet.xsc">
+      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ViewSongPerformanceTotalsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ViewSongPerformanceTotalsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ViewSongPerformanceTotalsDataSet.xss">
+      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ViewSongsDataSet.xsc">
       <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>

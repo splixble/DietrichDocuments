@@ -55,6 +55,23 @@ namespace Songs
             ShowDialog();
         }
 
+        public void ShowPerformanceTotalsList()
+        {
+            ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsDataTable tblTotals =
+                new ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsDataTable();
+            ViewSongPerformanceTotalsDataSetTableAdapters.ViewSongPerformanceTotalsTableAdapter adap =
+                new Songs.ViewSongPerformanceTotalsDataSetTableAdapters.ViewSongPerformanceTotalsTableAdapter();
+            adap.Fill(tblTotals);
+
+            foreach (ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsRow row in tblTotals)
+            {
+                tb.Text += row.TitleAndArtist + "\t" + row.Total.ToString() + "\t" +
+                    row.FirstPerformed.ToShortDateString() + "\t" + row.LastPerformed.ToShortDateString() +
+                    Environment.NewLine;
+            }
+            ShowDialog();
+        }
+
         public void ShowListByEachFlag()
         {
             DataSet1.flagsDataTable flagsTable = new DataSet1.flagsDataTable();
