@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asmv1:assemblyIdentity name="Songs.exe" version="2.3.0.0" publicKeyToken="49cb4b23367bdda6" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="greentele32.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Songs" version="2.3.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Songs.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="249856">
+      <assemblyIdentity name="Songs" version="2.3.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>eVAwBMAfiB2nsD6sjQbBxQ1+a58=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="greentele32.ico" size="2462">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>wHAUIJ6qzkMMW8d2ir6SYlRN7Ts=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Songs.exe.config" size="362">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>iQtG51MJcFFlYidSdQSYdviDB+E=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=PACBIO\dietrich" issuerKeyHash="7c2a5b634972550fe14a3c3269410834938c9d6a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>PFN845Jpjp42yuGwweXLzPrP3tQ=</DigestValue></Reference></SignedInfo><SignatureValue>rr2X3p0KoIkMk0aanfgJei/3GMTvnvLQg76rcEoSVObAP50YY5MtcmgnIp4+9KQs2F8AsEyQpr/zyI0Ib5ZU6cKBlCXLN6bz0Ep7PkqOm3BNCL85XUNZbp/Qjo0TQfFVRYSu4uv2H+S098+014jGC34wQEKooh40SWrNDCINPo0=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>8DeiIZ634bnSdvGC+yYUr6r/6UmiolP4Wp1pCuICLI/vMyfxyQprDfmzIf1uPCa3gwaR+3eOm3eOGBFher696kDhPK0JrMRNsXYUvn17VdxzzYHDYMmxE9DrOF2elHSOZ/OYqeY1ib9nbO/k69nNfrBzXAwDoDwgjW7xi4nJlZ8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="d4decffacccbe5c1b0e1ca369e8e6992e37c533c" Description="" Url=""><as:assemblyIdentity name="Songs.exe" version="2.3.0.0" publicKeyToken="49cb4b23367bdda6" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=PACBIO\dietrich</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>XkvJ+CYuLhgApXwx1IxnfLYpULw=</DigestValue></Reference></SignedInfo><SignatureValue>VeI3jAqA40NQdH1nFKgrOWdXijBF/psOsuK0oNNt3HHO2ZpffGmvaPp3EkdUoVokxGGtTSMO7SkemTP9MsQTE+REwehhJg/VWLIbzGdDLvPgas7ZuAKIQ2ys9j6OE/CDODKYYSx558/fRUMnhtH0/CIfmUo3ocKRw+pGMtLiNQY=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>8DeiIZ634bnSdvGC+yYUr6r/6UmiolP4Wp1pCuICLI/vMyfxyQprDfmzIf1uPCa3gwaR+3eOm3eOGBFher696kDhPK0JrMRNsXYUvn17VdxzzYHDYMmxE9DrOF2elHSOZ/OYqeY1ib9nbO/k69nNfrBzXAwDoDwgjW7xi4nJlZ8=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBzTCCATqgAwIBAgIQf6mJizUiUYBHTgsJFGsccTAJBgUrDgMCHQUAMCkxJzAlBgNVBAMeHgBQAEEAQwBCAEkATwBcAGQAaQBlAHQAcgBpAGMAaDAeFw0xMDA3MTUwMTE0MDdaFw0xMTA3MTUwNzE0MDdaMCkxJzAlBgNVBAMeHgBQAEEAQwBCAEkATwBcAGQAaQBlAHQAcgBpAGMAaDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA8DeiIZ634bnSdvGC+yYUr6r/6UmiolP4Wp1pCuICLI/vMyfxyQprDfmzIf1uPCa3gwaR+3eOm3eOGBFher696kDhPK0JrMRNsXYUvn17VdxzzYHDYMmxE9DrOF2elHSOZ/OYqeY1ib9nbO/k69nNfrBzXAwDoDwgjW7xi4nJlZ8CAwEAATAJBgUrDgMCHQUAA4GBADXaAW7jv77yGkjYKmtOYH0IRfgOxvxvuT/mA1Cu3Qz84NDcRa0aiCVyHqxW+tsYyi+hNr8Zkgk9Fn2eMCayUN2gPIY0VCwUTiDThu/yc4tfDDBvXeKzaWxl17ecmH0lXjbgNjv7vkzqelAB7nJmKhBlspnyVkBFKW+EjHqb5c8P</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

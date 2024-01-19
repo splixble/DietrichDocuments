@@ -51,7 +51,7 @@ namespace Songs
             adap.Fill(flagsTable);
             foreach (DataSet1.flagsRow flagsRow in flagsTable)
             {
-                tb.Text += Environment.NewLine + "`" + flagsRow.FlagName + "`" + Environment.NewLine + Environment.NewLine;
+                tb.Text += "`" + flagsRow.FlagName + Environment.NewLine;
                 string songsWhereClause = "WHERE (ID in (SELECT Song FROM FlaggedSongs WHERE FlagID = " +
                     flagsRow.FlagID + "))";
                 GenerateList(songsWhereClause);
@@ -105,7 +105,7 @@ namespace Songs
                     currentArtist = "";
                 if (currentArtist != lastArtist)
                 {
-                    tb.Text += currentArtist;
+                    tb.Text += currentArtist + Environment.NewLine;
                     lastArtist = currentArtist;
                 }
                 tb.Text += "\t" + rowSong.TitleAndInfo + Environment.NewLine;
