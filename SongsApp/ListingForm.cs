@@ -20,17 +20,17 @@ namespace Songs
 
         public void ShowTOC()
         {
-            DataSet1.ViewTOCArtistDataTable tblArtist = new DataSet1.ViewTOCArtistDataTable();
-            DataSet1.ViewTOCTitleDataTable tblTitle = new DataSet1.ViewTOCTitleDataTable();
-            DataSet1TableAdapters.ViewTOCArtistTableAdapter adapArtist =
-                new Songs.DataSet1TableAdapters.ViewTOCArtistTableAdapter();
-            DataSet1TableAdapters.ViewTOCTitleTableAdapter adapTitle =
-                new Songs.DataSet1TableAdapters.ViewTOCTitleTableAdapter();
+            MySqlDataSet.ViewTOCArtistDataTable tblArtist = new MySqlDataSet.ViewTOCArtistDataTable();
+            MySqlDataSet.ViewTOCTitleDataTable tblTitle = new MySqlDataSet.ViewTOCTitleDataTable();
+            MySqlDataSetTableAdapters.ViewTOCArtistTableAdapter adapArtist =
+                new Songs.MySqlDataSetTableAdapters.ViewTOCArtistTableAdapter();
+            MySqlDataSetTableAdapters.ViewTOCTitleTableAdapter adapTitle =
+                new Songs.MySqlDataSetTableAdapters.ViewTOCTitleTableAdapter();
             adapArtist.Fill(tblArtist);
             adapTitle.Fill(tblTitle);
 
             // By title:
-            foreach (DataSet1.ViewTOCTitleRow rowTitle in tblTitle)
+            foreach (MySqlDataSet.ViewTOCTitleRow rowTitle in tblTitle)
             {
                 tb.Text += rowTitle.TitleAndArtist + "\t" + rowTitle.PageNumber.ToString() + Environment.NewLine;
             }
@@ -39,7 +39,7 @@ namespace Songs
 
             // by artist:
             object obLastArtist = DBNull.Value;
-            foreach (DataSet1.ViewTOCArtistRow rowArtist in tblArtist)
+            foreach (MySqlDataSet.ViewTOCArtistRow rowArtist in tblArtist)
             {
                 if (!(rowArtist[tblArtist.FullArtistNameColumn].Equals(obLastArtist)))
                 {
@@ -57,16 +57,16 @@ namespace Songs
 
         public void ShowPerformanceTotalsList()
         {
-            ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsDataTable tblTotals =
-                new ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsDataTable();
-            ViewSongPerformanceTotalsDataSetTableAdapters.ViewSongPerformanceTotalsTableAdapter adap =
-                new Songs.ViewSongPerformanceTotalsDataSetTableAdapters.ViewSongPerformanceTotalsTableAdapter();
+            ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsDataTable tblTotals =
+                new ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsDataTable();
+            ViewSongPerformanceTotalsDataSetTableAdapters.viewsongperformancetotalsTableAdapter adap =
+                new Songs.ViewSongPerformanceTotalsDataSetTableAdapters.viewsongperformancetotalsTableAdapter();
             adap.Fill(tblTotals);
 
-            foreach (ViewSongPerformanceTotalsDataSet.ViewSongPerformanceTotalsRow row in tblTotals)
+            foreach (ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsRow row in tblTotals)
             {
                 tb.Text += row.TitleAndArtist + "\t" + row.Total.ToString() + "\t" +
-                    row.FirstPerformed.ToShortDateString() + "\t" + row.LastPerformed.ToShortDateString() +
+                    row.firstPerformed.ToShortDateString() + "\t" + row.lastPerformed.ToShortDateString() +
                     Environment.NewLine;
             }
             ShowDialog();
@@ -74,10 +74,10 @@ namespace Songs
 
         public void ShowListByEachFlag()
         {
-            DataSet1.flagsDataTable flagsTable = new DataSet1.flagsDataTable();
-            DataSet1TableAdapters.flagsTableAdapter adap = new Songs.DataSet1TableAdapters.flagsTableAdapter();
+            MySqlDataSet.flagsDataTable flagsTable = new MySqlDataSet.flagsDataTable();
+            MySqlDataSetTableAdapters.flagsTableAdapter adap = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
             adap.Fill(flagsTable);
-            foreach (DataSet1.flagsRow flagsRow in flagsTable)
+            foreach (MySqlDataSet.flagsRow flagsRow in flagsTable)
             {
                 tb.Text += "`" + flagsRow.FlagName + Environment.NewLine;
                 string songsWhereClause = "WHERE (ID in (SELECT Song FROM FlaggedSongs WHERE FlagID = " +
@@ -101,14 +101,14 @@ namespace Songs
             else
                 songsWhereClause = "WHERE Cover = 0";
 
-            ViewSongsDataSet.ViewSongsSingleFieldDataTable tblSongs = new ViewSongsDataSet.ViewSongsSingleFieldDataTable();
+            ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
             string query = "SELECT SongFull, SongFullArtistFirst, ArtistFirstName, ArtistLastName, Title, TitlePrefix, ID, Code " + 
                 "FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
             OdbcDataAdapter songsAdap = new OdbcDataAdapter(query, 
                 global::Songs.Properties.Settings.Default.MainConnectionString);
             songsAdap.Fill(tblSongs);
 
-            foreach (ViewSongsDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
+            foreach (ViewSongsDataSet.viewsongssinglefieldRow rowSong in tblSongs)
             {
                 tb.Text += rowSong.SongFull + Environment.NewLine;
             }
@@ -116,7 +116,7 @@ namespace Songs
 
         public void ShowListByArtist(string songsWhereClause)
         {
-            ViewSongsDataSet.ViewSongsSingleFieldDataTable tblSongs = new ViewSongsDataSet.ViewSongsSingleFieldDataTable();
+            ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
             string query = "SELECT SongFull, SongFullArtistFirst, ArtistFirstName, ArtistLastName, "+
                 "Title, TitlePrefix, ID, Code, TitleAndInfo, FullArtistName " +
                 "FROM ViewSongsSingleField " + songsWhereClause + 
@@ -126,7 +126,7 @@ namespace Songs
             songsAdap.Fill(tblSongs);
 
             string lastArtist = "";
-            foreach (ViewSongsDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
+            foreach (ViewSongsDataSet.viewsongssinglefieldRow rowSong in tblSongs)
             {
                 string currentArtist = rowSong[tblSongs.FullArtistNameColumn] as string;
                 if (currentArtist == null)
@@ -144,9 +144,9 @@ namespace Songs
 
         public void ShowPerformanceList()
         {
-            ViewSongsDataSet.ViewSongsSingleFieldDataTable songTable = new ViewSongsDataSet.ViewSongsSingleFieldDataTable();
-            ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter songAdap =
-                new Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
+            ViewSongsDataSet.viewsongssinglefieldDataTable songTable = new ViewSongsDataSet.viewsongssinglefieldDataTable();
+            ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter songAdap =
+                new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
             songAdap.Fill(songTable);
 
             PerformanceDataSet.performancesDataTable perfsTable = new PerformanceDataSet.performancesDataTable();
@@ -188,8 +188,8 @@ namespace Songs
                     int songTableIndex = songView.Find(songPerfRow.Song);
                     if (songTableIndex != -1)
                     {
-                        ViewSongsDataSet.ViewSongsSingleFieldRow songRow =
-                            (ViewSongsDataSet.ViewSongsSingleFieldRow)songView[songTableIndex].Row;
+                        ViewSongsDataSet.viewsongssinglefieldRow songRow =
+                            (ViewSongsDataSet.viewsongssinglefieldRow)songView[songTableIndex].Row;
                         string songLine = "        " + songRow.TitleAndArtist;
                         if (songPerfRow["Comment"] != DBNull.Value)
                             songLine += " (" + songPerfRow.Comment + ")";

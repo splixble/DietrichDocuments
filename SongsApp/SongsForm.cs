@@ -58,7 +58,7 @@ namespace Songs
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'viewSongsDataSet.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet.ViewSongsSingleField);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet.viewsongssinglefield);
 
             // load songs table:
             dataSet1.songs.Clear();
@@ -145,9 +145,9 @@ namespace Songs
             foreach (DataGridViewRow gridRow in grid1.Rows)
             {
                 object obRowItem = gridRow.DataBoundItem;
-                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is DataSet1.songsRow)
+                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is MySqlDataSet.songsRow)
                 {
-                    DataSet1.songsRow songRow = (DataSet1.songsRow)((DataRowView)obRowItem).Row;
+                    MySqlDataSet.songsRow songRow = (MySqlDataSet.songsRow)((DataRowView)obRowItem).Row;
                     if (songRow.ID == songID)
                         return gridRow.Index;
                 }
@@ -159,10 +159,10 @@ namespace Songs
         {
             // Get the DB table row corresponding to this grid row:
             object obRowItem = grid1.Rows[rowIndex].DataBoundItem;
-            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is DataSet1.songsRow)
+            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is MySqlDataSet.songsRow)
             {
-                DataSet1.songsRow songRow =
-                    (DataSet1.songsRow)((DataRowView)obRowItem).Row;
+                MySqlDataSet.songsRow songRow =
+                    (MySqlDataSet.songsRow)((DataRowView)obRowItem).Row;
                 return songRow.ID;
             }
             else
@@ -306,8 +306,8 @@ namespace Songs
                         e.SortResult = 1;
                     else
                     {
-                        DataSet1.artistsRow artistRow1 = dataSet1.artists.FindByArtistID((int)e.CellValue1);
-                        DataSet1.artistsRow artistRow2 = dataSet1.artists.FindByArtistID((int)e.CellValue2);
+                        MySqlDataSet.artistsRow artistRow1 = dataSet1.artists.FindByArtistID((int)e.CellValue1);
+                        MySqlDataSet.artistsRow artistRow2 = dataSet1.artists.FindByArtistID((int)e.CellValue2);
                         string lastname1 = ComparableString(artistRow1.ArtistLastName);
                         string lastname2 = ComparableString(artistRow2.ArtistLastName);
                         e.SortResult = lastname1.CompareTo(lastname2);

@@ -44,7 +44,7 @@ namespace Songs
         public void Redraw()
         {
             // TODO: This line of code loads data into the 'dataSet1.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet1.ViewSongsSingleField);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet1.viewsongssinglefield);
             // TODO: This line of code loads data into the 'performanceDataSet.performances' table. You can move, or remove it, as needed.
             this.performancesTableAdapter.FillByID(this.performanceDataSet.performances, _PerfID);
             // TODO: This line of code loads data into the 'performanceDataSet.songperformances' table. You can move, or remove it, as needed.
@@ -91,3 +91,4 @@ namespace Songs
         }
     }
 }
+ 

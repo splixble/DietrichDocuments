@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Songs">
+</Property><Property Name="Solution File" Value="C:\Users\dietrich\Documents\Songs app\Songs.sln">
+</Property><Property Name="User Options File" Value="C:\Users\dietrich\Documents\Songs app\Songs.suo">
+</Property><Property Name="Date" Value="Monday, January 06, 2020">
+</Property><Property Name="Time" Value="15:09 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="Songs.sln" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs.sln">
+</Event><Event ErrorLevel="0" Project="" Source="Songs.suo" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs.suo">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs.csproj" Description="Project file successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs.csproj">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs.csproj.user" Description="Project user file successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs.csproj.user">
+</Event><Event ErrorLevel="0" Project="Songs" Source="AlternateArtistsDataSet.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\AlternateArtistsDataSet.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ArtistsForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ArtistsForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ArtistsForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ArtistsForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="DataSet1.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\DataSet1.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="DataSet1.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\DataSet1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="FlagsForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\FlagsForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="FlagsForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\FlagsForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ListingForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ListingForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ListingForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ListingForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDataSet.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDataSet.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDetailForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDetailForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDetailForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDetailForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformancesForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformancesForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformancesForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformancesForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongDetailForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongDetailForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongDetailForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongDetailForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongsForm.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongsForm.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongsForm.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongsForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Program.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Properties\Resources.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Utils.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Utils.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewFlagsDataSource.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewFlagsDataSource.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongPerformanceTotalsDataSet.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongPerformanceTotalsDataSet.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongsDataSet.Designer.cs" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongsDataSet.Designer.cs">
+</Event><Event ErrorLevel="0" Project="Songs" Source="app.config" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="Songs" Source="DataSet1.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\DataSet1.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="DataSet1.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\DataSet1.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="DataSet1.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\DataSet1.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Properties\Settings.settings" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs_TemporaryKey.pfx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs_TemporaryKey.pfx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Resources\GreenTele32.gif" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Resources\GreenTele32.gif">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Resources\tele.ico" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Resources\tele.ico">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Resources\GreenTeleIcon.gif" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Resources\GreenTeleIcon.gif">
+</Event><Event ErrorLevel="0" Project="Songs" Source="AlternateArtistsDataSet.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\AlternateArtistsDataSet.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="AlternateArtistsDataSet.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\AlternateArtistsDataSet.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="AlternateArtistsDataSet.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\AlternateArtistsDataSet.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDataSet.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDataSet.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDataSet.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDataSet.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDataSet.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDataSet.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs_1_TemporaryKey.pfx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs_1_TemporaryKey.pfx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs_2_TemporaryKey.pfx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Songs_2_TemporaryKey.pfx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewFlagsDataSource.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewFlagsDataSource.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewFlagsDataSource.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewFlagsDataSource.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewFlagsDataSource.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewFlagsDataSource.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongPerformanceTotalsDataSet.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongPerformanceTotalsDataSet.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongPerformanceTotalsDataSet.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongPerformanceTotalsDataSet.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongPerformanceTotalsDataSet.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongPerformanceTotalsDataSet.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongsDataSet.xsc" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongsDataSet.xsc">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongsDataSet.xsd" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongsDataSet.xsd">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ViewSongsDataSet.xss" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ViewSongsDataSet.xss">
+</Event><Event ErrorLevel="0" Project="Songs" Source="greentele32.ico" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\greentele32.ico">
+</Event><Event ErrorLevel="0" Project="Songs" Source="greentele16.ico" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\greentele16.ico">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ArtistsForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ArtistsForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="FlagsForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\FlagsForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="ListingForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\ListingForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformanceDetailForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformanceDetailForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="PerformancesForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\PerformancesForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongDetailForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongDetailForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="SongsForm.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\SongsForm.resx">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Properties\Resources.resx" Description="File successfully backed up as C:\Users\dietrich\Documents\Songs app\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="1" Project="Songs" Source="Songs.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Songs" Source="Songs.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Songs.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="Songs.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Songs" Source="Songs.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

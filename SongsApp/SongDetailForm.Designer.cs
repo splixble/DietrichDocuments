@@ -33,10 +33,10 @@ namespace Songs
             this.label1 = new System.Windows.Forms.Label();
             this.lblSong = new System.Windows.Forms.Label();
             this.songsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.DataSet1();
+            this.dataSet1 = new Songs.MySqlDataSet();
             this.label3 = new System.Windows.Forms.Label();
             this.lblArtist = new System.Windows.Forms.Label();
-            this.songsTableAdapter = new Songs.DataSet1TableAdapters.songsTableAdapter();
+            this.songsTableAdapter = new Songs.MySqlDataSetTableAdapters.songsTableAdapter();
             this.btnSave = new System.Windows.Forms.Button();
             this.gridFlags = new System.Windows.Forms.DataGridView();
             this.FlagID = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -45,8 +45,8 @@ namespace Songs
             this.flaggedSongIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flaggedsongsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.flaggedsongsTableAdapter = new Songs.DataSet1TableAdapters.flaggedsongsTableAdapter();
-            this.flagsTableAdapter = new Songs.DataSet1TableAdapters.flagsTableAdapter();
+            this.flaggedsongsTableAdapter = new Songs.MySqlDataSetTableAdapters.flaggedsongsTableAdapter();
+            this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gridAltArtists = new System.Windows.Forms.DataGridView();
             this.ArtistIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -55,7 +55,7 @@ namespace Songs
             this.alternateArtistsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.alternateArtistsDataSet = new Songs.AlternateArtistsDataSet();
             this.alternateArtistsTableAdapter = new Songs.AlternateArtistsDataSetTableAdapters.AlternateArtistsTableAdapter();
-            this.viewArtistNameForListBoxTableAdapter = new Songs.DataSet1TableAdapters.ViewArtistNameForListBoxTableAdapter();
+            this.viewArtistNameForListBoxTableAdapter = new Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.songsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFlags)).BeginInit();
@@ -316,15 +316,15 @@ namespace Songs
         private System.Windows.Forms.Label lblSong;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblArtist;
-        private DataSet1 dataSet1;
+        private MySqlDataSet dataSet1;
         private System.Windows.Forms.BindingSource songsBindingSource;
-        private Songs.DataSet1TableAdapters.songsTableAdapter songsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.songsTableAdapter songsTableAdapter;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView gridFlags;
         private System.Windows.Forms.BindingSource flaggedsongsBindingSource;
-        private Songs.DataSet1TableAdapters.flaggedsongsTableAdapter flaggedsongsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.flaggedsongsTableAdapter flaggedsongsTableAdapter;
         private System.Windows.Forms.BindingSource flagsBindingSource;
-        private Songs.DataSet1TableAdapters.flagsTableAdapter flagsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
         private System.Windows.Forms.DataGridViewComboBoxColumn FlagID;
         private System.Windows.Forms.DataGridViewTextBoxColumn songDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn flaggedSongIDDataGridViewTextBoxColumn;
@@ -336,7 +336,7 @@ namespace Songs
         private System.Windows.Forms.BindingSource alternateArtistsBindingSource;
         private Songs.AlternateArtistsDataSetTableAdapters.AlternateArtistsTableAdapter alternateArtistsTableAdapter;
         private System.Windows.Forms.BindingSource viewArtistNameForListBoxBindingSource;
-        private Songs.DataSet1TableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
         private System.Windows.Forms.DataGridViewComboBoxColumn ArtistIDColumn;
     }
 }

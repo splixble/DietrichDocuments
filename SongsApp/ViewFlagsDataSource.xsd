@@ -2,22 +2,20 @@
 <xs:schema id="ViewFlagsDataSource" targetNamespace="http://tempuri.org/ViewFlagsDataSource.xsd" xmlns:mstns="http://tempuri.org/ViewFlagsDataSource.xsd" xmlns="http://tempuri.org/ViewFlagsDataSource.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="MainConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="MainConnectionString (Settings)" PropertyReference="ApplicationSettings.Songs.Properties.Settings.GlobalReference.Default.MainConnectionString" Provider="System.Data.Odbc">
-          </Connection>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="MainConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="MainConnectionString (Settings)" PropertyReference="ApplicationSettings.Songs.Properties.Settings.GlobalReference.Default.MainConnectionString" Provider="System.Data.Odbc" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="songbookConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="songbookConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Songs.Properties.Settings.GlobalReference.Default.songbookConnectionString" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewsongflagsTableAdapter" GeneratorDataComponentClassName="viewsongflagsTableAdapter" Name="viewsongflags" UserDataComponentName="viewsongflagsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="MainConnectionString (Settings)" DbObjectName="Songbook.dbo.viewsongflags" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="False" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="songbookConnectionString (Settings)" DbObjectName="songbook.viewsongflags" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="True">
-                    <CommandText>SELECT     Song, Flags
-FROM         viewsongflags
-ORDER BY Song</CommandText>
-                    <Parameters>
-                    </Parameters>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Song, Flags
+FROM            viewsongflags</CommandText>
+                    <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
@@ -26,26 +24,24 @@ ORDER BY Song</CommandText>
               <Mapping SourceColumn="Song" DataSetColumn="Song" />
               <Mapping SourceColumn="Flags" DataSetColumn="Flags" />
             </Mappings>
-            <Sources>
-            </Sources>
+            <Sources />
           </TableAdapter>
         </Tables>
-        <Sources>
-        </Sources>
+        <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="ViewFlagsDataSource" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ViewFlagsDataSource" msprop:Generator_DataSetName="ViewFlagsDataSource">
+  <xs:element name="ViewFlagsDataSource" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ViewFlagsDataSource" msprop:Generator_UserDSName="ViewFlagsDataSource">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="viewsongflags" msprop:Generator_UserTableName="viewsongflags" msprop:Generator_RowDeletedName="viewsongflagsRowDeleted" msprop:Generator_TableClassName="viewsongflagsDataTable" msprop:Generator_RowChangedName="viewsongflagsRowChanged" msprop:Generator_RowClassName="viewsongflagsRow" msprop:Generator_RowChangingName="viewsongflagsRowChanging" msprop:Generator_RowEvArgName="viewsongflagsRowChangeEvent" msprop:Generator_RowEvHandlerName="viewsongflagsRowChangeEventHandler" msprop:Generator_TablePropName="viewsongflags" msprop:Generator_TableVarName="tableviewsongflags" msprop:Generator_RowDeletingName="viewsongflagsRowDeleting">
+        <xs:element name="viewsongflags" msprop:Generator_TableClassName="viewsongflagsDataTable" msprop:Generator_TableVarName="tableviewsongflags" msprop:Generator_TablePropName="viewsongflags" msprop:Generator_RowDeletingName="viewsongflagsRowDeleting" msprop:Generator_RowChangingName="viewsongflagsRowChanging" msprop:Generator_RowEvHandlerName="viewsongflagsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongflagsRowDeleted" msprop:Generator_UserTableName="viewsongflags" msprop:Generator_RowChangedName="viewsongflagsRowChanged" msprop:Generator_RowEvArgName="viewsongflagsRowChangeEvent" msprop:Generator_RowClassName="viewsongflagsRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Song" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="Song" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnVarNameInTable="columnSong" msprop:Generator_ColumnPropNameInTable="SongColumn" type="xs:int" />
-              <xs:element name="Flags" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Flags" msprop:Generator_ColumnPropNameInRow="Flags" msprop:Generator_ColumnVarNameInTable="columnFlags" msprop:Generator_ColumnPropNameInTable="FlagsColumn" minOccurs="0">
+              <xs:element name="Song" msprop:Generator_ColumnVarNameInTable="columnSong" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_UserColumnName="Song" type="xs:int" />
+              <xs:element name="Flags" msprop:Generator_ColumnVarNameInTable="columnFlags" msprop:Generator_ColumnPropNameInRow="Flags" msprop:Generator_ColumnPropNameInTable="FlagsColumn" msprop:Generator_UserColumnName="Flags" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="8000" />
+                    <xs:maxLength value="1024" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

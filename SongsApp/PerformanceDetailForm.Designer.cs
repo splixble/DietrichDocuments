@@ -46,7 +46,7 @@ namespace Songs
             this.label1 = new System.Windows.Forms.Label();
             this.songperformancesTableAdapter = new Songs.PerformanceDataSetTableAdapters.songperformancesTableAdapter();
             this.performancesTableAdapter = new Songs.PerformanceDataSetTableAdapters.performancesTableAdapter();
-            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
+            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet1)).BeginInit();
@@ -69,9 +69,9 @@ namespace Songs
             // 
             // grid1
             // 
-            this.grid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grid1.AutoGenerateColumns = false;
             this.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -203,8 +203,8 @@ namespace Songs
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PerformanceDetailForm";
             this.Text = "Performance Detail Form";
-            this.Load += new System.EventHandler(this.PerformanceDetailForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PerformanceDetailForm_FormClosing);
+            this.Load += new System.EventHandler(this.PerformanceDetailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet1)).EndInit();
@@ -230,7 +230,7 @@ namespace Songs
         private System.Windows.Forms.BindingSource performancesBindingSource;
         private Songs.PerformanceDataSetTableAdapters.performancesTableAdapter performancesTableAdapter;
         private System.Windows.Forms.BindingSource viewSongsSingleFieldBindingSource;
-        private Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter viewSongsSingleFieldTableAdapter;
+        private Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter viewSongsSingleFieldTableAdapter;
         private ViewSongsDataSet viewSongsDataSet1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn songDataGridViewTextBoxColumn;

@@ -36,8 +36,8 @@ namespace Songs
             this.flagNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flagDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flagsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.DataSet1();
-            this.flagsTableAdapter = new Songs.DataSet1TableAdapters.flagsTableAdapter();
+            this.dataSet1 = new Songs.MySqlDataSet();
+            this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flagsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -133,9 +133,9 @@ namespace Songs
 
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView grid1;
-        private DataSet1 dataSet1;
+        private MySqlDataSet dataSet1;
         private System.Windows.Forms.BindingSource flagsBindingSource;
-        private Songs.DataSet1TableAdapters.flagsTableAdapter flagsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn flagIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn flagNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn flagDescriptionDataGridViewTextBoxColumn;

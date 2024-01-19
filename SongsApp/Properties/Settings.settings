@@ -10,5 +10,21 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3</Value>
     </Setting>
+    <Setting Name="freeConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;password=EF94SEmPdi;persistsecurityinfo=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;password=EF94SEmPdi;persistsecurityinfo=True</Value>
+    </Setting>
+    <Setting Name="songbookConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;database=songbook&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;database=songbook</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

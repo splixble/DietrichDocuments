@@ -32,7 +32,7 @@ namespace Songs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongsForm));
             this.grid1 = new System.Windows.Forms.DataGridView();
             this.viewArtistNameForListBoxBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.DataSet1();
+            this.dataSet1 = new Songs.MySqlDataSet();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -53,20 +53,20 @@ namespace Songs
             this.listByFlagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.songsTableAdapter = new Songs.DataSet1TableAdapters.songsTableAdapter();
-            this.viewArtistNameForListBoxTableAdapter = new Songs.DataSet1TableAdapters.ViewArtistNameForListBoxTableAdapter();
+            this.songsTableAdapter = new Songs.MySqlDataSetTableAdapters.songsTableAdapter();
+            this.viewArtistNameForListBoxTableAdapter = new Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             this.cbMemorized = new System.Windows.Forms.CheckBox();
             this.comboFlag = new System.Windows.Forms.ComboBox();
             this.flagsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbWithFlag = new System.Windows.Forms.CheckBox();
-            this.flagsTableAdapter = new Songs.DataSet1TableAdapters.flagsTableAdapter();
+            this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
             this.tbWhereClause = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsDataSet = new Songs.ViewSongsDataSet();
-            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
+            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titlePrefixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -536,9 +536,9 @@ namespace Songs
         #endregion
 
         private System.Windows.Forms.DataGridView grid1;
-        private DataSet1 dataSet1;
+        private MySqlDataSet dataSet1;
         private System.Windows.Forms.BindingSource songsBindingSource;
-        private Songs.DataSet1TableAdapters.songsTableAdapter songsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.songsTableAdapter songsTableAdapter;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -550,7 +550,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flagsToolStripMenuItem;
         private System.Windows.Forms.BindingSource viewArtistNameForListBoxBindingSource;
-        private Songs.DataSet1TableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem detailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tOCToolStripMenuItem;
@@ -558,7 +558,7 @@ namespace Songs
         private System.Windows.Forms.ComboBox comboFlag;
         private System.Windows.Forms.CheckBox cbWithFlag;
         private System.Windows.Forms.BindingSource flagsBindingSource;
-        private Songs.DataSet1TableAdapters.flagsTableAdapter flagsTableAdapter;
+        private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
         private System.Windows.Forms.TextBox tbWhereClause;
         private System.Windows.Forms.ToolStripMenuItem performancesToolStripMenuItem;
@@ -568,7 +568,7 @@ namespace Songs
         private System.Windows.Forms.BindingSource viewSongsDataSetBindingSource;
         private ViewSongsDataSet viewSongsDataSet;
         private System.Windows.Forms.BindingSource viewSongsSingleFieldBindingSource;
-        private Songs.ViewSongsDataSetTableAdapters.ViewSongsSingleFieldTableAdapter viewSongsSingleFieldTableAdapter;
+        private Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter viewSongsSingleFieldTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem listByArtistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listByFlagsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem performanceTotalsToolStripMenuItem;

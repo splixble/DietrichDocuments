@@ -63,7 +63,7 @@ namespace Songs
             alternateArtistsBindingSource.EndEdit();
             
             // Set SongID on any new Flag records: 
-            foreach (DataSet1.flaggedsongsRow row in dataSet1.flaggedsongs)
+            foreach (MySqlDataSet.flaggedsongsRow row in dataSet1.flaggedsongs)
             {
                 if (row[dataSet1.flaggedsongs.SongColumn] == DBNull.Value)
                     row.Song = _SongID;
