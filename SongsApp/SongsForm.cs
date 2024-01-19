@@ -50,6 +50,11 @@ namespace Songs
 
         void Redraw()
         {
+            // Get positioned-on song, so we can go back to that after:
+            int currentSongID = -1;
+            if (grid1.CurrentRow != null)
+                currentSongID = GetSongIDFromRowIndex(grid1.CurrentRow.Index);
+
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'viewSongsDataSet.ViewSongsSingleField' table. You can move, or remove it, as needed.
@@ -83,6 +88,15 @@ namespace Songs
                     }
                 }
             }
+
+            // position back on the last song:
+            if (currentSongID != -1)
+            {
+                int rowIndex = GetRowIndexFromSongID(currentSongID);
+                if (rowIndex != -1)
+                    grid1.FirstDisplayedScrollingRowIndex = rowIndex;
+            }
+
         }
 
         void ConstructQueryString()
@@ -123,6 +137,22 @@ namespace Songs
         private void grid1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ShowDetailForm(e.RowIndex);
+        }
+
+        int GetRowIndexFromSongID(int songID)
+        {
+            // cant search by primary key... because this view may have dup IDs for cover songs
+            foreach (DataGridViewRow gridRow in grid1.Rows)
+            {
+                object obRowItem = gridRow.DataBoundItem;
+                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is DataSet1.songsRow)
+                {
+                    DataSet1.songsRow songRow = (DataSet1.songsRow)((DataRowView)obRowItem).Row;
+                    if (songRow.ID == songID)
+                        return gridRow.Index;
+                }
+            }
+            return -1; // if not found
         }
 
         int GetSongIDFromRowIndex(int rowIndex)
@@ -247,12 +277,6 @@ namespace Songs
                 SetWhereClause();
         }
 
-        private void listToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListingForm form = new ListingForm();
-            form.ShowList(tbWhereClause.Text);
-        }
-
         private void tbWhereClause_Validated(object sender, EventArgs e)
         {
             Redraw();
@@ -350,5 +374,24 @@ namespace Songs
                 }
             }
         }
+
+        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowList(tbWhereClause.Text);
+        }
+
+        private void listByArtistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowListByArtist(tbWhereClause.Text);
+        }
+
+        private void listByFlagsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowListByEachFlag();
+        }
+
     }
 }
