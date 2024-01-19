@@ -29,6 +29,7 @@ namespace Songs
             adapArtist.Fill(tblArtist);
             adapTitle.Fill(tblTitle);
 
+            // By title:
             foreach (DataSet1.ViewTOCTitleRow rowTitle in tblTitle)
             {
                 tb.Text += rowTitle.TitleAndArtist + "\t" + rowTitle.PageNumber.ToString() + Environment.NewLine;
@@ -36,9 +37,19 @@ namespace Songs
 
             tb.Text += Environment.NewLine + Environment.NewLine; // blank lines
 
+            // by artist:
+            object obLastArtist = DBNull.Value;
             foreach (DataSet1.ViewTOCArtistRow rowArtist in tblArtist)
             {
-                tb.Text += rowArtist.ArtistAndTitle + "\t" + rowArtist.PageNumber.ToString() + Environment.NewLine;
+                if (!(rowArtist[tblArtist.FullArtistNameColumn].Equals(obLastArtist)))
+                {
+                    string artistName = "";
+                    if (rowArtist[tblArtist.FullArtistNameColumn] is string)
+                        artistName = rowArtist.FullArtistName;
+                    tb.Text += artistName + Environment.NewLine;
+                    obLastArtist = rowArtist[tblArtist.FullArtistNameColumn];
+                }
+                tb.Text += "\t" + rowArtist.FullTitle + "\t" + rowArtist.PageNumber.ToString() + Environment.NewLine;
             }
 
             ShowDialog();
