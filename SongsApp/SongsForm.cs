@@ -63,7 +63,7 @@ namespace Songs
             // load songs table:
             dataSet1.songs.Clear();
             _SongsAdap.SelectCommand.CommandText =
-                "SELECT TitlePrefix, Title, Code, SongKey, Comment, PageNumber, Category, Song" +
+                "SELECT TitlePrefix, Title, Code, SongKey, OriginalKey, Comment, PageNumber, Category, Song" +
                 "bookOnly, ID, Artist FROM songs " + tbWhereClause.Text;
             _SongsAdap.Fill(dataSet1.songs);
             // was: this.songsTableAdapter.Fill(this.dataSet1.songs);

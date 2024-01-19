@@ -86,6 +86,7 @@ namespace Songs
             // 
             this.artistsBindingSource.DataMember = "artists";
             this.artistsBindingSource.DataSource = this.dataSet1;
+            this.artistsBindingSource.Sort = "ArtistLastName ASC, ArtistFirstName ASC";
             this.artistsBindingSource.CurrentItemChanged += new System.EventHandler(this.artistsBindingSource_CurrentItemChanged);
             // 
             // dataSet1
@@ -120,8 +121,8 @@ namespace Songs
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ArtistsForm";
             this.Text = "Artists";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArtistsForm_FormClosing);
             this.Load += new System.EventHandler(this.ArtistsForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ArtistsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.artistsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();

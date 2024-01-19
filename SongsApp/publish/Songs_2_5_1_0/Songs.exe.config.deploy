@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="Songs.Properties.Settings.MainConnectionString" connectionString="Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3"
+            providerName="System.Data.Odbc" />
+    </connectionStrings>
+</configuration>

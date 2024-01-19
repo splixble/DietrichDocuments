@@ -109,6 +109,7 @@ namespace Songs
             // 
             this.viewSongsSingleFieldBindingSource.DataMember = "ViewSongsSingleField";
             this.viewSongsSingleFieldBindingSource.DataSource = this.viewSongsDataSet1;
+            this.viewSongsSingleFieldBindingSource.Sort = "SongFull";
             // 
             // viewSongsDataSet1
             // 

@@ -249,6 +249,7 @@ namespace Songs
             // 
             this.viewArtistNameForListBoxBindingSource.DataMember = "ViewArtistNameForListBox";
             this.viewArtistNameForListBoxBindingSource.DataSource = this.dataSet1;
+            this.viewArtistNameForListBoxBindingSource.Sort = "Name";
             // 
             // alternateArtistsBindingSource
             // 
