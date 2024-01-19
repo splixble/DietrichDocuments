@@ -112,7 +112,6 @@ namespace Songs
             // lblArtist
             // 
             this.lblArtist.AutoSize = true;
-            this.lblArtist.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.songsBindingSource, "Artist", true));
             this.lblArtist.Location = new System.Drawing.Point(53, 31);
             this.lblArtist.Name = "lblArtist";
             this.lblArtist.Size = new System.Drawing.Size(35, 13);

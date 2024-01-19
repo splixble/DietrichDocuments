@@ -30,9 +30,10 @@ namespace Songs
             Utils.AllowNullFields(this.alternateArtistsDataSet.AlternateArtists);
         }
 
-        public DialogResult ShowDialog(int songID)
+        public DialogResult ShowDialog(int songID, string artistName)
         {
             _SongID = songID;
+            lblArtist.Text = artistName;
             return ShowDialog();
         }
 
@@ -53,7 +54,7 @@ namespace Songs
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'alternateArtistsDataSet.AlternateArtists' table. You can move, or remove it, as needed.
-            this.alternateArtistsTableAdapter.Fill(this.alternateArtistsDataSet.AlternateArtists);
+            this.alternateArtistsTableAdapter.FillBySong(this.alternateArtistsDataSet.AlternateArtists, _SongID);
         }
 
         private void UpdateDB()
