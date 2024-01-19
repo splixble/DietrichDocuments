@@ -116,5 +116,40 @@ namespace Songs.Properties {
                 return ((string)(this["songbookConnectionString3"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=" +
+            "songbook")]
+        public string songbookConnectionString4 {
+            get {
+                return ((string)(this["songbookConnectionString4"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dietrich\\Music\\LYRICS\\TabletPDFs")]
+        public string LyricPDFsDirectory {
+            get {
+                return ((string)(this["LyricPDFsDirectory"]));
+            }
+            set {
+                this["LyricPDFsDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dietrich\\Music\\LYRICS\\MobilesheetsTest")]
+        public string MobilesheetsNoLyricsDirectory {
+            get {
+                return ((string)(this["MobilesheetsNoLyricsDirectory"]));
+            }
+            set {
+                this["MobilesheetsNoLyricsDirectory"] = value;
+            }
+        }
     }
 }

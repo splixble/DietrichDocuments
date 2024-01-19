@@ -42,8 +42,10 @@ namespace Songs
             this.OriginalKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pageNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InTabletColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SetlistAddable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SongbookOnly = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiffPDFName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -59,6 +61,9 @@ namespace Songs
             this.artistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNoLyricsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tOCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +71,7 @@ namespace Songs
             this.listByFlagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsTableAdapter = new Songs.MySqlDataSetTableAdapters.songsTableAdapter();
             this.viewArtistNameForListBoxTableAdapter = new Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             this.cbMemorized = new System.Windows.Forms.CheckBox();
@@ -80,7 +86,7 @@ namespace Songs
             this.viewSongsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsDataSet = new Songs.ViewSongsDataSet();
             this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
-            this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.venuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -110,15 +116,17 @@ namespace Songs
             this.OriginalKey,
             this.pageNumberDataGridViewTextBoxColumn,
             this.InTabletColumn,
+            this.SetlistAddable,
             this.commentDataGridViewTextBoxColumn,
             this.SongbookOnly,
+            this.DiffPDFName,
             this.ColFlags,
             this.categoryDataGridViewTextBoxColumn});
             this.grid1.ContextMenuStrip = this.contextMenuStrip1;
             this.grid1.DataSource = this.songsBindingSource;
             this.grid1.Location = new System.Drawing.Point(12, 79);
             this.grid1.Name = "grid1";
-            this.grid1.Size = new System.Drawing.Size(1139, 249);
+            this.grid1.Size = new System.Drawing.Size(1316, 249);
             this.grid1.TabIndex = 0;
             this.grid1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentDoubleClick);
             this.grid1.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.grid1_CellContextMenuStripNeeded);
@@ -208,6 +216,15 @@ namespace Songs
             this.InTabletColumn.TrueValue = "1";
             this.InTabletColumn.Width = 40;
             // 
+            // SetlistAddable
+            // 
+            this.SetlistAddable.DataPropertyName = "SetlistAddable";
+            this.SetlistAddable.FalseValue = "0";
+            this.SetlistAddable.HeaderText = "Setlist Add?";
+            this.SetlistAddable.Name = "SetlistAddable";
+            this.SetlistAddable.TrueValue = "1";
+            this.SetlistAddable.Width = 40;
+            // 
             // commentDataGridViewTextBoxColumn
             // 
             this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
@@ -221,6 +238,13 @@ namespace Songs
             this.SongbookOnly.HeaderText = "Book Only";
             this.SongbookOnly.Name = "SongbookOnly";
             this.SongbookOnly.Width = 40;
+            // 
+            // DiffPDFName
+            // 
+            this.DiffPDFName.DataPropertyName = "DiffPDFName";
+            this.DiffPDFName.HeaderText = "Diff. PDF Name";
+            this.DiffPDFName.Name = "DiffPDFName";
+            this.DiffPDFName.Width = 130;
             // 
             // ColFlags
             // 
@@ -261,7 +285,7 @@ namespace Songs
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(1076, 334);
+            this.btnSave.Location = new System.Drawing.Point(1253, 334);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 1;
@@ -277,10 +301,11 @@ namespace Songs
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.tablesToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1163, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1340, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -317,7 +342,8 @@ namespace Songs
             this.tablesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.artistsToolStripMenuItem,
             this.flagsToolStripMenuItem,
-            this.performancesToolStripMenuItem});
+            this.performancesToolStripMenuItem,
+            this.venuesToolStripMenuItem});
             this.tablesToolStripMenuItem.Name = "tablesToolStripMenuItem";
             this.tablesToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.tablesToolStripMenuItem.Text = "&Tables";
@@ -325,23 +351,46 @@ namespace Songs
             // artistsToolStripMenuItem
             // 
             this.artistsToolStripMenuItem.Name = "artistsToolStripMenuItem";
-            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.artistsToolStripMenuItem.Text = "&Artists";
             this.artistsToolStripMenuItem.Click += new System.EventHandler(this.artistsToolStripMenuItem_Click);
             // 
             // flagsToolStripMenuItem
             // 
             this.flagsToolStripMenuItem.Name = "flagsToolStripMenuItem";
-            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.flagsToolStripMenuItem.Text = "&Flags";
             this.flagsToolStripMenuItem.Click += new System.EventHandler(this.flagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem
             // 
             this.performancesToolStripMenuItem.Name = "performancesToolStripMenuItem";
-            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.performancesToolStripMenuItem.Text = "&Performances";
             this.performancesToolStripMenuItem.Click += new System.EventHandler(this.performancesToolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pDFToolStripMenuItem,
+            this.createNoLyricsListToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "T&ools";
+            // 
+            // pDFToolStripMenuItem
+            // 
+            this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pDFToolStripMenuItem.Text = "PDF";
+            this.pDFToolStripMenuItem.Click += new System.EventHandler(this.pDFToolStripMenuItem_Click);
+            // 
+            // createNoLyricsListToolStripMenuItem
+            // 
+            this.createNoLyricsListToolStripMenuItem.Name = "createNoLyricsListToolStripMenuItem";
+            this.createNoLyricsListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createNoLyricsListToolStripMenuItem.Text = "Create No Lyrics List";
+            this.createNoLyricsListToolStripMenuItem.Click += new System.EventHandler(this.createNoLyricsListToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -360,44 +409,51 @@ namespace Songs
             // tOCToolStripMenuItem
             // 
             this.tOCToolStripMenuItem.Name = "tOCToolStripMenuItem";
-            this.tOCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tOCToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.tOCToolStripMenuItem.Text = "&TOC";
             this.tOCToolStripMenuItem.Click += new System.EventHandler(this.tOCToolStripMenuItem_Click);
             // 
             // listToolStripMenuItem
             // 
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-            this.listToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.listToolStripMenuItem.Text = "&List";
             this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
             // 
             // listByArtistToolStripMenuItem
             // 
             this.listByArtistToolStripMenuItem.Name = "listByArtistToolStripMenuItem";
-            this.listByArtistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listByArtistToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.listByArtistToolStripMenuItem.Text = "List by &Artist";
             this.listByArtistToolStripMenuItem.Click += new System.EventHandler(this.listByArtistToolStripMenuItem_Click);
             // 
             // listByFlagsToolStripMenuItem
             // 
             this.listByFlagsToolStripMenuItem.Name = "listByFlagsToolStripMenuItem";
-            this.listByFlagsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listByFlagsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.listByFlagsToolStripMenuItem.Text = "List by &Flags";
             this.listByFlagsToolStripMenuItem.Click += new System.EventHandler(this.listByFlagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem1
             // 
             this.performancesToolStripMenuItem1.Name = "performancesToolStripMenuItem1";
-            this.performancesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.performancesToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
             this.performancesToolStripMenuItem1.Text = "&Performances";
             this.performancesToolStripMenuItem1.Click += new System.EventHandler(this.performancesListingToolStripMenuItem_Click);
             // 
             // performanceTotalsToolStripMenuItem
             // 
             this.performanceTotalsToolStripMenuItem.Name = "performanceTotalsToolStripMenuItem";
-            this.performanceTotalsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.performanceTotalsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.performanceTotalsToolStripMenuItem.Text = "Performance Tota&ls";
             this.performanceTotalsToolStripMenuItem.Click += new System.EventHandler(this.performanceTotalsToolStripMenuItem_Click);
+            // 
+            // bandGigsToolStripMenuItem
+            // 
+            this.bandGigsToolStripMenuItem.Name = "bandGigsToolStripMenuItem";
+            this.bandGigsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.bandGigsToolStripMenuItem.Text = "&Band Gigs";
+            this.bandGigsToolStripMenuItem.Click += new System.EventHandler(this.bandGigsToolStripMenuItem_Click);
             // 
             // songsTableAdapter
             // 
@@ -463,7 +519,7 @@ namespace Songs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbWhereClause.Location = new System.Drawing.Point(338, 27);
             this.tbWhereClause.Name = "tbWhereClause";
-            this.tbWhereClause.Size = new System.Drawing.Size(813, 20);
+            this.tbWhereClause.Size = new System.Drawing.Size(990, 20);
             this.tbWhereClause.TabIndex = 7;
             this.tbWhereClause.Validated += new System.EventHandler(this.tbWhereClause_Validated);
             // 
@@ -511,19 +567,19 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // bandGigsToolStripMenuItem
+            // venuesToolStripMenuItem
             // 
-            this.bandGigsToolStripMenuItem.Name = "bandGigsToolStripMenuItem";
-            this.bandGigsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bandGigsToolStripMenuItem.Text = "&Band Gigs";
-            this.bandGigsToolStripMenuItem.Click += new System.EventHandler(this.bandGigsToolStripMenuItem_Click);
+            this.venuesToolStripMenuItem.Name = "venuesToolStripMenuItem";
+            this.venuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.venuesToolStripMenuItem.Text = "&Venues";
+            this.venuesToolStripMenuItem.Click += new System.EventHandler(this.venuesToolStripMenuItem_Click);
             // 
             // SongsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(1163, 369);
+            this.ClientSize = new System.Drawing.Size(1340, 369);
             this.Controls.Add(this.comboSongFinder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbWhereClause);
@@ -594,6 +650,10 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem listByFlagsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem performanceTotalsToolStripMenuItem;
         private System.Windows.Forms.BindingSource songsBindingSource;
+        private System.Windows.Forms.ToolStripMenuItem bandGigsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createNoLyricsListToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titlePrefixDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
@@ -603,11 +663,13 @@ namespace Songs
         private System.Windows.Forms.DataGridViewTextBoxColumn OriginalKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn pageNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn InTabletColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SetlistAddable;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SongbookOnly;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiffPDFName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFlags;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripMenuItem bandGigsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem venuesToolStripMenuItem;
     }
 }
 

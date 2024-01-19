@@ -74,5 +74,19 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=localhost;user id=TestUser@SPEEPMASTER;password=Mustard3;database=songbook;persistsecurityinfo=True</Value>
     </Setting>
+    <Setting Name="songbookConnectionString4" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=songbook&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=songbook</Value>
+    </Setting>
+    <Setting Name="LyricPDFsDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Dietrich\Music\LYRICS\TabletPDFs</Value>
+    </Setting>
+    <Setting Name="MobilesheetsNoLyricsDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Dietrich\Music\LYRICS\MobilesheetsTest</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

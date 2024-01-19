@@ -42,6 +42,8 @@ namespace Songs {
         
         private songsDataTable tablesongs;
         
+        private viewsongsforsetlistsDataTable tableviewsongsforsetlists;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -96,6 +98,9 @@ namespace Songs {
                 }
                 if ((ds.Tables["songs"] != null)) {
                     base.Tables.Add(new songsDataTable(ds.Tables["songs"]));
+                }
+                if ((ds.Tables["viewsongsforsetlists"] != null)) {
+                    base.Tables.Add(new viewsongsforsetlistsDataTable(ds.Tables["viewsongsforsetlists"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -207,6 +212,16 @@ namespace Songs {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public viewsongsforsetlistsDataTable viewsongsforsetlists {
+            get {
+                return this.tableviewsongsforsetlists;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -299,6 +314,9 @@ namespace Songs {
                 if ((ds.Tables["songs"] != null)) {
                     base.Tables.Add(new songsDataTable(ds.Tables["songs"]));
                 }
+                if ((ds.Tables["viewsongsforsetlists"] != null)) {
+                    base.Tables.Add(new viewsongsforsetlistsDataTable(ds.Tables["viewsongsforsetlists"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -386,6 +404,12 @@ namespace Songs {
                     this.tablesongs.InitVars();
                 }
             }
+            this.tableviewsongsforsetlists = ((viewsongsforsetlistsDataTable)(base.Tables["viewsongsforsetlists"]));
+            if ((initTable == true)) {
+                if ((this.tableviewsongsforsetlists != null)) {
+                    this.tableviewsongsforsetlists.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -414,6 +438,8 @@ namespace Songs {
             base.Tables.Add(this.tableflaggedsongs);
             this.tablesongs = new songsDataTable();
             base.Tables.Add(this.tablesongs);
+            this.tableviewsongsforsetlists = new viewsongsforsetlistsDataTable();
+            base.Tables.Add(this.tableviewsongsforsetlists);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -467,6 +493,12 @@ namespace Songs {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializesongs() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeviewsongsforsetlists() {
             return false;
         }
         
@@ -551,6 +583,9 @@ namespace Songs {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void songsRowChangeEventHandler(object sender, songsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void viewsongsforsetlistsRowChangeEventHandler(object sender, viewsongsforsetlistsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3294,7 +3329,11 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnOriginalKey;
             
-            private global::System.Data.DataColumn columnInTablet;
+            private global::System.Data.DataColumn columnDiffPDFName;
+            
+            private global::System.Data.DataColumn columnSetlistAddable;
+            
+            private global::System.Data.DataColumn columnintablet;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -3443,9 +3482,25 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn InTabletColumn {
+            public global::System.Data.DataColumn DiffPDFNameColumn {
                 get {
-                    return this.columnInTablet;
+                    return this.columnDiffPDFName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SetlistAddableColumn {
+                get {
+                    return this.columnSetlistAddable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn intabletColumn {
+                get {
+                    return this.columnintablet;
                 }
             }
             
@@ -3486,7 +3541,23 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public songsRow AddsongsRow(string TitlePrefix, string Title, string Code, string Key, string Comment, int PageNumberOriginal, string Category, string Songbook_Only, int Artist, string SongKey, string SongbookOnly, string PageNumber, string OriginalKey, ulong InTablet) {
+            public songsRow AddsongsRow(
+                        string TitlePrefix, 
+                        string Title, 
+                        string Code, 
+                        string Key, 
+                        string Comment, 
+                        int PageNumberOriginal, 
+                        string Category, 
+                        string Songbook_Only, 
+                        int Artist, 
+                        string SongKey, 
+                        string SongbookOnly, 
+                        string PageNumber, 
+                        string OriginalKey, 
+                        string DiffPDFName, 
+                        ulong SetlistAddable, 
+                        ulong intablet) {
                 songsRow rowsongsRow = ((songsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TitlePrefix,
@@ -3503,7 +3574,9 @@ namespace Songs {
                         SongbookOnly,
                         PageNumber,
                         OriginalKey,
-                        InTablet};
+                        DiffPDFName,
+                        SetlistAddable,
+                        intablet};
                 rowsongsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsongsRow);
                 return rowsongsRow;
@@ -3547,7 +3620,9 @@ namespace Songs {
                 this.columnSongbookOnly = base.Columns["SongbookOnly"];
                 this.columnPageNumber = base.Columns["PageNumber"];
                 this.columnOriginalKey = base.Columns["OriginalKey"];
-                this.columnInTablet = base.Columns["InTablet"];
+                this.columnDiffPDFName = base.Columns["DiffPDFName"];
+                this.columnSetlistAddable = base.Columns["SetlistAddable"];
+                this.columnintablet = base.Columns["intablet"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3581,8 +3656,12 @@ namespace Songs {
                 base.Columns.Add(this.columnPageNumber);
                 this.columnOriginalKey = new global::System.Data.DataColumn("OriginalKey", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginalKey);
-                this.columnInTablet = new global::System.Data.DataColumn("InTablet", typeof(ulong), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInTablet);
+                this.columnDiffPDFName = new global::System.Data.DataColumn("DiffPDFName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffPDFName);
+                this.columnSetlistAddable = new global::System.Data.DataColumn("SetlistAddable", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSetlistAddable);
+                this.columnintablet = new global::System.Data.DataColumn("intablet", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintablet);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnTitle.AllowDBNull = false;
@@ -3594,8 +3673,10 @@ namespace Songs {
                 this.columnID.Unique = true;
                 this.columnSongbookOnly.MaxLength = 1;
                 this.columnPageNumber.MaxLength = 50;
-                this.columnInTablet.AllowDBNull = false;
-                this.columnInTablet.DefaultValue = ((ulong)(0ul));
+                this.columnSetlistAddable.AllowDBNull = false;
+                this.columnSetlistAddable.DefaultValue = ((ulong)(0ul));
+                this.columnintablet.AllowDBNull = false;
+                this.columnintablet.DefaultValue = ((ulong)(0ul));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3682,6 +3763,356 @@ namespace Songs {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "songsDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class viewsongsforsetlistsDataTable : global::System.Data.TypedTableBase<viewsongsforsetlistsRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnFullTitle;
+            
+            private global::System.Data.DataColumn columnFullArtistName;
+            
+            private global::System.Data.DataColumn columnDiffPDFName;
+            
+            private global::System.Data.DataColumn columnSetlistAddable;
+            
+            private global::System.Data.DataColumn columnInTablet;
+            
+            private global::System.Data.DataColumn columnSetlistCaption;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsDataTable() {
+                this.TableName = "viewsongsforsetlists";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal viewsongsforsetlistsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected viewsongsforsetlistsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn FullTitleColumn {
+                get {
+                    return this.columnFullTitle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn FullArtistNameColumn {
+                get {
+                    return this.columnFullArtistName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn DiffPDFNameColumn {
+                get {
+                    return this.columnDiffPDFName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SetlistAddableColumn {
+                get {
+                    return this.columnSetlistAddable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn InTabletColumn {
+                get {
+                    return this.columnInTablet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SetlistCaptionColumn {
+                get {
+                    return this.columnSetlistCaption;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRow this[int index] {
+                get {
+                    return ((viewsongsforsetlistsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event viewsongsforsetlistsRowChangeEventHandler viewsongsforsetlistsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event viewsongsforsetlistsRowChangeEventHandler viewsongsforsetlistsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event viewsongsforsetlistsRowChangeEventHandler viewsongsforsetlistsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event viewsongsforsetlistsRowChangeEventHandler viewsongsforsetlistsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddviewsongsforsetlistsRow(viewsongsforsetlistsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(string FullTitle, string FullArtistName, string DiffPDFName, ulong SetlistAddable, ulong InTablet, string SetlistCaption) {
+                viewsongsforsetlistsRow rowviewsongsforsetlistsRow = ((viewsongsforsetlistsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        FullTitle,
+                        FullArtistName,
+                        DiffPDFName,
+                        SetlistAddable,
+                        InTablet,
+                        SetlistCaption};
+                rowviewsongsforsetlistsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowviewsongsforsetlistsRow);
+                return rowviewsongsforsetlistsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRow FindByID(int ID) {
+                return ((viewsongsforsetlistsRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                viewsongsforsetlistsDataTable cln = ((viewsongsforsetlistsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new viewsongsforsetlistsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnFullTitle = base.Columns["FullTitle"];
+                this.columnFullArtistName = base.Columns["FullArtistName"];
+                this.columnDiffPDFName = base.Columns["DiffPDFName"];
+                this.columnSetlistAddable = base.Columns["SetlistAddable"];
+                this.columnInTablet = base.Columns["InTablet"];
+                this.columnSetlistCaption = base.Columns["SetlistCaption"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnFullTitle = new global::System.Data.DataColumn("FullTitle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullTitle);
+                this.columnFullArtistName = new global::System.Data.DataColumn("FullArtistName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullArtistName);
+                this.columnDiffPDFName = new global::System.Data.DataColumn("DiffPDFName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiffPDFName);
+                this.columnSetlistAddable = new global::System.Data.DataColumn("SetlistAddable", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSetlistAddable);
+                this.columnInTablet = new global::System.Data.DataColumn("InTablet", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInTablet);
+                this.columnSetlistCaption = new global::System.Data.DataColumn("SetlistCaption", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSetlistCaption);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
+                this.columnFullTitle.MaxLength = 16777216;
+                this.columnFullArtistName.MaxLength = 16777216;
+                this.columnSetlistAddable.AllowDBNull = false;
+                this.columnInTablet.AllowDBNull = false;
+                this.columnSetlistCaption.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRow NewviewsongsforsetlistsRow() {
+                return ((viewsongsforsetlistsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new viewsongsforsetlistsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(viewsongsforsetlistsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.viewsongsforsetlistsRowChanged != null)) {
+                    this.viewsongsforsetlistsRowChanged(this, new viewsongsforsetlistsRowChangeEvent(((viewsongsforsetlistsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.viewsongsforsetlistsRowChanging != null)) {
+                    this.viewsongsforsetlistsRowChanging(this, new viewsongsforsetlistsRowChangeEvent(((viewsongsforsetlistsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.viewsongsforsetlistsRowDeleted != null)) {
+                    this.viewsongsforsetlistsRowDeleted(this, new viewsongsforsetlistsRowChangeEvent(((viewsongsforsetlistsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.viewsongsforsetlistsRowDeleting != null)) {
+                    this.viewsongsforsetlistsRowDeleting(this, new viewsongsforsetlistsRowChangeEvent(((viewsongsforsetlistsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveviewsongsforsetlistsRow(viewsongsforsetlistsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MySqlDataSet ds = new MySqlDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "viewsongsforsetlistsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -5266,12 +5697,39 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ulong InTablet {
+            public string DiffPDFName {
                 get {
-                    return ((ulong)(this[this.tablesongs.InTabletColumn]));
+                    try {
+                        return ((string)(this[this.tablesongs.DiffPDFNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffPDFName\' in table \'songs\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tablesongs.InTabletColumn] = value;
+                    this[this.tablesongs.DiffPDFNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ulong SetlistAddable {
+                get {
+                    return ((ulong)(this[this.tablesongs.SetlistAddableColumn]));
+                }
+                set {
+                    this[this.tablesongs.SetlistAddableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ulong intablet {
+                get {
+                    return ((ulong)(this[this.tablesongs.intabletColumn]));
+                }
+                set {
+                    this[this.tablesongs.intabletColumn] = value;
                 }
             }
             
@@ -5417,6 +5875,178 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetOriginalKeyNull() {
                 this[this.tablesongs.OriginalKeyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDiffPDFNameNull() {
+                return this.IsNull(this.tablesongs.DiffPDFNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDiffPDFNameNull() {
+                this[this.tablesongs.DiffPDFNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class viewsongsforsetlistsRow : global::System.Data.DataRow {
+            
+            private viewsongsforsetlistsDataTable tableviewsongsforsetlists;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal viewsongsforsetlistsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableviewsongsforsetlists = ((viewsongsforsetlistsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableviewsongsforsetlists.IDColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string FullTitle {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.FullTitleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FullTitle\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.FullTitleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string FullArtistName {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.FullArtistNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FullArtistName\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.FullArtistNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string DiffPDFName {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.DiffPDFNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiffPDFName\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.DiffPDFNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ulong SetlistAddable {
+                get {
+                    return ((ulong)(this[this.tableviewsongsforsetlists.SetlistAddableColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.SetlistAddableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ulong InTablet {
+                get {
+                    return ((ulong)(this[this.tableviewsongsforsetlists.InTabletColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.InTabletColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string SetlistCaption {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.SetlistCaptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SetlistCaption\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.SetlistCaptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsFullTitleNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.FullTitleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetFullTitleNull() {
+                this[this.tableviewsongsforsetlists.FullTitleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsFullArtistNameNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.FullArtistNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetFullArtistNameNull() {
+                this[this.tableviewsongsforsetlists.FullArtistNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsDiffPDFNameNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.DiffPDFNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetDiffPDFNameNull() {
+                this[this.tableviewsongsforsetlists.DiffPDFNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsSetlistCaptionNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.SetlistCaptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetSetlistCaptionNull() {
+                this[this.tableviewsongsforsetlists.SetlistCaptionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5712,6 +6342,40 @@ namespace Songs {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public songsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class viewsongsforsetlistsRowChangeEvent : global::System.EventArgs {
+            
+            private viewsongsforsetlistsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRowChangeEvent(viewsongsforsetlistsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public viewsongsforsetlistsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -7729,7 +8393,9 @@ namespace Songs.MySqlDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SongbookOnly", "SongbookOnly");
             tableMapping.ColumnMappings.Add("PageNumber", "PageNumber");
             tableMapping.ColumnMappings.Add("OriginalKey", "OriginalKey");
-            tableMapping.ColumnMappings.Add("InTablet", "InTablet");
+            tableMapping.ColumnMappings.Add("DiffPDFName", "DiffPDFName");
+            tableMapping.ColumnMappings.Add("SetlistAddable", "SetlistAddable");
+            tableMapping.ColumnMappings.Add("intablet", "intablet");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -7745,7 +8411,7 @@ namespace Songs.MySqlDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `songs` (`TitlePrefix`, `Title`, `Code`, `Key`, `Comment`, `PageNumberOriginal`, `Category`, `Songbook Only`, `Artist`, `SongKey`, `SongbookOnly`, `PageNumber`, `OriginalKey`, `intablet`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `songs` (`TitlePrefix`, `Title`, `Code`, `Key`, `Comment`, `PageNumberOriginal`, `Category`, `Songbook Only`, `Artist`, `SongKey`, `SongbookOnly`, `PageNumber`, `OriginalKey`, `intablet`, `DiffPDFName`, `SetlistAddable`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -7848,12 +8514,27 @@ namespace Songs.MySqlDataSetTableAdapters {
             param.DbType = global::System.Data.DbType.UInt64;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "InTablet";
+            param.SourceColumn = "intablet";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p15";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "DiffPDFName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p16";
+            param.DbType = global::System.Data.DbType.UInt64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "SetlistAddable";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `songs` SET `TitlePrefix` = @p1, `Title` = @p2, `Code` = @p3, `Key` = @p4, `Comment` = @p5, `PageNumberOriginal` = @p6, `Category` = @p7, `Songbook Only` = @p8, `Artist` = @p9, `SongKey` = @p10, `SongbookOnly` = @p11, `PageNumber` = @p12, `OriginalKey` = @p13, `intablet` = @p14 WHERE ((`ID` = @p15))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `songs` SET `TitlePrefix` = @p1, `Title` = @p2, `Code` = @p3, `Key` = @p4, `Comment` = @p5, `PageNumberOriginal` = @p6, `Category` = @p7, `Songbook Only` = @p8, `Artist` = @p9, `SongKey` = @p10, `SongbookOnly` = @p11, `PageNumber` = @p12, `OriginalKey` = @p13, `intablet` = @p14, `DiffPDFName` = @p15, `SetlistAddable` = @p16 WHERE ((`ID` = @p17))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -7956,11 +8637,26 @@ namespace Songs.MySqlDataSetTableAdapters {
             param.DbType = global::System.Data.DbType.UInt64;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "InTablet";
+            param.SourceColumn = "intablet";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p15";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "DiffPDFName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p16";
+            param.DbType = global::System.Data.DbType.UInt64;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "SetlistAddable";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p17";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -7973,7 +8669,7 @@ namespace Songs.MySqlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.songbookConnectionString_newer;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.songbookConnectionString4;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7984,13 +8680,13 @@ namespace Songs.MySqlDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        TitlePrefix, Title, Code, `Key`, Comment, PageNumberOriginal, Categ" +
                 "ory, `Songbook Only`, ID, Artist, SongKey, SongbookOnly, PageNumber, OriginalKey" +
-                ", InTablet\r\nFROM            songs";
+                ", intablet, DiffPDFName, SetlistAddable\r\nFROM            songs";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Artist, Category, Code, Comment, ID, `Key`, OriginalKey, PageNumber, PageN" +
-                "umberOriginal, SongKey, `Songbook Only`, SongbookOnly, Title, TitlePrefix, intab" +
-                "let FROM songs WHERE (ID = @ID)";
+            this._commandCollection[1].CommandText = "SELECT Artist, Category, Code, Comment, DiffPDFName, ID, `Key`, OriginalKey, Page" +
+                "Number, PageNumberOriginal, SetlistAddable, SongKey, `Songbook Only`, SongbookOn" +
+                "ly, Title, TitlePrefix, intablet FROM songs WHERE (ID = @ID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@ID";
@@ -8084,7 +8780,23 @@ namespace Songs.MySqlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, string p2, string p3, string p4, string p5, global::System.Nullable<int> p6, string p7, string p8, global::System.Nullable<int> p9, string p10, string p11, string p12, string p13, ulong p14) {
+        public virtual int Insert(
+                    string p1, 
+                    string p2, 
+                    string p3, 
+                    string p4, 
+                    string p5, 
+                    global::System.Nullable<int> p6, 
+                    string p7, 
+                    string p8, 
+                    global::System.Nullable<int> p9, 
+                    string p10, 
+                    string p11, 
+                    string p12, 
+                    string p13, 
+                    ulong p14, 
+                    string p15, 
+                    ulong p16) {
             if ((p1 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -8164,6 +8876,13 @@ namespace Songs.MySqlDataSetTableAdapters {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(p13));
             }
             this.Adapter.InsertCommand.Parameters[13].Value = ((ulong)(p14));
+            if ((p15 == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(p15));
+            }
+            this.Adapter.InsertCommand.Parameters[15].Value = ((ulong)(p16));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8184,7 +8903,24 @@ namespace Songs.MySqlDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, string p2, string p3, string p4, string p5, global::System.Nullable<int> p6, string p7, string p8, global::System.Nullable<int> p9, string p10, string p11, string p12, string p13, ulong p14, int p15) {
+        public virtual int Update(
+                    string p1, 
+                    string p2, 
+                    string p3, 
+                    string p4, 
+                    string p5, 
+                    global::System.Nullable<int> p6, 
+                    string p7, 
+                    string p8, 
+                    global::System.Nullable<int> p9, 
+                    string p10, 
+                    string p11, 
+                    string p12, 
+                    string p13, 
+                    ulong p14, 
+                    string p15, 
+                    ulong p16, 
+                    int p17) {
             if ((p1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -8264,7 +9000,14 @@ namespace Songs.MySqlDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(p13));
             }
             this.Adapter.UpdateCommand.Parameters[13].Value = ((ulong)(p14));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(p15));
+            if ((p15 == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(p15));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((ulong)(p16));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(p17));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8279,6 +9022,202 @@ namespace Songs.MySqlDataSetTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class viewsongsforsetlistsTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
+        
+        private global::MySql.Data.MySqlClient.MySqlConnection _connection;
+        
+        private global::MySql.Data.MySqlClient.MySqlTransaction _transaction;
+        
+        private global::MySql.Data.MySqlClient.MySqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public viewsongsforsetlistsTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::MySql.Data.MySqlClient.MySqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::MySql.Data.MySqlClient.MySqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::MySql.Data.MySqlClient.MySqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::MySql.Data.MySqlClient.MySqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "viewsongsforsetlists";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("FullTitle", "FullTitle");
+            tableMapping.ColumnMappings.Add("FullArtistName", "FullArtistName");
+            tableMapping.ColumnMappings.Add("DiffPDFName", "DiffPDFName");
+            tableMapping.ColumnMappings.Add("SetlistAddable", "SetlistAddable");
+            tableMapping.ColumnMappings.Add("InTablet", "InTablet");
+            tableMapping.ColumnMappings.Add("SetlistCaption", "SetlistCaption");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.songbookConnectionString2;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
+            this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        viewsongsforsetlists.*\r\nFROM            viewsongsforsetlists";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        ID, FullTitle, FullArtistName, DiffPDFName, SetlistAddable, InTable" +
+                "t, SetlistCaption\r\nFROM            viewsongsforsetlists\r\nWHERE        (InTablet " +
+                "= @InTablet)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@InTablet";
+            param.DbType = global::System.Data.DbType.Object;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Bit;
+            param.Size = 1024;
+            param.IsNullable = true;
+            param.SourceColumn = "InTablet";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MySqlDataSet.viewsongsforsetlistsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByInTablet(MySqlDataSet.viewsongsforsetlistsDataTable dataTable, object InTablet) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((InTablet == null)) {
+                throw new global::System.ArgumentNullException("InTablet");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((object)(InTablet));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
     }
     

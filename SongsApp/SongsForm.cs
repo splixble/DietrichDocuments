@@ -64,7 +64,7 @@ namespace Songs
             dataSet1.songs.Clear();
             _SongsAdap.SelectCommand.CommandText =
                 "SELECT TitlePrefix, Title, Code, SongKey, OriginalKey, Comment, PageNumber, Category, Song" +
-                "bookOnly, ID, Artist, InTablet FROM songs " + tbWhereClause.Text;
+                "bookOnly, ID, Artist, InTablet, SetlistAddable, DiffPDFName FROM songs " + tbWhereClause.Text;
             _SongsAdap.Fill(dataSet1.songs);
             // was: this.songsTableAdapter.Fill(this.dataSet1.songs);
             grid1.Sort(titleDataGridViewTextBoxColumn, ListSortDirection.Ascending);
@@ -408,6 +408,24 @@ namespace Songs
         {
             ListingForm form = new ListingForm();
             form.ShowPerformanceList(false);
+        }
+
+        private void pDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfProcessor proc = new PdfProcessor();            
+            proc.ProcessPDFs();
+        }
+
+        private void createNoLyricsListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PdfProcessor pdfProc = new PdfProcessor();
+            pdfProc.CreateNoLyricFiles();
+        }
+
+        private void venuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VenuesForm form = new VenuesForm();
+            form.Show();
         }
     }
 }
