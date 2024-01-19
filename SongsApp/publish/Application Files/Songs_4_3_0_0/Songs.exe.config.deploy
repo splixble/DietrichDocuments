@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="Songs.Properties.Settings.MainConnectionString" connectionString="Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3"
+            providerName="System.Data.Odbc" />
+        <add name="Songs.Properties.Settings.freeConnectionString" connectionString="server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;password=EF94SEmPdi;persistsecurityinfo=True"
+            providerName="MySql.Data.MySqlClient" />
+        <add name="Songs.Properties.Settings.songbookConnectionString"
+            connectionString="server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;database=songbook"
+            providerName="MySql.Data.MySqlClient" />
+    </connectionStrings>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1"/></startup></configuration>
