@@ -19,13 +19,13 @@ namespace Songs
 
             // FolderBrowserDialog 
 
-            MySqlDataSet.viewsongsforsetlistsDataTable songTable = new MySqlDataSet.viewsongsforsetlistsDataTable();
-            MySqlDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new MySqlDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
+            AzureDataSet.viewsongsforsetlistsDataTable songTable = new AzureDataSet.viewsongsforsetlistsDataTable();
+            AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
             songAdap.FillByInTablet(songTable, true);
 
             /* 
             tb.Text += "title;pages;custom" + Environment.NewLine; ;
-            foreach (MySqlDataSet.viewsongsforsetlistsRow songRow in songTable)
+            foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
                 tb.Text += songRow.FullTitle + ";1;" + songRow.SetlistCaption + Environment.NewLine;
             */
 
@@ -50,13 +50,13 @@ namespace Songs
             string pdfDir = dirDlg.SelectedPath;
             DirectoryInfo dir = new DirectoryInfo(pdfDir);
 
-            Dictionary<string, MySqlDataSet.viewsongsforsetlistsRow> pdfsInDir = 
-                new Dictionary<string, MySqlDataSet.viewsongsforsetlistsRow>(StringComparer.CurrentCultureIgnoreCase); 
+            Dictionary<string, AzureDataSet.viewsongsforsetlistsRow> pdfsInDir = 
+                new Dictionary<string, AzureDataSet.viewsongsforsetlistsRow>(StringComparer.CurrentCultureIgnoreCase); 
             // - key=pdf filename w/o dir; value = DB row if found for it
             foreach (FileInfo fileInfo in dir.GetFiles("*.pdf"))
                 pdfsInDir.Add(fileInfo.Name, null);
 
-            foreach(MySqlDataSet.viewsongsforsetlistsRow songRow in songTable )
+            foreach(AzureDataSet.viewsongsforsetlistsRow songRow in songTable )
             {
                 string dbPDFName;
                 if (!songRow.IsDiffPDFNameNull() && songRow.DiffPDFName != "")
@@ -108,8 +108,8 @@ namespace Songs
 
         public void CreateNoLyricFiles()
         {
-            MySqlDataSet.viewsongsforsetlistsDataTable songTable = new MySqlDataSet.viewsongsforsetlistsDataTable();
-            MySqlDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new MySqlDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
+            AzureDataSet.viewsongsforsetlistsDataTable songTable = new AzureDataSet.viewsongsforsetlistsDataTable();
+            AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
             songAdap.FillByInTablet(songTable, false);
 
             PdfDocument document = new PdfDocument();
@@ -140,7 +140,7 @@ namespace Songs
                 csvFileWriter.WriteLine("title;pages;custom");
 
                 int pageNum = 1;
-                foreach (MySqlDataSet.viewsongsforsetlistsRow songRow in songTable)
+                foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
                 {
                     csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption);
 

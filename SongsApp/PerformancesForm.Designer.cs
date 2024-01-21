@@ -33,12 +33,12 @@ namespace Songs
             this.btnSave = new System.Windows.Forms.Button();
             this.grid1 = new System.Windows.Forms.DataGridView();
             this.venuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.performanceDataSet = new Songs.PerformanceDataSet();
+            this.AzureDataSet = new Songs.AzureDataSet();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.performancesTableAdapter = new Songs.PerformanceDataSetTableAdapters.performancesTableAdapter();
-            this.venuesTableAdapter = new Songs.PerformanceDataSetTableAdapters.venuesTableAdapter();
+            this.performancesTableAdapter = new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
+            this.venuesTableAdapter = new Songs.AzureDataSetTableAdapters.venuesTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.performanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -47,7 +47,7 @@ namespace Songs
             this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -90,12 +90,12 @@ namespace Songs
             // venuesBindingSource
             // 
             this.venuesBindingSource.DataMember = "venues";
-            this.venuesBindingSource.DataSource = this.performanceDataSet;
+            this.venuesBindingSource.DataSource = this.AzureDataSet;
             // 
-            // performanceDataSet
+            // AzureDataSet
             // 
-            this.performanceDataSet.DataSetName = "PerformanceDataSet";
-            this.performanceDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.AzureDataSet.DataSetName = "AzureDataSet";
+            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // contextMenuStrip1
             // 
@@ -114,7 +114,7 @@ namespace Songs
             // performancesBindingSource
             // 
             this.performancesBindingSource.DataMember = "performances";
-            this.performancesBindingSource.DataSource = this.performanceDataSet;
+            this.performancesBindingSource.DataSource = this.AzureDataSet;
             this.performancesBindingSource.CurrentChanged += new System.EventHandler(this.performancesBindingSource_CurrentChanged);
             this.performancesBindingSource.CurrentItemChanged += new System.EventHandler(this.performancesBindingSource_CurrentItemChanged);
             // 
@@ -191,7 +191,7 @@ namespace Songs
             this.Load += new System.EventHandler(this.PerformancesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -202,13 +202,13 @@ namespace Songs
 
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView grid1;
-        private PerformanceDataSet performanceDataSet;
+        private AzureDataSet AzureDataSet;
         private System.Windows.Forms.BindingSource performancesBindingSource;
-        private Songs.PerformanceDataSetTableAdapters.performancesTableAdapter performancesTableAdapter;
+        private Songs.AzureDataSetTableAdapters.performancesTableAdapter performancesTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem detailToolStripMenuItem;
         private System.Windows.Forms.BindingSource venuesBindingSource;
-        private Songs.PerformanceDataSetTableAdapters.venuesTableAdapter venuesTableAdapter;
+        private Songs.AzureDataSetTableAdapters.venuesTableAdapter venuesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn performanceDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn VenueColumn;

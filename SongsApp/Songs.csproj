@@ -80,7 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Installer for Windows\MySQL.Utility.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Deployment" />
@@ -89,16 +91,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlternateArtistsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ArtistsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ArtistsForm.Designer.cs">
       <DependentUpon>ArtistsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AzureDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AzureDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="FlagsForm.cs">
       <SubType>Form</SubType>
@@ -112,20 +114,7 @@
     <Compile Include="ListingForm.Designer.cs">
       <DependentUpon>ListingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MySqlDataSet.cs">
-      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MySqlDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="PdfProcessor.cs" />
-    <Compile Include="PerformanceDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="PerformanceDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,16 +185,16 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="MySqlDataSet.xsc">
-      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    <None Include="AzureDataSet.xsc">
+      <DependentUpon>AzureDataSet.xsd</DependentUpon>
     </None>
-    <None Include="MySqlDataSet.xsd">
+    <None Include="AzureDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MySqlDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>AzureDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="MySqlDataSet.xss">
-      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    <None Include="AzureDataSet.xss">
+      <DependentUpon>AzureDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -227,24 +216,6 @@
     </Compile>
     <Compile Include="VenuesForm.Designer.cs">
       <DependentUpon>VenuesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewFlagsDataSource.cs">
-      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ViewFlagsDataSource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSongPerformanceTotalsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSongsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -272,66 +243,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AlternateArtistsDataSet.xsc">
-      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="AlternateArtistsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AlternateArtistsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="AlternateArtistsDataSet.xss">
-      <DependentUpon>AlternateArtistsDataSet.xsd</DependentUpon>
-    </None>
     <Content Include="greentele16.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="PerformanceDataSet.xsc">
-      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PerformanceDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PerformanceDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="PerformanceDataSet.xss">
-      <DependentUpon>PerformanceDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Songs_1_TemporaryKey.pfx" />
     <None Include="Songs_2_TemporaryKey.pfx" />
-    <None Include="ViewFlagsDataSource.xsc">
-      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
-    </None>
-    <None Include="ViewFlagsDataSource.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ViewFlagsDataSource.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="ViewFlagsDataSource.xss">
-      <DependentUpon>ViewFlagsDataSource.xsd</DependentUpon>
-    </None>
-    <None Include="ViewSongPerformanceTotalsDataSet.xsc">
-      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ViewSongPerformanceTotalsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ViewSongPerformanceTotalsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="ViewSongPerformanceTotalsDataSet.xss">
-      <DependentUpon>ViewSongPerformanceTotalsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ViewSongsDataSet.xsc">
-      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ViewSongsDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ViewSongsDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="ViewSongsDataSet.xss">
-      <DependentUpon>ViewSongsDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="MySql.Data">

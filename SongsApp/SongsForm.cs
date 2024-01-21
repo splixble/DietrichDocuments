@@ -58,7 +58,7 @@ namespace Songs
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'viewSongsDataSet.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet.viewsongssinglefield);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet.ViewSongsSingleField);
 
             // load songs table:
             dataSet1.songs.Clear();
@@ -70,10 +70,10 @@ namespace Songs
             grid1.Sort(titleDataGridViewTextBoxColumn, ListSortDirection.Ascending);
 
             // Read in the SongFlags view:
-            ViewFlagsDataSourceTableAdapters.viewsongflagsTableAdapter flagAdap = 
-                new Songs.ViewFlagsDataSourceTableAdapters.viewsongflagsTableAdapter();
-            ViewFlagsDataSource.viewsongflagsDataTable flagsTable = 
-                new ViewFlagsDataSource.viewsongflagsDataTable();
+            AzureDataSetTableAdapters.viewsongflagsTableAdapter flagAdap = 
+                new Songs.AzureDataSetTableAdapters.viewsongflagsTableAdapter();
+            AzureDataSet.viewsongflagsDataTable flagsTable = 
+                new AzureDataSet.viewsongflagsDataTable();
             flagAdap.Fill(flagsTable);
             // now, fill in the Flags field:
             for (int rowIndex=0; rowIndex<grid1.RowCount; rowIndex++)
@@ -81,7 +81,7 @@ namespace Songs
                 int songID = GetSongIDFromRowIndex(rowIndex);
                 if (songID != -1)
                 {
-                    ViewFlagsDataSource.viewsongflagsRow flagsRow = flagsTable.FindBySong(songID);
+                    AzureDataSet.viewsongflagsRow flagsRow = flagsTable.FindBySong(songID);
                     if (flagsRow != null && flagsRow["Flags"] != DBNull.Value)
                     {
                         grid1[ColFlags.Index, rowIndex].Value = flagsRow.Flags;
@@ -145,9 +145,9 @@ namespace Songs
             foreach (DataGridViewRow gridRow in grid1.Rows)
             {
                 object obRowItem = gridRow.DataBoundItem;
-                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is MySqlDataSet.songsRow)
+                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is AzureDataSet.songsRow)
                 {
-                    MySqlDataSet.songsRow songRow = (MySqlDataSet.songsRow)((DataRowView)obRowItem).Row;
+                    AzureDataSet.songsRow songRow = (AzureDataSet.songsRow)((DataRowView)obRowItem).Row;
                     if (songRow.ID == songID)
                         return gridRow.Index;
                 }
@@ -159,10 +159,10 @@ namespace Songs
         {
             // Get the DB table row corresponding to this grid row:
             object obRowItem = grid1.Rows[rowIndex].DataBoundItem;
-            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is MySqlDataSet.songsRow)
+            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is AzureDataSet.songsRow)
             {
-                MySqlDataSet.songsRow songRow =
-                    (MySqlDataSet.songsRow)((DataRowView)obRowItem).Row;
+                AzureDataSet.songsRow songRow =
+                    (AzureDataSet.songsRow)((DataRowView)obRowItem).Row;
                 return songRow.ID;
             }
             else
@@ -306,8 +306,8 @@ namespace Songs
                         e.SortResult = 1;
                     else
                     {
-                        MySqlDataSet.artistsRow artistRow1 = dataSet1.artists.FindByArtistID((int)e.CellValue1);
-                        MySqlDataSet.artistsRow artistRow2 = dataSet1.artists.FindByArtistID((int)e.CellValue2);
+                        AzureDataSet.artistsRow artistRow1 = dataSet1.artists.FindByArtistID((int)e.CellValue1);
+                        AzureDataSet.artistsRow artistRow2 = dataSet1.artists.FindByArtistID((int)e.CellValue2);
                         string lastname1 = ComparableString(artistRow1.ArtistLastName);
                         string lastname2 = ComparableString(artistRow2.ArtistLastName);
                         e.SortResult = lastname1.CompareTo(lastname2);

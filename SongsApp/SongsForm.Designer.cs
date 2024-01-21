@@ -36,7 +36,7 @@ namespace Songs
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArtistColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.viewArtistNameForListBoxBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.MySqlDataSet();
+            this.dataSet1 = new Songs.AzureDataSet();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SongKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OriginalKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,20 +72,20 @@ namespace Songs
             this.performancesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.songsTableAdapter = new Songs.MySqlDataSetTableAdapters.songsTableAdapter();
-            this.viewArtistNameForListBoxTableAdapter = new Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
+            this.songsTableAdapter = new Songs.AzureDataSetTableAdapters.songsTableAdapter();
+            this.viewArtistNameForListBoxTableAdapter = new Songs.AzureDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             this.cbMemorized = new System.Windows.Forms.CheckBox();
             this.comboFlag = new System.Windows.Forms.ComboBox();
             this.flagsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbWithFlag = new System.Windows.Forms.CheckBox();
-            this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
+            this.flagsTableAdapter = new Songs.AzureDataSetTableAdapters.flagsTableAdapter();
             this.tbWhereClause = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewSongsDataSet = new Songs.ViewSongsDataSet();
-            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
+            this.viewSongsDataSet = new Songs.AzureDataSet();
+            this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
             this.venuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
@@ -560,7 +560,7 @@ namespace Songs
             // 
             // viewSongsDataSet
             // 
-            this.viewSongsDataSet.DataSetName = "ViewSongsDataSet";
+            this.viewSongsDataSet.DataSetName = "AzureDataSet";
             this.viewSongsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // viewSongsSingleFieldTableAdapter
@@ -614,8 +614,8 @@ namespace Songs
         #endregion
 
         private System.Windows.Forms.DataGridView grid1;
-        private MySqlDataSet dataSet1;
-        private Songs.MySqlDataSetTableAdapters.songsTableAdapter songsTableAdapter;
+        private AzureDataSet dataSet1;
+        private Songs.AzureDataSetTableAdapters.songsTableAdapter songsTableAdapter;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -627,7 +627,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flagsToolStripMenuItem;
         private System.Windows.Forms.BindingSource viewArtistNameForListBoxBindingSource;
-        private Songs.MySqlDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
+        private Songs.AzureDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter viewArtistNameForListBoxTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem detailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tOCToolStripMenuItem;
@@ -635,7 +635,7 @@ namespace Songs
         private System.Windows.Forms.ComboBox comboFlag;
         private System.Windows.Forms.CheckBox cbWithFlag;
         private System.Windows.Forms.BindingSource flagsBindingSource;
-        private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
+        private Songs.AzureDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
         private System.Windows.Forms.TextBox tbWhereClause;
         private System.Windows.Forms.ToolStripMenuItem performancesToolStripMenuItem;
@@ -643,9 +643,9 @@ namespace Songs
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboSongFinder;
         private System.Windows.Forms.BindingSource viewSongsDataSetBindingSource;
-        private ViewSongsDataSet viewSongsDataSet;
+        private AzureDataSet viewSongsDataSet;
         private System.Windows.Forms.BindingSource viewSongsSingleFieldBindingSource;
-        private Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter viewSongsSingleFieldTableAdapter;
+        private Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter viewSongsSingleFieldTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem listByArtistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listByFlagsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem performanceTotalsToolStripMenuItem;
