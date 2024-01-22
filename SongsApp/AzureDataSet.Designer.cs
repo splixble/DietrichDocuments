@@ -1432,8 +1432,10 @@ namespace Songs {
                 this.columnPageNumber.MaxLength = 50;
                 this.columnOriginalKey.MaxLength = 50;
                 this.columnintablet.AllowDBNull = false;
+                this.columnintablet.DefaultValue = ((bool)(false));
                 this.columnDiffPDFName.MaxLength = 2147483647;
                 this.columnSetlistAddable.AllowDBNull = false;
+                this.columnSetlistAddable.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

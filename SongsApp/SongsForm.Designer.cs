@@ -31,23 +31,8 @@ namespace Songs
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongsForm));
             this.grid1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titlePrefixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ArtistColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.viewArtistNameForListBoxBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new Songs.AzureDataSet();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SongKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OriginalKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pageNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InTabletColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.SetlistAddable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SongbookOnly = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiffPDFName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,6 +46,7 @@ namespace Songs
             this.artistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.venuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNoLyricsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,10 +69,22 @@ namespace Songs
             this.label1 = new System.Windows.Forms.Label();
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewSongsDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewSongsDataSet = new Songs.AzureDataSet();
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.venuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titlePrefixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtistColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SongKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OriginalKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pageNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InTabletColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SetlistAddable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SongbookOnly = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiffPDFName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFlags = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -95,8 +93,6 @@ namespace Songs
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flagsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // grid1
@@ -133,40 +129,6 @@ namespace Songs
             this.grid1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grid1_ColumnHeaderMouseClick);
             this.grid1.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.grid1_SortCompare);
             // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // titlePrefixDataGridViewTextBoxColumn
-            // 
-            this.titlePrefixDataGridViewTextBoxColumn.DataPropertyName = "TitlePrefix";
-            this.titlePrefixDataGridViewTextBoxColumn.HeaderText = "Title Prefix";
-            this.titlePrefixDataGridViewTextBoxColumn.Name = "titlePrefixDataGridViewTextBoxColumn";
-            this.titlePrefixDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.Width = 240;
-            // 
-            // ArtistColumn
-            // 
-            this.ArtistColumn.DataPropertyName = "Artist";
-            this.ArtistColumn.DataSource = this.viewArtistNameForListBoxBindingSource;
-            this.ArtistColumn.DisplayMember = "Name";
-            this.ArtistColumn.HeaderText = "Artist";
-            this.ArtistColumn.Name = "ArtistColumn";
-            this.ArtistColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ArtistColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ArtistColumn.ValueMember = "Artist";
-            this.ArtistColumn.Width = 180;
-            // 
             // viewArtistNameForListBoxBindingSource
             // 
             this.viewArtistNameForListBoxBindingSource.DataMember = "ViewArtistNameForListBox";
@@ -177,88 +139,6 @@ namespace Songs
             // 
             this.dataSet1.DataSetName = "DataSet1";
             this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // SongKey
-            // 
-            this.SongKey.DataPropertyName = "SongKey";
-            this.SongKey.HeaderText = "Key";
-            this.SongKey.Name = "SongKey";
-            this.SongKey.Width = 40;
-            // 
-            // OriginalKey
-            // 
-            this.OriginalKey.DataPropertyName = "OriginalKey";
-            this.OriginalKey.HeaderText = "Orig. Key";
-            this.OriginalKey.Name = "OriginalKey";
-            this.OriginalKey.Width = 40;
-            // 
-            // pageNumberDataGridViewTextBoxColumn
-            // 
-            this.pageNumberDataGridViewTextBoxColumn.DataPropertyName = "PageNumber";
-            this.pageNumberDataGridViewTextBoxColumn.HeaderText = "Page #";
-            this.pageNumberDataGridViewTextBoxColumn.Name = "pageNumberDataGridViewTextBoxColumn";
-            this.pageNumberDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // InTabletColumn
-            // 
-            this.InTabletColumn.DataPropertyName = "InTablet";
-            this.InTabletColumn.FalseValue = "0";
-            this.InTabletColumn.HeaderText = "In Tablet";
-            this.InTabletColumn.Name = "InTabletColumn";
-            this.InTabletColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.InTabletColumn.TrueValue = "1";
-            this.InTabletColumn.Width = 40;
-            // 
-            // SetlistAddable
-            // 
-            this.SetlistAddable.DataPropertyName = "SetlistAddable";
-            this.SetlistAddable.FalseValue = "0";
-            this.SetlistAddable.HeaderText = "Setlist Add?";
-            this.SetlistAddable.Name = "SetlistAddable";
-            this.SetlistAddable.TrueValue = "1";
-            this.SetlistAddable.Width = 40;
-            // 
-            // commentDataGridViewTextBoxColumn
-            // 
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
-            this.commentDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // SongbookOnly
-            // 
-            this.SongbookOnly.DataPropertyName = "SongbookOnly";
-            this.SongbookOnly.HeaderText = "Book Only";
-            this.SongbookOnly.Name = "SongbookOnly";
-            this.SongbookOnly.Width = 40;
-            // 
-            // DiffPDFName
-            // 
-            this.DiffPDFName.DataPropertyName = "DiffPDFName";
-            this.DiffPDFName.HeaderText = "Diff. PDF Name";
-            this.DiffPDFName.Name = "DiffPDFName";
-            this.DiffPDFName.Width = 130;
-            // 
-            // ColFlags
-            // 
-            this.ColFlags.HeaderText = "Flags";
-            this.ColFlags.Name = "ColFlags";
-            this.ColFlags.ReadOnly = true;
-            this.ColFlags.Width = 120;
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.Width = 40;
             // 
             // contextMenuStrip1
             // 
@@ -278,7 +158,7 @@ namespace Songs
             // 
             this.songsBindingSource.DataMember = "songs";
             this.songsBindingSource.DataSource = this.dataSet1;
-            this.songsBindingSource.CurrentChanged += new System.EventHandler(this.songsBindingSource_CurrentChanged);
+            this.songsBindingSource.CurrentChanged += new System.EventHandler(this.songsBindingSource_CurrentItemChanged);
             this.songsBindingSource.CurrentItemChanged += new System.EventHandler(this.songsBindingSource_CurrentItemChanged);
             // 
             // btnSave
@@ -351,23 +231,30 @@ namespace Songs
             // artistsToolStripMenuItem
             // 
             this.artistsToolStripMenuItem.Name = "artistsToolStripMenuItem";
-            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.artistsToolStripMenuItem.Text = "&Artists";
             this.artistsToolStripMenuItem.Click += new System.EventHandler(this.artistsToolStripMenuItem_Click);
             // 
             // flagsToolStripMenuItem
             // 
             this.flagsToolStripMenuItem.Name = "flagsToolStripMenuItem";
-            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.flagsToolStripMenuItem.Text = "&Flags";
             this.flagsToolStripMenuItem.Click += new System.EventHandler(this.flagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem
             // 
             this.performancesToolStripMenuItem.Name = "performancesToolStripMenuItem";
-            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.performancesToolStripMenuItem.Text = "&Performances";
             this.performancesToolStripMenuItem.Click += new System.EventHandler(this.performancesToolStripMenuItem_Click);
+            // 
+            // venuesToolStripMenuItem
+            // 
+            this.venuesToolStripMenuItem.Name = "venuesToolStripMenuItem";
+            this.venuesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.venuesToolStripMenuItem.Text = "&Venues";
+            this.venuesToolStripMenuItem.Click += new System.EventHandler(this.venuesToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -551,28 +438,127 @@ namespace Songs
             // viewSongsSingleFieldBindingSource
             // 
             this.viewSongsSingleFieldBindingSource.DataMember = "ViewSongsSingleField";
-            this.viewSongsSingleFieldBindingSource.DataSource = this.viewSongsDataSetBindingSource;
-            // 
-            // viewSongsDataSetBindingSource
-            // 
-            this.viewSongsDataSetBindingSource.DataSource = this.viewSongsDataSet;
-            this.viewSongsDataSetBindingSource.Position = 0;
-            // 
-            // viewSongsDataSet
-            // 
-            this.viewSongsDataSet.DataSetName = "AzureDataSet";
-            this.viewSongsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.viewSongsSingleFieldBindingSource.DataSource = this.dataSet1;
             // 
             // viewSongsSingleFieldTableAdapter
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // venuesToolStripMenuItem
+            // iDDataGridViewTextBoxColumn
             // 
-            this.venuesToolStripMenuItem.Name = "venuesToolStripMenuItem";
-            this.venuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.venuesToolStripMenuItem.Text = "&Venues";
-            this.venuesToolStripMenuItem.Click += new System.EventHandler(this.venuesToolStripMenuItem_Click);
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // titlePrefixDataGridViewTextBoxColumn
+            // 
+            this.titlePrefixDataGridViewTextBoxColumn.DataPropertyName = "TitlePrefix";
+            this.titlePrefixDataGridViewTextBoxColumn.HeaderText = "Title Prefix";
+            this.titlePrefixDataGridViewTextBoxColumn.Name = "titlePrefixDataGridViewTextBoxColumn";
+            this.titlePrefixDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.Width = 240;
+            // 
+            // ArtistColumn
+            // 
+            this.ArtistColumn.DataPropertyName = "Artist";
+            this.ArtistColumn.DataSource = this.viewArtistNameForListBoxBindingSource;
+            this.ArtistColumn.DisplayMember = "Name";
+            this.ArtistColumn.HeaderText = "Artist";
+            this.ArtistColumn.Name = "ArtistColumn";
+            this.ArtistColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ArtistColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ArtistColumn.ValueMember = "Artist";
+            this.ArtistColumn.Width = 180;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // SongKey
+            // 
+            this.SongKey.DataPropertyName = "SongKey";
+            this.SongKey.HeaderText = "Key";
+            this.SongKey.Name = "SongKey";
+            this.SongKey.Width = 40;
+            // 
+            // OriginalKey
+            // 
+            this.OriginalKey.DataPropertyName = "OriginalKey";
+            this.OriginalKey.HeaderText = "Orig. Key";
+            this.OriginalKey.Name = "OriginalKey";
+            this.OriginalKey.Width = 40;
+            // 
+            // pageNumberDataGridViewTextBoxColumn
+            // 
+            this.pageNumberDataGridViewTextBoxColumn.DataPropertyName = "PageNumber";
+            this.pageNumberDataGridViewTextBoxColumn.HeaderText = "Page #";
+            this.pageNumberDataGridViewTextBoxColumn.Name = "pageNumberDataGridViewTextBoxColumn";
+            this.pageNumberDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // InTabletColumn
+            // 
+            this.InTabletColumn.DataPropertyName = "InTablet";
+            this.InTabletColumn.FalseValue = "False";
+            this.InTabletColumn.HeaderText = "In Tablet";
+            this.InTabletColumn.Name = "InTabletColumn";
+            this.InTabletColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.InTabletColumn.TrueValue = "True";
+            this.InTabletColumn.Width = 40;
+            // 
+            // SetlistAddable
+            // 
+            this.SetlistAddable.DataPropertyName = "SetlistAddable";
+            this.SetlistAddable.FalseValue = "False";
+            this.SetlistAddable.HeaderText = "Setlist Add?";
+            this.SetlistAddable.Name = "SetlistAddable";
+            this.SetlistAddable.TrueValue = "True";
+            this.SetlistAddable.Width = 40;
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.commentDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // SongbookOnly
+            // 
+            this.SongbookOnly.DataPropertyName = "SongbookOnly";
+            this.SongbookOnly.HeaderText = "Book Only";
+            this.SongbookOnly.Name = "SongbookOnly";
+            this.SongbookOnly.Width = 40;
+            // 
+            // DiffPDFName
+            // 
+            this.DiffPDFName.DataPropertyName = "DiffPDFName";
+            this.DiffPDFName.HeaderText = "Diff. PDF Name";
+            this.DiffPDFName.Name = "DiffPDFName";
+            this.DiffPDFName.Width = 130;
+            // 
+            // ColFlags
+            // 
+            this.ColFlags.HeaderText = "Flags";
+            this.ColFlags.Name = "ColFlags";
+            this.ColFlags.ReadOnly = true;
+            this.ColFlags.Width = 120;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.Width = 40;
             // 
             // SongsForm
             // 
@@ -604,8 +590,6 @@ namespace Songs
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flagsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -642,8 +626,6 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem performancesToolStripMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboSongFinder;
-        private System.Windows.Forms.BindingSource viewSongsDataSetBindingSource;
-        private AzureDataSet viewSongsDataSet;
         private System.Windows.Forms.BindingSource viewSongsSingleFieldBindingSource;
         private Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter viewSongsSingleFieldTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem listByArtistToolStripMenuItem;
@@ -654,6 +636,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createNoLyricsListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem venuesToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titlePrefixDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
@@ -669,7 +652,6 @@ namespace Songs
         private System.Windows.Forms.DataGridViewTextBoxColumn DiffPDFName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFlags;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripMenuItem venuesToolStripMenuItem;
     }
 }
 

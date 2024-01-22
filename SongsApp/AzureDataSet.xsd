@@ -832,7 +832,7 @@ WHERE        (SongID = @SongID)</CommandText>
   <xs:element name="AzureDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AzureDataSet" msprop:Generator_UserDSName="AzureDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="artists" msprop:Generator_TableClassName="artistsDataTable" msprop:Generator_TableVarName="tableartists" msprop:Generator_RowChangedName="artistsRowChanged" msprop:Generator_TablePropName="artists" msprop:Generator_RowDeletingName="artistsRowDeleting" msprop:Generator_RowChangingName="artistsRowChanging" msprop:Generator_RowEvHandlerName="artistsRowChangeEventHandler" msprop:Generator_RowDeletedName="artistsRowDeleted" msprop:Generator_RowClassName="artistsRow" msprop:Generator_UserTableName="artists" msprop:Generator_RowEvArgName="artistsRowChangeEvent">
+        <xs:element name="artists" msprop:Generator_TableClassName="artistsDataTable" msprop:Generator_TableVarName="tableartists" msprop:Generator_TablePropName="artists" msprop:Generator_RowDeletingName="artistsRowDeleting" msprop:Generator_RowChangingName="artistsRowChanging" msprop:Generator_RowEvHandlerName="artistsRowChangeEventHandler" msprop:Generator_RowDeletedName="artistsRowDeleted" msprop:Generator_UserTableName="artists" msprop:Generator_RowChangedName="artistsRowChanged" msprop:Generator_RowEvArgName="artistsRowChangeEvent" msprop:Generator_RowClassName="artistsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ArtistID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnArtistID" msprop:Generator_ColumnPropNameInRow="ArtistID" msprop:Generator_ColumnPropNameInTable="ArtistIDColumn" msprop:Generator_UserColumnName="ArtistID" type="xs:int" />
@@ -853,7 +853,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="songs" msprop:Generator_TableClassName="songsDataTable" msprop:Generator_TableVarName="tablesongs" msprop:Generator_RowChangedName="songsRowChanged" msprop:Generator_TablePropName="songs" msprop:Generator_RowDeletingName="songsRowDeleting" msprop:Generator_RowChangingName="songsRowChanging" msprop:Generator_RowEvHandlerName="songsRowChangeEventHandler" msprop:Generator_RowDeletedName="songsRowDeleted" msprop:Generator_RowClassName="songsRow" msprop:Generator_UserTableName="songs" msprop:Generator_RowEvArgName="songsRowChangeEvent">
+        <xs:element name="songs" msprop:Generator_TableClassName="songsDataTable" msprop:Generator_TableVarName="tablesongs" msprop:Generator_TablePropName="songs" msprop:Generator_RowDeletingName="songsRowDeleting" msprop:Generator_RowChangingName="songsRowChanging" msprop:Generator_RowEvHandlerName="songsRowChangeEventHandler" msprop:Generator_RowDeletedName="songsRowDeleted" msprop:Generator_UserTableName="songs" msprop:Generator_RowChangedName="songsRowChanged" msprop:Generator_RowEvArgName="songsRowChangeEvent" msprop:Generator_RowClassName="songsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TitlePrefix" msprop:Generator_ColumnVarNameInTable="columnTitlePrefix" msprop:Generator_ColumnPropNameInRow="TitlePrefix" msprop:Generator_ColumnPropNameInTable="TitlePrefixColumn" msprop:Generator_UserColumnName="TitlePrefix" minOccurs="0">
@@ -922,7 +922,7 @@ WHERE        (SongID = @SongID)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intablet" msprop:Generator_ColumnVarNameInTable="columnintablet" msprop:Generator_ColumnPropNameInRow="intablet" msprop:Generator_ColumnPropNameInTable="intabletColumn" msprop:Generator_UserColumnName="intablet" type="xs:boolean" />
+              <xs:element name="intablet" msprop:Generator_ColumnVarNameInTable="columnintablet" msprop:Generator_ColumnPropNameInRow="intablet" msprop:Generator_ColumnPropNameInTable="intabletColumn" msprop:Generator_UserColumnName="intablet" type="xs:boolean" default="false" />
               <xs:element name="DiffPDFName" msprop:Generator_ColumnVarNameInTable="columnDiffPDFName" msprop:Generator_ColumnPropNameInRow="DiffPDFName" msprop:Generator_ColumnPropNameInTable="DiffPDFNameColumn" msprop:Generator_UserColumnName="DiffPDFName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -930,11 +930,11 @@ WHERE        (SongID = @SongID)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SetlistAddable" msprop:Generator_ColumnVarNameInTable="columnSetlistAddable" msprop:Generator_ColumnPropNameInRow="SetlistAddable" msprop:Generator_ColumnPropNameInTable="SetlistAddableColumn" msprop:Generator_UserColumnName="SetlistAddable" type="xs:boolean" />
+              <xs:element name="SetlistAddable" msprop:Generator_ColumnVarNameInTable="columnSetlistAddable" msprop:Generator_ColumnPropNameInRow="SetlistAddable" msprop:Generator_ColumnPropNameInTable="SetlistAddableColumn" msprop:Generator_UserColumnName="SetlistAddable" type="xs:boolean" default="false" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewArtistNameForListBox" msprop:Generator_TableClassName="ViewArtistNameForListBoxDataTable" msprop:Generator_TableVarName="tableViewArtistNameForListBox" msprop:Generator_RowChangedName="ViewArtistNameForListBoxRowChanged" msprop:Generator_TablePropName="ViewArtistNameForListBox" msprop:Generator_RowDeletingName="ViewArtistNameForListBoxRowDeleting" msprop:Generator_RowChangingName="ViewArtistNameForListBoxRowChanging" msprop:Generator_RowEvHandlerName="ViewArtistNameForListBoxRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewArtistNameForListBoxRowDeleted" msprop:Generator_RowClassName="ViewArtistNameForListBoxRow" msprop:Generator_UserTableName="ViewArtistNameForListBox" msprop:Generator_RowEvArgName="ViewArtistNameForListBoxRowChangeEvent">
+        <xs:element name="ViewArtistNameForListBox" msprop:Generator_TableClassName="ViewArtistNameForListBoxDataTable" msprop:Generator_TableVarName="tableViewArtistNameForListBox" msprop:Generator_TablePropName="ViewArtistNameForListBox" msprop:Generator_RowDeletingName="ViewArtistNameForListBoxRowDeleting" msprop:Generator_RowChangingName="ViewArtistNameForListBoxRowChanging" msprop:Generator_RowEvHandlerName="ViewArtistNameForListBoxRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewArtistNameForListBoxRowDeleted" msprop:Generator_UserTableName="ViewArtistNameForListBox" msprop:Generator_RowChangedName="ViewArtistNameForListBoxRowChanged" msprop:Generator_RowEvArgName="ViewArtistNameForListBoxRowChangeEvent" msprop:Generator_RowClassName="ViewArtistNameForListBoxRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
@@ -962,7 +962,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="flaggedsongs" msprop:Generator_TableClassName="flaggedsongsDataTable" msprop:Generator_TableVarName="tableflaggedsongs" msprop:Generator_RowChangedName="flaggedsongsRowChanged" msprop:Generator_TablePropName="flaggedsongs" msprop:Generator_RowDeletingName="flaggedsongsRowDeleting" msprop:Generator_RowChangingName="flaggedsongsRowChanging" msprop:Generator_RowEvHandlerName="flaggedsongsRowChangeEventHandler" msprop:Generator_RowDeletedName="flaggedsongsRowDeleted" msprop:Generator_RowClassName="flaggedsongsRow" msprop:Generator_UserTableName="flaggedsongs" msprop:Generator_RowEvArgName="flaggedsongsRowChangeEvent">
+        <xs:element name="flaggedsongs" msprop:Generator_TableClassName="flaggedsongsDataTable" msprop:Generator_TableVarName="tableflaggedsongs" msprop:Generator_TablePropName="flaggedsongs" msprop:Generator_RowDeletingName="flaggedsongsRowDeleting" msprop:Generator_RowChangingName="flaggedsongsRowChanging" msprop:Generator_RowEvHandlerName="flaggedsongsRowChangeEventHandler" msprop:Generator_RowDeletedName="flaggedsongsRowDeleted" msprop:Generator_UserTableName="flaggedsongs" msprop:Generator_RowChangedName="flaggedsongsRowChanged" msprop:Generator_RowEvArgName="flaggedsongsRowChangeEvent" msprop:Generator_RowClassName="flaggedsongsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FlaggedSongID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnFlaggedSongID" msprop:Generator_ColumnPropNameInRow="FlaggedSongID" msprop:Generator_ColumnPropNameInTable="FlaggedSongIDColumn" msprop:Generator_UserColumnName="FlaggedSongID" type="xs:int" />
@@ -971,7 +971,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="flags" msprop:Generator_TableClassName="flagsDataTable" msprop:Generator_TableVarName="tableflags" msprop:Generator_RowChangedName="flagsRowChanged" msprop:Generator_TablePropName="flags" msprop:Generator_RowDeletingName="flagsRowDeleting" msprop:Generator_RowChangingName="flagsRowChanging" msprop:Generator_RowEvHandlerName="flagsRowChangeEventHandler" msprop:Generator_RowDeletedName="flagsRowDeleted" msprop:Generator_RowClassName="flagsRow" msprop:Generator_UserTableName="flags" msprop:Generator_RowEvArgName="flagsRowChangeEvent">
+        <xs:element name="flags" msprop:Generator_TableClassName="flagsDataTable" msprop:Generator_TableVarName="tableflags" msprop:Generator_TablePropName="flags" msprop:Generator_RowDeletingName="flagsRowDeleting" msprop:Generator_RowChangingName="flagsRowChanging" msprop:Generator_RowEvHandlerName="flagsRowChangeEventHandler" msprop:Generator_RowDeletedName="flagsRowDeleted" msprop:Generator_UserTableName="flags" msprop:Generator_RowChangedName="flagsRowChanged" msprop:Generator_RowEvArgName="flagsRowChangeEvent" msprop:Generator_RowClassName="flagsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FlagID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnFlagID" msprop:Generator_ColumnPropNameInRow="FlagID" msprop:Generator_ColumnPropNameInTable="FlagIDColumn" msprop:Generator_UserColumnName="FlagID" type="xs:int" />
@@ -999,7 +999,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewTOCArtist" msprop:Generator_TableClassName="ViewTOCArtistDataTable" msprop:Generator_TableVarName="tableViewTOCArtist" msprop:Generator_RowChangedName="ViewTOCArtistRowChanged" msprop:Generator_TablePropName="ViewTOCArtist" msprop:Generator_RowDeletingName="ViewTOCArtistRowDeleting" msprop:Generator_RowChangingName="ViewTOCArtistRowChanging" msprop:Generator_RowEvHandlerName="ViewTOCArtistRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewTOCArtistRowDeleted" msprop:Generator_RowClassName="ViewTOCArtistRow" msprop:Generator_UserTableName="ViewTOCArtist" msprop:Generator_RowEvArgName="ViewTOCArtistRowChangeEvent">
+        <xs:element name="ViewTOCArtist" msprop:Generator_TableClassName="ViewTOCArtistDataTable" msprop:Generator_TableVarName="tableViewTOCArtist" msprop:Generator_TablePropName="ViewTOCArtist" msprop:Generator_RowDeletingName="ViewTOCArtistRowDeleting" msprop:Generator_RowChangingName="ViewTOCArtistRowChanging" msprop:Generator_RowEvHandlerName="ViewTOCArtistRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewTOCArtistRowDeleted" msprop:Generator_UserTableName="ViewTOCArtist" msprop:Generator_RowChangedName="ViewTOCArtistRowChanged" msprop:Generator_RowEvArgName="ViewTOCArtistRowChangeEvent" msprop:Generator_RowClassName="ViewTOCArtistRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ArtistAndTitle" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnArtistAndTitle" msprop:Generator_ColumnPropNameInRow="ArtistAndTitle" msprop:Generator_ColumnPropNameInTable="ArtistAndTitleColumn" msprop:Generator_UserColumnName="ArtistAndTitle" minOccurs="0">
@@ -1033,7 +1033,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewTOCTitle" msprop:Generator_TableClassName="ViewTOCTitleDataTable" msprop:Generator_TableVarName="tableViewTOCTitle" msprop:Generator_RowChangedName="ViewTOCTitleRowChanged" msprop:Generator_TablePropName="ViewTOCTitle" msprop:Generator_RowDeletingName="ViewTOCTitleRowDeleting" msprop:Generator_RowChangingName="ViewTOCTitleRowChanging" msprop:Generator_RowEvHandlerName="ViewTOCTitleRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewTOCTitleRowDeleted" msprop:Generator_RowClassName="ViewTOCTitleRow" msprop:Generator_UserTableName="ViewTOCTitle" msprop:Generator_RowEvArgName="ViewTOCTitleRowChangeEvent">
+        <xs:element name="ViewTOCTitle" msprop:Generator_TableClassName="ViewTOCTitleDataTable" msprop:Generator_TableVarName="tableViewTOCTitle" msprop:Generator_TablePropName="ViewTOCTitle" msprop:Generator_RowDeletingName="ViewTOCTitleRowDeleting" msprop:Generator_RowChangingName="ViewTOCTitleRowChanging" msprop:Generator_RowEvHandlerName="ViewTOCTitleRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewTOCTitleRowDeleted" msprop:Generator_UserTableName="ViewTOCTitle" msprop:Generator_RowChangedName="ViewTOCTitleRowChanged" msprop:Generator_RowEvArgName="ViewTOCTitleRowChangeEvent" msprop:Generator_RowClassName="ViewTOCTitleRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TitleAndArtist" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTitleAndArtist" msprop:Generator_ColumnPropNameInRow="TitleAndArtist" msprop:Generator_ColumnPropNameInTable="TitleAndArtistColumn" msprop:Generator_UserColumnName="TitleAndArtist" minOccurs="0">
@@ -1053,7 +1053,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewSongs" msprop:Generator_TableClassName="ViewSongsDataTable" msprop:Generator_TableVarName="tableViewSongs" msprop:Generator_RowChangedName="ViewSongsRowChanged" msprop:Generator_TablePropName="ViewSongs" msprop:Generator_RowDeletingName="ViewSongsRowDeleting" msprop:Generator_RowChangingName="ViewSongsRowChanging" msprop:Generator_RowEvHandlerName="ViewSongsRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewSongsRowDeleted" msprop:Generator_RowClassName="ViewSongsRow" msprop:Generator_UserTableName="ViewSongs" msprop:Generator_RowEvArgName="ViewSongsRowChangeEvent">
+        <xs:element name="ViewSongs" msprop:Generator_TableClassName="ViewSongsDataTable" msprop:Generator_TableVarName="tableViewSongs" msprop:Generator_TablePropName="ViewSongs" msprop:Generator_RowDeletingName="ViewSongsRowDeleting" msprop:Generator_RowChangingName="ViewSongsRowChanging" msprop:Generator_RowEvHandlerName="ViewSongsRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewSongsRowDeleted" msprop:Generator_UserTableName="ViewSongs" msprop:Generator_RowChangedName="ViewSongsRowChanged" msprop:Generator_RowEvArgName="ViewSongsRowChangeEvent" msprop:Generator_RowClassName="ViewSongsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TitlePrefix" msprop:Generator_ColumnVarNameInTable="columnTitlePrefix" msprop:Generator_ColumnPropNameInRow="TitlePrefix" msprop:Generator_ColumnPropNameInTable="TitlePrefixColumn" msprop:Generator_UserColumnName="TitlePrefix" minOccurs="0">
@@ -1162,7 +1162,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewSongsSingleField" msprop:Generator_TableClassName="ViewSongsSingleFieldDataTable" msprop:Generator_TableVarName="tableViewSongsSingleField" msprop:Generator_RowChangedName="ViewSongsSingleFieldRowChanged" msprop:Generator_TablePropName="ViewSongsSingleField" msprop:Generator_RowDeletingName="ViewSongsSingleFieldRowDeleting" msprop:Generator_RowChangingName="ViewSongsSingleFieldRowChanging" msprop:Generator_RowEvHandlerName="ViewSongsSingleFieldRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewSongsSingleFieldRowDeleted" msprop:Generator_RowClassName="ViewSongsSingleFieldRow" msprop:Generator_UserTableName="ViewSongsSingleField" msprop:Generator_RowEvArgName="ViewSongsSingleFieldRowChangeEvent">
+        <xs:element name="ViewSongsSingleField" msprop:Generator_TableClassName="ViewSongsSingleFieldDataTable" msprop:Generator_TableVarName="tableViewSongsSingleField" msprop:Generator_TablePropName="ViewSongsSingleField" msprop:Generator_RowDeletingName="ViewSongsSingleFieldRowDeleting" msprop:Generator_RowChangingName="ViewSongsSingleFieldRowChanging" msprop:Generator_RowEvHandlerName="ViewSongsSingleFieldRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewSongsSingleFieldRowDeleted" msprop:Generator_UserTableName="ViewSongsSingleField" msprop:Generator_RowChangedName="ViewSongsSingleFieldRowChanged" msprop:Generator_RowEvArgName="ViewSongsSingleFieldRowChangeEvent" msprop:Generator_RowClassName="ViewSongsSingleFieldRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SongFull" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSongFull" msprop:Generator_ColumnPropNameInRow="SongFull" msprop:Generator_ColumnPropNameInTable="SongFullColumn" msprop:Generator_UserColumnName="SongFull" minOccurs="0">
@@ -1255,7 +1255,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="viewsongsforsetlists" msprop:Generator_TableClassName="viewsongsforsetlistsDataTable" msprop:Generator_TableVarName="tableviewsongsforsetlists" msprop:Generator_TablePropName="viewsongsforsetlists" msprop:Generator_RowDeletingName="viewsongsforsetlistsRowDeleting" msprop:Generator_RowChangingName="viewsongsforsetlistsRowChanging" msprop:Generator_RowEvHandlerName="viewsongsforsetlistsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongsforsetlistsRowDeleted" msprop:Generator_UserTableName="viewsongsforsetlists" msprop:Generator_RowChangedName="viewsongsforsetlistsRowChanged" msprop:Generator_RowEvArgName="viewsongsforsetlistsRowChangeEvent" msprop:Generator_RowClassName="viewsongsforsetlistsRow">
+        <xs:element name="viewsongsforsetlists" msprop:Generator_TableClassName="viewsongsforsetlistsDataTable" msprop:Generator_TableVarName="tableviewsongsforsetlists" msprop:Generator_RowChangedName="viewsongsforsetlistsRowChanged" msprop:Generator_TablePropName="viewsongsforsetlists" msprop:Generator_RowDeletingName="viewsongsforsetlistsRowDeleting" msprop:Generator_RowChangingName="viewsongsforsetlistsRowChanging" msprop:Generator_RowEvHandlerName="viewsongsforsetlistsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongsforsetlistsRowDeleted" msprop:Generator_RowClassName="viewsongsforsetlistsRow" msprop:Generator_UserTableName="viewsongsforsetlists" msprop:Generator_RowEvArgName="viewsongsforsetlistsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -1292,7 +1292,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="viewsongflags" msprop:Generator_TableClassName="viewsongflagsDataTable" msprop:Generator_TableVarName="tableviewsongflags" msprop:Generator_TablePropName="viewsongflags" msprop:Generator_RowDeletingName="viewsongflagsRowDeleting" msprop:Generator_RowChangingName="viewsongflagsRowChanging" msprop:Generator_RowEvHandlerName="viewsongflagsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongflagsRowDeleted" msprop:Generator_UserTableName="viewsongflags" msprop:Generator_RowChangedName="viewsongflagsRowChanged" msprop:Generator_RowEvArgName="viewsongflagsRowChangeEvent" msprop:Generator_RowClassName="viewsongflagsRow">
+        <xs:element name="viewsongflags" msprop:Generator_TableClassName="viewsongflagsDataTable" msprop:Generator_TableVarName="tableviewsongflags" msprop:Generator_RowChangedName="viewsongflagsRowChanged" msprop:Generator_TablePropName="viewsongflags" msprop:Generator_RowDeletingName="viewsongflagsRowDeleting" msprop:Generator_RowChangingName="viewsongflagsRowChanging" msprop:Generator_RowEvHandlerName="viewsongflagsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongflagsRowDeleted" msprop:Generator_RowClassName="viewsongflagsRow" msprop:Generator_UserTableName="viewsongflags" msprop:Generator_RowEvArgName="viewsongflagsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Song" msprop:Generator_ColumnVarNameInTable="columnSong" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_UserColumnName="Song" type="xs:int" />
@@ -1306,7 +1306,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="viewsongperformancetotals" msprop:Generator_TableClassName="viewsongperformancetotalsDataTable" msprop:Generator_TableVarName="tableviewsongperformancetotals" msprop:Generator_TablePropName="viewsongperformancetotals" msprop:Generator_RowDeletingName="viewsongperformancetotalsRowDeleting" msprop:Generator_RowChangingName="viewsongperformancetotalsRowChanging" msprop:Generator_RowEvHandlerName="viewsongperformancetotalsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongperformancetotalsRowDeleted" msprop:Generator_UserTableName="viewsongperformancetotals" msprop:Generator_RowChangedName="viewsongperformancetotalsRowChanged" msprop:Generator_RowEvArgName="viewsongperformancetotalsRowChangeEvent" msprop:Generator_RowClassName="viewsongperformancetotalsRow">
+        <xs:element name="viewsongperformancetotals" msprop:Generator_TableClassName="viewsongperformancetotalsDataTable" msprop:Generator_TableVarName="tableviewsongperformancetotals" msprop:Generator_RowChangedName="viewsongperformancetotalsRowChanged" msprop:Generator_TablePropName="viewsongperformancetotals" msprop:Generator_RowDeletingName="viewsongperformancetotalsRowDeleting" msprop:Generator_RowChangingName="viewsongperformancetotalsRowChanging" msprop:Generator_RowEvHandlerName="viewsongperformancetotalsRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongperformancetotalsRowDeleted" msprop:Generator_RowClassName="viewsongperformancetotalsRow" msprop:Generator_UserTableName="viewsongperformancetotals" msprop:Generator_RowEvArgName="viewsongperformancetotalsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:long" minOccurs="0" />
@@ -1323,7 +1323,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="performances" msprop:Generator_TableClassName="performancesDataTable" msprop:Generator_TableVarName="tableperformances" msprop:Generator_TablePropName="performances" msprop:Generator_RowDeletingName="performancesRowDeleting" msprop:Generator_RowChangingName="performancesRowChanging" msprop:Generator_RowEvHandlerName="performancesRowChangeEventHandler" msprop:Generator_RowDeletedName="performancesRowDeleted" msprop:Generator_UserTableName="performances" msprop:Generator_RowChangedName="performancesRowChanged" msprop:Generator_RowEvArgName="performancesRowChangeEvent" msprop:Generator_RowClassName="performancesRow">
+        <xs:element name="performances" msprop:Generator_TableClassName="performancesDataTable" msprop:Generator_TableVarName="tableperformances" msprop:Generator_RowChangedName="performancesRowChanged" msprop:Generator_TablePropName="performances" msprop:Generator_RowDeletingName="performancesRowDeleting" msprop:Generator_RowChangingName="performancesRowChanging" msprop:Generator_RowEvHandlerName="performancesRowChangeEventHandler" msprop:Generator_RowDeletedName="performancesRowDeleted" msprop:Generator_RowClassName="performancesRow" msprop:Generator_UserTableName="performances" msprop:Generator_RowEvArgName="performancesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -1348,7 +1348,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="venues" msprop:Generator_TableClassName="venuesDataTable" msprop:Generator_TableVarName="tablevenues" msprop:Generator_TablePropName="venues" msprop:Generator_RowDeletingName="venuesRowDeleting" msprop:Generator_RowChangingName="venuesRowChanging" msprop:Generator_RowEvHandlerName="venuesRowChangeEventHandler" msprop:Generator_RowDeletedName="venuesRowDeleted" msprop:Generator_UserTableName="venues" msprop:Generator_RowChangedName="venuesRowChanged" msprop:Generator_RowEvArgName="venuesRowChangeEvent" msprop:Generator_RowClassName="venuesRow">
+        <xs:element name="venues" msprop:Generator_TableClassName="venuesDataTable" msprop:Generator_TableVarName="tablevenues" msprop:Generator_RowChangedName="venuesRowChanged" msprop:Generator_TablePropName="venues" msprop:Generator_RowDeletingName="venuesRowDeleting" msprop:Generator_RowChangingName="venuesRowChanging" msprop:Generator_RowEvHandlerName="venuesRowChangeEventHandler" msprop:Generator_RowDeletedName="venuesRowDeleted" msprop:Generator_RowClassName="venuesRow" msprop:Generator_UserTableName="venues" msprop:Generator_RowEvArgName="venuesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -1369,7 +1369,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="songperformances" msprop:Generator_TableClassName="songperformancesDataTable" msprop:Generator_TableVarName="tablesongperformances" msprop:Generator_TablePropName="songperformances" msprop:Generator_RowDeletingName="songperformancesRowDeleting" msprop:Generator_RowChangingName="songperformancesRowChanging" msprop:Generator_RowEvHandlerName="songperformancesRowChangeEventHandler" msprop:Generator_RowDeletedName="songperformancesRowDeleted" msprop:Generator_UserTableName="songperformances" msprop:Generator_RowChangedName="songperformancesRowChanged" msprop:Generator_RowEvArgName="songperformancesRowChangeEvent" msprop:Generator_RowClassName="songperformancesRow">
+        <xs:element name="songperformances" msprop:Generator_TableClassName="songperformancesDataTable" msprop:Generator_TableVarName="tablesongperformances" msprop:Generator_RowChangedName="songperformancesRowChanged" msprop:Generator_TablePropName="songperformances" msprop:Generator_RowDeletingName="songperformancesRowDeleting" msprop:Generator_RowChangingName="songperformancesRowChanging" msprop:Generator_RowEvHandlerName="songperformancesRowChangeEventHandler" msprop:Generator_RowDeletedName="songperformancesRowDeleted" msprop:Generator_RowClassName="songperformancesRow" msprop:Generator_UserTableName="songperformances" msprop:Generator_RowEvArgName="songperformancesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -1385,7 +1385,7 @@ WHERE        (SongID = @SongID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AlternateArtists" msprop:Generator_TableClassName="AlternateArtistsDataTable" msprop:Generator_TableVarName="tableAlternateArtists" msprop:Generator_TablePropName="AlternateArtists" msprop:Generator_RowDeletingName="AlternateArtistsRowDeleting" msprop:Generator_RowChangingName="AlternateArtistsRowChanging" msprop:Generator_RowEvHandlerName="AlternateArtistsRowChangeEventHandler" msprop:Generator_RowDeletedName="AlternateArtistsRowDeleted" msprop:Generator_UserTableName="AlternateArtists" msprop:Generator_RowChangedName="AlternateArtistsRowChanged" msprop:Generator_RowEvArgName="AlternateArtistsRowChangeEvent" msprop:Generator_RowClassName="AlternateArtistsRow">
+        <xs:element name="AlternateArtists" msprop:Generator_TableClassName="AlternateArtistsDataTable" msprop:Generator_TableVarName="tableAlternateArtists" msprop:Generator_RowChangedName="AlternateArtistsRowChanged" msprop:Generator_TablePropName="AlternateArtists" msprop:Generator_RowDeletingName="AlternateArtistsRowDeleting" msprop:Generator_RowChangingName="AlternateArtistsRowChanging" msprop:Generator_RowEvHandlerName="AlternateArtistsRowChangeEventHandler" msprop:Generator_RowDeletedName="AlternateArtistsRowDeleted" msprop:Generator_RowClassName="AlternateArtistsRow" msprop:Generator_UserTableName="AlternateArtists" msprop:Generator_RowEvArgName="AlternateArtistsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />

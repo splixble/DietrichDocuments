@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Songs
 {
     public partial class SongsForm : Form
     {
-        MySqlDataAdapter _SongsAdap;
+        SqlDataAdapter _SongsAdap;
 
         int _ContextMenuRow = -1;
         int _ContextMenuColumn = -1;
@@ -32,7 +32,7 @@ namespace Songs
         public SongsForm()
         {
             InitializeComponent();
-            _SongsAdap = new MySqlDataAdapter("",  global::Songs.Properties.Settings.Default.songbookConnectionString);
+            _SongsAdap = new SqlDataAdapter("",  global::Songs.Properties.Settings.Default.AzureConnectionString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace Songs
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'viewSongsDataSet.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet.ViewSongsSingleField);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.dataSet1.ViewSongsSingleField);
 
             // load songs table:
             dataSet1.songs.Clear();
@@ -427,5 +427,6 @@ namespace Songs
             VenuesForm form = new VenuesForm();
             form.Show();
         }
+
     }
 }

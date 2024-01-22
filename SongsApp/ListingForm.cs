@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace Songs
 {
@@ -103,8 +103,8 @@ namespace Songs
 
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
-            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query, 
-                global::Songs.Properties.Settings.Default.songbookConnectionString);
+            SqlDataAdapter songsAdap = new SqlDataAdapter(query, 
+                global::Songs.Properties.Settings.Default.AzureConnectionString);
             songsAdap.Fill(tblSongs);
 
             foreach (AzureDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
@@ -118,8 +118,8 @@ namespace Songs
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + 
                 " ORDER BY ArtistLastName, ArtistFirstName, Title, TitlePrefix";
-            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query,
-                global::Songs.Properties.Settings.Default.songbookConnectionString);
+            SqlDataAdapter songsAdap = new SqlDataAdapter(query,
+                global::Songs.Properties.Settings.Default.AzureConnectionString);
             songsAdap.Fill(tblSongs);
 
             string lastArtist = "";
