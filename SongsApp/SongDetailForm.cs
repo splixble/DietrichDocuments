@@ -27,7 +27,7 @@ namespace Songs
         {
             InitializeComponent();
 
-            Utils.AllowNullFields(this.alternateArtistsDataSet.AlternateArtists);
+            Utils.AllowNullFields(this.dataSet.AlternateArtists);
             Utils.AllowNullFields(dataSet1.flaggedsongs);
         }
 
@@ -55,7 +55,7 @@ namespace Songs
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
             this.viewArtistNameForListBoxTableAdapter.Fill(this.dataSet1.ViewArtistNameForListBox);
             // TODO: This line of code loads data into the 'alternateArtistsDataSet.AlternateArtists' table. You can move, or remove it, as needed.
-            this.alternateArtistsTableAdapter.FillBySong(this.alternateArtistsDataSet.AlternateArtists, _SongID);
+            this.alternateArtistsTableAdapter.FillBySong(this.dataSet.AlternateArtists, _SongID);
         }
 
         private void UpdateDB()
@@ -64,21 +64,21 @@ namespace Songs
             alternateArtistsBindingSource.EndEdit();
             
             // Set SongID on any new Flag records: 
-            foreach (MySqlDataSet.flaggedsongsRow row in dataSet1.flaggedsongs)
+            foreach (AzureDataSet.flaggedsongsRow row in dataSet1.flaggedsongs)
             {
                 if (row[dataSet1.flaggedsongs.SongColumn] == DBNull.Value)
                     row.Song = _SongID;
             }
 
             // Set SongID on any new Alt Artist records: 
-            foreach (AlternateArtistsDataSet.AlternateArtistsRow row in alternateArtistsDataSet.AlternateArtists)
+            foreach (AzureDataSet.AlternateArtistsRow row in dataSet.AlternateArtists)
             {
-                if (row[alternateArtistsDataSet.AlternateArtists.SongIDColumn] == DBNull.Value)
+                if (row[dataSet.AlternateArtists.SongIDColumn] == DBNull.Value)
                     row.SongID = _SongID;
             }
 
             this.flaggedsongsTableAdapter.Update(dataSet1.flaggedsongs);
-            this.alternateArtistsTableAdapter.Update(alternateArtistsDataSet.AlternateArtists);
+            this.alternateArtistsTableAdapter.Update(dataSet.AlternateArtists);
             DataModified = false;
         }
 
@@ -103,7 +103,7 @@ namespace Songs
         void CheckIfDataModified()
         {
             DataModified = Utils.DataTableIsModified(dataSet1.flaggedsongs) || 
-                Utils.DataTableIsModified(alternateArtistsDataSet.AlternateArtists);
+                Utils.DataTableIsModified(dataSet.AlternateArtists);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

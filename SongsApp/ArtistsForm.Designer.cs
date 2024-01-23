@@ -35,9 +35,9 @@ namespace Songs
             this.artistFirstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.artistLastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.artistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.MySqlDataSet();
+            this.dataSet1 = new Songs.AzureDataSet();
             this.btnSave = new System.Windows.Forms.Button();
-            this.artistsTableAdapter = new Songs.MySqlDataSetTableAdapters.artistsTableAdapter();
+            this.artistsTableAdapter = new Songs.AzureDataSetTableAdapters.artistsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.artistsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -133,9 +133,9 @@ namespace Songs
         #endregion
 
         private System.Windows.Forms.DataGridView grid1;
-        private MySqlDataSet dataSet1;
+        private AzureDataSet dataSet1;
         private System.Windows.Forms.BindingSource artistsBindingSource;
-        private Songs.MySqlDataSetTableAdapters.artistsTableAdapter artistsTableAdapter;
+        private Songs.AzureDataSetTableAdapters.artistsTableAdapter artistsTableAdapter;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn artistIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn artistFirstNameDataGridViewTextBoxColumn;

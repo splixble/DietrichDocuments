@@ -30,7 +30,7 @@ namespace Songs
 
         private void VenuesForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'performanceDataSet.venues' table. You can move, or remove it, as needed.
+            // TODO: This line of code loads data into the 'AzureDataSet.venues' table. You can move, or remove it, as needed.
             this.venuesTableAdapter1.Fill(this.dataSet1.venues);
             DataModified = false;
         }

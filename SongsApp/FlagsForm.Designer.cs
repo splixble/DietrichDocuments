@@ -33,8 +33,8 @@ namespace Songs
             this.btnSave = new System.Windows.Forms.Button();
             this.grid1 = new System.Windows.Forms.DataGridView();
             this.flagsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new Songs.MySqlDataSet();
-            this.flagsTableAdapter = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
+            this.dataSet1 = new Songs.AzureDataSet();
+            this.flagsTableAdapter = new Songs.AzureDataSetTableAdapters.flagsTableAdapter();
             this.flagIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flagNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FlagCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,9 +142,9 @@ namespace Songs
 
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView grid1;
-        private MySqlDataSet dataSet1;
+        private AzureDataSet dataSet1;
         private System.Windows.Forms.BindingSource flagsBindingSource;
-        private Songs.MySqlDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
+        private Songs.AzureDataSetTableAdapters.flagsTableAdapter flagsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn flagIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn flagNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FlagCode;

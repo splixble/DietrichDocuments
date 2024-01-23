@@ -35,23 +35,23 @@ namespace Songs
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.songDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewSongsDataSet1 = new Songs.ViewSongsDataSet();
+            this.dataSet1 = new Songs.AzureDataSet();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.songperformancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.performanceDataSet = new Songs.PerformanceDataSet();
+            this.AzureDataSet = new Songs.AzureDataSet();
             this.lblDate = new System.Windows.Forms.Label();
             this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.lblVenue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.songperformancesTableAdapter = new Songs.PerformanceDataSetTableAdapters.songperformancesTableAdapter();
-            this.performancesTableAdapter = new Songs.PerformanceDataSetTableAdapters.performancesTableAdapter();
-            this.viewSongsSingleFieldTableAdapter = new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
+            this.songperformancesTableAdapter = new Songs.AzureDataSetTableAdapters.songperformancesTableAdapter();
+            this.performancesTableAdapter = new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
+            this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.songperformancesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,13 +108,13 @@ namespace Songs
             // viewSongsSingleFieldBindingSource
             // 
             this.viewSongsSingleFieldBindingSource.DataMember = "ViewSongsSingleField";
-            this.viewSongsSingleFieldBindingSource.DataSource = this.viewSongsDataSet1;
+            this.viewSongsSingleFieldBindingSource.DataSource = this.dataSet1;
             this.viewSongsSingleFieldBindingSource.Sort = "SongFull";
             // 
             // viewSongsDataSet1
             // 
-            this.viewSongsDataSet1.DataSetName = "ViewSongsDataSet";
-            this.viewSongsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dataSet1.DataSetName = "AzureDataSet";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // commentDataGridViewTextBoxColumn
             // 
@@ -126,13 +126,13 @@ namespace Songs
             // songperformancesBindingSource
             // 
             this.songperformancesBindingSource.DataMember = "songperformances";
-            this.songperformancesBindingSource.DataSource = this.performanceDataSet;
+            this.songperformancesBindingSource.DataSource = this.AzureDataSet;
             this.songperformancesBindingSource.CurrentItemChanged += new System.EventHandler(this.songperformancesBindingSource_CurrentItemChanged);
             // 
-            // performanceDataSet
+            // AzureDataSet
             // 
-            this.performanceDataSet.DataSetName = "PerformanceDataSet";
-            this.performanceDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.AzureDataSet.DataSetName = "AzureDataSet";
+            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblDate
             // 
@@ -147,7 +147,7 @@ namespace Songs
             // performancesBindingSource
             // 
             this.performancesBindingSource.DataMember = "performances";
-            this.performancesBindingSource.DataSource = this.performanceDataSet;
+            this.performancesBindingSource.DataSource = this.AzureDataSet;
             // 
             // label3
             // 
@@ -207,9 +207,9 @@ namespace Songs
             this.Load += new System.EventHandler(this.PerformanceDetailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewSongsDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.songperformancesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performanceDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,14 +224,14 @@ namespace Songs
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblVenue;
         private System.Windows.Forms.Label label1;
-        private PerformanceDataSet performanceDataSet;
+        private AzureDataSet AzureDataSet;
         private System.Windows.Forms.BindingSource songperformancesBindingSource;
-        private Songs.PerformanceDataSetTableAdapters.songperformancesTableAdapter songperformancesTableAdapter;
+        private Songs.AzureDataSetTableAdapters.songperformancesTableAdapter songperformancesTableAdapter;
         private System.Windows.Forms.BindingSource performancesBindingSource;
-        private Songs.PerformanceDataSetTableAdapters.performancesTableAdapter performancesTableAdapter;
+        private Songs.AzureDataSetTableAdapters.performancesTableAdapter performancesTableAdapter;
         private System.Windows.Forms.BindingSource viewSongsSingleFieldBindingSource;
-        private Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter viewSongsSingleFieldTableAdapter;
-        private ViewSongsDataSet viewSongsDataSet1;
+        private Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter viewSongsSingleFieldTableAdapter;
+        private AzureDataSet dataSet1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn songDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;

@@ -44,11 +44,11 @@ namespace Songs
         public void Redraw()
         {
             // TODO: This line of code loads data into the 'dataSet1.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.viewSongsDataSet1.viewsongssinglefield);
-            // TODO: This line of code loads data into the 'performanceDataSet.performances' table. You can move, or remove it, as needed.
-            this.performancesTableAdapter.FillByID(this.performanceDataSet.performances, _PerfID);
-            // TODO: This line of code loads data into the 'performanceDataSet.songperformances' table. You can move, or remove it, as needed.
-            this.songperformancesTableAdapter.FillByPerformance(this.performanceDataSet.songperformances, _PerfID);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.dataSet1.ViewSongsSingleField);
+            // TODO: This line of code loads data into the 'AzureDataSet.performances' table. You can move, or remove it, as needed.
+            this.performancesTableAdapter.FillByID(this.AzureDataSet.performances, _PerfID);
+            // TODO: This line of code loads data into the 'AzureDataSet.songperformances' table. You can move, or remove it, as needed.
+            this.songperformancesTableAdapter.FillByPerformance(this.AzureDataSet.songperformances, _PerfID);
         }
 
         private void UpdateDB()
@@ -56,13 +56,13 @@ namespace Songs
             songperformancesBindingSource.EndEdit();
 
             // Set Performance on any new records: 
-            foreach (PerformanceDataSet.songperformancesRow row in performanceDataSet.songperformances)
+            foreach (AzureDataSet.songperformancesRow row in AzureDataSet.songperformances)
             {
-                if (row[this.performanceDataSet.songperformances.PerformanceColumn] == DBNull.Value)
+                if (row[this.AzureDataSet.songperformances.PerformanceColumn] == DBNull.Value)
                     row.Performance = _PerfID;
             }
 
-            this.songperformancesTableAdapter.Update(performanceDataSet.songperformances);
+            this.songperformancesTableAdapter.Update(AzureDataSet.songperformances);
             DataModified = false;
         }
 
@@ -81,7 +81,7 @@ namespace Songs
 
         private void songperformancesBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
-            DataModified = Utils.DataTableIsModified(performanceDataSet.songperformances);
+            DataModified = Utils.DataTableIsModified(AzureDataSet.songperformances);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

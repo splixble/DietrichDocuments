@@ -151,5 +151,17 @@ namespace Songs.Properties {
                 this["MobilesheetsNoLyricsDirectory"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;Tr" +
+            "ustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=" +
+            "algonQin88")]
+        public string AzureConnectionString {
+            get {
+                return ((string)(this["AzureConnectionString"]));
+            }
+        }
     }
 }

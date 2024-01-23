@@ -33,9 +33,9 @@ namespace Songs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VenuesForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dataSet1 = new Songs.PerformanceDataSet();
+            this.dataSet1 = new Songs.AzureDataSet();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.venuesTableAdapter1 = new Songs.PerformanceDataSetTableAdapters.venuesTableAdapter();
+            this.venuesTableAdapter1 = new Songs.AzureDataSetTableAdapters.venuesTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,7 +75,7 @@ namespace Songs
             // 
             // dataSet1
             // 
-            this.dataSet1.DataSetName = "PerformanceDataSet";
+            this.dataSet1.DataSetName = "AzureDataSet";
             this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingSource
@@ -135,8 +135,8 @@ namespace Songs
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource bindingSource;
-        private PerformanceDataSet dataSet1;
-        private PerformanceDataSetTableAdapters.venuesTableAdapter venuesTableAdapter1;
+        private AzureDataSet dataSet1;
+        private AzureDataSetTableAdapters.venuesTableAdapter venuesTableAdapter1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;

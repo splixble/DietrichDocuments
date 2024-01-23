@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace Songs
 {
@@ -20,17 +20,17 @@ namespace Songs
 
         public void ShowTOC()
         {
-            MySqlDataSet.ViewTOCArtistDataTable tblArtist = new MySqlDataSet.ViewTOCArtistDataTable();
-            MySqlDataSet.ViewTOCTitleDataTable tblTitle = new MySqlDataSet.ViewTOCTitleDataTable();
-            MySqlDataSetTableAdapters.ViewTOCArtistTableAdapter adapArtist =
-                new Songs.MySqlDataSetTableAdapters.ViewTOCArtistTableAdapter();
-            MySqlDataSetTableAdapters.ViewTOCTitleTableAdapter adapTitle =
-                new Songs.MySqlDataSetTableAdapters.ViewTOCTitleTableAdapter();
+            AzureDataSet.ViewTOCArtistDataTable tblArtist = new AzureDataSet.ViewTOCArtistDataTable();
+            AzureDataSet.ViewTOCTitleDataTable tblTitle = new AzureDataSet.ViewTOCTitleDataTable();
+            AzureDataSetTableAdapters.ViewTOCArtistTableAdapter adapArtist =
+                new Songs.AzureDataSetTableAdapters.ViewTOCArtistTableAdapter();
+            AzureDataSetTableAdapters.ViewTOCTitleTableAdapter adapTitle =
+                new Songs.AzureDataSetTableAdapters.ViewTOCTitleTableAdapter();
             adapArtist.Fill(tblArtist);
             adapTitle.Fill(tblTitle);
 
             // By title:
-            foreach (MySqlDataSet.ViewTOCTitleRow rowTitle in tblTitle)
+            foreach (AzureDataSet.ViewTOCTitleRow rowTitle in tblTitle)
             {
                 tb.Text += rowTitle.TitleAndArtist + "\t" + rowTitle.PageNumber.ToString() + Environment.NewLine;
             }
@@ -39,7 +39,7 @@ namespace Songs
 
             // by artist:
             object obLastArtist = DBNull.Value;
-            foreach (MySqlDataSet.ViewTOCArtistRow rowArtist in tblArtist)
+            foreach (AzureDataSet.ViewTOCArtistRow rowArtist in tblArtist)
             {
                 if (!(rowArtist[tblArtist.FullArtistNameColumn].Equals(obLastArtist)))
                 {
@@ -57,13 +57,13 @@ namespace Songs
 
         public void ShowPerformanceTotalsList()
         {
-            ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsDataTable tblTotals =
-                new ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsDataTable();
-            ViewSongPerformanceTotalsDataSetTableAdapters.viewsongperformancetotalsTableAdapter adap =
-                new Songs.ViewSongPerformanceTotalsDataSetTableAdapters.viewsongperformancetotalsTableAdapter();
+            AzureDataSet.viewsongperformancetotalsDataTable tblTotals =
+                new AzureDataSet.viewsongperformancetotalsDataTable();
+            AzureDataSetTableAdapters.viewsongperformancetotalsTableAdapter adap =
+                new Songs.AzureDataSetTableAdapters.viewsongperformancetotalsTableAdapter();
             adap.Fill(tblTotals);
 
-            foreach (ViewSongPerformanceTotalsDataSet.viewsongperformancetotalsRow row in tblTotals)
+            foreach (AzureDataSet.viewsongperformancetotalsRow row in tblTotals)
             {
                 tb.Text += row.TitleAndArtist + "\t" + row.Total.ToString() + "\t" +
                     row.firstPerformed.ToShortDateString() + "\t" + row.lastPerformed.ToShortDateString() +
@@ -74,10 +74,10 @@ namespace Songs
 
         public void ShowListByEachFlag()
         {
-            MySqlDataSet.flagsDataTable flagsTable = new MySqlDataSet.flagsDataTable();
-            MySqlDataSetTableAdapters.flagsTableAdapter adap = new Songs.MySqlDataSetTableAdapters.flagsTableAdapter();
+            AzureDataSet.flagsDataTable flagsTable = new AzureDataSet.flagsDataTable();
+            AzureDataSetTableAdapters.flagsTableAdapter adap = new Songs.AzureDataSetTableAdapters.flagsTableAdapter();
             adap.Fill(flagsTable);
-            foreach (MySqlDataSet.flagsRow flagsRow in flagsTable)
+            foreach (AzureDataSet.flagsRow flagsRow in flagsTable)
             {
                 tb.Text += "`" + flagsRow.FlagName + Environment.NewLine;
                 string songsWhereClause = "WHERE (ID in (SELECT Song FROM FlaggedSongs WHERE FlagID = " +
@@ -101,13 +101,13 @@ namespace Songs
             else
                 songsWhereClause = "WHERE Cover = 0";
 
-            ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
+            AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
-            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query, 
-                global::Songs.Properties.Settings.Default.songbookConnectionString);
+            SqlDataAdapter songsAdap = new SqlDataAdapter(query, 
+                global::Songs.Properties.Settings.Default.AzureConnectionString);
             songsAdap.Fill(tblSongs);
 
-            foreach (ViewSongsDataSet.viewsongssinglefieldRow rowSong in tblSongs)
+            foreach (AzureDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
             {
                 tb.Text += rowSong.SongFull + Environment.NewLine;
             }
@@ -115,15 +115,15 @@ namespace Songs
 
         public void ShowListByArtist(string songsWhereClause)
         {
-            ViewSongsDataSet.viewsongssinglefieldDataTable tblSongs = new ViewSongsDataSet.viewsongssinglefieldDataTable();
+            AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + 
                 " ORDER BY ArtistLastName, ArtistFirstName, Title, TitlePrefix";
-            MySqlDataAdapter songsAdap = new MySqlDataAdapter(query,
-                global::Songs.Properties.Settings.Default.songbookConnectionString);
+            SqlDataAdapter songsAdap = new SqlDataAdapter(query,
+                global::Songs.Properties.Settings.Default.AzureConnectionString);
             songsAdap.Fill(tblSongs);
 
             string lastArtist = "";
-            foreach (ViewSongsDataSet.viewsongssinglefieldRow rowSong in tblSongs)
+            foreach (AzureDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
             {
                 string currentArtist = rowSong[tblSongs.FullArtistNameColumn] as string;
                 if (currentArtist == null)
@@ -141,30 +141,30 @@ namespace Songs
 
         public void ShowPerformanceList(bool songsILead)
         {
-            ViewSongsDataSet.viewsongssinglefieldDataTable songTable = new ViewSongsDataSet.viewsongssinglefieldDataTable();
-            ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter songAdap =
-                new Songs.ViewSongsDataSetTableAdapters.viewsongssinglefieldTableAdapter();
+            AzureDataSet.ViewSongsSingleFieldDataTable songTable = new AzureDataSet.ViewSongsSingleFieldDataTable();
+            AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter songAdap =
+                new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
             songAdap.Fill(songTable);
 
-            PerformanceDataSet.performancesDataTable perfsTable = new PerformanceDataSet.performancesDataTable();
-            PerformanceDataSetTableAdapters.performancesTableAdapter perfAdap =
-                new Songs.PerformanceDataSetTableAdapters.performancesTableAdapter();
-            perfAdap.FillByDidILead(perfsTable, songsILead ? 1 : 0);
+            AzureDataSet.performancesDataTable perfsTable = new AzureDataSet.performancesDataTable();
+            AzureDataSetTableAdapters.performancesTableAdapter perfAdap =
+                new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
+            perfAdap.FillByDidILead(perfsTable, songsILead);
 
-            PerformanceDataSet.venuesDataTable venuesTable = new PerformanceDataSet.venuesDataTable();
-            PerformanceDataSetTableAdapters.venuesTableAdapter venuesAdap =
-                new Songs.PerformanceDataSetTableAdapters.venuesTableAdapter();
+            AzureDataSet.venuesDataTable venuesTable = new AzureDataSet.venuesDataTable();
+            AzureDataSetTableAdapters.venuesTableAdapter venuesAdap =
+                new Songs.AzureDataSetTableAdapters.venuesTableAdapter();
             venuesAdap.Fill(venuesTable);
 
-            PerformanceDataSet.songperformancesDataTable songPerfTable = new PerformanceDataSet.songperformancesDataTable();
-            PerformanceDataSetTableAdapters.songperformancesTableAdapter songPerfAdap =
-                new Songs.PerformanceDataSetTableAdapters.songperformancesTableAdapter();
+            AzureDataSet.songperformancesDataTable songPerfTable = new AzureDataSet.songperformancesDataTable();
+            AzureDataSetTableAdapters.songperformancesTableAdapter songPerfAdap =
+                new Songs.AzureDataSetTableAdapters.songperformancesTableAdapter();
             songPerfAdap.Fill(songPerfTable);
 
-            foreach (PerformanceDataSet.performancesRow perfRow in perfsTable)
+            foreach (AzureDataSet.performancesRow perfRow in perfsTable)
             {
                 string gigLine = perfRow.PerformanceDate.ToLongDateString();
-                PerformanceDataSet.venuesRow venueRow = venuesTable.FindByID(perfRow.Venue);
+                AzureDataSet.venuesRow venueRow = venuesTable.FindByID(perfRow.Venue);
                 if (venueRow != null)
                     gigLine += ", " + venueRow.Name;
                 if (perfRow["Comment"] != DBNull.Value)
@@ -180,13 +180,13 @@ namespace Songs
                 DataRowView[] rowViews = songPerfView.FindRows(perfRow.ID);
                 foreach (DataRowView rowView in rowViews)
                 {
-                    PerformanceDataSet.songperformancesRow songPerfRow = 
-                        (PerformanceDataSet.songperformancesRow)rowView.Row;
+                    AzureDataSet.songperformancesRow songPerfRow = 
+                        (AzureDataSet.songperformancesRow)rowView.Row;
                     int songTableIndex = songView.Find(songPerfRow.Song);
                     if (songTableIndex != -1)
                     {
-                        ViewSongsDataSet.viewsongssinglefieldRow songRow =
-                            (ViewSongsDataSet.viewsongssinglefieldRow)songView[songTableIndex].Row;
+                        AzureDataSet.ViewSongsSingleFieldRow songRow =
+                            (AzureDataSet.ViewSongsSingleFieldRow)songView[songTableIndex].Row;
                         string songLine = "        " + songRow.TitleAndArtist;
                         if (songPerfRow["Comment"] != DBNull.Value)
                             songLine += " (" + songPerfRow.Comment + ")";

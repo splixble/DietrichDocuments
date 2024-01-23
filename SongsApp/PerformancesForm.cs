@@ -16,7 +16,6 @@ namespace Songs
         int _ContextMenuRow = -1;
         int _ContextMenuColumn = -1;
 
-        bool _Initialized = false;
 
         bool _DataModified = false;
         bool DataModified
@@ -32,22 +31,21 @@ namespace Songs
         public PerformancesForm()
         {
             InitializeComponent();
-            _PerformancesAdap = new OdbcDataAdapter("", global::Songs.Properties.Settings.Default.songbookConnectionString);
+            _PerformancesAdap = new OdbcDataAdapter("", global::Songs.Properties.Settings.Default.AzureConnectionString);
         }
 
         private void PerformancesForm_Load(object sender, EventArgs e)
         {
             Redraw();
-            _Initialized = true;
             DataModified = false;
         }
 
         void Redraw()
         {
-            // TODO: This line of code loads data into the 'performanceDataSet.venues' table. You can move, or remove it, as needed.
-            this.venuesTableAdapter.Fill(this.performanceDataSet.venues);
-            // TODO: This line of code loads data into the 'performanceDataSet.performances' table. You can move, or remove it, as needed.
-            this.performancesTableAdapter.Fill(this.performanceDataSet.performances);
+            // TODO: This line of code loads data into the 'AzureDataSet.venues' table. You can move, or remove it, as needed.
+            this.venuesTableAdapter.Fill(this.AzureDataSet.venues);
+            // TODO: This line of code loads data into the 'AzureDataSet.performances' table. You can move, or remove it, as needed.
+            this.performancesTableAdapter.Fill(this.AzureDataSet.performances);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -58,7 +56,7 @@ namespace Songs
         private void UpdateDB()
         {
             performancesBindingSource.EndEdit();
-            this.performancesTableAdapter.Update(this.performanceDataSet.performances);
+            this.performancesTableAdapter.Update(this.AzureDataSet.performances);
             DataModified = false;
             Redraw();
         }
@@ -72,10 +70,10 @@ namespace Songs
         {
             // Get the DB table row corresponding to this grid row:
             object obRowItem = grid1.Rows[rowIndex].DataBoundItem;
-            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is PerformanceDataSet.performancesRow)
+            if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is AzureDataSet.performancesRow)
             {
-                PerformanceDataSet.performancesRow perfRow =
-                    (PerformanceDataSet.performancesRow)((DataRowView)obRowItem).Row;
+                AzureDataSet.performancesRow perfRow =
+                    (AzureDataSet.performancesRow)((DataRowView)obRowItem).Row;
                 return perfRow.ID;
             }
             else
@@ -120,7 +118,7 @@ namespace Songs
 
         private void performancesBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
-            DataModified = Utils.DataTableIsModified(performanceDataSet.performances);
+            DataModified = Utils.DataTableIsModified(AzureDataSet.performances);
         }
 
         private void grid1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
