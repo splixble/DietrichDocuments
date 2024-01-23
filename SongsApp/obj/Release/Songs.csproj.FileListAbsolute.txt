@@ -1,0 +1,12 @@
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.csproj.AssemblyReference.cache
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.ArtistsForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.FlagsForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.ListingForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.PerformanceDetailForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.PerformancesForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.SongDetailForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.SongsForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.Properties.Resources.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.VenuesForm.resources
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.csproj.GenerateResource.cache
+C:\Dietrich\GithubDocs\DietrichDocuments\SongsApp\obj\Release\Songs.csproj.CoreCompileInputs.cache
