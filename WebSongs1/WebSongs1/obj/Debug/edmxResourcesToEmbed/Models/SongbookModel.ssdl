@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SongbookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Songbook.songbook.viewsongperformancetotals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewsongperformancetotals">
+    <Key>
+      <PropertyRef Name="SongID" />
+    </Key>
+    <Property Name="Total" Type="bigint" />
+    <Property Name="SongID" Type="int" Nullable="false" />
+    <Property Name="TitleAndArtist" Type="varchar" MaxLength="8000" />
+    <Property Name="firstPerformed" Type="date" />
+    <Property Name="lastPerformed" Type="date" />
+  </EntityType>
+  <EntityContainer Name="SongbookModelStoreContainer">
+    <EntitySet Name="viewsongperformancetotals" EntityType="Self.viewsongperformancetotals" store:Type="Views" store:Schema="songbook">
+      <DefiningQuery>SELECT 
+    [viewsongperformancetotals].[Total] AS [Total], 
+    [viewsongperformancetotals].[SongID] AS [SongID], 
+    [viewsongperformancetotals].[TitleAndArtist] AS [TitleAndArtist], 
+    [viewsongperformancetotals].[firstPerformed] AS [firstPerformed], 
+    [viewsongperformancetotals].[lastPerformed] AS [lastPerformed]
+    FROM [songbook].[viewsongperformancetotals] AS [viewsongperformancetotals]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
