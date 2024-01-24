@@ -131,10 +131,29 @@
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\viewsongperformancetotalsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Songbook.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Songbook.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Songbook.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Songbook.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Songbook.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Songbook.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\viewsongperformancetotal.cs">
+      <DependentUpon>Songbook.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,8 +165,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Songbook.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Songbook.edmx</DependentUpon>
+      <LastGenOutput>Songbook.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Songbook.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Songbook.edmx</DependentUpon>
+      <LastGenOutput>Songbook.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Songbook.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Songbook.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Songbook.edmx.diagram">
+      <DependentUpon>Songbook.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -180,6 +216,11 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\viewsongperformancetotals\Create.cshtml" />
+    <Content Include="Views\viewsongperformancetotals\Delete.cshtml" />
+    <Content Include="Views\viewsongperformancetotals\Details.cshtml" />
+    <Content Include="Views\viewsongperformancetotals\Edit.cshtml" />
+    <Content Include="Views\viewsongperformancetotals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
