@@ -6,7 +6,7 @@ Email: DietrichNeuman@gmail.com
 
 
 PROFESSIONAL SUMMARY 
-Full-stack software developer with over 30 years’ experience developing Windows applications at stages of the software life cycle, with expertise in:
+Software engineer with over 30 years’ experience developing Windows applications at stages of the software life cycle, with expertise in:
 •	UI design and implementation, in C# .NET, C++, VB, JavaScript, and other languages
 •	Database definition and administration, in SQL Server, Access, and other SQL platforms
 •	Documentation, configuration management, and testing
@@ -14,6 +14,7 @@ Whether working from a formal specification or an ad-hoc user request, I excel a
 PROFESSIONAL EXPERIENCE 
 Senior Consultant (software engineer)	July 2021 – present
 CGI 	Montreal, Quebec (remote from Portland) 
+Developed a demo web application in ASP.NET Core, with a SQL Server Azure back end, for a client proposal.
 Performed consulting work for the following clients:
 •	Delpharm (Boucherville, Quebec)
 Customized a STARLIMS installation, with edits to server scripts in STARLIMS Scripting Language and client scripts in JavaScript, to solve usability problems.
@@ -40,7 +41,7 @@ Maintained Java and Objective C code of a smartphone application for both the An
 Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces.
 
 Programmer-Writer	June 2005 – August 2005
-Sakson & Associates (agency)	Seattle, Washington
+Sakson & Taylor (agency)	Seattle, Washington
 Contracted to Microsoft Corporation, Redmond, Washington 
 Wrote and edited Microsoft ADO.NET documentation, which is published in application help files and MSDN. Maintained OLE DB and ODBC documentation. Corrected and clarified documentation in response to documentation change requests. Resolved documentation issues by creating test applications and communicating with developers. 
 Wrote and maintained sample applications used in published ADO.NET documentation, in C#, C++ .NET, and Visual Basic .NET, using SQL Server 2005.  
