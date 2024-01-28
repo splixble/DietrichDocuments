@@ -38,6 +38,13 @@ namespace Songs
         {
             Redraw();
             DataModified = false;
+
+            this.AzureDataSet.performances.TableNewRow += Performances_TableNewRow;
+        }
+
+        private void Performances_TableNewRow(object sender, DataTableNewRowEventArgs e)
+        {
+            e.Row[AzureDataSet.performances.DidILeadColumn] = true;
         }
 
         void Redraw()

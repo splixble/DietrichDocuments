@@ -26,6 +26,8 @@ namespace Songs
         public PerformanceDetailForm()
         {
             InitializeComponent();
+
+            Utils.AllowNullFields(AzureDataSet.songperformances); // for newly added rows; FK will be filled in on save - // DIAG needed?
         }
 
         public DialogResult ShowDialog(int perfID, string venueName)
@@ -44,7 +46,7 @@ namespace Songs
         public void Redraw()
         {
             // TODO: This line of code loads data into the 'dataSet1.ViewSongsSingleField' table. You can move, or remove it, as needed.
-            this.viewSongsSingleFieldTableAdapter.Fill(this.dataSet1.ViewSongsSingleField);
+            this.viewSongsSingleFieldTableAdapter.Fill(this.AzureDataSet.ViewSongsSingleField);
             // TODO: This line of code loads data into the 'AzureDataSet.performances' table. You can move, or remove it, as needed.
             this.performancesTableAdapter.FillByID(this.AzureDataSet.performances, _PerfID);
             // TODO: This line of code loads data into the 'AzureDataSet.songperformances' table. You can move, or remove it, as needed.

@@ -27,8 +27,8 @@ namespace Songs
         {
             InitializeComponent();
 
-            Utils.AllowNullFields(this.dataSet.AlternateArtists);
-            Utils.AllowNullFields(dataSet1.flaggedsongs);
+            Utils.AllowNullFields(this.dataSet.AlternateArtists); // for newly added rows; FK will be filled in on save
+            Utils.AllowNullFields(dataSet1.flaggedsongs); // for newly added rows; FK will be filled in on save
         }
 
         public DialogResult ShowDialog(int songID, string artistName)

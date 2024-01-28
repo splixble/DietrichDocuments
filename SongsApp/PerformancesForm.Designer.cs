@@ -32,19 +32,19 @@ namespace Songs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PerformancesForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.grid1 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.performanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.venuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AzureDataSet = new Songs.AzureDataSet();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.seriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.performancesTableAdapter = new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
             this.venuesTableAdapter = new Songs.AzureDataSetTableAdapters.venuesTableAdapter();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.performanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.seriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
@@ -87,6 +87,32 @@ namespace Songs
             this.grid1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentDoubleClick);
             this.grid1.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.grid1_CellContextMenuStripNeeded);
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // performanceDateDataGridViewTextBoxColumn
+            // 
+            this.performanceDateDataGridViewTextBoxColumn.DataPropertyName = "PerformanceDate";
+            this.performanceDateDataGridViewTextBoxColumn.HeaderText = "Performance Date";
+            this.performanceDateDataGridViewTextBoxColumn.Name = "performanceDateDataGridViewTextBoxColumn";
+            // 
+            // VenueColumn
+            // 
+            this.VenueColumn.DataPropertyName = "Venue";
+            this.VenueColumn.DataSource = this.venuesBindingSource;
+            this.VenueColumn.DisplayMember = "Name";
+            this.VenueColumn.HeaderText = "Venue";
+            this.VenueColumn.Name = "VenueColumn";
+            this.VenueColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.VenueColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.VenueColumn.ValueMember = "ID";
+            this.VenueColumn.Width = 220;
+            // 
             // venuesBindingSource
             // 
             this.venuesBindingSource.DataMember = "venues";
@@ -96,6 +122,30 @@ namespace Songs
             // 
             this.AzureDataSet.DataSetName = "AzureDataSet";
             this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.commentDataGridViewTextBoxColumn.Width = 240;
+            // 
+            // seriesDataGridViewTextBoxColumn
+            // 
+            this.seriesDataGridViewTextBoxColumn.DataPropertyName = "Series";
+            this.seriesDataGridViewTextBoxColumn.HeaderText = "Series";
+            this.seriesDataGridViewTextBoxColumn.Name = "seriesDataGridViewTextBoxColumn";
+            // 
+            // DidILead
+            // 
+            this.DidILead.DataPropertyName = "DidILead";
+            this.DidILead.FalseValue = "False";
+            this.DidILead.HeaderText = "Did I lead?";
+            this.DidILead.Name = "DidILead";
+            this.DidILead.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DidILead.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DidILead.TrueValue = "True";
+            this.DidILead.Width = 40;
             // 
             // contextMenuStrip1
             // 
@@ -125,56 +175,6 @@ namespace Songs
             // venuesTableAdapter
             // 
             this.venuesTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // performanceDateDataGridViewTextBoxColumn
-            // 
-            this.performanceDateDataGridViewTextBoxColumn.DataPropertyName = "PerformanceDate";
-            this.performanceDateDataGridViewTextBoxColumn.HeaderText = "Performance Date";
-            this.performanceDateDataGridViewTextBoxColumn.Name = "performanceDateDataGridViewTextBoxColumn";
-            // 
-            // VenueColumn
-            // 
-            this.VenueColumn.DataPropertyName = "Venue";
-            this.VenueColumn.DataSource = this.venuesBindingSource;
-            this.VenueColumn.DisplayMember = "Name";
-            this.VenueColumn.HeaderText = "Venue";
-            this.VenueColumn.Name = "VenueColumn";
-            this.VenueColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.VenueColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.VenueColumn.ValueMember = "ID";
-            this.VenueColumn.Width = 220;
-            // 
-            // commentDataGridViewTextBoxColumn
-            // 
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
-            this.commentDataGridViewTextBoxColumn.Width = 240;
-            // 
-            // seriesDataGridViewTextBoxColumn
-            // 
-            this.seriesDataGridViewTextBoxColumn.DataPropertyName = "Series";
-            this.seriesDataGridViewTextBoxColumn.HeaderText = "Series";
-            this.seriesDataGridViewTextBoxColumn.Name = "seriesDataGridViewTextBoxColumn";
-            // 
-            // DidILead
-            // 
-            this.DidILead.DataPropertyName = "DidILead";
-            this.DidILead.FalseValue = "0";
-            this.DidILead.HeaderText = "Did I lead?";
-            this.DidILead.Name = "DidILead";
-            this.DidILead.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DidILead.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.DidILead.TrueValue = "1";
-            this.DidILead.Width = 40;
             // 
             // PerformancesForm
             // 
