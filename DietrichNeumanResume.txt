@@ -4,7 +4,6 @@ Portland, Oregon 97214
 Phone: (206) 930-7266
 Email: DietrichNeuman@gmail.com
 
-
 PROFESSIONAL SUMMARY 
 Software engineer with over 30 years’ experience developing Windows applications at stages of the software life cycle, with expertise in:
 •	UI design and implementation, in C# .NET, C++, VB, JavaScript, and other languages
@@ -14,16 +13,11 @@ Whether working from a formal specification or an ad-hoc user request, I excel a
 PROFESSIONAL EXPERIENCE 
 Senior Consultant (software engineer)	July 2021 – present
 CGI 	Montreal, Quebec (remote from Portland) 
+Designed, implemented, and maintained Winforms C# .NET/ SQL Server applications that used reusable code libraries I had written as an employee of Nexelis, a Q² Solutions Company. Redesigned in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with SQL Server and adapting them to a new laboratory and IT environment. 
+Migrated data, software, and processes from a clinical laboratory under decommissioning to a new laboratory and IT environment, while assisting in the initial setup of the new environment. 
+Customized a STARLIMS installation at a pharmaceutical manufacturing company, modifying server scripts in STARLIMS Scripting Language and client scripts in JavaScript to solve usability problems.
+Completed and enhanced an Access database application for a biotech company, migrating its back-end tables from Access to SharePoint lists.
 Developed a demo web application in ASP.NET Core, with a SQL Server Azure back end, for a client proposal.
-Performed consulting work for the following clients:
-•	Delpharm (Boucherville, Quebec)
-Customized a STARLIMS installation, with edits to server scripts in STARLIMS Scripting Language and client scripts in JavaScript, to solve usability problems.
-•	Adjuvia Therapeutics (San Francisco, California)
-Completed and enhanced an Access database application, migrating its back-end tables from Access to SharePoint lists.
-•	Nexelis, a Q² Solutions Company (previous employer; Seattle, Washington)
-Designed, implemented, and maintained Winforms C# .NET/ SQL Server applications that used reusable code libraries I had written as a Nexelis employee. 
-Redesigned in-house applications and software libraries I had written as a Nexelis employee, replacing their database back-end (Advanced Revelation) with SQL Server, and adapting them to a new laboratory and IT environment. 
-As part of the decommissioning of the Nexelis Seattle lab, migrated data, software, and processes to a recently created laboratory and IT environment, while assisting in the initial setup of the environment. 
 
 Senior Software Engineer	September 2005 – July 2021
 Nexelis, a Q² Solutions Company	Seattle, Washington 
