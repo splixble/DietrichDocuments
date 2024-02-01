@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bv3lzZW9cBbZ3zesYMxh1WPxcJqWpskumAj76Fr/V7aDZYMDoPNo/ANzMkEt6CZxQzBm/onqk6iCW+u1DMufdQ==",
+  "dgSpecHash": "Bdzytbe8bWLBcsj3Lyvb7ClWGl8eKtYDuHTvr3wsmvfNb/Efy+Durh62M7RYiuPOjE7KUIxqm1/UigiynpYzMA==",
   "success": true,
-  "projectFilePath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+  "projectFilePath": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dietr\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Dietr\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
