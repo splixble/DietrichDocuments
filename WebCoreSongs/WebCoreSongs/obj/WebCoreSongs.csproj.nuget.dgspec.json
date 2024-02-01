@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dietrich.neuman\\Documents\\GitHub\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {}
+    "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dietrich.neuman\\Documents\\GitHub\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {
+    "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dietrich.neuman\\Documents\\GitHub\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+        "projectUniqueName": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
         "projectName": "WebCoreSongs",
-        "projectPath": "C:\\Users\\dietrich.neuman\\Documents\\GitHub\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
-        "packagesPath": "C:\\Users\\dietrich.neuman\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dietrich.neuman\\Documents\\GitHub\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
+        "projectPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+        "packagesPath": "C:\\Users\\Dietr\\.nuget\\packages\\",
+        "outputPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dietrich.neuman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dietr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,36 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
