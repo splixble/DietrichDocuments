@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SongbookModelStoreContainer" CdmEntityContainer="SongbookEntities2">
+    <EntitySetMapping Name="viewsongperformancetotals">
+      <EntityTypeMapping TypeName="SongbookModel.viewsongperformancetotal">
+        <MappingFragment StoreEntitySet="viewsongperformancetotals">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="SongID" ColumnName="SongID" />
+          <ScalarProperty Name="TitleAndArtist" ColumnName="TitleAndArtist" />
+          <ScalarProperty Name="firstPerformed" ColumnName="firstPerformed" />
+          <ScalarProperty Name="lastPerformed" ColumnName="lastPerformed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
