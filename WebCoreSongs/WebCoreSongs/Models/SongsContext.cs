@@ -52,7 +52,6 @@ public partial class SongsContext : DbContext
         modelBuilder.Entity<Viewsongperformances>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToView("viewsongperformances", "songbook");
 
             entity.Property(e => e.Comment)
