@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 4,
-   "ContextClassName": "ArtistsContext",
+   "ContextClassName": "SongsContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
@@ -24,7 +24,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[songbook].[viewartistnameforlistbox]",
+         "Name": "[songbook].[viewsongperformances]",
          "ObjectType": 3
       }
    ],

@@ -11,9 +11,9 @@ namespace WebCoreSongs.Controllers
 {
     public class ArtistsController : Controller
     {
-        private readonly ArtistsContext _context;
+        private readonly SongsContext _context;
 
-        public ArtistsController(ArtistsContext context)
+        public ArtistsController(SongsContext context)
         {
             _context = context;
         }

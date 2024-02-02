@@ -5,15 +5,12 @@ using WebCoreSongs.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebCoreSongsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("WebCoreSongsContext") ?? throw new InvalidOperationException("Connection string 'WebCoreSongsContext' not found.")));
+// DIAG is that last line needed?
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<WebCoreSongs.Models.ArtistsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
-
-
-builder.Services.AddDbContext<WebCoreSongs.Models.DB.SongbookContext>(options =>
+builder.Services.AddDbContext<WebCoreSongs.Models.SongsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 
 var app = builder.Build();

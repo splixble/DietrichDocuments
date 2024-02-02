@@ -62,24 +62,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcQ3JlYXRlLmNzaHRtbA==
+[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Venues/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcRGVsZXRlLmNzaHRtbA==
+[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Venues/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcRGV0YWlscy5jc2h0bWw=
+[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Venues/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudWVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcRWRpdC5jc2h0bWw=
+[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Venues/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudWVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcSW5kZXguY3NodG1s
+[D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Venues/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Dietrich/SoftwareDevelopment/GitHubRepository/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/_ViewImports.cshtml]

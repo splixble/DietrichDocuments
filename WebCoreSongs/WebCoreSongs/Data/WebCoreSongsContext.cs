@@ -13,7 +13,5 @@ namespace WebCoreSongs.Data
             : base(options)
         {
         }
-
-        public DbSet<WebCoreSongs.Models.Venues> Venues { get; set; } = default!;
     }
 }

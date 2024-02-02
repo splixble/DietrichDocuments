@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebCoreSongs.Models;
 
-public partial class ArtistsContext : DbContext
+public partial class SongsContext : DbContext
 {
-    public ArtistsContext(DbContextOptions<ArtistsContext> options)
+    public SongsContext(DbContextOptions<SongsContext> options)
         : base(options)
     {
     }
@@ -17,7 +17,7 @@ public partial class ArtistsContext : DbContext
 
     public virtual DbSet<Venues> Venues { get; set; }
 
-    public virtual DbSet<Viewartistnameforlistbox> Viewartistnameforlistbox { get; set; }
+    public virtual DbSet<Viewsongperformances> Viewsongperformances { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,16 +49,26 @@ public partial class ArtistsContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<Viewartistnameforlistbox>(entity =>
+        modelBuilder.Entity<Viewsongperformances>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("viewartistnameforlistbox", "songbook");
+                .ToView("viewsongperformances", "songbook");
 
-            entity.Property(e => e.Artist).ValueGeneratedOnAdd();
-            entity.Property(e => e.ArtistFirstName).IsUnicode(false);
-            entity.Property(e => e.ArtistLastName).IsUnicode(false);
-            entity.Property(e => e.Name).IsUnicode(false);
+            entity.Property(e => e.Comment)
+                .HasMaxLength(250)
+                .IsUnicode(false);
+            entity.Property(e => e.DidIlead).HasColumnName("DidILead");
+            entity.Property(e => e.PerformanceId).HasColumnName("PerformanceID");
+            entity.Property(e => e.PerformanceMonth).HasMaxLength(101);
+            entity.Property(e => e.PerformanceQtr).HasMaxLength(101);
+            entity.Property(e => e.TitleAndArtist)
+                .HasMaxLength(8000)
+                .IsUnicode(false);
+            entity.Property(e => e.VenueName)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

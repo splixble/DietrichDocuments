@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebCoreSongs.Data;
 using WebCoreSongs.Models;
 
-namespace WebCoreSongs.Views
+namespace WebCoreSongs.Controllers
 {
     public class VenuesController : Controller
     {
-        private readonly WebCoreSongsContext _context;
+        private readonly SongsContext _context;
 
-        public VenuesController(WebCoreSongsContext context)
+        public VenuesController(SongsContext context)
         {
             _context = context;
         }
