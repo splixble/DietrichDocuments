@@ -11,7 +11,7 @@ Software engineer with over 30 years’ experience developing Windows applicatio
 •	Documentation, configuration management, and testing
 Whether working from a formal specification or an ad-hoc user request, I excel at making software easier and more powerful for the user.
 PROFESSIONAL EXPERIENCE 
-Senior Consultant (software engineer)	July 2021 – present
+Senior Consultant (software engineer)	July 2021 – February 2024
 CGI 	Montreal, Quebec (remote from Portland) 
 Designed, implemented, and maintained Winforms C# .NET/ SQL Server applications that used reusable code libraries I had written as an employee of Nexelis, a Q² Solutions Company. Redesigned in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with SQL Server and adapting them to a new laboratory and IT environment. 
 Migrated data, software, and processes from a clinical laboratory under decommissioning to a new laboratory and IT environment, while assisting in the initial setup of the new environment. 
@@ -23,10 +23,10 @@ Senior Software Engineer	September 2005 – July 2021
 Nexelis, a Q² Solutions Company	Seattle, Washington 
 Created the company’s first formal in-house software development environment, by acquiring and configuring Visual Studio, SQL Server, and Perforce.
 Designed and implemented a suite of Winforms C# .NET/SQL Server in-house laboratory applications for clinical study setup, clinical data extraction, project management, financial projection and reporting (with Crystal Reports), system access privilege management, logging usage of applications by users, and other purposes. Developed reusable code libraries for these applications, which provided the following features:
-•	Forms.NET user interface with data binding
+•	Windows Forms.NET user interface with data binding
 •	Multi-level data security based on Windows Login credentials
 •	Paginated images of forms and DataGridView objects for printing
-•	Audit logging at either the front or back (SQL Server) end
+•	Audit logging at either the client or server (SQL Server) side
 Administered and enhanced the SQL Server databases I had designed for the in-house applications, adding C# assemblies, triggers, and other advanced features. 
 Designed and implemented a Mirror Database, to maintain a real time copy of the data in the company’s Revelation Software laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server.
 Wrote JavaScript code to generate dynamic HTML for the company’s website.
