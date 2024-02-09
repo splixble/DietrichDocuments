@@ -13,6 +13,8 @@ public partial class SongsContext : DbContext
     {
     }
 
+    public virtual DbSet<Alternateartists> Alternateartists { get; set; }
+
     public virtual DbSet<Artists> Artists { get; set; }
 
     public virtual DbSet<Venues> Venues { get; set; }
@@ -21,6 +23,22 @@ public partial class SongsContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Alternateartists>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_alternateartists_ID");
+
+            entity.ToTable("alternateartists", "songbook");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
+            entity.Property(e => e.SongId).HasColumnName("SongID");
+
+            entity.HasOne(d => d.Artist).WithMany(p => p.Alternateartists)
+                .HasForeignKey(d => d.ArtistId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AlternateArtists_ArtistID");
+        });
+
         modelBuilder.Entity<Artists>(entity =>
         {
             entity.HasKey(e => e.ArtistId).HasName("PK_artists_ArtistID");
@@ -52,6 +70,7 @@ public partial class SongsContext : DbContext
         modelBuilder.Entity<Viewsongperformances>(entity =>
         {
             entity
+                .HasNoKey()
                 .ToView("viewsongperformances", "songbook");
 
             entity.Property(e => e.Comment)

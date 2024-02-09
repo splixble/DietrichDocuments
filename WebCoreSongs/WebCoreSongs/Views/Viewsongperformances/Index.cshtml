@@ -7,7 +7,47 @@
 <h1>Index</h1>
 
 <p>
+    @* NOT WANTED
     <a asp-action="Create">Create New</a>
+    *@
+    @{
+        // From web site -- replace it with query:
+        List<SelectListItem> listItems = new List<SelectListItem>();
+        listItems.Add(new SelectListItem
+            {
+                Text = "AtlantaPort",
+                Value = "AtlantaPort"
+            });
+        listItems.Add(new SelectListItem
+            {
+                Text = "NewJersyTerminal",
+                Value = "NewJersyTerminal",
+                Selected = true
+            });
+        listItems.Add(new SelectListItem
+            {
+                Text = "AWS",
+                Value = "AWS"
+            });
+    }
+
+    @Html.DropDownList("yourDropName", listItems, new { @class = "form-control" })
+    @Html.DropDownList("newDropName", listItems, new { @class = "form-control" })
+
+    @*// from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model:
+        // this don't work:
+    @Html.DropDownListFor(model => model.Venue, Model.VenueID)
+    @Html.DropDownList("Venlist", WebCoreSongs.Models.Viewsongperformances.V this.Model.Venues, new { @class = "form-control" })
+        *@ Try other ideas!
+    @Html.DropDownList("Venlist", new SelectList(ViewBag.VenuesList, "Id", "Name"), new { @class = "form-control" })
+
+    // works? from web site?
+    <asp:DropDownList ID="ddlCity" runat="server" DataValueField="pkId" DataTextField="cityName" DataSourceID="sqlDB">
+    </asp:DropDownList>
+    <asp:SqlDataSource ID="sqlDB" ConnectionString='$Name of connecitonstring' runat="server" SelectCommand="Select * from tbl_City"></asp:SqlDataSource>
+
+    // use VenuesController somehow?? DIAG
+
 </p>
 <table class="table">
     <thead>
@@ -78,11 +118,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Venue)
             </td>
+            @* NOT WANTED
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PerformanceId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PerformanceId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.PerformanceId">Delete</a>
             </td>
+            *@
         </tr>
 }
     </tbody>

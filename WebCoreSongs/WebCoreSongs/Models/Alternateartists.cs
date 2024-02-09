@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace WebCoreSongs.Models;
 
-public partial class Artists
+public partial class Alternateartists
 {
-    public string ArtistFirstName { get; set; }
+    public int Id { get; set; }
 
-    public string ArtistLastName { get; set; }
+    public int SongId { get; set; }
 
     public int ArtistId { get; set; }
 
-    public virtual ICollection<Alternateartists> Alternateartists { get; set; } = new List<Alternateartists>();
+    public virtual Artists Artist { get; set; }
 }

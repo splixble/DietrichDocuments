@@ -16,6 +16,10 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[songbook].[alternateartists]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[songbook].[artists]",
          "ObjectType": 0
       },
