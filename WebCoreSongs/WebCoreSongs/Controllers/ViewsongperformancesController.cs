@@ -21,20 +21,6 @@ namespace WebCoreSongs.Controllers
         // GET: Viewsongperformances
         public async Task<IActionResult> Index()
         {
-            // DIAG tried:  ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");
-
-            /*
-            // NOTE: ViewBag only transfers data from controller to view, not visa-versa. ViewBag values will be null if redirection occurs.
-            ViewBag.VenuesList = GetVenuesList();
-
-            // DIAG try this?
-            // ViewBag.ManagerId = new SelectList(managers, "Id", "Name", employee.ManagerId);
-            // From https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model:
-            List<Venues> venues = _context.Venues.ToList(); //get your albums from _context
-            var model = new Viewsongperformances();
-            model.Venues = new SelectList(venues, "Id", "Name");
-            */
-
             // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
             // var model = new ViewsongperformancesModel (ImageViewModel();) -- needed?
             ViewBag.VenuesList = _context.Venues.ToList();
@@ -43,11 +29,6 @@ namespace WebCoreSongs.Controllers
             // what's the equivalent link predicate for this sql?
             // venue = 51 s/b param from dropdown
             // ORIG: return View(await _context.Viewsongperformances.ToListAsync());
-        }
-
-        public List<Venues> GetVenuesList()
-        {
-            return null; // DIAG try this if a continue... _context.Venues; // is this not null? DIAG not needed??
         }
 
         // GET: Viewsongperformances/Details/5
