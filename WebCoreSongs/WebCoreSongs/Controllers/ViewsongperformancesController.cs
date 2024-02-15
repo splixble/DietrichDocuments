@@ -26,141 +26,22 @@ namespace WebCoreSongs.Controllers
             // var model = new ViewsongperformancesModel (ImageViewModel();) -- needed?
             ViewBag.VenuesList = _context.Venues.ToList();
 
-            return View(await _context.Viewsongperformances.FromSql($"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID}").ToListAsync());
-            // what's the equivalent link predicate for this sql?
-            // venue = 51 s/b param from dropdown
-            // ORIG: return View(await _context.Viewsongperformances.ToListAsync());
+            // does it work to replace?
+            // return View(await _context.Viewsongperformances.FromSql($"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID}").ToListAsync());
+            return View(await LoadSongPerformances(venueID).ToListAsync());
         }
 
         [Route("venue/{venueID}")]
         public async Task<IActionResult> IndexByVenue(string venueID)
         {
-            return View(await _context.Viewsongperformances.FromSql($"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID}").ToListAsync());
+            return View(await LoadSongPerformances(venueID).ToListAsync());
 
         }
 
-        // GET: Viewsongperformances/Details/5
-        public async Task<IActionResult> Details(int? id)
+        IQueryable<Viewsongperformances> LoadSongPerformances(string venueID)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var viewsongperformances = await _context.Viewsongperformances
-                .FirstOrDefaultAsync(m => m.PerformanceId == id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-
-            return View(viewsongperformances);
-        }
-
-        // GET: Viewsongperformances/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Viewsongperformances/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PerformanceId,Song,Comment,TitleAndArtist,PerformanceDate,DidIlead,PerformanceYear,PerformanceQtr,PerformanceMonth,VenueName,Venue")] Viewsongperformances viewsongperformances)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(viewsongperformances);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(viewsongperformances);
-        }
-
-        // GET: Viewsongperformances/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var viewsongperformances = await _context.Viewsongperformances.FindAsync(id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-            return View(viewsongperformances);
-        }
-
-        // POST: Viewsongperformances/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PerformanceId,Song,Comment,TitleAndArtist,PerformanceDate,DidIlead,PerformanceYear,PerformanceQtr,PerformanceMonth,VenueName,Venue")] Viewsongperformances viewsongperformances)
-        {
-            if (id != viewsongperformances.PerformanceId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(viewsongperformances);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ViewsongperformancesExists(viewsongperformances.PerformanceId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(viewsongperformances);
-        }
-
-        // GET: Viewsongperformances/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var viewsongperformances = await _context.Viewsongperformances
-                .FirstOrDefaultAsync(m => m.PerformanceId == id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-
-            return View(viewsongperformances);
-        }
-
-        // POST: Viewsongperformances/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var viewsongperformances = await _context.Viewsongperformances.FindAsync(id);
-            if (viewsongperformances != null)
-            {
-                _context.Viewsongperformances.Remove(viewsongperformances);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return _context.Viewsongperformances.FromSql(
+                $"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID} ORDER BY PerfID, SongPerfID");
         }
 
         private bool ViewsongperformancesExists(int id)

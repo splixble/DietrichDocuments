@@ -30,6 +30,10 @@ public partial class Viewsongperformances
 
     public int Venue { get; set; }
 
+    public int PerfID { get; set; }
+
+    public int SongPerfID { get; set; }
+
     // This is to populate Venues dropdown listbox, per https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model.
     // That website has a couple more ideas about how to do this simply.
     public IEnumerable<SelectListItem> Venues { get; set; } 

@@ -21,34 +21,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Song)
+                @Html.DisplayNameFor(model => model.TitleAndArtist)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TitleAndArtist)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PerformanceDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DidIlead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceQtr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceMonth)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.VenueName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Venue)
             </th>
             <th></th>
         </tr>
@@ -57,42 +39,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Song)
+                @Html.DisplayFor(modelItem => item.TitleAndArtist)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TitleAndArtist)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PerformanceDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DidIlead)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceQtr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceMonth)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VenueName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venue)
-            </td>
-            @* NOT WANTED
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PerformanceId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PerformanceId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PerformanceId">Delete</a>
-            </td>
-            *@
         </tr>
 }
     </tbody>
