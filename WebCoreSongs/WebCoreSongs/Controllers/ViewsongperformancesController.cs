@@ -23,28 +23,10 @@ namespace WebCoreSongs.Controllers
         public async Task<IActionResult> Index(string venueID)
         {
             // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
-            // var model = new ViewsongperformancesModel (ImageViewModel();) -- needed?
-            ViewBag.VenuesList = new SelectList(_context.Venues.ToList(), "Id", "Name", venueID); // venueID is the selected value last set
+            ViewBag.VenuesList = new SelectList(_context.Venues.ToList(), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
+            // DIAG still displays "Murphy's" (first venue ID in the list) initially, tho venueID praram is null. Should have null value ("Select Venue")
 
             return View(await LoadSongPerformances(venueID).ToListAsync());
-        }
-
-        public async Task<IActionResult> GenerateList(string venueID)
-        {
-            return View(await LoadSongPerformances(venueID).ToListAsync());
-        }
-
-        public async Task<IActionResult> FilterPerfs(string venueID)
-        {
-            return View(await LoadSongPerformances("6").ToListAsync());
-        }
-
-
-        [Route("xxx/{venueID}")]
-        public async Task<IActionResult> IndexByVenue(string venueID)
-        {
-            return View(await LoadSongPerformances("5").ToListAsync());
-            // DIAG is this used at all? not unles xxx above is replaced with Viewsongperformances, and then we gen another error
         }
 
         IQueryable<Viewsongperformances> LoadSongPerformances(string venueID)

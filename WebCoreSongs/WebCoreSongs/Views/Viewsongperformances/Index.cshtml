@@ -8,8 +8,6 @@
 
 <p>
     @*// from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion: *@
-    @* This works, but it seems to set the drop down selection back to Murphy's! (ID=1) 
-    *@
     @Html.DropDownList("Venlist", ViewBag.VenuesList as SelectList,
             new { onchange = "document.location.href = '/Viewsongperformances/Index?venueID=' + this.options[this.selectedIndex].value;" })
 
@@ -57,16 +55,13 @@
     </tbody>
 </table>
 
-<form asp-action="FilterPerfs">
-    <input type="submit" value="Filter Perfs" class="btn btn-danger" /> |
-</form>
-
 
 @section Scripts 
 {
     <script type="text/javascript">
     function Venlist_OnChange()
     {
+        // NOT USED as of 16Feb24
         var selectedVal = document.getElementById("Venlist").value;
         alert("Plabla! " + selectedVal);
         location.href = "/Viewsongperformances/Index?venueID=" + selectedVal;
