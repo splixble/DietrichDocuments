@@ -24,18 +24,27 @@ namespace WebCoreSongs.Controllers
         {
             // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
             // var model = new ViewsongperformancesModel (ImageViewModel();) -- needed?
-            ViewBag.VenuesList = _context.Venues.ToList();
+            ViewBag.VenuesList = new SelectList(_context.Venues.ToList(), "Id", "Name", venueID); // venueID is the selected value last set
 
-            // does it work to replace?
-            // return View(await _context.Viewsongperformances.FromSql($"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID}").ToListAsync());
             return View(await LoadSongPerformances(venueID).ToListAsync());
         }
 
-        [Route("venue/{venueID}")]
-        public async Task<IActionResult> IndexByVenue(string venueID)
+        public async Task<IActionResult> GenerateList(string venueID)
         {
             return View(await LoadSongPerformances(venueID).ToListAsync());
+        }
 
+        public async Task<IActionResult> FilterPerfs(string venueID)
+        {
+            return View(await LoadSongPerformances("6").ToListAsync());
+        }
+
+
+        [Route("xxx/{venueID}")]
+        public async Task<IActionResult> IndexByVenue(string venueID)
+        {
+            return View(await LoadSongPerformances("5").ToListAsync());
+            // DIAG is this used at all? not unles xxx above is replaced with Viewsongperformances, and then we gen another error
         }
 
         IQueryable<Viewsongperformances> LoadSongPerformances(string venueID)
