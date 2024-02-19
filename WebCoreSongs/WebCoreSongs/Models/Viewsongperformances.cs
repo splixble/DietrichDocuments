@@ -14,6 +14,8 @@ public partial class Viewsongperformances
 
     public string Comment { get; set; }
 
+    public string PerfComment { get; set; }
+
     public string TitleAndArtist { get; set; }
 
     public DateOnly PerformanceDate { get; set; }

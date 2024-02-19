@@ -76,6 +76,9 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.Comment)
                 .HasMaxLength(250)
                 .IsUnicode(false);
+            entity.Property(e => e.PerfComment)
+                .HasMaxLength(250)
+                .IsUnicode(false);
             entity.Property(e => e.DidIlead).HasColumnName("DidILead");
             entity.Property(e => e.PerformanceId).HasColumnName("PerformanceID");
             entity.Property(e => e.PerformanceMonth).HasMaxLength(101);
