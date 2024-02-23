@@ -30,10 +30,6 @@
       {
          "Name": "[songbook].[viewsongperformances]",
          "ObjectType": 3
-      },
-      {
-         "Name": "[songbook].[viewsongperformancetotals]",
-         "ObjectType": 3
       }
    ],
    "UiHint": "dietrichsql.Songbook",
@@ -54,7 +50,6 @@
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
-   "UsePrefixNavigationNaming": false,
    "UseSchemaFolders": false,
    "UseSchemaNamespaces": false,
    "UseSpatial": false,
