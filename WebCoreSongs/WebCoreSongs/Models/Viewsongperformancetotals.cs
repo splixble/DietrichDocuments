@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebCoreSongs.Models;
 
@@ -9,6 +10,7 @@ public partial class Viewsongperformancetotals
 {
     public long? Total { get; set; }
 
+    [Key]
     public int SongId { get; set; }
 
     public string TitleAndArtist { get; set; }

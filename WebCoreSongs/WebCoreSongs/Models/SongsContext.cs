@@ -99,7 +99,6 @@ public partial class SongsContext : DbContext
         modelBuilder.Entity<Viewsongperformancetotals>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToView("viewsongperformancetotals", "songbook");
 
             entity.Property(e => e.FirstPerformed).HasColumnName("firstPerformed");
