@@ -21,6 +21,8 @@ public partial class SongsContext : DbContext
 
     public virtual DbSet<Viewsongperformances> Viewsongperformances { get; set; }
 
+    public virtual DbSet<Viewsongperformancetotals> Viewsongperformancetotals { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Alternateartists>(entity =>
@@ -76,19 +78,35 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.Comment)
                 .HasMaxLength(250)
                 .IsUnicode(false);
+            entity.Property(e => e.DidIlead).HasColumnName("DidILead");
             entity.Property(e => e.PerfComment)
                 .HasMaxLength(250)
                 .IsUnicode(false);
-            entity.Property(e => e.DidIlead).HasColumnName("DidILead");
+            entity.Property(e => e.PerfID).HasColumnName("PerfID");
             entity.Property(e => e.PerformanceId).HasColumnName("PerformanceID");
             entity.Property(e => e.PerformanceMonth).HasMaxLength(101);
             entity.Property(e => e.PerformanceQtr).HasMaxLength(101);
+            entity.Property(e => e.SongPerfID).HasColumnName("SongPerfID");
             entity.Property(e => e.TitleAndArtist)
                 .HasMaxLength(8000)
                 .IsUnicode(false);
             entity.Property(e => e.VenueName)
                 .IsRequired()
                 .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Viewsongperformancetotals>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("viewsongperformancetotals", "songbook");
+
+            entity.Property(e => e.FirstPerformed).HasColumnName("firstPerformed");
+            entity.Property(e => e.LastPerformed).HasColumnName("lastPerformed");
+            entity.Property(e => e.SongId).HasColumnName("SongID");
+            entity.Property(e => e.TitleAndArtist)
+                .HasMaxLength(8000)
                 .IsUnicode(false);
         });
 
