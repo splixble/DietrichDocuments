@@ -36,9 +36,10 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.PerformanceDate)
-                    </td>
-                    <td>
+                        &nbsp;
+                        <i>
                         @Html.DisplayFor(modelItem => item.PerfComment)
+                        </i>
                     </td>
                 </tr>
 
@@ -50,9 +51,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TitleAndArtist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
+                &nbsp;
+                <i>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </i>
             </td>
         </tr>
 }

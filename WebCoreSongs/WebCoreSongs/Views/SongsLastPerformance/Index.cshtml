@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebCoreSongs.Models.Viewsongperformancetotals>
+
+@{
+    ViewData["Title"] = "Last Public Performance of Songs";
+}
+
+<h1>Last Public Performance of Songs</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastPerformed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleAndArtist)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastPerformed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                <i>
+                    @* Display # times song's been played: *@
+                    -
+                    @ViewBag.OrdinalConv.OrdinalTerm(item.Total)
+                </i>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
