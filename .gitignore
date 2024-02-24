@@ -1,5 +1,6 @@
 *.vsidx
 *.exe
 *.dll
-obj\
-bin\
+**/obj
+**/bin
+
