@@ -37,27 +37,37 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.PerformanceDate)
                         &nbsp;
+                    </td>
+                    <td>
+                    @if (item.PerfComment != null)
+                    {
                         <i>
-                        @Html.DisplayFor(modelItem => item.PerfComment)
+                            &nbsp; &nbsp;
+                            <code>&#8212;</code>
+                            @Html.DisplayFor(modelItem => item.PerfComment)
                         </i>
+                    }
                     </td>
                 </tr>
 
                 lastPerformanceID = item.PerfID;
             }
             <tr>
-            <td>
+                <td>
                     &nbsp;
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TitleAndArtist)
-                &nbsp;
-                <i>
-                    @Html.DisplayFor(modelItem => item.Comment)
-                </i>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                    @if (item.Comment != null)
+                    {
+                        <i>
+                            <code>&#8212;</code>
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </i>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
