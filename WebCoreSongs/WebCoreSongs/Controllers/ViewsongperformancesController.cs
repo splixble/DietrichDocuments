@@ -41,7 +41,7 @@ namespace WebCoreSongs.Controllers
         IQueryable<Viewsongperformances> LoadSongPerformances(string venueID)
         {
             return _context.Viewsongperformances.FromSql(
-                $"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID} ORDER BY PerfID DESC, SongPerfID");
+                $"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID} ORDER BY PerformanceDate DESC, SongPerfID");
         }
 
         private bool ViewsongperformancesExists(int id)
