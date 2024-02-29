@@ -1,0 +1,86 @@
+﻿@model SetlistEditable
+
+@{
+    ViewData["Title"] = "SetlistsEditable";
+}
+
+<h1>Setlists</h1>
+
+<p>
+    @*// from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion: *@
+    @Html.DropDownList("Venlist", ViewBag.VenuesList as SelectList,
+            new { onchange = "document.location.href = '/Viewsongperformances/Setlists?venueID=' + this.options[this.selectedIndex].value;" })
+
+    @* This also works, to call Javascript function directly:
+    @Html.DropDownList("Venlist", new SelectList(ViewBag.VenuesList, "Id", "Name"), new { onChange = "Venlist_OnChange()" })
+    *@
+    @* TRY THESE IDEAS IN: https://stackoverflow.com/questions/25056508/onchange-event-for-html-dropdownlist *@
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int lastPerformanceID = -1; 
+        }
+        @foreach (var item in ((SetlistEditable)Model).SongPerfRows) {
+            if (item.PerfID != lastPerformanceID)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PerformanceDate)
+                        &nbsp;
+                    </td>
+                    <td>
+                    @if (item.PerfComment != null)
+                    {
+                        <i>
+                            &nbsp; &nbsp;
+                            <code>&#8212;</code>
+                            @Html.DisplayFor(modelItem => item.PerfComment)
+                        </i>
+                    }
+                    </td>
+                </tr>
+
+                lastPerformanceID = item.PerfID;
+            }
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                    @if (item.Comment != null)
+                    {
+                        <i>
+                            <code>&#8212;</code>
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </i>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts 
+{
+    <script type="text/javascript">
+    function Venlist_OnChange()
+    {
+        // NOT USED as of 16Feb24
+        var selectedVal = document.getElementById("Venlist").value;
+        alert("Plabla! " + selectedVal);
+        location.href = "/Viewsongperformances/Index?venueID=" + selectedVal;
+    }
+    </script>
+}
