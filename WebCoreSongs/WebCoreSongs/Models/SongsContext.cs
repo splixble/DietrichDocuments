@@ -17,11 +17,17 @@ public partial class SongsContext : DbContext
 
     public virtual DbSet<Artists> Artists { get; set; }
 
+    public virtual DbSet<Performances> Performances { get; set; }
+
+    public virtual DbSet<Songperformances> Songperformances { get; set; }
+
     public virtual DbSet<Venues> Venues { get; set; }
 
     public virtual DbSet<Viewsongperformances> Viewsongperformances { get; set; }
 
     public virtual DbSet<Viewsongperformancetotals> Viewsongperformancetotals { get; set; }
+
+    public virtual DbSet<Viewsongssinglefield> Viewsongssinglefield { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +56,41 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
             entity.Property(e => e.ArtistFirstName).IsUnicode(false);
             entity.Property(e => e.ArtistLastName).IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Performances>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_performances_ID");
+
+            entity.ToTable("performances", "songbook");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)");
+            entity.Property(e => e.DidIlead).HasColumnName("DidILead");
+            entity.Property(e => e.PerformanceType)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .IsFixedLength();
+            entity.Property(e => e.Series).HasDefaultValueSql("(NULL)");
+        });
+
+        modelBuilder.Entity<Songperformances>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_songperformances_ID");
+
+            entity.ToTable("songperformances", "songbook");
+
+            entity.HasIndex(e => e.Song, "Song");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)");
         });
 
         modelBuilder.Entity<Venues>(entity =>
@@ -99,6 +140,7 @@ public partial class SongsContext : DbContext
         modelBuilder.Entity<Viewsongperformancetotals>(entity =>
         {
             entity
+                .HasNoKey()
                 .ToView("viewsongperformancetotals", "songbook");
 
             entity.Property(e => e.FirstPerformed).HasColumnName("firstPerformed");
@@ -106,6 +148,35 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.SongId).HasColumnName("SongID");
             entity.Property(e => e.TitleAndArtist)
                 .HasMaxLength(8000)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Viewsongssinglefield>(entity =>
+        {
+            entity
+                .ToView("viewsongssinglefield", "songbook");
+
+            entity.Property(e => e.ArtistFirstName).IsUnicode(false);
+            entity.Property(e => e.ArtistLastName).IsUnicode(false);
+            entity.Property(e => e.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Cover).HasColumnName("cover");
+            entity.Property(e => e.FullArtistName).IsUnicode(false);
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.PageNumber)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.SongInfo)
+                .HasMaxLength(8000)
+                .IsUnicode(false);
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .IsUnicode(false);
+            entity.Property(e => e.TitleAndArtist).IsUnicode(false);
+            entity.Property(e => e.TitleAndInfo).IsUnicode(false);
+            entity.Property(e => e.TitlePrefix)
+                .HasMaxLength(50)
                 .IsUnicode(false);
         });
 

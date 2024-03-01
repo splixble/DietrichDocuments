@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WebCoreSongs.Models.Viewsongssinglefield>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SongFull)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleAndInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleAndArtist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SongFullArtistFirst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SongInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtistFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtistLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullArtistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitlePrefix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InTablet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cover)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongFull)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleAndInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleAndArtist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongFullArtistFirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitlePrefix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InTablet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cover)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
