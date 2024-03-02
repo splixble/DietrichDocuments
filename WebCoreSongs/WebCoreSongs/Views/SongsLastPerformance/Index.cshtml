@@ -25,8 +25,11 @@
                     @Html.DisplayFor(modelItem => item.LastPerformed)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
-                <i>
+                    @* try this instead?: <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a> |*@
+                    <a href=@string.Concat("/DBPage/SongAndPerfInfo?songID=", item.SongId.ToString())>
+                        @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                    </a>
+                    <i>
                     @* Display # times song's been played: *@
                     -
                     @ViewBag.OrdinalConv.OrdinalTerm(item.Total)

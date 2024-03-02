@@ -57,7 +57,11 @@
                     &nbsp;
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                    @* try this instead?: <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a> |*@
+                    <a href=@string.Concat("/DBPage/SongAndPerfInfo?songID=", item.Song.ToString())
+                    > 
+                        @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                        </a>
                     @if (item.Comment != null)
                     {
                         <i>
