@@ -66,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aXN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/DBPage/SongAndPerfInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcREJQYWdlXFNvbmdBbmRQZXJmSW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -74,12 +78,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Performances/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZm9ybWFuY2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Performances/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZm9ybWFuY2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Performances/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZm9ybWFuY2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Performances/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZm9ybWFuY2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Performances/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZm9ybWFuY2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Songperformances/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3BlcmZvcm1hbmNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Songperformances/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3BlcmZvcm1hbmNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Songperformances/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3BlcmZvcm1hbmNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Songperformances/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3BlcmZvcm1hbmNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Songperformances/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29uZ3BlcmZvcm1hbmNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/SongsLastPerformance/Index.cshtml]
@@ -110,6 +154,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/SetlistEditable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcU2V0bGlzdEVkaXRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformances/Setlists.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXNcU2V0bGlzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -132,6 +180,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongperformancetotals/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3NvbmdwZXJmb3JtYW5jZXRvdGFsc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongssinglefields/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3Nvbmdzc2luZ2xlZmllbGRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongssinglefields/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3Nvbmdzc2luZ2xlZmllbGRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongssinglefields/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3Nvbmdzc2luZ2xlZmllbGRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongssinglefields/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3Nvbmdzc2luZ2xlZmllbGRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/Viewsongssinglefields/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld3Nvbmdzc2luZ2xlZmllbGRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dietrich/GithubDocs/DietrichDocuments/WebCoreSongs/WebCoreSongs/Views/_ViewImports.cshtml]

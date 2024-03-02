@@ -24,6 +24,14 @@
          "ObjectType": 0
       },
       {
+         "Name": "[songbook].[performances]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[songbook].[songperformances]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[songbook].[venues]",
          "ObjectType": 0
       },
@@ -33,6 +41,10 @@
       },
       {
          "Name": "[songbook].[viewsongperformancetotals]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[songbook].[viewsongssinglefield]",
          "ObjectType": 3
       }
    ],
