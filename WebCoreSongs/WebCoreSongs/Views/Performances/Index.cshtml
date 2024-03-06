@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 
-    List<Venues> venuesLookup = ViewBag.VenuesLookup; 
+    Dictionary<int, Venues> venuesLookup = ViewBag.VenuesLookup; 
 }
 
 <h1>Index</h1>
@@ -36,10 +36,9 @@
                 @Html.DisplayFor(modelItem => item.PerformanceDate)
             </td>
             <td>
-                @venuesLookup.FirstOrDefault(m => m.Id == item.Venue).Name
+                @venuesLookup[item.Venue].Name // will not be null
                 @*
                     DIAG what if it's null?
-                    DIAG also, should I just pull values from DB's View instead of DB Table? Since it'll already have lookup value?
                 *@
             </td>
             <td>

@@ -21,7 +21,8 @@ namespace WebCoreSongs.Controllers
         // GET: Performances
         public async Task<IActionResult> Index()
         {
-            ViewBag.VenuesLookup = await _context.Venues.ToListAsync();
+            // DIAG s/b in Model
+            ViewBag.VenuesLookup = await _context.Venues.ToDictionaryAsync(ven => ven.Id);
 
             return View(await _context.Performances.ToListAsync());
         }

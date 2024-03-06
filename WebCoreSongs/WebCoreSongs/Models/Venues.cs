@@ -15,7 +15,7 @@ public partial class Venues
 
 
     // static ctor, for select lists
-    // TODO this s/ probly go into a non-generated sep module
+    // DIAG this s/ probly go into a non-generated sep module. It will be overritten otherwise
     static Venues()
     {
         _SelectRow = new Venues();
