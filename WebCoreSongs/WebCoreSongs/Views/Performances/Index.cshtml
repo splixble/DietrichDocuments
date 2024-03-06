@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    List<Venues> venuesLookup = ViewBag.VenuesLookup; 
 }
 
 <h1>Index</h1>
@@ -24,12 +26,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Series)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DidIlead)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -40,19 +36,17 @@
                 @Html.DisplayFor(modelItem => item.PerformanceDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Venue)
+                @venuesLookup.FirstOrDefault(m => m.Id == item.Venue).Name
+                @*
+                    DIAG what if it's null?
+                    DIAG also, should I just pull values from DB's View instead of DB Table? Since it'll already have lookup value?
+                *@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Series)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DidIlead)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -22,9 +22,9 @@ namespace WebCoreSongs.Controllers
         // GET: Viewsongperformances
         public async Task<IActionResult> Index(string venueID)
         {
+            // REMOVE THIS; not used any more
             // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
             ViewBag.VenuesList = new SelectList(_context.Venues.ToList(), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
-            // DIAG still displays "Murphy's" (first venue ID in the list) initially, tho venueID praram is null. Should have null value ("Select Venue")
 
             return View(await LoadSongPerformances(venueID).ToListAsync());
         }
@@ -32,8 +32,9 @@ namespace WebCoreSongs.Controllers
         public async Task<IActionResult> Setlists(string venueID)
         {
             // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
-            ViewBag.VenuesList = new SelectList(_context.Venues.ToList().OrderBy(x => x.Name), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
-            // DIAG still displays first venue ID in the list initially, tho venueID praram is null. Should have null value ("Select Venue")
+            ViewBag.VenuesList =  new SelectList(_context.Venues.ToList() // all rows in Venues table
+                .Append(Venues._SelectRow) // add "Select" pseudo-row
+                .OrderBy(x => x.Name), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
 
             return View(await LoadSongPerformances(venueID).ToListAsync());
         }

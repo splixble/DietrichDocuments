@@ -21,6 +21,8 @@ namespace WebCoreSongs.Controllers
         // GET: Performances
         public async Task<IActionResult> Index()
         {
+            ViewBag.VenuesLookup = await _context.Venues.ToListAsync();
+
             return View(await _context.Performances.ToListAsync());
         }
 
