@@ -1,7 +1,7 @@
-﻿@model SongAndPerformancesInfo
+﻿@model SongAndPerfInfoViewModel
 
 @{
-    SongAndPerformancesInfo songModel = (SongAndPerformancesInfo)Model;
+    SongAndPerfInfoViewModel songModel = (SongAndPerfInfoViewModel)Model;
     string heading = "Song: " + songModel._SongRow.Title;
 
     ViewData["Title"] = heading;

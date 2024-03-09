@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.PerformanceDate)
             </td>
             <td>
-                @venuesLookup[item.Venue].Name // will not be null
+                @venuesLookup[item.Venue].Name // will never be null, as long as DB has FK relationships
                 @*
                     DIAG what if it's null?
                 *@

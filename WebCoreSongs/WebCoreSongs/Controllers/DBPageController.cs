@@ -26,8 +26,81 @@ namespace WebCoreSongs.Controllers
             List<Viewsongperformances> songPerfs = await _context.Viewsongperformances.FromSql(
                 $"SELECT * FROM Songbook.Viewsongperformances WHERE Song={songID} ORDER BY PerformanceDate DESC, SongPerfID").ToListAsync();
 
-            SongAndPerformancesInfo model = new SongAndPerformancesInfo(songRow, songPerfs);
+            SongAndPerfInfoViewModel model = new SongAndPerfInfoViewModel(songRow, songPerfs);
             return View(model);
+        }
+
+        public async Task<IActionResult> PerformanceList()
+        {
+            List<Performances> perfs = await _context.Performances.FromSql(
+                $"SELECT * FROM Songbook.Performances ORDER BY PerformanceDate DESC").ToListAsync();
+
+            Dictionary<int, Venues> venuesLookup = await _context.Venues.ToDictionaryAsync(ven => ven.Id);
+
+            PerformancesViewModel model = new PerformancesViewModel(perfs, venuesLookup);
+            return View(model);
+        }
+
+        public async Task<IActionResult> PerformanceEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Performances? performance = await _context.Performances.FindAsync(id); // changed from scaffolding to strongly typr the var
+            if (performance == null)
+            {
+                return NotFound();
+            }
+
+            List<Venues> venuesList= await _context.Venues.ToListAsync(); // create a venues list for the drop down list
+            var model = new PerformanceEditViewModel(performance, venuesList);
+            return View(model);
+        }
+
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // DIAG our Model's members are null... why???
+        // DIAG And it requires a paramless ctor in model -- but they're never filled in
+        // for now, we could just have model create its own venues list maybe...?
+        // DOES NOT have to have the same name as the form that called it. Just needs to match the form asp-action on the page.
+        public async Task<IActionResult> PerformanceEditSubmit(int id, [Bind("Id,PerformanceDate,Venue,Comment,Series,PerformanceType,DidIlead")] PerformanceEditViewModel model)
+        {
+            if (id != model.Id)
+            {
+                // model._PerformanceRow.Id is 0! why? Why's it not passing? Cuz the direct 
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(model.ToPerformancesRow());
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PerformancesExists(model.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(PerformanceEdit), "DBPage", new { @id = id }); // really screwy way for MS to do this
+            }
+            return View(model);
+        }
+
+        private bool PerformancesExists(int id)
+        {
+            return _context.Performances.Any(e => e.Id == id);
         }
     }
 }
