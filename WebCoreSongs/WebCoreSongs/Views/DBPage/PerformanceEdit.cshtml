@@ -50,6 +50,33 @@
     </div>
 </div>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Song
+            </th>
+            <th>
+                Comment
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in perfModel._ViewSongPerformanceRows)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

@@ -5,6 +5,9 @@
         // TODO will need to add SongPerformances list to this
         public List<Venues> _VenuesList;
 
+        public List<Viewsongperformances> _ViewSongPerformanceRows;
+
+
         // From Performances table:
         public int Id { get; set; }
         public DateOnly PerformanceDate { get; set; }
@@ -18,12 +21,14 @@
         {
             // must have a param-less ctor? How does it fill it in on Save then?
             _VenuesList = new List<Venues>();
+            _ViewSongPerformanceRows = new List<Viewsongperformances>();
         }
 
-        public PerformanceEditViewModel(Performances performanceRow, List<Venues> venuesList)
+        public PerformanceEditViewModel(Performances performanceRow,  List<Venues> venuesList, List<Viewsongperformances> viewSongPerformanceRows)
         {
             FromPerformancesRow(performanceRow);
             _VenuesList = venuesList;
+            _ViewSongPerformanceRows = viewSongPerformanceRows;
         }
 
         public void FromPerformancesRow(Performances perfRow)

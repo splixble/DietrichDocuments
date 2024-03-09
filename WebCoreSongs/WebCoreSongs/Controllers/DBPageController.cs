@@ -55,7 +55,11 @@ namespace WebCoreSongs.Controllers
             }
 
             List<Venues> venuesList= await _context.Venues.ToListAsync(); // create a venues list for the drop down list
-            var model = new PerformanceEditViewModel(performance, venuesList);
+            List<Viewsongperformances> songPerfs = await _context.Viewsongperformances.FromSql(
+                $"SELECT * FROM Songbook.Viewsongperformances WHERE PerfID={id} ORDER BY SongPerfID").ToListAsync();
+
+            var model = new PerformanceEditViewModel(performance, venuesList, songPerfs);
+            
             return View(model);
         }
 
