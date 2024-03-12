@@ -72,6 +72,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Comment)
                 </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PerfID">Edit</a> |
+                </td>
             </tr>
         }
     </tbody>

@@ -49,6 +49,16 @@
                 </td>
                 <td>
                     <a asp-action="PerformanceEdit" asp-route-id="@item.Id">Edit</a>
+
+                    @* DIAG none of this is working! why?
+                <a href="/DBPage/PerformanceEdit?33">Edit</a>
+
+                asp-action="PerformanceEdit"
+                asp-route-id="@item.Id"
+                asp-route-songPerfId="DIAG"
+                asp-route-createNewSong="false">Edit</a>
+                *@
+
                 </td>
             </tr>
         }
