@@ -41,14 +41,16 @@ namespace WebCoreSongs.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> PerformanceEdit(int? id)
+        // Calling sequence is different than Default (defined in Program), so need to add Route:
+        [Route("DBPage/PerformanceEdit/{perfID}/{editSongPerf}/{songPerfID?}")] 
+        public async Task<IActionResult> PerformanceEdit(int? perfID, bool editSongPerf, int? songPerfID)
         {
-            if (id == null)
+            if (perfID == null)
             {
                 return NotFound();
             }
 
-            Performances? performance = await _context.Performances.FindAsync(id); // changed from scaffolding to strongly typr the var
+            Performances? performance = await _context.Performances.FindAsync(perfID); // changed from scaffolding to strongly typr the var
             if (performance == null)
             {
                 return NotFound();
@@ -56,10 +58,11 @@ namespace WebCoreSongs.Controllers
 
             List<Venues> venuesList= await _context.Venues.ToListAsync(); // create a venues list for the drop down list
             List<Viewsongperformances> songPerfs = await _context.Viewsongperformances.FromSql(
-                $"SELECT * FROM Songbook.Viewsongperformances WHERE PerfID={id} ORDER BY SongPerfID").ToListAsync();
+                $"SELECT * FROM Songbook.Viewsongperformances WHERE PerfID={perfID} ORDER BY SongPerfID").ToListAsync();
 
             var model = new PerformanceEditViewModel(performance, venuesList, songPerfs);
-            
+            model._SelectedSongPerfID = songPerfID;
+            model._CanEditSongPerformance = editSongPerf;
             return View(model);
         }
 

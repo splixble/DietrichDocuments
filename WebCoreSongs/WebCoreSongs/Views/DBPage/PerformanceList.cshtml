@@ -48,10 +48,12 @@
                     @Html.DisplayFor(modelItem => item.Series)
                 </td>
                 <td>
-                    <a asp-action="PerformanceEdit" asp-route-id="@item.Id">Edit</a>
+                    <a href="/DBPage/PerformanceEdit/@item.Id/false">Edit</a>
 
-                    @* DIAG none of this is working! why?
-                <a href="/DBPage/PerformanceEdit?33">Edit</a>
+                    @* DIAG tried these...
+
+                    Original asp-action, which worked as 1-param:
+                    <a asp-action="PerformanceEdit" asp-route-id="@item.Id">Edit</a>
 
                 asp-action="PerformanceEdit"
                 asp-route-id="@item.Id"

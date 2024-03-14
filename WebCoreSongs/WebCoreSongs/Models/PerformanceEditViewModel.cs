@@ -7,6 +7,8 @@
 
         public List<Viewsongperformances> _ViewSongPerformanceRows;
 
+        public int? _SelectedSongPerfID = null;
+        public bool _CanEditSongPerformance = false;
 
         // From Performances table:
         public int Id { get; set; }
@@ -16,6 +18,11 @@
         public int? Series { get; set; }
         public string PerformanceType { get; set; }
         public bool DidIlead { get; set; }
+
+        // From SongPerformances table:
+        public int SongPerf_ID { get; set; }
+        public string SongPerf_TitleAndArtist { get; set; }
+        public string SongPerf_Comment { get; set; }
 
         public PerformanceEditViewModel()
         {
