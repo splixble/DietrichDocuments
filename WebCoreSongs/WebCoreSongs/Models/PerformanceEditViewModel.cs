@@ -2,13 +2,16 @@
 {
     public class PerformanceEditViewModel
     {
-        // TODO will need to add SongPerformances list to this
         public List<Venues> _VenuesList;
 
-        public List<Viewsongperformances> _ViewSongPerformanceRows;
+        public List<Songperformances> _SongPerfList;
+
+        public List<Viewsongssinglefield> _SongsList;
 
         public int? _SelectedSongPerfID = null;
         public bool _CanEditSongPerformance = false;
+
+        public Dictionary<int, Viewsongssinglefield> _SongRowsByID;
 
         // From Performances table:
         public int Id { get; set; }
@@ -20,24 +23,56 @@
         public bool DidIlead { get; set; }
 
         // From SongPerformances table:
-        public int SongPerf_ID { get; set; }
-        public string SongPerf_TitleAndArtist { get; set; }
+        public int SongPerf_Id { get; set; }
+        public int SongPerf_Song { get; set; }
         public string SongPerf_Comment { get; set; }
 
         public PerformanceEditViewModel()
         {
             // must have a param-less ctor? How does it fill it in on Save then?
             _VenuesList = new List<Venues>();
-            _ViewSongPerformanceRows = new List<Viewsongperformances>();
+            _SongPerfList = new List<Songperformances>();
         }
 
-        public PerformanceEditViewModel(Performances performanceRow,  List<Venues> venuesList, List<Viewsongperformances> viewSongPerformanceRows)
+        public PerformanceEditViewModel(Performances performanceRow, bool canEditSongPerf, int? songPerfID, 
+            List<Venues> venuesList, List<Songperformances> songPerfList, List<Viewsongssinglefield> songsList)
         {
             FromPerformancesRow(performanceRow);
+
+            _SongsList = songsList;
+            _CanEditSongPerformance = canEditSongPerf;
+            _SelectedSongPerfID = songPerfID;
             _VenuesList = venuesList;
-            _ViewSongPerformanceRows = viewSongPerformanceRows;
+            _SongPerfList = songPerfList;
+            _SongsList = songsList;
+
+            if (songPerfID != null)
+                FromSongPerformancesRow(_SongPerfList.Find(songPerf => songPerf.Id == (int)songPerfID));
+            // DIAG and gotta set it back
+
+            _SongRowsByID = new Dictionary<int, Viewsongssinglefield>();
+            foreach (Viewsongssinglefield songRow in _SongsList)
+                _SongRowsByID[songRow.Id] = songRow;
         }
 
+        public void FromSongPerformancesRow(Songperformances songPerfRow)
+        {
+            // Copy fields over from Performances row: 
+            SongPerf_Id = songPerfRow.Id;
+            SongPerf_Song = songPerfRow.Song;
+            SongPerf_Comment = songPerfRow.Comment;
+        }
+
+        public Songperformances ToSongPerformancesRow()
+        {
+            // Copy fields over to Performances row: 
+            Songperformances songPerfRow = new Songperformances();
+            songPerfRow.Id = SongPerf_Id;
+            songPerfRow.Song = SongPerf_Song;
+            songPerfRow.Comment = SongPerf_Comment;
+
+            return songPerfRow;
+        }
         public void FromPerformancesRow(Performances perfRow)
         {
             // Copy fields over from Performances row: 

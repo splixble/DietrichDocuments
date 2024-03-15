@@ -63,26 +63,36 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in perfModel._ViewSongPerformanceRows)
+        @foreach (var item in perfModel._SongPerfList)
         {
             <tr>
                 <td>
-                    @if (item.SongPerfID == perfModel._SelectedSongPerfID)
+                    @if (item.Id == perfModel._SelectedSongPerfID)
                     {
-                        <input asp-for="SongPerf_TitleAndArtist" class="form-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" />
-                        // should be a text drop-down list
+                        <select asp-for="SongPerf_Song"
+                        asp-items="@(new SelectList(perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist)))">
+                            @*<option>Please select one</option>*@
+                        </select>
+                        @* was: <input asp-for="SongPerf_TitleAndArtist" class="form-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
+                            or @Html.DisplayFor(modelItem => item.TitleAndArtist);
+                            need: Disabled if 
+                            DIAG probly want to construct SelectList in Controller?
+                        /> *@
                     }
                     else
                     {
-                        @Html.DisplayFor(modelItem => item.TitleAndArtist);
+                        // Display looked-up version of field value:
+                        // was: Html.Raw(perfModel._SongRowsByID[item.Song].TitleAndArtist);
+                        @(perfModel._SongRowsByID[item.Song].TitleAndArtist)
+                        // the preceding works, but it's dangerous, no? bad chars in HTML? but the helper funcs dont display anything! DIAG??
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Comment)
+                    @Html.DisplayFor(modelItem => item.Comment) 
                 </td>
                 <td>
                     @* no longer use this overcomplicated BS: <a asp-action="Edit" asp-route-id="@item.PerfID">Edit</a>*@ |
-                    <a href="/DBPage/PerformanceEdit/@item.PerfID/true/@item.SongPerfID">Edit</a>
+                    <a href="/DBPage/PerformanceEdit/@item.Performance/true/@item.Id">Edit</a>
                 </td>
             </tr>
         }

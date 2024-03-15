@@ -42,8 +42,8 @@ namespace WebCoreSongs.Controllers
         }
 
         // Calling sequence is different than Default (defined in Program), so need to add Route:
-        [Route("DBPage/PerformanceEdit/{perfID}/{editSongPerf}/{songPerfID?}")] 
-        public async Task<IActionResult> PerformanceEdit(int? perfID, bool editSongPerf, int? songPerfID)
+        [Route("DBPage/PerformanceEdit/{perfID}/{canEditSongPerf}/{songPerfID?}")] 
+        public async Task<IActionResult> PerformanceEdit(int? perfID, bool canEditSongPerf, int? songPerfID)
         {
             if (perfID == null)
             {
@@ -57,12 +57,13 @@ namespace WebCoreSongs.Controllers
             }
 
             List<Venues> venuesList= await _context.Venues.ToListAsync(); // create a venues list for the drop down list
-            List<Viewsongperformances> songPerfs = await _context.Viewsongperformances.FromSql(
-                $"SELECT * FROM Songbook.Viewsongperformances WHERE PerfID={perfID} ORDER BY SongPerfID").ToListAsync();
+            List<Songperformances> songPerfs = await _context.Songperformances.FromSql(
+                $"SELECT * FROM Songbook.Songperformances WHERE Performance={perfID} ORDER BY ID").ToListAsync();
 
-            var model = new PerformanceEditViewModel(performance, venuesList, songPerfs);
-            model._SelectedSongPerfID = songPerfID;
-            model._CanEditSongPerformance = editSongPerf;
+            List<Viewsongssinglefield> songsList = await _context.Viewsongssinglefield.FromSql( // create a songs list for the drop down list
+                $"SELECT * FROM Songbook.Viewsongssinglefield ORDER BY TitleAndArtist").ToListAsync();
+
+            var model = new PerformanceEditViewModel(performance, canEditSongPerf, songPerfID, venuesList, songPerfs, songsList);
             return View(model);
         }
 
