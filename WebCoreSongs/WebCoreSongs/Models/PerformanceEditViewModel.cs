@@ -17,15 +17,16 @@
         public int Id { get; set; }
         public DateOnly PerformanceDate { get; set; }
         public int Venue { get; set; }
-        public string Comment { get; set; }
+        public string Comment { get; set; } = ""; // initialized so ModelState wont be invalid
         public int? Series { get; set; }
-        public string PerformanceType { get; set; }
+        public string PerformanceType { get; set; } = ""; // initialized so ModelState wont be invalid
         public bool DidIlead { get; set; }
 
         // From SongPerformances table:
         public int SongPerf_Id { get; set; }
         public int SongPerf_Song { get; set; }
-        public string SongPerf_Comment { get; set; }
+        public string SongPerf_Comment { get; set; } = ""; // DIAG If this is not initialized to non-null, PerformanceEditSave() fails cuz ModelState is invalid...
+                                                           // Dunno why, some model validation problem. Doesn't care about the Int fields tho!
 
         public PerformanceEditViewModel()
         {
@@ -48,7 +49,6 @@
 
             if (songPerfID != null)
                 FromSongPerformancesRow(_SongPerfList.Find(songPerf => songPerf.Id == (int)songPerfID));
-            // DIAG and gotta set it back
 
             _SongRowsByID = new Dictionary<int, Viewsongssinglefield>();
             foreach (Viewsongssinglefield songRow in _SongsList)
@@ -59,6 +59,7 @@
         {
             // Copy fields over from Performances row: 
             SongPerf_Id = songPerfRow.Id;
+            Id = songPerfRow.Performance;
             SongPerf_Song = songPerfRow.Song;
             SongPerf_Comment = songPerfRow.Comment;
         }
@@ -68,6 +69,7 @@
             // Copy fields over to Performances row: 
             Songperformances songPerfRow = new Songperformances();
             songPerfRow.Id = SongPerf_Id;
+            songPerfRow.Performance = Id;
             songPerfRow.Song = SongPerf_Song;
             songPerfRow.Comment = SongPerf_Comment;
 

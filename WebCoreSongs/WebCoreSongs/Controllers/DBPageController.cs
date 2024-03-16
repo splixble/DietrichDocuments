@@ -71,15 +71,13 @@ namespace WebCoreSongs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // DIAG our Model's members are null... why???
         // DIAG And it requires a paramless ctor in model -- but they're never filled in
         // for now, we could just have model create its own venues list maybe...?
         // DOES NOT have to have the same name as the form that called it. Just needs to match the form asp-action on the page.
-        public async Task<IActionResult> PerformanceEditSubmit(int id, [Bind("Id,PerformanceDate,Venue,Comment,Series,PerformanceType,DidIlead")] PerformanceEditViewModel model)
+        public async Task<IActionResult> PerformanceEditSave(int id, [Bind("Id,PerformanceDate,Venue,Comment,Series,PerformanceType,DidIlead")] PerformanceEditViewModel model)
         {
             if (id != model.Id)
             {
-                // model._PerformanceRow.Id is 0! why? Why's it not passing? Cuz the direct 
                 return NotFound();
             }
 
@@ -101,7 +99,46 @@ namespace WebCoreSongs.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(PerformanceEdit), "DBPage", new { @id = id }); // really screwy way for MS to do this
+                return Redirect("PerformanceEdit/"+model.Id+"/false");
+                // was: return RedirectToAction(...); but i had peoblems with parameters
+            }
+            return View(model);
+        }
+
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // Saves SongPerformance fields on line items
+        // First param name must match name of property in model
+        public async Task<IActionResult> PerformanceEditSaveSong(int songPerf_Id, [Bind("SongPerf_Id, SongPerf_Song, SongPerf_Comment, Id")] PerformanceEditViewModel model)
+        {
+            if (songPerf_Id != model.SongPerf_Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(model.ToSongPerformancesRow());
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    // DIAG how do I change this?
+                    if (!PerformancesExists(model.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return Redirect("PerformanceEdit/" + model.Id + "/false");
+                // was: return RedirectToAction(...); but i had peoblems with parameters
             }
             return View(model);
         }

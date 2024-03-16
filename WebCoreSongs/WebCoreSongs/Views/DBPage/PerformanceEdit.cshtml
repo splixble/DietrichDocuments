@@ -10,7 +10,7 @@
 <h1>@heading</h1>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="PerformanceEditSubmit">
+        <form asp-action="PerformanceEditSave">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -66,34 +66,53 @@
         @foreach (var item in perfModel._SongPerfList)
         {
             <tr>
-                <td>
-                    @if (item.Id == perfModel._SelectedSongPerfID)
-                    {
-                        <select asp-for="SongPerf_Song"
-                        asp-items="@(new SelectList(perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist)))">
-                            @*<option>Please select one</option>*@
-                        </select>
-                        @* was: <input asp-for="SongPerf_TitleAndArtist" class="form-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
-                            or @Html.DisplayFor(modelItem => item.TitleAndArtist);
-                            need: Disabled if 
-                            DIAG probly want to construct SelectList in Controller?
-                        /> *@
-                    }
-                    else
-                    {
-                        // Display looked-up version of field value:
-                        // was: Html.Raw(perfModel._SongRowsByID[item.Song].TitleAndArtist);
+                @if (item.Id == perfModel._SelectedSongPerfID)
+                {
+                    <form asp-action="PerformanceEditSaveSong">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="SongPerf_Id" />
+                        <input type="hidden" asp-for="Id" /> @*is this also needed so that it'll have perf ID?*@
+                    <td>
+                            <select asp-for="SongPerf_Song"
+                            asp-items="@(new SelectList(perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist)))">
+                                @*<option>Please select one</option>*@
+                            </select>
+                            @* was: <input asp-for="SongPerf_TitleAndArtist" class="form-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
+                                or @Html.DisplayFor(modelItem => item.TitleAndArtist);
+                                need: Disabled if 
+                                DIAG probly want to construct SelectList in Controller?
+                            /> *@
+                        </td>
+                        <td>
+                            <input asp-for="SongPerf_Comment" class="form-control" disabled="@(!perfModel._CanEditSongPerformance)" />
+                            @* DIAG should be:
+                            @if (item.Id == perfModel._SelectedSongPerfID)
+                                @Html.DisplayFor(modelItem => perfModel.SongPerf_Comment)
+                            else
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            *@
+                        </td>
+                        <td>
+                            <input type="submit" value="Blvgrp" class="btn btn-primary" />
+                        </td>
+                    </form>
+                }
+                else
+                {
+                    <td>
+                        @* Display looked-up version of field value:
+                        was: Html.Raw(perfModel._SongRowsByID[item.Song].TitleAndArtist);
+                        the following works, but it's dangerous, no? bad chars in HTML? but the helper funcs dont display anything! DIAG?? *@
                         @(perfModel._SongRowsByID[item.Song].TitleAndArtist)
-                        // the preceding works, but it's dangerous, no? bad chars in HTML? but the helper funcs dont display anything! DIAG??
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comment) 
-                </td>
-                <td>
-                    @* no longer use this overcomplicated BS: <a asp-action="Edit" asp-route-id="@item.PerfID">Edit</a>*@ |
-                    <a href="/DBPage/PerformanceEdit/@item.Performance/true/@item.Id">Edit</a>
-                </td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @* no longer use this overcomplicated BS: <a asp-action="Edit" asp-route-id="@item.PerfID">Edit</a>*@ |
+                        <a href="/DBPage/PerformanceEdit/@item.Performance/true/@item.Id">Edit</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>
