@@ -41,19 +41,35 @@ namespace WebCoreSongs.Controllers
             return View(model);
         }
 
+        [Route("DBPage/CreatePerformance")]
+        public async Task<IActionResult> CreatePerformance()
+        {
+            return await PerformanceEdit(null, true, null);
+        }
+
         // Calling sequence is different than Default (defined in Program), so need to add Route:
-        [Route("DBPage/PerformanceEdit/{perfID}/{canEditSongPerf}/{songPerfID?}")] 
+        [Route("DBPage/PerformanceEdit/{perfID}/{canEditSongPerf}/{songPerfID?}")]
         public async Task<IActionResult> PerformanceEdit(int? perfID, bool canEditSongPerf, int? songPerfID)
         {
+            // TODO As of 3/18/24, perfID of -1 means create new one. Not good solution... but..
+            // TODO also, these paarmeters s/b separated by ? on url, to be proper, o?
             if (perfID == null)
             {
                 return NotFound();
             }
 
-            Performances? performance = await _context.Performances.FindAsync(perfID); // changed from scaffolding to strongly typr the var
-            if (performance == null)
+            Performances? performance; // DIAG anything else need be init'd?
+            if (perfID == -1) // DIAG s/b bool param
             {
-                return NotFound();
+                performance = new Performances();
+            }
+            else
+            {
+                performance = await _context.Performances.FindAsync(perfID); // changed from scaffolding to strongly typr the var
+                if (performance == null)
+                {
+                    return NotFound();
+                }
             }
 
             List<Venues> venuesList= await _context.Venues.ToListAsync(); // create a venues list for the drop down list
