@@ -79,6 +79,15 @@ namespace WebCoreSongs.Controllers
             List<Viewsongssinglefield> songsList = await _context.Viewsongssinglefield.FromSql( // create a songs list for the drop down list
                 $"SELECT * FROM Songbook.Viewsongssinglefield ORDER BY TitleAndArtist").ToListAsync();
 
+            // Have we been directed to add a new song performance? If so, add blank rec:
+            if (songPerfID == 0) // DIAG try 0 instead of -1 to indicate null value. It works! Warn that this is screwy design tho!
+            {
+                Songperformances newSongPerf = new Songperformances();
+                newSongPerf.Id = 0; // DIAG try 0 instead of -1 to indicate null value
+                newSongPerf.Performance = (int)perfID;
+                songPerfs.Add(newSongPerf);
+            }
+
             var model = new PerformanceEditViewModel(performance, canEditSongPerf, songPerfID, venuesList, songPerfs, songsList);
             return View(model);
         }
@@ -154,7 +163,7 @@ namespace WebCoreSongs.Controllers
                     }
                 }
                 return Redirect("PerformanceEdit/" + model.Id + "/false");
-                // was: return RedirectToAction(...); but i had peoblems with parameters
+                // was: return RedirectToAction(...); but i had problems with parameters
             }
             return View(model);
         }

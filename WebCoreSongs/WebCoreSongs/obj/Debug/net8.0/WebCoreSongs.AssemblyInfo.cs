@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebCoreSongs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10bb495b592c11c6226737449329ce206528a74a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94c30027184efbcc42677f788b86b1ba7fd9f3ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebCoreSongs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebCoreSongs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

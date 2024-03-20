@@ -53,6 +53,13 @@
     </div>
 </div>
 
+<p>
+    @* was" "<a asp-action="CreatePerformance">Create New</a>
+    // DIAG try 0 instead of -1 to indicate null value
+    *@
+    <a href="/DBPage/PerformanceEdit/@perfModel.Id/true/0">Add Song</a> 
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -96,7 +103,7 @@
                             *@
                         </td>
                         <td>
-                            <input type="submit" value="Blvgrp" class="btn btn-primary" />
+                            <input type="submit" value="Save Song" class="btn btn-primary" />
                         </td>
                     </form>
                 }
