@@ -3,109 +3,55 @@ Dietrich Neuman
 Portland, Oregon 97214
 Phone: (206) 930-7266
 Email: DietrichNeuman@gmail.com
+linkedin.com/in/dietrich-neuman-030806132/
 
 PROFESSIONAL SUMMARY 
-Software engineer with over 30 years’ experience developing Windows applications at stages of the software life cycle, with expertise in:
+Software engineer with decades of experience developing Windows applications at stages of the software life cycle, with expertise in:
 •	UI design and implementation, in C# .NET, C++, VB, JavaScript, and other languages
-•	Database definition and administration, in SQL Server, Access, and other SQL platforms
+•	Database administration and design, in SQL Server, Access, and other SQL platforms
 •	Documentation, configuration management, and testing
 Whether working from a formal specification or an ad-hoc user request, I excel at making software easier and more powerful for the user.
 PROFESSIONAL EXPERIENCE 
 Senior Consultant (software engineer)	July 2021 – February 2024
-CGI 	Montreal, Quebec (remote from Portland) 
-Designed, implemented, and maintained Winforms C# .NET/ SQL Server applications that used reusable code libraries I had written as an employee of Nexelis, a Q² Solutions Company. Redesigned in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with SQL Server and adapting them to a new laboratory and IT environment. 
-Migrated data, software, and processes from a clinical laboratory under decommissioning to a new laboratory and IT environment, while assisting in the initial setup of the new environment. 
+CGI 	Fairfax, Virginia (remote from Portland) 
+Designed and implemented Winforms C# .NET/ SQL Server applications, incorporating reusable code libraries I had written at my previous position at Nexelis.
+Reconfigured in-house applications and software libraries I had written at Nexelis, replacing their database back-end (Advanced Revelation) with SQL Server, and adapting them to a new laboratory and IT environment. 
+Migrated data, software, and processes from a clinical laboratory under decommissioning to a new laboratory and IT environment, while working on the initial setup of the new environment. 
 Customized a STARLIMS installation at a pharmaceutical manufacturing company, modifying server scripts in STARLIMS Scripting Language and client scripts in JavaScript to solve usability problems.
-Completed and enhanced an Access database application for a biotech company, migrating its back-end tables from Access to SharePoint lists.
+Completed and upgraded an Access database application for a biotech company, migrating its back-end tables from Access to SharePoint lists.
 Developed a demo web application in ASP.NET Core, with a SQL Server Azure back end, for a client proposal.
-
 Senior Software Engineer	September 2005 – July 2021
 Nexelis, a Q² Solutions Company	Seattle, Washington 
 Created the company’s first formal in-house software development environment, by acquiring and configuring Visual Studio, SQL Server, and Perforce.
-Designed and implemented a suite of Winforms C# .NET/SQL Server in-house laboratory applications for clinical study setup, clinical data extraction, project management, financial projection and reporting (with Crystal Reports), system access privilege management, logging usage of applications by users, and other purposes. Developed reusable code libraries for these applications, which provided the following features:
-•	Windows Forms.NET user interface with data binding
+Designed and implemented a suite of Winforms C# .NET/SQL Server in-house applications, to augment and/or replace functions in the company’s legacy system. These included the following:
+•	Clinical data reports, which presented, in a few seconds, the same data that had taken the legacy system 20 minutes or more to extract.
+•	A freezer inventory tracking system, which replaced a cumbersome and error-prone spreadsheet-based system with an interface with graphical representations of freezers and their contents, where sample and box movements are recorded by drag-and-drop operations.
+•	Project management and financial projection tools, which generated Crystal Reports.
+•	A monitor of usage of these applications by users, which aided admins in troubleshooting performance issues.
+Developed reusable code libraries for these applications, which provided the following common features:
 •	Multi-level data security based on Windows Login credentials
-•	Paginated images of forms and DataGridView objects for printing
+•	Paginated, optimized images of forms and DataGridView objects for printing
 •	Audit logging at either the client or server (SQL Server) side
-Administered and enhanced the SQL Server databases I had designed for the in-house applications, adding C# assemblies, triggers, and other advanced features. 
-Designed and implemented a Mirror Database, to maintain a real time copy of the data in the company’s Revelation Software laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server.
+Designed, implemented, and administered SQL Server databases for the in-house applications, adding C# assemblies, triggers, and other advanced features. 
+Created a Mirror Database, to maintain a real time copy of the data in the company’s Revelation Software laboratory information system (LIS), generating TSQL scripts that convert the table records from Revelation format to SQL Server.
 Wrote JavaScript code to generate dynamic HTML for the company’s website.
 Created a utility in Visual Basic Script 6.0 to generate and print bar-code labels from data read from text files. 
 Maintained Java and Objective C code of a smartphone application for both the Android and iPhone platforms.
-Wrote 21 CFR Part 11-compliant validation documentation for a laboratory information system, and for several laboratory instrument data interfaces.
-
+Authored validation documentation for a laboratory information system, and for several laboratory instrument data interfaces.
 Programmer-Writer	June 2005 – August 2005
-Sakson & Taylor (agency)	Seattle, Washington
-Contracted to Microsoft Corporation, Redmond, Washington 
-Wrote and edited Microsoft ADO.NET documentation, which is published in application help files and MSDN. Maintained OLE DB and ODBC documentation. Corrected and clarified documentation in response to documentation change requests. Resolved documentation issues by creating test applications and communicating with developers. 
+Microsoft (contracted through Sakson & Taylor)	Redmond, Washington
+Wrote and edited Microsoft ADO.NET documentation, which is published in application help files and MSDN. Maintained OLE DB and ODBC documentation. Resolved documentation issues by creating test applications and communicating with developers. 
 Wrote and maintained sample applications used in published ADO.NET documentation, in C#, C++ .NET, and Visual Basic .NET, using SQL Server 2005.  
-
 Software Development Engineer in Test	February 2004 – February 2005
-Excell Data Corporation (agency)	Bellevue, Washington
-Contracted to Microsoft Corporation, Redmond, Washington 
-Designed and wrote a QA tool to visually represent trends in automated test results, based on data loaded from various XML/Web data sources, first as a Perl script to generate HTML/JavaScript web pages, then as a C# .NET application, integrated with other .NET components used in Microsoft’s development of .NET Framework 2.0. Using the tool, uncovered several previously unnoticed problems in both software and testing platforms. 
+Microsoft (contracted through Excell Data)	Redmond, Washington
+Designed and wrote a QA tool to visually represent trends in automated test results, first as a Perl script to generate HTML/JavaScript web pages, then as a C# .NET application. Using the tool, uncovered many previously unnoticed problems in both software and testing platforms. 
 Developed other QA tools as well in C#, Perl, and NT Batch script, resulting in considerable streamlining of the test failure analysis process. 
 Monitored automated test runs of Phoenix, a platform for compiler design and analysis. Reproduced, simplified, and diagnosed test failures, then wrote them up as bug reports. 
-
-Software Development Engineer	April – October 2003
-Franklin Revere	Seattle, Washington
-Developed server software in Perl and C++ for internet-based consumer financial service. 
-
-Freelance Software Developer and Consultant	January 2002 – August 2003
-Dietrich Neuman Software Services	Portland, Oregon 
-Designed and developed professional websites for clients, with CGI scripting in Perl, interaction with third-party database hosts. 
-Designed and developed inventory tracking systems for art and antique dealers: MS Access databases integrated with a web-based catalog system and Excel. 
-
-Software Development Engineer	February – September 2001
-Professional Data Exchange, Inc. (ProDX)	Portland, Oregon
-Consulting assignment for Metro One Telecommunications, Beaverton, Oregon
-Developed an Internet client application in C++/MFC that synchronizes data between web server and Personal Information Manager (PIM) applications such as Microsoft Outlook.  Wrote reusable Utilities DLL as well.  
-As the team's senior C++/MFC engineer, provided technical advice and guidance to teammates on a daily basis. 
-
-E-Commerce Software Engineer	June 1999 – October 2000
-Harland Financial Solutions	Portland, Oregon
-Developed and maintained the following Internet banking software components in C++/MFC/STL, at up to four concurrent release levels:
-•	GUI application for remote administration of the financial transaction server
-•	COM/DCOM client and server middleware components, to perform the app's financial and database transactions and handle requests from web server
-•	“Pluggable” DLL components for the app; architected the SDK library for development of the DLL's
-
-Software Engineer	August 1998 – April 1999
-AZAD Technology Partners (agency)	Beaverton, Oregon
-Contracted to Mentor Graphics, Wilsonville, Oregon 
-Developed QA software for Falcon Framework, a software library used by commercial circuit board design and verification applications on several UNIX platforms and Windows NT. Ported QA suites from UNIX to NT. Cleaned up earlier porting work to make QA suites portable, automatic, and able to be run predictably and easily. Systematized and documented building and testing procedures.  
-Corrected software defects on NT and UNIX platforms.  Maintained code revision streams in CVS, branching and merging changes by off-site developers after deducing their baseline revision level. 
-
-Software Engineer	June 1995 – August 1998
-Aerotek (agency)	Beaverton, Oregon
-Contracted to USNR, Woodland, Washington
-Primary engineer for a Windows NT-based networked table editing system in C++/MFC.  Designed and wrote first version entirely, then carried development through to the first several customer releases.  It featured: 
-•	Multi-threaded network client layer, to send and receive tables (structure and data) originating on various Ethernet-linked hardware systems, using TCP-IP sockets and an in-house client-server protocol 
-•	Windows-standard user interface, with extension DLL libraries to represent table data graphically
-•	Data storage in SQL database tables, via ODBC interface
-•	An installation package I developed with InstallShield 
-Designed and wrote multi-threaded utility in Pascal on VAX ELN to maintain persistent socket connections and establish client-server relationships between network nodes.  Using that utility, wrote a server to exchange tables between the table editor and a 10-year-old legacy system on VAX ELN.  Created several other VAX ELN-based servers used by other NT-based client applications.  
-
-Quality Assurance Engineer	February – September 1994
-DPI Services	San Jose, California
-Contracted to Magellan Communications, Sunnyvale, California
-Created a system of formal quality assurance for a phone mail hardware/software system.  This included a 170-page test plan covering functional specification compliance, and several portable C programs to test low-level functions and simulate normal usage of the system.  
-Maintained and debugged source code, and integrated several engineers' code changes into an RCS source code control system.  Maintained Makefiles.
-
-Software Engineer	September 1991 – July 1993
-National Information Systems, Inc.	San Jose, California
-Designed and implemented a client-server interface for RDM, a database application development system, to enable it to access remote native and ORACLE database tables over DECNET and other networks.
-Ported RDM from VAX VMS to Alpha AXP OpenVMS.
-Performed extensive debugging of RDM, involving every level of development from assembler code to customers' developed applications.  Responsible for all maintenance development of RDM under VMS.  
-Developed new features, enhancements, and innovations for RDM, including screen refresh optimization, control-C trapping, and multi-user record access.
-Created and maintained RCS-based source control system in VAX DCL for RDM. 
-Lead customer support engineer for ProRDM, a high-level language interface for RDM.   Performed telephone, dial-up, written, and on-site support services.  
-
-Software Engineer, Technical Writer	June 1986 – August 1991
-Interactive Technology, Inc.	Beaverton, Oregon
-Maintained, debugged, and wrote enhancements to RDM, as at NIS.  Quality Assurance Manager and Release Engineer for three major releases of RDM, and lead customer support engineer for ProRDM.  
-Designed and implemented enhanced B*tree indexing system for RDM.   
-Primary author of Skylight Guide to Application Programming, a guide to a commercial API toolkit for developing object-oriented graphical user interface (GUI) applications.  Editor and co-author of three other volumes of Skylight documentation totaling over 450 pages.
+PREVIOUS EXPERIENCE 
+Freelance software developer and consultant, Portland Oregon
+Software Development Engineer, Professional Data Exchange, Inc. (ProDX), Portland, Oregon
+E-Commerce Software Engineer, Harland Financial Solutions,	Portland, Oregon
+Software Engineer, Mentor Graphics (contract through AZAD Technology Partners), Wilsonville, Oregon 
+Software Engineer, USNR (contract through Aerotek), Woodland, Washington 
 EDUCATION 
-BS in Computer and Information Science, minors in Mathematics and English
-University of Oregon, Eugene, Oregon 1986
-
+BS in Computer and Information Science, minors in Mathematics and English, University of Oregon
