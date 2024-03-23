@@ -17,7 +17,7 @@
         public int Id { get; set; }
         public DateOnly PerformanceDate { get; set; }
         public int Venue { get; set; }
-        public string Comment { get; set; } = ""; // initialized so ModelState wont be invalid
+        public string? Comment { get; set; } // nullable so ModelState wont be invalid
         public int? Series { get; set; }
         public string PerformanceType { get; set; } = ""; // initialized so ModelState wont be invalid
         public bool DidIlead { get; set; }
@@ -25,7 +25,7 @@
         // From SongPerformances table:
         public int SongPerf_Id { get; set; }
         public int SongPerf_Song { get; set; }
-        public string? SongPerf_Comment { get; set; } // initialized so ModelState wont be invalid -- DIAG but it makes me unmable to save a null value! does it need to be "nullable" string?
+        public string? SongPerf_Comment { get; set; } // nullable so ModelState wont be invalid
         // DIAG defining as string? makes it able to take a null value! set this to the other nullable fields as well?
         public PerformanceEditViewModel()
         {

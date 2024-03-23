@@ -22,7 +22,7 @@
                 <label asp-for="Venue" class="control-label"></label>
                 <select asp-for="Venue"
                         asp-items="@(new SelectList(perfModel._VenuesList, nameof(Venues.Id), nameof(Venues.Name)))"
-                        disabled="@(perfModel._CanEditSongPerformance)" >
+                        class="form-control" disabled="@(perfModel._CanEditSongPerformance)">
                     @*<option>Please select one</option>*@
                 </select>
             </div>
@@ -52,13 +52,6 @@
         </form>
     </div>
 </div>
-
-<p>
-    @* was" "<a asp-action="CreatePerformance">Create New</a>
-    // DIAG try 0 instead of -1 to indicate null value
-    *@
-    <a href="/DBPage/PerformanceEdit/@perfModel.Id/true/0">Add Song</a> 
-</p>
 
 <table class="table">
     <thead>
@@ -127,6 +120,12 @@
         }
     </tbody>
 </table>
+<p>
+    @* was" "<a asp-action="CreatePerformance">Create New</a>
+    // DIAG try 0 instead of -1 to indicate null value
+    *@
+    <a href="/DBPage/PerformanceEdit/@perfModel.Id/true/0">Add Song</a>
+</p>
 
 <div>
     <a asp-action="Index">Back to List</a>
