@@ -25,9 +25,8 @@
         // From SongPerformances table:
         public int SongPerf_Id { get; set; }
         public int SongPerf_Song { get; set; }
-        public string SongPerf_Comment { get; set; } = ""; // DIAG If this is not initialized to non-null, PerformanceEditSave() fails cuz ModelState is invalid...
-                                                           // Dunno why, some model validation problem. Doesn't care about the Int fields tho!
-
+        public string? SongPerf_Comment { get; set; } // initialized so ModelState wont be invalid -- DIAG but it makes me unmable to save a null value! does it need to be "nullable" string?
+        // DIAG defining as string? makes it able to take a null value! set this to the other nullable fields as well?
         public PerformanceEditViewModel()
         {
             // must have a param-less ctor? How does it fill it in on Save then?
@@ -67,7 +66,9 @@
         public Songperformances ToSongPerformancesRow()
         {
             // Copy fields over to Performances row: 
+            // (Tried getting the Songperformances object from _SongPerfList; that didn't solve the Comment field Validate problem)
             Songperformances songPerfRow = new Songperformances();
+
             songPerfRow.Id = SongPerf_Id;
             songPerfRow.Performance = Id;
             songPerfRow.Song = SongPerf_Song;

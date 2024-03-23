@@ -80,7 +80,7 @@ namespace WebCoreSongs.Controllers
                 $"SELECT * FROM Songbook.Viewsongssinglefield ORDER BY TitleAndArtist").ToListAsync();
 
             // Have we been directed to add a new song performance? If so, add blank rec:
-            if (songPerfID == 0) // DIAG try 0 instead of -1 to indicate null value. It works! Warn that this is screwy design tho!
+            if (songPerfID == 0) // DIAG try 0 instead of -1 to indicate null value. It works! Warn that this is screwy design tho! Also, apply this "0" idea to new Performances as well!
             {
                 Songperformances newSongPerf = new Songperformances();
                 newSongPerf.Id = 0; // DIAG try 0 instead of -1 to indicate null value

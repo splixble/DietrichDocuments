@@ -88,10 +88,25 @@ public partial class SongsContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Comment)
-                .HasMaxLength(250)
                 .IsUnicode(false)
+                .HasMaxLength(250)
                 .HasDefaultValueSql("(NULL)");
+            /* DIAG removing last 2 properties fix? No! even tho Artists Firstname doesnt have same prob! 
+            */
         });
+        
+        /* DIAG this can be removed, does not fix the Validity problem
+        modelBuilder.Entity<PerformanceEditViewModel>(entity =>
+        {
+            // DIAG does this fix the validation problem? No!
+            // entity.HasKey(e => e.Id).HasName("PK_songperformances_ID");
+            // entity.ToTable("songperformances", "songbook");
+
+            entity.Property(e => e.SongPerf_Song);
+            entity.Property(e => e.SongPerf_Id).HasColumnName("ID");
+            entity.Property(e => e.SongPerf_Comment).IsUnicode(false);
+        });
+        */
 
         modelBuilder.Entity<Venues>(entity =>
         {

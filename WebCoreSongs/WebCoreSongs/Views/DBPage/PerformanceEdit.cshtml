@@ -94,13 +94,13 @@
                             /> *@
                         </td>
                         <td>
-                            <input asp-for="SongPerf_Comment" class="form-control" disabled="@(!perfModel._CanEditSongPerformance)" />
-                            @* DIAG should be:
                             @if (item.Id == perfModel._SelectedSongPerfID)
-                                @Html.DisplayFor(modelItem => perfModel.SongPerf_Comment)
+                            {
+                                <input asp-for="SongPerf_Comment" class="form-control" disabled="@(!perfModel._CanEditSongPerformance)" />
+                                @*@Html.DisplayFor(modelItem => perfModel.SongPerf_Comment)*@
+                            }
                             else
                                 @Html.DisplayFor(modelItem => item.Comment)
-                            *@
                         </td>
                         <td>
                             <input type="submit" value="Save Song" class="btn btn-primary" />
