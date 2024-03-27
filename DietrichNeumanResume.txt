@@ -6,7 +6,7 @@ Email: DietrichNeuman@gmail.com
 linkedin.com/in/dietrich-neuman-030806132/
 
 PROFESSIONAL SUMMARY 
-Software engineer with decades of experience developing Windows applications at stages of the software life cycle, with expertise in:
+Software engineer with decades of experience developing Windows applications at all stages of the software life cycle, with expertise in:
 •	UI design and implementation, in C# .NET, C++, VB, JavaScript, and other languages
 •	Database administration and design, in SQL Server, Access, and other SQL platforms
 •	Documentation, configuration management, and testing
