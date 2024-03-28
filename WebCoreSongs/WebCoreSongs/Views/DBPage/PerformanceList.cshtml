@@ -51,10 +51,13 @@
                 </td>
                 <td>
                     <a href="/DBPage/PerformanceEdit/@item.Id/false">Edit</a>
+                    @* TODO Delete hyperlink, used and then removed 28Mar24:
+                             | <a href="/Performances/Delete/@item.Id">Delete</a>
+                        It goes into the /Performances/Delete scaffolded page, which is not a good permanent solution, since does not return to the right page.
+                        
+                    DIAG tried these...
 
-                    @* DIAG tried these...
-
-                    Original asp-action, which worked as 1-param:
+                    Original Edit asp-action, which worked as 1-param:
                     <a asp-action="PerformanceEdit" asp-route-id="@item.Id">Edit</a>
 
                 asp-action="PerformanceEdit"
