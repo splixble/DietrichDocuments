@@ -15,30 +15,30 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="PerformanceDate" class="control-label"></label>
-                <input asp-for="PerformanceDate" class="form-control" disabled="@(perfModel._CanEditSongPerformance)" />
+                <input asp-for="PerformanceDate" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
                 <span asp-validation-for="PerformanceDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Venue" class="control-label"></label>
                 <select asp-for="Venue"
                         asp-items="@(new SelectList(perfModel._VenuesList, nameof(Venues.Id), nameof(Venues.Name)))"
-                        class="form-control" disabled="@(perfModel._CanEditSongPerformance)">
+                        class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)">
                     @*<option>Please select one</option>*@
                 </select>
             </div>
             <div class="form-group">
                 <label asp-for="Comment" class="control-label"></label>
-                <input asp-for="Comment" class="form-control" disabled="@(perfModel._CanEditSongPerformance)" />
+                <input asp-for="Comment" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Series" class="control-label"></label>
-                <input asp-for="Series" class="form-control" disabled="@(perfModel._CanEditSongPerformance)" />
+                <input asp-for="Series" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
                 <span asp-validation-for="Series" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PerformanceType" class="control-label"></label>
-                <input asp-for="PerformanceType" class="form-control" disabled="@(perfModel._CanEditSongPerformance)" />
+                <input asp-for="PerformanceType" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
                 <span asp-validation-for="PerformanceType" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -76,11 +76,11 @@
                         <input type="hidden" asp-for="SongPerf_Id" />
                         <input type="hidden" asp-for="Id" /> @*is this also needed so that it'll have perf ID?*@
                     <td>
-                            <select asp-for="SongPerf_Song"
+                            <select asp-for="SongPerf_Song" class="dietrich-control"
                             asp-items="@(new SelectList(perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist)))">
                                 @*<option>Please select one</option>*@
                             </select>
-                            @* was: <input asp-for="SongPerf_TitleAndArtist" class="form-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
+                            @* was: <input asp-for="SongPerf_TitleAndArtist" class="dietrich-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
                                 or @Html.DisplayFor(modelItem => item.TitleAndArtist);
                                 need: Disabled if 
                                 DIAG probly want to construct SelectList in Controller?
@@ -89,7 +89,7 @@
                         <td>
                             @if (item.Id == perfModel._SelectedSongPerfID)
                             {
-                                <input asp-for="SongPerf_Comment" class="form-control" disabled="@(!perfModel._CanEditSongPerformance)" />
+                                <input asp-for="SongPerf_Comment" class="dietrich-control" disabled="@(!perfModel._CanEditSongPerformance)" />
                                 @*@Html.DisplayFor(modelItem => perfModel.SongPerf_Comment)*@
                             }
                             else

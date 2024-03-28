@@ -9,7 +9,7 @@
 <p>
     @*// from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion: *@
     @Html.DropDownList("Venlist", ViewBag.VenuesList as SelectList,
-            new { onchange = "document.location.href = '/Viewsongperformances/Setlists?venueID=' + this.options[this.selectedIndex].value;" })
+            new { @class = "dietrich-control", onchange = "document.location.href = '/Viewsongperformances/Setlists?venueID=' + this.options[this.selectedIndex].value;" })
 
     @* This also works, to call Javascript function directly:
     @Html.DropDownList("Venlist", new SelectList(ViewBag.VenuesList, "Id", "Name"), new { onChange = "Venlist_OnChange()" })
