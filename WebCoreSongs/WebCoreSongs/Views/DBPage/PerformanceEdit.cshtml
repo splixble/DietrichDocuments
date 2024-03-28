@@ -2,7 +2,7 @@
 
 @{
     PerformanceEditViewModel perfModel = (PerformanceEditViewModel)Model;
-    string heading = "Performance...";
+    string heading = "Performance";
 
     ViewData["Title"] = heading;
 }
@@ -20,11 +20,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="Venue" class="control-label"></label>
-                <select asp-for="Venue"
+                <select asp-for="Venue" onfocus="ShowKeyboard"
                         asp-items="@(new SelectList(perfModel._VenuesList, nameof(Venues.Id), nameof(Venues.Name)))"
+                        inputmode="search" 
                         class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)">
-                    @*<option>Please select one</option>*@
+                    @* inputmode="search" dont fix it
+
+                    <option>Please select one</option>*@
                 </select>
+            </div>
+            <div class="form-group">
+                Alternate Venue ctrl DIAG!!!!
+                <input type="text" id="xVenue" list="xvlist" />
+                <datalist id="xvlist">
+                    <option value = "Dorkface"></option>
+                    <option value="Slivowitz"></option>
+                </datalist>
+                    @*<option>Please select one</option>*@
             </div>
             <div class="form-group">
                 <label asp-for="Comment" class="control-label"></label>
@@ -134,6 +146,11 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    function ShowKeyboard() 
+    {
+        document.getElementById("DIAG").style.backgroundColor = "red";
     }
 }
 
