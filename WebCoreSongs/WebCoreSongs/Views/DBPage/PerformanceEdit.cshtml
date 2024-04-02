@@ -31,10 +31,12 @@
             </div>
             <div class="form-group">
                 Alternate Venue ctrl DIAG!!!!
-                <input type="text" id="xVenue" list="xvlist" />
+                <input type="text" id="xVenue" list="xvlist" aria-autocomplete="list" />
                 <datalist id="xvlist">
-                    <option value = "Dorkface"></option>
-                    <option value="Slivowitz"></option>
+                    @foreach (var venueRow in perfModel._VenuesList)
+                    {
+                        <option value = "@venueRow.Name"></option>
+                    }
                 </datalist>
                     @*<option>Please select one</option>*@
             </div>
