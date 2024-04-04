@@ -18,30 +18,27 @@
                 <input asp-for="PerformanceDate" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
                 <span asp-validation-for="PerformanceDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Venue" class="control-label"></label>
-                <select asp-for="Venue" onfocus="ShowKeyboard"
-                        asp-items="@(new SelectList(perfModel._VenuesList, nameof(Venues.Id), nameof(Venues.Name)))"
-                        inputmode="search" 
-                        class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)">
-                    @* inputmode="search" dont fix it
 
-                    <option>Please select one</option>*@
-                </select>
-            </div>
-
-            <input asp-for="Venue" id="VenueID" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
+            <input asp-for="Venue" id="venueID" class="dietrich-control" disabled="@(perfModel._CanEditSongPerformance)" />
 
             <div class="form-group">
                 <div>
                 Alternate Venue ctrl DIAG!!!!
-                    <input id="altVenue" list="venues" name="venue" onchange="OnVenueChange()">
-                    <datalist id="venues">
-                    @foreach (var venueRow in perfModel._VenuesList)
-                    {
-                        <option value="@venueRow.Name"></option>
+                    @{
+                        string initialValue = "";
+                        Venues venRow = perfModel._VenuesList.Find(venRow => venRow.Id == perfModel.Venue);
+                        if (venRow != null)
+                            initialValue = "value=\"" + venRow.Name + "\"";
                     }
-                </datalist>
+                    <input id="altVenue" list="venues" name="venue" 
+                        @initialValue
+                        onchange="OnVenueChange()">
+                    <datalist id="venues">
+                        @foreach (var venueRow in perfModel._VenuesList)
+                        {
+                            <option value="@venueRow.Name" dbkey="@venueRow.Id"></option>
+                        }
+                    </datalist>
 
                     @*
                     <input type="text" id="xVenue"
@@ -197,16 +194,26 @@
     function OnVenueChange() 
     {
         var venueName = document.getElementById("altVenue");
-        alert("OnVenueChange 2 - DIAG gets as far as here. Past this it needs Javascript code to go through a Javascript client-side dictionary. ");
-        var venID = perfModel._VenuesList.Find(venRow => venRow.Name == document.getElementById("altVenue"));
-        alert("OnVenueChange 3 - never called!! DIAG");
-        if (venID != null) 
+        var venueIDCtrl = document.getElementById("venueID");
+        var venueList = document.getElementById("venues");
+
+        alert("OnVenueChange 3");
+        for (var i = 0; i < venueList.options.length; i++) 
         {
-            alert("venID: ");
-            document.getElementById("VenueID").value = venID;
+            if (venueList.options[i].value == venueName.value) 
+            {
+                var venID = venueList.options[i].getAttribute("dbkey");
+                alert("venID: " + venID);
+
+                // set value on hidden ctrl:
+                    // venueIDCtrl.value doesnt work
+                venueIDCtrl.value = venID;
+                alert("set text ctrl value");
+                break;
+            }
         }
-        else
-            alert("no ven!!");
+         
+        alert("OnVenueChange 4 got thru list");
 
     }
     </script>
