@@ -24,15 +24,18 @@
             <div class="form-group">
                 <div>
                 Alternate Venue ctrl DIAG!!!!
+
                     @{
                         string initialValue = "";
                         Venues venRow = perfModel._VenuesList.Find(venRow => venRow.Id == perfModel.Venue);
                         if (venRow != null)
-                            initialValue = "value=\"" + venRow.Name + "\"";
+                            initialValue = venRow.Name;
                     }
-                    <input id="altVenue" list="venues" name="venue" 
-                        @initialValue
-                        onchange="OnVenueChange()">
+                    <input id="altVenue" list="venues" name="venue"
+                           onchange="OnTypeInLookupChanged('altVenue', 'venueID', 'venues')"
+                           value = "@initialValue"
+                        />
+
                     <datalist id="venues">
                         @foreach (var venueRow in perfModel._VenuesList)
                         {
@@ -191,30 +194,23 @@
     </script>
 
     <script type="text/javascript">
-    function OnVenueChange() 
+    function OnTypeInLookupChanged (textCtrlID, hiddenCtrlID, lookupDataListID)
     {
-        var venueName = document.getElementById("altVenue");
-        var venueIDCtrl = document.getElementById("venueID");
-        var venueList = document.getElementById("venues");
+        var textCtrl = document.getElementById(textCtrlID);
+        var hiddenKeyCtrl = document.getElementById(hiddenCtrlID);
+        var lookupDataList = document.getElementById(lookupDataListID);
 
-        alert("OnVenueChange 3");
-        for (var i = 0; i < venueList.options.length; i++) 
+        for (var i = 0; i < lookupDataList.options.length; i++) 
         {
-            if (venueList.options[i].value == venueName.value) 
+            if (lookupDataList.options[i].value == textCtrl.value) 
             {
-                var venID = venueList.options[i].getAttribute("dbkey");
-                alert("venID: " + venID);
+                var dbKeyValue = lookupDataList.options[i].getAttribute("dbkey");
 
                 // set value on hidden ctrl:
-                    // venueIDCtrl.value doesnt work
-                venueIDCtrl.value = venID;
-                alert("set text ctrl value");
+                hiddenKeyCtrl.value = dbKeyValue;
                 break;
             }
         }
-         
-        alert("OnVenueChange 4 got thru list");
-
     }
     </script>
 }
