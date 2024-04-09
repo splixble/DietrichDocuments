@@ -78,14 +78,12 @@ namespace WebCoreSongs
             */
 
             return htmlCode;
-
-
         }
 
         static void AddHTMLLine(HtmlContentBuilder htmlCode, string htmlLine)
         // convenenience func that makes the HTML much more readable
         {
-            htmlCode.AppendHtml("            " + htmlLine + "\n");
+            htmlCode.AppendHtml("                " + htmlLine + "\n");
         }
 
         static PropertyInfo? GetTableRowProperty(object rowObj, string columnName)
