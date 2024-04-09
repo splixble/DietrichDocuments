@@ -96,11 +96,16 @@
                         <input type="hidden" asp-for="SongPerf_Id" />
                         <input type="hidden" asp-for="Id" /> @*is this also needed so that it'll have perf ID?*@
                     <td>
+                            @DHtml.TypeInLookup("SongSelection", "SongPerf_Song", item.Song, perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist))
+
+                            @* REPLACES THIS CODE:
                             <select asp-for="SongPerf_Song" class="dietrich-control"
                             asp-items="@(new SelectList(perfModel._SongsList, nameof(Viewsongssinglefield.Id), nameof(Viewsongssinglefield.TitleAndArtist)))">
-                                @*<option>Please select one</option>*@
                             </select>
-                            @* was: <input asp-for="SongPerf_TitleAndArtist" class="dietrich-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
+                            *@
+
+                            @* before that it was: 
+                                was: <input asp-for="SongPerf_TitleAndArtist" class="dietrich-control" disabled="@(item.SongPerfID != perfModel._SelectedSongPerfID)" 
                                 or @Html.DisplayFor(modelItem => item.TitleAndArtist);
                                 need: Disabled if 
                                 DIAG probly want to construct SelectList in Controller?
