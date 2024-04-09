@@ -42,38 +42,34 @@ namespace WebCoreSongs
 
             HtmlContentBuilder htmlCode = new HtmlContentBuilder();
             AddHTMLLine(htmlCode, "<div>");
-            // DIAG can I use single quotes in below, to make it less confusing?
+
             // Define hidden control:
             // was this, but it won't parse the asp-for: AddHTMLLine(htmlCode, "<input asp-for=\"" + editedColumnName + "\" id=\""+ hiddenFieldName + "\" class=\"" + CssClassName + "\" hidden />");
-            AddHTMLLine(htmlCode, "<input id=\"" + hiddenFieldName + "\" name=\"" + editedColumnName + "\" value=\"" + initialKeyValue.ToString() + "\" hidden />");
+            AddHTMLLine(htmlCode, "<input id='" + hiddenFieldName + "' name='" + editedColumnName + "' value='" + initialKeyValue.ToString() + "' hidden />");
             // need type=number?
 
-
-
-            // DIAG the above needs (right?):      <input id="venueID" class="dietrich-control" hidden type="number" data-val="true" data-val-required="The Venue field is required." name="Venue" value="28" /><input name="__Invariant" type="hidden" value="Venue" />
-
-
-
-
             // Define active control:
-            AddHTMLLine(htmlCode, "<input id=\"" + activeFieldName  + "\" class=\"" + CssClassName + "\" list=\"" + dataListName + "\" name=\"" + editedColumnName + "\"");
+            AddHTMLLine(htmlCode, "<input id='" + activeFieldName  + "' class='" + CssClassName + "' list='" + dataListName + "' name='" + editedColumnName + "'");
             // DIAG do I need both ID and Name on prev line?
+
+            // note: this line needs escaped-out double quotes, since it uses single quotes for params
             AddHTMLLine(htmlCode, "onchange=\"OnTypeInLookupChanged('" + activeFieldName + "', '" + hiddenFieldName +"', '"+ dataListName + "')\"");
+            
             if (initialDisplayValue != null)
-                AddHTMLLine(htmlCode, "value = \"" + initialDisplayValue + "\"");
+                AddHTMLLine(htmlCode, "value = '" + initialDisplayValue + "'");
             AddHTMLLine(htmlCode, "/>");
 
             // Define datalist:
-            AddHTMLLine(htmlCode, "<datalist id=\""+ dataListName + "\">"); // DIAG can I add Environment.NewLine?
+            AddHTMLLine(htmlCode, "<datalist id='"+ dataListName + "'>"); // DIAG can I add Environment.NewLine?
             foreach (object rowObj in lookupTable)
             {
-                AddHTMLLine(htmlCode, "<option value = \"" + displayColumnProperty.GetValue(rowObj).ToString() + "\" dbkey = \"" +
-                    keyColumnProperty.GetValue(rowObj) + "\" ></option>");
+                AddHTMLLine(htmlCode, "<option value = '" + displayColumnProperty.GetValue(rowObj).ToString() + "' dbkey = '" +
+                    keyColumnProperty.GetValue(rowObj) + "' ></option>");
             }
             AddHTMLLine(htmlCode, "</datalist>");
             AddHTMLLine(htmlCode, "</div>");
 
-            /* DIAG unused code to set initial value... but, don't complicate with c# code when we could use common javascript! eh? right?
+            /* Here's unused code to set initial value... but, don't complicate with c# code when we could use common javascript! eh? right?
             PropertyInfo? lookupDisplayProperty = lookupTable.GetType().GetProperty(lookupDisplayColumnName);
             if (lookupDisplayProperty == null)
                 throw new Exception("Column '" + lookupDisplayProperty + "' not found in lookup table");
