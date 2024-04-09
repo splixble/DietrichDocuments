@@ -24,11 +24,12 @@
 
             <div class="form-group">
                 <div>
-                    <input asp-for="Venue" id="venueID" class="dietrich-control" hidden />
             DIAG type in lookup!
                     @DHtml.TypeInLookup("PerfVenue", "Venue", perfModel.Venue, perfModel._VenuesList, "Id", "Name");
 
+                    @* DIAG this is the code replaced by the TypeInLookup:
                 Alternate Venue ctrl DIAG!!!!
+                    <input asp-for="Venue" id="venueID" class="dietrich-control" hidden />
 
                     @{
                         string initialValue = "";
@@ -47,6 +48,9 @@
                             <option value="@venueRow.Name" dbkey="@venueRow.Id"></option>
                         }
                     </datalist>
+
+
+                    DIAG end of replaced code *@
 
                 </div>
 
@@ -180,12 +184,15 @@
     {
         // DIAG this should go in a common, reusable module
 
+        // alert("DEBUG OnTypeInLookupChanged");
+
         var textCtrl = document.getElementById(textCtrlID);
         var hiddenKeyCtrl = document.getElementById(hiddenCtrlID);
         var lookupDataList = document.getElementById(lookupDataListID);
 
-        for (var i = 0; i < lookupDataList.options.length; i++) 
-        {
+            // alert("DEBUG list sz=" + lookupDataList.options.length + " val=" + textCtrl.value)
+            
+            for (var i = 0; i < lookupDataList.options.length; i++) {
             if (lookupDataList.options[i].value == textCtrl.value) 
             {
                 var dbKeyValue = lookupDataList.options[i].getAttribute("dbkey");

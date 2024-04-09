@@ -10,18 +10,14 @@ namespace WebCoreSongs
     public static class DHtml
     {
         const string CssClassName = "dietrich-control";
-        public static string GenerateSumpin()
-        {
-            return "Yakatac";
-        }
-
+ 
         public static IHtmlContent TypeInLookup(string baseName, string editedColumnName, IComparable initialKeyValue, 
             IList lookupTable, string lookupKeyColumnName, string lookupDisplayColumnName) 
         {
             string activeFieldName = baseName + "_TypeInLookup";
             string hiddenFieldName = baseName + "_HiddenField";
             string dataListName = baseName + "_DataList";
-            string initialDisplayValue = null; // DIAG or blank??
+            string initialDisplayValue = null; // or blank? Null seems to work
 
             // Get class properties for the table rows in lookupTable:
             if (lookupTable.Count == 0)
@@ -48,8 +44,9 @@ namespace WebCoreSongs
             AddHTMLLine(htmlCode, "<div>");
             // DIAG can I use single quotes in below, to make it less confusing?
             // Define hidden control:
-            AddHTMLLine(htmlCode, "<input asp-for=\"" + editedColumnName + "\" id=\""+ hiddenFieldName + "\" class=\"" + CssClassName + "\" hidden />");
-            // DIAG did than not produce <input asp-for="Venue" id="venueID" class="dietrich-control" hidden /> ?
+            // was this, but it won't parse the asp-for: AddHTMLLine(htmlCode, "<input asp-for=\"" + editedColumnName + "\" id=\""+ hiddenFieldName + "\" class=\"" + CssClassName + "\" hidden />");
+            AddHTMLLine(htmlCode, "<input id=\"" + hiddenFieldName + "\" name=\"" + editedColumnName + "\" value=\"" + initialKeyValue.ToString() + "\" hidden />");
+            // need type=number?
 
 
 
@@ -59,7 +56,7 @@ namespace WebCoreSongs
 
 
             // Define active control:
-            AddHTMLLine(htmlCode, "<input id=\"" + activeFieldName  + "\" class=\"" + CssClassName + "\" list=\"" + dataListName + "\"" + "\" name=\"" + editedColumnName);
+            AddHTMLLine(htmlCode, "<input id=\"" + activeFieldName  + "\" class=\"" + CssClassName + "\" list=\"" + dataListName + "\" name=\"" + editedColumnName + "\"");
             // DIAG do I need both ID and Name on prev line?
             AddHTMLLine(htmlCode, "onchange=\"OnTypeInLookupChanged('" + activeFieldName + "', '" + hiddenFieldName +"', '"+ dataListName + "')\"");
             if (initialDisplayValue != null)
