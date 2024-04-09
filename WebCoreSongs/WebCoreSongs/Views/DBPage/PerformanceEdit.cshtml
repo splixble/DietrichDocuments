@@ -25,6 +25,8 @@
             <div class="form-group">
                 <div>
                     <input asp-for="Venue" id="venueID" class="dietrich-control" hidden />
+            DIAG type in lookup!
+                    @DHtml.TypeInLookup("PerfVenue", "Venue", perfModel.Venue, perfModel._VenuesList, "Id", "Name");
 
                 Alternate Venue ctrl DIAG!!!!
 
