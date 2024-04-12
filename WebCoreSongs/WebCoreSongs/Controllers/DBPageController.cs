@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Drawing;
 using WebCoreSongs.Models;
 
 namespace WebCoreSongs.Controllers
