@@ -2,14 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Songs.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="MainConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3</Value>
-    </Setting>
     <Setting Name="freeConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
@@ -90,11 +82,19 @@
     </Setting>
     <Setting Name="AzureConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;TrustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=algonQin88&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;TrustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=algonQin88</Value>
+    </Setting>
+    <Setting Name="MainConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3</Value>
     </Setting>
   </Settings>
 </SettingsFile>
