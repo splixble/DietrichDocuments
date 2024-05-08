@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WebCoreSongs.Models;
 
@@ -19,133 +20,41 @@ namespace WebCoreSongs.Controllers
         }
 
         // GET: Viewsongperformances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string venueID)
         {
-            return View(await _context.Viewsongperformances.ToListAsync());
+            // REMOVE THIS; not used any more
+            // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
+            ViewBag.VenuesList = new SelectList(_context.Venues.ToList(), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
+
+            return View(await LoadSongPerformances(venueID).ToListAsync());
         }
 
-        // GET: Viewsongperformances/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Setlists(string venueID)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
+            ViewBag.VenuesList =  new SelectList(_context.Venues.ToList() // all rows in Venues table
+                .Append(Venues._SelectRow) // add "Select" pseudo-row
+                .OrderBy(x => x.Name), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
 
-            var viewsongperformances = await _context.Viewsongperformances
-                .FirstOrDefaultAsync(m => m.PerformanceId == id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-
-            return View(viewsongperformances);
+            return View(await LoadSongPerformances(venueID).ToListAsync());
         }
 
-        // GET: Viewsongperformances/Create
-        public IActionResult Create()
+        public async Task<IActionResult> SetlistEditable(string venueID) // DIAG make this usable gradually
         {
-            return View();
+            // from from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion:
+            ViewBag.VenuesList = new SelectList(_context.Venues.ToList().OrderBy(x => x.Name), "Id", "Name", venueID); // venueID is the selected value last set, if it's been set
+            // DIAG still displays first venue ID in the list initially, tho venueID praram is null. Should have null value ("Select Venue")
+
+            List<Viewsongperformances> songPerfs = await LoadSongPerformances(venueID).ToListAsync();
+
+            SetlistEditable model = new SetlistEditable(songPerfs);
+            return View(model);
         }
 
-        // POST: Viewsongperformances/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PerformanceId,Song,Comment,TitleAndArtist,PerformanceDate,DidIlead,PerformanceYear,PerformanceQtr,PerformanceMonth,VenueName,Venue")] Viewsongperformances viewsongperformances)
+        IQueryable<Viewsongperformances> LoadSongPerformances(string venueID)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(viewsongperformances);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(viewsongperformances);
-        }
-
-        // GET: Viewsongperformances/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var viewsongperformances = await _context.Viewsongperformances.FindAsync(id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-            return View(viewsongperformances);
-        }
-
-        // POST: Viewsongperformances/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PerformanceId,Song,Comment,TitleAndArtist,PerformanceDate,DidIlead,PerformanceYear,PerformanceQtr,PerformanceMonth,VenueName,Venue")] Viewsongperformances viewsongperformances)
-        {
-            if (id != viewsongperformances.PerformanceId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(viewsongperformances);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ViewsongperformancesExists(viewsongperformances.PerformanceId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(viewsongperformances);
-        }
-
-        // GET: Viewsongperformances/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var viewsongperformances = await _context.Viewsongperformances
-                .FirstOrDefaultAsync(m => m.PerformanceId == id);
-            if (viewsongperformances == null)
-            {
-                return NotFound();
-            }
-
-            return View(viewsongperformances);
-        }
-
-        // POST: Viewsongperformances/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var viewsongperformances = await _context.Viewsongperformances.FindAsync(id);
-            if (viewsongperformances != null)
-            {
-                _context.Viewsongperformances.Remove(viewsongperformances);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return _context.Viewsongperformances.FromSql(
+                $"SELECT * FROM Songbook.Viewsongperformances WHERE Venue={venueID} ORDER BY PerformanceDate DESC, SongPerfID");
         }
 
         private bool ViewsongperformancesExists(int id)

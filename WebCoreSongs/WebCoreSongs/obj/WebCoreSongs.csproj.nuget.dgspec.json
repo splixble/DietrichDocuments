@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {}
+    "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {}
   },
   "projects": {
-    "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {
+    "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+        "projectUniqueName": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
         "projectName": "WebCoreSongs",
-        "projectPath": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+        "projectPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
         "packagesPath": "C:\\Users\\Dietr\\.nuget\\packages\\",
-        "outputPath": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
+        "outputPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dietr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,31 +42,31 @@
           "dependencies": {
             "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [

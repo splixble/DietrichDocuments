@@ -13,14 +13,40 @@ public partial class SongsContext : DbContext
     {
     }
 
+    public virtual DbSet<Alternateartists> Alternateartists { get; set; }
+
     public virtual DbSet<Artists> Artists { get; set; }
+
+    public virtual DbSet<Performances> Performances { get; set; }
+
+    public virtual DbSet<Songperformances> Songperformances { get; set; }
 
     public virtual DbSet<Venues> Venues { get; set; }
 
     public virtual DbSet<Viewsongperformances> Viewsongperformances { get; set; }
 
+    public virtual DbSet<Viewsongperformancetotals> Viewsongperformancetotals { get; set; }
+
+    public virtual DbSet<Viewsongssinglefield> Viewsongssinglefield { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Alternateartists>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_alternateartists_ID");
+
+            entity.ToTable("alternateartists", "songbook");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
+            entity.Property(e => e.SongId).HasColumnName("SongID");
+
+            entity.HasOne(d => d.Artist).WithMany(p => p.Alternateartists)
+                .HasForeignKey(d => d.ArtistId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AlternateArtists_ArtistID");
+        });
+
         modelBuilder.Entity<Artists>(entity =>
         {
             entity.HasKey(e => e.ArtistId).HasName("PK_artists_ArtistID");
@@ -31,6 +57,56 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.ArtistFirstName).IsUnicode(false);
             entity.Property(e => e.ArtistLastName).IsUnicode(false);
         });
+
+        modelBuilder.Entity<Performances>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_performances_ID");
+
+            entity.ToTable("performances", "songbook");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)");
+            entity.Property(e => e.DidIlead).HasColumnName("DidILead");
+            entity.Property(e => e.PerformanceType)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .HasDefaultValueSql("(NULL)")
+                .IsFixedLength();
+            entity.Property(e => e.Series).HasDefaultValueSql("(NULL)");
+        });
+
+        modelBuilder.Entity<Songperformances>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_songperformances_ID");
+
+            entity.ToTable("songperformances", "songbook");
+
+            entity.HasIndex(e => e.Song, "Song");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Comment)
+                .IsUnicode(false)
+                .HasMaxLength(250)
+                .HasDefaultValueSql("(NULL)");
+            /* DIAG removing last 2 properties fix? No! even tho Artists Firstname doesnt have same prob! 
+            */
+        });
+        
+        /* DIAG this can be removed, does not fix the Validity problem
+        modelBuilder.Entity<PerformanceEditViewModel>(entity =>
+        {
+            // DIAG does this fix the validation problem? No!
+            // entity.HasKey(e => e.Id).HasName("PK_songperformances_ID");
+            // entity.ToTable("songperformances", "songbook");
+
+            entity.Property(e => e.SongPerf_Song);
+            entity.Property(e => e.SongPerf_Id).HasColumnName("ID");
+            entity.Property(e => e.SongPerf_Comment).IsUnicode(false);
+        });
+        */
 
         modelBuilder.Entity<Venues>(entity =>
         {
@@ -52,21 +128,70 @@ public partial class SongsContext : DbContext
         modelBuilder.Entity<Viewsongperformances>(entity =>
         {
             entity
+                .HasNoKey()
                 .ToView("viewsongperformances", "songbook");
 
             entity.Property(e => e.Comment)
                 .HasMaxLength(250)
                 .IsUnicode(false);
             entity.Property(e => e.DidIlead).HasColumnName("DidILead");
+            entity.Property(e => e.PerfComment)
+                .HasMaxLength(250)
+                .IsUnicode(false);
+            entity.Property(e => e.PerfID).HasColumnName("PerfID");
             entity.Property(e => e.PerformanceId).HasColumnName("PerformanceID");
             entity.Property(e => e.PerformanceMonth).HasMaxLength(101);
             entity.Property(e => e.PerformanceQtr).HasMaxLength(101);
+            entity.Property(e => e.SongPerfID).HasColumnName("SongPerfID");
             entity.Property(e => e.TitleAndArtist)
                 .HasMaxLength(8000)
                 .IsUnicode(false);
             entity.Property(e => e.VenueName)
                 .IsRequired()
                 .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Viewsongperformancetotals>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("viewsongperformancetotals", "songbook");
+
+            entity.Property(e => e.FirstPerformed).HasColumnName("firstPerformed");
+            entity.Property(e => e.LastPerformed).HasColumnName("lastPerformed");
+            entity.Property(e => e.SongId).HasColumnName("SongID");
+            entity.Property(e => e.TitleAndArtist)
+                .HasMaxLength(8000)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Viewsongssinglefield>(entity =>
+        {
+            entity
+                .ToView("viewsongssinglefield", "songbook");
+
+            entity.Property(e => e.ArtistFirstName).IsUnicode(false);
+            entity.Property(e => e.ArtistLastName).IsUnicode(false);
+            entity.Property(e => e.Code)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Cover).HasColumnName("cover");
+            entity.Property(e => e.FullArtistName).IsUnicode(false);
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.PageNumber)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.SongInfo)
+                .HasMaxLength(8000)
+                .IsUnicode(false);
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .IsUnicode(false);
+            entity.Property(e => e.TitleAndArtist).IsUnicode(false);
+            entity.Property(e => e.TitleAndInfo).IsUnicode(false);
+            entity.Property(e => e.TitlePrefix)
+                .HasMaxLength(50)
                 .IsUnicode(false);
         });
 

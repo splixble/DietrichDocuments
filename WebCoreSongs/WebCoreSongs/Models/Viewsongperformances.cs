@@ -2,18 +2,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace WebCoreSongs.Models;
 
 public partial class Viewsongperformances
 {
-    [Key]
     public int PerformanceId { get; set; }
 
     public int Song { get; set; }
 
     public string Comment { get; set; }
+
+    public string PerfComment { get; set; }
 
     public string TitleAndArtist { get; set; }
 
@@ -30,4 +30,8 @@ public partial class Viewsongperformances
     public string VenueName { get; set; }
 
     public int Venue { get; set; }
+
+    public int PerfID { get; set; }
+
+    public int SongPerfID { get; set; }
 }

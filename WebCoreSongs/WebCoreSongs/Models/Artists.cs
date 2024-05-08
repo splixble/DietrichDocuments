@@ -12,4 +12,6 @@ public partial class Artists
     public string ArtistLastName { get; set; }
 
     public int ArtistId { get; set; }
+
+    public virtual ICollection<Alternateartists> Alternateartists { get; set; } = new List<Alternateartists>();
 }

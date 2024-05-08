@@ -12,4 +12,17 @@ public partial class Venues
     public string Name { get; set; }
 
     public string Comment { get; set; }
+
+
+    // static ctor, for select lists
+    // DIAG this s/ probly go into a non-generated sep module. It will be overritten otherwise
+    static Venues()
+    {
+        _SelectRow = new Venues();
+        _SelectRow.Id = -1;
+        _SelectRow.Name = " -- Select -- ";
+    }
+
+    // special pseudo-rows:
+    public static Venues _SelectRow;
 }

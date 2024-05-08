@@ -1,0 +1,74 @@
+﻿@model PerformancesViewModel
+
+@{
+    // MY PERFORMANCE LIST FORM
+
+    PerformancesViewModel perfModel = (PerformancesViewModel)Model;
+    string heading = "Performance List";
+
+    ViewData["Title"] = heading;
+}
+
+<h1>@heading</h1>
+
+
+<p>
+    @* was" "<a asp-action="CreatePerformance">Create New</a>*@
+    <a href="/DBPage/PerformanceEdit/-1/false">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Venue
+            </th>
+            <th>
+               Comment
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in perfModel._PerformanceRows)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerformanceDate)
+                </td>
+                <td>
+                    @perfModel._VenuesLookup[item.Venue].Name 
+                    @* - will never be null, as long as DB has FK relationships *@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Series)
+                </td>
+                <td>
+                    <a href="/DBPage/PerformanceEdit/@item.Id/false">Edit</a>
+                    @* TODO Delete hyperlink, used and then removed 28Mar24:
+                             | <a href="/Performances/Delete/@item.Id">Delete</a>
+                        It goes into the /Performances/Delete scaffolded page, which is not a good permanent solution, since does not return to the right page.
+                        
+                    DIAG tried these...
+
+                    Original Edit asp-action, which worked as 1-param:
+                    <a asp-action="PerformanceEdit" asp-route-id="@item.Id">Edit</a>
+
+                asp-action="PerformanceEdit"
+                asp-route-id="@item.Id"
+                asp-route-songPerfId="DIAG"
+                asp-route-createNewSong="false">Edit</a>
+                *@
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

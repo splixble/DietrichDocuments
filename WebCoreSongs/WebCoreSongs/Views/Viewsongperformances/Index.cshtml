@@ -7,40 +7,30 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*// from https://stackoverflow.com/questions/59601041/populate-dropdownlist-using-ef-core-from-another-model, 2nd suggestion: *@
+    @Html.DropDownList("Venlist", ViewBag.VenuesList as SelectList,
+            new { onchange = "document.location.href = '/Viewsongperformances/Index?venueID=' + this.options[this.selectedIndex].value;" })
+
+    @* This also works, to call Javascript function directly:
+    @Html.DropDownList("Venlist", new SelectList(ViewBag.VenuesList, "Id", "Name"), new { onChange = "Venlist_OnChange()" })
+    *@
+    @* TRY THESE IDEAS IN: https://stackoverflow.com/questions/25056508/onchange-event-for-html-dropdownlist *@
+
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Song)
+                @Html.DisplayNameFor(model => model.TitleAndArtist)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TitleAndArtist)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PerformanceDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DidIlead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceQtr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceMonth)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.VenueName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Venue)
             </th>
             <th></th>
         </tr>
@@ -49,41 +39,32 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Song)
+                @Html.DisplayFor(modelItem => item.TitleAndArtist)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TitleAndArtist)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PerformanceDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DidIlead)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceQtr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceMonth)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.VenueName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Venue)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PerformanceId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PerformanceId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PerformanceId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+@section Scripts 
+{
+    <script type="text/javascript">
+    function Venlist_OnChange()
+    {
+        // NOT USED as of 16Feb24
+        var selectedVal = document.getElementById("Venlist").value;
+        alert("Plabla! " + selectedVal);
+        location.href = "/Viewsongperformances/Index?venueID=" + selectedVal;
+    }
+    </script>
+}

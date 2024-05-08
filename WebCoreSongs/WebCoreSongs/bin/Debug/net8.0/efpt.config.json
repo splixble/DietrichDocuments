@@ -16,7 +16,19 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[songbook].[alternateartists]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[songbook].[artists]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[songbook].[performances]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[songbook].[songperformances]",
          "ObjectType": 0
       },
       {
@@ -25,6 +37,14 @@
       },
       {
          "Name": "[songbook].[viewsongperformances]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[songbook].[viewsongperformancetotals]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[songbook].[viewsongssinglefield]",
          "ObjectType": 3
       }
    ],
@@ -46,6 +66,7 @@
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
    "UseSchemaFolders": false,
    "UseSchemaNamespaces": false,
    "UseSpatial": false,

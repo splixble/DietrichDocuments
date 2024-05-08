@@ -1,0 +1,6 @@
+*.vsidx
+*.exe
+*.dll
+**/obj
+**/bin
+
