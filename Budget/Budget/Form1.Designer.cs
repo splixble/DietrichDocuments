@@ -28,36 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.mainDataSet1 = new Budget.MainDataSet();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet1)).BeginInit();
+            this.MainDataSet1 = new Budget.MainDataSet();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.viewBudgetMonthlyReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewBudgetMonthlyReportTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetMonthlyReportBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Budget.Report1.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Budget.ReportMonthly.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 163);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(800, 450);
+            this.reportViewer1.Size = new System.Drawing.Size(800, 287);
             this.reportViewer1.TabIndex = 0;
             // 
-            // mainDataSet1
+            // MainDataSet1
             // 
-            this.mainDataSet1.DataSetName = "MainDataSet";
-            this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.MainDataSet1.DataSetName = "MainDataSet";
+            this.MainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 7);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(800, 150);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // viewBudgetMonthlyReportTableAdapter
+            // 
+            this.viewBudgetMonthlyReportTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.reportViewer1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetMonthlyReportBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -65,7 +93,10 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private MainDataSet mainDataSet1;
+        private MainDataSet MainDataSet1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource viewBudgetMonthlyReportBindingSource;
+        private MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter viewBudgetMonthlyReportTableAdapter;
     }
 }
 

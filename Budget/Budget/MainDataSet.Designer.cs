@@ -685,9 +685,9 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnAmountNormalized;
             
-            private global::System.Data.DataColumn columnTrType;
-            
             private global::System.Data.DataColumn columnTrMonth;
+            
+            private global::System.Data.DataColumn columnGrouping;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -732,17 +732,17 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TrTypeColumn {
+            public global::System.Data.DataColumn TrMonthColumn {
                 get {
-                    return this.columnTrType;
+                    return this.columnTrMonth;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TrMonthColumn {
+            public global::System.Data.DataColumn GroupingColumn {
                 get {
-                    return this.columnTrMonth;
+                    return this.columnGrouping;
                 }
             }
             
@@ -783,12 +783,12 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow AddViewBudgetMonthlyReportRow(decimal AmountNormalized, string TrType, System.DateTime TrMonth) {
+            public ViewBudgetMonthlyReportRow AddViewBudgetMonthlyReportRow(decimal AmountNormalized, System.DateTime TrMonth, string Grouping) {
                 ViewBudgetMonthlyReportRow rowViewBudgetMonthlyReportRow = ((ViewBudgetMonthlyReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AmountNormalized,
-                        TrType,
-                        TrMonth};
+                        TrMonth,
+                        Grouping};
                 rowViewBudgetMonthlyReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetMonthlyReportRow);
                 return rowViewBudgetMonthlyReportRow;
@@ -812,8 +812,8 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnAmountNormalized = base.Columns["AmountNormalized"];
-                this.columnTrType = base.Columns["TrType"];
                 this.columnTrMonth = base.Columns["TrMonth"];
+                this.columnGrouping = base.Columns["Grouping"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -821,11 +821,11 @@ namespace Budget {
             private void InitClass() {
                 this.columnAmountNormalized = new global::System.Data.DataColumn("AmountNormalized", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAmountNormalized);
-                this.columnTrType = new global::System.Data.DataColumn("TrType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrType);
                 this.columnTrMonth = new global::System.Data.DataColumn("TrMonth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTrMonth);
-                this.columnTrType.MaxLength = 4;
+                this.columnGrouping = new global::System.Data.DataColumn("Grouping", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGrouping);
+                this.columnGrouping.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1122,22 +1122,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string TrType {
-                get {
-                    try {
-                        return ((string)(this[this.tableViewBudgetMonthlyReport.TrTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrType\' in table \'ViewBudgetMonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.TrTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime TrMonth {
                 get {
                     try {
@@ -1149,6 +1133,22 @@ namespace Budget {
                 }
                 set {
                     this[this.tableViewBudgetMonthlyReport.TrMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Grouping {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewBudgetMonthlyReport.GroupingColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Grouping\' in table \'ViewBudgetMonthlyReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetMonthlyReport.GroupingColumn] = value;
                 }
             }
             
@@ -1166,18 +1166,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTrTypeNull() {
-                return this.IsNull(this.tableViewBudgetMonthlyReport.TrTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTrTypeNull() {
-                this[this.tableViewBudgetMonthlyReport.TrTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTrMonthNull() {
                 return this.IsNull(this.tableViewBudgetMonthlyReport.TrMonthColumn);
             }
@@ -1186,6 +1174,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTrMonthNull() {
                 this[this.tableViewBudgetMonthlyReport.TrMonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGroupingNull() {
+                return this.IsNull(this.tableViewBudgetMonthlyReport.GroupingColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGroupingNull() {
+                this[this.tableViewBudgetMonthlyReport.GroupingColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2066,8 +2066,8 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore FROM Budget 
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ViewBudgetMonthlyReport";
             tableMapping.ColumnMappings.Add("AmountNormalized", "AmountNormalized");
-            tableMapping.ColumnMappings.Add("TrType", "TrType");
             tableMapping.ColumnMappings.Add("TrMonth", "TrMonth");
+            tableMapping.ColumnMappings.Add("Grouping", "Grouping");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2084,8 +2084,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore FROM Budget 
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, TrType, TrMonth\r\nFROM            ViewBudgetMonthl" +
-                "yReport";
+            this._commandCollection[0].CommandText = "SELECT AmountNormalized, TrMonth, Grouping FROM ViewBudgetMonthlyReport";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

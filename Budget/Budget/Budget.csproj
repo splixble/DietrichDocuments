@@ -194,8 +194,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MonthlyReport.rdlc" />
-    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="ReportMonthly.rdlc" />
     <None Include="MainDataSet.xsc">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </None>
