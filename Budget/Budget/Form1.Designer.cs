@@ -28,15 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.MainDataSet1 = new Budget.MainDataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.viewBudgetMonthlyReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewBudgetMonthlyReportTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.MainDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetMonthlyReportBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -51,11 +45,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(800, 287);
             this.reportViewer1.TabIndex = 0;
             // 
-            // MainDataSet1
-            // 
-            this.MainDataSet1.DataSetName = "MainDataSet";
-            this.MainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -68,10 +57,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(800, 150);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // viewBudgetMonthlyReportTableAdapter
-            // 
-            this.viewBudgetMonthlyReportTableAdapter.ClearBeforeFill = true;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // Form1
             // 
@@ -83,9 +69,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MainDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetMonthlyReportBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -93,10 +77,7 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private MainDataSet MainDataSet1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource viewBudgetMonthlyReportBindingSource;
-        private MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter viewBudgetMonthlyReportTableAdapter;
     }
 }
 

@@ -24,7 +24,6 @@ namespace Budget
             // have to work around the no-datasource problem by manuallt allocating and filling the data table:
             MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter();
             adap.Fill(MainData.ViewBudgetMonthlyReport); // DIAG can the table be just a standalone table, apart from its DataSet obj? or use MainDataSet1?
-            adap.Fill(MainDataSet1.ViewBudgetMonthlyReport);
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
 
             PopulateGrid();
@@ -62,6 +61,7 @@ namespace Budget
                 DataGridViewColumn col = dataGridView1.Columns[colIndex];
                 col.Width = 70;
                 col.ValueType = typeof(Decimal);
+                col.Tag = trMonth;
                 col.DefaultCellStyle.Format = "$0,0.00";
                 colIndex++;
             }
@@ -77,7 +77,11 @@ namespace Budget
 
             dataGridView1.RowCount = rowIndex;
             for (int ri = 0; ri < dataGridView1.RowCount; ri++)
-                dataGridView1.Rows[ri].HeaderCell.Value = rows.Keys[ri];
+            {
+                DataGridViewRow row = dataGridView1.Rows[ri]; 
+                row.HeaderCell.Value = rows.Keys[ri];
+                row.Tag = rows.Keys[ri];
+            }
 
             foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
             {
@@ -91,10 +95,21 @@ namespace Budget
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'MainDataSet1.ViewBudgetMonthlyReport' table. You can move, or remove it, as needed.
-            this.viewBudgetMonthlyReportTableAdapter.Fill(this.MainDataSet1.ViewBudgetMonthlyReport);
-
             this.reportViewer1.RefreshReport();
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            DateTime cellMonth = (DateTime)dataGridView1.Columns[e.ColumnIndex].Tag;
+            string cellGrouping = (string)dataGridView1.Rows[e.RowIndex].Tag;
+            MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
+            monthGroupingForm.Initialize(cellMonth, cellGrouping);
+            monthGroupingForm.ShowDialog();
+
+            //MessageBox.Show("Waa! " + cellMonth.ToString() + " + " + cellGrouping);
         }
     }
 }
