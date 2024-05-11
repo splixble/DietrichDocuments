@@ -33,7 +33,8 @@ namespace Budget
             // 
             foreach (DataGridViewRow gridRow in gridGroupings.Rows)
             {
-                if (gridRow.Cells[groupingsGridCheckboxColumn].Value is bool) // if checkbox checked
+                object groupingIsChecked = gridRow.Cells[groupingsGridCheckboxColumn].Value;
+                if (groupingIsChecked is bool && (bool)groupingIsChecked) // if checkbox checked
                 {
                     DataRowView rowView = (DataRowView)gridRow.DataBoundItem;
                     MainDataSet.ViewBudgetGroupingsInOrderRow dataRow = (MainDataSet.ViewBudgetGroupingsInOrderRow)rowView.Row;
@@ -41,59 +42,38 @@ namespace Budget
                         groupings += ",";
                     groupings += "'" + dataRow.Grouping + "'";// DIAG gotta manually do this with a SQL stmt
                 }
-                // DIAG need to handle if no groupings are selected
-                // DIAG capture checking the grid chaeckbox
+               // DIAG capture checking the grid chaeckbox
             }
 
-            // have to work around the no-datasource problem by manuallt allocating and filling the data table:
-            /* DIAG remove:
-            MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter();
-            //adap.FillByGroupingList(MainData.ViewBudgetMonthlyReport, "(" + groupings + ")");
-            // DIAG remove FillByGroupingList; it dunn work
-            adap.Fill(MainData.ViewBudgetMonthlyReport);
-            // DIAG can the table be just a standalone table, apart from its DataSet obj? or use MainDataSet1?
-            */
-
-            string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupings + ")";
             MainData.ViewBudgetMonthlyReport.Clear();
-            using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
+            if (groupings != "") // if no groupings checked, just leave it cleared
             {
-                reportDataConn.Open();
-                SqlCommand reportDataCmd = new SqlCommand();
-                // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                reportDataCmd.Connection = reportDataConn;
-                reportDataCmd.CommandText = selectStr;
-                // DIAG do i need to bind fields?
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupings + ")";
+                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
+                {
+                    // reportDataConn.Open();
+                    SqlCommand reportDataCmd = new SqlCommand();
+                    // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
+                    reportDataCmd.Connection = reportDataConn;
+                    reportDataCmd.CommandText = selectStr;
 
-                SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
-                reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
+                    SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
+                    reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
+                }
             }
-
-                /* old code:
-                
-            SqlConnection reportDataConn = new SqlConnection();
-            reportDataConn.ConnectionString = Properties.Settings.Default.SongbookConnectionString10May24;
-            reportDataConn.Open(); // prolly not needed
-            SqlCommand reportDataCmd = new SqlCommand();
-            // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-            reportDataCmd.Connection = reportDataConn;
-            reportDataCmd.CommandText = selectStr;
-            // DIAG do i need to bind fields?
-
-            SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
-            reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
-                */
 
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
 
-            PopulateGrid();
+            PopulateMainGrid();
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
+
+            btnRefreshGroupingChange.Enabled = false;
         }
 
-        void PopulateGrid()
+        void PopulateMainGrid()
         {
             gridMain.Rows.Clear();
             gridMain.Columns.Clear();
@@ -181,6 +161,16 @@ namespace Budget
         {
             TrTypeForm trTypeForm = new TrTypeForm();
             trTypeForm.ShowDialog();
+        }
+
+        private void btnRefreshGroupingChange_Click(object sender, EventArgs e)
+        {
+            RefreshDisplay();
+        }
+
+        private void gridGroupings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnRefreshGroupingChange.Enabled = true;
         }
     }
 }
