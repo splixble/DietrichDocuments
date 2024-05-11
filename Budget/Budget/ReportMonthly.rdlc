@@ -441,6 +441,9 @@
             <DataSetName>DataSet1</DataSetName>
             <Height>0.75in</Height>
             <Width>3in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -806,8 +809,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.905in</Top>
-            <Height>7.85417in</Height>
+            <Top>0.12375in</Top>
+            <Height>8.63542in</Height>
             <Width>16.32167in</Width>
             <ZIndex>1</ZIndex>
             <Style>

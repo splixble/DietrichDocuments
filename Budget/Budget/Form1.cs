@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using Microsoft.Data.SqlClient; // NOTE: Must be Microsoft.Data.SqlClient, NOT System.Data.SqlClient
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,13 +18,72 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
+
+        const int groupingsGridCheckboxColumn = 0;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        void RefreshDisplay()
+        {
+            // Get groupings to display, from checked 
+            string groupings = "";
+            // 
+            foreach (DataGridViewRow gridRow in gridGroupings.Rows)
+            {
+                if (gridRow.Cells[groupingsGridCheckboxColumn].Value is bool) // if checkbox checked
+                {
+                    DataRowView rowView = (DataRowView)gridRow.DataBoundItem;
+                    MainDataSet.ViewBudgetGroupingsInOrderRow dataRow = (MainDataSet.ViewBudgetGroupingsInOrderRow)rowView.Row;
+                    if (groupings != "")
+                        groupings += ",";
+                    groupings += "'" + dataRow.Grouping + "'";// DIAG gotta manually do this with a SQL stmt
+                }
+                // DIAG need to handle if no groupings are selected
+                // DIAG capture checking the grid chaeckbox
+            }
 
             // have to work around the no-datasource problem by manuallt allocating and filling the data table:
+            /* DIAG remove:
             MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewBudgetMonthlyReportTableAdapter();
-            adap.Fill(MainData.ViewBudgetMonthlyReport); // DIAG can the table be just a standalone table, apart from its DataSet obj? or use MainDataSet1?
+            //adap.FillByGroupingList(MainData.ViewBudgetMonthlyReport, "(" + groupings + ")");
+            // DIAG remove FillByGroupingList; it dunn work
+            adap.Fill(MainData.ViewBudgetMonthlyReport);
+            // DIAG can the table be just a standalone table, apart from its DataSet obj? or use MainDataSet1?
+            */
+
+            string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupings + ")";
+            MainData.ViewBudgetMonthlyReport.Clear();
+            using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
+            {
+                reportDataConn.Open();
+                SqlCommand reportDataCmd = new SqlCommand();
+                // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
+                reportDataCmd.Connection = reportDataConn;
+                reportDataCmd.CommandText = selectStr;
+                // DIAG do i need to bind fields?
+
+                SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
+                reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
+            }
+
+                /* old code:
+                
+            SqlConnection reportDataConn = new SqlConnection();
+            reportDataConn.ConnectionString = Properties.Settings.Default.SongbookConnectionString10May24;
+            reportDataConn.Open(); // prolly not needed
+            SqlCommand reportDataCmd = new SqlCommand();
+            // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
+            reportDataCmd.Connection = reportDataConn;
+            reportDataCmd.CommandText = selectStr;
+            // DIAG do i need to bind fields?
+
+            SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
+            reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
+                */
+
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
 
             PopulateGrid();
@@ -31,15 +91,14 @@ namespace Budget
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
-
         }
 
         void PopulateGrid()
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
+            gridMain.Rows.Clear();
+            gridMain.Columns.Clear();
 
-            dataGridView1.RowHeadersWidth = 120;
+            gridMain.RowHeadersWidth = 120;
 
 
             SortedList<DateTime, object> cols = new SortedList<DateTime, object>();
@@ -57,8 +116,8 @@ namespace Budget
             foreach (DateTime trMonth in cols.Keys)
             {
                 colIndices[trMonth] = colIndex;
-                dataGridView1.Columns.Add("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
-                DataGridViewColumn col = dataGridView1.Columns[colIndex];
+                gridMain.Columns.Add("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
+                DataGridViewColumn col = gridMain.Columns[colIndex];
                 col.Width = 70;
                 col.ValueType = typeof(Decimal);
                 col.Tag = trMonth;
@@ -75,10 +134,10 @@ namespace Budget
                 rowIndex++;
             }
 
-            dataGridView1.RowCount = rowIndex;
-            for (int ri = 0; ri < dataGridView1.RowCount; ri++)
+            gridMain.RowCount = rowIndex;
+            for (int ri = 0; ri < gridMain.RowCount; ri++)
             {
-                DataGridViewRow row = dataGridView1.Rows[ri]; 
+                DataGridViewRow row = gridMain.Rows[ri]; 
                 row.HeaderCell.Value = rows.Keys[ri];
                 row.Tag = rows.Keys[ri];
             }
@@ -87,7 +146,7 @@ namespace Budget
             {
                 if (!tblRow.IsGroupingNull())
                 {
-                    dataGridView1[colIndices[tblRow.TrMonth], rowIndices[tblRow.Grouping]].Value = tblRow.AmountNormalized;
+                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.Grouping]].Value = tblRow.AmountNormalized;
                 }
             }
 
@@ -95,7 +154,13 @@ namespace Budget
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.reportViewer1.RefreshReport();
+            // TODO: This line of code loads data into the 'mainDataSet.ViewBudgetGroupingsInOrder' table. You can move, or remove it, as needed.
+            this.viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
+            // Check, by default, the first 2 groupings (Inc. and Exp):
+            gridGroupings[groupingsGridCheckboxColumn, 0].Value = true;
+            gridGroupings[groupingsGridCheckboxColumn, 1].Value = true;
+
+            RefreshDisplay();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -103,13 +168,19 @@ namespace Budget
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
-            DateTime cellMonth = (DateTime)dataGridView1.Columns[e.ColumnIndex].Tag;
-            string cellGrouping = (string)dataGridView1.Rows[e.RowIndex].Tag;
+            DateTime cellMonth = (DateTime)gridMain.Columns[e.ColumnIndex].Tag;
+            string cellGrouping = (string)gridMain.Rows[e.RowIndex].Tag;
             MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
             monthGroupingForm.Initialize(cellMonth, cellGrouping);
             monthGroupingForm.ShowDialog();
 
             //MessageBox.Show("Waa! " + cellMonth.ToString() + " + " + cellGrouping);
+        }
+
+        private void applyTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TrTypeForm trTypeForm = new TrTypeForm();
+            trTypeForm.ShowDialog();
         }
     }
 }
