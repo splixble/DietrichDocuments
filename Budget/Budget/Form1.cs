@@ -159,7 +159,7 @@ namespace Budget
 
         private void applyTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TrTypeForm trTypeForm = new TrTypeForm();
+            GroupingAssignmentForm trTypeForm = new GroupingAssignmentForm();
             trTypeForm.ShowDialog();
         }
 

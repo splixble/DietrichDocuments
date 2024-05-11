@@ -252,23 +252,6 @@ ORDER BY OrderNum, Grouping</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetTypeGroupingsTableAdapter" GeneratorDataComponentClassName="BudgetTypeGroupingsTableAdapter" Name="BudgetTypeGroupings" UserDataComponentName="BudgetTypeGroupingsTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString10May24 (Settings)" DbObjectName="Songbook.dbo.BudgetTypeGroupings" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill_JustATest" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill_JustATest" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill_JustATest">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        GroupingLabel
-FROM            BudgetTypeGroupings</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="GroupingLabel" DataSetColumn="GroupingLabel" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -423,19 +406,6 @@ FROM            BudgetTypeGroupings</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="OrderNum" msdata:ReadOnly="true" msprop:Generator_UserColumnName="OrderNum" msprop:Generator_ColumnPropNameInTable="OrderNumColumn" msprop:Generator_ColumnPropNameInRow="OrderNum" msprop:Generator_ColumnVarNameInTable="columnOrderNum" type="xs:int" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="BudgetTypeGroupings" msprop:Generator_RowEvHandlerName="BudgetTypeGroupingsRowChangeEventHandler" msprop:Generator_RowDeletedName="BudgetTypeGroupingsRowDeleted" msprop:Generator_RowDeletingName="BudgetTypeGroupingsRowDeleting" msprop:Generator_RowEvArgName="BudgetTypeGroupingsRowChangeEvent" msprop:Generator_TablePropName="BudgetTypeGroupings" msprop:Generator_RowChangedName="BudgetTypeGroupingsRowChanged" msprop:Generator_RowChangingName="BudgetTypeGroupingsRowChanging" msprop:Generator_TableClassName="BudgetTypeGroupingsDataTable" msprop:Generator_RowClassName="BudgetTypeGroupingsRow" msprop:Generator_TableVarName="tableBudgetTypeGroupings" msprop:Generator_UserTableName="BudgetTypeGroupings">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="GroupingLabel" msprop:Generator_ColumnPropNameInRow="GroupingLabel" msprop:Generator_ColumnPropNameInTable="GroupingLabelColumn" msprop:Generator_ColumnVarNameInTable="columnGroupingLabel" msprop:Generator_UserColumnName="GroupingLabel">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="250" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

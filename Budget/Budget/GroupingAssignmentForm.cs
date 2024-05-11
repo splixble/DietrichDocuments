@@ -12,15 +12,17 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Budget
 {
-    public partial class TrTypeForm : Form
+    public partial class GroupingAssignmentForm : Form
     {
-        public TrTypeForm()
+        public GroupingAssignmentForm()
         {
             InitializeComponent();
         }
 
         private void TrTypeForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'mainDataSet1.BudgetTypePattern' table. You can move, or remove it, as needed.
+            this.budgetTypePatternTableAdapter.Fill(this.mainDataSet1.BudgetTypePattern);
             LoadTables();
         }
 
@@ -60,7 +62,7 @@ namespace Budget
             }
 
             // Now, highlight all grid rows that have modified data:
-            foreach (DataGridViewRow gridRow in grid.Rows) 
+            foreach (DataGridViewRow gridRow in gridBudgetItems.Rows) 
             {
                 DataRow dataRow = ((DataRowView)gridRow.DataBoundItem).Row;
                 if (dataRow.RowState == DataRowState.Modified) 
@@ -75,7 +77,7 @@ namespace Budget
         {
             budgetTableAdapter.Update(this.mainDataSet.Budget);
             LoadTables();
-            grid.Refresh();
+            gridBudgetItems.Refresh();
             btnSave.Enabled = false;
     }
     }
