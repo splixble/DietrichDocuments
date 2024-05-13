@@ -169,6 +169,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgetEditingGridCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BudgetEditingGridCtrl.Designer.cs">
+      <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     <Compile Include="GroupingAssignmentForm.Designer.cs">
       <DependentUpon>GroupingAssignmentForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BudgetEditingGridCtrl.resx">
+      <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BudgetReport2.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
