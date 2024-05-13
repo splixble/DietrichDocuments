@@ -175,6 +175,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupingForm.Designer.cs">
+      <DependentUpon>GroupingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainDataSet.cs">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
@@ -191,6 +197,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SourceFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SourceFileForm.Designer.cs">
+      <DependentUpon>SourceFileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="GroupingAssignmentForm.cs">
       <SubType>Form</SubType>
@@ -201,6 +213,9 @@
     <EmbeddedResource Include="BudgetReport2.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupingForm.resx">
+      <DependentUpon>GroupingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthGroupingForm.resx">
       <DependentUpon>MonthGroupingForm.cs</DependentUpon>
@@ -217,6 +232,9 @@
     <EmbeddedResource Include="ReportMonthly.rdlc" />
     <EmbeddedResource Include="GroupingAssignmentForm.resx">
       <DependentUpon>GroupingAssignmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SourceFileForm.resx">
+      <DependentUpon>SourceFileForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MainDataSet.xsc">
       <DependentUpon>MainDataSet.xsd</DependentUpon>

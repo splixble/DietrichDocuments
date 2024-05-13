@@ -21,64 +21,102 @@ namespace Budget
 
         private void TrTypeForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'mainDataSet1.BudgetTypePattern' table. You can move, or remove it, as needed.
-            this.budgetTypePatternTableAdapter.Fill(this.mainDataSet1.BudgetTypePattern);
-            LoadTables();
+            LoadBudgetTable();
+            LoadGroupingPatternTable();
         }
 
-        void LoadTables()
+        void LoadBudgetTable()
         {
             if (chBoxShowUntypedOnly.Checked)
                 this.budgetTableAdapter.FillUntypedUnignored(this.mainDataSet.Budget);
             else
                 this.budgetTableAdapter.Fill(this.mainDataSet.Budget);
+        }
 
-            MainDataSetTableAdapters.BudgetTypePatternTableAdapter typePatternAdap = new MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
-            typePatternAdap.Fill(mainDataSet.BudgetTypePattern);
+        void LoadGroupingPatternTable()
+        {
+            // DIAG does not fill grid! Why not???
+            budgetTypePatternTableAdapter.Fill(mainDataSet1.BudgetTypePattern);
         }
 
 
         private void btnApplyTypes_Click(object sender, EventArgs e)
         {
-            foreach (MainDataSet.BudgetRow budgetRow in mainDataSet.Budget)
-            {
-                foreach (MainDataSet.BudgetTypePatternRow patternRow in mainDataSet.BudgetTypePattern)
-                {
-                    // Does the descrioption contain a regex match for the pattern?
-                    if (Regex.IsMatch(budgetRow.Descrip, patternRow.Pattern))
-                    {
-                        if (patternRow.ForIgnore)
-                        {
-                            if (!budgetRow.Ignore)
-                                budgetRow.Ignore = true;
-                        }
-                        else
-                        {
-                            if (!patternRow.IsTrTypeNull() && (budgetRow.IsTrTypeNull() || budgetRow.TrType != patternRow.TrType))
-                                budgetRow.TrType = patternRow.TrType;
-                        }
-                    }
-                }
-            }
-
+            foreach (MainDataSet.BudgetTypePatternRow patternRow in mainDataSet1.BudgetTypePattern)
+                ApplyPatternGrouping(patternRow);
             // Now, highlight all grid rows that have modified data:
-            foreach (DataGridViewRow gridRow in gridBudgetItems.Rows) 
+            HighlightModifiedGridRows(gridBudgetItems);
+        }
+
+        void HighlightModifiedGridRows(DataGridView grid)
+        // Highlight all grid rows that have modified data
+        {
+            foreach (DataGridViewRow gridRow in grid.Rows)
             {
                 DataRow dataRow = ((DataRowView)gridRow.DataBoundItem).Row;
-                if (dataRow.RowState == DataRowState.Modified) 
+                if (dataRow.RowState == DataRowState.Modified)
                 {
                     gridRow.Selected = true;
-                    btnSave.Enabled = true; // there is data to save
+                    btnSaveBudgetItems.Enabled = true; // there is data to save
                 }
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        void ApplyPatternGrouping(MainDataSet.BudgetTypePatternRow patternRow)
+        {
+            foreach (MainDataSet.BudgetRow budgetRow in mainDataSet.Budget)
+            {
+                // Does the descrioption contain a regex match for the pattern?
+                if (Regex.IsMatch(budgetRow.Descrip, patternRow.Pattern))
+                {
+                    if (patternRow.ForIgnore)
+                    {
+                        if (!budgetRow.Ignore)
+                            budgetRow.Ignore = true;
+                    }
+                    else
+                    {
+                        if (!patternRow.IsTrTypeNull() && (budgetRow.IsTrTypeNull() || budgetRow.TrType != patternRow.TrType))
+                            budgetRow.TrType = patternRow.TrType;
+                    }
+                }
+            }
+        }
+
+        private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
             budgetTableAdapter.Update(this.mainDataSet.Budget);
-            LoadTables();
+            LoadBudgetTable();
             gridBudgetItems.Refresh();
-            btnSave.Enabled = false;
+            btnSaveBudgetItems.Enabled = false; // 
     }
+
+        private void gridGroupingPatterns_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == ColumnApply.Index)
+                {
+                    // Apply the pattern grouping:
+                    MainDataSet.BudgetTypePatternRow patternRow = (gridGroupingPatterns.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.BudgetTypePatternRow;
+                    ApplyPatternGrouping(patternRow);
+                    HighlightModifiedGridRows(gridBudgetItems);
+                }
+            }
+        }
+
+        private void btnSaveGroupingPatterns_Click(object sender, EventArgs e)
+        {
+            // DIAG DOES NOT Save! Why not?? Need 
+            budgetTypePatternTableAdapter.Update(mainDataSet1.BudgetTypePattern);
+            //mainDataSet1.BudgetTypePattern.AcceptChanges(); // DIAG work now?
+            LoadGroupingPatternTable();
+            gridGroupingPatterns.Refresh();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

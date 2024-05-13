@@ -35,13 +35,15 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridGroupings = new System.Windows.Forms.DataGridView();
+            this.ColumnChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.groupingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
             this.btnRefreshGroupingChange = new System.Windows.Forms.Button();
-            this.ColumnChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.groupingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loadSourceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupings)).BeginInit();
@@ -88,6 +90,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadSourceFileToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -95,7 +99,8 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.applyTransactionTypesToolStripMenuItem});
+            this.applyTransactionTypesToolStripMenuItem,
+            this.editGroupingsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -103,9 +108,16 @@
             // applyTransactionTypesToolStripMenuItem
             // 
             this.applyTransactionTypesToolStripMenuItem.Name = "applyTransactionTypesToolStripMenuItem";
-            this.applyTransactionTypesToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.applyTransactionTypesToolStripMenuItem.Text = "Apply Transaction Types";
+            this.applyTransactionTypesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.applyTransactionTypesToolStripMenuItem.Text = "Apply Grouping Patterns";
             this.applyTransactionTypesToolStripMenuItem.Click += new System.EventHandler(this.applyTransactionTypesToolStripMenuItem_Click);
+            // 
+            // editGroupingsToolStripMenuItem
+            // 
+            this.editGroupingsToolStripMenuItem.Name = "editGroupingsToolStripMenuItem";
+            this.editGroupingsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.editGroupingsToolStripMenuItem.Text = "Edit Groupings";
+            this.editGroupingsToolStripMenuItem.Click += new System.EventHandler(this.editGroupingsToolStripMenuItem_Click);
             // 
             // gridGroupings
             // 
@@ -125,6 +137,19 @@
             this.gridGroupings.Size = new System.Drawing.Size(164, 609);
             this.gridGroupings.TabIndex = 3;
             this.gridGroupings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridGroupings_CellContentClick);
+            // 
+            // ColumnChecked
+            // 
+            this.ColumnChecked.HeaderText = "";
+            this.ColumnChecked.Name = "ColumnChecked";
+            this.ColumnChecked.Width = 35;
+            // 
+            // groupingDataGridViewTextBoxColumn
+            // 
+            this.groupingDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.groupingDataGridViewTextBoxColumn.DataPropertyName = "Grouping";
+            this.groupingDataGridViewTextBoxColumn.HeaderText = "Grouping";
+            this.groupingDataGridViewTextBoxColumn.Name = "groupingDataGridViewTextBoxColumn";
             // 
             // viewBudgetGroupingsInOrderBindingSource
             // 
@@ -151,18 +176,12 @@
             this.btnRefreshGroupingChange.UseVisualStyleBackColor = true;
             this.btnRefreshGroupingChange.Click += new System.EventHandler(this.btnRefreshGroupingChange_Click);
             // 
-            // ColumnChecked
+            // loadSourceFileToolStripMenuItem
             // 
-            this.ColumnChecked.HeaderText = "";
-            this.ColumnChecked.Name = "ColumnChecked";
-            this.ColumnChecked.Width = 35;
-            // 
-            // groupingDataGridViewTextBoxColumn
-            // 
-            this.groupingDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.groupingDataGridViewTextBoxColumn.DataPropertyName = "Grouping";
-            this.groupingDataGridViewTextBoxColumn.HeaderText = "Grouping";
-            this.groupingDataGridViewTextBoxColumn.Name = "groupingDataGridViewTextBoxColumn";
+            this.loadSourceFileToolStripMenuItem.Name = "loadSourceFileToolStripMenuItem";
+            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadSourceFileToolStripMenuItem.Text = "Load Source File";
+            this.loadSourceFileToolStripMenuItem.Click += new System.EventHandler(this.loadSourceFileToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -204,6 +223,8 @@
         private System.Windows.Forms.Button btnRefreshGroupingChange;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn groupingDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem editGroupingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadSourceFileToolStripMenuItem;
     }
 }
 

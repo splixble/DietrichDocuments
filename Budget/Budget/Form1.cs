@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Budget
 {
@@ -171,6 +172,18 @@ namespace Budget
         private void gridGroupings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             btnRefreshGroupingChange.Enabled = true;
+        }
+
+        private void editGroupingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GroupingForm form = new GroupingForm();
+            form.ShowDialog();
+        }
+
+        private void loadSourceFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SourceFileForm form = new SourceFileForm();
+            form.ShowDialog();
         }
     }
 }

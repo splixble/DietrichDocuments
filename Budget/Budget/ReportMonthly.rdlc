@@ -496,7 +496,11 @@
                       <ChartDataLabel>
                         <Style />
                       </ChartDataLabel>
-                      <Style />
+                      <Style>
+                        <Border>
+                          <Width>1.5pt</Width>
+                        </Border>
+                      </Style>
                       <ChartMarker>
                         <Style />
                       </ChartMarker>
