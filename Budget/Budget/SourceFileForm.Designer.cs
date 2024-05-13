@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.btnOpenSourceFile = new System.Windows.Forms.Button();
             this.comboSrcFileFormat = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.mainDataSet = new Budget.MainDataSet();
             this.budgetSourceFileFormatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
+            this.label1 = new System.Windows.Forms.Label();
             this.budgetSourceFileFormatTableAdapter = new Budget.MainDataSetTableAdapters.BudgetSourceFileFormatTableAdapter();
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.budgetSourceFileFormatBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpenSourceFile
@@ -61,6 +61,16 @@
             this.comboSrcFileFormat.TabIndex = 1;
             this.comboSrcFileFormat.ValueMember = "FormatCode";
             // 
+            // budgetSourceFileFormatBindingSource
+            // 
+            this.budgetSourceFileFormatBindingSource.DataMember = "BudgetSourceFileFormat";
+            this.budgetSourceFileFormatBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -70,45 +80,35 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Format:";
             // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // budgetSourceFileFormatBindingSource
-            // 
-            this.budgetSourceFileFormatBindingSource.DataMember = "BudgetSourceFileFormat";
-            this.budgetSourceFileFormatBindingSource.DataSource = this.mainDataSet;
-            // 
             // budgetSourceFileFormatTableAdapter
             // 
             this.budgetSourceFileFormatTableAdapter.ClearBeforeFill = true;
             // 
-            // budgetEditingGridCtrl1
+            // budgetCtrl
             // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.budgetCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(12, 41);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(776, 397);
-            this.budgetEditingGridCtrl1.TabIndex = 3;
+            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.budgetCtrl.Location = new System.Drawing.Point(12, 41);
+            this.budgetCtrl.Name = "budgetCtrl";
+            this.budgetCtrl.Size = new System.Drawing.Size(776, 397);
+            this.budgetCtrl.TabIndex = 3;
             // 
             // SourceFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.budgetEditingGridCtrl1);
+            this.Controls.Add(this.budgetCtrl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboSrcFileFormat);
             this.Controls.Add(this.btnOpenSourceFile);
             this.Name = "SourceFileForm";
             this.Text = "SourceFileForm";
             this.Load += new System.EventHandler(this.SourceFileForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetSourceFileFormatBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,6 +122,6 @@
         private MainDataSet mainDataSet;
         private System.Windows.Forms.BindingSource budgetSourceFileFormatBindingSource;
         private MainDataSetTableAdapters.BudgetSourceFileFormatTableAdapter budgetSourceFileFormatTableAdapter;
-        private BudgetEditingGridCtrl budgetEditingGridCtrl1;
+        private BudgetEditingGridCtrl budgetCtrl;
     }
 }

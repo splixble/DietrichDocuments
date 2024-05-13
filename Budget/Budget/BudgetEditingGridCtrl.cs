@@ -12,6 +12,9 @@ namespace Budget
 {
     public partial class BudgetEditingGridCtrl : UserControl
     {
+        public MainDataSet.BudgetDataTable BudgetTable => mainDataSet.Budget;
+        public MainDataSetTableAdapters.BudgetTableAdapter BudgetAdapter => budgetTableAdapter;
+
         public BudgetEditingGridCtrl()
         {
             InitializeComponent();

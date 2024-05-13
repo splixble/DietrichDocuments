@@ -90,9 +90,9 @@
             this.accountDataGridViewTextBoxColumn,
             this.ignoreDataGridViewCheckBoxColumn});
             this.gridBudgetItems.DataSource = this.budgetBindingSource;
-            this.gridBudgetItems.Location = new System.Drawing.Point(0, 37);
+            this.gridBudgetItems.Location = new System.Drawing.Point(119, 87);
             this.gridBudgetItems.Name = "gridBudgetItems";
-            this.gridBudgetItems.Size = new System.Drawing.Size(1276, 365);
+            this.gridBudgetItems.Size = new System.Drawing.Size(279, 250);
             this.gridBudgetItems.TabIndex = 0;
             // 
             // iDDataGridViewTextBoxColumn
@@ -255,7 +255,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 16);
+            this.label2.Size = new System.Drawing.Size(134, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -333,7 +333,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(-3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Budget Items";
             // 
