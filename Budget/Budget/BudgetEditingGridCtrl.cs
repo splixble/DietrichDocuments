@@ -22,7 +22,8 @@ namespace Budget
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            // DIAG impl
+            budgetTableAdapter.Update(this.mainDataSet.Budget);
+            gridBudgetItems.Refresh();
         }
     }
 }
