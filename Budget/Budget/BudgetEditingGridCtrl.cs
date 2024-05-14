@@ -19,5 +19,10 @@ namespace Budget
         {
             InitializeComponent();
         }
+
+        private void btnSaveBudgetItems_Click(object sender, EventArgs e)
+        {
+            // DIAG impl
+        }
     }
 }

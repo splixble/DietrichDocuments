@@ -17,9 +17,19 @@ namespace Budget
         public SourceFileForm()
         {
             InitializeComponent();
+
+            comboAccount.DataSource = Program.LookupTableSet.MainDataSet.BudgetAccount;
+            comboAccount.DisplayMember = "AccountName";
+            comboAccount.ValueMember = "AccountID";
+
+            comboSrcFileFormat.DataSource = Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
+            comboSrcFileFormat.DisplayMember = "FormatCode";
+            comboSrcFileFormat.ValueMember = "FormatCode";
         }
 
-        MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => mainDataSet.BudgetSourceFileFormat;
+        public MainDataSet LookupMainDataSet => Program.LookupTableSet.MainDataSet;
+
+        MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
 
         private void btnOpenSourceFile_Click(object sender, EventArgs e)
         {
@@ -107,7 +117,7 @@ namespace Budget
 
                         if (lineParsable)
                         {
-                            newBudgetRow.Account = "DIAG";// DIAG gotta prompt for
+                            newBudgetRow.Account = comboAccount.SelectedValue as string;// DIAG make sure it's selected
                             newBudgetRow.Ignore = false; // necessary initialization
                             budgetCtrl.BudgetTable.AddBudgetRow(newBudgetRow);
                         }
@@ -119,9 +129,6 @@ namespace Budget
 
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'mainDataSet.BudgetSourceFileFormat' table. You can move, or remove it, as needed.
-            this.budgetSourceFileFormatTableAdapter.Fill(this.mainDataSet.BudgetSourceFileFormat);
-
         }
     }
 }

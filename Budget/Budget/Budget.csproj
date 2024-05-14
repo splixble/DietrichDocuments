@@ -188,6 +188,7 @@
     <Compile Include="GroupingForm.Designer.cs">
       <DependentUpon>GroupingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LookupTableSet.cs" />
     <Compile Include="MainDataSet.cs">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
