@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Budget
 {
@@ -26,15 +27,15 @@ namespace Budget
             srcFileDlg.InitialDirectory = "D:\\Dietrich\\Business\\Budget App Input Files"; //get from Config file, which s/b read at beginning and globally available
             srcFileDlg.Title = "Select source file:";
             DialogResult diaRes = srcFileDlg.ShowDialog();
-            // DIAG they gotta select a format
+            
             if (diaRes == DialogResult.OK)
             {
+                MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(comboSrcFileFormat.SelectedValue as string);
+                string[] formatFields = formatRow.FormatColumns.Split(',');
+
+                /* Old file reading code:
                 using (StreamReader srcFileStream = new StreamReader(srcFileDlg.FileName))
                 {
-                    MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(comboSrcFileFormat.SelectedValue as string);
-                    string[] formatFields = formatRow.FormatColumns.Split(',');
-
-                    // DIAG Use my csv file object from last project!
                     // Go through each line of text in the file:
                     string fileLine;
                     do
@@ -44,6 +45,21 @@ namespace Budget
                             break;
 
                         string[] fileFields = fileLine.Split(','); // DIAG delimiter dependent
+                        ...
+                    }
+                    while (fileLine != null);
+                 * */
+
+                // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
+                using (TextFieldParser parser = new TextFieldParser(srcFileDlg.FileName))
+                {
+                    parser.TextFieldType = FieldType.Delimited;
+                    parser.SetDelimiters(","); // allow tab delim?
+                    while (!parser.EndOfData)
+                    {
+                        //Processing row
+                        string[] fileFields = parser.ReadFields();
+
                         bool lineParsable = true;
 
                         MainDataSet.BudgetRow newBudgetRow = budgetCtrl.BudgetTable.NewBudgetRow();
@@ -96,7 +112,6 @@ namespace Budget
                             budgetCtrl.BudgetTable.AddBudgetRow(newBudgetRow);
                         }
                     }
-                    while (fileLine != null);
                 }
             }
             budgetCtrl.Refresh();
