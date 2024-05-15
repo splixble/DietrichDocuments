@@ -28,9 +28,9 @@ namespace Budget
         void LoadBudgetTable()
         {
             if (chBoxShowUntypedOnly.Checked)
-                this.budgetTableAdapter.FillUntypedUnignored(this.mainDataSet.Budget);
+                budgetEditingGridCtrl1.BudgetAdapter.FillUntypedUnignored(budgetEditingGridCtrl1.BudgetTable);
             else
-                this.budgetTableAdapter.Fill(this.mainDataSet.Budget);
+                budgetEditingGridCtrl1.BudgetAdapter.Fill(budgetEditingGridCtrl1.BudgetTable);
         }
 
         void LoadGroupingPatternTable()
@@ -45,7 +45,7 @@ namespace Budget
             foreach (MainDataSet.BudgetTypePatternRow patternRow in mainDataSet1.BudgetTypePattern)
                 ApplyPatternGrouping(patternRow);
             // Now, highlight all grid rows that have modified data:
-            HighlightModifiedGridRows(gridBudgetItems);
+            HighlightModifiedGridRows(budgetEditingGridCtrl1.Grid);
         }
 
         void HighlightModifiedGridRows(DataGridView grid)
@@ -64,7 +64,7 @@ namespace Budget
 
         void ApplyPatternGrouping(MainDataSet.BudgetTypePatternRow patternRow)
         {
-            foreach (MainDataSet.BudgetRow budgetRow in mainDataSet.Budget)
+            foreach (MainDataSet.BudgetRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
                 if (Regex.IsMatch(budgetRow.Descrip, patternRow.Pattern))
@@ -85,10 +85,10 @@ namespace Budget
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            budgetTableAdapter.Update(this.mainDataSet.Budget);
+            budgetEditingGridCtrl1.BudgetAdapter.Update(budgetEditingGridCtrl1.BudgetTable);
             LoadBudgetTable();
-            gridBudgetItems.Refresh();
-            btnSaveBudgetItems.Enabled = false; // 
+            budgetEditingGridCtrl1.Grid.Refresh();
+            btnSaveBudgetItems.Enabled = false; // DIAG s/b enabled any time data is edited, right?
     }
 
         private void gridGroupingPatterns_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -100,7 +100,7 @@ namespace Budget
                     // Apply the pattern grouping:
                     MainDataSet.BudgetTypePatternRow patternRow = (gridGroupingPatterns.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.BudgetTypePatternRow;
                     ApplyPatternGrouping(patternRow);
-                    HighlightModifiedGridRows(gridBudgetItems);
+                    HighlightModifiedGridRows(budgetEditingGridCtrl1.Grid);
                 }
             }
         }

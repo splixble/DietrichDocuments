@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Budget.MainDataSetTableAdapters;
 using Microsoft.VisualBasic.FileIO;
+using static Budget.MainDataSet;
 
 namespace Budget
 {
@@ -31,6 +33,8 @@ namespace Budget
 
         MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
 
+        string _SourceFileName = "";
+
         private void btnOpenSourceFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog srcFileDlg = new OpenFileDialog();
@@ -40,6 +44,7 @@ namespace Budget
             
             if (diaRes == DialogResult.OK)
             {
+                _SourceFileName = srcFileDlg.FileName;
                 MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(comboSrcFileFormat.SelectedValue as string);
                 string[] formatFields = formatRow.FormatColumns.Split(',');
 
@@ -61,7 +66,7 @@ namespace Budget
                  * */
 
                 // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
-                using (TextFieldParser parser = new TextFieldParser(srcFileDlg.FileName))
+                using (TextFieldParser parser = new TextFieldParser(_SourceFileName))
                 {
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(","); // allow tab delim?
@@ -129,6 +134,31 @@ namespace Budget
 
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
+            budgetCtrl.CreateNewSourceFileRow = true;
+        }
+
+        private void btnSaveBudgetItems_Click(object sender, EventArgs e)
+        {
+            // DIAG should set the new source file's (temp) ID when it's first added (substituted on save) -- so we can import >1 file before saving
+            // DIAG use transactions (budgetTableAdapter.Transaction) in this
+            MainDataSet.BudgetSourceFileDataTable sourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
+            MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
+
+            // make new source file row:
+            MainDataSet.BudgetSourceFileRow newSourceFileRow = sourceFileTable.NewBudgetSourceFileRow();
+            newSourceFileRow.FilePath = _SourceFileName;
+            newSourceFileRow.Account = comboAccount.SelectedValue as string;
+            sourceFileTable.AddBudgetSourceFileRow(newSourceFileRow);
+            sourceFileAdap.Update(sourceFileTable);
+
+            foreach (MainDataSet.BudgetRow budgetRow in budgetCtrl.BudgetTable)
+            {
+                // DIAG and check for duplicate budget recs!
+                if (budgetRow.RowState == DataRowState.Added)
+                    budgetRow.SourceFile = newSourceFileRow.FileID;
+            }    
+            budgetCtrl.BudgetAdapter.Update(budgetCtrl.BudgetTable);
+            budgetCtrl.Grid.Refresh();
         }
     }
 }

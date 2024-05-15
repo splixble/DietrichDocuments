@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
-            this.gridBudgetItems = new System.Windows.Forms.DataGridView();
+            this.grid1 = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,11 +43,9 @@
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnSaveBudgetItems = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBudgetItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             this.SuspendLayout();
             // 
             // budgetBindingSource
@@ -63,16 +62,13 @@
             // 
             this.budgetTableAdapter.ClearBeforeFill = true;
             // 
-            // gridBudgetItems
+            // grid1
             // 
-            this.gridBudgetItems.AllowUserToAddRows = false;
-            this.gridBudgetItems.AllowUserToDeleteRows = false;
-            this.gridBudgetItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridBudgetItems.AutoGenerateColumns = false;
-            this.gridBudgetItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridBudgetItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grid1.AllowUserToAddRows = false;
+            this.grid1.AllowUserToDeleteRows = false;
+            this.grid1.AutoGenerateColumns = false;
+            this.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.trDateDataGridViewTextBoxColumn,
             this.amountDataGridViewTextBoxColumn,
@@ -82,11 +78,22 @@
             this.accountDataGridViewTextBoxColumn,
             this.Balance,
             this.ignoreDataGridViewCheckBoxColumn});
-            this.gridBudgetItems.DataSource = this.budgetBindingSource;
-            this.gridBudgetItems.Location = new System.Drawing.Point(3, 3);
-            this.gridBudgetItems.Name = "gridBudgetItems";
-            this.gridBudgetItems.Size = new System.Drawing.Size(1385, 440);
-            this.gridBudgetItems.TabIndex = 1;
+            this.grid1.DataSource = this.budgetBindingSource;
+            this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid1.Location = new System.Drawing.Point(0, 0);
+            this.grid1.Name = "grid1";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grid1.RowHeadersWidth = 50;
+            this.grid1.Size = new System.Drawing.Size(1395, 479);
+            this.grid1.TabIndex = 1;
+            this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -151,40 +158,16 @@
             this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
             this.ignoreDataGridViewCheckBoxColumn.Width = 40;
             // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(122, 449);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Cancel Changes";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveBudgetItems
-            // 
-            this.btnSaveBudgetItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveBudgetItems.Location = new System.Drawing.Point(3, 449);
-            this.btnSaveBudgetItems.Name = "btnSaveBudgetItems";
-            this.btnSaveBudgetItems.Size = new System.Drawing.Size(113, 23);
-            this.btnSaveBudgetItems.TabIndex = 9;
-            this.btnSaveBudgetItems.Text = "Save Changes";
-            this.btnSaveBudgetItems.UseVisualStyleBackColor = true;
-            this.btnSaveBudgetItems.Click += new System.EventHandler(this.btnSaveBudgetItems_Click);
-            // 
             // BudgetEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.btnSaveBudgetItems);
-            this.Controls.Add(this.gridBudgetItems);
+            this.Controls.Add(this.grid1);
             this.Name = "BudgetEditingGridCtrl";
-            this.Size = new System.Drawing.Size(1391, 475);
+            this.Size = new System.Drawing.Size(1395, 479);
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBudgetItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,9 +177,7 @@
         private System.Windows.Forms.BindingSource budgetBindingSource;
         private MainDataSet mainDataSet;
         private MainDataSetTableAdapters.BudgetTableAdapter budgetTableAdapter;
-        private System.Windows.Forms.DataGridView gridBudgetItems;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnSaveBudgetItems;
+        private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;

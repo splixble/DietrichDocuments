@@ -19,7 +19,7 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
-
+        // DIAG put a splitter window in! And show Comments in budget items,
         const int groupingsGridCheckboxColumn = 0;
 
         public Form1()

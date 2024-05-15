@@ -29,18 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.gridBudgetItems = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet = new Budget.MainDataSet();
-            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnApplyTypes = new System.Windows.Forms.Button();
             this.chBoxShowUntypedOnly = new System.Windows.Forms.CheckBox();
             this.btnSaveBudgetItems = new System.Windows.Forms.Button();
@@ -59,9 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBudgetItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,101 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.budgetTypePatternBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gridBudgetItems
-            // 
-            this.gridBudgetItems.AllowUserToAddRows = false;
-            this.gridBudgetItems.AllowUserToDeleteRows = false;
-            this.gridBudgetItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridBudgetItems.AutoGenerateColumns = false;
-            this.gridBudgetItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridBudgetItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.trDateDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn,
-            this.descripDataGridViewTextBoxColumn,
-            this.trCodeDataGridViewTextBoxColumn,
-            this.trTypeDataGridViewTextBoxColumn,
-            this.accountDataGridViewTextBoxColumn,
-            this.ignoreDataGridViewCheckBoxColumn});
-            this.gridBudgetItems.DataSource = this.budgetBindingSource;
-            this.gridBudgetItems.Location = new System.Drawing.Point(3, 37);
-            this.gridBudgetItems.Name = "gridBudgetItems";
-            this.gridBudgetItems.Size = new System.Drawing.Size(1273, 365);
-            this.gridBudgetItems.TabIndex = 0;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // trDateDataGridViewTextBoxColumn
-            // 
-            this.trDateDataGridViewTextBoxColumn.DataPropertyName = "TrDate";
-            this.trDateDataGridViewTextBoxColumn.HeaderText = "TrDate";
-            this.trDateDataGridViewTextBoxColumn.Name = "trDateDataGridViewTextBoxColumn";
-            this.trDateDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // descripDataGridViewTextBoxColumn
-            // 
-            this.descripDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripDataGridViewTextBoxColumn.DataPropertyName = "Descrip";
-            this.descripDataGridViewTextBoxColumn.HeaderText = "Descrip";
-            this.descripDataGridViewTextBoxColumn.Name = "descripDataGridViewTextBoxColumn";
-            // 
-            // trCodeDataGridViewTextBoxColumn
-            // 
-            this.trCodeDataGridViewTextBoxColumn.DataPropertyName = "TrCode";
-            this.trCodeDataGridViewTextBoxColumn.HeaderText = "TrCode";
-            this.trCodeDataGridViewTextBoxColumn.Name = "trCodeDataGridViewTextBoxColumn";
-            this.trCodeDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // trTypeDataGridViewTextBoxColumn
-            // 
-            this.trTypeDataGridViewTextBoxColumn.DataPropertyName = "TrType";
-            this.trTypeDataGridViewTextBoxColumn.HeaderText = "TrType";
-            this.trTypeDataGridViewTextBoxColumn.Name = "trTypeDataGridViewTextBoxColumn";
-            this.trTypeDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // accountDataGridViewTextBoxColumn
-            // 
-            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
-            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
-            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
-            this.accountDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // ignoreDataGridViewCheckBoxColumn
-            // 
-            this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";
-            this.ignoreDataGridViewCheckBoxColumn.HeaderText = "Ignore";
-            this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
-            this.ignoreDataGridViewCheckBoxColumn.Width = 40;
-            // 
-            // budgetBindingSource
-            // 
-            this.budgetBindingSource.DataMember = "Budget";
-            this.budgetBindingSource.DataSource = this.mainDataSet;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // budgetTableAdapter
-            // 
-            this.budgetTableAdapter.ClearBeforeFill = true;
             // 
             // btnApplyTypes
             // 
@@ -219,9 +111,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.budgetEditingGridCtrl1);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.chBoxShowUntypedOnly);
-            this.splitContainer1.Panel2.Controls.Add(this.gridBudgetItems);
             this.splitContainer1.Panel2.Controls.Add(this.btnSaveBudgetItems);
             this.splitContainer1.Size = new System.Drawing.Size(1276, 658);
             this.splitContainer1.SplitterDistance = 223;
@@ -255,7 +147,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 16);
+            this.label2.Size = new System.Drawing.Size(134, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -273,6 +165,14 @@
             this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
             this.gridGroupingPatterns.DataSource = this.budgetTypePatternBindingSource;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridGroupingPatterns.DefaultCellStyle = dataGridViewCellStyle1;
             this.gridGroupingPatterns.Location = new System.Drawing.Point(0, 32);
             this.gridGroupingPatterns.Name = "gridGroupingPatterns";
             this.gridGroupingPatterns.Size = new System.Drawing.Size(1276, 159);
@@ -333,7 +233,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(-3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Budget Items";
             // 
@@ -351,6 +251,16 @@
             this.button3.Text = "Cancel Changes";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // budgetEditingGridCtrl1
+            // 
+            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
+            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
+            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
+            this.budgetEditingGridCtrl1.TabIndex = 5;
+            // 
             // GroupingAssignmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,9 +271,6 @@
             this.Name = "GroupingAssignmentForm";
             this.Text = "Grouping Assignment Form";
             this.Load += new System.EventHandler(this.TrTypeForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridBudgetItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -378,11 +285,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView gridBudgetItems;
-        private MainDataSet mainDataSet;
-        private System.Windows.Forms.BindingSource budgetBindingSource;
-        private MainDataSetTableAdapters.BudgetTableAdapter budgetTableAdapter;
         private System.Windows.Forms.Button btnApplyTypes;
         private System.Windows.Forms.CheckBox chBoxShowUntypedOnly;
         private System.Windows.Forms.Button btnSaveBudgetItems;
@@ -394,14 +296,6 @@
         private MainDataSet mainDataSet1;
         private System.Windows.Forms.BindingSource budgetTypePatternBindingSource;
         private MainDataSetTableAdapters.BudgetTypePatternTableAdapter budgetTypePatternTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
@@ -409,5 +303,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn forIgnoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
+        private BudgetEditingGridCtrl budgetEditingGridCtrl1;
     }
 }
