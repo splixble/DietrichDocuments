@@ -38,10 +38,12 @@
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -73,10 +75,12 @@
             this.trDateDataGridViewTextBoxColumn,
             this.amountDataGridViewTextBoxColumn,
             this.descripDataGridViewTextBoxColumn,
+            this.Descrip2Column,
             this.trCodeDataGridViewTextBoxColumn,
             this.trTypeDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn,
             this.Balance,
+            this.CommentColumn,
             this.ignoreDataGridViewCheckBoxColumn});
             this.grid1.DataSource = this.budgetBindingSource;
             this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -124,6 +128,12 @@
             this.descripDataGridViewTextBoxColumn.HeaderText = "Descrip";
             this.descripDataGridViewTextBoxColumn.Name = "descripDataGridViewTextBoxColumn";
             // 
+            // Descrip2Column
+            // 
+            this.Descrip2Column.DataPropertyName = "Descrip2";
+            this.Descrip2Column.HeaderText = "Descrip2";
+            this.Descrip2Column.Name = "Descrip2Column";
+            // 
             // trCodeDataGridViewTextBoxColumn
             // 
             this.trCodeDataGridViewTextBoxColumn.DataPropertyName = "TrCode";
@@ -150,6 +160,13 @@
             this.Balance.DataPropertyName = "Balance";
             this.Balance.HeaderText = "Balance";
             this.Balance.Name = "Balance";
+            // 
+            // CommentColumn
+            // 
+            this.CommentColumn.DataPropertyName = "Comment";
+            this.CommentColumn.HeaderText = "Comment";
+            this.CommentColumn.Name = "CommentColumn";
+            this.CommentColumn.Width = 230;
             // 
             // ignoreDataGridViewCheckBoxColumn
             // 
@@ -182,10 +199,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
     }
 }

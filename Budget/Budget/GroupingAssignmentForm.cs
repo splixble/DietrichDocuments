@@ -44,22 +44,6 @@ namespace Budget
         {
             foreach (MainDataSet.BudgetTypePatternRow patternRow in mainDataSet1.BudgetTypePattern)
                 ApplyPatternGrouping(patternRow);
-            // Now, highlight all grid rows that have modified data:
-            HighlightModifiedGridRows(budgetEditingGridCtrl1.Grid);
-        }
-
-        void HighlightModifiedGridRows(DataGridView grid)
-        // Highlight all grid rows that have modified data
-        {
-            foreach (DataGridViewRow gridRow in grid.Rows)
-            {
-                DataRow dataRow = ((DataRowView)gridRow.DataBoundItem).Row;
-                if (dataRow.RowState == DataRowState.Modified)
-                {
-                    gridRow.Selected = true;
-                    btnSaveBudgetItems.Enabled = true; // there is data to save
-                }
-            }
         }
 
         void ApplyPatternGrouping(MainDataSet.BudgetTypePatternRow patternRow)
@@ -81,6 +65,8 @@ namespace Budget
                     }
                 }
             }
+            // Now, highlight all grid rows that have modified data:
+            budgetEditingGridCtrl1.SetRowColors();
         }
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
@@ -88,7 +74,6 @@ namespace Budget
             budgetEditingGridCtrl1.BudgetAdapter.Update(budgetEditingGridCtrl1.BudgetTable);
             LoadBudgetTable();
             budgetEditingGridCtrl1.Grid.Refresh();
-            btnSaveBudgetItems.Enabled = false; // DIAG s/b enabled any time data is edited, right?
     }
 
         private void gridGroupingPatterns_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -100,7 +85,6 @@ namespace Budget
                     // Apply the pattern grouping:
                     MainDataSet.BudgetTypePatternRow patternRow = (gridGroupingPatterns.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.BudgetTypePatternRow;
                     ApplyPatternGrouping(patternRow);
-                    HighlightModifiedGridRows(budgetEditingGridCtrl1.Grid);
                 }
             }
         }
@@ -112,11 +96,6 @@ namespace Budget
             //mainDataSet1.BudgetTypePattern.AcceptChanges(); // DIAG work now?
             LoadGroupingPatternTable();
             gridGroupingPatterns.Refresh();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

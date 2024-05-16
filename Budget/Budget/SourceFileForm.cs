@@ -103,7 +103,13 @@ namespace Budget
                                 {
                                     Decimal fileValue;
                                     if (Decimal.TryParse(fileFields[formatColIndex], out fileValue))
+                                    {
+                                        // For Amount and Balance columns, handle the special case in which source file lists credits as negative and debits as positive:
+                                        if (formatRow.CreditsAreNegative)
+                                            fileValue = -fileValue;
+
                                         newBudgetRow[budgetColumn] = fileValue;
+                                    }
                                     else
                                         lineParsable = false;
                                 }

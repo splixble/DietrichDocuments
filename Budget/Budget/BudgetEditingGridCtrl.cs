@@ -27,10 +27,26 @@ namespace Budget
 
         private void gridBudgetItems_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            for (int rowNum = 0; rowNum < grid1.Rows.Count; rowNum++) 
+            SetRowColors();
+        }
+
+        public void SetRowColors()
+        {
+            for (int rowNum = 0; rowNum < grid1.Rows.Count; rowNum++)
             {
                 grid1.Rows[rowNum].HeaderCell.Value = (rowNum + 1).ToString();
+                SetRowColor(rowNum);
             }
+        }
+
+        void SetRowColor(int rowNum)
+        {
+            DataGridViewRow gridRow = grid1.Rows[rowNum];
+            DataRow dataRow = (gridRow.DataBoundItem as DataRowView).Row;
+            if (dataRow.RowState == DataRowState.Modified)
+                gridRow.DefaultCellStyle.BackColor = Color.LightBlue;
+            else if (dataRow.RowState == DataRowState.Added)
+                gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
         }
     }
 }

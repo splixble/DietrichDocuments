@@ -83,7 +83,6 @@
             // btnSaveBudgetItems
             // 
             this.btnSaveBudgetItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveBudgetItems.Enabled = false;
             this.btnSaveBudgetItems.Location = new System.Drawing.Point(0, 408);
             this.btnSaveBudgetItems.Name = "btnSaveBudgetItems";
             this.btnSaveBudgetItems.Size = new System.Drawing.Size(113, 23);
