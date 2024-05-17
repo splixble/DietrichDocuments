@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.grid1 = new System.Windows.Forms.DataGridView();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
-            this.grid1 = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,25 +44,12 @@
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // budgetBindingSource
-            // 
-            this.budgetBindingSource.DataMember = "Budget";
-            this.budgetBindingSource.DataSource = this.mainDataSet;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // budgetTableAdapter
-            // 
-            this.budgetTableAdapter.ClearBeforeFill = true;
             // 
             // grid1
             // 
@@ -81,6 +68,7 @@
             this.accountDataGridViewTextBoxColumn,
             this.Balance,
             this.CommentColumn,
+            this.IsIncomeColumn,
             this.ignoreDataGridViewCheckBoxColumn});
             this.grid1.DataSource = this.budgetBindingSource;
             this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -98,6 +86,20 @@
             this.grid1.Size = new System.Drawing.Size(1395, 479);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
+            // 
+            // budgetBindingSource
+            // 
+            this.budgetBindingSource.DataMember = "Budget";
+            this.budgetBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // budgetTableAdapter
+            // 
+            this.budgetTableAdapter.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -168,6 +170,13 @@
             this.CommentColumn.Name = "CommentColumn";
             this.CommentColumn.Width = 230;
             // 
+            // IsIncomeColumn
+            // 
+            this.IsIncomeColumn.DataPropertyName = "IsIncome";
+            this.IsIncomeColumn.HeaderText = "Is Income";
+            this.IsIncomeColumn.Name = "IsIncomeColumn";
+            this.IsIncomeColumn.Width = 40;
+            // 
             // ignoreDataGridViewCheckBoxColumn
             // 
             this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";
@@ -182,9 +191,9 @@
             this.Controls.Add(this.grid1);
             this.Name = "BudgetEditingGridCtrl";
             this.Size = new System.Drawing.Size(1395, 479);
+            ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,6 +214,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
     }
 }

@@ -12,6 +12,11 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Budget
 {
+    /* DIAG do: Make this form able to set IsIncome just like Ignore.
+     * Use that to subdivide TrType = Inc into diff types of income.
+     * Then, make it check existing Budget recs before adding them from source file!
+     * And make views put in 0 values for intervening months with no charges. By a generated SQL function
+     */
     public partial class GroupingAssignmentForm : Form
     {
         public GroupingAssignmentForm()
