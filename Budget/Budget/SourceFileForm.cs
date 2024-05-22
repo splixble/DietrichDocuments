@@ -16,6 +16,8 @@ namespace Budget
 {
     public partial class SourceFileForm : Form
     {
+        MainDataSet.BudgetAccountRow AccountRowSelected => Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(comboAccount.SelectedValue as string);
+
         public SourceFileForm()
         {
             InitializeComponent();
@@ -23,10 +25,6 @@ namespace Budget
             comboAccount.DataSource = Program.LookupTableSet.MainDataSet.BudgetAccount;
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
-
-            comboSrcFileFormat.DataSource = Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
-            comboSrcFileFormat.DisplayMember = "FormatCode";
-            comboSrcFileFormat.ValueMember = "FormatCode";
         }
 
         public MainDataSet LookupMainDataSet => Program.LookupTableSet.MainDataSet;
@@ -57,7 +55,7 @@ namespace Budget
                 _AlteredTableData._NewestSourceFileRow.Account = comboAccount.SelectedValue as string;
                 _AlteredTableData._SourceFileTable.AddBudgetSourceFileRow(_AlteredTableData._NewestSourceFileRow);
 
-                MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(comboSrcFileFormat.SelectedValue as string);
+                MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(AccountRowSelected.SourceFileFormat);
                 string[] formatFields = formatRow.FormatColumns.Split(',');
 
                 // By default, show only new (ID negative) records: 
@@ -149,8 +147,6 @@ namespace Budget
 
                         if (lineParsable)
                         {
-                            // DIAG make sure Account is selected
-
                             BudgetRow importedRow;
 
                             // Check for duplicate Budget rows:
@@ -213,7 +209,6 @@ namespace Budget
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            // DIAG should set the new source file's (temp) ID when it's first added (substituted on save) -- so we can import >1 file before saving
             // DIAG use transactions (budgetTableAdapter.Transaction) in this
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
             sourceFileAdap.Update(_AlteredTableData._SourceFileTable);
@@ -234,5 +229,9 @@ namespace Budget
             public List<MainDataSet.BudgetRow> _ImportedBudgetRows = new List<MainDataSet.BudgetRow>();
         }
 
+        private void comboAccount_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            btnSaveBudgetItems.Enabled = comboAccount.SelectedItem != null;
+        }
     }
 }

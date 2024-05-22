@@ -50,11 +50,5 @@ namespace Budget
             else if (dataRow.RowState == DataRowState.Added)
                 gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
         }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            // DIAG this is how we do it!  budgetBindingSource.Filter = "Account='VAK'";
-        }
     }
 }

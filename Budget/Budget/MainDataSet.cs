@@ -19,7 +19,7 @@ namespace Budget
 
             public BudgetRow FindDuplicate(DateTime trDate, decimal amount, string descrip, string account)
             {
-                // DIAG s/b _DuplicatesView.FindRows, in case there's multiple matches... or, s/b a custom made DataView per format...or just linear search...
+                // TODO maybe a custom made DataView per format, depending on what fields it captures...or just linear search...
                 DataRowView[] dupRowViews =_DuplicatesView.FindRows(new object[] { trDate, amount, descrip, account });
                 if (dupRowViews.Length > 1)
                     throw (new Exception("Multiple duplicate Budget rows"));

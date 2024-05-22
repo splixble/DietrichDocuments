@@ -12,8 +12,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Budget
 {
-    /* DIAG do: Use BudgetAccount.SourceFileFormat field to determine format; remove 2nd combo box
-     * And make views put in 0 values for intervening months with no charges. By a generated SQL function
+    /* DIAG do: make views put in 0 values for intervening months with no charges. By a generated SQL function
      */
     public partial class GroupingAssignmentForm : Form
     {
