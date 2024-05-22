@@ -33,6 +33,8 @@ namespace Budget
 
         MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
 
+        AlteredTableData _AlteredTableData = null;
+
         string _SourceFileName = "";
 
         private void btnOpenSourceFile_Click(object sender, EventArgs e)
@@ -45,8 +47,24 @@ namespace Budget
             if (diaRes == DialogResult.OK)
             {
                 _SourceFileName = srcFileDlg.FileName;
+
+                // DIAG so, just one src file at a time, read in and save, then go to next src file? And do we need a Cancel button?
+                _AlteredTableData = new AlteredTableData();
+
+                // make new source file row:
+                _AlteredTableData._NewestSourceFileRow = _AlteredTableData._SourceFileTable.NewBudgetSourceFileRow();
+                _AlteredTableData._NewestSourceFileRow.FilePath = _SourceFileName;
+                _AlteredTableData._NewestSourceFileRow.Account = comboAccount.SelectedValue as string;
+                _AlteredTableData._SourceFileTable.AddBudgetSourceFileRow(_AlteredTableData._NewestSourceFileRow);
+
                 MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(comboSrcFileFormat.SelectedValue as string);
                 string[] formatFields = formatRow.FormatColumns.Split(',');
+
+                // By default, show only new (ID negative) records: 
+                budgetCtrl.BudgetBindingSource.Filter = "ID<0";
+
+                // Read in the full Budget table, to check for duplicates:
+                budgetCtrl.BudgetAdapter.Fill(budgetCtrl.BudgetTable);
 
                 /* Old file reading code:
                 using (StreamReader srcFileStream = new StreamReader(srcFileDlg.FileName))
@@ -68,6 +86,8 @@ namespace Budget
                 // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
                 using (TextFieldParser parser = new TextFieldParser(_SourceFileName))
                 {
+                    List<int> dupBudgetIDs = new List<int>();   
+
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(","); // allow tab delim?
                     while (!parser.EndOfData)
@@ -77,7 +97,8 @@ namespace Budget
 
                         bool lineParsable = true;
 
-                        MainDataSet.BudgetRow newBudgetRow = budgetCtrl.BudgetTable.NewBudgetRow();
+                        Dictionary<string, object> fieldsByColumnName = new Dictionary<string, object>();
+
                         for (int formatColIndex = 0; formatColIndex < formatFields.Length; formatColIndex++) 
                         {
                             if (formatFields[formatColIndex] != "")
@@ -98,7 +119,7 @@ namespace Budget
 
                                 // Parse the fields, depending on the column's data type:
                                 if (budgetColumn.DataType == typeof(string))
-                                    newBudgetRow[budgetColumn] = fileFields[formatColIndex];
+                                    fieldsByColumnName[budgetColumn.ColumnName] = fileFields[formatColIndex];
                                 else if (budgetColumn.DataType == typeof(Decimal))
                                 {
                                     Decimal fileValue;
@@ -108,7 +129,7 @@ namespace Budget
                                         if (formatRow.CreditsAreNegative)
                                             fileValue = -fileValue;
 
-                                        newBudgetRow[budgetColumn] = fileValue;
+                                        fieldsByColumnName[budgetColumn.ColumnName] = fileValue;
                                     }
                                     else
                                         lineParsable = false;
@@ -117,7 +138,7 @@ namespace Budget
                                 {
                                     DateTime fileValue;
                                     if (DateTime.TryParse(fileFields[formatColIndex], out fileValue))
-                                        newBudgetRow[budgetColumn] = fileValue;
+                                        fieldsByColumnName[budgetColumn.ColumnName] = fileValue;
                                     else
                                         lineParsable = false;
                                 }
@@ -128,11 +149,58 @@ namespace Budget
 
                         if (lineParsable)
                         {
-                            newBudgetRow.Account = comboAccount.SelectedValue as string;// DIAG make sure it's selected
-                            newBudgetRow.Ignore = false; // necessary initialization
-                            budgetCtrl.BudgetTable.AddBudgetRow(newBudgetRow);
+                            // DIAG make sure Account is selected
+
+                            BudgetRow importedRow;
+
+                            // Check for duplicate Budget rows:
+                            BudgetRow dupRow = budgetCtrl.BudgetTable.FindDuplicate(
+                                (DateTime)fieldsByColumnName["TrDate"],
+                                (decimal)fieldsByColumnName["Amount"],
+                                (string)fieldsByColumnName["Descrip"],
+                                comboAccount.SelectedValue as string);
+
+                            if (dupRow != null)
+                            {
+                                // Duplicate row found
+                                importedRow = dupRow;
+                                // Add row ID:
+                                dupBudgetIDs.Add(dupRow.ID);
+                            }
+                            else
+                            {
+                                // no duplicate; add new row to table
+                                importedRow = budgetCtrl.BudgetTable.NewBudgetRow();
+                                importedRow.IsIncome = false; // necessary initialization
+                                importedRow.Ignore = false; // necessary initialization
+                            }
+
+                            // Copy fields in:
+                            foreach (string columnName in fieldsByColumnName.Keys)
+                            {
+                                object newFieldValue = fieldsByColumnName[columnName];
+                                if (newFieldValue != null)
+                                    importedRow[columnName] = newFieldValue;
+                            }
+
+                            importedRow.Account = comboAccount.SelectedValue as string;
+                            _AlteredTableData._ImportedBudgetRows.Add(importedRow);
+
+                            // if new row, we need to add it to the DataTable:
+                            if (dupRow == null)
+                                budgetCtrl.BudgetTable.AddBudgetRow(importedRow);
                         }
                     }
+
+                    // update to include changed duplicate rows:
+                    string dupBudgetIDsList = "";
+                    foreach (int dupID in dupBudgetIDs)
+                    {
+                        if (dupBudgetIDsList != "")
+                            dupBudgetIDsList += ",";
+                        dupBudgetIDsList += dupID;
+                    }
+                    budgetCtrl.BudgetBindingSource.Filter = "ID<0 OR ID IN (" + dupBudgetIDsList + ")";
                 }
             }
             budgetCtrl.Refresh();
@@ -147,24 +215,24 @@ namespace Budget
         {
             // DIAG should set the new source file's (temp) ID when it's first added (substituted on save) -- so we can import >1 file before saving
             // DIAG use transactions (budgetTableAdapter.Transaction) in this
-            MainDataSet.BudgetSourceFileDataTable sourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
+            sourceFileAdap.Update(_AlteredTableData._SourceFileTable);
 
-            // make new source file row:
-            MainDataSet.BudgetSourceFileRow newSourceFileRow = sourceFileTable.NewBudgetSourceFileRow();
-            newSourceFileRow.FilePath = _SourceFileName;
-            newSourceFileRow.Account = comboAccount.SelectedValue as string;
-            sourceFileTable.AddBudgetSourceFileRow(newSourceFileRow);
-            sourceFileAdap.Update(sourceFileTable);
-
-            foreach (MainDataSet.BudgetRow budgetRow in budgetCtrl.BudgetTable)
+            foreach (MainDataSet.BudgetRow budgetRow in _AlteredTableData._ImportedBudgetRows)
             {
-                // DIAG and check for duplicate budget recs!
-                if (budgetRow.RowState == DataRowState.Added)
-                    budgetRow.SourceFile = newSourceFileRow.FileID;
+                budgetRow.SourceFile = _AlteredTableData._NewestSourceFileRow.FileID;
             }    
             budgetCtrl.BudgetAdapter.Update(budgetCtrl.BudgetTable);
+            budgetCtrl.BudgetBindingSource.Filter = "SourceFile=" + _AlteredTableData._NewestSourceFileRow.FileID; 
             budgetCtrl.Grid.Refresh();
         }
+
+        class AlteredTableData
+        {
+            public MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
+            public MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
+            public List<MainDataSet.BudgetRow> _ImportedBudgetRows = new List<MainDataSet.BudgetRow>();
+        }
+
     }
 }

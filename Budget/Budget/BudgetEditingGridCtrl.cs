@@ -18,6 +18,8 @@ namespace Budget
         public MainDataSet.BudgetDataTable BudgetTable => mainDataSet.Budget;
         public MainDataSetTableAdapters.BudgetTableAdapter BudgetAdapter => budgetTableAdapter;
 
+        public BindingSource BudgetBindingSource => budgetBindingSource;
+
         public DataGridView Grid => grid1;
 
         public BudgetEditingGridCtrl()
@@ -47,6 +49,12 @@ namespace Budget
                 gridRow.DefaultCellStyle.BackColor = Color.LightBlue;
             else if (dataRow.RowState == DataRowState.Added)
                 gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            // DIAG this is how we do it!  budgetBindingSource.Filter = "Account='VAK'";
         }
     }
 }

@@ -12,9 +12,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace Budget
 {
-    /* DIAG do: Make this form able to set IsIncome just like Ignore.
-     * Use that to subdivide TrType = Inc into diff types of income.
-     * Then, make it check existing Budget recs before adding them from source file!
+    /* DIAG do: Use BudgetAccount.SourceFileFormat field to determine format; remove 2nd combo box
      * And make views put in 0 values for intervening months with no charges. By a generated SQL function
      */
     public partial class GroupingAssignmentForm : Form
@@ -36,6 +34,7 @@ namespace Budget
                 budgetEditingGridCtrl1.BudgetAdapter.FillUntypedUnignored(budgetEditingGridCtrl1.BudgetTable);
             else
                 budgetEditingGridCtrl1.BudgetAdapter.Fill(budgetEditingGridCtrl1.BudgetTable);
+            // TODO just use the binding ctrl's filter, rather than rereading table, right?
         }
 
         void LoadGroupingPatternTable()
@@ -67,6 +66,13 @@ namespace Budget
                     {
                         if (!patternRow.IsTrTypeNull() && (budgetRow.IsTrTypeNull() || budgetRow.TrType != patternRow.TrType))
                             budgetRow.TrType = patternRow.TrType;
+
+                        if (patternRow.ForIncome)
+                        {
+                            if (!budgetRow.IsIncome)
+                                budgetRow.IsIncome = true;
+                        }
+
                     }
                 }
             }

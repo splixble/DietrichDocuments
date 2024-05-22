@@ -833,6 +833,7 @@ namespace Budget {
                 this.columnComment.MaxLength = 2147483647;
                 this.columnDescrip2.MaxLength = 500;
                 this.columnIsIncome.AllowDBNull = false;
+                this.columnIsIncome.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1675,6 +1676,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnForIgnore;
             
+            private global::System.Data.DataColumn columnForIncome;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BudgetTypePatternDataTable() {
@@ -1742,6 +1745,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ForIncomeColumn {
+                get {
+                    return this.columnForIncome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1777,13 +1788,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow AddBudgetTypePatternRow(string Pattern, string TrType, bool ForIgnore) {
+            public BudgetTypePatternRow AddBudgetTypePatternRow(string Pattern, string TrType, bool ForIgnore, bool ForIncome) {
                 BudgetTypePatternRow rowBudgetTypePatternRow = ((BudgetTypePatternRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Pattern,
                         TrType,
-                        ForIgnore};
+                        ForIgnore,
+                        ForIncome};
                 rowBudgetTypePatternRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetTypePatternRow);
                 return rowBudgetTypePatternRow;
@@ -1817,6 +1829,7 @@ namespace Budget {
                 this.columnPattern = base.Columns["Pattern"];
                 this.columnTrType = base.Columns["TrType"];
                 this.columnForIgnore = base.Columns["ForIgnore"];
+                this.columnForIncome = base.Columns["ForIncome"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1830,6 +1843,8 @@ namespace Budget {
                 base.Columns.Add(this.columnTrType);
                 this.columnForIgnore = new global::System.Data.DataColumn("ForIgnore", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnForIgnore);
+                this.columnForIncome = new global::System.Data.DataColumn("ForIncome", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForIncome);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -1843,6 +1858,8 @@ namespace Budget {
                 this.columnTrType.MaxLength = 4;
                 this.columnForIgnore.AllowDBNull = false;
                 this.columnForIgnore.DefaultValue = ((bool)(false));
+                this.columnForIncome.AllowDBNull = false;
+                this.columnForIncome.DefaultValue = ((bool)(false));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3791,6 +3808,17 @@ namespace Budget {
                 }
                 set {
                     this[this.tableBudgetTypePattern.ForIgnoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ForIncome {
+                get {
+                    return ((bool)(this[this.tableBudgetTypePattern.ForIncomeColumn]));
+                }
+                set {
+                    this[this.tableBudgetTypePattern.ForIncomeColumn] = value;
                 }
             }
             
@@ -5936,12 +5964,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             tableMapping.ColumnMappings.Add("Pattern", "Pattern");
             tableMapping.ColumnMappings.Add("TrType", "TrType");
             tableMapping.ColumnMappings.Add("ForIgnore", "ForIgnore");
+            tableMapping.ColumnMappings.Add("ForIncome", "ForIncome");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [BudgetTypePattern] WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType" +
                 " = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = " +
-                "@Original_ForIgnore))";
+                "@Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -5976,11 +6005,19 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             param.SourceColumn = "ForIgnore";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [BudgetTypePattern] ([Pattern], [TrType], [ForIgnore]) VALUES (@Patte" +
-                "rn, @TrType, @ForIgnore);\r\nSELECT ID, Pattern, TrType, ForIgnore FROM BudgetType" +
-                "Pattern WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [BudgetTypePattern] ([Pattern], [TrType], [ForIgnore], [ForIncome]) V" +
+                "ALUES (@Pattern, @TrType, @ForIgnore, @ForIncome);\r\nSELECT ID, Pattern, TrType, " +
+                "ForIgnore, ForIncome FROM BudgetTypePattern WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Pattern";
@@ -6003,10 +6040,17 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             param.IsNullable = true;
             param.SourceColumn = "ForIgnore";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForIgnore] = @ForIgnore WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore));
-SELECT ID, Pattern, TrType, ForIgnore FROM BudgetTypePattern WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForIgnore] = @ForIgnore, [ForIncome] = @ForIncome WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome));
+SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Pattern";
@@ -6028,6 +6072,13 @@ SELECT ID, Pattern, TrType, ForIgnore FROM BudgetTypePattern WHERE (ID = @ID)";
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
             param.SourceColumn = "ForIgnore";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -6063,6 +6114,14 @@ SELECT ID, Pattern, TrType, ForIgnore FROM BudgetTypePattern WHERE (ID = @ID)";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -6085,7 +6144,8 @@ SELECT ID, Pattern, TrType, ForIgnore FROM BudgetTypePattern WHERE (ID = @ID)";
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForIgnore\r\nFROM            BudgetTypePattern";
+            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForIgnore, ForIncome\r\nFROM            BudgetTy" +
+                "pePattern";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
