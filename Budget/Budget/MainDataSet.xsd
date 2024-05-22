@@ -270,7 +270,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
               <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetGroupingsInOrder" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Grouping, OrderNum
+                    <CommandText>SELECT        Grouping, OrderNum, ParentGroupingLabel
 FROM            ViewBudgetGroupingsInOrder
 ORDER BY OrderNum, Grouping</CommandText>
                     <Parameters />
@@ -281,6 +281,7 @@ ORDER BY OrderNum, Grouping</CommandText>
             <Mappings>
               <Mapping SourceColumn="Grouping" DataSetColumn="Grouping" />
               <Mapping SourceColumn="OrderNum" DataSetColumn="OrderNum" />
+              <Mapping SourceColumn="ParentGroupingLabel" DataSetColumn="ParentGroupingLabel" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -517,7 +518,7 @@ SELECT FileID, FilePath, Account FROM BudgetSourceFile WHERE (FileID = @FileID)<
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IsIncome" msprop:Generator_UserColumnName="IsIncome" msprop:Generator_ColumnPropNameInTable="IsIncomeColumn" msprop:Generator_ColumnPropNameInRow="IsIncome" msprop:Generator_ColumnVarNameInTable="columnIsIncome" type="xs:boolean" default="false" />
+              <xs:element name="IsIncome" msprop:Generator_ColumnPropNameInTable="IsIncomeColumn" msprop:Generator_ColumnPropNameInRow="IsIncome" msprop:Generator_UserColumnName="IsIncome" msprop:Generator_ColumnVarNameInTable="columnIsIncome" type="xs:boolean" default="false" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -615,7 +616,7 @@ SELECT FileID, FilePath, Account FROM BudgetSourceFile WHERE (FileID = @FileID)<
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ForIgnore" msprop:Generator_ColumnPropNameInTable="ForIgnoreColumn" msprop:Generator_ColumnPropNameInRow="ForIgnore" msprop:Generator_UserColumnName="ForIgnore" msprop:Generator_ColumnVarNameInTable="columnForIgnore" type="xs:boolean" default="false" />
-              <xs:element name="ForIncome" msprop:Generator_ColumnPropNameInRow="ForIncome" msprop:Generator_ColumnPropNameInTable="ForIncomeColumn" msprop:Generator_ColumnVarNameInTable="columnForIncome" msprop:Generator_UserColumnName="ForIncome" type="xs:boolean" default="false" />
+              <xs:element name="ForIncome" msprop:Generator_UserColumnName="ForIncome" msprop:Generator_ColumnPropNameInTable="ForIncomeColumn" msprop:Generator_ColumnPropNameInRow="ForIncome" msprop:Generator_ColumnVarNameInTable="columnForIncome" type="xs:boolean" default="false" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -630,6 +631,13 @@ SELECT FileID, FilePath, Account FROM BudgetSourceFile WHERE (FileID = @FileID)<
                 </xs:simpleType>
               </xs:element>
               <xs:element name="OrderNum" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="OrderNumColumn" msprop:Generator_ColumnPropNameInRow="OrderNum" msprop:Generator_UserColumnName="OrderNum" msprop:Generator_ColumnVarNameInTable="columnOrderNum" type="xs:int" minOccurs="0" />
+              <xs:element name="ParentGroupingLabel" msprop:Generator_ColumnPropNameInRow="ParentGroupingLabel" msprop:Generator_ColumnPropNameInTable="ParentGroupingLabelColumn" msprop:Generator_ColumnVarNameInTable="columnParentGroupingLabel" msprop:Generator_UserColumnName="ParentGroupingLabel" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

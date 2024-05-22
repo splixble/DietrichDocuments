@@ -1997,6 +1997,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnOrderNum;
             
+            private global::System.Data.DataColumn columnParentGroupingLabel;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetGroupingsInOrderDataTable() {
@@ -2048,6 +2050,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ParentGroupingLabelColumn {
+                get {
+                    return this.columnParentGroupingLabel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2083,11 +2093,12 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetGroupingsInOrderRow AddViewBudgetGroupingsInOrderRow(string Grouping, int OrderNum) {
+            public ViewBudgetGroupingsInOrderRow AddViewBudgetGroupingsInOrderRow(string Grouping, int OrderNum, string ParentGroupingLabel) {
                 ViewBudgetGroupingsInOrderRow rowViewBudgetGroupingsInOrderRow = ((ViewBudgetGroupingsInOrderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Grouping,
-                        OrderNum};
+                        OrderNum,
+                        ParentGroupingLabel};
                 rowViewBudgetGroupingsInOrderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetGroupingsInOrderRow);
                 return rowViewBudgetGroupingsInOrderRow;
@@ -2112,6 +2123,7 @@ namespace Budget {
             internal void InitVars() {
                 this.columnGrouping = base.Columns["Grouping"];
                 this.columnOrderNum = base.Columns["OrderNum"];
+                this.columnParentGroupingLabel = base.Columns["ParentGroupingLabel"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2121,8 +2133,11 @@ namespace Budget {
                 base.Columns.Add(this.columnGrouping);
                 this.columnOrderNum = new global::System.Data.DataColumn("OrderNum", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOrderNum);
+                this.columnParentGroupingLabel = new global::System.Data.DataColumn("ParentGroupingLabel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParentGroupingLabel);
                 this.columnGrouping.MaxLength = 250;
                 this.columnOrderNum.ReadOnly = true;
+                this.columnParentGroupingLabel.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3883,6 +3898,23 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ParentGroupingLabel {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewBudgetGroupingsInOrder.ParentGroupingLabelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ParentGroupingLabel\' in table \'ViewBudgetGroupingsInOrder\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetGroupingsInOrder.ParentGroupingLabelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsGroupingNull() {
                 return this.IsNull(this.tableViewBudgetGroupingsInOrder.GroupingColumn);
             }
@@ -3903,6 +3935,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOrderNumNull() {
                 this[this.tableViewBudgetGroupingsInOrder.OrderNumColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsParentGroupingLabelNull() {
+                return this.IsNull(this.tableViewBudgetGroupingsInOrder.ParentGroupingLabelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetParentGroupingLabelNull() {
+                this[this.tableViewBudgetGroupingsInOrder.ParentGroupingLabelColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6315,6 +6359,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
             tableMapping.DataSetTable = "ViewBudgetGroupingsInOrder";
             tableMapping.ColumnMappings.Add("Grouping", "Grouping");
             tableMapping.ColumnMappings.Add("OrderNum", "OrderNum");
+            tableMapping.ColumnMappings.Add("ParentGroupingLabel", "ParentGroupingLabel");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6331,8 +6376,8 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Grouping, OrderNum\r\nFROM            ViewBudgetGroupingsInOrder\r\nORD" +
-                "ER BY OrderNum, Grouping";
+            this._commandCollection[0].CommandText = "SELECT        Grouping, OrderNum, ParentGroupingLabel\r\nFROM            ViewBudget" +
+                "GroupingsInOrder\r\nORDER BY OrderNum, Grouping";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

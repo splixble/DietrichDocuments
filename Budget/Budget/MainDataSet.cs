@@ -8,7 +8,7 @@ namespace Budget
         partial class BudgetDataTable
         {
             DataView _DuplicatesView;
-  
+
             public override void EndInit()
             {
                 _DuplicatesView = new DataView(this);
@@ -20,7 +20,7 @@ namespace Budget
             public BudgetRow FindDuplicate(DateTime trDate, decimal amount, string descrip, string account)
             {
                 // TODO maybe a custom made DataView per format, depending on what fields it captures...or just linear search...
-                DataRowView[] dupRowViews =_DuplicatesView.FindRows(new object[] { trDate, amount, descrip, account });
+                DataRowView[] dupRowViews = _DuplicatesView.FindRows(new object[] { trDate, amount, descrip, account });
                 if (dupRowViews.Length > 1)
                     throw (new Exception("Multiple duplicate Budget rows"));
                 else if (dupRowViews.Length == 1)

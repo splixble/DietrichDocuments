@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml.Linq;
 
 namespace Budget
 {
@@ -27,11 +28,34 @@ namespace Budget
             InitializeComponent();
         }
 
+        void AddToGroupingListIfChecked(TreeNode node, ref string groupingsList)
+        {
+            if (node.Checked)
+            {
+                if (groupingsList != "")
+                    groupingsList += ",";
+                groupingsList += "'" + node.Text + "'";
+
+                // recursively call this for child nodes:
+                foreach (TreeNode childNode in node.Nodes)
+                    AddToGroupingListIfChecked(childNode, ref groupingsList);
+            }
+        }
+
         void RefreshDisplay()
         {
             // Get groupings to display, from checked 
-            string groupings = "";
+            string groupingsList = "";
             // 
+
+
+            foreach (TreeNode node in tvGroupings.Nodes)
+            {
+                AddToGroupingListIfChecked(node, ref groupingsList);
+            }
+            
+
+            /* REMO
             foreach (DataGridViewRow gridRow in gridGroupings.Rows)
             {
                 object groupingIsChecked = gridRow.Cells[groupingsGridCheckboxColumn].Value;
@@ -39,17 +63,17 @@ namespace Budget
                 {
                     DataRowView rowView = (DataRowView)gridRow.DataBoundItem;
                     MainDataSet.ViewBudgetGroupingsInOrderRow dataRow = (MainDataSet.ViewBudgetGroupingsInOrderRow)rowView.Row;
-                    if (groupings != "")
-                        groupings += ",";
-                    groupings += "'" + dataRow.Grouping + "'";// DIAG gotta manually do this with a SQL stmt
+                    if (groupingsList != "")
+                        groupingsList += ",";
+                    groupingsList += "'" + dataRow.Grouping + "'";// DIAG gotta manually do this with a SQL stmt
                 }
-               // DIAG capture checking the grid chaeckbox
             }
+            */
 
             MainData.ViewBudgetMonthlyReport.Clear();
-            if (groupings != "") // if no groupings checked, just leave it cleared
+            if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupings + ")";
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")";
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
                 {
                     // reportDataConn.Open();
@@ -70,8 +94,6 @@ namespace Budget
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
-
-            btnRefreshGroupingChange.Enabled = false;
         }
 
         void PopulateMainGrid()
@@ -137,9 +159,29 @@ namespace Budget
         {
             // TODO: This line of code loads data into the 'mainDataSet.ViewBudgetGroupingsInOrder' table. You can move, or remove it, as needed.
             this.viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
-            // Check, by default, the first 2 groupings (Inc. and Exp):
-            gridGroupings[groupingsGridCheckboxColumn, 0].Value = true;
-            gridGroupings[groupingsGridCheckboxColumn, 1].Value = true;
+
+            // Populate Groupings tree:
+            // add parent nodes:
+            foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
+            {
+                if (groupingRow.IsParentGroupingLabelNull())
+                {
+                    TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
+                    // Check, by default, the first 2 groupings (Inc. and Exp):   // DIAG strings s/b constants
+                    if (groupingRow.Grouping == "Income" || groupingRow.Grouping == "Expenditures") 
+                        node.Checked = true;
+                }
+            }
+            // now, add child nodes:
+            foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
+            {
+                if (!groupingRow.IsParentGroupingLabelNull())
+                {
+                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGroupingLabel, false); // search only top level
+                    if (parentNodeArray.Length > 0) // should never be 0, or >1
+                        parentNodeArray[0].Nodes.Add(groupingRow.Grouping);
+                }
+            }
 
             RefreshDisplay();
         }
@@ -164,16 +206,6 @@ namespace Budget
             trTypeForm.ShowDialog();
         }
 
-        private void btnRefreshGroupingChange_Click(object sender, EventArgs e)
-        {
-            RefreshDisplay();
-        }
-
-        private void gridGroupings_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            btnRefreshGroupingChange.Enabled = true;
-        }
-
         private void editGroupingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GroupingForm form = new GroupingForm();
@@ -184,6 +216,11 @@ namespace Budget
         {
             SourceFileForm form = new SourceFileForm();
             form.ShowDialog();
+        }
+
+        private void tvGroupings_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            RefreshDisplay();
         }
     }
 }
