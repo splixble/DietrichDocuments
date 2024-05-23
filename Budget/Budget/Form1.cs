@@ -222,5 +222,11 @@ namespace Budget
         {
             RefreshDisplay();
         }
+
+        private void calculateAccountBalancesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BalanceCalculationForm balanceCalculationForm = new BalanceCalculationForm();
+            balanceCalculationForm.ShowDialog();
+        }
     }
 }

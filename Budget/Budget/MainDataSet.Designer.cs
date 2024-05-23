@@ -550,6 +550,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnIsIncome;
             
+            private global::System.Data.DataColumn columnBalanceIsCalculated;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BudgetDataTable() {
@@ -689,6 +691,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BalanceIsCalculatedColumn {
+                get {
+                    return this.columnBalanceIsCalculated;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -724,7 +734,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetRow AddBudgetRow(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, decimal Balance, int SourceFile, string Comment, string Descrip2, bool IsIncome) {
+            public BudgetRow AddBudgetRow(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, decimal Balance, int SourceFile, string Comment, string Descrip2, bool IsIncome, bool BalanceIsCalculated) {
                 BudgetRow rowBudgetRow = ((BudgetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -739,7 +749,8 @@ namespace Budget {
                         SourceFile,
                         Comment,
                         Descrip2,
-                        IsIncome};
+                        IsIncome,
+                        BalanceIsCalculated};
                 rowBudgetRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetRow);
                 return rowBudgetRow;
@@ -782,6 +793,7 @@ namespace Budget {
                 this.columnComment = base.Columns["Comment"];
                 this.columnDescrip2 = base.Columns["Descrip2"];
                 this.columnIsIncome = base.Columns["IsIncome"];
+                this.columnBalanceIsCalculated = base.Columns["BalanceIsCalculated"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -813,6 +825,8 @@ namespace Budget {
                 base.Columns.Add(this.columnDescrip2);
                 this.columnIsIncome = new global::System.Data.DataColumn("IsIncome", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsIncome);
+                this.columnBalanceIsCalculated = new global::System.Data.DataColumn("BalanceIsCalculated", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBalanceIsCalculated);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -834,6 +848,7 @@ namespace Budget {
                 this.columnDescrip2.MaxLength = 500;
                 this.columnIsIncome.AllowDBNull = false;
                 this.columnIsIncome.DefaultValue = ((bool)(false));
+                this.columnBalanceIsCalculated.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3340,6 +3355,17 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool BalanceIsCalculated {
+                get {
+                    return ((bool)(this[this.tableBudget.BalanceIsCalculatedColumn]));
+                }
+                set {
+                    this[this.tableBudget.BalanceIsCalculatedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTrTypeNull() {
                 return this.IsNull(this.tableBudget.TrTypeColumn);
             }
@@ -4583,10 +4609,11 @@ namespace Budget.MainDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Comment", "Comment");
             tableMapping.ColumnMappings.Add("Descrip2", "Descrip2");
             tableMapping.ColumnMappings.Add("IsIncome", "IsIncome");
+            tableMapping.ColumnMappings.Add("BalanceIsCalculated", "BalanceIsCalculated");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Budget] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_SourceFile = 1 AND [SourceFile] IS NULL) OR ([SourceFile] = @Original_SourceFile)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([IsIncome] = @Original_IsIncome))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Budget] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_SourceFile = 1 AND [SourceFile] IS NULL) OR ([SourceFile] = @Original_SourceFile)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([IsIncome] = @Original_IsIncome) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -4729,10 +4756,18 @@ namespace Budget.MainDataSetTableAdapters {
             param.SourceColumn = "IsIncome";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_BalanceIsCalculated";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "BalanceIsCalculated";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Budget] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Ignore], [Balance], [SourceFile], [Comment], [Descrip2], [IsIncome]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Ignore, @Balance, @SourceFile, @Comment, @Descrip2, @IsIncome);
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome FROM Budget WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Budget] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Ignore], [Balance], [SourceFile], [Comment], [Descrip2], [IsIncome], [BalanceIsCalculated]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Ignore, @Balance, @SourceFile, @Comment, @Descrip2, @IsIncome, @BalanceIsCalculated);
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome, BalanceIsCalculated FROM Budget WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -4818,10 +4853,17 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             param.IsNullable = true;
             param.SourceColumn = "IsIncome";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@BalanceIsCalculated";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "BalanceIsCalculated";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Budget] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Ignore] = @Ignore, [Balance] = @Balance, [SourceFile] = @SourceFile, [Comment] = @Comment, [Descrip2] = @Descrip2, [IsIncome] = @IsIncome WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_SourceFile = 1 AND [SourceFile] IS NULL) OR ([SourceFile] = @Original_SourceFile)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([IsIncome] = @Original_IsIncome));
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome FROM Budget WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Budget] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Ignore] = @Ignore, [Balance] = @Balance, [SourceFile] = @SourceFile, [Comment] = @Comment, [Descrip2] = @Descrip2, [IsIncome] = @IsIncome, [BalanceIsCalculated] = @BalanceIsCalculated WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_SourceFile = 1 AND [SourceFile] IS NULL) OR ([SourceFile] = @Original_SourceFile)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([IsIncome] = @Original_IsIncome) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated));
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome, BalanceIsCalculated FROM Budget WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -4906,6 +4948,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
             param.SourceColumn = "IsIncome";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@BalanceIsCalculated";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "BalanceIsCalculated";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -5049,6 +5098,14 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_BalanceIsCalculated";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "BalanceIsCalculated";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -5068,18 +5125,33 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balan" +
-                "ce, SourceFile, Comment, Descrip2, IsIncome\r\nFROM            Budget";
+                "ce, SourceFile, Comment, Descrip2, IsIncome, BalanceIsCalculated\r\nFROM          " +
+                "  Budget";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Account, Amount, Balance, Comment, Descrip, Descrip2, ID, Ignore, IsIncome" +
-                ", SourceFile, TrCode, TrDate, TrType FROM Budget WHERE (TrType IS NULL) AND (Ign" +
-                "ore = 0)";
+            this._commandCollection[1].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balan" +
+                "ce, SourceFile, Comment, Descrip2, IsIncome, BalanceIsCalculated\r\nFROM          " +
+                "  Budget\r\nWHERE        (Account = @AccountCode)\r\nORDER BY TrDate, ID";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountCode";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.Size = 4;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT Account, Amount, Balance, BalanceIsCalculated, Comment, Descrip, Descrip2," +
+                " ID, Ignore, IsIncome, SourceFile, TrCode, TrDate, TrType FROM Budget WHERE (TrT" +
+                "ype IS NULL) AND (Ignore = 0)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5099,8 +5171,27 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillUntypedUnignored(MainDataSet.BudgetDataTable dataTable) {
+        public virtual int FillByAccount(MainDataSet.BudgetDataTable dataTable, string AccountCode) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((AccountCode == null)) {
+                throw new global::System.ArgumentNullException("AccountCode");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(AccountCode));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillUntypedUnignored(MainDataSet.BudgetDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -5141,7 +5232,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, decimal Original_Amount, bool Original_Ignore, global::System.Nullable<decimal> Original_Balance, global::System.Nullable<int> Original_SourceFile, string Original_Descrip2, bool Original_IsIncome) {
+        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, decimal Original_Amount, bool Original_Ignore, global::System.Nullable<decimal> Original_Balance, global::System.Nullable<int> Original_SourceFile, string Original_Descrip2, bool Original_IsIncome, bool Original_BalanceIsCalculated) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
@@ -5199,6 +5290,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_Descrip2));
             }
             this.Adapter.DeleteCommand.Parameters[16].Value = ((bool)(Original_IsIncome));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((bool)(Original_BalanceIsCalculated));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5219,7 +5311,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, global::System.Nullable<decimal> Balance, global::System.Nullable<int> SourceFile, string Comment, string Descrip2, bool IsIncome) {
+        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, global::System.Nullable<decimal> Balance, global::System.Nullable<int> SourceFile, string Comment, string Descrip2, bool IsIncome, bool BalanceIsCalculated) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
                 throw new global::System.ArgumentNullException("Descrip");
@@ -5272,6 +5364,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                 this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Descrip2));
             }
             this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(IsIncome));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(BalanceIsCalculated));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5305,6 +5398,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                     string Comment, 
                     string Descrip2, 
                     bool IsIncome, 
+                    bool BalanceIsCalculated, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -5317,6 +5411,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                     global::System.Nullable<int> Original_SourceFile, 
                     string Original_Descrip2, 
                     bool Original_IsIncome, 
+                    bool Original_BalanceIsCalculated, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
@@ -5370,64 +5465,66 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Descrip2));
             }
             this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(IsIncome));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_TrDate));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(BalanceIsCalculated));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
                 throw new global::System.ArgumentNullException("Original_Descrip");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Descrip));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Descrip));
             }
             if ((Original_Account == null)) {
                 throw new global::System.ArgumentNullException("Original_Account");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Account));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Account));
             }
             if ((Original_TrType == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_TrType));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_TrType));
             }
             if ((Original_TrCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_TrCode));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_TrCode));
             }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(Original_Amount));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_Ignore));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(Original_Amount));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Ignore));
             if ((Original_Balance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((decimal)(Original_Balance.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((decimal)(Original_Balance.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             if ((Original_SourceFile.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_SourceFile.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(Original_SourceFile.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             if ((Original_Descrip2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_Descrip2));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Descrip2));
             }
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_IsIncome));
-            this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((bool)(Original_IsIncome));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((bool)(Original_BalanceIsCalculated));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5461,6 +5558,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                     string Comment, 
                     string Descrip2, 
                     bool IsIncome, 
+                    bool BalanceIsCalculated, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -5472,8 +5570,9 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, So
                     global::System.Nullable<decimal> Original_Balance, 
                     global::System.Nullable<int> Original_SourceFile, 
                     string Original_Descrip2, 
-                    bool Original_IsIncome) {
-            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Ignore, Original_Balance, Original_SourceFile, Original_Descrip2, Original_IsIncome, Original_ID);
+                    bool Original_IsIncome, 
+                    bool Original_BalanceIsCalculated) {
+            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, SourceFile, Comment, Descrip2, IsIncome, BalanceIsCalculated, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Ignore, Original_Balance, Original_SourceFile, Original_Descrip2, Original_IsIncome, Original_BalanceIsCalculated, Original_ID);
         }
     }
     

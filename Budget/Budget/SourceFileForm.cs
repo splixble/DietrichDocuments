@@ -169,6 +169,7 @@ namespace Budget
                                 importedRow = budgetCtrl.BudgetTable.NewBudgetRow();
                                 importedRow.IsIncome = false; // necessary initialization
                                 importedRow.Ignore = false; // necessary initialization
+                                importedRow.BalanceIsCalculated = false; // necessary initialization
                             }
 
                             // Copy fields in:

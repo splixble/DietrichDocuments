@@ -111,7 +111,7 @@
             this.Controls.Add(this.budgetCtrl);
             this.Controls.Add(this.btnOpenSourceFile);
             this.Name = "SourceFileForm";
-            this.Text = "SourceFileForm";
+            this.Text = "Import Source File";
             this.Load += new System.EventHandler(this.SourceFileForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -42,6 +42,7 @@
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
+            this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
@@ -105,7 +106,8 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.applyTransactionTypesToolStripMenuItem,
-            this.editGroupingsToolStripMenuItem});
+            this.editGroupingsToolStripMenuItem,
+            this.calculateAccountBalancesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -113,14 +115,14 @@
             // applyTransactionTypesToolStripMenuItem
             // 
             this.applyTransactionTypesToolStripMenuItem.Name = "applyTransactionTypesToolStripMenuItem";
-            this.applyTransactionTypesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.applyTransactionTypesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.applyTransactionTypesToolStripMenuItem.Text = "Apply Grouping Patterns";
             this.applyTransactionTypesToolStripMenuItem.Click += new System.EventHandler(this.applyTransactionTypesToolStripMenuItem_Click);
             // 
             // editGroupingsToolStripMenuItem
             // 
             this.editGroupingsToolStripMenuItem.Name = "editGroupingsToolStripMenuItem";
-            this.editGroupingsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.editGroupingsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.editGroupingsToolStripMenuItem.Text = "Edit Groupings";
             this.editGroupingsToolStripMenuItem.Click += new System.EventHandler(this.editGroupingsToolStripMenuItem_Click);
             // 
@@ -167,6 +169,13 @@
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
+            // calculateAccountBalancesToolStripMenuItem
+            // 
+            this.calculateAccountBalancesToolStripMenuItem.Name = "calculateAccountBalancesToolStripMenuItem";
+            this.calculateAccountBalancesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.calculateAccountBalancesToolStripMenuItem.Text = "Calculate Account Balances";
+            this.calculateAccountBalancesToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalancesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +217,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadSourceFileToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView tvGroupings;
+        private System.Windows.Forms.ToolStripMenuItem calculateAccountBalancesToolStripMenuItem;
     }
 }
 

@@ -43,6 +43,7 @@
             this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -67,6 +68,7 @@
             this.trTypeDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn,
             this.Balance,
+            this.BalanceIsCalculatedColumn,
             this.CommentColumn,
             this.IsIncomeColumn,
             this.ignoreDataGridViewCheckBoxColumn});
@@ -163,6 +165,13 @@
             this.Balance.HeaderText = "Balance";
             this.Balance.Name = "Balance";
             // 
+            // BalanceIsCalculatedColumn
+            // 
+            this.BalanceIsCalculatedColumn.DataPropertyName = "BalanceIsCalculated";
+            this.BalanceIsCalculatedColumn.HeaderText = "Balance Calc\'d?";
+            this.BalanceIsCalculatedColumn.Name = "BalanceIsCalculatedColumn";
+            this.BalanceIsCalculatedColumn.Width = 45;
+            // 
             // CommentColumn
             // 
             this.CommentColumn.DataPropertyName = "Comment";
@@ -213,6 +222,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
