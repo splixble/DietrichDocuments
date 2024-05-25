@@ -88,10 +88,12 @@ namespace Budget
 
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(","); // allow tab delim?
+                    int lineNum = 0; // it's 1-relative
                     while (!parser.EndOfData)
                     {
                         //Processing row
                         string[] fileFields = parser.ReadFields();
+                        lineNum++;
 
                         bool lineParsable = true;
 
@@ -181,7 +183,14 @@ namespace Budget
                             }
 
                             importedRow.Account = comboAccount.SelectedValue as string;
-                            _AlteredTableData._ImportedBudgetRows.Add(importedRow);
+
+                            BudgetSourceFileItemsRow fileItemsRow = _AlteredTableData._SourceFileItemsTable.NewBudgetSourceFileItemsRow();
+                            fileItemsRow.SourceFile = -1; // real value filled in on save 
+                            fileItemsRow.BudgetItem = -1; // real value filled in on save 
+                            fileItemsRow.SourceFileLine = lineNum; // 1-relative
+                            _AlteredTableData._SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
+
+                            _AlteredTableData._ImportedBudgetItems.Add(new BudgetAndSourceItemRows(importedRow, fileItemsRow));
 
                             // if new row, we need to add it to the DataTable:
                             if (dupRow == null)
@@ -212,27 +221,57 @@ namespace Budget
         {
             // DIAG use transactions (budgetTableAdapter.Transaction) in this
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
+            _AlteredTableData._NewestSourceFileRow.ImportDateTime = DateTime.Now;
             sourceFileAdap.Update(_AlteredTableData._SourceFileTable);
 
+            /* REMO
             foreach (MainDataSet.BudgetRow budgetRow in _AlteredTableData._ImportedBudgetRows)
             {
                 budgetRow.SourceFile = _AlteredTableData._NewestSourceFileRow.FileID;
             }    
+            */
+
             budgetCtrl.BudgetAdapter.Update(budgetCtrl.BudgetTable);
+
+            foreach (BudgetAndSourceItemRows budgetObj in _AlteredTableData._ImportedBudgetItems)
+            {
+                // fill in new Items rows with updated, permanent ID field values:
+                budgetObj._ItemsRow.ItemID = budgetObj._BudgetRow.ID;
+                budgetObj._ItemsRow.SourceFile = _AlteredTableData._NewestSourceFileRow.FileID;
+            }
+
+            MainDataSetTableAdapters.BudgetSourceFileItemsTableAdapter fileItemsAdap = new BudgetSourceFileItemsTableAdapter();
+            fileItemsAdap.Update(_AlteredTableData._SourceFileItemsTable);
+
             budgetCtrl.BudgetBindingSource.Filter = "SourceFile=" + _AlteredTableData._NewestSourceFileRow.FileID; 
             budgetCtrl.Grid.Refresh();
-        }
-
-        class AlteredTableData
-        {
-            public MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
-            public MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
-            public List<MainDataSet.BudgetRow> _ImportedBudgetRows = new List<MainDataSet.BudgetRow>();
         }
 
         private void comboAccount_SelectionChangeCommitted(object sender, EventArgs e)
         {
             btnSaveBudgetItems.Enabled = comboAccount.SelectedItem != null;
         }
+
+        // internally used classes
+        class BudgetAndSourceItemRows
+        {
+            public BudgetRow _BudgetRow;
+            public BudgetSourceFileItemsRow _ItemsRow;
+
+            public BudgetAndSourceItemRows(BudgetRow budgetRow, BudgetSourceFileItemsRow itemsRow)
+            {
+                _BudgetRow = budgetRow;
+                _ItemsRow = itemsRow;
+            }
+        }
+
+        class AlteredTableData
+        {
+            public MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
+            public MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
+            public MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
+            public List<BudgetAndSourceItemRows> _ImportedBudgetItems = new List<BudgetAndSourceItemRows>(); 
+        }
+
     }
 }
