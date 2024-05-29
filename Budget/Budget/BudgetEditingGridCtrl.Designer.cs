@@ -39,6 +39,7 @@
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripFromVendorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +65,7 @@
             this.amountDataGridViewTextBoxColumn,
             this.descripDataGridViewTextBoxColumn,
             this.Descrip2Column,
+            this.DescripFromVendorColumn,
             this.trCodeDataGridViewTextBoxColumn,
             this.trTypeDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn,
@@ -137,6 +139,12 @@
             this.Descrip2Column.DataPropertyName = "Descrip2";
             this.Descrip2Column.HeaderText = "Descrip2";
             this.Descrip2Column.Name = "Descrip2Column";
+            // 
+            // DescripFromVendorColumn
+            // 
+            this.DescripFromVendorColumn.DataPropertyName = "DescripFromVendor";
+            this.DescripFromVendorColumn.HeaderText = "Descrip. from Vendor";
+            this.DescripFromVendorColumn.Name = "DescripFromVendorColumn";
             // 
             // trCodeDataGridViewTextBoxColumn
             // 
@@ -218,6 +226,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripFromVendorColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
