@@ -36,7 +36,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>6.0.1.0</ApplicationVersion>
+    <ApplicationVersion>6.0.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -179,6 +179,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TempForm.resx">
+      <DependentUpon>TempForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VenuesForm.resx">
       <DependentUpon>VenuesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,7 +194,7 @@
     <None Include="AzureDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AzureDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AzureDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="AzureDataSet.xss">
       <DependentUpon>AzureDataSet.xsd</DependentUpon>
@@ -209,6 +212,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TempForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TempForm.Designer.cs">
+      <DependentUpon>TempForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="VenuesForm.cs">
