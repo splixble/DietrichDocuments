@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Budget.MainDataSetTableAdapters;
 
 namespace Budget
 {
@@ -11,8 +12,9 @@ namespace Budget
         public MainDataSet MainDataSet => _MainDataSet;
         MainDataSet _MainDataSet= new MainDataSet();
 
-        MainDataSetTableAdapters.BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new MainDataSetTableAdapters.BudgetSourceFileFormatTableAdapter();
-        MainDataSetTableAdapters.BudgetAccountTableAdapter _BudgetAccountAdapter = new MainDataSetTableAdapters.BudgetAccountTableAdapter();
+        BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new BudgetSourceFileFormatTableAdapter();
+        BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
+        ViewBudgetGroupingsInOrderTableAdapter _GroupingsAdapter = new ViewBudgetGroupingsInOrderTableAdapter();
 
         public LookupTableSet()
         {
@@ -22,6 +24,7 @@ namespace Budget
         {
             _BudgetSourceFileFormatAdapter.Fill(_MainDataSet.BudgetSourceFileFormat);
             _BudgetAccountAdapter.Fill(_MainDataSet.BudgetAccount);
+            _GroupingsAdapter.Fill(_MainDataSet.ViewBudgetGroupingsInOrder);
         }
     }
 }
