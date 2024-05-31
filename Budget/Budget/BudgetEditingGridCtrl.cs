@@ -50,5 +50,10 @@ namespace Budget
             else if (dataRow.RowState == DataRowState.Added)
                 gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
         }
+
+        private void tbFilter_Validated(object sender, EventArgs e)
+        {
+            budgetBindingSource.Filter = tbFilter.Text;
+        }
     }
 }

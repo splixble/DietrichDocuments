@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnOpenSourceFile = new System.Windows.Forms.Button();
-            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             this.comboAccount = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -37,6 +36,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.customFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.amazonDigitalItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,17 +50,6 @@
             this.btnOpenSourceFile.Text = "Open Source File";
             this.btnOpenSourceFile.UseVisualStyleBackColor = true;
             this.btnOpenSourceFile.Click += new System.EventHandler(this.btnOpenSourceFile_Click);
-            // 
-            // budgetCtrl
-            // 
-            this.budgetCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.budgetCtrl.Location = new System.Drawing.Point(12, 56);
-            this.budgetCtrl.Name = "budgetCtrl";
-            this.budgetCtrl.Size = new System.Drawing.Size(776, 353);
-            this.budgetCtrl.TabIndex = 3;
             // 
             // comboAccount
             // 
@@ -116,7 +106,8 @@
             // customFilesToolStripMenuItem
             // 
             this.customFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.amazonOrderFileToolStripMenuItem});
+            this.amazonOrderFileToolStripMenuItem,
+            this.amazonDigitalItemsToolStripMenuItem});
             this.customFilesToolStripMenuItem.Name = "customFilesToolStripMenuItem";
             this.customFilesToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.customFilesToolStripMenuItem.Text = "Custom Files";
@@ -124,9 +115,27 @@
             // amazonOrderFileToolStripMenuItem
             // 
             this.amazonOrderFileToolStripMenuItem.Name = "amazonOrderFileToolStripMenuItem";
-            this.amazonOrderFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.amazonOrderFileToolStripMenuItem.Text = "Amazon Order File";
+            this.amazonOrderFileToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.amazonOrderFileToolStripMenuItem.Text = "Amazon Retail Orders";
             this.amazonOrderFileToolStripMenuItem.Click += new System.EventHandler(this.amazonOrderFileToolStripMenuItem_Click);
+            // 
+            // budgetCtrl
+            // 
+            this.budgetCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.budgetCtrl.Location = new System.Drawing.Point(12, 56);
+            this.budgetCtrl.Name = "budgetCtrl";
+            this.budgetCtrl.Size = new System.Drawing.Size(776, 353);
+            this.budgetCtrl.TabIndex = 3;
+            // 
+            // amazonDigitalItemsToolStripMenuItem
+            // 
+            this.amazonDigitalItemsToolStripMenuItem.Name = "amazonDigitalItemsToolStripMenuItem";
+            this.amazonDigitalItemsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.amazonDigitalItemsToolStripMenuItem.Text = "Amazon Digital Items";
+            this.amazonDigitalItemsToolStripMenuItem.Click += new System.EventHandler(this.amazonDigitalItemsToolStripMenuItem_Click);
             // 
             // SourceFileForm
             // 
@@ -162,5 +171,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem customFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem amazonOrderFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem amazonDigitalItemsToolStripMenuItem;
     }
 }

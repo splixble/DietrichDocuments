@@ -170,6 +170,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmazonDigitalItemsProcessor.cs" />
     <Compile Include="AmazonOrderFileProcessor.cs" />
     <Compile Include="BalanceCalculationForm.cs">
       <SubType>Form</SubType>

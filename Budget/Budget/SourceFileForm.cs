@@ -86,5 +86,18 @@ namespace Budget
             PostImport();
 
         }
+
+        private void amazonDigitalItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreImport();
+
+            // DIAG these special format src file Processor classes s/spully a unique code to src file DB rec
+            _Processor = new AmazonDigitalItemsProcessor(budgetCtrl.BudgetTable);
+            _Processor.Process();
+
+            PostImport();
+
+
+        }
     }
 }

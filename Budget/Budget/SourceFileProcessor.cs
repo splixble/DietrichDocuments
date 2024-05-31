@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using static Budget.MainDataSet;
 using System.Windows.Forms;
 using Budget.MainDataSetTableAdapters;
+using System.Diagnostics;
 
 namespace Budget
 {
@@ -40,7 +41,7 @@ namespace Budget
 
         public SourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount)
         {
-            _BudgetTable = budgetTable; 
+            _BudgetTable = budgetTable;
             _SelectedAccount = selectedAccount;
         }
 
@@ -105,13 +106,40 @@ namespace Budget
             return lineParsable;
         }
 
-        protected virtual BudgetRow FindDuplicateRow(Dictionary<string, object> fieldsByColumnName)
+        BudgetRow FindDuplicateRow(Dictionary<string, object> fieldsByColumnName)
         {
-            return _BudgetTable.FindDuplicate(
-                (DateTime)fieldsByColumnName["TrDate"],
-                (decimal)fieldsByColumnName["Amount"],
-                (string)fieldsByColumnName["Descrip"],
-                _SelectedAccount);
+            {
+                DataRowView[] dupRowViews = FindDuplicateRowViews(fieldsByColumnName);
+                if (dupRowViews.Length == 0)
+                    return null;
+                else if (dupRowViews.Length == 1)
+                    return dupRowViews[0].Row as BudgetRow;
+                else
+                {
+                    string dupIDList = "";
+                    foreach (DataRowView dupRowView in dupRowViews)
+                    {
+                        if (dupIDList != "")
+                            dupIDList += ", ";
+                        dupIDList += ((BudgetRow)dupRowView.Row).ID.ToString();
+                    }
+                    MessageBox.Show("Multiple duplicate Budget rows, with IDs " + dupIDList);
+                    return null;
+                }
+            }
+
+        }
+
+        protected virtual DataRowView[] FindDuplicateRowViews(Dictionary<string, object> fieldsByColumnName)
+        {
+            // TODO maybe a custom made DataView per format, depending on what fields it captures...or just linear search...
+            return _BudgetTable.DuplicatesView.FindRows(
+                new object[] {
+                    (DateTime)fieldsByColumnName["TrDate"],
+                    (decimal)fieldsByColumnName["Amount"],
+                    (string)fieldsByColumnName["Descrip"],
+                    _SelectedAccount
+                });
         }
 
         public void Process()
