@@ -14,6 +14,8 @@ public partial class Viewsongssinglefield
 
     public string TitleAndArtist { get; set; }
 
+    public string FullTitle { get; set; }
+
     public string SongFullArtistFirst { get; set; }
 
     public string SongInfo { get; set; }

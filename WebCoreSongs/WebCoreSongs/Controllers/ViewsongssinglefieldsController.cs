@@ -53,7 +53,7 @@ namespace WebCoreSongs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SongFull,TitleAndInfo,TitleAndArtist,SongFullArtistFirst,SongInfo,ArtistFirstName,ArtistLastName,FullArtistName,Title,TitlePrefix,Id,Code,PageNumber,InTablet,Cover")] Viewsongssinglefield viewsongssinglefield)
+        public async Task<IActionResult> Create([Bind("SongFull,TitleAndInfo,TitleAndArtist,FullTitle,SongFullArtistFirst,SongInfo,ArtistFirstName,ArtistLastName,FullArtistName,Title,TitlePrefix,Id,Code,PageNumber,InTablet,Cover")] Viewsongssinglefield viewsongssinglefield)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace WebCoreSongs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SongFull,TitleAndInfo,TitleAndArtist,SongFullArtistFirst,SongInfo,ArtistFirstName,ArtistLastName,FullArtistName,Title,TitlePrefix,Id,Code,PageNumber,InTablet,Cover")] Viewsongssinglefield viewsongssinglefield)
+        public async Task<IActionResult> Edit(int id, [Bind("SongFull,TitleAndInfo,TitleAndArtist,FullTitle,SongFullArtistFirst,SongInfo,ArtistFirstName,ArtistLastName,FullArtistName,Title,TitlePrefix,Id,Code,PageNumber,InTablet,Cover")] Viewsongssinglefield viewsongssinglefield)
         {
             if (id != viewsongssinglefield.Id)
             {
