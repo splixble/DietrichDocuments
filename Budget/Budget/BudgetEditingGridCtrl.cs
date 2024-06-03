@@ -32,6 +32,15 @@ namespace Budget
             SetRowColors();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            TrTypeComboColumn.ValueMember = "TrTypeID";
+            TrTypeComboColumn.DisplayMember = "CodeAndName";
+        }
+
         public void SetRowColors()
         {
             for (int rowNum = 0; rowNum < grid1.Rows.Count; rowNum++)

@@ -14,7 +14,7 @@ namespace Budget
 
         BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new BudgetSourceFileFormatTableAdapter();
         BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
-        ViewBudgetGroupingsInOrderTableAdapter _GroupingsAdapter = new ViewBudgetGroupingsInOrderTableAdapter();
+        BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
 
         public LookupTableSet()
         {
@@ -24,7 +24,7 @@ namespace Budget
         {
             _BudgetSourceFileFormatAdapter.Fill(_MainDataSet.BudgetSourceFileFormat);
             _BudgetAccountAdapter.Fill(_MainDataSet.BudgetAccount);
-            _GroupingsAdapter.Fill(_MainDataSet.ViewBudgetGroupingsInOrder);
+            _GroupingsAdapter.Fill(_MainDataSet.BudgetTypeGroupings);
         }
     }
 }

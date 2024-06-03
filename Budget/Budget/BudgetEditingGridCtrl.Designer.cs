@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grid1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
@@ -41,15 +43,14 @@
             this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripFromVendorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TrType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbFilter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -72,7 +73,8 @@
             this.Descrip2Column,
             this.DescripFromVendorColumn,
             this.trCodeDataGridViewTextBoxColumn,
-            this.trTypeDataGridViewTextBoxColumn,
+            this.TrTypeComboColumn,
+            this.TrType,
             this.accountDataGridViewTextBoxColumn,
             this.Balance,
             this.BalanceIsCalculatedColumn,
@@ -94,6 +96,25 @@
             this.grid1.Size = new System.Drawing.Size(1395, 449);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Filter:";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilter.Location = new System.Drawing.Point(43, 4);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
+            this.tbFilter.TabIndex = 3;
+            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
             // 
             // budgetBindingSource
             // 
@@ -157,12 +178,20 @@
             this.trCodeDataGridViewTextBoxColumn.Name = "trCodeDataGridViewTextBoxColumn";
             this.trCodeDataGridViewTextBoxColumn.Width = 200;
             // 
-            // trTypeDataGridViewTextBoxColumn
+            // TrTypeComboColumn
             // 
-            this.trTypeDataGridViewTextBoxColumn.DataPropertyName = "TrType";
-            this.trTypeDataGridViewTextBoxColumn.HeaderText = "TrType";
-            this.trTypeDataGridViewTextBoxColumn.Name = "trTypeDataGridViewTextBoxColumn";
-            this.trTypeDataGridViewTextBoxColumn.Width = 50;
+            this.TrTypeComboColumn.DataPropertyName = "TrType";
+            this.TrTypeComboColumn.HeaderText = "TrType";
+            this.TrTypeComboColumn.Name = "TrTypeComboColumn";
+            this.TrTypeComboColumn.Width = 130;
+            // 
+            // TrType
+            // 
+            this.TrType.DataPropertyName = "TrType";
+            this.TrType.HeaderText = "TrType";
+            this.TrType.Name = "TrType";
+            this.TrType.ReadOnly = true;
+            this.TrType.Width = 36;
             // 
             // accountDataGridViewTextBoxColumn
             // 
@@ -205,25 +234,6 @@
             this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
             this.ignoreDataGridViewCheckBoxColumn.Width = 40;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Filter:";
-            // 
-            // tbFilter
-            // 
-            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFilter.Location = new System.Drawing.Point(43, 4);
-            this.tbFilter.Name = "tbFilter";
-            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
-            this.tbFilter.TabIndex = 3;
-            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
-            // 
             // BudgetEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +257,8 @@
         private MainDataSet mainDataSet;
         private MainDataSetTableAdapters.BudgetTableAdapter budgetTableAdapter;
         private System.Windows.Forms.DataGridView grid1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
@@ -254,14 +266,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripFromVendorColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrType;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
         private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbFilter;
     }
 }
