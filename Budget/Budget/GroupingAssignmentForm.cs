@@ -115,5 +115,10 @@ namespace Budget
             LoadGroupingPatternTable();
             gridGroupingPatterns.Refresh();
         }
+
+        private void chBoxShowUntypedOnly_CheckStateChanged(object sender, EventArgs e)
+        {
+            LoadBudgetTable();
+        }
     }
 }

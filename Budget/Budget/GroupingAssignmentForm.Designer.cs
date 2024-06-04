@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnApplyTypes = new System.Windows.Forms.Button();
             this.chBoxShowUntypedOnly = new System.Windows.Forms.CheckBox();
@@ -80,6 +81,7 @@
             this.chBoxShowUntypedOnly.TabIndex = 2;
             this.chBoxShowUntypedOnly.Text = "Untyped Items Only";
             this.chBoxShowUntypedOnly.UseVisualStyleBackColor = true;
+            this.chBoxShowUntypedOnly.CheckStateChanged += new System.EventHandler(this.chBoxShowUntypedOnly_CheckStateChanged);
             // 
             // btnSaveBudgetItems
             // 
@@ -166,14 +168,14 @@
             this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
             this.gridGroupingPatterns.DataSource = this.budgetTypePatternBindingSource;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridGroupingPatterns.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridGroupingPatterns.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridGroupingPatterns.Location = new System.Drawing.Point(0, 32);
             this.gridGroupingPatterns.Name = "gridGroupingPatterns";
             this.gridGroupingPatterns.Size = new System.Drawing.Size(1276, 159);
@@ -237,6 +239,8 @@
             // 
             this.patternDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.patternDataGridViewTextBoxColumn.DataPropertyName = "Pattern";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.patternDataGridViewTextBoxColumn.HeaderText = "Pattern";
             this.patternDataGridViewTextBoxColumn.Name = "patternDataGridViewTextBoxColumn";
             // 
