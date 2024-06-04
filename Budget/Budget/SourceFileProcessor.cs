@@ -9,6 +9,7 @@ using static Budget.MainDataSet;
 using System.Windows.Forms;
 using Budget.MainDataSetTableAdapters;
 using System.Diagnostics;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 
 namespace Budget
 {
@@ -19,8 +20,8 @@ namespace Budget
         public BudgetDataTable BudgetTable => _BudgetTable;
         BudgetDataTable _BudgetTable;
 
-        BudgetTableAdapter _BudgetAdapter = new BudgetTableAdapter();
-
+        BudgetTableAdapter _BudgetAdapter;
+        
         string _SelectedAccount;
         MainDataSet.BudgetAccountRow AccountRowSelected => Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
 
@@ -41,6 +42,8 @@ namespace Budget
 
         public SourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount)
         {
+            _BudgetAdapter = new BudgetTableAdapter();
+            _BudgetAdapter.Connection = Program.DbConnection;
             _BudgetTable = budgetTable;
             _SelectedAccount = selectedAccount;
         }

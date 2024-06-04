@@ -1,4 +1,5 @@
 ﻿using Budget.MainDataSetTableAdapters;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +36,12 @@ namespace Budget
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            // In Design mode?
+            if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+                return;
+
+            budgetTableAdapter.Connection = Program.DbConnection;
 
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
             TrTypeComboColumn.ValueMember = "TrTypeID";

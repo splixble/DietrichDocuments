@@ -79,7 +79,7 @@ namespace Budget
                     // reportDataConn.Open();
                     SqlCommand reportDataCmd = new SqlCommand();
                     // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                    reportDataCmd.Connection = reportDataConn;
+                    reportDataCmd.Connection = Program.DbConnection;
                     reportDataCmd.CommandText = selectStr;
 
                     SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
@@ -157,8 +157,8 @@ namespace Budget
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'mainDataSet.ViewBudgetGroupingsInOrder' table. You can move, or remove it, as needed.
-            this.viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
+            viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
+            viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
 
             // Populate Groupings tree:
             // add parent nodes:

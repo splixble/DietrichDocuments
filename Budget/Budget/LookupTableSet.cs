@@ -22,8 +22,13 @@ namespace Budget
 
         public void Load()
         {
+            _BudgetSourceFileFormatAdapter.Connection = Program.DbConnection;
             _BudgetSourceFileFormatAdapter.Fill(_MainDataSet.BudgetSourceFileFormat);
+
+            _BudgetAccountAdapter.Connection = Program.DbConnection;
             _BudgetAccountAdapter.Fill(_MainDataSet.BudgetAccount);
+
+            _GroupingsAdapter.Connection = Program.DbConnection;
             _GroupingsAdapter.Fill(_MainDataSet.BudgetTypeGroupings);
         }
     }

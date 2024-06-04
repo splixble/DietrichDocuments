@@ -23,6 +23,14 @@ namespace Budget
 
         private void TrTypeForm_Load(object sender, EventArgs e)
         {
+            // In Design mode?
+            if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+                return;
+
+            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            TrTypeComboColumn.ValueMember = "TrTypeID";
+            TrTypeComboColumn.DisplayMember = "CodeAndName";
+
             LoadBudgetTable();
             LoadGroupingPatternTable();
         }

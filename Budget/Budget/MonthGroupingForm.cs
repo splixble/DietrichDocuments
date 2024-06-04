@@ -20,6 +20,7 @@ namespace Budget
 
         public void Initialize(DateTime cellMonth, string cellGrouping)
         {
+            viewBudgetWithMonthlyTableAdapter.Connection = Program.DbConnection;
             viewBudgetWithMonthlyTableAdapter.FillByMonthAndGrouping(mainDataSet.ViewBudgetWithMonthly, cellMonth, cellGrouping); 
         }
 

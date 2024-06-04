@@ -40,13 +40,13 @@
             this.gridGroupingPatterns = new System.Windows.Forms.DataGridView();
             this.budgetTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             this.label1 = new System.Windows.Forms.Label();
             this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
+            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ForIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.forIgnoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -147,7 +147,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -161,7 +161,7 @@
             this.gridGroupingPatterns.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn1,
             this.patternDataGridViewTextBoxColumn,
-            this.trTypeDataGridViewTextBoxColumn1,
+            this.TrTypeComboColumn,
             this.ForIncomeColumn,
             this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
@@ -190,16 +190,6 @@
             this.mainDataSet1.DataSetName = "MainDataSet";
             this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // budgetEditingGridCtrl1
-            // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
-            this.budgetEditingGridCtrl1.TabIndex = 5;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -207,7 +197,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(-3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 16);
+            this.label1.Size = new System.Drawing.Size(97, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Budget Items";
             // 
@@ -225,6 +215,16 @@
             this.button3.Text = "Cancel Changes";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // budgetEditingGridCtrl1
+            // 
+            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
+            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
+            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
+            this.budgetEditingGridCtrl1.TabIndex = 5;
+            // 
             // iDDataGridViewTextBoxColumn1
             // 
             this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
@@ -240,11 +240,12 @@
             this.patternDataGridViewTextBoxColumn.HeaderText = "Pattern";
             this.patternDataGridViewTextBoxColumn.Name = "patternDataGridViewTextBoxColumn";
             // 
-            // trTypeDataGridViewTextBoxColumn1
+            // TrTypeComboColumn
             // 
-            this.trTypeDataGridViewTextBoxColumn1.DataPropertyName = "TrType";
-            this.trTypeDataGridViewTextBoxColumn1.HeaderText = "TrType";
-            this.trTypeDataGridViewTextBoxColumn1.Name = "trTypeDataGridViewTextBoxColumn1";
+            this.TrTypeComboColumn.DataPropertyName = "TrType";
+            this.TrTypeComboColumn.HeaderText = "TrType";
+            this.TrTypeComboColumn.Name = "TrTypeComboColumn";
+            this.TrTypeComboColumn.Width = 140;
             // 
             // ForIncomeColumn
             // 
@@ -309,7 +310,7 @@
         private BudgetEditingGridCtrl budgetEditingGridCtrl1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ForIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn forIgnoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
