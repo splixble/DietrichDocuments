@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
+using System.Security.Cryptography.Xml;
 
 namespace Budget
 {
@@ -20,7 +21,6 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
-        // DIAG put a splitter window in! And show Comments in budget items,
         const int groupingsGridCheckboxColumn = 0;
 
         public Form1()
@@ -49,27 +49,15 @@ namespace Budget
             // 
 
 
+            // DIAG does not show graph lines for child nodes!!!
+
+
+
             foreach (TreeNode node in tvGroupings.Nodes)
             {
                 AddToGroupingListIfChecked(node, ref groupingsList);
             }
             
-
-            /* REMO
-            foreach (DataGridViewRow gridRow in gridGroupings.Rows)
-            {
-                object groupingIsChecked = gridRow.Cells[groupingsGridCheckboxColumn].Value;
-                if (groupingIsChecked is bool && (bool)groupingIsChecked) // if checkbox checked
-                {
-                    DataRowView rowView = (DataRowView)gridRow.DataBoundItem;
-                    MainDataSet.ViewBudgetGroupingsInOrderRow dataRow = (MainDataSet.ViewBudgetGroupingsInOrderRow)rowView.Row;
-                    if (groupingsList != "")
-                        groupingsList += ",";
-                    groupingsList += "'" + dataRow.Grouping + "'";// DIAG gotta manually do this with a SQL stmt
-                }
-            }
-            */
-
             MainData.ViewBudgetMonthlyReport.Clear();
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
@@ -161,12 +149,17 @@ namespace Budget
             viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
 
             // Populate Groupings tree:
+            TreeNode balanceTotalNode = null;
             // add parent nodes:
             foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
             {
-                if (groupingRow.IsParentGroupingLabelNull())
+                if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != "A") // A is Balance of accounts, a sub-type of Balance Total -- DIAG strings s/b constants
                 {
                     TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
+
+                    if (groupingRow.GroupingType == "L") // the Balance Total grouping -- hold on to that node
+                        balanceTotalNode = node;
+
                     // Check, by default, the first 2 groupings (Inc. and Exp):   // DIAG strings s/b constants
                     if (groupingRow.Grouping == "Income" || groupingRow.Grouping == "Expenditures") 
                         node.Checked = true;
@@ -175,12 +168,18 @@ namespace Budget
             // now, add child nodes:
             foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
             {
+                TreeNode parentNode = null;
                 if (!groupingRow.IsParentGroupingLabelNull())
                 {
                     TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGroupingLabel, false); // search only top level
                     if (parentNodeArray.Length > 0) // should never be 0, or >1
-                        parentNodeArray[0].Nodes.Add(groupingRow.Grouping);
+                        parentNode = parentNodeArray[0];
                 }
+                else if (groupingRow.GroupingType == "A") // A is Balance of accounts, a sub-type of Balance Total
+                    parentNode = balanceTotalNode;
+
+                if (parentNode != null)
+                    parentNode.Nodes.Add(groupingRow.Grouping);
             }
 
             RefreshDisplay();

@@ -2085,6 +2085,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnParentGroupingLabel;
             
+            private global::System.Data.DataColumn columnGroupingType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetGroupingsInOrderDataTable() {
@@ -2144,6 +2146,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GroupingTypeColumn {
+                get {
+                    return this.columnGroupingType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2179,15 +2189,23 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetGroupingsInOrderRow AddViewBudgetGroupingsInOrderRow(string Grouping, int OrderNum, string ParentGroupingLabel) {
+            public ViewBudgetGroupingsInOrderRow AddViewBudgetGroupingsInOrderRow(string Grouping, int OrderNum, string ParentGroupingLabel, string GroupingType) {
                 ViewBudgetGroupingsInOrderRow rowViewBudgetGroupingsInOrderRow = ((ViewBudgetGroupingsInOrderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Grouping,
                         OrderNum,
-                        ParentGroupingLabel};
+                        ParentGroupingLabel,
+                        GroupingType};
                 rowViewBudgetGroupingsInOrderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetGroupingsInOrderRow);
                 return rowViewBudgetGroupingsInOrderRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ViewBudgetGroupingsInOrderRow FindByGrouping(string Grouping) {
+                return ((ViewBudgetGroupingsInOrderRow)(this.Rows.Find(new object[] {
+                            Grouping})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2210,6 +2228,7 @@ namespace Budget {
                 this.columnGrouping = base.Columns["Grouping"];
                 this.columnOrderNum = base.Columns["OrderNum"];
                 this.columnParentGroupingLabel = base.Columns["ParentGroupingLabel"];
+                this.columnGroupingType = base.Columns["GroupingType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2221,9 +2240,17 @@ namespace Budget {
                 base.Columns.Add(this.columnOrderNum);
                 this.columnParentGroupingLabel = new global::System.Data.DataColumn("ParentGroupingLabel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnParentGroupingLabel);
+                this.columnGroupingType = new global::System.Data.DataColumn("GroupingType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupingType);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnGrouping}, true));
+                this.columnGrouping.AllowDBNull = false;
+                this.columnGrouping.Unique = true;
                 this.columnGrouping.MaxLength = 250;
                 this.columnOrderNum.ReadOnly = true;
                 this.columnParentGroupingLabel.MaxLength = 250;
+                this.columnGroupingType.AllowDBNull = false;
+                this.columnGroupingType.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4591,12 +4618,7 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Grouping {
                 get {
-                    try {
-                        return ((string)(this[this.tableViewBudgetGroupingsInOrder.GroupingColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Grouping\' in table \'ViewBudgetGroupingsInOrder\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableViewBudgetGroupingsInOrder.GroupingColumn]));
                 }
                 set {
                     this[this.tableViewBudgetGroupingsInOrder.GroupingColumn] = value;
@@ -4638,14 +4660,13 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsGroupingNull() {
-                return this.IsNull(this.tableViewBudgetGroupingsInOrder.GroupingColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetGroupingNull() {
-                this[this.tableViewBudgetGroupingsInOrder.GroupingColumn] = global::System.Convert.DBNull;
+            public string GroupingType {
+                get {
+                    return ((string)(this[this.tableViewBudgetGroupingsInOrder.GroupingTypeColumn]));
+                }
+                set {
+                    this[this.tableViewBudgetGroupingsInOrder.GroupingTypeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7423,6 +7444,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
             tableMapping.ColumnMappings.Add("Grouping", "Grouping");
             tableMapping.ColumnMappings.Add("OrderNum", "OrderNum");
             tableMapping.ColumnMappings.Add("ParentGroupingLabel", "ParentGroupingLabel");
+            tableMapping.ColumnMappings.Add("GroupingType", "GroupingType");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -7439,8 +7461,8 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Grouping, OrderNum, ParentGroupingLabel\r\nFROM            ViewBudget" +
-                "GroupingsInOrder\r\nORDER BY OrderNum, Grouping";
+            this._commandCollection[0].CommandText = "SELECT        Grouping, OrderNum, ParentGroupingLabel, GroupingType\r\nFROM        " +
+                "    ViewBudgetGroupingsInOrder\r\nORDER BY OrderNum, Grouping";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
