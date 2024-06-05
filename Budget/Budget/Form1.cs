@@ -34,24 +34,18 @@ namespace Budget
             {
                 if (groupingsList != "")
                     groupingsList += ",";
-                groupingsList += "'" + node.Text + "'";
-
-                // recursively call this for child nodes:
-                foreach (TreeNode childNode in node.Nodes)
-                    AddToGroupingListIfChecked(childNode, ref groupingsList);
+                groupingsList += "'" + node.Text.Replace("'", "''") + "'"; // 'escape out' any single quotes in node text, since they're enclosed in single quotes in the SQL
             }
+
+            // recursively call this for child nodes:
+            foreach (TreeNode childNode in node.Nodes)
+                AddToGroupingListIfChecked(childNode, ref groupingsList);
         }
 
         void RefreshDisplay()
         {
             // Get groupings to display, from checked 
             string groupingsList = "";
-            // 
-
-
-            // DIAG does not show graph lines for child nodes!!!
-
-
 
             foreach (TreeNode node in tvGroupings.Nodes)
             {
