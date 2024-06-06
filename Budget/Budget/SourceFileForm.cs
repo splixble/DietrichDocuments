@@ -54,7 +54,9 @@ namespace Budget
                 dupBudgetIDsList += dupID;
             }
 
-            budgetCtrl.BudgetBindingSource.Filter = "ID<0 OR ID IN (" + dupBudgetIDsList + ")";
+            budgetCtrl.BudgetBindingSource.Filter = "ID<0";
+            if (dupBudgetIDsList.Length > 0) 
+                budgetCtrl.BudgetBindingSource.Filter += " OR ID IN (" + dupBudgetIDsList + ")";
             budgetCtrl.Refresh();
             btnSaveBudgetItems.Enabled = true;
         }
