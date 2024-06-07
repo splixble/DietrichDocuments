@@ -69,7 +69,14 @@ namespace Budget
 
         private void tbFilter_Validated(object sender, EventArgs e)
         {
-            budgetBindingSource.Filter = tbFilter.Text;
+            try
+            {
+                budgetBindingSource.Filter = tbFilter.Text;
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Filter error: " + ex.Message);
+            }
         }
     }
 }
