@@ -64,6 +64,8 @@ namespace Budget
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
             budgetCtrl.CreateNewSourceFileRow = true;
+
+            UpdateManualEntryBasedControls();
         }
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
@@ -100,6 +102,27 @@ namespace Budget
             PostImport();
 
 
+        }
+        void UpdateManualEntryBasedControls()
+        {
+            tbFileText.Enabled = chBoxManualEntry.Checked;
+            btnOpenSourceFile.Enabled = !chBoxManualEntry.Checked;
+            btnImportManualText.Enabled = chBoxManualEntry.Checked;
+        }
+
+        private void chBoxManualEntry_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateManualEntryBasedControls();
+        }
+
+        private void btnImportManualText_Click(object sender, EventArgs e)
+        {
+            PreImport();
+
+            _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+            ((ManualEnteredSourceTextProcessor)_Processor).ProcessManualLines(tbFileText.Lines);
+
+            PostImport();
         }
     }
 }

@@ -184,62 +184,67 @@ namespace Budget
                         bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
 
                         if (lineParsable)
-                        {
-                            BudgetRow importedRow = null;
-
-                            // Check for duplicate Budget rows:
-                            BudgetRow dupRow = FindDuplicateRow(fieldsByColumnName);
-
-                            if (dupRow != null)
-                            {
-                                // Duplicate row found
-                                importedRow = dupRow;
-                                // Add row ID:
-                                _MatchingBudgetIDs.Add(dupRow.ID);
-                            }
-                            else
-                            {
-                                // no duplicate
-                                if (AllowAddingNewBudgetRows)
-                                {
-                                    // add new row to table
-                                    importedRow = _BudgetTable.NewBudgetRow();
-                                    importedRow.IsIncome = false; // necessary initialization
-                                    importedRow.Ignore = false; // necessary initialization
-                                    importedRow.BalanceIsCalculated = false; // necessary initialization
-                                }
-                            }
-
-                            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
-                            if (importedRow == null)
-                                continue;
-
-                            // Copy fields in:
-                            foreach (string columnName in fieldsByColumnName.Keys)
-                            {
-                                object newFieldValue = fieldsByColumnName[columnName];
-                                if (newFieldValue != null)
-                                    importedRow[columnName] = newFieldValue;
-                            }
- 
-                            if (UpdateAccountFromSourceFile)
-                                importedRow.Account = _SelectedAccount;
-
-                            BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
-                            fileItemsRow.SourceFile = -1; // real value filled in on save 
-                            fileItemsRow.BudgetItem = -1; // real value filled in on save 
-                            fileItemsRow.SourceFileLine = lineNum; // 1-relative
-                            _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
-
-                            _ImportedBudgetItems.Add(new BudgetAndSourceItemRows(importedRow, fileItemsRow));
-
-                            // if new row, we need to add it to the DataTable:
-                            if (dupRow == null)
-                                _BudgetTable.AddBudgetRow(importedRow);
-                        }
+                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                     }
                 }
             }
+        }
+
+        public bool AddOrUpdateBudgetRow(Dictionary<string, object> fieldsByColumnName, int lineNum)
+        {
+            BudgetRow importedRow = null;
+
+            // Check for duplicate Budget rows:
+            BudgetRow dupRow = FindDuplicateRow(fieldsByColumnName);
+
+            if (dupRow != null)
+            {
+                // Duplicate row found
+                importedRow = dupRow;
+                // Add row ID:
+                _MatchingBudgetIDs.Add(dupRow.ID);
+            }
+            else
+            {
+                // no duplicate
+                if (AllowAddingNewBudgetRows)
+                {
+                    // add new row to table
+                    importedRow = _BudgetTable.NewBudgetRow();
+                    importedRow.IsIncome = false; // necessary initialization
+                    importedRow.Ignore = false; // necessary initialization
+                    importedRow.BalanceIsCalculated = false; // necessary initialization
+                }
+            }
+
+            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
+            if (importedRow == null)
+                return false;
+
+            // Copy fields in:
+            foreach (string columnName in fieldsByColumnName.Keys)
+            {
+                object newFieldValue = fieldsByColumnName[columnName];
+                if (newFieldValue != null)
+                    importedRow[columnName] = newFieldValue;
+            }
+
+            if (UpdateAccountFromSourceFile)
+                importedRow.Account = _SelectedAccount;
+
+            BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
+            fileItemsRow.SourceFile = -1; // real value filled in on save 
+            fileItemsRow.BudgetItem = -1; // real value filled in on save 
+            fileItemsRow.SourceFileLine = lineNum; // 1-relative
+            _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
+
+            _ImportedBudgetItems.Add(new BudgetAndSourceItemRows(importedRow, fileItemsRow));
+
+            // if new row, we need to add it to the DataTable:
+            if (dupRow == null)
+                _BudgetTable.AddBudgetRow(importedRow);
+
+            return true;
         }
 
         public void SaveChanges()
@@ -249,14 +254,7 @@ namespace Budget
             _NewestSourceFileRow.ImportDateTime = DateTime.Now;
             sourceFileAdap.Update(_SourceFileTable);
 
-            /* REMO
-            foreach (MainDataSet.BudgetRow budgetRow in _Processor._ImportedBudgetRows)
-            {
-                budgetRow.SourceFile = _Processor._NewestSourceFileRow.FileID;
-            }    
-            */
-
-            _BudgetAdapter.Update(_BudgetTable);
+             _BudgetAdapter.Update(_BudgetTable);
 
             foreach (BudgetAndSourceItemRows budgetObj in _ImportedBudgetItems)
             {

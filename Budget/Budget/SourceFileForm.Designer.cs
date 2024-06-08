@@ -36,14 +36,22 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.customFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             this.amazonDigitalItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tbFileText = new System.Windows.Forms.TextBox();
+            this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
+            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.btnImportManualText = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpenSourceFile
             // 
-            this.btnOpenSourceFile.Location = new System.Drawing.Point(12, 27);
+            this.btnOpenSourceFile.Location = new System.Drawing.Point(476, 6);
             this.btnOpenSourceFile.Name = "btnOpenSourceFile";
             this.btnOpenSourceFile.Size = new System.Drawing.Size(107, 23);
             this.btnOpenSourceFile.TabIndex = 0;
@@ -55,7 +63,7 @@
             // 
             this.comboAccount.DisplayMember = "AccountID";
             this.comboAccount.FormattingEnabled = true;
-            this.comboAccount.Location = new System.Drawing.Point(196, 29);
+            this.comboAccount.Location = new System.Drawing.Point(191, 6);
             this.comboAccount.Name = "comboAccount";
             this.comboAccount.Size = new System.Drawing.Size(254, 21);
             this.comboAccount.TabIndex = 4;
@@ -65,7 +73,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 32);
+            this.label2.Location = new System.Drawing.Point(135, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 5;
@@ -74,7 +82,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(131, 415);
+            this.button3.Location = new System.Drawing.Point(131, 493);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(113, 23);
             this.button3.TabIndex = 12;
@@ -85,7 +93,7 @@
             // 
             this.btnSaveBudgetItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveBudgetItems.Enabled = false;
-            this.btnSaveBudgetItems.Location = new System.Drawing.Point(12, 415);
+            this.btnSaveBudgetItems.Location = new System.Drawing.Point(12, 493);
             this.btnSaveBudgetItems.Name = "btnSaveBudgetItems";
             this.btnSaveBudgetItems.Size = new System.Drawing.Size(113, 23);
             this.btnSaveBudgetItems.TabIndex = 11;
@@ -99,7 +107,7 @@
             this.customFilesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1247, 24);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -119,17 +127,6 @@
             this.amazonOrderFileToolStripMenuItem.Text = "Amazon Retail Orders";
             this.amazonOrderFileToolStripMenuItem.Click += new System.EventHandler(this.amazonOrderFileToolStripMenuItem_Click);
             // 
-            // budgetCtrl
-            // 
-            this.budgetCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.budgetCtrl.Location = new System.Drawing.Point(12, 56);
-            this.budgetCtrl.Name = "budgetCtrl";
-            this.budgetCtrl.Size = new System.Drawing.Size(776, 353);
-            this.budgetCtrl.TabIndex = 3;
-            // 
             // amazonDigitalItemsToolStripMenuItem
             // 
             this.amazonDigitalItemsToolStripMenuItem.Name = "amazonDigitalItemsToolStripMenuItem";
@@ -137,17 +134,81 @@
             this.amazonDigitalItemsToolStripMenuItem.Text = "Amazon Digital Items";
             this.amazonDigitalItemsToolStripMenuItem.Click += new System.EventHandler(this.amazonDigitalItemsToolStripMenuItem_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(12, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnImportManualText);
+            this.splitContainer1.Panel1.Controls.Add(this.chBoxManualEntry);
+            this.splitContainer1.Panel1.Controls.Add(this.tbFileText);
+            this.splitContainer1.Panel1.Controls.Add(this.btnOpenSourceFile);
+            this.splitContainer1.Panel1.Controls.Add(this.comboAccount);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.budgetCtrl);
+            this.splitContainer1.Size = new System.Drawing.Size(1223, 460);
+            this.splitContainer1.SplitterDistance = 230;
+            this.splitContainer1.TabIndex = 14;
+            // 
+            // tbFileText
+            // 
+            this.tbFileText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFileText.Location = new System.Drawing.Point(4, 33);
+            this.tbFileText.Multiline = true;
+            this.tbFileText.Name = "tbFileText";
+            this.tbFileText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbFileText.Size = new System.Drawing.Size(1216, 194);
+            this.tbFileText.TabIndex = 6;
+            // 
+            // chBoxManualEntry
+            // 
+            this.chBoxManualEntry.AutoSize = true;
+            this.chBoxManualEntry.Location = new System.Drawing.Point(4, 8);
+            this.chBoxManualEntry.Name = "chBoxManualEntry";
+            this.chBoxManualEntry.Size = new System.Drawing.Size(112, 17);
+            this.chBoxManualEntry.TabIndex = 7;
+            this.chBoxManualEntry.Text = "Manual Text Entry";
+            this.chBoxManualEntry.UseVisualStyleBackColor = true;
+            this.chBoxManualEntry.CheckedChanged += new System.EventHandler(this.chBoxManualEntry_CheckedChanged);
+            // 
+            // budgetCtrl
+            // 
+            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.budgetCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.budgetCtrl.Location = new System.Drawing.Point(0, 0);
+            this.budgetCtrl.Name = "budgetCtrl";
+            this.budgetCtrl.Size = new System.Drawing.Size(1223, 226);
+            this.budgetCtrl.TabIndex = 3;
+            // 
+            // btnImportManualText
+            // 
+            this.btnImportManualText.Location = new System.Drawing.Point(618, 6);
+            this.btnImportManualText.Name = "btnImportManualText";
+            this.btnImportManualText.Size = new System.Drawing.Size(107, 23);
+            this.btnImportManualText.TabIndex = 8;
+            this.btnImportManualText.Text = "Import Manual Text";
+            this.btnImportManualText.UseVisualStyleBackColor = true;
+            this.btnImportManualText.Click += new System.EventHandler(this.btnImportManualText_Click);
+            // 
             // SourceFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1247, 528);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnSaveBudgetItems);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboAccount);
-            this.Controls.Add(this.budgetCtrl);
-            this.Controls.Add(this.btnOpenSourceFile);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SourceFileForm";
@@ -155,6 +216,11 @@
             this.Load += new System.EventHandler(this.SourceFileForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +238,9 @@
         private System.Windows.Forms.ToolStripMenuItem customFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem amazonOrderFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem amazonDigitalItemsToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox tbFileText;
+        private System.Windows.Forms.CheckBox chBoxManualEntry;
+        private System.Windows.Forms.Button btnImportManualText;
     }
 }
