@@ -55,7 +55,7 @@ namespace Budget
             MainData.ViewBudgetMonthlyReport.Clear();
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")";
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" ;
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
                 {
                     // reportDataConn.Open();
@@ -91,7 +91,7 @@ namespace Budget
             foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
             {
                 if (!tblRow.IsGroupingNull())
-                    rows[tblRow.Grouping] = null;
+                    rows[tblRow.GroupingWithParent] = tblRow.Grouping;
 
                 cols[tblRow.TrMonth] = null;
             }
@@ -112,9 +112,9 @@ namespace Budget
 
             Dictionary<string, int> rowIndices = new Dictionary<string, int>();
             int rowIndex = 0;
-            foreach (string grouping in rows.Keys)
+            foreach (string groupingWithParent in rows.Keys)
             {
-                rowIndices[grouping] = rowIndex;
+                rowIndices[groupingWithParent] = rowIndex;
                 //dataGridView1.Columns.Add("row" + rowIndex.ToString(), trMonth.ToString("MMM yy"));
                 rowIndex++;
             }
@@ -123,7 +123,8 @@ namespace Budget
             for (int ri = 0; ri < gridMain.RowCount; ri++)
             {
                 DataGridViewRow row = gridMain.Rows[ri]; 
-                row.HeaderCell.Value = rows.Keys[ri];
+                // DIAG should color row header to show if it's a parent grouping
+                row.HeaderCell.Value = rows.Values[ri];
                 row.Tag = rows.Keys[ri];
             }
 
@@ -131,7 +132,7 @@ namespace Budget
             {
                 if (!tblRow.IsGroupingNull())
                 {
-                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.Grouping]].Value = tblRow.AmountNormalized;
+                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingWithParent]].Value = tblRow.AmountNormalized;
                 }
             }
 

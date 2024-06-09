@@ -1061,6 +1061,10 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnGrouping;
             
+            private global::System.Data.DataColumn columnGroupingWithParent;
+            
+            private global::System.Data.DataColumn columnGroupingParent;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetMonthlyReportDataTable() {
@@ -1128,6 +1132,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GroupingWithParentColumn {
+                get {
+                    return this.columnGroupingWithParent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GroupingParentColumn {
+                get {
+                    return this.columnGroupingParent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1163,13 +1183,15 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow AddViewBudgetMonthlyReportRow(decimal AmountNormalized, System.DateTime TrMonth, string ViewKey, string Grouping) {
+            public ViewBudgetMonthlyReportRow AddViewBudgetMonthlyReportRow(decimal AmountNormalized, System.DateTime TrMonth, string ViewKey, string Grouping, string GroupingWithParent, string GroupingParent) {
                 ViewBudgetMonthlyReportRow rowViewBudgetMonthlyReportRow = ((ViewBudgetMonthlyReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AmountNormalized,
                         TrMonth,
                         ViewKey,
-                        Grouping};
+                        Grouping,
+                        GroupingWithParent,
+                        GroupingParent};
                 rowViewBudgetMonthlyReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetMonthlyReportRow);
                 return rowViewBudgetMonthlyReportRow;
@@ -1203,6 +1225,8 @@ namespace Budget {
                 this.columnTrMonth = base.Columns["TrMonth"];
                 this.columnViewKey = base.Columns["ViewKey"];
                 this.columnGrouping = base.Columns["Grouping"];
+                this.columnGroupingWithParent = base.Columns["GroupingWithParent"];
+                this.columnGroupingParent = base.Columns["GroupingParent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1216,6 +1240,10 @@ namespace Budget {
                 base.Columns.Add(this.columnViewKey);
                 this.columnGrouping = new global::System.Data.DataColumn("Grouping", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGrouping);
+                this.columnGroupingWithParent = new global::System.Data.DataColumn("GroupingWithParent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupingWithParent);
+                this.columnGroupingParent = new global::System.Data.DataColumn("GroupingParent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupingParent);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnViewKey}, true));
                 this.columnViewKey.AllowDBNull = false;
@@ -1223,6 +1251,9 @@ namespace Budget {
                 this.columnViewKey.Unique = true;
                 this.columnViewKey.MaxLength = 281;
                 this.columnGrouping.MaxLength = 250;
+                this.columnGroupingWithParent.ReadOnly = true;
+                this.columnGroupingWithParent.MaxLength = 501;
+                this.columnGroupingParent.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4237,6 +4268,40 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GroupingWithParent {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewBudgetMonthlyReport.GroupingWithParentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GroupingWithParent\' in table \'ViewBudgetMonthlyReport\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetMonthlyReport.GroupingWithParentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GroupingParent {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewBudgetMonthlyReport.GroupingParentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GroupingParent\' in table \'ViewBudgetMonthlyReport\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetMonthlyReport.GroupingParentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAmountNormalizedNull() {
                 return this.IsNull(this.tableViewBudgetMonthlyReport.AmountNormalizedColumn);
             }
@@ -4269,6 +4334,30 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetGroupingNull() {
                 this[this.tableViewBudgetMonthlyReport.GroupingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGroupingWithParentNull() {
+                return this.IsNull(this.tableViewBudgetMonthlyReport.GroupingWithParentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGroupingWithParentNull() {
+                this[this.tableViewBudgetMonthlyReport.GroupingWithParentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGroupingParentNull() {
+                return this.IsNull(this.tableViewBudgetMonthlyReport.GroupingParentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGroupingParentNull() {
+                this[this.tableViewBudgetMonthlyReport.GroupingParentColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6686,6 +6775,8 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             tableMapping.ColumnMappings.Add("TrMonth", "TrMonth");
             tableMapping.ColumnMappings.Add("ViewKey", "ViewKey");
             tableMapping.ColumnMappings.Add("Grouping", "Grouping");
+            tableMapping.ColumnMappings.Add("GroupingWithParent", "GroupingWithParent");
+            tableMapping.ColumnMappings.Add("GroupingParent", "GroupingParent");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6702,13 +6793,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, TrMonth, ViewKey, Grouping\r\nFROM            ViewB" +
-                "udgetMonthlyReport";
+            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, TrMonth, ViewKey, Grouping, GroupingWithParent, G" +
+                "roupingParent\r\nFROM            ViewBudgetMonthlyReport";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        AmountNormalized, TrMonth, ViewKey, Grouping\r\nFROM            ViewB" +
-                "udgetMonthlyReport\r\nWHERE        (Grouping IN (@GroupingList))";
+            this._commandCollection[1].CommandText = "SELECT AmountNormalized, Grouping, GroupingParent, GroupingWithParent, TrMonth, V" +
+                "iewKey FROM ViewBudgetMonthlyReport WHERE (Grouping IN (@GroupingList))";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@GroupingList";
