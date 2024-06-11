@@ -44,6 +44,7 @@
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
@@ -95,7 +96,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadSourceFileToolStripMenuItem});
+            this.loadSourceFileToolStripMenuItem,
+            this.printPreviewToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -103,7 +105,7 @@
             // loadSourceFileToolStripMenuItem
             // 
             this.loadSourceFileToolStripMenuItem.Name = "loadSourceFileToolStripMenuItem";
-            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadSourceFileToolStripMenuItem.Text = "Load Source File";
             this.loadSourceFileToolStripMenuItem.Click += new System.EventHandler(this.loadSourceFileToolStripMenuItem_Click);
             // 
@@ -199,6 +201,13 @@
             this.splitConOuter.SplitterDistance = 192;
             this.splitConOuter.TabIndex = 7;
             // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printPreviewToolStripMenuItem.Text = "Print Preview";
+            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,6 +254,7 @@
         private System.Windows.Forms.TreeView tvGroupings;
         private System.Windows.Forms.ToolStripMenuItem calculateAccountBalancesToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitConOuter;
+        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
     }
 }
 

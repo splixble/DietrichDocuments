@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
 using System.Security.Cryptography.Xml;
+using PrintLib;
 
 namespace Budget
 {
@@ -143,6 +144,9 @@ namespace Budget
             viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
             viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
 
+            // Make gridMain printable by taking a Printable tag onto it:
+            gridMain.Tag = new PrintableGridTag(gridMain);
+
             // Populate Groupings tree:
             TreeNode balanceTotalNode = null;
             // add parent nodes:
@@ -221,6 +225,12 @@ namespace Budget
         {
             BalanceCalculationForm balanceCalculationForm = new BalanceCalculationForm();
             balanceCalculationForm.ShowDialog();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DNPrintDocument printDoc = new DNPrintDocument();
+            printDoc.PrintPreview(splitConInner.Panel1); // contains gridMain. Or can I just pass gridMain in?
         }
     }
 }
