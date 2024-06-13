@@ -135,6 +135,9 @@ namespace Budget
                 {
                     gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingWithParent]].Value = tblRow.AmountNormalized;
                 }
+
+                if (tblRow.IsGroupingParentNull())
+                    gridMain.Rows[rowIndices[tblRow.GroupingWithParent]].DefaultCellStyle.BackColor = Color.PaleTurquoise;
             }
 
         }
