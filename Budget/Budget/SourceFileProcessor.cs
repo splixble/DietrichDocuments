@@ -23,7 +23,21 @@ namespace Budget
         BudgetTableAdapter _BudgetAdapter;
         
         string _SelectedAccount;
-        MainDataSet.BudgetAccountRow AccountRowSelected => Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+        protected MainDataSet.BudgetAccountRow AccountRowSelected => Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+
+        public SourceFileFormats SourceFileFormat
+        {
+            get
+            {
+                foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
+                {
+                    if (enumVal.ToString() == AccountRowSelected.SourceFileFormat)
+                        return (SourceFileFormats)enumVal;
+                }
+                return SourceFileFormats.None; // if it gets all the way thru list
+            }
+        }
+        
 
         public virtual bool UpdateAccountFromSourceFile => true;
         public virtual bool AllowAddingNewBudgetRows => true;

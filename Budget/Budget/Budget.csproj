@@ -220,6 +220,7 @@
     <Compile Include="SourceFileForm.Designer.cs">
       <DependentUpon>SourceFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SourceFileFormats.cs" />
     <Compile Include="SourceFileProcessor.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="GroupingAssignmentForm.cs">
