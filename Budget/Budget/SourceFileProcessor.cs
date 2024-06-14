@@ -21,8 +21,10 @@ namespace Budget
         BudgetDataTable _BudgetTable;
 
         BudgetTableAdapter _BudgetAdapter;
-        
+
+        protected string SelectedAccount => _SelectedAccount;
         string _SelectedAccount = null;
+
         protected MainDataSet.BudgetAccountRow _AccountRowSelected = null;
         protected MainDataSet.BudgetSourceFileFormatRow _SourceFileFormatRow = null;
 
@@ -38,6 +40,7 @@ namespace Budget
         public MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
         public List<BudgetAndSourceItemRows> _ImportedBudgetItems = new List<BudgetAndSourceItemRows>();
 
+        protected string SourceFileName => _SourceFileName;
         string _SourceFileName;
 
         public List<int> MatchingBudgetIDs => _MatchingBudgetIDs;
@@ -171,37 +174,42 @@ namespace Budget
             if (diaRes == DialogResult.OK)
             {
                 _SourceFileName = srcFileDlg.FileName;
+                ReadInSourceFile();
+            }
+        }
 
-                // make new source file row:
-                _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
-                _NewestSourceFileRow.FilePath = _SourceFileName;
-                _NewestSourceFileRow.Account = _SelectedAccount;
-                _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
+        protected virtual void ReadInSourceFile()
+        {
+            // make new source file row:
+            _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
+            _NewestSourceFileRow.FilePath = _SourceFileName;
+            _NewestSourceFileRow.Account = _SelectedAccount;
+            _NewestSourceFileRow.ManuallyEntered = false;
+            _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
 
-                // Read in the full Budget table, to check for duplicates:
-                _BudgetAdapter.Fill(_BudgetTable);
+            // Read in the full Budget table, to check for duplicates:
+            _BudgetAdapter.Fill(_BudgetTable);
 
-                // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
-                using (TextFieldParser parser = new TextFieldParser(_SourceFileName))
+            // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
+            using (TextFieldParser parser = new TextFieldParser(_SourceFileName))
+            {
+                _MatchingBudgetIDs.Clear();
+
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(","); // allow tab delim?
+                int lineNum = 0; // it's 1-relative
+                while (!parser.EndOfData)
                 {
-                    _MatchingBudgetIDs.Clear();
+                    //Processing row
+                    string[] fileFields = parser.ReadFields();
+                    lineNum++;
 
-                    parser.TextFieldType = FieldType.Delimited;
-                    parser.SetDelimiters(","); // allow tab delim?
-                    int lineNum = 0; // it's 1-relative
-                    while (!parser.EndOfData)
-                    {
-                        //Processing row
-                        string[] fileFields = parser.ReadFields();
-                        lineNum++;
+                    Dictionary<string, object> fieldsByColumnName = new Dictionary<string, object>();
 
-                        Dictionary<string, object> fieldsByColumnName = new Dictionary<string, object>();
+                    bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
 
-                        bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
-
-                        if (lineParsable)
-                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                    }
+                    if (lineParsable)
+                        AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                 }
             }
         }
@@ -263,7 +271,7 @@ namespace Budget
             return true;
         }
 
-        public void SaveChanges()
+        public virtual void SaveChanges()
         {
             // DIAG use transactions (budgetTableAdapter.Transaction) in this
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();

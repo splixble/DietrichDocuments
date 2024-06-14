@@ -206,6 +206,12 @@
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ManualEnteredSourceTextProcessor.cs" />
+    <Compile Include="ManuallyEnteredSourceFileSavePrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManuallyEnteredSourceFileSavePrompt.Designer.cs">
+      <DependentUpon>ManuallyEnteredSourceFileSavePrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonthGroupingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupingForm.resx">
       <DependentUpon>GroupingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManuallyEnteredSourceFileSavePrompt.resx">
+      <DependentUpon>ManuallyEnteredSourceFileSavePrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthGroupingForm.resx">
       <DependentUpon>MonthGroupingForm.cs</DependentUpon>

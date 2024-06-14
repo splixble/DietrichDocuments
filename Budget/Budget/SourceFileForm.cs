@@ -31,7 +31,10 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+            if (chBoxManualEntry.Checked)
+                _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+            else
+                _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
             _Processor.Process();
             
             PostImport();
@@ -106,7 +109,7 @@ namespace Budget
         void UpdateManualEntryBasedControls()
         {
             tbFileText.Enabled = chBoxManualEntry.Checked;
-            btnOpenSourceFile.Enabled = !chBoxManualEntry.Checked;
+            // REMOVED btnOpenSourceFile.Enabled = !chBoxManualEntry.Checked;
             btnImportManualText.Enabled = chBoxManualEntry.Checked;
         }
 
@@ -119,7 +122,9 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+            // DIAG DO NOT CREATE A NEW ONE -- however, got to disable this button until we've opened a file!
+            // Also, should show opened file pathe somewhere in the UI.
+            // _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
             ((ManualEnteredSourceTextProcessor)_Processor).ProcessManualLines(tbFileText.Lines);
 
             PostImport();

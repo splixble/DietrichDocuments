@@ -152,5 +152,32 @@ namespace Budget
             else
                 return false;
         }
+
+        public override void SaveChanges()
+        {
+            ManuallyEnteredSourceFileSavePrompt prompt = new ManuallyEnteredSourceFileSavePrompt();
+            DialogResult res = prompt.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                // DIAG Hey, we need to know StatementDate BEFORE we save, so that we can add year to dates. How bout we just open PDF's? And read in its filename?
+                // should work: System.Diagnostics.Process.Start(@"file path");
+
+                // make new source file row:
+                _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
+                _NewestSourceFileRow.FilePath = prompt.FileName;
+                _NewestSourceFileRow.StatementDate = prompt.StatementDate;
+                _NewestSourceFileRow.Account = this.SelectedAccount;
+                _NewestSourceFileRow.ManuallyEntered = true;
+                _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
+
+                base.SaveChanges();
+            }
+        }
+
+        protected override void ReadInSourceFile()
+        {
+            System.Diagnostics.Process.Start(SourceFileName);
+            // and set up new rec
+        }
     }
 }

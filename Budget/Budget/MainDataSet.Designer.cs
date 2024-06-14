@@ -3018,6 +3018,10 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnImportDateTime;
             
+            private global::System.Data.DataColumn columnManuallyEntered;
+            
+            private global::System.Data.DataColumn columnStatementDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BudgetSourceFileDataTable() {
@@ -3085,6 +3089,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ManuallyEnteredColumn {
+                get {
+                    return this.columnManuallyEntered;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StatementDateColumn {
+                get {
+                    return this.columnStatementDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3120,13 +3140,15 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetSourceFileRow AddBudgetSourceFileRow(string FilePath, string Account, System.DateTime ImportDateTime) {
+            public BudgetSourceFileRow AddBudgetSourceFileRow(string FilePath, string Account, System.DateTime ImportDateTime, bool ManuallyEntered, System.DateTime StatementDate) {
                 BudgetSourceFileRow rowBudgetSourceFileRow = ((BudgetSourceFileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         FilePath,
                         Account,
-                        ImportDateTime};
+                        ImportDateTime,
+                        ManuallyEntered,
+                        StatementDate};
                 rowBudgetSourceFileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetSourceFileRow);
                 return rowBudgetSourceFileRow;
@@ -3160,6 +3182,8 @@ namespace Budget {
                 this.columnFilePath = base.Columns["FilePath"];
                 this.columnAccount = base.Columns["Account"];
                 this.columnImportDateTime = base.Columns["ImportDateTime"];
+                this.columnManuallyEntered = base.Columns["ManuallyEntered"];
+                this.columnStatementDate = base.Columns["StatementDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3173,6 +3197,10 @@ namespace Budget {
                 base.Columns.Add(this.columnAccount);
                 this.columnImportDateTime = new global::System.Data.DataColumn("ImportDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImportDateTime);
+                this.columnManuallyEntered = new global::System.Data.DataColumn("ManuallyEntered", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnManuallyEntered);
+                this.columnStatementDate = new global::System.Data.DataColumn("StatementDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatementDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFileID}, true));
                 this.columnFileID.AutoIncrement = true;
@@ -3183,6 +3211,7 @@ namespace Budget {
                 this.columnFileID.Unique = true;
                 this.columnFilePath.MaxLength = 250;
                 this.columnAccount.MaxLength = 4;
+                this.columnManuallyEntered.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4999,6 +5028,33 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ManuallyEntered {
+                get {
+                    return ((bool)(this[this.tableBudgetSourceFile.ManuallyEnteredColumn]));
+                }
+                set {
+                    this[this.tableBudgetSourceFile.ManuallyEnteredColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime StatementDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableBudgetSourceFile.StatementDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StatementDate\' in table \'BudgetSourceFile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetSourceFile.StatementDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFilePathNull() {
                 return this.IsNull(this.tableBudgetSourceFile.FilePathColumn);
             }
@@ -5031,6 +5087,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetImportDateTimeNull() {
                 this[this.tableBudgetSourceFile.ImportDateTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStatementDateNull() {
+                return this.IsNull(this.tableBudgetSourceFile.StatementDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStatementDateNull() {
+                this[this.tableBudgetSourceFile.StatementDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8647,10 +8715,12 @@ SELECT AccountID, AccountName, SourceFileLocation, SourceFileFormat FROM BudgetA
             tableMapping.ColumnMappings.Add("FilePath", "FilePath");
             tableMapping.ColumnMappings.Add("Account", "Account");
             tableMapping.ColumnMappings.Add("ImportDateTime", "ImportDateTime");
+            tableMapping.ColumnMappings.Add("ManuallyEntered", "ManuallyEntered");
+            tableMapping.ColumnMappings.Add("StatementDate", "StatementDate");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFile] WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFile] WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_FileID";
@@ -8711,11 +8781,35 @@ SELECT AccountID, AccountName, SourceFileLocation, SourceFileFormat FROM BudgetA
             param.SourceColumn = "ImportDateTime";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ManuallyEntered";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ManuallyEntered";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_StatementDate";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_StatementDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [BudgetSourceFile] ([FilePath], [Account], [ImportDateTime]) VALUES (" +
-                "@FilePath, @Account, @ImportDateTime);\r\nSELECT FileID, FilePath, Account, Import" +
-                "DateTime FROM BudgetSourceFile WHERE (FileID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetSourceFile] ([FilePath], [Account], [ImportDateTime], [ManuallyEntered], [StatementDate]) VALUES (@FilePath, @Account, @ImportDateTime, @ManuallyEntered, @StatementDate);
+SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate FROM BudgetSourceFile WHERE (FileID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FilePath";
@@ -8738,10 +8832,24 @@ SELECT AccountID, AccountName, SourceFileLocation, SourceFileFormat FROM BudgetA
             param.IsNullable = true;
             param.SourceColumn = "ImportDateTime";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ManuallyEntered";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ManuallyEntered";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@StatementDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFile] SET [FilePath] = @FilePath, [Account] = @Account, [ImportDateTime] = @ImportDateTime WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)));
-SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (FileID = @FileID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFile] SET [FilePath] = @FilePath, [Account] = @Account, [ImportDateTime] = @ImportDateTime, [ManuallyEntered] = @ManuallyEntered, [StatementDate] = @StatementDate WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)));
+SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate FROM BudgetSourceFile WHERE (FileID = @FileID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FilePath";
@@ -8763,6 +8871,20 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
             param.SqlDbType = global::System.Data.SqlDbType.DateTime2;
             param.IsNullable = true;
             param.SourceColumn = "ImportDateTime";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ManuallyEntered";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ManuallyEntered";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@StatementDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_FileID";
@@ -8824,6 +8946,31 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ManuallyEntered";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ManuallyEntered";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_StatementDate";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_StatementDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "StatementDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FileID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -8846,8 +8993,8 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        FileID, FilePath, Account, ImportDateTime\r\nFROM            BudgetSo" +
-                "urceFile";
+            this._commandCollection[0].CommandText = "SELECT        FileID, FilePath, Account, ImportDateTime, ManuallyEntered, Stateme" +
+                "ntDate\r\nFROM            BudgetSourceFile";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8897,7 +9044,7 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime) {
+        public virtual int Delete(int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_FileID));
             if ((Original_FilePath == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -8923,6 +9070,15 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_ManuallyEntered));
+            if ((Original_StatementDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_StatementDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8943,7 +9099,7 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime) {
+        public virtual int Insert(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate) {
             if ((FilePath == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -8961,6 +9117,13 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(ManuallyEntered));
+            if ((StatementDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(StatementDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -8982,7 +9145,7 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, int FileID) {
+        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate, int FileID) {
             if ((FilePath == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -9001,32 +9164,48 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FileID));
-            if ((Original_FilePath == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(ManuallyEntered));
+            if ((StatementDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(StatementDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_FilePath));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_Account == null)) {
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_FileID));
+            if ((Original_FilePath == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Account));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_FilePath));
             }
-            if ((Original_ImportDateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_ImportDateTime.Value));
-            }
-            else {
+            if ((Original_Account == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(FileID));
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Account));
+            }
+            if ((Original_ImportDateTime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_ImportDateTime.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_ManuallyEntered));
+            if ((Original_StatementDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_StatementDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(FileID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9047,8 +9226,8 @@ SELECT FileID, FilePath, Account, ImportDateTime FROM BudgetSourceFile WHERE (Fi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime) {
-            return this.Update(FilePath, Account, ImportDateTime, Original_FileID, Original_FilePath, Original_Account, Original_ImportDateTime, Original_FileID);
+        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate) {
+            return this.Update(FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate, Original_FileID, Original_FilePath, Original_Account, Original_ImportDateTime, Original_ManuallyEntered, Original_StatementDate, Original_FileID);
         }
     }
     
