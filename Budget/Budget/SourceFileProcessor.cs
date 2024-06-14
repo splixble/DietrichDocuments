@@ -22,22 +22,11 @@ namespace Budget
 
         BudgetTableAdapter _BudgetAdapter;
         
-        string _SelectedAccount;
-        protected MainDataSet.BudgetAccountRow AccountRowSelected => Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+        string _SelectedAccount = null;
+        protected MainDataSet.BudgetAccountRow _AccountRowSelected = null;
+        protected MainDataSet.BudgetSourceFileFormatRow _SourceFileFormatRow = null;
 
-        public SourceFileFormats SourceFileFormat
-        {
-            get
-            {
-                foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
-                {
-                    if (enumVal.ToString() == AccountRowSelected.SourceFileFormat)
-                        return (SourceFileFormats)enumVal;
-                }
-                return SourceFileFormats.None; // if it gets all the way thru list
-            }
-        }
-        
+        protected SourceFileFormats _SourceFileFormat;       
 
         public virtual bool UpdateAccountFromSourceFile => true;
         public virtual bool AllowAddingNewBudgetRows => true;
@@ -60,6 +49,20 @@ namespace Budget
             _BudgetAdapter.Connection = Program.DbConnection;
             _BudgetTable = budgetTable;
             _SelectedAccount = selectedAccount;
+
+            _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+            _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(_AccountRowSelected.SourceFileFormat);
+
+            // get source file format:
+            _SourceFileFormat = SourceFileFormats.None;
+            foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
+            {
+                if (enumVal.ToString() == _AccountRowSelected.SourceFileFormat)
+                {
+                    _SourceFileFormat = (SourceFileFormats)enumVal;
+                    break;
+                }
+            }
         }
 
         // Extracts fields from a line of the text file, puts them in fieldsByColumnName.
@@ -67,8 +70,7 @@ namespace Budget
         // Can be overridden for custom source files like Amazon order lists.
         protected virtual bool ExtractFields(string[] fileFields, Dictionary<string, object> fieldsByColumnName)
         {
-            MainDataSet.BudgetSourceFileFormatRow formatRow = SourceFileFormatTable.FindByFormatCode(AccountRowSelected.SourceFileFormat);
-            string[] formatFields = formatRow.FormatColumns.Split(',');
+            string[] formatFields = _SourceFileFormatRow.FormatColumns.Split(',');
 
             bool lineParsable = true;
             for (int formatColIndex = 0; formatColIndex < formatFields.Length; formatColIndex++)
@@ -100,7 +102,7 @@ namespace Budget
                         if (Decimal.TryParse(fileFields[formatColIndex], out fileValue))
                         {
                             // For Amount and Balance columns, handle the special case in which source file lists credits as negative and debits as positive:
-                            if (formatRow.CreditsAreNegative)
+                            if (_SourceFileFormatRow.CreditsAreNegative)
                                 fileValue = -fileValue;
 
                             fieldsByColumnName[budgetColumn.ColumnName] = fileValue;
