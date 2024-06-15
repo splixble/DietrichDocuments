@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Budget.MainDataSetTableAdapters;
 using System.Diagnostics;
 using Microsoft.ReportingServices.Diagnostics.Internal;
+using System.IO;
 
 namespace Budget
 {
@@ -166,16 +167,23 @@ namespace Budget
 
         public void Process()
         {
+            if (PromptForSourceFile())
+                ReadInSourceFile();
+        }
+
+        protected bool PromptForSourceFile()
+        {
+            // returns true if user OK'd; false if Cancel
             OpenFileDialog srcFileDlg = new OpenFileDialog();
-            srcFileDlg.InitialDirectory = "D:\\Dietrich\\Business\\Budget App Input Files"; //get from Config file, which s/b read at beginning and globally available
+            string srcRootDir = "D:\\Dietrich\\Business\\Budget App Input Files"; //get from Config file, which s/b read at beginning and globally available
+            srcFileDlg.InitialDirectory = Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
             srcFileDlg.Title = "Select source file:";
             DialogResult diaRes = srcFileDlg.ShowDialog();
 
             if (diaRes == DialogResult.OK)
-            {
                 _SourceFileName = srcFileDlg.FileName;
-                ReadInSourceFile();
-            }
+
+            return (diaRes == DialogResult.OK);
         }
 
         protected virtual void ReadInSourceFile()

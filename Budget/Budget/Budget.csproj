@@ -206,12 +206,6 @@
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ManualEnteredSourceTextProcessor.cs" />
-    <Compile Include="ManuallyEnteredSourceFileSavePrompt.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManuallyEnteredSourceFileSavePrompt.Designer.cs">
-      <DependentUpon>ManuallyEnteredSourceFileSavePrompt.cs</DependentUpon>
-    </Compile>
     <Compile Include="MonthGroupingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +229,12 @@
     <Compile Include="GroupingAssignmentForm.Designer.cs">
       <DependentUpon>GroupingAssignmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatementDatePrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatementDatePrompt.Designer.cs">
+      <DependentUpon>StatementDatePrompt.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BalanceCalculationForm.resx">
       <DependentUpon>BalanceCalculationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,9 +247,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GroupingForm.resx">
       <DependentUpon>GroupingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ManuallyEnteredSourceFileSavePrompt.resx">
-      <DependentUpon>ManuallyEnteredSourceFileSavePrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthGroupingForm.resx">
       <DependentUpon>MonthGroupingForm.cs</DependentUpon>
@@ -269,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SourceFileForm.resx">
       <DependentUpon>SourceFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatementDatePrompt.resx">
+      <DependentUpon>StatementDatePrompt.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MainDataSet.xsc">
       <DependentUpon>MainDataSet.xsd</DependentUpon>

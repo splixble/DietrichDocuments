@@ -23,8 +23,9 @@ namespace Budget
         {
             restOfLine = ""; // initialize
 
-            // DIAG gotta get the year!!
-            string placeholderYear = "2017";
+            // Get year from Statement Date:
+            // DIAG drop out if the file isnt loaded
+            int statementDateYear = _NewestSourceFileRow.StatementDate.Year;
 
             string pattern = null;
             // Capture date, ignore space if exists, and rest of line:
@@ -43,7 +44,14 @@ namespace Budget
                 DateTime dateValue;
                 string dateString = match.Groups[1].Value;
                 if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
-                    dateString += "/" + placeholderYear; // DIAG replace placeholder, and of course increment year if december
+                {
+                    // BofA credid card statements don't list year, so we have to add year to string before parsing.
+                    // The transaction might be the year BEFORE the statement year, though, if it's in December (or a month >= 10).
+                    int tYear = statementDateYear;
+                    if (dateString[0] == '1')
+                        tYear--;
+                    dateString += "/" + tYear.ToString();
+                }
                 if (DateTime.TryParse(dateString, out dateValue))
                 {
                     fieldsByColumnName["TrDate"] = dateValue;
@@ -153,8 +161,11 @@ namespace Budget
                 return false;
         }
 
+        /* REMOVE
         public override void SaveChanges()
         {
+            // DIAG dont prompt!
+
             ManuallyEnteredSourceFileSavePrompt prompt = new ManuallyEnteredSourceFileSavePrompt();
             DialogResult res = prompt.ShowDialog();
             if (res == DialogResult.OK)
@@ -173,11 +184,28 @@ namespace Budget
                 base.SaveChanges();
             }
         }
+        */
 
         protected override void ReadInSourceFile()
         {
-            System.Diagnostics.Process.Start(SourceFileName);
-            // and set up new rec
+
+            StatementDatePrompt prompt = new StatementDatePrompt();
+            prompt.InitializeWithFilename(SourceFileName);
+            DialogResult res = prompt.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                // Bring up PDF (or whatever format) file:
+                System.Diagnostics.Process.Start(SourceFileName);
+
+                // diag WHAT IF we dont real;ly need the statement date?
+                // make new source file row:
+                _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
+                _NewestSourceFileRow.FilePath = SourceFileName;
+                _NewestSourceFileRow.StatementDate = prompt.StatementDate;
+                _NewestSourceFileRow.Account = this.SelectedAccount;
+                _NewestSourceFileRow.ManuallyEntered = true;
+                _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
+            }
         }
     }
 }
