@@ -37,6 +37,8 @@ namespace Budget
                 _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
             _Processor.Process();
 
+            tbFileText.Clear();
+
             lblFilePath.Text = "File: " + _Processor.SourceFileName;
             lblFilePath.ForeColor = Color.Blue;
             

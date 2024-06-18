@@ -164,6 +164,7 @@
             // 
             // btnImportManualText
             // 
+            this.btnImportManualText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnImportManualText.Location = new System.Drawing.Point(3, 233);
             this.btnImportManualText.Name = "btnImportManualText";
             this.btnImportManualText.Size = new System.Drawing.Size(107, 23);
