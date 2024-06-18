@@ -36,8 +36,20 @@ namespace Budget
             else
                 _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
             _Processor.Process();
+
+            lblFilePath.Text = "File: " + _Processor.SourceFileName;
+            lblFilePath.ForeColor = Color.Blue;
             
             PostImport();
+        }
+
+        void CloseSourceFile()
+        {
+            _Processor = null;
+            tbFileText.Clear(); 
+
+            lblFilePath.Text = "File:";
+            lblFilePath.ForeColor = SystemColors.ControlText;
         }
 
         void PreImport()
@@ -80,7 +92,10 @@ namespace Budget
 
         private void comboAccount_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            CloseSourceFile();
+
             btnSaveBudgetItems.Enabled = comboAccount.SelectedItem != null;
+            btnOpenSourceFile.Enabled = comboAccount.SelectedItem != null;
         }
 
         private void amazonOrderFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -103,9 +118,8 @@ namespace Budget
             _Processor.Process();
 
             PostImport();
-
-
         }
+
         void UpdateManualEntryBasedControls()
         {
             tbFileText.Enabled = chBoxManualEntry.Checked;

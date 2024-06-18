@@ -38,10 +38,11 @@
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonDigitalItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tbFileText = new System.Windows.Forms.TextBox();
-            this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
-            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             this.btnImportManualText = new System.Windows.Forms.Button();
+            this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
+            this.tbFileText = new System.Windows.Forms.TextBox();
+            this.lblFilePath = new System.Windows.Forms.Label();
+            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -51,7 +52,8 @@
             // 
             // btnOpenSourceFile
             // 
-            this.btnOpenSourceFile.Location = new System.Drawing.Point(476, 6);
+            this.btnOpenSourceFile.Enabled = false;
+            this.btnOpenSourceFile.Location = new System.Drawing.Point(463, 6);
             this.btnOpenSourceFile.Name = "btnOpenSourceFile";
             this.btnOpenSourceFile.Size = new System.Drawing.Size(107, 23);
             this.btnOpenSourceFile.TabIndex = 0;
@@ -145,6 +147,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.lblFilePath);
             this.splitContainer1.Panel1.Controls.Add(this.btnImportManualText);
             this.splitContainer1.Panel1.Controls.Add(this.chBoxManualEntry);
             this.splitContainer1.Panel1.Controls.Add(this.tbFileText);
@@ -156,8 +159,29 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.budgetCtrl);
             this.splitContainer1.Size = new System.Drawing.Size(1223, 460);
-            this.splitContainer1.SplitterDistance = 230;
+            this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 14;
+            // 
+            // btnImportManualText
+            // 
+            this.btnImportManualText.Location = new System.Drawing.Point(3, 233);
+            this.btnImportManualText.Name = "btnImportManualText";
+            this.btnImportManualText.Size = new System.Drawing.Size(107, 23);
+            this.btnImportManualText.TabIndex = 8;
+            this.btnImportManualText.Text = "Import Manual Text";
+            this.btnImportManualText.UseVisualStyleBackColor = true;
+            this.btnImportManualText.Click += new System.EventHandler(this.btnImportManualText_Click);
+            // 
+            // chBoxManualEntry
+            // 
+            this.chBoxManualEntry.AutoSize = true;
+            this.chBoxManualEntry.Location = new System.Drawing.Point(4, 8);
+            this.chBoxManualEntry.Name = "chBoxManualEntry";
+            this.chBoxManualEntry.Size = new System.Drawing.Size(112, 17);
+            this.chBoxManualEntry.TabIndex = 7;
+            this.chBoxManualEntry.Text = "Manual Text Entry";
+            this.chBoxManualEntry.UseVisualStyleBackColor = true;
+            this.chBoxManualEntry.CheckedChanged += new System.EventHandler(this.chBoxManualEntry_CheckedChanged);
             // 
             // tbFileText
             // 
@@ -171,16 +195,14 @@
             this.tbFileText.Size = new System.Drawing.Size(1216, 194);
             this.tbFileText.TabIndex = 6;
             // 
-            // chBoxManualEntry
+            // lblFilePath
             // 
-            this.chBoxManualEntry.AutoSize = true;
-            this.chBoxManualEntry.Location = new System.Drawing.Point(4, 8);
-            this.chBoxManualEntry.Name = "chBoxManualEntry";
-            this.chBoxManualEntry.Size = new System.Drawing.Size(112, 17);
-            this.chBoxManualEntry.TabIndex = 7;
-            this.chBoxManualEntry.Text = "Manual Text Entry";
-            this.chBoxManualEntry.UseVisualStyleBackColor = true;
-            this.chBoxManualEntry.CheckedChanged += new System.EventHandler(this.chBoxManualEntry_CheckedChanged);
+            this.lblFilePath.AutoSize = true;
+            this.lblFilePath.Location = new System.Drawing.Point(576, 12);
+            this.lblFilePath.Name = "lblFilePath";
+            this.lblFilePath.Size = new System.Drawing.Size(26, 13);
+            this.lblFilePath.TabIndex = 9;
+            this.lblFilePath.Text = "File:";
             // 
             // budgetCtrl
             // 
@@ -188,18 +210,8 @@
             this.budgetCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.budgetCtrl.Location = new System.Drawing.Point(0, 0);
             this.budgetCtrl.Name = "budgetCtrl";
-            this.budgetCtrl.Size = new System.Drawing.Size(1223, 226);
+            this.budgetCtrl.Size = new System.Drawing.Size(1223, 198);
             this.budgetCtrl.TabIndex = 3;
-            // 
-            // btnImportManualText
-            // 
-            this.btnImportManualText.Location = new System.Drawing.Point(618, 6);
-            this.btnImportManualText.Name = "btnImportManualText";
-            this.btnImportManualText.Size = new System.Drawing.Size(107, 23);
-            this.btnImportManualText.TabIndex = 8;
-            this.btnImportManualText.Text = "Import Manual Text";
-            this.btnImportManualText.UseVisualStyleBackColor = true;
-            this.btnImportManualText.Click += new System.EventHandler(this.btnImportManualText_Click);
             // 
             // SourceFileForm
             // 
@@ -242,5 +254,6 @@
         private System.Windows.Forms.TextBox tbFileText;
         private System.Windows.Forms.CheckBox chBoxManualEntry;
         private System.Windows.Forms.Button btnImportManualText;
+        private System.Windows.Forms.Label lblFilePath;
     }
 }

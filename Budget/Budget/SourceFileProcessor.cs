@@ -41,7 +41,7 @@ namespace Budget
         public MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
         public List<BudgetAndSourceItemRows> _ImportedBudgetItems = new List<BudgetAndSourceItemRows>();
 
-        protected string SourceFileName => _SourceFileName;
+        public string SourceFileName => _SourceFileName;
         string _SourceFileName;
 
         public List<int> MatchingBudgetIDs => _MatchingBudgetIDs;
