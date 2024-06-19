@@ -32,7 +32,7 @@ namespace Budget
             if (_SourceFileFormat == SourceFileFormats.AccountBofA)
                 pattern = @"^(\d\d/\d\d/\d\d)[ ]?(.*)$";
             else if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
-                pattern = @"^(\d\d/\d\d) \d\d/\d\d[ ]?(.+)$";  // no year in date. Also, throw away 2nd date (Posting Date)
+                pattern = @"^\d\d/\d\d (\d\d/\d\d)[ ]?(.+)$";  // no year in date. Also, throw away first date (Transaction Date) since we're using 2nd, Posting Date
 
             Match match = Regex.Match(line, pattern);
             if (match.Success)
