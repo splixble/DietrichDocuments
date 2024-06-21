@@ -29,15 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grid1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbFilter = new System.Windows.Forms.TextBox();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
             this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +71,7 @@
             this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.trDateDataGridViewTextBoxColumn,
+            this.CardTransDateColumn,
             this.amountDataGridViewTextBoxColumn,
             this.descripDataGridViewTextBoxColumn,
             this.Descrip2Column,
@@ -84,18 +88,28 @@
             this.grid1.DataSource = this.budgetBindingSource;
             this.grid1.Location = new System.Drawing.Point(0, 30);
             this.grid1.Name = "grid1";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grid1.RowHeadersWidth = 50;
             this.grid1.Size = new System.Drawing.Size(1395, 449);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
+            // 
+            // budgetBindingSource
+            // 
+            this.budgetBindingSource.DataMember = "Budget";
+            this.budgetBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -116,16 +130,6 @@
             this.tbFilter.TabIndex = 3;
             this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
             // 
-            // budgetBindingSource
-            // 
-            this.budgetBindingSource.DataMember = "Budget";
-            this.budgetBindingSource.DataSource = this.mainDataSet;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // budgetTableAdapter
             // 
             this.budgetTableAdapter.ClearBeforeFill = true;
@@ -141,16 +145,27 @@
             // trDateDataGridViewTextBoxColumn
             // 
             this.trDateDataGridViewTextBoxColumn.DataPropertyName = "TrDate";
-            this.trDateDataGridViewTextBoxColumn.HeaderText = "TrDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yy";
+            this.trDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.trDateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.trDateDataGridViewTextBoxColumn.Name = "trDateDataGridViewTextBoxColumn";
-            this.trDateDataGridViewTextBoxColumn.Width = 80;
+            this.trDateDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // CardTransDateColumn
+            // 
+            this.CardTransDateColumn.DataPropertyName = "CardTransDate";
+            dataGridViewCellStyle2.Format = "MM/dd/yy";
+            this.CardTransDateColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CardTransDateColumn.HeaderText = "Card Tr Date";
+            this.CardTransDateColumn.Name = "CardTransDateColumn";
+            this.CardTransDateColumn.Width = 65;
             // 
             // amountDataGridViewTextBoxColumn
             // 
             this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.Width = 90;
+            this.amountDataGridViewTextBoxColumn.Width = 80;
             // 
             // descripDataGridViewTextBoxColumn
             // 
@@ -205,6 +220,7 @@
             this.Balance.DataPropertyName = "Balance";
             this.Balance.HeaderText = "Balance";
             this.Balance.Name = "Balance";
+            this.Balance.Width = 80;
             // 
             // BalanceIsCalculatedColumn
             // 
@@ -261,6 +277,7 @@
         private System.Windows.Forms.TextBox tbFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardTransDateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;

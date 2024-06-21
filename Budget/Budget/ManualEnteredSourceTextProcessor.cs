@@ -19,43 +19,61 @@ namespace Budget
             _TextLines = new string[0];
         }
 
-        bool MatchDateInBofAStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
+        bool MatchDateInBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
         {
             restOfLine = ""; // initialize
-
-            // Get year from Statement Date:
-            // DIAG drop out if the file isnt loaded
-            int statementDateYear = _NewestSourceFileRow.StatementDate.Year;
 
             string pattern = null;
             // Capture date, ignore space if exists, and rest of line:
             if (_SourceFileFormat == SourceFileFormats.AccountBofA)
-                pattern = @"^(\d\d/\d\d/\d\d)[ ]?(.*)$";
-            else if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
-                pattern = @"^\d\d/\d\d (\d\d/\d\d)[ ]?(.+)$";  // no year in date. Also, throw away first date (Transaction Date) since we're using 2nd, Posting Date
-
-            Match match = Regex.Match(line, pattern);
-            if (match.Success)
             {
-                // 2nd capture is rest of line
-                restOfLine = match.Groups[2].Value;
+                pattern = @"^(\d\d/\d\d/\d\d)[ ]?(.*)$";
+                Match match = Regex.Match(line, pattern);
+                if (match.Success)
+                {
+                    // 2nd capture is rest of line
+                    restOfLine = match.Groups[2].Value;
 
-                // 1st capture is TrDate
-                DateTime dateValue;
-                string dateString = match.Groups[1].Value;
-                if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
-                {
-                    // BofA credid card statements don't list year, so we have to add year to string before parsing.
-                    // The transaction might be the year BEFORE the statement year, though, if it's in December (or a month >= 10).
-                    int tYear = statementDateYear;
-                    if (dateString[0] == '1')
-                        tYear--;
-                    dateString += "/" + tYear.ToString();
-                }
-                if (DateTime.TryParse(dateString, out dateValue))
-                {
-                    fieldsByColumnName["TrDate"] = dateValue;
+                    // 1st capture is TrDate
+                    DateTime dateValue;
+                    string dateString = match.Groups[1].Value;
+                    if (DateTime.TryParse(dateString, out dateValue))
+                        fieldsByColumnName["TrDate"] = dateValue;
+                    else
+                        return false;
+
                     return true;
+                }
+                else
+                    return false;
+            }
+            else if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
+            {
+                pattern = @"^(\d\d/\d\d) (\d\d/\d\d)[ ]?(.+)$";  // no year in date. Captures Card Trans Date, Posting Date
+                Match match = Regex.Match(line, pattern);
+                if (match.Success)
+                {
+                    // 3rd capture is rest of line
+                    restOfLine = match.Groups[3].Value;
+
+                    DateTime dateValue;
+
+                    // 1st capture is Card Trans Date
+                    string dateString = AddYearToYearlessDateString(match.Groups[1].Value);
+                    if (DateTime.TryParse(dateString, out dateValue))
+                        fieldsByColumnName["CardTransDate"] = dateValue;
+                    else
+                        return false;
+
+                    // 2nd capture is TrDate
+                    dateString = AddYearToYearlessDateString(match.Groups[2].Value);
+                    if (DateTime.TryParse(dateString, out dateValue))
+                        fieldsByColumnName["TrDate"] = dateValue;
+                    else
+                        return false;
+
+                    return true;
+
                 }
                 else
                     return false;
@@ -64,14 +82,129 @@ namespace Budget
                 return false;
         }
 
+        public string AddYearToYearlessDateString(string dateString)
+        {
+            // BofA credit card statements don't list year, so we have to add year to string before parsing.
+            // Get year from Statement Date:
+            // DIAG drop out if the file isnt loaded
+            int statementDateYear = _NewestSourceFileRow.StatementDate.Year;
+
+            // The transaction might be the year BEFORE the statement year, though, if it's in December (or a month >= 10).
+            int tYear = statementDateYear;
+            if (dateString[0] == '1')
+                tYear--;
+            return dateString + "/" + tYear.ToString();
+        }
+
         public void ProcessManualLines(string[] textLines)
         {
-            if (_SourceFileFormat != SourceFileFormats.AccountBofA && _SourceFileFormat != SourceFileFormats.CreditCardBofA)
+            switch (_SourceFileFormat)
             {
-                MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
-                return;
+                case SourceFileFormats.AccountBofA:
+                case SourceFileFormats.CreditCardBofA:
+                    ProcessBofAWidePDFLines(textLines);
+                    break;
+                case SourceFileFormats.CreditCardBofANarrowPDF:
+                    ProcessBofANarrowPDFLines(textLines);
+                    break;
+                default:
+                    MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
+                    break;
             }
+        }
 
+        enum BofaPDFField { None, TransDate, PostDate, Descrip, RefNum, AcctNum, Amount }; // used inProcessBofANarrowPDFLines
+
+        public void ProcessBofANarrowPDFLines(string[] textLines)
+        {
+            // For BofA Statement PDFs that, when text is copied and pasted to text box, shows one field per line rather than one transaction per line.
+            _TextLines = textLines;
+
+            Dictionary<string, object> fieldsByColumnName = null;
+
+            BofaPDFField _LastFieldRead = BofaPDFField.None;
+
+            int lineNum = 0; // it's 1-relative
+            foreach (string line in _TextLines)
+            {
+                lineNum++;
+
+                // reused vars in switch stmt:
+                DateTime dateValue;
+                Decimal amountValue;
+                Match match;
+
+                switch (_LastFieldRead)
+                {
+                    case BofaPDFField.None:
+                        // start of budget item, so initialize fieldsByColumnName:
+                        fieldsByColumnName = new Dictionary<string, object>();
+
+                        // is field a date (mm/dd)? That's the Transaction Date
+                        match = Regex.Match(line, @"^(\d\d/\d\d)$");
+                        if (match.Success)
+                        {
+                            if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
+                            {
+                                fieldsByColumnName["CardTransDate"] = dateValue;
+                                _LastFieldRead = BofaPDFField.TransDate;
+                            }
+                        }
+                        else
+                            _LastFieldRead = BofaPDFField.None;
+                        break;
+                    case BofaPDFField.TransDate:
+                        // is field a date (mm/dd)? That's the Post Date (TrDate)
+                        match = Regex.Match(line, @"^(\d\d/\d\d)$");
+                        if (match.Success)
+                        {
+                            if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
+                            {
+                                fieldsByColumnName["TrDate"] = dateValue;
+                                _LastFieldRead = BofaPDFField.PostDate;
+                            }
+                        }
+                        else
+                            _LastFieldRead = BofaPDFField.None;
+                        break;
+                    case BofaPDFField.PostDate:
+                        // next field is beginning of Descrip
+                        fieldsByColumnName["Descrip"] = line;
+                        _LastFieldRead = BofaPDFField.Descrip;
+                        break;
+                    case BofaPDFField.Descrip:
+                        // next field is Reference Number, appended to Descrip field:
+                        fieldsByColumnName["Descrip"] += " " + line;
+                        _LastFieldRead = BofaPDFField.RefNum;
+                        break;
+                    case BofaPDFField.RefNum:
+                        // next field is Acct Number, appended to Descrip field:
+                        fieldsByColumnName["Descrip"] += " " + line;
+                        _LastFieldRead = BofaPDFField.AcctNum;
+                        break;
+                    case BofaPDFField.AcctNum:
+                        // next field is Amount:
+                        match = Regex.Match(line, @"^(-?(\d|,)+\.\d\d)$");
+                        if (match.Success)
+                        {
+                            if (Decimal.TryParse(match.Groups[1].Value, out amountValue))
+                            {
+                                // Handle the special case in which source file lists credits as negative and debits as positive:
+                                if (_SourceFileFormatRow.CreditsAreNegative)
+                                    amountValue = -amountValue;
+                                fieldsByColumnName["Amount"] = amountValue;
+                                AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
+                            }
+                        }
+                        // whether success or failure, go back to BofaPDFField.None:
+                        _LastFieldRead = BofaPDFField.None;
+                        break;
+                }
+            }
+        }
+
+        public void ProcessBofAWidePDFLines(string[] textLines)
+        {
             _TextLines = textLines;
 
             bool foundLineWithOnlyDate = false; // line with only date (at beginning) indicates an incomplete item which will hopefully be completed by a dollar amount later
@@ -108,7 +241,7 @@ namespace Budget
 
                     // Check for match of date at beginning:
                     string restOfLine;
-                    bool lineBeginsWithDate = MatchDateInBofAStatementLine(line, fieldsByColumnName, out restOfLine);
+                    bool lineBeginsWithDate = MatchDateInBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
                     if (lineBeginsWithDate)
                     {
                         if (MatchAmountInBofAStatementLine(restOfLine, fieldsByColumnName))
@@ -160,31 +293,6 @@ namespace Budget
             else
                 return false;
         }
-
-        /* REMOVE
-        public override void SaveChanges()
-        {
-            // DIAG dont prompt!
-
-            ManuallyEnteredSourceFileSavePrompt prompt = new ManuallyEnteredSourceFileSavePrompt();
-            DialogResult res = prompt.ShowDialog();
-            if (res == DialogResult.OK)
-            {
-                // DIAG Hey, we need to know StatementDate BEFORE we save, so that we can add year to dates. How bout we just open PDF's? And read in its filename?
-                // should work: System.Diagnostics.Process.Start(@"file path");
-
-                // make new source file row:
-                _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
-                _NewestSourceFileRow.FilePath = prompt.FileName;
-                _NewestSourceFileRow.StatementDate = prompt.StatementDate;
-                _NewestSourceFileRow.Account = this.SelectedAccount;
-                _NewestSourceFileRow.ManuallyEntered = true;
-                _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
-
-                base.SaveChanges();
-            }
-        }
-        */
 
         protected override void ReadInSourceFile()
         {

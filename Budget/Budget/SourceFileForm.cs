@@ -138,9 +138,6 @@ namespace Budget
         {
             PreImport();
 
-            // DIAG DO NOT CREATE A NEW ONE -- however, got to disable this button until we've opened a file!
-            // Also, should show opened file pathe somewhere in the UI.
-            // _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
             ((ManualEnteredSourceTextProcessor)_Processor).ProcessManualLines(tbFileText.Lines);
 
             PostImport();
