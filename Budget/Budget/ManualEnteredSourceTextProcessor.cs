@@ -87,12 +87,15 @@ namespace Budget
         {
             // BofA credit card statements don't list year, so we have to add year to string before parsing.
             // Get year from Statement Date:
-            // DIAG drop out if the file isnt loaded
+            // TODO drop out if the file isnt loaded
             int statementDateYear = _NewestSourceFileRow.StatementDate.Year;
+            int statementDateMonth = _NewestSourceFileRow.StatementDate.Month;
 
-            // The transaction might be the year BEFORE the statement year, though, if it's in December (or a month >= 10).
+            // The transaction might be in the year BEFORE the statement year, though, if it's in December (or a month >= 10),
+            // and it's a January statement (this check was added 25Jun24):
             int tYear = statementDateYear;
-            if (dateString[0] == '1')
+            if (dateString[0] == '1' // if month = 10, 11, or 12
+                && statementDateMonth == 1) 
                 tYear--;
             return dateString + "/" + tYear.ToString();
         }
