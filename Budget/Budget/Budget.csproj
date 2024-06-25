@@ -212,6 +212,7 @@
     <Compile Include="MonthGroupingForm.Designer.cs">
       <DependentUpon>MonthGroupingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PDFField.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceFileForm.cs">

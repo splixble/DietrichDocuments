@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,7 +20,7 @@ namespace Budget
             _TextLines = new string[0];
         }
 
-        bool MatchDateInBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
+        bool CaptureDateIFieldnBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
         {
             restOfLine = ""; // initialize
 
@@ -107,13 +108,88 @@ namespace Budget
                 case SourceFileFormats.CreditCardBofANarrowPDF:
                     ProcessBofANarrowPDFLines(textLines);
                     break;
+                case SourceFileFormats.Amex:
+                    ProcessAmexPDFLines(textLines);
+                    break;
                 default:
                     MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
                     break;
             }
         }
 
-        enum BofaPDFField { None, TransDate, PostDate, Descrip, RefNum, AcctNum, Amount }; // used inProcessBofANarrowPDFLines
+
+        public void ProcessAmexPDFLines(string[] textLines)
+        {
+            // For BofA Statement PDFs that, when text is copied and pasted to text box, shows one field per line rather than one transaction per line.
+            _TextLines = textLines;
+
+            Dictionary<string, object> fieldsByColumnName = null;
+
+            PDFField _LastFieldRead = PDFField.None;
+
+            int lineNum = 0; // it's 1-relative
+            foreach (string line in _TextLines)
+            {
+                lineNum++;
+
+                // reused vars in switch stmt:
+                Match match;
+
+                switch (_LastFieldRead)
+                {
+                    case PDFField.None:
+                        // start of budget item, so initialize fieldsByColumnName:
+                        fieldsByColumnName = new Dictionary<string, object>();
+
+                        // does line start with a date (mm/dd/yy)?
+                        match = Regex.Match(line, @"^(\d\d/\d\d/\d\d)(.*)$");
+                        if (match.Success)
+                        {
+                            DateTime dateValue;
+                            if (DateTime.TryParse(match.Groups[1].Value, out dateValue))
+                            {
+                                fieldsByColumnName["TrDate"] = dateValue;
+
+                                // is there's anything to the right of the date?
+                                if (match.Groups[2].Value != "")
+                                {
+                                    // Could be a description and amount, or just a description:
+                                    if (CaptureAmountField(match.Groups[2].Value, fieldsByColumnName, false, true))
+                                    {
+                                        AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
+                                        _LastFieldRead = PDFField.None;
+                                    }
+                                    else
+                                    {
+                                        AddToDescripField(fieldsByColumnName, match.Groups[2].Value);
+                                        _LastFieldRead = PDFField.Descrip;
+                                    }
+                                }
+                                else
+                                    _LastFieldRead = PDFField.PostDate;
+                            }
+                        }
+                        else
+                            _LastFieldRead = PDFField.None;
+                        break;
+                    case PDFField.Descrip:
+                        // Could be a description and amount, or just a description:
+                        if (CaptureAmountField(line, fieldsByColumnName, false, true))
+                        {
+                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
+                            _LastFieldRead = PDFField.None;
+                        }
+                        else
+                        {
+                            AddToDescripField(fieldsByColumnName, line);
+                            _LastFieldRead = PDFField.Descrip;
+                        }
+                        break;
+                }
+                // 
+                // DIAG continue
+            }
+        }
 
         public void ProcessBofANarrowPDFLines(string[] textLines)
         {
@@ -122,7 +198,7 @@ namespace Budget
 
             Dictionary<string, object> fieldsByColumnName = null;
 
-            BofaPDFField _LastFieldRead = BofaPDFField.None;
+            PDFField _LastFieldRead = PDFField.None;
 
             int lineNum = 0; // it's 1-relative
             foreach (string line in _TextLines)
@@ -136,7 +212,7 @@ namespace Budget
 
                 switch (_LastFieldRead)
                 {
-                    case BofaPDFField.None:
+                    case PDFField.None:
                         // start of budget item, so initialize fieldsByColumnName:
                         fieldsByColumnName = new Dictionary<string, object>();
 
@@ -147,13 +223,13 @@ namespace Budget
                             if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
                             {
                                 fieldsByColumnName["CardTransDate"] = dateValue;
-                                _LastFieldRead = BofaPDFField.TransDate;
+                                _LastFieldRead = PDFField.TransDate;
                             }
                         }
                         else
-                            _LastFieldRead = BofaPDFField.None;
+                            _LastFieldRead = PDFField.None;
                         break;
-                    case BofaPDFField.TransDate:
+                    case PDFField.TransDate:
                         // is field a date (mm/dd)? That's the Post Date (TrDate)
                         match = Regex.Match(line, @"^(\d\d/\d\d)$");
                         if (match.Success)
@@ -161,28 +237,29 @@ namespace Budget
                             if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
                             {
                                 fieldsByColumnName["TrDate"] = dateValue;
-                                _LastFieldRead = BofaPDFField.PostDate;
+                                _LastFieldRead = PDFField.PostDate;
                             }
                         }
                         else
-                            _LastFieldRead = BofaPDFField.None;
+                            _LastFieldRead = PDFField.None;
                         break;
-                    case BofaPDFField.PostDate:
+                    case PDFField.PostDate:
                         // next field is beginning of Descrip
                         fieldsByColumnName["Descrip"] = line;
-                        _LastFieldRead = BofaPDFField.Descrip;
+                        _LastFieldRead = PDFField.Descrip;
                         break;
-                    case BofaPDFField.Descrip:
+                    case PDFField.Descrip:
                         // next field is Reference Number, appended to Descrip field:
                         fieldsByColumnName["Descrip"] += " " + line;
-                        _LastFieldRead = BofaPDFField.RefNum;
+                        _LastFieldRead = PDFField.RefNum;
                         break;
-                    case BofaPDFField.RefNum:
+                    case PDFField.RefNum:
                         // next field is Acct Number, appended to Descrip field:
                         fieldsByColumnName["Descrip"] += " " + line;
-                        _LastFieldRead = BofaPDFField.AcctNum;
+                        _LastFieldRead = PDFField.AcctNum;
                         break;
-                    case BofaPDFField.AcctNum:
+                    case PDFField.AcctNum:
+                        // DIAG USE THE NEW capture
                         // next field is Amount:
                         match = Regex.Match(line, @"^(-?(\d|,)+\.\d\d)$");
                         if (match.Success)
@@ -197,7 +274,7 @@ namespace Budget
                             }
                         }
                         // whether success or failure, go back to BofaPDFField.None:
-                        _LastFieldRead = BofaPDFField.None;
+                        _LastFieldRead = PDFField.None;
                         break;
                 }
             }
@@ -219,7 +296,7 @@ namespace Budget
                 if (foundLineWithOnlyDate)
                 {
                     // Check if line is dollar amount:
-                    if (MatchAmountInBofAStatementLine(line, fieldsByColumnName))
+                    if (CaptureAmountField(line, fieldsByColumnName, true, false))
                     { 
                         AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                         foundLineWithOnlyDate = false;
@@ -241,10 +318,10 @@ namespace Budget
 
                     // Check for match of date at beginning:
                     string restOfLine;
-                    bool lineBeginsWithDate = MatchDateInBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
+                    bool lineBeginsWithDate = CaptureDateIFieldnBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
                     if (lineBeginsWithDate)
                     {
-                        if (MatchAmountInBofAStatementLine(restOfLine, fieldsByColumnName))
+                        if (CaptureAmountField(restOfLine, fieldsByColumnName, true, false))
                         {
                             AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                         }
@@ -264,16 +341,33 @@ namespace Budget
             }
         }
 
-        bool MatchAmountInBofAStatementLine(string restOfLine, Dictionary<string, object> fieldsByColumnName)
-        { 
-            // Check for match of dollar amount at end, and capture any text before it (to add to Descrip field)
-            string pattern = @"^(.* )?(-?(\d|,)+\.\d\d)$"; 
-            Match match = Regex.Match(restOfLine, pattern);
+        bool CaptureAmountField(string lineText, Dictionary<string, object> fieldsByColumnName, bool fromWholeLine, bool hasDollarSign)
+        {
+            // DIAG use this in all the areas
+            // Check for match of dollar amount
+            // if fromWholeLine, amount must take up whole line. Otherwise, it checks for amount at right end, and captures any text to the left (and adds to Descrip field)
+            // if hasDollarSign, the amount figure is preceded by "$" (after negative sign if any)
+            string amountPattern; // pattern of just amount
+            if (hasDollarSign)
+                amountPattern = @"-?\$(\d|,)+\.\d\d";
+            else
+                amountPattern = @"-?(\d|,)+\.\d\d";
+            string pattern;
+            if (fromWholeLine)
+                pattern = @"^(" + amountPattern + ")$";
+            else
+                pattern = @"^(.* )?(" + amountPattern + ")$"; 
+
+            Match match = Regex.Match(lineText, pattern);
             if (match.Success)
             {
-                // 2nd capture is Amount 
+                // Parse captured amount:
+                string amountString = match.Groups[fromWholeLine ? 1 : 2].Value;
+                if (hasDollarSign)
+                    amountString = amountString.Replace("$", ""); // remove dollar sign from string so it'll parse
+
                 Decimal amountValue;
-                if (Decimal.TryParse(match.Groups[2].Value, out amountValue))
+                if (Decimal.TryParse(amountString, out amountValue))
                 {
                     // Handle the special case in which source file lists credits as negative and debits as positive:
                     if (_SourceFileFormatRow.CreditsAreNegative)
@@ -281,17 +375,25 @@ namespace Budget
                     fieldsByColumnName["Amount"] = amountValue;
                 }
 
-                // 1st capture is descrip
-                if (!fieldsByColumnName.ContainsKey("Descrip"))
-                    fieldsByColumnName["Descrip"] = "";
-                else
-                    fieldsByColumnName["Descrip"] += " ";
-                fieldsByColumnName["Descrip"] += match.Groups[1].Value;
-
+                if (!fromWholeLine)
+                {
+                    // 1st capture is descrip
+                    AddToDescripField(fieldsByColumnName, match.Groups[1].Value);
+                }
                 return true;
             }
             else
                 return false;
+        }
+
+        void AddToDescripField(Dictionary<string, object> fieldsByColumnName, string textValue)
+        {
+            if (!fieldsByColumnName.ContainsKey("Descrip"))
+                fieldsByColumnName["Descrip"] = "";
+            else
+                fieldsByColumnName["Descrip"] += " ";
+            fieldsByColumnName["Descrip"] += textValue;
+
         }
 
         protected override void ReadInSourceFile()
