@@ -214,6 +214,7 @@ namespace Budget
                 {
                     case PDFField.None:
                         // start of budget item, so initialize fieldsByColumnName:
+                        // DIAG make fieldsByColumnName its own class. Indexed by an enum insted of a string
                         fieldsByColumnName = new Dictionary<string, object>();
 
                         // is field a date (mm/dd)? That's the Transaction Date
@@ -259,8 +260,11 @@ namespace Budget
                         _LastFieldRead = PDFField.AcctNum;
                         break;
                     case PDFField.AcctNum:
-                        // DIAG USE THE NEW capture
                         // next field is Amount:
+
+                        // DIAG when I get a chance to impl and test, normalize this by replacing the following block with these 2 lines:
+                        //   if (CaptureAmountField(line, fieldsByColumnName, true, false))
+                        //      AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                         match = Regex.Match(line, @"^(-?(\d|,)+\.\d\d)$");
                         if (match.Success)
                         {
@@ -273,6 +277,7 @@ namespace Budget
                                 AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                             }
                         }
+
                         // whether success or failure, go back to BofaPDFField.None:
                         _LastFieldRead = PDFField.None;
                         break;

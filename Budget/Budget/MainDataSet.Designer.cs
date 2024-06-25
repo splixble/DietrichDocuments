@@ -6001,7 +6001,7 @@ namespace Budget.MainDataSetTableAdapters {
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [Budget] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Ignore], [Balance], [Comment], [Descrip2], [IsIncome], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Ignore, @Balance, @Comment, @Descrip2, @IsIncome, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate);
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, IsIncome, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = SCOPE_IDENTITY())";
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, IsIncome, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = SCOPE_IDENTITY()) ORDER BY TrDate, ID";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -6104,7 +6104,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [Budget] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Ignore] = @Ignore, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [IsIncome] = @IsIncome, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([IsIncome] = @Original_IsIncome) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)));
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, IsIncome, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = @ID)";
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, IsIncome, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = @ID) ORDER BY TrDate, ID";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -6395,7 +6395,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balan" +
                 "ce, Comment, Descrip2, IsIncome, BalanceIsCalculated, DescripFromVendor, CardTra" +
-                "nsDate\r\nFROM            Budget";
+                "nsDate\r\nFROM            Budget\r\nORDER BY TrDate, ID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -6415,7 +6415,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT Account, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Des" +
                 "crip, Descrip2, DescripFromVendor, ID, Ignore, IsIncome, TrCode, TrDate, TrType " +
-                "FROM Budget WHERE (TrType IS NULL) AND (Ignore = 0)";
+                "FROM Budget WHERE (TrType IS NULL) AND (Ignore = 0) ORDER BY TrDate, ID";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
