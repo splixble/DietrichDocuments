@@ -156,15 +156,17 @@ namespace Budget
                                 // is there's anything to the right of the date?
                                 if (match.Groups[2].Value != "")
                                 {
+                                    string leftText = match.Groups[2].Value.Trim();
+
                                     // Could be a description and amount, or just a description:
-                                    if (CaptureAmountField(match.Groups[2].Value, fieldsByColumnName, false, true))
+                                    if (CaptureAmountField(leftText, fieldsByColumnName, false, true))
                                     {
                                         AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                                         _LastFieldRead = PDFField.None;
                                     }
                                     else
                                     {
-                                        AddToDescripField(fieldsByColumnName, match.Groups[2].Value);
+                                        AddToDescripField(fieldsByColumnName, leftText);
                                         _LastFieldRead = PDFField.Descrip;
                                     }
                                 }
@@ -189,8 +191,6 @@ namespace Budget
                         }
                         break;
                 }
-                // 
-                // DIAG continue
             }
         }
 
@@ -265,21 +265,8 @@ namespace Budget
                     case PDFField.AcctNum:
                         // next field is Amount:
 
-                        // DIAG when I get a chance to impl and test, normalize this by replacing the following block with these 2 lines:
-                        //   if (CaptureAmountField(line, fieldsByColumnName, true, false))
-                        //      AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                        match = Regex.Match(line, @"^(-?(\d|,)+\.\d\d)$");
-                        if (match.Success)
-                        {
-                            if (Decimal.TryParse(match.Groups[1].Value, out amountValue))
-                            {
-                                // Handle the special case in which source file lists credits as negative and debits as positive:
-                                if (_SourceFileFormatRow.CreditsAreNegative)
-                                    amountValue = -amountValue;
-                                fieldsByColumnName["Amount"] = amountValue;
-                                AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                            }
-                        }
+                        if (CaptureAmountField(line, fieldsByColumnName, true, false))
+                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
 
                         // whether success or failure, go back to BofaPDFField.None:
                         _LastFieldRead = PDFField.None;
@@ -304,20 +291,13 @@ namespace Budget
                 if (foundLineWithOnlyDate)
                 {
                     // Check if line is dollar amount:
-                    if (CaptureAmountField(line, fieldsByColumnName, true, false))
+                    if (CaptureAmountField(line, fieldsByColumnName, false, false))
                     { 
                         AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                         foundLineWithOnlyDate = false;
                     }
                     else
-                    {
-                        // whole line is capture is continuation of descrip
-                        if (!fieldsByColumnName.ContainsKey("Descrip"))
-                            fieldsByColumnName["Descrip"] = "";
-                        else
-                            fieldsByColumnName["Descrip"] += " ";
-                        fieldsByColumnName["Descrip"] += line;
-                    }
+                        AddToDescripField(fieldsByColumnName, line); // whole line is capture is continuation of descrip
                 }
                 else
                 {
@@ -329,7 +309,7 @@ namespace Budget
                     bool lineBeginsWithDate = CaptureDateIFieldnBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
                     if (lineBeginsWithDate)
                     {
-                        if (CaptureAmountField(restOfLine, fieldsByColumnName, true, false))
+                        if (CaptureAmountField(restOfLine, fieldsByColumnName, false, false))
                         {
                             AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
                         }
@@ -338,11 +318,7 @@ namespace Budget
                             foundLineWithOnlyDate = true;
 
                             // rest of line is capture is continuation of descrip
-                            if (!fieldsByColumnName.ContainsKey("Descrip"))
-                                fieldsByColumnName["Descrip"] = "";
-                            else
-                                fieldsByColumnName["Descrip"] += " ";
-                            fieldsByColumnName["Descrip"] += restOfLine;
+                            AddToDescripField(fieldsByColumnName, restOfLine);
                         }
                     }
                 }
