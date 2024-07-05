@@ -161,6 +161,7 @@ public partial class SongsContext : DbContext
             entity.Property(e => e.FirstPerformed).HasColumnName("firstPerformed");
             entity.Property(e => e.LastPerformed).HasColumnName("lastPerformed");
             entity.Property(e => e.SongId).HasColumnName("SongID");
+            entity.Property(e => e.RowNum).HasColumnName("RowNum");
             entity.Property(e => e.TitleAndArtist)
                 .HasMaxLength(8000)
                 .IsUnicode(false);

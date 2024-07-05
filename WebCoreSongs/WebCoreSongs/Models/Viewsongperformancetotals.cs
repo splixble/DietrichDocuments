@@ -16,4 +16,6 @@ public partial class Viewsongperformancetotals
     public DateOnly? FirstPerformed { get; set; }
 
     public DateOnly? LastPerformed { get; set; }
+
+    public long RowNum { get; set; }
 }

@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Rank
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
@@ -24,28 +27,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastPerformed)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.RowNum)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                <a href=@string.Concat("/DBPage/SongAndPerfInfo?songID=", item.SongId.ToString())>
+                    @Html.DisplayFor(modelItem => item.TitleAndArtist)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstPerformed)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastPerformed)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SongId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SongId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SongId">Delete</a>
             </td>
         </tr>
 }

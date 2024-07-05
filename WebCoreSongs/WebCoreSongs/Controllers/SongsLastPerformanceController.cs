@@ -23,7 +23,7 @@ namespace WebCoreSongs.Controllers
         {
             ViewBag.OrdinalConv = new OrdinalConverter();
             return View(await _context.Viewsongperformancetotals.FromSql(
-                $"SELECT * FROM Songbook.Viewsongperformancetotals ORDER BY LastPerformed DESC").ToListAsync());
+                $"SELECT * FROM Songbook.Viewsongperformancetotals").ToListAsync());
         }
     }
 
