@@ -8183,11 +8183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+      "projectUniqueName": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
       "projectName": "WebCoreSongs",
-      "projectPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
+      "projectPath": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\WebCoreSongs.csproj",
       "packagesPath": "C:\\Users\\Dietr\\.nuget\\packages\\",
-      "outputPath": "C:\\Dietrich\\GithubDocs\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
+      "outputPath": "D:\\Dietrich\\SoftwareDevelopment\\GitHubRepository\\DietrichDocuments\\WebCoreSongs\\WebCoreSongs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dietr\\AppData\\Roaming\\NuGet\\NuGet.Config",

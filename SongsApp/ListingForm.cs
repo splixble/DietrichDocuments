@@ -65,7 +65,7 @@ namespace Songs
 
             foreach (AzureDataSet.viewsongperformancetotalsRow row in tblTotals)
             {
-                tb.Text += row.TitleAndArtist + "\t" + row.Total.ToString() + "\t" +
+                tb.Text += row.RowNum.ToString() + "\t" + row.TitleAndArtist + "\t" + row.Total.ToString() + "\t" +
                     row.firstPerformed.ToShortDateString() + "\t" + row.lastPerformed.ToShortDateString() +
                     Environment.NewLine;
             }

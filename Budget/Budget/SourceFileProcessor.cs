@@ -54,17 +54,21 @@ namespace Budget
             _BudgetTable = budgetTable;
             _SelectedAccount = selectedAccount;
 
-            _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
-            _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(_AccountRowSelected.SourceFileFormat);
-
-            // get source file format:
-            _SourceFileFormat = SourceFileFormats.None;
-            foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
+            if (_SelectedAccount != null)
             {
-                if (enumVal.ToString() == _AccountRowSelected.SourceFileFormat)
+                // DIAG Is this the right thing to do? if no account is selected, it probably shoudn't even include account... it doesn't use it...
+                _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+                _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(_AccountRowSelected.SourceFileFormat);
+
+                // get source file format:
+                _SourceFileFormat = SourceFileFormats.None;
+                foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
                 {
-                    _SourceFileFormat = (SourceFileFormats)enumVal;
-                    break;
+                    if (enumVal.ToString() == _AccountRowSelected.SourceFileFormat)
+                    {
+                        _SourceFileFormat = (SourceFileFormats)enumVal;
+                        break;
+                    }
                 }
             }
         }
@@ -176,7 +180,10 @@ namespace Budget
             // returns true if user OK'd; false if Cancel
             OpenFileDialog srcFileDlg = new OpenFileDialog();
             string srcRootDir = "D:\\Dietrich\\Business\\Budget App Input Files"; //get from Config file, which s/b read at beginning and globally available
-            srcFileDlg.InitialDirectory = Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
+            if (_AccountRowSelected != null)
+                srcFileDlg.InitialDirectory = Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
+            else
+                srcFileDlg.InitialDirectory = srcRootDir;
             srcFileDlg.Title = "Select source file:";
             DialogResult diaRes = srcFileDlg.ShowDialog();
 
