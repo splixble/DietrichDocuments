@@ -38,11 +38,13 @@
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonDigitalItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblFilePath = new System.Windows.Forms.Label();
             this.btnImportManualText = new System.Windows.Forms.Button();
             this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
             this.tbFileText = new System.Windows.Forms.TextBox();
-            this.lblFilePath = new System.Windows.Forms.Label();
             this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.comboFileFormat = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,7 +55,7 @@
             // btnOpenSourceFile
             // 
             this.btnOpenSourceFile.Enabled = false;
-            this.btnOpenSourceFile.Location = new System.Drawing.Point(463, 6);
+            this.btnOpenSourceFile.Location = new System.Drawing.Point(673, 5);
             this.btnOpenSourceFile.Name = "btnOpenSourceFile";
             this.btnOpenSourceFile.Size = new System.Drawing.Size(107, 23);
             this.btnOpenSourceFile.TabIndex = 0;
@@ -67,7 +69,7 @@
             this.comboAccount.FormattingEnabled = true;
             this.comboAccount.Location = new System.Drawing.Point(191, 6);
             this.comboAccount.Name = "comboAccount";
-            this.comboAccount.Size = new System.Drawing.Size(254, 21);
+            this.comboAccount.Size = new System.Drawing.Size(206, 21);
             this.comboAccount.TabIndex = 4;
             this.comboAccount.ValueMember = "AccountID";
             this.comboAccount.SelectionChangeCommitted += new System.EventHandler(this.comboAccount_SelectionChangeCommitted);
@@ -147,6 +149,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.comboFileFormat);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.lblFilePath);
             this.splitContainer1.Panel1.Controls.Add(this.btnImportManualText);
             this.splitContainer1.Panel1.Controls.Add(this.chBoxManualEntry);
@@ -161,6 +165,15 @@
             this.splitContainer1.Size = new System.Drawing.Size(1223, 460);
             this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 14;
+            // 
+            // lblFilePath
+            // 
+            this.lblFilePath.AutoSize = true;
+            this.lblFilePath.Location = new System.Drawing.Point(786, 11);
+            this.lblFilePath.Name = "lblFilePath";
+            this.lblFilePath.Size = new System.Drawing.Size(26, 13);
+            this.lblFilePath.TabIndex = 9;
+            this.lblFilePath.Text = "File:";
             // 
             // btnImportManualText
             // 
@@ -196,15 +209,6 @@
             this.tbFileText.Size = new System.Drawing.Size(1216, 194);
             this.tbFileText.TabIndex = 6;
             // 
-            // lblFilePath
-            // 
-            this.lblFilePath.AutoSize = true;
-            this.lblFilePath.Location = new System.Drawing.Point(576, 12);
-            this.lblFilePath.Name = "lblFilePath";
-            this.lblFilePath.Size = new System.Drawing.Size(26, 13);
-            this.lblFilePath.TabIndex = 9;
-            this.lblFilePath.Text = "File:";
-            // 
             // budgetCtrl
             // 
             this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -213,6 +217,25 @@
             this.budgetCtrl.Name = "budgetCtrl";
             this.budgetCtrl.Size = new System.Drawing.Size(1223, 198);
             this.budgetCtrl.TabIndex = 3;
+            // 
+            // comboFileFormat
+            // 
+            this.comboFileFormat.DisplayMember = "AccountID";
+            this.comboFileFormat.FormattingEnabled = true;
+            this.comboFileFormat.Location = new System.Drawing.Point(481, 6);
+            this.comboFileFormat.Name = "comboFileFormat";
+            this.comboFileFormat.Size = new System.Drawing.Size(171, 21);
+            this.comboFileFormat.TabIndex = 10;
+            this.comboFileFormat.ValueMember = "AccountID";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(414, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "File Format:";
             // 
             // SourceFileForm
             // 
@@ -256,5 +279,7 @@
         private System.Windows.Forms.CheckBox chBoxManualEntry;
         private System.Windows.Forms.Button btnImportManualText;
         private System.Windows.Forms.Label lblFilePath;
+        private System.Windows.Forms.ComboBox comboFileFormat;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -16,8 +16,6 @@ namespace Budget
 {
     internal class SourceFileProcessor
     {
-        public MainDataSet LookupMainDataSet => Program.LookupTableSet.MainDataSet;
-
         public BudgetDataTable BudgetTable => _BudgetTable;
         BudgetDataTable _BudgetTable;
 
@@ -47,7 +45,7 @@ namespace Budget
         public List<int> MatchingBudgetIDs => _MatchingBudgetIDs;
         List<int> _MatchingBudgetIDs = new List<int>();
 
-        public SourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount)
+        public SourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount, string selectedFileFormat)
         {
             _BudgetAdapter = new BudgetTableAdapter();
             _BudgetAdapter.Connection = Program.DbConnection;
@@ -58,13 +56,13 @@ namespace Budget
             {
                 // DIAG Is this the right thing to do? if no account is selected, it probably shoudn't even include account... it doesn't use it...
                 _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
-                _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(_AccountRowSelected.SourceFileFormat);
+                _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(selectedFileFormat);
 
                 // get source file format:
                 _SourceFileFormat = SourceFileFormats.None;
                 foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
                 {
-                    if (enumVal.ToString() == _AccountRowSelected.SourceFileFormat)
+                    if (enumVal.ToString() == selectedFileFormat)
                     {
                         _SourceFileFormat = (SourceFileFormats)enumVal;
                         break;
@@ -184,6 +182,8 @@ namespace Budget
                 srcFileDlg.InitialDirectory = Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
             else
                 srcFileDlg.InitialDirectory = srcRootDir;
+            if (_SourceFileFormatRow != null && !_SourceFileFormatRow.IsFileExtensionNull())
+                srcFileDlg.DefaultExt = _SourceFileFormatRow.FileExtension;
             srcFileDlg.Title = "Select source file:";
             DialogResult diaRes = srcFileDlg.ShowDialog();
 

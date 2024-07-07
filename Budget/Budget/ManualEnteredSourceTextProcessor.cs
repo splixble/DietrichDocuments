@@ -14,19 +14,19 @@ namespace Budget
     {
         string[] _TextLines;
 
-        public ManualEnteredSourceTextProcessor(BudgetDataTable budgetTable, string selectedAccount)
-            :base(budgetTable, selectedAccount)
+        public ManualEnteredSourceTextProcessor(BudgetDataTable budgetTable, string selectedAccount, string selectedFileFormat)
+            :base(budgetTable, selectedAccount, selectedFileFormat)
         {
             _TextLines = new string[0];
         }
 
-        bool CaptureDateIFieldnBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
+        bool CaptureDateFieldInBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
         {
             restOfLine = ""; // initialize
 
             string pattern = null;
             // Capture date, ignore space if exists, and rest of line:
-            if (_SourceFileFormat == SourceFileFormats.AccountBofA)
+            if (_SourceFileFormat == SourceFileFormats.BofAWidePDFWithYear)
             {
                 pattern = @"^(\d\d/\d\d/\d\d)[ ]?(.*)$";
                 Match match = Regex.Match(line, pattern);
@@ -48,7 +48,7 @@ namespace Budget
                 else
                     return false;
             }
-            else if (_SourceFileFormat == SourceFileFormats.CreditCardBofA)
+            else if (_SourceFileFormat == SourceFileFormats.BofAWidePDF)
             {
                 pattern = @"^(\d\d/\d\d) (\d\d/\d\d)[ ]?(.+)$";  // no year in date. Captures Card Trans Date, Posting Date
                 Match match = Regex.Match(line, pattern);
@@ -104,14 +104,14 @@ namespace Budget
         {
             switch (_SourceFileFormat)
             {
-                case SourceFileFormats.AccountBofA:
-                case SourceFileFormats.CreditCardBofA:
+                case SourceFileFormats.BofAWidePDF:
+                case SourceFileFormats.BofAWidePDFWithYear:
                     ProcessBofAWidePDFLines(textLines);
                     break;
-                case SourceFileFormats.CreditCardBofANarrowPDF:
+                case SourceFileFormats.BofANarrowPDF:
                     ProcessBofANarrowPDFLines(textLines);
                     break;
-                case SourceFileFormats.Amex:
+                case SourceFileFormats.AmexStmt:
                     ProcessAmexPDFLines(textLines);
                     break;
                 default:
@@ -210,7 +210,6 @@ namespace Budget
 
                 // reused vars in switch stmt:
                 DateTime dateValue;
-                Decimal amountValue;
                 Match match;
 
                 switch (_LastFieldRead)
@@ -306,7 +305,7 @@ namespace Budget
 
                     // Check for match of date at beginning:
                     string restOfLine;
-                    bool lineBeginsWithDate = CaptureDateIFieldnBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
+                    bool lineBeginsWithDate = CaptureDateFieldInBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
                     if (lineBeginsWithDate)
                     {
                         if (CaptureAmountField(restOfLine, fieldsByColumnName, false, false))

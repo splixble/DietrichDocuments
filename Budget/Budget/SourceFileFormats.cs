@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Budget
 {
-    enum SourceFileFormats { AccountAdvantis, 
-        AccountBofA, Amex, CreditCardBofA, 
-        CreditCardBofANarrowPDF, // same as CreditCardBofA, but PDF Statements, when copied as text, contain only one field per line
-        Handwritten, 
+    enum SourceFileFormats { 
+        AmexStmt, 
+        BofANarrowPDF,
+        BofAWidePDF,
+        BofAWidePDFWithYear,
         None }
-    // based on keys in table
+    // Based on keys in table. As needed.
 }

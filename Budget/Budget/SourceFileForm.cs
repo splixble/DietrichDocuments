@@ -23,6 +23,10 @@ namespace Budget
             comboAccount.DataSource = Program.LookupTableSet.MainDataSet.BudgetAccount;
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
+
+            comboFileFormat.DataSource = Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
+            comboFileFormat.DisplayMember = "FormatCode";
+            comboFileFormat.ValueMember = "FormatCode";
         }
 
         SourceFileProcessor _Processor = null;
@@ -32,9 +36,9 @@ namespace Budget
             PreImport();
 
             if (chBoxManualEntry.Checked)
-                _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+                _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string);
             else
-                _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string);
+                _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string);
             _Processor.Process();
 
             tbFileText.Clear();
@@ -98,6 +102,33 @@ namespace Budget
 
             btnSaveBudgetItems.Enabled = comboAccount.SelectedItem != null;
             btnOpenSourceFile.Enabled = comboAccount.SelectedItem != null;
+
+            UpdateFileFormatSelection();
+        }
+        void UpdateFileFormatSelection()
+        {
+            // set file format combo to default one for account, if there is one:
+            if (comboAccount.SelectedValue == null)
+                return;
+
+            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID((string)comboAccount.SelectedValue);
+            if (accountRow == null) 
+                return;
+
+            string fileFormatCode = null;
+            if (chBoxManualEntry.Checked)
+            {
+                if (!accountRow.IsDefaultFormatManualEntryNull())
+                    fileFormatCode = accountRow.DefaultFormatManualEntry;
+            }
+            else
+            {
+                if (!accountRow.IsDefaultFormatAutoEntryNull())
+                    fileFormatCode = accountRow.DefaultFormatAutoEntry;
+            }
+            if (fileFormatCode != null && comboFileFormat.SelectedValue as string != fileFormatCode)
+                comboFileFormat.SelectedValue = fileFormatCode;
+
         }
 
         private void amazonOrderFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -127,6 +158,8 @@ namespace Budget
             tbFileText.Enabled = chBoxManualEntry.Checked;
             // REMOVED btnOpenSourceFile.Enabled = !chBoxManualEntry.Checked;
             btnImportManualText.Enabled = chBoxManualEntry.Checked;
+
+            UpdateFileFormatSelection();
         }
 
         private void chBoxManualEntry_CheckedChanged(object sender, EventArgs e)
