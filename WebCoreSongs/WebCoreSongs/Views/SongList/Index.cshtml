@@ -12,18 +12,20 @@
         for (var j = 0; j < table.rows[i].cells.length; j++)
         table.rows[i].cells[j].onclick = function () {
         tableText(this);
+
+    <th onClick ="alert('DIAG Well, this works, at least.')">
         */
     *@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FullTitle)
+                <a href="/SongList?SortField=Title">@Html.DisplayNameFor(model => model.FullTitle)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SongInfo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FullArtistName)
+                <a href="/SongList?SortField=Artist">@Html.DisplayNameFor(model => model.FullArtistName)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Code)

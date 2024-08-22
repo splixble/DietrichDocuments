@@ -16,6 +16,7 @@ namespace Budget
 {
     public partial class SourceFileForm : Form
     {
+        // DIAG BUG!! UI payments (IUI), when loaded from src file, are not marked as Income with bit field, so are being MNormalized as negative. Do we still use that bitt field??
         public SourceFileForm()
         {
             InitializeComponent();
