@@ -144,6 +144,8 @@ namespace Budget
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Program.LookupTableSet.LoadWithRetryOption();
+
             viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
             viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
 

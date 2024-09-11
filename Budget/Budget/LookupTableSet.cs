@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Budget.MainDataSetTableAdapters;
 
 namespace Budget
@@ -20,7 +22,30 @@ namespace Budget
         {
         }
 
-        public void Load()
+        public void LoadWithRetryOption()
+        {
+            bool exceptionThrown = false;
+            do
+            {
+                try
+                {
+                    Load();
+                    exceptionThrown = false;
+                }
+                catch (Exception ex)
+                {
+                    DialogResult result = MessageBox.Show("Database error: \n" + ex.Message, "Error loading tables", MessageBoxButtons.RetryCancel);
+                    if (result == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                    }
+                    exceptionThrown = true;
+                }
+            }
+            while (exceptionThrown);
+        }
+
+        void Load()
         {
             _BudgetSourceFileFormatAdapter.Connection = Program.DbConnection;
             _BudgetSourceFileFormatAdapter.Fill(_MainDataSet.BudgetSourceFileFormat);

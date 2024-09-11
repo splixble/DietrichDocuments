@@ -38,7 +38,6 @@ namespace Budget
             Application.SetCompatibleTextRenderingDefault(false);
             
             _LookupTableSet = new LookupTableSet();
-            _LookupTableSet.Load();
 
             Application.Run(new Form1());
         }
