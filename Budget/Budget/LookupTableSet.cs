@@ -22,7 +22,7 @@ namespace Budget
         {
         }
 
-        public void LoadWithRetryOption()
+        public bool LoadWithRetryOption()
         {
             bool exceptionThrown = false;
             do
@@ -31,6 +31,7 @@ namespace Budget
                 {
                     Load();
                     exceptionThrown = false;
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -38,11 +39,14 @@ namespace Budget
                     if (result == DialogResult.Cancel)
                     {
                         Application.Exit();
+                        return false;
                     }
                     exceptionThrown = true;
                 }
             }
             while (exceptionThrown);
+
+            return !exceptionThrown; // this will never be called - right?
         }
 
         void Load()

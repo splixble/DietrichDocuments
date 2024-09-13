@@ -503,7 +503,18 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
               <Mapping SourceColumn="ManuallyEntered" DataSetColumn="ManuallyEntered" />
               <Mapping SourceColumn="StatementDate" DataSetColumn="StatementDate" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillThisMonth" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillThisMonth" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillThisMonth">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
+FROM            BudgetSourceFile
+WHERE        (ImportDateTime &gt;= DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetSourceFileItemsTableAdapter" GeneratorDataComponentClassName="BudgetSourceFileItemsTableAdapter" Name="BudgetSourceFileItems" UserDataComponentName="BudgetSourceFileItemsTableAdapter">
             <MainSource>
@@ -855,7 +866,7 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CreditsAreNegative" msprop:Generator_ColumnPropNameInTable="CreditsAreNegativeColumn" msprop:Generator_ColumnPropNameInRow="CreditsAreNegative" msprop:Generator_UserColumnName="CreditsAreNegative" msprop:Generator_ColumnVarNameInTable="columnCreditsAreNegative" type="xs:boolean" />
-              <xs:element name="FileExtension" msprop:Generator_ColumnPropNameInRow="FileExtension" msprop:Generator_ColumnPropNameInTable="FileExtensionColumn" msprop:Generator_ColumnVarNameInTable="columnFileExtension" msprop:Generator_UserColumnName="FileExtension" minOccurs="0">
+              <xs:element name="FileExtension" msprop:Generator_UserColumnName="FileExtension" msprop:Generator_ColumnPropNameInTable="FileExtensionColumn" msprop:Generator_ColumnPropNameInRow="FileExtension" msprop:Generator_ColumnVarNameInTable="columnFileExtension" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="12" />
@@ -889,14 +900,14 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DefaultFormatAutoEntry" msprop:Generator_ColumnPropNameInRow="DefaultFormatAutoEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatAutoEntryColumn" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatAutoEntry" msprop:Generator_UserColumnName="DefaultFormatAutoEntry" minOccurs="0">
+              <xs:element name="DefaultFormatAutoEntry" msprop:Generator_UserColumnName="DefaultFormatAutoEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatAutoEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatAutoEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatAutoEntry" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DefaultFormatManualEntry" msprop:Generator_ColumnPropNameInRow="DefaultFormatManualEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatManualEntryColumn" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatManualEntry" msprop:Generator_UserColumnName="DefaultFormatManualEntry" minOccurs="0">
+              <xs:element name="DefaultFormatManualEntry" msprop:Generator_UserColumnName="DefaultFormatManualEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatManualEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatManualEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatManualEntry" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1015,7 +1026,7 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Budget_BudgetTypeGroupings" msdata:parent="BudgetTypeGroupings" msdata:child="Budget" msdata:parentkey="TRTypeID" msdata:childkey="TrType" msprop:Generator_UserParentTable="BudgetTypeGroupings" msprop:Generator_UserChildTable="Budget" msprop:Generator_RelationVarName="relationFK_Budget_BudgetTypeGroupings" msprop:Generator_ChildPropName="GetBudgetRows" msprop:Generator_UserRelationName="FK_Budget_BudgetTypeGroupings" msprop:Generator_ParentPropName="BudgetTypeGroupingsRow" />
+      <msdata:Relationship name="FK_Budget_BudgetTypeGroupings" msdata:parent="BudgetTypeGroupings" msdata:child="Budget" msdata:parentkey="TRTypeID" msdata:childkey="TrType" msprop:Generator_UserParentTable="BudgetTypeGroupings" msprop:Generator_UserChildTable="Budget" msprop:Generator_RelationVarName="relationFK_Budget_BudgetTypeGroupings" msprop:Generator_ChildPropName="GetBudgetRows" msprop:Generator_ParentPropName="BudgetTypeGroupingsRow" msprop:Generator_UserRelationName="FK_Budget_BudgetTypeGroupings" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

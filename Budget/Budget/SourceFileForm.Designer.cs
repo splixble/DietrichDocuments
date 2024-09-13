@@ -38,24 +38,31 @@
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonDigitalItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboFileFormat = new System.Windows.Forms.ComboBox();
+            this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.btnImportManualText = new System.Windows.Forms.Button();
-            this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
             this.tbFileText = new System.Windows.Forms.TextBox();
             this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
-            this.comboFileFormat = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpenSourceFile
             // 
             this.btnOpenSourceFile.Enabled = false;
-            this.btnOpenSourceFile.Location = new System.Drawing.Point(673, 5);
+            this.btnOpenSourceFile.Location = new System.Drawing.Point(675, 3);
             this.btnOpenSourceFile.Name = "btnOpenSourceFile";
             this.btnOpenSourceFile.Size = new System.Drawing.Size(107, 23);
             this.btnOpenSourceFile.TabIndex = 0;
@@ -67,7 +74,7 @@
             // 
             this.comboAccount.DisplayMember = "AccountID";
             this.comboAccount.FormattingEnabled = true;
-            this.comboAccount.Location = new System.Drawing.Point(191, 6);
+            this.comboAccount.Location = new System.Drawing.Point(193, 4);
             this.comboAccount.Name = "comboAccount";
             this.comboAccount.Size = new System.Drawing.Size(206, 21);
             this.comboAccount.TabIndex = 4;
@@ -77,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 9);
+            this.label2.Location = new System.Drawing.Point(137, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 5;
@@ -149,15 +156,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.comboFileFormat);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.lblFilePath);
-            this.splitContainer1.Panel1.Controls.Add(this.btnImportManualText);
-            this.splitContainer1.Panel1.Controls.Add(this.chBoxManualEntry);
-            this.splitContainer1.Panel1.Controls.Add(this.tbFileText);
-            this.splitContainer1.Panel1.Controls.Add(this.btnOpenSourceFile);
-            this.splitContainer1.Panel1.Controls.Add(this.comboAccount);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
             // 
             // splitContainer1.Panel2
             // 
@@ -166,10 +165,89 @@
             this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 14;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1223, 258);
+            this.tabControl1.TabIndex = 12;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.sourceFileChecklistCtrl1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1215, 232);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Checklist";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // sourceFileChecklistCtrl1
+            // 
+            this.sourceFileChecklistCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceFileChecklistCtrl1.Location = new System.Drawing.Point(3, 3);
+            this.sourceFileChecklistCtrl1.Name = "sourceFileChecklistCtrl1";
+            this.sourceFileChecklistCtrl1.Size = new System.Drawing.Size(1209, 226);
+            this.sourceFileChecklistCtrl1.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.comboFileFormat);
+            this.tabPage2.Controls.Add(this.chBoxManualEntry);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.lblFilePath);
+            this.tabPage2.Controls.Add(this.comboAccount);
+            this.tabPage2.Controls.Add(this.btnImportManualText);
+            this.tabPage2.Controls.Add(this.btnOpenSourceFile);
+            this.tabPage2.Controls.Add(this.tbFileText);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1215, 232);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Historic";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboFileFormat
+            // 
+            this.comboFileFormat.DisplayMember = "AccountID";
+            this.comboFileFormat.FormattingEnabled = true;
+            this.comboFileFormat.Location = new System.Drawing.Point(483, 4);
+            this.comboFileFormat.Name = "comboFileFormat";
+            this.comboFileFormat.Size = new System.Drawing.Size(171, 21);
+            this.comboFileFormat.TabIndex = 10;
+            this.comboFileFormat.ValueMember = "AccountID";
+            // 
+            // chBoxManualEntry
+            // 
+            this.chBoxManualEntry.AutoSize = true;
+            this.chBoxManualEntry.Location = new System.Drawing.Point(6, 6);
+            this.chBoxManualEntry.Name = "chBoxManualEntry";
+            this.chBoxManualEntry.Size = new System.Drawing.Size(112, 17);
+            this.chBoxManualEntry.TabIndex = 7;
+            this.chBoxManualEntry.Text = "Manual Text Entry";
+            this.chBoxManualEntry.UseVisualStyleBackColor = true;
+            this.chBoxManualEntry.CheckedChanged += new System.EventHandler(this.chBoxManualEntry_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(416, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "File Format:";
+            // 
             // lblFilePath
             // 
             this.lblFilePath.AutoSize = true;
-            this.lblFilePath.Location = new System.Drawing.Point(786, 11);
+            this.lblFilePath.Location = new System.Drawing.Point(788, 9);
             this.lblFilePath.Name = "lblFilePath";
             this.lblFilePath.Size = new System.Drawing.Size(26, 13);
             this.lblFilePath.TabIndex = 9;
@@ -178,7 +256,7 @@
             // btnImportManualText
             // 
             this.btnImportManualText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnImportManualText.Location = new System.Drawing.Point(3, 233);
+            this.btnImportManualText.Location = new System.Drawing.Point(6, 206);
             this.btnImportManualText.Name = "btnImportManualText";
             this.btnImportManualText.Size = new System.Drawing.Size(107, 23);
             this.btnImportManualText.TabIndex = 8;
@@ -186,27 +264,16 @@
             this.btnImportManualText.UseVisualStyleBackColor = true;
             this.btnImportManualText.Click += new System.EventHandler(this.btnImportManualText_Click);
             // 
-            // chBoxManualEntry
-            // 
-            this.chBoxManualEntry.AutoSize = true;
-            this.chBoxManualEntry.Location = new System.Drawing.Point(4, 8);
-            this.chBoxManualEntry.Name = "chBoxManualEntry";
-            this.chBoxManualEntry.Size = new System.Drawing.Size(112, 17);
-            this.chBoxManualEntry.TabIndex = 7;
-            this.chBoxManualEntry.Text = "Manual Text Entry";
-            this.chBoxManualEntry.UseVisualStyleBackColor = true;
-            this.chBoxManualEntry.CheckedChanged += new System.EventHandler(this.chBoxManualEntry_CheckedChanged);
-            // 
             // tbFileText
             // 
             this.tbFileText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFileText.Location = new System.Drawing.Point(4, 33);
+            this.tbFileText.Location = new System.Drawing.Point(6, 31);
             this.tbFileText.Multiline = true;
             this.tbFileText.Name = "tbFileText";
             this.tbFileText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbFileText.Size = new System.Drawing.Size(1216, 194);
+            this.tbFileText.Size = new System.Drawing.Size(1203, 169);
             this.tbFileText.TabIndex = 6;
             // 
             // budgetCtrl
@@ -217,25 +284,6 @@
             this.budgetCtrl.Name = "budgetCtrl";
             this.budgetCtrl.Size = new System.Drawing.Size(1223, 198);
             this.budgetCtrl.TabIndex = 3;
-            // 
-            // comboFileFormat
-            // 
-            this.comboFileFormat.DisplayMember = "AccountID";
-            this.comboFileFormat.FormattingEnabled = true;
-            this.comboFileFormat.Location = new System.Drawing.Point(481, 6);
-            this.comboFileFormat.Name = "comboFileFormat";
-            this.comboFileFormat.Size = new System.Drawing.Size(171, 21);
-            this.comboFileFormat.TabIndex = 10;
-            this.comboFileFormat.ValueMember = "AccountID";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(414, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "File Format:";
             // 
             // SourceFileForm
             // 
@@ -253,10 +301,13 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +332,9 @@
         private System.Windows.Forms.Label lblFilePath;
         private System.Windows.Forms.ComboBox comboFileFormat;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private SourceFileChecklistCtrl sourceFileChecklistCtrl1;
     }
 }
