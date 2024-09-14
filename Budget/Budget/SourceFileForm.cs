@@ -30,6 +30,7 @@ namespace Budget
             comboFileFormat.DisplayMember = "FormatCode";
             comboFileFormat.ValueMember = "FormatCode";
 
+            sourceFileChecklistCtrl1.Initialize(this);
         }
 
         SourceFileProcessor _Processor = null;
@@ -46,9 +47,19 @@ namespace Budget
 
             tbFileText.Clear();
 
-            lblFilePath.Text = "File: " + _Processor.SourceFileName;
+            lblFilePath.Text = "File: " + _Processor.SourceFilePath;
             lblFilePath.ForeColor = Color.Blue;
             
+            PostImport();
+        }
+
+        public void ImportFileFromChecklist(string accountID, string accountFormat)
+        {
+            PreImport();
+
+            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat);
+            _Processor.ProcessFromChecklist();
+
             PostImport();
         }
 

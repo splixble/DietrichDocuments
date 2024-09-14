@@ -383,17 +383,17 @@ namespace Budget
         {
 
             StatementDatePrompt prompt = new StatementDatePrompt();
-            prompt.InitializeWithFilename(SourceFileName);
+            prompt.InitializeWithFilename(SourceFilePath);
             DialogResult res = prompt.ShowDialog();
             if (res == DialogResult.OK)
             {
                 // Bring up PDF (or whatever format) file:
-                System.Diagnostics.Process.Start(SourceFileName);
+                System.Diagnostics.Process.Start(SourceFilePath);
 
                 // diag WHAT IF we dont real;ly need the statement date?
                 // make new source file row:
                 _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
-                _NewestSourceFileRow.FilePath = SourceFileName;
+                _NewestSourceFileRow.FilePath = SourceFilePath;
                 _NewestSourceFileRow.StatementDate = prompt.StatementDate;
                 _NewestSourceFileRow.Account = this.SelectedAccount;
                 _NewestSourceFileRow.ManuallyEntered = true;

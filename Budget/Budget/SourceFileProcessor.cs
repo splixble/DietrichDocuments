@@ -39,8 +39,8 @@ namespace Budget
         public MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
         public List<BudgetAndSourceItemRows> _ImportedBudgetItems = new List<BudgetAndSourceItemRows>();
 
-        public string SourceFileName => _SourceFileName;
-        string _SourceFileName;
+        public string SourceFilePath => _SourceFilePath;
+        string _SourceFilePath;
 
         public List<int> MatchingBudgetIDs => _MatchingBudgetIDs;
         List<int> _MatchingBudgetIDs = new List<int>();
@@ -169,35 +169,84 @@ namespace Budget
 
         public void Process()
         {
-            if (PromptForSourceFile())
+            _SourceFilePath = PromptForSourceFile(false);
+            if (_SourceFilePath != null)
                 ReadInSourceFile();
         }
 
-        protected bool PromptForSourceFile()
+        public void ProcessFromChecklist()
         {
-            // returns true if user OK'd; false if Cancel
+            string downloadedFilePath = PromptForSourceFile(true);
+            if (downloadedFilePath != null)
+            {
+                // before processing, copy source file from Downloads to account's SourceFilePath:
+                string archivedFilePath = Path.Combine(AccountSourceFilePath, "S_" + DateTime.Now.ToString("yyMMdd_hhmmss_") + Path.GetFileName(downloadedFilePath));
+                try
+                {
+
+
+                    // DIAG seems to copy OK. So download a file and try it.
+
+
+                    File.Copy(downloadedFilePath, archivedFilePath);
+                    _SourceFilePath = archivedFilePath; 
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show("Error copying source file: " + ex.Message);
+                    return;
+                }
+
+                ReadInSourceFile();
+            }
+        }
+
+        string AccountSourceFilePath
+        { 
+            get
+            {
+                string srcRootDir = "D:\\Dietrich\\Business\\Budget App Input Files"; // DIAG get from Config file, which s/b read at beginning and globally available
+                if (_AccountRowSelected != null)
+                    return Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
+                else
+                    return srcRootDir;
+            }
+        }
+
+        string DownloadsDirectory
+        {
+            get 
+            {
+                return "C:\\Users\\Dietr\\Downloads"; //  make it a config field DIAG
+            }
+        }
+
+        protected string PromptForSourceFile(bool startInDownloadsDir)
+        {
+            // returns file path if user OK'd; null if Cancel
             OpenFileDialog srcFileDlg = new OpenFileDialog();
-            string srcRootDir = "D:\\Dietrich\\Business\\Budget App Input Files"; //get from Config file, which s/b read at beginning and globally available
-            if (_AccountRowSelected != null)
-                srcFileDlg.InitialDirectory = Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
+
+            if (startInDownloadsDir)
+                srcFileDlg.InitialDirectory = DownloadsDirectory;
             else
-                srcFileDlg.InitialDirectory = srcRootDir;
+                srcFileDlg.InitialDirectory = AccountSourceFilePath;
+
             if (_SourceFileFormatRow != null && !_SourceFileFormatRow.IsFileExtensionNull())
                 srcFileDlg.DefaultExt = _SourceFileFormatRow.FileExtension;
             srcFileDlg.Title = "Select source file:";
             DialogResult diaRes = srcFileDlg.ShowDialog();
 
             if (diaRes == DialogResult.OK)
-                _SourceFileName = srcFileDlg.FileName;
-
-            return (diaRes == DialogResult.OK);
+                return srcFileDlg.FileName;
+            else
+                return null;
         }
 
         protected virtual void ReadInSourceFile()
         {
             // make new source file row:
             _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
-            _NewestSourceFileRow.FilePath = _SourceFileName;
+            _NewestSourceFileRow.FilePath = _SourceFilePath;
             _NewestSourceFileRow.Account = _SelectedAccount;
             _NewestSourceFileRow.ManuallyEntered = false;
             _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
@@ -205,8 +254,8 @@ namespace Budget
             // Read in the full Budget table, to check for duplicates:
             _BudgetAdapter.Fill(_BudgetTable);
 
-            // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load csv files:
-            using (TextFieldParser parser = new TextFieldParser(_SourceFileName))
+            // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load source files:
+            using (TextFieldParser parser = new TextFieldParser(_SourceFilePath))
             {
                 _MatchingBudgetIDs.Clear();
 

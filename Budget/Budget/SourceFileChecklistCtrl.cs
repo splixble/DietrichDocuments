@@ -59,7 +59,13 @@ namespace Budget
             budgetAccountBindingSource.BindingComplete += BudgetAccountBindingSource_BindingComplete;
             grid.RowsAdded += Grid_RowsAdded;
             grid.DataBindingComplete += Grid_DataBindingComplete;
+        }
 
+        SourceFileForm _Form = null;
+
+        public void Initialize(SourceFileForm form)
+        {
+            _Form = form;
         }
 
         private void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -96,8 +102,7 @@ namespace Budget
 
             foreach (DataGridViewRow gridRow in grid.Rows) 
             {
-                DataRowView dataRowView = budgetAccountBindingSource[gridRow.Index] as DataRowView;
-                MainDataSet.BudgetAccountRow accountRow = (MainDataSet.BudgetAccountRow)dataRowView.Row;
+                MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(gridRow.Index);
                 if (sourceFilesByAccount.ContainsKey(accountRow.AccountID))
                 {
                     gridRow.Cells[_LoadedFilesColumn.Index].Value = sourceFilesByAccount[accountRow.AccountID];
@@ -105,11 +110,21 @@ namespace Budget
             }
         }
 
+        MainDataSet.BudgetAccountRow GetBudgetAccountRowFromGridRow(int gridRowIndex)
+        {
+            DataRowView dataRowView = budgetAccountBindingSource[gridRowIndex] as DataRowView;
+            return (MainDataSet.BudgetAccountRow)dataRowView.Row;
+        }
+
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == _LoadFileButtonColumn.Index)
             {
-                MessageBox.Show("Blahbla DIAG");
+                if (_Form == null)
+                    throw (new Exception("The SourceFileForm needs to call SourceFileChecklistControl.Initialize()."));
+
+                MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
+                _Form.ImportFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
             }
         }
     }
