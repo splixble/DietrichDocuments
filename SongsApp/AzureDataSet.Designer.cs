@@ -4697,6 +4697,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnlastPerformed;
             
+            private global::System.Data.DataColumn columnRowNum;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongperformancetotalsDataTable() {
@@ -4772,6 +4774,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RowNumColumn {
+                get {
+                    return this.columnRowNum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4807,14 +4817,15 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongperformancetotalsRow AddviewsongperformancetotalsRow(long Total, int SongID, string TitleAndArtist, System.DateTime firstPerformed, System.DateTime lastPerformed) {
+            public viewsongperformancetotalsRow AddviewsongperformancetotalsRow(long Total, int SongID, string TitleAndArtist, System.DateTime firstPerformed, System.DateTime lastPerformed, long RowNum) {
                 viewsongperformancetotalsRow rowviewsongperformancetotalsRow = ((viewsongperformancetotalsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Total,
                         SongID,
                         TitleAndArtist,
                         firstPerformed,
-                        lastPerformed};
+                        lastPerformed,
+                        RowNum};
                 rowviewsongperformancetotalsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewsongperformancetotalsRow);
                 return rowviewsongperformancetotalsRow;
@@ -4842,6 +4853,7 @@ namespace Songs {
                 this.columnTitleAndArtist = base.Columns["TitleAndArtist"];
                 this.columnfirstPerformed = base.Columns["firstPerformed"];
                 this.columnlastPerformed = base.Columns["lastPerformed"];
+                this.columnRowNum = base.Columns["RowNum"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4857,6 +4869,9 @@ namespace Songs {
                 base.Columns.Add(this.columnfirstPerformed);
                 this.columnlastPerformed = new global::System.Data.DataColumn("lastPerformed", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlastPerformed);
+                this.columnRowNum = new global::System.Data.DataColumn("RowNum", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRowNum);
+                this.columnSongID.AllowDBNull = false;
                 this.columnTitleAndArtist.MaxLength = 8000;
             }
             
@@ -8204,12 +8219,7 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int SongID {
                 get {
-                    try {
-                        return ((int)(this[this.tableviewsongperformancetotals.SongIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SongID\' in table \'viewsongperformancetotals\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableviewsongperformancetotals.SongIDColumn]));
                 }
                 set {
                     this[this.tableviewsongperformancetotals.SongIDColumn] = value;
@@ -8269,6 +8279,22 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public long RowNum {
+                get {
+                    try {
+                        return ((long)(this[this.tableviewsongperformancetotals.RowNumColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RowNum\' in table \'viewsongperformancetotals\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformancetotals.RowNumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTotalNull() {
                 return this.IsNull(this.tableviewsongperformancetotals.TotalColumn);
             }
@@ -8277,18 +8303,6 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTotalNull() {
                 this[this.tableviewsongperformancetotals.TotalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsSongIDNull() {
-                return this.IsNull(this.tableviewsongperformancetotals.SongIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetSongIDNull() {
-                this[this.tableviewsongperformancetotals.SongIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8325,6 +8339,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetlastPerformedNull() {
                 this[this.tableviewsongperformancetotals.lastPerformedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRowNumNull() {
+                return this.IsNull(this.tableviewsongperformancetotals.RowNumColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRowNumNull() {
+                this[this.tableviewsongperformancetotals.RowNumColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12279,6 +12305,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             tableMapping.ColumnMappings.Add("TitleAndArtist", "TitleAndArtist");
             tableMapping.ColumnMappings.Add("firstPerformed", "firstPerformed");
             tableMapping.ColumnMappings.Add("lastPerformed", "lastPerformed");
+            tableMapping.ColumnMappings.Add("RowNum", "RowNum");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -12295,8 +12322,8 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Total, SongID, TitleAndArtist, firstPerformed, lastPerformed\r\nFROM " +
-                "           viewsongperformancetotals\r\nORDER BY Total DESC";
+            this._commandCollection[0].CommandText = "SELECT        Total, SongID, TitleAndArtist, firstPerformed, lastPerformed, RowNu" +
+                "m\r\nFROM            viewsongperformancetotals";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

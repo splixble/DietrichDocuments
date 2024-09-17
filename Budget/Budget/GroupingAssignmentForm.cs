@@ -23,6 +23,18 @@ namespace Budget
 
         private void TrTypeForm_Load(object sender, EventArgs e)
         {
+            // In Design mode?
+            if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+                return;
+
+            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            TrTypeComboColumn.ValueMember = "TrTypeID";
+            TrTypeComboColumn.DisplayMember = "CodeAndName";
+
+            comboTrType.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            comboTrType.ValueMember = "TrTypeID";
+            comboTrType.DisplayMember = "CodeAndName";           
+
             LoadBudgetTable();
             LoadGroupingPatternTable();
         }
@@ -51,22 +63,27 @@ namespace Budget
 
         void ApplyPatternGrouping(MainDataSet.BudgetTypePatternRow patternRow)
         {
+            ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForIncome, patternRow.ForIgnore);
+        }
+
+        void ApplyPatternGrouping(string pattern, string trType, bool forIncome, bool forIgnore)
+        {
             foreach (MainDataSet.BudgetRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
-                if (Regex.IsMatch(budgetRow.Descrip, patternRow.Pattern))
+                if (Regex.IsMatch(budgetRow.Descrip, pattern))
                 {
-                    if (patternRow.ForIgnore)
+                    if (forIgnore)
                     {
                         if (!budgetRow.Ignore)
                             budgetRow.Ignore = true;
                     }
                     else
                     {
-                        if (!patternRow.IsTrTypeNull() && (budgetRow.IsTrTypeNull() || budgetRow.TrType != patternRow.TrType))
-                            budgetRow.TrType = patternRow.TrType;
+                        if (trType != null && (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType))
+                            budgetRow.TrType = trType;
 
-                        if (patternRow.ForIncome)
+                        if (forIncome)
                         {
                             if (!budgetRow.IsIncome)
                                 budgetRow.IsIncome = true;
@@ -106,6 +123,16 @@ namespace Budget
             //mainDataSet1.BudgetTypePattern.AcceptChanges(); // DIAG work now?
             LoadGroupingPatternTable();
             gridGroupingPatterns.Refresh();
+        }
+
+        private void chBoxShowUntypedOnly_CheckStateChanged(object sender, EventArgs e)
+        {
+            LoadBudgetTable();
+        }
+
+        private void btnApplyOneTime_Click(object sender, EventArgs e)
+        {
+            ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxIncome.Checked, chBoxIgnore.Checked);
         }
     }
 }

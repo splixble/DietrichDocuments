@@ -37,20 +37,26 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
-            this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitConOuter = new System.Windows.Forms.SplitContainer();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
+            this.splitConInner.Panel1.SuspendLayout();
+            this.splitConInner.Panel2.SuspendLayout();
+            this.splitConInner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).BeginInit();
+            this.splitConOuter.Panel1.SuspendLayout();
+            this.splitConOuter.Panel2.SuspendLayout();
+            this.splitConOuter.SuspendLayout();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -60,7 +66,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1194, 459);
+            this.reportViewer1.Size = new System.Drawing.Size(1175, 459);
             this.reportViewer1.TabIndex = 0;
             // 
             // gridMain
@@ -72,7 +78,7 @@
             this.gridMain.Location = new System.Drawing.Point(0, 0);
             this.gridMain.Name = "gridMain";
             this.gridMain.ReadOnly = true;
-            this.gridMain.Size = new System.Drawing.Size(1194, 163);
+            this.gridMain.Size = new System.Drawing.Size(1175, 163);
             this.gridMain.TabIndex = 1;
             this.gridMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -90,7 +96,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadSourceFileToolStripMenuItem});
+            this.loadSourceFileToolStripMenuItem,
+            this.printPreviewToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -98,7 +105,7 @@
             // loadSourceFileToolStripMenuItem
             // 
             this.loadSourceFileToolStripMenuItem.Name = "loadSourceFileToolStripMenuItem";
-            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadSourceFileToolStripMenuItem.Text = "Load Source File";
             this.loadSourceFileToolStripMenuItem.Click += new System.EventHandler(this.loadSourceFileToolStripMenuItem_Click);
             // 
@@ -126,6 +133,13 @@
             this.editGroupingsToolStripMenuItem.Text = "Edit Groupings";
             this.editGroupingsToolStripMenuItem.Click += new System.EventHandler(this.editGroupingsToolStripMenuItem_Click);
             // 
+            // calculateAccountBalancesToolStripMenuItem
+            // 
+            this.calculateAccountBalancesToolStripMenuItem.Name = "calculateAccountBalancesToolStripMenuItem";
+            this.calculateAccountBalancesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.calculateAccountBalancesToolStripMenuItem.Text = "Calculate Account Balances";
+            this.calculateAccountBalancesToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalancesToolStripMenuItem_Click);
+            // 
             // viewBudgetGroupingsInOrderBindingSource
             // 
             this.viewBudgetGroupingsInOrderBindingSource.DataMember = "ViewBudgetGroupingsInOrder";
@@ -140,49 +154,66 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // splitContainer1
+            // splitConInner
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(183, 27);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitConInner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitConInner.Location = new System.Drawing.Point(0, 0);
+            this.splitConInner.Name = "splitConInner";
+            this.splitConInner.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer1.Panel1
+            // splitConInner.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.gridMain);
+            this.splitConInner.Panel1.Controls.Add(this.gridMain);
             // 
-            // splitContainer1.Panel2
+            // splitConInner.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.reportViewer1);
-            this.splitContainer1.Size = new System.Drawing.Size(1194, 626);
-            this.splitContainer1.SplitterDistance = 163;
-            this.splitContainer1.TabIndex = 5;
+            this.splitConInner.Panel2.Controls.Add(this.reportViewer1);
+            this.splitConInner.Size = new System.Drawing.Size(1175, 626);
+            this.splitConInner.SplitterDistance = 163;
+            this.splitConInner.TabIndex = 5;
             // 
             // tvGroupings
             // 
             this.tvGroupings.CheckBoxes = true;
-            this.tvGroupings.Location = new System.Drawing.Point(12, 27);
+            this.tvGroupings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvGroupings.Location = new System.Drawing.Point(0, 0);
             this.tvGroupings.Name = "tvGroupings";
-            this.tvGroupings.Size = new System.Drawing.Size(165, 626);
+            this.tvGroupings.Size = new System.Drawing.Size(192, 626);
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
-            // calculateAccountBalancesToolStripMenuItem
+            // splitConOuter
             // 
-            this.calculateAccountBalancesToolStripMenuItem.Name = "calculateAccountBalancesToolStripMenuItem";
-            this.calculateAccountBalancesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.calculateAccountBalancesToolStripMenuItem.Text = "Calculate Account Balances";
-            this.calculateAccountBalancesToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalancesToolStripMenuItem_Click);
+            this.splitConOuter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitConOuter.Location = new System.Drawing.Point(12, 27);
+            this.splitConOuter.Name = "splitConOuter";
+            // 
+            // splitConOuter.Panel1
+            // 
+            this.splitConOuter.Panel1.Controls.Add(this.tvGroupings);
+            // 
+            // splitConOuter.Panel2
+            // 
+            this.splitConOuter.Panel2.Controls.Add(this.splitConInner);
+            this.splitConOuter.Size = new System.Drawing.Size(1371, 626);
+            this.splitConOuter.SplitterDistance = 192;
+            this.splitConOuter.TabIndex = 7;
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printPreviewToolStripMenuItem.Text = "Print Preview";
+            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1395, 665);
-            this.Controls.Add(this.tvGroupings);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitConOuter);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -193,10 +224,14 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitConInner.Panel1.ResumeLayout(false);
+            this.splitConInner.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).EndInit();
+            this.splitConInner.ResumeLayout(false);
+            this.splitConOuter.Panel1.ResumeLayout(false);
+            this.splitConOuter.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).EndInit();
+            this.splitConOuter.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,9 +250,11 @@
         private MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter viewBudgetGroupingsInOrderTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem editGroupingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSourceFileToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitConInner;
         private System.Windows.Forms.TreeView tvGroupings;
         private System.Windows.Forms.ToolStripMenuItem calculateAccountBalancesToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitConOuter;
+        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
     }
 }
 

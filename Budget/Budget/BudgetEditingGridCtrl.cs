@@ -1,4 +1,5 @@
 ﻿using Budget.MainDataSetTableAdapters;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,12 @@ namespace Budget
         {
             base.OnLoad(e);
 
+            // In Design mode?
+            if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
+                return;
+
+            budgetTableAdapter.Connection = Program.DbConnection;
+
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
@@ -62,7 +69,14 @@ namespace Budget
 
         private void tbFilter_Validated(object sender, EventArgs e)
         {
-            budgetBindingSource.Filter = tbFilter.Text;
+            try
+            {
+                budgetBindingSource.Filter = tbFilter.Text;
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Filter error: " + ex.Message);
+            }
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnApplyTypes = new System.Windows.Forms.Button();
             this.chBoxShowUntypedOnly = new System.Windows.Forms.CheckBox();
@@ -38,18 +39,25 @@
             this.btnSaveGroupingPatterns = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.gridGroupingPatterns = new System.Windows.Forms.DataGridView();
-            this.budgetTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet1 = new Budget.MainDataSet();
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
-            this.button3 = new System.Windows.Forms.Button();
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ForIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.forIgnoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.budgetTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet1 = new Budget.MainDataSet();
+            this.label1 = new System.Windows.Forms.Label();
+            this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbPattern = new System.Windows.Forms.TextBox();
+            this.comboTrType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chBoxIncome = new System.Windows.Forms.CheckBox();
+            this.chBoxIgnore = new System.Windows.Forms.CheckBox();
+            this.btnApplyOneTime = new System.Windows.Forms.Button();
+            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +88,7 @@
             this.chBoxShowUntypedOnly.TabIndex = 2;
             this.chBoxShowUntypedOnly.Text = "Untyped Items Only";
             this.chBoxShowUntypedOnly.UseVisualStyleBackColor = true;
+            this.chBoxShowUntypedOnly.CheckStateChanged += new System.EventHandler(this.chBoxShowUntypedOnly_CheckStateChanged);
             // 
             // btnSaveBudgetItems
             // 
@@ -103,6 +112,13 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnApplyOneTime);
+            this.splitContainer1.Panel1.Controls.Add(this.chBoxIgnore);
+            this.splitContainer1.Panel1.Controls.Add(this.chBoxIncome);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.comboTrType);
+            this.splitContainer1.Panel1.Controls.Add(this.tbPattern);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.btnSaveGroupingPatterns);
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyTypes);
@@ -147,7 +163,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -161,69 +177,24 @@
             this.gridGroupingPatterns.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn1,
             this.patternDataGridViewTextBoxColumn,
-            this.trTypeDataGridViewTextBoxColumn1,
+            this.TrTypeComboColumn,
             this.ForIncomeColumn,
             this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
             this.gridGroupingPatterns.DataSource = this.budgetTypePatternBindingSource;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridGroupingPatterns.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridGroupingPatterns.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridGroupingPatterns.Location = new System.Drawing.Point(0, 32);
             this.gridGroupingPatterns.Name = "gridGroupingPatterns";
             this.gridGroupingPatterns.Size = new System.Drawing.Size(1276, 159);
             this.gridGroupingPatterns.TabIndex = 0;
             this.gridGroupingPatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridGroupingPatterns_CellContentClick);
-            // 
-            // budgetTypePatternBindingSource
-            // 
-            this.budgetTypePatternBindingSource.DataMember = "BudgetTypePattern";
-            this.budgetTypePatternBindingSource.DataSource = this.mainDataSet1;
-            // 
-            // mainDataSet1
-            // 
-            this.mainDataSet1.DataSetName = "MainDataSet";
-            this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // budgetEditingGridCtrl1
-            // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
-            this.budgetEditingGridCtrl1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(-3, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Budget Items";
-            // 
-            // budgetTypePatternTableAdapter
-            // 
-            this.budgetTypePatternTableAdapter.ClearBeforeFill = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(131, 647);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Cancel Changes";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // iDDataGridViewTextBoxColumn1
             // 
@@ -237,14 +208,17 @@
             // 
             this.patternDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.patternDataGridViewTextBoxColumn.DataPropertyName = "Pattern";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.patternDataGridViewTextBoxColumn.HeaderText = "Pattern";
             this.patternDataGridViewTextBoxColumn.Name = "patternDataGridViewTextBoxColumn";
             // 
-            // trTypeDataGridViewTextBoxColumn1
+            // TrTypeComboColumn
             // 
-            this.trTypeDataGridViewTextBoxColumn1.DataPropertyName = "TrType";
-            this.trTypeDataGridViewTextBoxColumn1.HeaderText = "TrType";
-            this.trTypeDataGridViewTextBoxColumn1.Name = "trTypeDataGridViewTextBoxColumn1";
+            this.TrTypeComboColumn.DataPropertyName = "TrType";
+            this.TrTypeComboColumn.HeaderText = "TrType";
+            this.TrTypeComboColumn.Name = "TrTypeComboColumn";
+            this.TrTypeComboColumn.Width = 140;
             // 
             // ForIncomeColumn
             // 
@@ -268,6 +242,121 @@
             this.ColumnApply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColumnApply.Text = "Apply";
             this.ColumnApply.UseColumnTextForButtonValue = true;
+            // 
+            // budgetTypePatternBindingSource
+            // 
+            this.budgetTypePatternBindingSource.DataMember = "BudgetTypePattern";
+            this.budgetTypePatternBindingSource.DataSource = this.mainDataSet1;
+            // 
+            // mainDataSet1
+            // 
+            this.mainDataSet1.DataSetName = "MainDataSet";
+            this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label1.Location = new System.Drawing.Point(-3, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Budget Items";
+            // 
+            // budgetTypePatternTableAdapter
+            // 
+            this.budgetTypePatternTableAdapter.ClearBeforeFill = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(131, 647);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Cancel Changes";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(511, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "One-time pattern:";
+            // 
+            // tbPattern
+            // 
+            this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPattern.Location = new System.Drawing.Point(605, 2);
+            this.tbPattern.Name = "tbPattern";
+            this.tbPattern.Size = new System.Drawing.Size(294, 20);
+            this.tbPattern.TabIndex = 9;
+            // 
+            // comboTrType
+            // 
+            this.comboTrType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboTrType.FormattingEnabled = true;
+            this.comboTrType.Location = new System.Drawing.Point(955, 1);
+            this.comboTrType.Name = "comboTrType";
+            this.comboTrType.Size = new System.Drawing.Size(147, 21);
+            this.comboTrType.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(905, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "TrType:";
+            // 
+            // chBoxIncome
+            // 
+            this.chBoxIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chBoxIncome.AutoSize = true;
+            this.chBoxIncome.Location = new System.Drawing.Point(1108, 3);
+            this.chBoxIncome.Name = "chBoxIncome";
+            this.chBoxIncome.Size = new System.Drawing.Size(61, 17);
+            this.chBoxIncome.TabIndex = 12;
+            this.chBoxIncome.Text = "Income";
+            this.chBoxIncome.UseVisualStyleBackColor = true;
+            // 
+            // chBoxIgnore
+            // 
+            this.chBoxIgnore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chBoxIgnore.AutoSize = true;
+            this.chBoxIgnore.Location = new System.Drawing.Point(1165, 4);
+            this.chBoxIgnore.Name = "chBoxIgnore";
+            this.chBoxIgnore.Size = new System.Drawing.Size(56, 17);
+            this.chBoxIgnore.TabIndex = 13;
+            this.chBoxIgnore.Text = "Ignore";
+            this.chBoxIgnore.UseVisualStyleBackColor = true;
+            // 
+            // btnApplyOneTime
+            // 
+            this.btnApplyOneTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyOneTime.Location = new System.Drawing.Point(1227, 0);
+            this.btnApplyOneTime.Name = "btnApplyOneTime";
+            this.btnApplyOneTime.Size = new System.Drawing.Size(49, 23);
+            this.btnApplyOneTime.TabIndex = 14;
+            this.btnApplyOneTime.Text = "Apply";
+            this.btnApplyOneTime.UseVisualStyleBackColor = true;
+            this.btnApplyOneTime.Click += new System.EventHandler(this.btnApplyOneTime_Click);
+            // 
+            // budgetEditingGridCtrl1
+            // 
+            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
+            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
+            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
+            this.budgetEditingGridCtrl1.TabIndex = 5;
             // 
             // GroupingAssignmentForm
             // 
@@ -309,9 +398,16 @@
         private BudgetEditingGridCtrl budgetEditingGridCtrl1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ForIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn forIgnoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox chBoxIgnore;
+        private System.Windows.Forms.CheckBox chBoxIncome;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboTrType;
+        private System.Windows.Forms.TextBox tbPattern;
+        private System.Windows.Forms.Button btnApplyOneTime;
     }
 }
