@@ -125,6 +125,8 @@ namespace Budget
 
                 MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
                 _Form.ImportFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
+
+                // TODO refresh the grid after the import goes thru
             }
         }
     }

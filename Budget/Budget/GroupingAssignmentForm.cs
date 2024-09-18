@@ -82,13 +82,13 @@ namespace Budget
                     {
                         if (trType != null && (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType))
                             budgetRow.TrType = trType;
-
+                        /* DIAG remove IsIncome from Pattern table, and from the UI control! Cuz its only for categorization!
                         if (forIncome)
                         {
                             if (!budgetRow.IsIncome)
                                 budgetRow.IsIncome = true;
                         }
-
+                        */
                     }
                 }
             }

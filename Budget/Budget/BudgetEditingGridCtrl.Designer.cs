@@ -203,13 +203,6 @@
             this.CommentColumn.Name = "CommentColumn";
             this.CommentColumn.Width = 230;
             // 
-            // IsIncomeColumn
-            // 
-            this.IsIncomeColumn.DataPropertyName = "IsIncome";
-            this.IsIncomeColumn.HeaderText = "Is Income";
-            this.IsIncomeColumn.Name = "IsIncomeColumn";
-            this.IsIncomeColumn.Width = 40;
-            // 
             // ignoreDataGridViewCheckBoxColumn
             // 
             this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";

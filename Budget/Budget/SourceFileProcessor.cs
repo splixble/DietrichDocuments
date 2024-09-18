@@ -299,7 +299,7 @@ namespace Budget
                 {
                     // add new row to table
                     importedRow = _BudgetTable.NewBudgetRow();
-                    importedRow.IsIncome = false; // necessary initialization
+                    // REMOVED importedRow.IsIncome = false; // necessary initialization
                     importedRow.Ignore = false; // necessary initialization
                     importedRow.BalanceIsCalculated = false; // necessary initialization
                 }
