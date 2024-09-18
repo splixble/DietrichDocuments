@@ -7,25 +7,16 @@
 <h1>Song-List</h1>
 
 <table class="table">
-    @*
-        /* DIAG Add sort on header click! with code that looks like:
-        for (var j = 0; j < table.rows[i].cells.length; j++)
-        table.rows[i].cells[j].onclick = function () {
-        tableText(this);
-
-    <th onClick ="alert('DIAG Well, this works, at least.')">
-        */
-    *@
     <thead>
         <tr>
             <th>
-                <a href="/SongList?SortField=Title">@Html.DisplayNameFor(model => model.FullTitle)</a>
+                @Html.DisplayNameFor(model => model.FullTitle) <a href="DIAG.com"><i>Sort</i></a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SongInfo)
             </th>
             <th>
-                <a href="/SongList?SortField=Artist">@Html.DisplayNameFor(model => model.FullArtistName)</a>
+                @Html.DisplayNameFor(model => model.FullArtistName) <a href="DIAG.com"><i>Sort</i></a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Code)
