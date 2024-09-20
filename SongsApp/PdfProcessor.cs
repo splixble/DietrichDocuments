@@ -154,12 +154,12 @@ namespace Songs
             using (StreamWriter csvFileWriter = new StreamWriter(csvFilePath))
             {
                 // write csv heading:
-                csvFileWriter.WriteLine("title;pages;custom");
+                csvFileWriter.WriteLine("title;pages;custom;artists"); // NOTE: field name "artist" does not work; has to be "artists"
 
                 int pageNum = 1;
                 foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
                 {
-                    csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption);
+                    csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.FullArtistName);
 
                     PdfPage page = document.AddPage();
                     page.Size = PdfSharp.PageSize.Letter;
