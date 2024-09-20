@@ -16,6 +16,7 @@ namespace Songs
         public void ProcessPDFs()
         {
             const string customProperty = "/Custom";
+            const string artistProperty = "/Artist";
 
             // FolderBrowserDialog 
 
@@ -81,7 +82,9 @@ namespace Songs
                     string inputfile = pdfDir + "\\" + pdfFileName;
                     string outputfile = pdfDir + "\\Altered\\" + pdfFileName; // because norton firewall wont let me change in place...DIAG wtat to do?
                     string custValue = pdfsInDir[pdfFileName].SetlistCaption;
+                    string artistValue = pdfsInDir[pdfFileName].FullArtistName; // DIAG remove the X
                     PdfDocument document = PdfReader.Open(inputfile);
+
                     bool setCustomProperty;
                     if (document.Info.Elements.ContainsKey(customProperty))
                     {
@@ -91,9 +94,23 @@ namespace Songs
                     }
                     else
                         setCustomProperty = true;
-                    if (setCustomProperty)
+
+                    bool setArtistProperty;
+                    if (document.Info.Elements.ContainsKey(artistProperty))
                     {
-                        document.Info.Elements[customProperty] = new PdfString(custValue);
+                        // set only if value changed
+                        setArtistProperty = !(document.Info.Elements[artistProperty] is PdfString)
+                            || ((PdfString)document.Info.Elements[artistProperty]).Value != artistValue;
+                    }
+                    else
+                        setArtistProperty = true;
+
+                    if (setCustomProperty || setArtistProperty)
+                    {
+                        if (setCustomProperty)
+                            document.Info.Elements[customProperty] = new PdfString(custValue);
+                        if (setArtistProperty)
+                            document.Info.Elements[artistProperty] = new PdfString(artistValue);
                         document.Save(outputfile);
                         matches += (matches == "" ? "" : ", ") + pdfFileName;
                     }
