@@ -16,7 +16,7 @@ namespace Songs
         public void ProcessPDFs()
         {
             const string customProperty = "/Custom";
-            const string artistProperty = "/Artist";
+            const string artistsProperty = "/Artists";
 
             // FolderBrowserDialog 
 
@@ -82,7 +82,7 @@ namespace Songs
                     string inputfile = pdfDir + "\\" + pdfFileName;
                     string outputfile = pdfDir + "\\Altered\\" + pdfFileName; // because norton firewall wont let me change in place...DIAG wtat to do?
                     string custValue = pdfsInDir[pdfFileName].SetlistCaption;
-                    string artistValue = pdfsInDir[pdfFileName].FullArtistName; // DIAG remove the X
+                    string artistsValue = pdfsInDir[pdfFileName].ArtistList; 
                     PdfDocument document = PdfReader.Open(inputfile);
 
                     bool setCustomProperty;
@@ -96,11 +96,11 @@ namespace Songs
                         setCustomProperty = true;
 
                     bool setArtistProperty;
-                    if (document.Info.Elements.ContainsKey(artistProperty))
+                    if (document.Info.Elements.ContainsKey(artistsProperty))
                     {
                         // set only if value changed
-                        setArtistProperty = !(document.Info.Elements[artistProperty] is PdfString)
-                            || ((PdfString)document.Info.Elements[artistProperty]).Value != artistValue;
+                        setArtistProperty = !(document.Info.Elements[artistsProperty] is PdfString)
+                            || ((PdfString)document.Info.Elements[artistsProperty]).Value != artistsValue;
                     }
                     else
                         setArtistProperty = true;
@@ -110,7 +110,7 @@ namespace Songs
                         if (setCustomProperty)
                             document.Info.Elements[customProperty] = new PdfString(custValue);
                         if (setArtistProperty)
-                            document.Info.Elements[artistProperty] = new PdfString(artistValue);
+                            document.Info.Elements[artistsProperty] = new PdfString(artistsValue);
                         document.Save(outputfile);
                         matches += (matches == "" ? "" : ", ") + pdfFileName;
                     }
@@ -159,7 +159,7 @@ namespace Songs
                 int pageNum = 1;
                 foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
                 {
-                    csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.FullArtistName);
+                    csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.ArtistList);
 
                     PdfPage page = document.AddPage();
                     page.Size = PdfSharp.PageSize.Letter;
