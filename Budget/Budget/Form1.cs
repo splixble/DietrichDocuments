@@ -124,7 +124,6 @@ namespace Budget
             for (int ri = 0; ri < gridMain.RowCount; ri++)
             {
                 DataGridViewRow row = gridMain.Rows[ri]; 
-                // DIAG should color row header to show if it's a parent grouping
                 row.HeaderCell.Value = rows.Values[ri];
                 row.Tag = rows.Keys[ri];
             }
