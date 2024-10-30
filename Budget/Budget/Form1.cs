@@ -57,7 +57,7 @@ namespace Budget
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
                 string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" ;
-                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.SongbookConnectionString10May24))
+                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
                     // reportDataConn.Open();
                     SqlCommand reportDataCmd = new SqlCommand();

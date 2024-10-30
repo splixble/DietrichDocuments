@@ -4,9 +4,8 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SongbookConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SongbookConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Budget.Properties.Settings.GlobalReference.Default.SongbookConnectionString" Provider="Microsoft.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="SongbookConnectionString10May24" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="SongbookConnectionString10May24 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Budget.Properties.Settings.GlobalReference.Default.SongbookConnectionString10May24" Provider="Microsoft.Data.SqlClient" />
-        </Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BudgetConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BudgetConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Budget.Properties.Settings.GlobalReference.Default.BudgetConnectionString" Provider="Microsoft.Data.SqlClient" />
+         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewBudgetMonthlyReportTableAdapter" GeneratorDataComponentClassName="ViewBudgetMonthlyReportTableAdapter" Name="ViewBudgetMonthlyReport" UserDataComponentName="ViewBudgetMonthlyReportTableAdapter">
             <MainSource>
@@ -29,7 +28,7 @@ FROM            ViewBudgetMonthlyReport</CommandText>
               <Mapping SourceColumn="GroupingParent" DataSetColumn="GroupingParent" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByGroupingList" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByGroupingList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByGroupingList">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByGroupingList" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByGroupingList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByGroupingList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT AmountNormalized, Grouping, GroupingParent, GroupingWithParent, TrMonth, ViewKey FROM ViewBudgetMonthlyReport WHERE (Grouping IN (@GroupingList))</CommandText>
@@ -43,7 +42,7 @@ FROM            ViewBudgetMonthlyReport</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewBudgetWithMonthlyTableAdapter" GeneratorDataComponentClassName="ViewBudgetWithMonthlyTableAdapter" Name="ViewBudgetWithMonthly" UserDataComponentName="ViewBudgetWithMonthlyTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        TrDate, Amount, AmountNormalized, TrType, Grouping, GroupingType, Descrip, Account, TrCode, DateWithMBOffset, MonthWithMBOffset, GroupingParent, GroupingWithParent
@@ -69,7 +68,7 @@ FROM            ViewBudgetWithMonthly</CommandText>
               <Mapping SourceColumn="GroupingWithParent" DataSetColumn="GroupingWithParent" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByMonthAndGrouping" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByMonthAndGrouping" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByMonthAndGrouping">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByMonthAndGrouping" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByMonthAndGrouping" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByMonthAndGrouping">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Account, Amount, AmountNormalized, DateWithMBOffset, Descrip, Grouping, GroupingParent, GroupingType, GroupingWithParent, MonthWithMBOffset, TrCode, TrDate, TrType FROM ViewBudgetWithMonthly WHERE (MonthWithMBOffset = @Month) AND (GroupingWithParent = @GroupingWithParent )</CommandText>
@@ -84,7 +83,7 @@ FROM            ViewBudgetWithMonthly</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetTypePatternTableAdapter" GeneratorDataComponentClassName="BudgetTypePatternTableAdapter" Name="BudgetTypePattern" UserDataComponentName="BudgetTypePatternTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetTypePattern" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetTypePattern" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetTypePattern] WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome))</CommandText>
@@ -147,7 +146,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewBudgetGroupingsInOrderTableAdapter" GeneratorDataComponentClassName="ViewBudgetGroupingsInOrderTableAdapter" Name="ViewBudgetGroupingsInOrder" UserDataComponentName="ViewBudgetGroupingsInOrderTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetGroupingsInOrder" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetGroupingsInOrder" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Grouping, OrderNum, ParentGroupingLabel, GroupingType
@@ -168,7 +167,7 @@ ORDER BY OrderNum, Grouping</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetSourceFileFormatTableAdapter" GeneratorDataComponentClassName="BudgetSourceFileFormatTableAdapter" Name="BudgetSourceFileFormat" UserDataComponentName="BudgetSourceFileFormatTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFileFormat" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFileFormat" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetSourceFileFormat] WHERE (([FormatCode] = @Original_FormatCode) AND ((@IsNull_FormatColumns = 1 AND [FormatColumns] IS NULL) OR ([FormatColumns] = @Original_FormatColumns)) AND ([CreditsAreNegative] = @Original_CreditsAreNegative) AND ((@IsNull_FileExtension = 1 AND [FileExtension] IS NULL) OR ([FileExtension] = @Original_FileExtension)))</CommandText>
@@ -231,7 +230,7 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetAccountTableAdapter" GeneratorDataComponentClassName="BudgetAccountTableAdapter" Name="BudgetAccount" UserDataComponentName="BudgetAccountTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString10May24 (Settings)" DbObjectName="Songbook.dbo.BudgetAccount" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetAccount" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetAccount] WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)))</CommandText>
@@ -288,7 +287,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetSourceFileTableAdapter" GeneratorDataComponentClassName="BudgetSourceFileTableAdapter" Name="BudgetSourceFile" UserDataComponentName="BudgetSourceFileTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetSourceFile] WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)))</CommandText>
@@ -361,7 +360,7 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
               <Mapping SourceColumn="StatementDate" DataSetColumn="StatementDate" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillThisMonth" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillThisMonth" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillThisMonth">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillThisMonth" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillThisMonth" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillThisMonth">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
@@ -375,7 +374,7 @@ WHERE        (ImportDateTime &gt;= DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE(
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetSourceFileItemsTableAdapter" GeneratorDataComponentClassName="BudgetSourceFileItemsTableAdapter" Name="BudgetSourceFileItems" UserDataComponentName="BudgetSourceFileItemsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFileItems" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetSourceFileItems" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetSourceFileItems] WHERE (([ItemID] = @Original_ItemID) AND ([SourceFile] = @Original_SourceFile) AND ((@IsNull_SourceFileLine = 1 AND [SourceFileLine] IS NULL) OR ([SourceFileLine] = @Original_SourceFileLine)) AND ([BudgetItem] = @Original_BudgetItem))</CommandText>
@@ -435,7 +434,7 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetTypeGroupingsTableAdapter" GeneratorDataComponentClassName="BudgetTypeGroupingsTableAdapter" Name="BudgetTypeGroupings" UserDataComponentName="BudgetTypeGroupingsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetTypeGroupings" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.BudgetTypeGroupings" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [BudgetTypeGroupings] WHERE (([TRTypeID] = @Original_TRTypeID) AND ([GroupingLabel] = @Original_GroupingLabel) AND ((@IsNull_ParentGroupingLabel = 1 AND [ParentGroupingLabel] IS NULL) OR ([ParentGroupingLabel] = @Original_ParentGroupingLabel)) AND ((@IsNull_CodeAndName = 1 AND [CodeAndName] IS NULL) OR ([CodeAndName] = @Original_CodeAndName)))</CommandText>
@@ -496,7 +495,7 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BudgetTableAdapter" GeneratorDataComponentClassName="BudgetTableAdapter" Name="Budget" UserDataComponentName="BudgetTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SongbookConnectionString10May24 (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [Budget] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)))</CommandText>
@@ -611,7 +610,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
               <Mapping SourceColumn="CardTransDate" DataSetColumn="CardTransDate" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="SongbookConnectionString10May24 (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAccount" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByAccount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAccount">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAccount" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByAccount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAccount">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Account, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Descrip, Descrip2, DescripFromVendor, ID, Ignore, TrCode, TrDate, TrType FROM Budget WHERE (Account = @AccountCode) ORDER BY TrDate, ID</CommandText>
@@ -621,7 +620,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="SongbookConnectionString10May24 (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillUntypedUnignored" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillUntypedUnignored" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillUntypedUnignored">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.Budget" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillUntypedUnignored" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillUntypedUnignored" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillUntypedUnignored">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Account, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Descrip, Descrip2, DescripFromVendor, ID, Ignore, TrCode, TrDate, TrType FROM Budget WHERE (TrType IS NULL) AND (Ignore = 0) ORDER BY TrDate, ID</CommandText>
@@ -684,7 +683,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
               <xs:element name="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -725,14 +724,14 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
               </xs:element>
               <xs:element name="DateWithMBOffset" msprop:Generator_ColumnPropNameInTable="DateWithMBOffsetColumn" msprop:Generator_ColumnPropNameInRow="DateWithMBOffset" msprop:Generator_UserColumnName="DateWithMBOffset" msprop:Generator_ColumnVarNameInTable="columnDateWithMBOffset" type="xs:dateTime" minOccurs="0" />
               <xs:element name="MonthWithMBOffset" msprop:Generator_ColumnPropNameInTable="MonthWithMBOffsetColumn" msprop:Generator_ColumnPropNameInRow="MonthWithMBOffset" msprop:Generator_UserColumnName="MonthWithMBOffset" msprop:Generator_ColumnVarNameInTable="columnMonthWithMBOffset" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="GroupingParent" msprop:Generator_ColumnPropNameInRow="GroupingParent" msprop:Generator_ColumnPropNameInTable="GroupingParentColumn" msprop:Generator_ColumnVarNameInTable="columnGroupingParent" msprop:Generator_UserColumnName="GroupingParent" minOccurs="0">
+              <xs:element name="GroupingParent" msprop:Generator_UserColumnName="GroupingParent" msprop:Generator_ColumnPropNameInTable="GroupingParentColumn" msprop:Generator_ColumnPropNameInRow="GroupingParent" msprop:Generator_ColumnVarNameInTable="columnGroupingParent" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="GroupingWithParent" msprop:Generator_ColumnPropNameInRow="GroupingWithParent" msprop:Generator_ColumnPropNameInTable="GroupingWithParentColumn" msprop:Generator_ColumnVarNameInTable="columnGroupingWithParent" msprop:Generator_UserColumnName="GroupingWithParent" minOccurs="0">
+              <xs:element name="GroupingWithParent" msprop:Generator_UserColumnName="GroupingWithParent" msprop:Generator_ColumnPropNameInTable="GroupingWithParentColumn" msprop:Generator_ColumnPropNameInRow="GroupingWithParent" msprop:Generator_ColumnVarNameInTable="columnGroupingWithParent" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="501" />
@@ -756,7 +755,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
               <xs:element name="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -902,7 +901,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
               <xs:element name="TRTypeID" msprop:Generator_ColumnPropNameInTable="TRTypeIDColumn" msprop:Generator_ColumnPropNameInRow="TRTypeID" msprop:Generator_UserColumnName="TRTypeID" msprop:Generator_ColumnVarNameInTable="columnTRTypeID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -930,65 +929,65 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Budget" msprop:Generator_RowClassName="BudgetRow" msprop:Generator_RowEvHandlerName="BudgetRowChangeEventHandler" msprop:Generator_RowDeletedName="BudgetRowDeleted" msprop:Generator_RowDeletingName="BudgetRowDeleting" msprop:Generator_RowEvArgName="BudgetRowChangeEvent" msprop:Generator_TablePropName="Budget" msprop:Generator_RowChangedName="BudgetRowChanged" msprop:Generator_UserTableName="Budget" msprop:Generator_RowChangingName="BudgetRowChanging" msprop:Generator_TableClassName="BudgetDataTable" msprop:Generator_TableVarName="tableBudget">
+        <xs:element name="Budget" msprop:Generator_RowEvHandlerName="BudgetRowChangeEventHandler" msprop:Generator_RowDeletedName="BudgetRowDeleted" msprop:Generator_RowDeletingName="BudgetRowDeleting" msprop:Generator_RowEvArgName="BudgetRowChangeEvent" msprop:Generator_TablePropName="Budget" msprop:Generator_RowChangedName="BudgetRowChanged" msprop:Generator_UserTableName="Budget" msprop:Generator_RowChangingName="BudgetRowChanging" msprop:Generator_RowClassName="BudgetRow" msprop:Generator_TableClassName="BudgetDataTable" msprop:Generator_TableVarName="tableBudget">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
-              <xs:element name="TrDate" msprop:Generator_UserColumnName="TrDate" msprop:Generator_ColumnPropNameInTable="TrDateColumn" msprop:Generator_ColumnPropNameInRow="TrDate" msprop:Generator_ColumnVarNameInTable="columnTrDate" type="xs:dateTime" />
-              <xs:element name="Descrip" msprop:Generator_UserColumnName="Descrip" msprop:Generator_ColumnPropNameInTable="DescripColumn" msprop:Generator_ColumnPropNameInRow="Descrip" msprop:Generator_ColumnVarNameInTable="columnDescrip">
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
+              <xs:element name="TrDate" msprop:Generator_ColumnPropNameInTable="TrDateColumn" msprop:Generator_ColumnPropNameInRow="TrDate" msprop:Generator_UserColumnName="TrDate" msprop:Generator_ColumnVarNameInTable="columnTrDate" type="xs:dateTime" />
+              <xs:element name="Descrip" msprop:Generator_ColumnPropNameInTable="DescripColumn" msprop:Generator_ColumnPropNameInRow="Descrip" msprop:Generator_UserColumnName="Descrip" msprop:Generator_ColumnVarNameInTable="columnDescrip">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Account" msprop:Generator_UserColumnName="Account" msprop:Generator_ColumnPropNameInTable="AccountColumn" msprop:Generator_ColumnPropNameInRow="Account" msprop:Generator_ColumnVarNameInTable="columnAccount">
+              <xs:element name="Account" msprop:Generator_ColumnPropNameInTable="AccountColumn" msprop:Generator_ColumnPropNameInRow="Account" msprop:Generator_UserColumnName="Account" msprop:Generator_ColumnVarNameInTable="columnAccount">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
+              <xs:element name="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
+                    <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TrCode" msprop:Generator_UserColumnName="TrCode" msprop:Generator_ColumnPropNameInTable="TrCodeColumn" msprop:Generator_ColumnPropNameInRow="TrCode" msprop:Generator_ColumnVarNameInTable="columnTrCode" minOccurs="0">
+              <xs:element name="TrCode" msprop:Generator_ColumnPropNameInTable="TrCodeColumn" msprop:Generator_ColumnPropNameInRow="TrCode" msprop:Generator_UserColumnName="TrCode" msprop:Generator_ColumnVarNameInTable="columnTrCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Amount" msprop:Generator_UserColumnName="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" type="xs:decimal" />
-              <xs:element name="Ignore" msprop:Generator_UserColumnName="Ignore" msprop:Generator_ColumnPropNameInTable="IgnoreColumn" msprop:Generator_ColumnPropNameInRow="Ignore" msprop:Generator_ColumnVarNameInTable="columnIgnore" type="xs:boolean" />
-              <xs:element name="Balance" msprop:Generator_UserColumnName="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Comment" msprop:Generator_UserColumnName="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" minOccurs="0">
+              <xs:element name="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_UserColumnName="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" type="xs:decimal" />
+              <xs:element name="Ignore" msprop:Generator_ColumnPropNameInTable="IgnoreColumn" msprop:Generator_ColumnPropNameInRow="Ignore" msprop:Generator_UserColumnName="Ignore" msprop:Generator_ColumnVarNameInTable="columnIgnore" type="xs:boolean" />
+              <xs:element name="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_UserColumnName="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_UserColumnName="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Descrip2" msprop:Generator_UserColumnName="Descrip2" msprop:Generator_ColumnPropNameInTable="Descrip2Column" msprop:Generator_ColumnPropNameInRow="Descrip2" msprop:Generator_ColumnVarNameInTable="columnDescrip2" minOccurs="0">
+              <xs:element name="Descrip2" msprop:Generator_ColumnPropNameInTable="Descrip2Column" msprop:Generator_ColumnPropNameInRow="Descrip2" msprop:Generator_UserColumnName="Descrip2" msprop:Generator_ColumnVarNameInTable="columnDescrip2" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="BalanceIsCalculated" msprop:Generator_UserColumnName="BalanceIsCalculated" msprop:Generator_ColumnPropNameInTable="BalanceIsCalculatedColumn" msprop:Generator_ColumnPropNameInRow="BalanceIsCalculated" msprop:Generator_ColumnVarNameInTable="columnBalanceIsCalculated" type="xs:boolean" />
-              <xs:element name="DescripFromVendor" msprop:Generator_UserColumnName="DescripFromVendor" msprop:Generator_ColumnPropNameInTable="DescripFromVendorColumn" msprop:Generator_ColumnPropNameInRow="DescripFromVendor" msprop:Generator_ColumnVarNameInTable="columnDescripFromVendor" minOccurs="0">
+              <xs:element name="BalanceIsCalculated" msprop:Generator_ColumnPropNameInTable="BalanceIsCalculatedColumn" msprop:Generator_ColumnPropNameInRow="BalanceIsCalculated" msprop:Generator_UserColumnName="BalanceIsCalculated" msprop:Generator_ColumnVarNameInTable="columnBalanceIsCalculated" type="xs:boolean" />
+              <xs:element name="DescripFromVendor" msprop:Generator_ColumnPropNameInTable="DescripFromVendorColumn" msprop:Generator_ColumnPropNameInRow="DescripFromVendor" msprop:Generator_UserColumnName="DescripFromVendor" msprop:Generator_ColumnVarNameInTable="columnDescripFromVendor" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CardTransDate" msprop:Generator_UserColumnName="CardTransDate" msprop:Generator_ColumnPropNameInTable="CardTransDateColumn" msprop:Generator_ColumnPropNameInRow="CardTransDate" msprop:Generator_ColumnVarNameInTable="columnCardTransDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CardTransDate" msprop:Generator_ColumnPropNameInTable="CardTransDateColumn" msprop:Generator_ColumnPropNameInRow="CardTransDate" msprop:Generator_UserColumnName="CardTransDate" msprop:Generator_ColumnVarNameInTable="columnCardTransDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

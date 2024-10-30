@@ -35,6 +35,13 @@
             this.chBoxShowUntypedOnly = new System.Windows.Forms.CheckBox();
             this.btnSaveBudgetItems = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnApplyOneTime = new System.Windows.Forms.Button();
+            this.chBoxIgnore = new System.Windows.Forms.CheckBox();
+            this.chBoxIncome = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboTrType = new System.Windows.Forms.ComboBox();
+            this.tbPattern = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSaveGroupingPatterns = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,17 +54,11 @@
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.budgetTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
+            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             this.label1 = new System.Windows.Forms.Label();
             this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbPattern = new System.Windows.Forms.TextBox();
-            this.comboTrType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.chBoxIncome = new System.Windows.Forms.CheckBox();
-            this.chBoxIgnore = new System.Windows.Forms.CheckBox();
-            this.btnApplyOneTime = new System.Windows.Forms.Button();
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
+            this.btnApplyToSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -112,6 +113,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnApplyToSelected);
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyOneTime);
             this.splitContainer1.Panel1.Controls.Add(this.chBoxIgnore);
             this.splitContainer1.Panel1.Controls.Add(this.chBoxIncome);
@@ -134,6 +136,76 @@
             this.splitContainer1.Size = new System.Drawing.Size(1276, 658);
             this.splitContainer1.SplitterDistance = 223;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // btnApplyOneTime
+            // 
+            this.btnApplyOneTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyOneTime.Location = new System.Drawing.Point(1111, 0);
+            this.btnApplyOneTime.Name = "btnApplyOneTime";
+            this.btnApplyOneTime.Size = new System.Drawing.Size(49, 23);
+            this.btnApplyOneTime.TabIndex = 14;
+            this.btnApplyOneTime.Text = "Apply";
+            this.btnApplyOneTime.UseVisualStyleBackColor = true;
+            this.btnApplyOneTime.Click += new System.EventHandler(this.btnApplyOneTime_Click);
+            // 
+            // chBoxIgnore
+            // 
+            this.chBoxIgnore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chBoxIgnore.AutoSize = true;
+            this.chBoxIgnore.Location = new System.Drawing.Point(1049, 4);
+            this.chBoxIgnore.Name = "chBoxIgnore";
+            this.chBoxIgnore.Size = new System.Drawing.Size(56, 17);
+            this.chBoxIgnore.TabIndex = 13;
+            this.chBoxIgnore.Text = "Ignore";
+            this.chBoxIgnore.UseVisualStyleBackColor = true;
+            // 
+            // chBoxIncome
+            // 
+            this.chBoxIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chBoxIncome.AutoSize = true;
+            this.chBoxIncome.Location = new System.Drawing.Point(992, 3);
+            this.chBoxIncome.Name = "chBoxIncome";
+            this.chBoxIncome.Size = new System.Drawing.Size(61, 17);
+            this.chBoxIncome.TabIndex = 12;
+            this.chBoxIncome.Text = "Income";
+            this.chBoxIncome.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(715, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "TrType:";
+            // 
+            // comboTrType
+            // 
+            this.comboTrType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboTrType.FormattingEnabled = true;
+            this.comboTrType.Location = new System.Drawing.Point(765, 1);
+            this.comboTrType.Name = "comboTrType";
+            this.comboTrType.Size = new System.Drawing.Size(221, 21);
+            this.comboTrType.TabIndex = 10;
+            // 
+            // tbPattern
+            // 
+            this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPattern.Location = new System.Drawing.Point(415, 2);
+            this.tbPattern.Name = "tbPattern";
+            this.tbPattern.Size = new System.Drawing.Size(294, 20);
+            this.tbPattern.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(321, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "One-time pattern:";
             // 
             // button2
             // 
@@ -253,6 +325,16 @@
             this.mainDataSet1.DataSetName = "MainDataSet";
             this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // budgetEditingGridCtrl1
+            // 
+            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
+            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
+            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
+            this.budgetEditingGridCtrl1.TabIndex = 5;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -278,85 +360,16 @@
             this.button3.Text = "Cancel Changes";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // btnApplyToSelected
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(511, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "One-time pattern:";
-            // 
-            // tbPattern
-            // 
-            this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPattern.Location = new System.Drawing.Point(605, 2);
-            this.tbPattern.Name = "tbPattern";
-            this.tbPattern.Size = new System.Drawing.Size(294, 20);
-            this.tbPattern.TabIndex = 9;
-            // 
-            // comboTrType
-            // 
-            this.comboTrType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboTrType.FormattingEnabled = true;
-            this.comboTrType.Location = new System.Drawing.Point(955, 1);
-            this.comboTrType.Name = "comboTrType";
-            this.comboTrType.Size = new System.Drawing.Size(147, 21);
-            this.comboTrType.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(905, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "TrType:";
-            // 
-            // chBoxIncome
-            // 
-            this.chBoxIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chBoxIncome.AutoSize = true;
-            this.chBoxIncome.Location = new System.Drawing.Point(1108, 3);
-            this.chBoxIncome.Name = "chBoxIncome";
-            this.chBoxIncome.Size = new System.Drawing.Size(61, 17);
-            this.chBoxIncome.TabIndex = 12;
-            this.chBoxIncome.Text = "Income";
-            this.chBoxIncome.UseVisualStyleBackColor = true;
-            // 
-            // chBoxIgnore
-            // 
-            this.chBoxIgnore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chBoxIgnore.AutoSize = true;
-            this.chBoxIgnore.Location = new System.Drawing.Point(1165, 4);
-            this.chBoxIgnore.Name = "chBoxIgnore";
-            this.chBoxIgnore.Size = new System.Drawing.Size(56, 17);
-            this.chBoxIgnore.TabIndex = 13;
-            this.chBoxIgnore.Text = "Ignore";
-            this.chBoxIgnore.UseVisualStyleBackColor = true;
-            // 
-            // btnApplyOneTime
-            // 
-            this.btnApplyOneTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApplyOneTime.Location = new System.Drawing.Point(1227, 0);
-            this.btnApplyOneTime.Name = "btnApplyOneTime";
-            this.btnApplyOneTime.Size = new System.Drawing.Size(49, 23);
-            this.btnApplyOneTime.TabIndex = 14;
-            this.btnApplyOneTime.Text = "Apply";
-            this.btnApplyOneTime.UseVisualStyleBackColor = true;
-            this.btnApplyOneTime.Click += new System.EventHandler(this.btnApplyOneTime_Click);
-            // 
-            // budgetEditingGridCtrl1
-            // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
-            this.budgetEditingGridCtrl1.TabIndex = 5;
+            this.btnApplyToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyToSelected.Location = new System.Drawing.Point(1166, 0);
+            this.btnApplyToSelected.Name = "btnApplyToSelected";
+            this.btnApplyToSelected.Size = new System.Drawing.Size(107, 23);
+            this.btnApplyToSelected.TabIndex = 15;
+            this.btnApplyToSelected.Text = "Apply to Selected";
+            this.btnApplyToSelected.UseVisualStyleBackColor = true;
+            this.btnApplyToSelected.Click += new System.EventHandler(this.btnApplyToSelected_Click);
             // 
             // GroupingAssignmentForm
             // 
@@ -409,5 +422,6 @@
         private System.Windows.Forms.ComboBox comboTrType;
         private System.Windows.Forms.TextBox tbPattern;
         private System.Windows.Forms.Button btnApplyOneTime;
+        private System.Windows.Forms.Button btnApplyToSelected;
     }
 }

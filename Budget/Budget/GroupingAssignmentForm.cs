@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GridLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -133,6 +135,35 @@ namespace Budget
         private void btnApplyOneTime_Click(object sender, EventArgs e)
         {
             ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxIncome.Checked, chBoxIgnore.Checked);
+        }
+
+        private void btnApplyToSelected_Click(object sender, EventArgs e)
+        {
+            SortedList<int, object> gridRowDict = budgetEditingGridCtrl1.Grid.RowsContainingSelectedData();
+            if (gridRowDict == null)
+                return;
+
+            string trType = comboTrType.SelectedValue as string;
+            if (trType == null)
+                return;
+
+            // Gather Budget table rows: 
+            List<MainDataSet.BudgetRow> budgetRows = new List<MainDataSet.BudgetRow>();
+            foreach (int rowIndex in gridRowDict.Keys)
+            {
+                DataGridViewRow gridRow = budgetEditingGridCtrl1.Grid.Rows[rowIndex];
+                budgetRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.BudgetRow);
+            }
+
+            // Set TrType in each Budget table record:
+            foreach (MainDataSet.BudgetRow budgetRow in budgetRows)
+            { 
+                if (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType)
+                    budgetRow.TrType = trType;
+            }
+
+            // Now, highlight all grid rows that have modified data:
+            budgetEditingGridCtrl1.SetRowColors();
         }
     }
 }

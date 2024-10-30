@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget", "Budget\Budget.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintLib", "..\PrintLib\PrintLib\PrintLib.csproj", "{380BC570-913D-495C-A72B-2ED41B5E8B08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridLib", "..\GridLib\GridLib.csproj", "{292973CE-2080-4AF4-8FBF-6CEA310702EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{380BC570-913D-495C-A72B-2ED41B5E8B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{380BC570-913D-495C-A72B-2ED41B5E8B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{380BC570-913D-495C-A72B-2ED41B5E8B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

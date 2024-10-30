@@ -21,7 +21,7 @@ namespace Budget
                 if (_DbConnection == null)
                 {
                     _DbConnection = new SqlConnection();
-                    _DbConnection.ConnectionString = Budget.Properties.Settings.Default.SongbookConnectionString;
+                    _DbConnection.ConnectionString = Budget.Properties.Settings.Default.BudgetConnectionString;
                 }
                 return _DbConnection;
             }

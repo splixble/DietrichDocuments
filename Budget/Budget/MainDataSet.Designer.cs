@@ -1212,7 +1212,7 @@ namespace Budget {
                 base.Columns.Add(this.columnGroupingWithParent);
                 this.columnTrDate.AllowDBNull = false;
                 this.columnAmount.AllowDBNull = false;
-                this.columnTrType.MaxLength = 4;
+                this.columnTrType.MaxLength = 8;
                 this.columnGrouping.MaxLength = 250;
                 this.columnGroupingType.AllowDBNull = false;
                 this.columnGroupingType.MaxLength = 1;
@@ -1543,7 +1543,7 @@ namespace Budget {
                 this.columnID.Unique = true;
                 this.columnPattern.AllowDBNull = false;
                 this.columnPattern.MaxLength = 2147483647;
-                this.columnTrType.MaxLength = 4;
+                this.columnTrType.MaxLength = 8;
                 this.columnForIgnore.AllowDBNull = false;
                 this.columnForIgnore.DefaultValue = ((bool)(false));
                 this.columnForIncome.AllowDBNull = false;
@@ -3418,7 +3418,7 @@ namespace Budget {
                                 this.columnTRTypeID}, true));
                 this.columnTRTypeID.AllowDBNull = false;
                 this.columnTRTypeID.Unique = true;
-                this.columnTRTypeID.MaxLength = 4;
+                this.columnTRTypeID.MaxLength = 8;
                 this.columnGroupingLabel.AllowDBNull = false;
                 this.columnGroupingLabel.MaxLength = 250;
                 this.columnParentGroupingLabel.MaxLength = 250;
@@ -3873,7 +3873,7 @@ namespace Budget {
                 this.columnDescrip.MaxLength = 500;
                 this.columnAccount.AllowDBNull = false;
                 this.columnAccount.MaxLength = 4;
-                this.columnTrType.MaxLength = 4;
+                this.columnTrType.MaxLength = 8;
                 this.columnTrCode.MaxLength = 250;
                 this.columnAmount.AllowDBNull = false;
                 this.columnIgnore.AllowDBNull = false;
@@ -5960,7 +5960,7 @@ namespace Budget.MainDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6159,7 +6159,7 @@ namespace Budget.MainDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6529,7 +6529,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6718,7 +6718,7 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7048,7 +7048,7 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7571,7 +7571,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString10May24;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8174,7 +8174,7 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8720,7 +8720,7 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9175,7 +9175,7 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10055,7 +10055,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.SongbookConnectionString10May24;
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
