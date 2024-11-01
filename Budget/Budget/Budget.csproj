@@ -303,6 +303,7 @@
     <None Include="MainDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="MainDataSet.xss">
       <DependentUpon>MainDataSet.xsd</DependentUpon>

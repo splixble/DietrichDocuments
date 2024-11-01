@@ -17,6 +17,7 @@ namespace Budget
         BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new BudgetSourceFileFormatTableAdapter();
         BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
         BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
+        AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
 
         public LookupTableSet()
         {
@@ -59,6 +60,9 @@ namespace Budget
 
             _GroupingsAdapter.Connection = Program.DbConnection;
             _GroupingsAdapter.Fill(_MainDataSet.BudgetTypeGroupings);
+
+            _AccountOwnerAdapter.Connection = Program.DbConnection;
+            _AccountOwnerAdapter.Fill(_MainDataSet.AccountOwner);
         }
     }
 }

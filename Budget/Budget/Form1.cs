@@ -56,7 +56,8 @@ namespace Budget
             MainData.ViewBudgetMonthlyReport.Clear();
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" ;
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
+                    + " AND AccountOwner = '" + comboAccountOwner.SelectedValue + "'"; 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
                     // reportDataConn.Open();
@@ -145,6 +146,11 @@ namespace Budget
         {
             if (!Program.LookupTableSet.LoadWithRetryOption())
                 return;
+
+            comboAccountOwner.DataSource = Program.LookupTableSet.MainDataSet.AccountOwner;
+            comboAccountOwner.ValueMember = "OwnerID";
+            comboAccountOwner.DisplayMember = "OwnerDescription";
+            comboAccountOwner.SelectedValue = "D";// initialize it
 
             viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
             viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
@@ -236,6 +242,11 @@ namespace Budget
         {
             DNPrintDocument printDoc = new DNPrintDocument();
             printDoc.PrintPreview(splitConInner.Panel1); // contains gridMain. Or can I just pass gridMain in?
+        }
+
+        private void comboAccountOwner_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RefreshDisplay();
         }
     }
 }

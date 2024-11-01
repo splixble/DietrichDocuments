@@ -34,6 +34,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSourceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,8 @@
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboAccountOwner = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
@@ -105,9 +107,16 @@
             // loadSourceFileToolStripMenuItem
             // 
             this.loadSourceFileToolStripMenuItem.Name = "loadSourceFileToolStripMenuItem";
-            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadSourceFileToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.loadSourceFileToolStripMenuItem.Text = "Load Source File";
             this.loadSourceFileToolStripMenuItem.Click += new System.EventHandler(this.loadSourceFileToolStripMenuItem_Click);
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.printPreviewToolStripMenuItem.Text = "Print Preview";
+            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -174,11 +183,13 @@
             // 
             // tvGroupings
             // 
+            this.tvGroupings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tvGroupings.CheckBoxes = true;
-            this.tvGroupings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvGroupings.Location = new System.Drawing.Point(0, 0);
+            this.tvGroupings.Location = new System.Drawing.Point(0, 27);
             this.tvGroupings.Name = "tvGroupings";
-            this.tvGroupings.Size = new System.Drawing.Size(192, 626);
+            this.tvGroupings.Size = new System.Drawing.Size(192, 599);
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
@@ -192,6 +203,8 @@
             // 
             // splitConOuter.Panel1
             // 
+            this.splitConOuter.Panel1.Controls.Add(this.label1);
+            this.splitConOuter.Panel1.Controls.Add(this.comboAccountOwner);
             this.splitConOuter.Panel1.Controls.Add(this.tvGroupings);
             // 
             // splitConOuter.Panel2
@@ -201,12 +214,23 @@
             this.splitConOuter.SplitterDistance = 192;
             this.splitConOuter.TabIndex = 7;
             // 
-            // printPreviewToolStripMenuItem
+            // comboAccountOwner
             // 
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.printPreviewToolStripMenuItem.Text = "Print Preview";
-            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
+            this.comboAccountOwner.FormattingEnabled = true;
+            this.comboAccountOwner.Location = new System.Drawing.Point(60, 0);
+            this.comboAccountOwner.Name = "comboAccountOwner";
+            this.comboAccountOwner.Size = new System.Drawing.Size(132, 21);
+            this.comboAccountOwner.TabIndex = 7;
+            this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Accounts:";
             // 
             // Form1
             // 
@@ -229,6 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).EndInit();
             this.splitConInner.ResumeLayout(false);
             this.splitConOuter.Panel1.ResumeLayout(false);
+            this.splitConOuter.Panel1.PerformLayout();
             this.splitConOuter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).EndInit();
             this.splitConOuter.ResumeLayout(false);
@@ -255,6 +280,8 @@
         private System.Windows.Forms.ToolStripMenuItem calculateAccountBalancesToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitConOuter;
         private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboAccountOwner;
     }
 }
 
