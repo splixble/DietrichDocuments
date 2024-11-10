@@ -8,10 +8,8 @@ D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\MySql.Data.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\MySQL.Utility.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\PdfSharp.dll
-D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\Google.Protobuf.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\ZstdNet.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\K4os.Compression.LZ4.Streams.dll
-D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\BouncyCastle.Crypto.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\Ubiety.Dns.Core.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\System.Buffers.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\K4os.Compression.LZ4.dll
@@ -19,8 +17,6 @@ D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\PdfSharp.pdb
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\de\PdfSharp.resources.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.csproj.AssemblyReference.cache
-D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.csproj.SuggestedBindingRedirects.cache
-D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.exe.config
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.ArtistsForm.resources
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.FlagsForm.resources
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.ListingForm.resources

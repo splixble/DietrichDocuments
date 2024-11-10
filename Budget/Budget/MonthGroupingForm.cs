@@ -18,10 +18,10 @@ namespace Budget
             InitializeComponent();
         }
 
-        public void Initialize(DateTime cellMonth, string cellGrouping)
+        public void Initialize(DateTime cellMonth, string cellGrouping, string accountOwner)
         {
             viewBudgetWithMonthlyTableAdapter.Connection = Program.DbConnection;
-            viewBudgetWithMonthlyTableAdapter.FillByMonthAndGrouping(mainDataSet.ViewBudgetWithMonthly, cellMonth, cellGrouping); 
+            viewBudgetWithMonthlyTableAdapter.FillByMonthGroupingAccountOwner(mainDataSet.ViewBudgetWithMonthly, cellMonth, cellGrouping, accountOwner); 
         }
 
         private void MonthGroupingForm_Load(object sender, EventArgs e)

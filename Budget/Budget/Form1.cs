@@ -24,6 +24,8 @@ namespace Budget
 
         const int groupingsGridCheckboxColumn = 0;
 
+        public string AccountOwner => comboAccountOwner.SelectedValue as string;
+
         public Form1()
         {
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace Budget
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
                 string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
-                    + " AND AccountOwner = '" + comboAccountOwner.SelectedValue + "'"; 
+                    + " AND AccountOwner = '" + AccountOwner + "'"; 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
                     // reportDataConn.Open();
@@ -203,10 +205,8 @@ namespace Budget
             DateTime cellMonth = (DateTime)gridMain.Columns[e.ColumnIndex].Tag;
             string cellGrouping = (string)gridMain.Rows[e.RowIndex].Tag;
             MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping);
+            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner);
             monthGroupingForm.ShowDialog();
-
-            //MessageBox.Show("Waa! " + cellMonth.ToString() + " + " + cellGrouping);
         }
 
         private void applyTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)

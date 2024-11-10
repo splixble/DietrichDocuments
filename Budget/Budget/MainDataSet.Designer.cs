@@ -989,6 +989,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnGroupingWithParent;
             
+            private global::System.Data.DataColumn columnAccountOwner;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetWithMonthlyDataTable() {
@@ -1128,6 +1130,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AccountOwnerColumn {
+                get {
+                    return this.columnAccountOwner;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1163,7 +1173,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetWithMonthlyRow AddViewBudgetWithMonthlyRow(System.DateTime TrDate, decimal Amount, decimal AmountNormalized, string TrType, string Grouping, string GroupingType, string Descrip, string Account, string TrCode, System.DateTime DateWithMBOffset, System.DateTime MonthWithMBOffset, string GroupingParent, string GroupingWithParent) {
+            public ViewBudgetWithMonthlyRow AddViewBudgetWithMonthlyRow(System.DateTime TrDate, decimal Amount, decimal AmountNormalized, string TrType, string Grouping, string GroupingType, string Descrip, string Account, string TrCode, System.DateTime DateWithMBOffset, System.DateTime MonthWithMBOffset, string GroupingParent, string GroupingWithParent, string AccountOwner) {
                 ViewBudgetWithMonthlyRow rowViewBudgetWithMonthlyRow = ((ViewBudgetWithMonthlyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TrDate,
@@ -1178,7 +1188,8 @@ namespace Budget {
                         DateWithMBOffset,
                         MonthWithMBOffset,
                         GroupingParent,
-                        GroupingWithParent};
+                        GroupingWithParent,
+                        AccountOwner};
                 rowViewBudgetWithMonthlyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetWithMonthlyRow);
                 return rowViewBudgetWithMonthlyRow;
@@ -1214,6 +1225,7 @@ namespace Budget {
                 this.columnMonthWithMBOffset = base.Columns["MonthWithMBOffset"];
                 this.columnGroupingParent = base.Columns["GroupingParent"];
                 this.columnGroupingWithParent = base.Columns["GroupingWithParent"];
+                this.columnAccountOwner = base.Columns["AccountOwner"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1245,6 +1257,8 @@ namespace Budget {
                 base.Columns.Add(this.columnGroupingParent);
                 this.columnGroupingWithParent = new global::System.Data.DataColumn("GroupingWithParent", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGroupingWithParent);
+                this.columnAccountOwner = new global::System.Data.DataColumn("AccountOwner", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccountOwner);
                 this.columnTrDate.AllowDBNull = false;
                 this.columnAmount.AllowDBNull = false;
                 this.columnTrType.MaxLength = 8;
@@ -1258,6 +1272,7 @@ namespace Budget {
                 this.columnTrCode.MaxLength = 250;
                 this.columnGroupingParent.MaxLength = 250;
                 this.columnGroupingWithParent.MaxLength = 501;
+                this.columnAccountOwner.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4689,6 +4704,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string AccountOwner {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewBudgetWithMonthly.AccountOwnerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AccountOwner\' in table \'ViewBudgetWithMonthly\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetWithMonthly.AccountOwnerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAmountNormalizedNull() {
                 return this.IsNull(this.tableViewBudgetWithMonthly.AmountNormalizedColumn);
             }
@@ -4781,6 +4812,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetGroupingWithParentNull() {
                 this[this.tableViewBudgetWithMonthly.GroupingWithParentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAccountOwnerNull() {
+                return this.IsNull(this.tableViewBudgetWithMonthly.AccountOwnerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAccountOwnerNull() {
+                this[this.tableViewBudgetWithMonthly.AccountOwnerColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6549,6 +6592,7 @@ namespace Budget.MainDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MonthWithMBOffset", "MonthWithMBOffset");
             tableMapping.ColumnMappings.Add("GroupingParent", "GroupingParent");
             tableMapping.ColumnMappings.Add("GroupingWithParent", "GroupingWithParent");
+            tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6567,11 +6611,13 @@ namespace Budget.MainDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        TrDate, Amount, AmountNormalized, TrType, Grouping, GroupingType, D" +
                 "escrip, Account, TrCode, DateWithMBOffset, MonthWithMBOffset, GroupingParent, Gr" +
-                "oupingWithParent\r\nFROM            ViewBudgetWithMonthly";
+                "oupingWithParent, AccountOwner\r\nFROM            ViewBudgetWithMonthly";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT Account, Amount, AmountNormalized, DateWithMBOffset, Descrip, Grouping, GroupingParent, GroupingType, GroupingWithParent, MonthWithMBOffset, TrCode, TrDate, TrType FROM ViewBudgetWithMonthly WHERE (MonthWithMBOffset = @Month) AND (GroupingWithParent = @GroupingWithParent )";
+            this._commandCollection[1].CommandText = @"SELECT        Account, Amount, AmountNormalized, DateWithMBOffset, Descrip, Grouping, GroupingParent, GroupingType, GroupingWithParent, MonthWithMBOffset, TrCode, TrDate, TrType, AccountOwner
+FROM            ViewBudgetWithMonthly
+WHERE        (MonthWithMBOffset = @Month) AND (GroupingWithParent = @GroupingWithParent) AND (AccountOwner = @AccountOwner)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Month";
@@ -6588,6 +6634,14 @@ namespace Budget.MainDataSetTableAdapters {
             param.Size = 501;
             param.IsNullable = true;
             param.SourceColumn = "GroupingWithParent";
+            this._commandCollection[1].Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountOwner";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.Size = 4;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountOwner";
             this._commandCollection[1].Parameters.Add(param);
         }
         
@@ -6608,7 +6662,7 @@ namespace Budget.MainDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMonthAndGrouping(MainDataSet.ViewBudgetWithMonthlyDataTable dataTable, global::System.Nullable<global::System.DateTime> Month, string GroupingWithParent) {
+        public virtual int FillByMonthGroupingAccountOwner(MainDataSet.ViewBudgetWithMonthlyDataTable dataTable, global::System.Nullable<global::System.DateTime> Month, string GroupingWithParent, string AccountOwner) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((Month.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(Month.Value));
@@ -6621,6 +6675,12 @@ namespace Budget.MainDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(GroupingWithParent));
+            }
+            if ((AccountOwner == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(AccountOwner));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
