@@ -18,6 +18,7 @@ namespace Budget
         BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
         BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
         AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
+        ViewAccountTypesWithAllOptionTableAdapter _ViewAccountTypesWithAllOptionAdapter = new ViewAccountTypesWithAllOptionTableAdapter();
 
         public LookupTableSet()
         {
@@ -63,6 +64,9 @@ namespace Budget
 
             _AccountOwnerAdapter.Connection = Program.DbConnection;
             _AccountOwnerAdapter.Fill(_MainDataSet.AccountOwner);
+
+            _ViewAccountTypesWithAllOptionAdapter.Connection = Program.DbConnection;
+            _ViewAccountTypesWithAllOptionAdapter.Fill(_MainDataSet.ViewAccountTypesWithAllOption);           
         }
     }
 }

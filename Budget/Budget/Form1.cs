@@ -25,6 +25,7 @@ namespace Budget
         const int groupingsGridCheckboxColumn = 0;
 
         public string AccountOwner => comboAccountOwner.SelectedValue as string;
+        public char AccountType => ((string)comboAccountType.SelectedValue)[0];
 
         public Form1()
         {
@@ -59,7 +60,10 @@ namespace Budget
             if (groupingsList != "") // if no groupings checked, just leave it cleared
             {
                 string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
-                    + " AND AccountOwner = '" + AccountOwner + "'"; 
+                    + " AND AccountOwner = '" + AccountOwner + "'";
+                if (AccountType != '-') // DIAG this s/b a constant
+                    selectStr += " AND AccountType = '" + AccountType + "'"; // DIAG Investments gives "No Data Available". Also, do the rest of the reports
+
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
                     // reportDataConn.Open();
@@ -154,6 +158,11 @@ namespace Budget
             comboAccountOwner.DisplayMember = "OwnerDescription";
             comboAccountOwner.SelectedValue = "D";// initialize it
 
+            comboAccountType.DataSource = Program.LookupTableSet.MainDataSet.ViewAccountTypesWithAllOption;
+            comboAccountType.ValueMember = "TypeCode";
+            comboAccountType.DisplayMember = "TypeDescription";
+            comboAccountType.SelectedValue = "B"; // initialize it to Bank            
+
             viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
             viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
 
@@ -245,6 +254,11 @@ namespace Budget
         }
 
         private void comboAccountOwner_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RefreshDisplay();
+        }
+
+        private void comboAccountType_SelectionChangeCommitted(object sender, EventArgs e)
         {
             RefreshDisplay();
         }

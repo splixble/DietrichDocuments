@@ -45,8 +45,10 @@
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
-            this.comboAccountOwner = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboAccountOwner = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
@@ -187,9 +189,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvGroupings.CheckBoxes = true;
-            this.tvGroupings.Location = new System.Drawing.Point(0, 27);
+            this.tvGroupings.Location = new System.Drawing.Point(0, 54);
             this.tvGroupings.Name = "tvGroupings";
-            this.tvGroupings.Size = new System.Drawing.Size(192, 599);
+            this.tvGroupings.Size = new System.Drawing.Size(192, 572);
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
@@ -203,6 +205,8 @@
             // 
             // splitConOuter.Panel1
             // 
+            this.splitConOuter.Panel1.Controls.Add(this.label2);
+            this.splitConOuter.Panel1.Controls.Add(this.comboAccountType);
             this.splitConOuter.Panel1.Controls.Add(this.label1);
             this.splitConOuter.Panel1.Controls.Add(this.comboAccountOwner);
             this.splitConOuter.Panel1.Controls.Add(this.tvGroupings);
@@ -214,23 +218,41 @@
             this.splitConOuter.SplitterDistance = 192;
             this.splitConOuter.TabIndex = 7;
             // 
-            // comboAccountOwner
+            // label2
             // 
-            this.comboAccountOwner.FormattingEnabled = true;
-            this.comboAccountOwner.Location = new System.Drawing.Point(60, 0);
-            this.comboAccountOwner.Name = "comboAccountOwner";
-            this.comboAccountOwner.Size = new System.Drawing.Size(132, 21);
-            this.comboAccountOwner.TabIndex = 7;
-            this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Account type:";
+            // 
+            // comboAccountType
+            // 
+            this.comboAccountType.FormattingEnabled = true;
+            this.comboAccountType.Location = new System.Drawing.Point(78, 27);
+            this.comboAccountType.Name = "comboAccountType";
+            this.comboAccountType.Size = new System.Drawing.Size(114, 21);
+            this.comboAccountType.TabIndex = 9;
+            this.comboAccountType.SelectionChangeCommitted += new System.EventHandler(this.comboAccountType_SelectionChangeCommitted);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Location = new System.Drawing.Point(9, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Accounts:";
+            this.label1.Text = "Accounts of:";
+            // 
+            // comboAccountOwner
+            // 
+            this.comboAccountOwner.FormattingEnabled = true;
+            this.comboAccountOwner.Location = new System.Drawing.Point(78, 0);
+            this.comboAccountOwner.Name = "comboAccountOwner";
+            this.comboAccountOwner.Size = new System.Drawing.Size(114, 21);
+            this.comboAccountOwner.TabIndex = 7;
+            this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
             // 
             // Form1
             // 
@@ -282,6 +304,8 @@
         private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboAccountOwner;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboAccountType;
     }
 }
 

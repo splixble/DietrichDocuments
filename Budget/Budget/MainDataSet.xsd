@@ -681,6 +681,24 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)</C
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewAccountTypesWithAllOptionTableAdapter" GeneratorDataComponentClassName="ViewAccountTypesWithAllOptionTableAdapter" Name="ViewAccountTypesWithAllOption" UserDataComponentName="ViewAccountTypesWithAllOptionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewAccountTypesWithAllOption" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TypeCode, TypeDescription
+FROM            ViewAccountTypesWithAllOption</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TypeCode" DataSetColumn="TypeCode" />
+              <Mapping SourceColumn="TypeDescription" DataSetColumn="TypeDescription" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1059,6 +1077,26 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)</C
                 </xs:simpleType>
               </xs:element>
               <xs:element name="OwnerDescription" msprop:Generator_ColumnPropNameInTable="OwnerDescriptionColumn" msprop:Generator_ColumnPropNameInRow="OwnerDescription" msprop:Generator_UserColumnName="OwnerDescription" msprop:Generator_ColumnVarNameInTable="columnOwnerDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewAccountTypesWithAllOption" msprop:Generator_RowEvHandlerName="ViewAccountTypesWithAllOptionRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewAccountTypesWithAllOptionRowDeleted" msprop:Generator_RowDeletingName="ViewAccountTypesWithAllOptionRowDeleting" msprop:Generator_RowEvArgName="ViewAccountTypesWithAllOptionRowChangeEvent" msprop:Generator_TablePropName="ViewAccountTypesWithAllOption" msprop:Generator_RowChangedName="ViewAccountTypesWithAllOptionRowChanged" msprop:Generator_RowChangingName="ViewAccountTypesWithAllOptionRowChanging" msprop:Generator_TableClassName="ViewAccountTypesWithAllOptionDataTable" msprop:Generator_RowClassName="ViewAccountTypesWithAllOptionRow" msprop:Generator_TableVarName="tableViewAccountTypesWithAllOption" msprop:Generator_UserTableName="ViewAccountTypesWithAllOption">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TypeCode" msprop:Generator_ColumnPropNameInRow="TypeCode" msprop:Generator_ColumnPropNameInTable="TypeCodeColumn" msprop:Generator_ColumnVarNameInTable="columnTypeCode" msprop:Generator_UserColumnName="TypeCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeDescription" msprop:Generator_ColumnPropNameInRow="TypeDescription" msprop:Generator_ColumnPropNameInTable="TypeDescriptionColumn" msprop:Generator_ColumnVarNameInTable="columnTypeDescription" msprop:Generator_UserColumnName="TypeDescription">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
