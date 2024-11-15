@@ -84,7 +84,7 @@
             this.gridMain.ReadOnly = true;
             this.gridMain.Size = new System.Drawing.Size(1175, 163);
             this.gridMain.TabIndex = 1;
-            this.gridMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.gridMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMain_CellDoubleClick);
             // 
             // menuStrip1
             // 

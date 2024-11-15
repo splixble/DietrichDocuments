@@ -62,7 +62,7 @@ namespace Budget
                 string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
                     + " AND AccountOwner = '" + AccountOwner + "'";
                 if (AccountType != '-') // DIAG this s/b a constant
-                    selectStr += " AND AccountType = '" + AccountType + "'"; // DIAG Investments gives "No Data Available". Also, do the rest of the reports
+                    selectStr += " AND AccountType = '" + AccountType + "'";
 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
@@ -206,7 +206,7 @@ namespace Budget
             RefreshDisplay();
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void gridMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
@@ -214,7 +214,7 @@ namespace Budget
             DateTime cellMonth = (DateTime)gridMain.Columns[e.ColumnIndex].Tag;
             string cellGrouping = (string)gridMain.Rows[e.RowIndex].Tag;
             MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner);
+            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner, AccountType);
             monthGroupingForm.ShowDialog();
         }
 

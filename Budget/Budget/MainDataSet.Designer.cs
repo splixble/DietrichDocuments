@@ -6942,12 +6942,14 @@ namespace Budget.MainDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT Account, Amount, AmountNormalized, Descrip, Grouping, GroupingParent, GroupingType, GroupingWithParent, MonthWithMBOffset, TrCode, TrDate, TrType, AccountOwner FROM ViewBudgetWithMonthly WHERE (MonthWithMBOffset = @Month) AND (GroupingWithParent = @GroupingWithParent) AND (AccountOwner = @AccountOwner)";
+            this._commandCollection[1].CommandText = @"SELECT        Account, Amount, AmountNormalized, Descrip, Grouping, GroupingParent, GroupingType, GroupingWithParent, MonthWithMBOffset, TrCode, TrDate, TrType, AccountOwner, AccountType
+FROM            ViewBudgetWithMonthly
+WHERE        (MonthWithMBOffset = @Month) AND (GroupingWithParent = @GroupingWithParent) AND (AccountOwner = @AccountOwner) AND (AccountType = @AccountType)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Month";
-            param.DbType = global::System.Data.DbType.DateTime;
-            param.SqlDbType = global::System.Data.SqlDbType.DateTime;
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
             param.Size = 3;
             param.IsNullable = true;
             param.SourceColumn = "MonthWithMBOffset";
@@ -6968,6 +6970,14 @@ namespace Budget.MainDataSetTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "AccountOwner";
             this._commandCollection[1].Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountType";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.Size = 1;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountType";
+            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6987,7 +6997,7 @@ namespace Budget.MainDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMonthGroupingAccountOwner(MainDataSet.ViewBudgetWithMonthlyDataTable dataTable, global::System.Nullable<global::System.DateTime> Month, string GroupingWithParent, string AccountOwner) {
+        public virtual int FillByMonthGroupingAccountOwnerType(MainDataSet.ViewBudgetWithMonthlyDataTable dataTable, global::System.Nullable<global::System.DateTime> Month, string GroupingWithParent, string AccountOwner, string AccountType) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((Month.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(Month.Value));
@@ -7006,6 +7016,12 @@ namespace Budget.MainDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((string)(AccountOwner));
+            }
+            if ((AccountType == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(AccountType));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
