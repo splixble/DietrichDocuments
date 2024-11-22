@@ -200,6 +200,7 @@
     <Compile Include="BudgetEditingGridCtrl.Designer.cs">
       <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

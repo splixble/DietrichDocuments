@@ -13,6 +13,8 @@ using System.IO;
 using System.Xml.Linq;
 using System.Security.Cryptography.Xml;
 using PrintLib;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static Budget.Constants;
 
 namespace Budget
 {
@@ -22,10 +24,19 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
+        MainDataSet.GroupingsInOrderDataTable _GroupingsInOrderTbl = new MainDataSet.GroupingsInOrderDataTable();
+
         const int groupingsGridCheckboxColumn = 0;
 
         public string AccountOwner => comboAccountOwner.SelectedValue as string;
+        string _PrevAccountOwner = "";
+
         public char AccountType => ((string)comboAccountType.SelectedValue)[0];
+        char _PrevAccountType = ' ';
+
+        TreeNode _BalanceTotalNode = null;
+        TreeNode _IncomeNode = null;
+        TreeNode _ExpensesNode = null;
 
         public Form1()
         {
@@ -46,8 +57,99 @@ namespace Budget
                 AddToGroupingListIfChecked(childNode, ref groupingsList);
         }
 
+        void BuildGroupingsTree()
+        {
+            // Remove all nodes, of they exist:
+            tvGroupings.Nodes.Clear();
+
+            // Clear and requery the table: 
+            _GroupingsInOrderTbl.Clear();
+            string groupingsInOrderSelectStr = "SELECT DISTINCT TOP (100) PERCENT Grouping, "
+                + "CASE [grouping] WHEN 'Income' THEN 1 WHEN 'Expenses' THEN 2 ELSE 3 END AS OrderNum, "
+                + "GroupingType, dbo.BudgetTypeGroupings.ParentGroupingLabel "
+                + "FROM ViewBudgetWithMonthly left join BudgetTypeGroupings on ViewBudgetWithMonthly.Grouping = BudgetTypeGroupings.GroupingLabel "
+                + "WHERE (Grouping IS NOT NULL) AND AccountOwner = '" + AccountOwner + "'";
+            if (AccountType != Constants.AccountType.BothValue)
+                groupingsInOrderSelectStr += "AND AccountType = '" + AccountType + "'";
+            groupingsInOrderSelectStr += "ORDER BY OrderNum, Grouping";
+
+            using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
+            {
+                // reportDataConn.Open();
+                SqlCommand groupingsInOrderCmd = new SqlCommand();
+                // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
+                groupingsInOrderCmd.Connection = Program.DbConnection;
+                groupingsInOrderCmd.CommandText = groupingsInOrderSelectStr;
+
+                SqlDataAdapter groupingsInOrderAdap = new SqlDataAdapter(groupingsInOrderCmd);
+                groupingsInOrderAdap.Fill(_GroupingsInOrderTbl);
+            }
+
+            // Populate Groupings tree, and save certain nodes for future reference:
+            // Add parent nodes:
+            foreach (MainDataSet.GroupingsInOrderRow groupingRow in _GroupingsInOrderTbl)
+            {
+                if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != Constants.GroupingType.BalanceOfAccount)
+                {
+                    TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
+
+                    if (groupingRow.GroupingType == Constants.GroupingType.BalanceTotal)
+                        _BalanceTotalNode = node;
+                    else if (groupingRow.Grouping == Constants.GroupingName.Income)
+                        _IncomeNode = node;
+                    else if (groupingRow.Grouping == Constants.GroupingName.Expense)
+                        _ExpensesNode = node;
+                }
+            }
+
+            // Now, add child nodes:
+            foreach (MainDataSet.GroupingsInOrderRow groupingRow in _GroupingsInOrderTbl)
+            {
+                TreeNode parentNode = null;
+                if (!groupingRow.IsParentGroupingLabelNull())
+                {
+                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGroupingLabel, false); // search only top level
+                    if (parentNodeArray.Length > 0) // should never be 0, or >1
+                        parentNode = parentNodeArray[0];
+                }
+                else if (groupingRow.GroupingType == Constants.GroupingType.BalanceOfAccount)
+                    parentNode = _BalanceTotalNode;
+
+                if (parentNode != null)
+                    parentNode.Nodes.Add(groupingRow.Grouping);
+            }
+
+            // Check initial default groupings:
+            switch (AccountType)
+            {
+                case Constants.AccountType.Bank:
+                    _ExpensesNode.Checked = true;
+                    _IncomeNode.Checked = true;
+                    break;
+                case Constants.AccountType.Investment:
+                    _BalanceTotalNode.Checked = true;
+                    break;
+            }
+        }
+
         void RefreshDisplay()
         {
+            // If account owner or type changed, reset initial check state of grouping nodes: 
+            bool accountOwnerOrTypeChanged = false;
+            if (AccountOwner != _PrevAccountOwner)
+            {
+                _PrevAccountOwner = AccountOwner;
+                accountOwnerOrTypeChanged = true;
+            }
+            if (AccountType != _PrevAccountType)
+            {
+                _PrevAccountType = AccountType;
+                accountOwnerOrTypeChanged = true;
+            }
+
+            if (accountOwnerOrTypeChanged)
+                BuildGroupingsTree();
+
             // Get groupings to display, from checked 
             string groupingsList = "";
 
@@ -61,7 +163,7 @@ namespace Budget
             {
                 string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
                     + " AND AccountOwner = '" + AccountOwner + "'";
-                if (AccountType != '-') // DIAG this s/b a constant
+                if (AccountType != Constants.AccountType.BothValue) 
                     selectStr += " AND AccountType = '" + AccountType + "'";
 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
@@ -163,45 +265,8 @@ namespace Budget
             comboAccountType.DisplayMember = "TypeDescription";
             comboAccountType.SelectedValue = "B"; // initialize it to Bank            
 
-            viewBudgetGroupingsInOrderTableAdapter.Connection = Program.DbConnection;
-            viewBudgetGroupingsInOrderTableAdapter.Fill(this.mainDataSet.ViewBudgetGroupingsInOrder);
-
             // Make gridMain printable by taking a Printable tag onto it:
             gridMain.Tag = new PrintableGridTag(gridMain);
-
-            // Populate Groupings tree:
-            TreeNode balanceTotalNode = null;
-            // add parent nodes:
-            foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
-            {
-                if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != "A") // A is Balance of accounts, a sub-type of Balance Total -- DIAG strings s/b constants
-                {
-                    TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
-
-                    if (groupingRow.GroupingType == "L") // the Balance Total grouping -- hold on to that node
-                        balanceTotalNode = node;
-
-                    // Check, by default, the first 2 groupings (Inc. and Exp):   // DIAG strings s/b constants
-                    if (groupingRow.Grouping == "Income" || groupingRow.Grouping == "Expenditures") 
-                        node.Checked = true;
-                }
-            }
-            // now, add child nodes:
-            foreach (MainDataSet.ViewBudgetGroupingsInOrderRow groupingRow in mainDataSet.ViewBudgetGroupingsInOrder)
-            {
-                TreeNode parentNode = null;
-                if (!groupingRow.IsParentGroupingLabelNull())
-                {
-                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGroupingLabel, false); // search only top level
-                    if (parentNodeArray.Length > 0) // should never be 0, or >1
-                        parentNode = parentNodeArray[0];
-                }
-                else if (groupingRow.GroupingType == "A") // A is Balance of accounts, a sub-type of Balance Total
-                    parentNode = balanceTotalNode;
-
-                if (parentNode != null)
-                    parentNode.Nodes.Add(groupingRow.Grouping);
-            }
 
             RefreshDisplay();
         }
