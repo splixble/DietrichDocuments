@@ -39,9 +39,6 @@
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet = new Budget.MainDataSet();
-            this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
@@ -49,10 +46,13 @@
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboAccountOwner = new System.Windows.Forms.ComboBox();
+            this.investmentSharesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
+            this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
+            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
             this.splitConInner.Panel1.SuspendLayout();
             this.splitConInner.Panel2.SuspendLayout();
@@ -61,6 +61,8 @@
             this.splitConOuter.Panel1.SuspendLayout();
             this.splitConOuter.Panel2.SuspendLayout();
             this.splitConOuter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -125,7 +127,9 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.applyTransactionTypesToolStripMenuItem,
             this.editGroupingsToolStripMenuItem,
-            this.calculateAccountBalancesToolStripMenuItem});
+            this.calculateAccountBalancesToolStripMenuItem,
+            this.investmentSharesToolStripMenuItem,
+            this.accountsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -150,20 +154,6 @@
             this.calculateAccountBalancesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.calculateAccountBalancesToolStripMenuItem.Text = "Calculate Account Balances";
             this.calculateAccountBalancesToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalancesToolStripMenuItem_Click);
-            // 
-            // viewBudgetGroupingsInOrderBindingSource
-            // 
-            this.viewBudgetGroupingsInOrderBindingSource.DataMember = "ViewBudgetGroupingsInOrder";
-            this.viewBudgetGroupingsInOrderBindingSource.DataSource = this.mainDataSet;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewBudgetGroupingsInOrderTableAdapter
-            // 
-            this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
             // splitConInner
             // 
@@ -254,6 +244,34 @@
             this.comboAccountOwner.TabIndex = 7;
             this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
             // 
+            // investmentSharesToolStripMenuItem
+            // 
+            this.investmentSharesToolStripMenuItem.Name = "investmentSharesToolStripMenuItem";
+            this.investmentSharesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.investmentSharesToolStripMenuItem.Text = "Investment Shares";
+            this.investmentSharesToolStripMenuItem.Click += new System.EventHandler(this.investmentSharesToolStripMenuItem_Click);
+            // 
+            // viewBudgetGroupingsInOrderBindingSource
+            // 
+            this.viewBudgetGroupingsInOrderBindingSource.DataMember = "ViewBudgetGroupingsInOrder";
+            this.viewBudgetGroupingsInOrderBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // viewBudgetGroupingsInOrderTableAdapter
+            // 
+            this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
+            // 
+            // accountsToolStripMenuItem
+            // 
+            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.accountsToolStripMenuItem.Text = "Accounts";
+            this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,8 +286,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.splitConInner.Panel1.ResumeLayout(false);
             this.splitConInner.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).EndInit();
@@ -279,6 +295,8 @@
             this.splitConOuter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).EndInit();
             this.splitConOuter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +324,8 @@
         private System.Windows.Forms.ComboBox comboAccountOwner;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboAccountType;
+        private System.Windows.Forms.ToolStripMenuItem investmentSharesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
     }
 }
 

@@ -327,5 +327,17 @@ namespace Budget
         {
             RefreshDisplay();
         }
+
+        private void investmentSharesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShareAmountAndPriceForm form = new ShareAmountAndPriceForm();
+            form.ShowDialog();
+        }
+
+        private void accountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccountsForm form = new AccountsForm();
+            form.ShowDialog();
+        }
     }
 }
