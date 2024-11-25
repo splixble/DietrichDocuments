@@ -38,10 +38,6 @@
             this.mainDataSet = new Budget.MainDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.sPDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pricePerShareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharePriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.comboAccount = new System.Windows.Forms.ComboBox();
@@ -55,7 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shareQuantityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharePriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +73,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnSave);
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Size = new System.Drawing.Size(844, 498);
             this.splitContainer1.SplitterDistance = 221;
@@ -151,42 +145,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.sPDateDataGridViewTextBoxColumn,
-            this.pricePerShareDataGridViewTextBoxColumn,
-            this.commentDataGridViewTextBoxColumn1});
-            this.dataGridView2.DataSource = this.sharePriceBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 18);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(819, 223);
-            this.dataGridView2.TabIndex = 5;
-            // 
-            // sPDateDataGridViewTextBoxColumn
-            // 
-            this.sPDateDataGridViewTextBoxColumn.DataPropertyName = "SPDate";
-            this.sPDateDataGridViewTextBoxColumn.HeaderText = "SPDate";
-            this.sPDateDataGridViewTextBoxColumn.Name = "sPDateDataGridViewTextBoxColumn";
-            // 
-            // pricePerShareDataGridViewTextBoxColumn
-            // 
-            this.pricePerShareDataGridViewTextBoxColumn.DataPropertyName = "PricePerShare";
-            this.pricePerShareDataGridViewTextBoxColumn.HeaderText = "PricePerShare";
-            this.pricePerShareDataGridViewTextBoxColumn.Name = "pricePerShareDataGridViewTextBoxColumn";
-            // 
-            // commentDataGridViewTextBoxColumn1
-            // 
-            this.commentDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.commentDataGridViewTextBoxColumn1.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn1.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn1.Name = "commentDataGridViewTextBoxColumn1";
-            // 
             // sharePriceBindingSource
             // 
             this.sharePriceBindingSource.DataMember = "SharePrice";
@@ -248,7 +206,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shareQuantityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharePriceBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -269,12 +226,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sQDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numSharesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource sharePriceBindingSource;
         private MainDataSetTableAdapters.SharePriceTableAdapter sharePriceTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sPDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pricePerShareDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnSave;
     }
 }

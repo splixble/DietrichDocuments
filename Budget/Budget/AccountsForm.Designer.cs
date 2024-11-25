@@ -33,6 +33,7 @@
             this.budgetAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.budgetAccountTableAdapter = new Budget.MainDataSetTableAdapters.BudgetAccountTableAdapter();
+            this.btnSave = new System.Windows.Forms.Button();
             this.accountIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountOwnerColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -42,8 +43,6 @@
             this.sourceFileLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defaultFormatManualEntryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockSymbolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -65,8 +64,7 @@
             this.trackedBySharesDataGridViewCheckBoxColumn,
             this.sourceFileLocationDataGridViewTextBoxColumn,
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn,
-            this.defaultFormatManualEntryDataGridViewTextBoxColumn,
-            this.stockSymbolDataGridViewTextBoxColumn});
+            this.defaultFormatManualEntryDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.budgetAccountBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
@@ -86,6 +84,17 @@
             // budgetAccountTableAdapter
             // 
             this.budgetAccountTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(1243, 559);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // accountIDDataGridViewTextBoxColumn
             // 
@@ -155,24 +164,6 @@
             this.defaultFormatManualEntryDataGridViewTextBoxColumn.Name = "defaultFormatManualEntryDataGridViewTextBoxColumn";
             this.defaultFormatManualEntryDataGridViewTextBoxColumn.Width = 160;
             // 
-            // stockSymbolDataGridViewTextBoxColumn
-            // 
-            this.stockSymbolDataGridViewTextBoxColumn.DataPropertyName = "StockSymbol";
-            this.stockSymbolDataGridViewTextBoxColumn.FillWeight = 50F;
-            this.stockSymbolDataGridViewTextBoxColumn.HeaderText = "Stock Symbol";
-            this.stockSymbolDataGridViewTextBoxColumn.Name = "stockSymbolDataGridViewTextBoxColumn";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(1243, 559);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // AccountsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,6 +187,7 @@
         private MainDataSet mainDataSet;
         private System.Windows.Forms.BindingSource budgetAccountBindingSource;
         private MainDataSetTableAdapters.BudgetAccountTableAdapter budgetAccountTableAdapter;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn AccountOwnerColumn;
@@ -205,7 +197,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceFileLocationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defaultFormatAutoEntryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defaultFormatManualEntryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockSymbolDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnSave;
     }
 }

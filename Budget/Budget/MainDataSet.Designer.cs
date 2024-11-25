@@ -62,6 +62,10 @@ namespace Budget {
         
         private global::System.Data.DataRelation relationFK_BudgetAccount_BudgetSourceFileFormat2;
         
+        private global::System.Data.DataRelation relationFK_ShareQuantity_BudgetAccount;
+        
+        private global::System.Data.DataRelation relationFK_BudgetAccount_AccountType;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -563,6 +567,8 @@ namespace Budget {
             this.relationFK_BudgetAccount_AccountOwner = this.Relations["FK_BudgetAccount_AccountOwner"];
             this.relationFK_BudgetAccount_BudgetSourceFileFormat1 = this.Relations["FK_BudgetAccount_BudgetSourceFileFormat1"];
             this.relationFK_BudgetAccount_BudgetSourceFileFormat2 = this.Relations["FK_BudgetAccount_BudgetSourceFileFormat2"];
+            this.relationFK_ShareQuantity_BudgetAccount = this.Relations["FK_ShareQuantity_BudgetAccount"];
+            this.relationFK_BudgetAccount_AccountType = this.Relations["FK_BudgetAccount_AccountType"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -617,6 +623,14 @@ namespace Budget {
                         this.tableBudgetSourceFileFormat.FormatCodeColumn}, new global::System.Data.DataColumn[] {
                         this.tableBudgetAccount.DefaultFormatManualEntryColumn}, false);
             this.Relations.Add(this.relationFK_BudgetAccount_BudgetSourceFileFormat2);
+            this.relationFK_ShareQuantity_BudgetAccount = new global::System.Data.DataRelation("FK_ShareQuantity_BudgetAccount", new global::System.Data.DataColumn[] {
+                        this.tableBudgetAccount.AccountIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableShareQuantity.SQAccountColumn}, false);
+            this.Relations.Add(this.relationFK_ShareQuantity_BudgetAccount);
+            this.relationFK_BudgetAccount_AccountType = new global::System.Data.DataRelation("FK_BudgetAccount_AccountType", new global::System.Data.DataColumn[] {
+                        this.tableAccountType.TypeCodeColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBudgetAccount.AccountTypeColumn}, false);
+            this.Relations.Add(this.relationFK_BudgetAccount_AccountType);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2563,8 +2577,6 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnAccountOwner;
             
-            private global::System.Data.DataColumn columnStockSymbol;
-            
             private global::System.Data.DataColumn columnCurrentlyTracked;
             
             private global::System.Data.DataColumn columnTrackedByShares;
@@ -2654,14 +2666,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn StockSymbolColumn {
-                get {
-                    return this.columnStockSymbol;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn CurrentlyTrackedColumn {
                 get {
                     return this.columnCurrentlyTracked;
@@ -2721,7 +2725,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetAccountRow AddBudgetAccountRow(string AccountID, string AccountName, string SourceFileLocation, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2, AccountOwnerRow parentAccountOwnerRowByFK_BudgetAccount_AccountOwner, string StockSymbol, bool CurrentlyTracked, bool TrackedByShares, string AccountType) {
+            public BudgetAccountRow AddBudgetAccountRow(string AccountID, string AccountName, string SourceFileLocation, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2, AccountOwnerRow parentAccountOwnerRowByFK_BudgetAccount_AccountOwner, bool CurrentlyTracked, bool TrackedByShares, AccountTypeRow parentAccountTypeRowByFK_BudgetAccount_AccountType) {
                 BudgetAccountRow rowBudgetAccountRow = ((BudgetAccountRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AccountID,
@@ -2730,10 +2734,9 @@ namespace Budget {
                         null,
                         null,
                         null,
-                        StockSymbol,
                         CurrentlyTracked,
                         TrackedByShares,
-                        AccountType};
+                        null};
                 if ((parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1 != null)) {
                     columnValuesArray[3] = parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1[0];
                 }
@@ -2742,6 +2745,9 @@ namespace Budget {
                 }
                 if ((parentAccountOwnerRowByFK_BudgetAccount_AccountOwner != null)) {
                     columnValuesArray[5] = parentAccountOwnerRowByFK_BudgetAccount_AccountOwner[0];
+                }
+                if ((parentAccountTypeRowByFK_BudgetAccount_AccountType != null)) {
+                    columnValuesArray[8] = parentAccountTypeRowByFK_BudgetAccount_AccountType[0];
                 }
                 rowBudgetAccountRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetAccountRow);
@@ -2778,7 +2784,6 @@ namespace Budget {
                 this.columnDefaultFormatAutoEntry = base.Columns["DefaultFormatAutoEntry"];
                 this.columnDefaultFormatManualEntry = base.Columns["DefaultFormatManualEntry"];
                 this.columnAccountOwner = base.Columns["AccountOwner"];
-                this.columnStockSymbol = base.Columns["StockSymbol"];
                 this.columnCurrentlyTracked = base.Columns["CurrentlyTracked"];
                 this.columnTrackedByShares = base.Columns["TrackedByShares"];
                 this.columnAccountType = base.Columns["AccountType"];
@@ -2799,8 +2804,6 @@ namespace Budget {
                 base.Columns.Add(this.columnDefaultFormatManualEntry);
                 this.columnAccountOwner = new global::System.Data.DataColumn("AccountOwner", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAccountOwner);
-                this.columnStockSymbol = new global::System.Data.DataColumn("StockSymbol", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStockSymbol);
                 this.columnCurrentlyTracked = new global::System.Data.DataColumn("CurrentlyTracked", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrentlyTracked);
                 this.columnTrackedByShares = new global::System.Data.DataColumn("TrackedByShares", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -2819,7 +2822,6 @@ namespace Budget {
                 this.columnDefaultFormatManualEntry.MaxLength = 50;
                 this.columnAccountOwner.AllowDBNull = false;
                 this.columnAccountOwner.MaxLength = 4;
-                this.columnStockSymbol.MaxLength = 50;
                 this.columnCurrentlyTracked.AllowDBNull = false;
                 this.columnTrackedByShares.AllowDBNull = false;
                 this.columnAccountType.AllowDBNull = false;
@@ -5315,13 +5317,16 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ShareQuantityRow AddShareQuantityRow(System.DateTime SQDate, string SQAccount, decimal NumShares, string Comment) {
+            public ShareQuantityRow AddShareQuantityRow(System.DateTime SQDate, BudgetAccountRow parentBudgetAccountRowByFK_ShareQuantity_BudgetAccount, decimal NumShares, string Comment) {
                 ShareQuantityRow rowShareQuantityRow = ((ShareQuantityRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SQDate,
-                        SQAccount,
+                        null,
                         NumShares,
                         Comment};
+                if ((parentBudgetAccountRowByFK_ShareQuantity_BudgetAccount != null)) {
+                    columnValuesArray[1] = parentBudgetAccountRowByFK_ShareQuantity_BudgetAccount[0];
+                }
                 rowShareQuantityRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowShareQuantityRow);
                 return rowShareQuantityRow;
@@ -7007,22 +7012,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string StockSymbol {
-                get {
-                    try {
-                        return ((string)(this[this.tableBudgetAccount.StockSymbolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StockSymbol\' in table \'BudgetAccount\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBudgetAccount.StockSymbolColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool CurrentlyTracked {
                 get {
                     return ((bool)(this[this.tableBudgetAccount.CurrentlyTrackedColumn]));
@@ -7089,6 +7078,17 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AccountTypeRow AccountTypeRow {
+                get {
+                    return ((AccountTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetAccount_AccountType"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BudgetAccount_AccountType"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSourceFileLocationNull() {
                 return this.IsNull(this.tableBudgetAccount.SourceFileLocationColumn);
             }
@@ -7125,14 +7125,13 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsStockSymbolNull() {
-                return this.IsNull(this.tableBudgetAccount.StockSymbolColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetStockSymbolNull() {
-                this[this.tableBudgetAccount.StockSymbolColumn] = global::System.Convert.DBNull;
+            public ShareQuantityRow[] GetShareQuantityRows() {
+                if ((this.Table.ChildRelations["FK_ShareQuantity_BudgetAccount"] == null)) {
+                    return new ShareQuantityRow[0];
+                }
+                else {
+                    return ((ShareQuantityRow[])(base.GetChildRows(this.Table.ChildRelations["FK_ShareQuantity_BudgetAccount"])));
+                }
             }
         }
         
@@ -7987,6 +7986,17 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetAccountRow BudgetAccountRow {
+                get {
+                    return ((BudgetAccountRow)(this.GetParentRow(this.Table.ParentRelations["FK_ShareQuantity_BudgetAccount"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_ShareQuantity_BudgetAccount"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsCommentNull() {
                 return this.IsNull(this.tableShareQuantity.CommentColumn);
             }
@@ -8031,6 +8041,17 @@ namespace Budget {
                 }
                 set {
                     this[this.tableAccountType.TypeDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetAccountRow[] GetBudgetAccountRows() {
+                if ((this.Table.ChildRelations["FK_BudgetAccount_AccountType"] == null)) {
+                    return new BudgetAccountRow[0];
+                }
+                else {
+                    return ((BudgetAccountRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetAccount_AccountType"])));
                 }
             }
         }
@@ -10352,14 +10373,13 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
             tableMapping.ColumnMappings.Add("DefaultFormatAutoEntry", "DefaultFormatAutoEntry");
             tableMapping.ColumnMappings.Add("DefaultFormatManualEntry", "DefaultFormatManualEntry");
             tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
-            tableMapping.ColumnMappings.Add("StockSymbol", "StockSymbol");
             tableMapping.ColumnMappings.Add("CurrentlyTracked", "CurrentlyTracked");
             tableMapping.ColumnMappings.Add("TrackedByShares", "TrackedByShares");
             tableMapping.ColumnMappings.Add("AccountType", "AccountType");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetAccount] WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ((@IsNull_StockSymbol = 1 AND [StockSymbol] IS NULL) OR ([StockSymbol] = @Original_StockSymbol)) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetAccount] WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_AccountID";
@@ -10437,23 +10457,6 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_StockSymbol";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_StockSymbol";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_CurrentlyTracked";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
@@ -10479,8 +10482,8 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetAccount] ([AccountID], [AccountName], [SourceFileLocation], [DefaultFormatAutoEntry], [DefaultFormatManualEntry], [AccountOwner], [StockSymbol], [CurrentlyTracked], [TrackedByShares], [AccountType]) VALUES (@AccountID, @AccountName, @SourceFileLocation, @DefaultFormatAutoEntry, @DefaultFormatManualEntry, @AccountOwner, @StockSymbol, @CurrentlyTracked, @TrackedByShares, @AccountType);
-SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, StockSymbol, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetAccount] ([AccountID], [AccountName], [SourceFileLocation], [DefaultFormatAutoEntry], [DefaultFormatManualEntry], [AccountOwner], [CurrentlyTracked], [TrackedByShares], [AccountType]) VALUES (@AccountID, @AccountName, @SourceFileLocation, @DefaultFormatAutoEntry, @DefaultFormatManualEntry, @AccountOwner, @CurrentlyTracked, @TrackedByShares, @AccountType);
+SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountID";
@@ -10525,13 +10528,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SourceColumn = "AccountOwner";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@StockSymbol";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@CurrentlyTracked";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
@@ -10554,8 +10550,8 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetAccount] SET [AccountID] = @AccountID, [AccountName] = @AccountName, [SourceFileLocation] = @SourceFileLocation, [DefaultFormatAutoEntry] = @DefaultFormatAutoEntry, [DefaultFormatManualEntry] = @DefaultFormatManualEntry, [AccountOwner] = @AccountOwner, [StockSymbol] = @StockSymbol, [CurrentlyTracked] = @CurrentlyTracked, [TrackedByShares] = @TrackedByShares, [AccountType] = @AccountType WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ((@IsNull_StockSymbol = 1 AND [StockSymbol] IS NULL) OR ([StockSymbol] = @Original_StockSymbol)) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType));
-SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, StockSymbol, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetAccount] SET [AccountID] = @AccountID, [AccountName] = @AccountName, [SourceFileLocation] = @SourceFileLocation, [DefaultFormatAutoEntry] = @DefaultFormatAutoEntry, [DefaultFormatManualEntry] = @DefaultFormatManualEntry, [AccountOwner] = @AccountOwner, [CurrentlyTracked] = @CurrentlyTracked, [TrackedByShares] = @TrackedByShares, [AccountType] = @AccountType WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType));
+SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountID";
@@ -10598,13 +10594,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SqlDbType = global::System.Data.SqlDbType.Char;
             param.IsNullable = true;
             param.SourceColumn = "AccountOwner";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@StockSymbol";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@CurrentlyTracked";
@@ -10703,23 +10692,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_StockSymbol";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_StockSymbol";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "StockSymbol";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_CurrentlyTracked";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
@@ -10759,8 +10731,8 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry," +
-                " DefaultFormatManualEntry, AccountOwner, StockSymbol, CurrentlyTracked, TrackedB" +
-                "yShares, AccountType\r\nFROM            BudgetAccount";
+                " DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, Acco" +
+                "untType\r\nFROM            BudgetAccount";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10810,7 +10782,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_AccountID, string Original_AccountName, string Original_SourceFileLocation, string Original_DefaultFormatAutoEntry, string Original_DefaultFormatManualEntry, string Original_AccountOwner, string Original_StockSymbol, bool Original_CurrentlyTracked, bool Original_TrackedByShares, string Original_AccountType) {
+        public virtual int Delete(string Original_AccountID, string Original_AccountName, string Original_SourceFileLocation, string Original_DefaultFormatAutoEntry, string Original_DefaultFormatManualEntry, string Original_AccountOwner, bool Original_CurrentlyTracked, bool Original_TrackedByShares, string Original_AccountType) {
             if ((Original_AccountID == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountID");
             }
@@ -10853,21 +10825,13 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_AccountOwner));
             }
-            if ((Original_StockSymbol == null)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_StockSymbol));
-            }
-            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_CurrentlyTracked));
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_TrackedByShares));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_CurrentlyTracked));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((bool)(Original_TrackedByShares));
             if ((Original_AccountType == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountType");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_AccountType));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_AccountType));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10889,7 +10853,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string AccountID, string AccountName, string SourceFileLocation, string DefaultFormatAutoEntry, string DefaultFormatManualEntry, string AccountOwner, string StockSymbol, bool CurrentlyTracked, bool TrackedByShares, string AccountType) {
+        public virtual int Insert(string AccountID, string AccountName, string SourceFileLocation, string DefaultFormatAutoEntry, string DefaultFormatManualEntry, string AccountOwner, bool CurrentlyTracked, bool TrackedByShares, string AccountType) {
             if ((AccountID == null)) {
                 throw new global::System.ArgumentNullException("AccountID");
             }
@@ -10926,19 +10890,13 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(AccountOwner));
             }
-            if ((StockSymbol == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(StockSymbol));
-            }
-            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(CurrentlyTracked));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(TrackedByShares));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(CurrentlyTracked));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(TrackedByShares));
             if ((AccountType == null)) {
                 throw new global::System.ArgumentNullException("AccountType");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(AccountType));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(AccountType));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10967,7 +10925,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string DefaultFormatAutoEntry, 
                     string DefaultFormatManualEntry, 
                     string AccountOwner, 
-                    string StockSymbol, 
                     bool CurrentlyTracked, 
                     bool TrackedByShares, 
                     string AccountType, 
@@ -10977,7 +10934,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string Original_DefaultFormatAutoEntry, 
                     string Original_DefaultFormatManualEntry, 
                     string Original_AccountOwner, 
-                    string Original_StockSymbol, 
                     bool Original_CurrentlyTracked, 
                     bool Original_TrackedByShares, 
                     string Original_AccountType) {
@@ -11017,77 +10973,63 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(AccountOwner));
             }
-            if ((StockSymbol == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(StockSymbol));
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(CurrentlyTracked));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(TrackedByShares));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(CurrentlyTracked));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(TrackedByShares));
             if ((AccountType == null)) {
                 throw new global::System.ArgumentNullException("AccountType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(AccountType));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(AccountType));
             }
             if ((Original_AccountID == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_AccountID));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_AccountID));
             }
             if ((Original_AccountName == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_AccountName));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_AccountName));
             }
             if ((Original_SourceFileLocation == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_SourceFileLocation));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_SourceFileLocation));
             }
             if ((Original_DefaultFormatAutoEntry == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_DefaultFormatAutoEntry));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_DefaultFormatAutoEntry));
             }
             if ((Original_DefaultFormatManualEntry == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_DefaultFormatManualEntry));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_DefaultFormatManualEntry));
             }
             if ((Original_AccountOwner == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountOwner");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_AccountOwner));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_AccountOwner));
             }
-            if ((Original_StockSymbol == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_StockSymbol));
-            }
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_CurrentlyTracked));
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_TrackedByShares));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_CurrentlyTracked));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_TrackedByShares));
             if ((Original_AccountType == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_AccountType));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_AccountType));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -11115,7 +11057,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string DefaultFormatAutoEntry, 
                     string DefaultFormatManualEntry, 
                     string AccountOwner, 
-                    string StockSymbol, 
                     bool CurrentlyTracked, 
                     bool TrackedByShares, 
                     string AccountType, 
@@ -11125,11 +11066,10 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string Original_DefaultFormatAutoEntry, 
                     string Original_DefaultFormatManualEntry, 
                     string Original_AccountOwner, 
-                    string Original_StockSymbol, 
                     bool Original_CurrentlyTracked, 
                     bool Original_TrackedByShares, 
                     string Original_AccountType) {
-            return this.Update(Original_AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, StockSymbol, CurrentlyTracked, TrackedByShares, AccountType, Original_AccountID, Original_AccountName, Original_SourceFileLocation, Original_DefaultFormatAutoEntry, Original_DefaultFormatManualEntry, Original_AccountOwner, Original_StockSymbol, Original_CurrentlyTracked, Original_TrackedByShares, Original_AccountType);
+            return this.Update(Original_AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType, Original_AccountID, Original_AccountName, Original_SourceFileLocation, Original_DefaultFormatAutoEntry, Original_DefaultFormatManualEntry, Original_AccountOwner, Original_CurrentlyTracked, Original_TrackedByShares, Original_AccountType);
         }
     }
     
@@ -15942,21 +15882,21 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._budgetAccountTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._budgetAccountTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._budgetTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._budgetTypePatternTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16040,19 +15980,19 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._budgetAccountTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._budgetAccountTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._budgetTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._budgetTypePatternTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -16162,19 +16102,19 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._budgetAccountTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetAccountTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._budgetTypePatternTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._budgetTypePatternTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._budgetAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._budgetAccountTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
