@@ -322,7 +322,6 @@ namespace Budget
 
             BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
             fileItemsRow.SourceFile = -1; // real value filled in on save 
-            fileItemsRow.BudgetItem = -1; // real value filled in on save 
             fileItemsRow.SourceFileLine = lineNum; // 1-relative
             _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
 
@@ -337,7 +336,7 @@ namespace Budget
 
         public virtual void SaveChanges()
         {
-            // DIAG use transactions (budgetTableAdapter.Transaction) in this
+            // TODO use transactions (budgetTableAdapter.Transaction) in this
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
             _NewestSourceFileRow.ImportDateTime = DateTime.Now;
             sourceFileAdap.Update(_SourceFileTable);
@@ -347,7 +346,7 @@ namespace Budget
             foreach (BudgetAndSourceItemRows budgetObj in _ImportedBudgetItems)
             {
                 // fill in new Items rows with updated, permanent ID field values:
-                budgetObj._ItemsRow.BudgetItem = budgetObj._BudgetRow.ID;
+                budgetObj._ItemsRow.BudgetItem = budgetObj._BudgetRow.ID; 
                 budgetObj._ItemsRow.SourceFile = _NewestSourceFileRow.FileID;
             }
 

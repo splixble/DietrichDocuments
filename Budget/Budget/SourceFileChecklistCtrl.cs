@@ -87,6 +87,21 @@ namespace Budget
             _SourceFileAdapter.Connection = Program.DbConnection;
             _SourceFileAdapter.FillThisMonth(_SourceFileTable);
 
+
+
+
+            /* DIAG Should not have the Checkbox ctrl depend on Source Files for check status -- at least in the case of share funds, which don't involve saved files, and 
+             * only require one datum per month (balance near ind of fiscal month). Checkbox value should depend on acct type. 
+             * 
+             * Was gonna use new ViewAccountsPerSourceFile instead of BudgetSourceFile.Account for this... but we'd have to have that view reach into SourceFile table
+             * for that. And that is unnec in light of above paragr.  
+             * 
+             * In any case, Account is gonna be removed from sourceFile Row. Since source file can contain data for multiple accts.
+
+             * */
+
+
+
             Dictionary<string, string> sourceFilesByAccount = new Dictionary<string, string>();
             foreach (MainDataSet.BudgetSourceFileRow sourceFileRow in _SourceFileTable)
             {

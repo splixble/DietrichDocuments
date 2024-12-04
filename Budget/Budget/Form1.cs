@@ -328,9 +328,9 @@ namespace Budget
             RefreshDisplay();
         }
 
-        private void investmentSharesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void investmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShareAmountAndPriceForm form = new ShareAmountAndPriceForm();
+            InvestmentBalancesForm form = new InvestmentBalancesForm();
             form.ShowDialog();
         }
 

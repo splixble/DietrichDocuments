@@ -40,7 +40,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.comboFileFormat = new System.Windows.Forms.ComboBox();
             this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
@@ -48,7 +47,10 @@
             this.lblFilePath = new System.Windows.Forms.Label();
             this.btnImportManualText = new System.Windows.Forms.Button();
             this.tbFileText = new System.Windows.Forms.TextBox();
+            this.yahooHoldingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.sharePriceCtrl = new Budget.SharePriceEditingGridCtrl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -126,7 +128,8 @@
             // 
             this.customFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.amazonOrderFileToolStripMenuItem,
-            this.amazonDigitalItemsToolStripMenuItem});
+            this.amazonDigitalItemsToolStripMenuItem,
+            this.yahooHoldingsToolStripMenuItem});
             this.customFilesToolStripMenuItem.Name = "customFilesToolStripMenuItem";
             this.customFilesToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.customFilesToolStripMenuItem.Text = "Custom Files";
@@ -160,6 +163,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.sharePriceCtrl);
             this.splitContainer1.Panel2.Controls.Add(this.budgetCtrl);
             this.splitContainer1.Size = new System.Drawing.Size(1223, 460);
             this.splitContainer1.SplitterDistance = 258;
@@ -186,14 +190,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Checklist";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // sourceFileChecklistCtrl1
-            // 
-            this.sourceFileChecklistCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourceFileChecklistCtrl1.Location = new System.Drawing.Point(3, 3);
-            this.sourceFileChecklistCtrl1.Name = "sourceFileChecklistCtrl1";
-            this.sourceFileChecklistCtrl1.Size = new System.Drawing.Size(1209, 226);
-            this.sourceFileChecklistCtrl1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -276,6 +272,21 @@
             this.tbFileText.Size = new System.Drawing.Size(1203, 169);
             this.tbFileText.TabIndex = 6;
             // 
+            // yahooHoldingsToolStripMenuItem
+            // 
+            this.yahooHoldingsToolStripMenuItem.Name = "yahooHoldingsToolStripMenuItem";
+            this.yahooHoldingsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.yahooHoldingsToolStripMenuItem.Text = "Yahoo Holdings";
+            this.yahooHoldingsToolStripMenuItem.Click += new System.EventHandler(this.yahooHoldingsToolStripMenuItem_Click);
+            // 
+            // sourceFileChecklistCtrl1
+            // 
+            this.sourceFileChecklistCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceFileChecklistCtrl1.Location = new System.Drawing.Point(3, 3);
+            this.sourceFileChecklistCtrl1.Name = "sourceFileChecklistCtrl1";
+            this.sourceFileChecklistCtrl1.Size = new System.Drawing.Size(1209, 226);
+            this.sourceFileChecklistCtrl1.TabIndex = 0;
+            // 
             // budgetCtrl
             // 
             this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -284,6 +295,14 @@
             this.budgetCtrl.Name = "budgetCtrl";
             this.budgetCtrl.Size = new System.Drawing.Size(1223, 198);
             this.budgetCtrl.TabIndex = 3;
+            // 
+            // sharePriceCtrl
+            // 
+            this.sharePriceCtrl.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sharePriceCtrl.Location = new System.Drawing.Point(860, 0);
+            this.sharePriceCtrl.Name = "sharePriceCtrl";
+            this.sharePriceCtrl.Size = new System.Drawing.Size(363, 198);
+            this.sharePriceCtrl.TabIndex = 4;
             // 
             // SourceFileForm
             // 
@@ -336,5 +355,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private SourceFileChecklistCtrl sourceFileChecklistCtrl1;
+        private System.Windows.Forms.ToolStripMenuItem yahooHoldingsToolStripMenuItem;
+        private SharePriceEditingGridCtrl sharePriceCtrl;
     }
 }

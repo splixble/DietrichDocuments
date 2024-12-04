@@ -16,6 +16,7 @@ namespace Budget
 
         BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new BudgetSourceFileFormatTableAdapter();
         BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
+        FundTableAdapter _FundAdapter = new FundTableAdapter();
         BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
         AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
         AccountTypeTableAdapter _AccountTypeAdapter = new AccountTypeTableAdapter();
@@ -59,6 +60,9 @@ namespace Budget
 
             _BudgetAccountAdapter.Connection = Program.DbConnection; // TODO don't think we need this DbConnection any more, right?
             _BudgetAccountAdapter.Fill(_MainDataSet.BudgetAccount);
+
+            _FundAdapter.Connection = Program.DbConnection; 
+            _FundAdapter.Fill(_MainDataSet.Fund);
 
             _GroupingsAdapter.Connection = Program.DbConnection;
             _GroupingsAdapter.Fill(_MainDataSet.BudgetTypeGroupings);

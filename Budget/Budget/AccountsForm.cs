@@ -29,6 +29,10 @@ namespace Budget
             AccountTypeColumn.DataSource = Program.LookupTableSet.MainDataSet.AccountType;
             AccountTypeColumn.ValueMember = "TypeCode";
             AccountTypeColumn.DisplayMember = "TypeDescription";
+
+            FundColumn.DataSource = Program.LookupTableSet.MainDataSet.Fund;
+            FundColumn.ValueMember = "FundID";
+            FundColumn.DisplayMember = "FundName";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

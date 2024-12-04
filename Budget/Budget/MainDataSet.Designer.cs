@@ -54,6 +54,8 @@ namespace Budget {
         
         private AccountTypeDataTable tableAccountType;
         
+        private FundDataTable tableFund;
+        
         private GroupingsInOrderDataTable tableGroupingsInOrder;
         
         private global::System.Data.DataRelation relationFK_BudgetAccount_AccountOwner;
@@ -65,6 +67,14 @@ namespace Budget {
         private global::System.Data.DataRelation relationFK_ShareQuantity_BudgetAccount;
         
         private global::System.Data.DataRelation relationFK_BudgetAccount_AccountType;
+        
+        private global::System.Data.DataRelation relationFK_BudgetAccount_Fund;
+        
+        private global::System.Data.DataRelation relationFK_SharePrice_Fund;
+        
+        private global::System.Data.DataRelation relationFK_Budget_BudgetTypeGroupings;
+        
+        private global::System.Data.DataRelation relationFK_BudgetSourceFileItems_BudgetSourceFile;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -138,6 +148,9 @@ namespace Budget {
                 }
                 if ((ds.Tables["AccountType"] != null)) {
                     base.Tables.Add(new AccountTypeDataTable(ds.Tables["AccountType"]));
+                }
+                if ((ds.Tables["Fund"] != null)) {
+                    base.Tables.Add(new FundDataTable(ds.Tables["Fund"]));
                 }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
@@ -314,6 +327,16 @@ namespace Budget {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public FundDataTable Fund {
+            get {
+                return this.tableFund;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GroupingsInOrderDataTable GroupingsInOrder {
             get {
                 return this.tableGroupingsInOrder;
@@ -431,6 +454,9 @@ namespace Budget {
                 }
                 if ((ds.Tables["AccountType"] != null)) {
                     base.Tables.Add(new AccountTypeDataTable(ds.Tables["AccountType"]));
+                }
+                if ((ds.Tables["Fund"] != null)) {
+                    base.Tables.Add(new FundDataTable(ds.Tables["Fund"]));
                 }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
@@ -558,6 +584,12 @@ namespace Budget {
                     this.tableAccountType.InitVars();
                 }
             }
+            this.tableFund = ((FundDataTable)(base.Tables["Fund"]));
+            if ((initTable == true)) {
+                if ((this.tableFund != null)) {
+                    this.tableFund.InitVars();
+                }
+            }
             this.tableGroupingsInOrder = ((GroupingsInOrderDataTable)(base.Tables["GroupingsInOrder"]));
             if ((initTable == true)) {
                 if ((this.tableGroupingsInOrder != null)) {
@@ -569,6 +601,10 @@ namespace Budget {
             this.relationFK_BudgetAccount_BudgetSourceFileFormat2 = this.Relations["FK_BudgetAccount_BudgetSourceFileFormat2"];
             this.relationFK_ShareQuantity_BudgetAccount = this.Relations["FK_ShareQuantity_BudgetAccount"];
             this.relationFK_BudgetAccount_AccountType = this.Relations["FK_BudgetAccount_AccountType"];
+            this.relationFK_BudgetAccount_Fund = this.Relations["FK_BudgetAccount_Fund"];
+            this.relationFK_SharePrice_Fund = this.Relations["FK_SharePrice_Fund"];
+            this.relationFK_Budget_BudgetTypeGroupings = this.Relations["FK_Budget_BudgetTypeGroupings"];
+            this.relationFK_BudgetSourceFileItems_BudgetSourceFile = this.Relations["FK_BudgetSourceFileItems_BudgetSourceFile"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -609,6 +645,8 @@ namespace Budget {
             base.Tables.Add(this.tableShareQuantity);
             this.tableAccountType = new AccountTypeDataTable();
             base.Tables.Add(this.tableAccountType);
+            this.tableFund = new FundDataTable();
+            base.Tables.Add(this.tableFund);
             this.tableGroupingsInOrder = new GroupingsInOrderDataTable();
             base.Tables.Add(this.tableGroupingsInOrder);
             this.relationFK_BudgetAccount_AccountOwner = new global::System.Data.DataRelation("FK_BudgetAccount_AccountOwner", new global::System.Data.DataColumn[] {
@@ -631,6 +669,22 @@ namespace Budget {
                         this.tableAccountType.TypeCodeColumn}, new global::System.Data.DataColumn[] {
                         this.tableBudgetAccount.AccountTypeColumn}, false);
             this.Relations.Add(this.relationFK_BudgetAccount_AccountType);
+            this.relationFK_BudgetAccount_Fund = new global::System.Data.DataRelation("FK_BudgetAccount_Fund", new global::System.Data.DataColumn[] {
+                        this.tableFund.FundIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBudgetAccount.FundColumn}, false);
+            this.Relations.Add(this.relationFK_BudgetAccount_Fund);
+            this.relationFK_SharePrice_Fund = new global::System.Data.DataRelation("FK_SharePrice_Fund", new global::System.Data.DataColumn[] {
+                        this.tableFund.FundIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSharePrice.FundColumn}, false);
+            this.Relations.Add(this.relationFK_SharePrice_Fund);
+            this.relationFK_Budget_BudgetTypeGroupings = new global::System.Data.DataRelation("FK_Budget_BudgetTypeGroupings", new global::System.Data.DataColumn[] {
+                        this.tableBudgetTypeGroupings.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBudget.TrTypeColumn}, false);
+            this.Relations.Add(this.relationFK_Budget_BudgetTypeGroupings);
+            this.relationFK_BudgetSourceFileItems_BudgetSourceFile = new global::System.Data.DataRelation("FK_BudgetSourceFileItems_BudgetSourceFile", new global::System.Data.DataColumn[] {
+                        this.tableBudgetSourceFile.FileIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableBudgetSourceFileItems.SourceFileColumn}, false);
+            this.Relations.Add(this.relationFK_BudgetSourceFileItems_BudgetSourceFile);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -720,6 +774,12 @@ namespace Budget {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeAccountType() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeFund() {
             return false;
         }
         
@@ -828,6 +888,9 @@ namespace Budget {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void AccountTypeRowChangeEventHandler(object sender, AccountTypeRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void FundRowChangeEventHandler(object sender, FundRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void GroupingsInOrderRowChangeEventHandler(object sender, GroupingsInOrderRowChangeEvent e);
@@ -2583,6 +2646,12 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnAccountType;
             
+            private global::System.Data.DataColumn columnFund;
+            
+            private global::System.Data.DataColumn columnComment;
+            
+            private global::System.Data.DataColumn columnAccountNumber;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BudgetAccountDataTable() {
@@ -2690,6 +2759,30 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FundColumn {
+                get {
+                    return this.columnFund;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CommentColumn {
+                get {
+                    return this.columnComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AccountNumberColumn {
+                get {
+                    return this.columnAccountNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2725,7 +2818,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetAccountRow AddBudgetAccountRow(string AccountID, string AccountName, string SourceFileLocation, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2, AccountOwnerRow parentAccountOwnerRowByFK_BudgetAccount_AccountOwner, bool CurrentlyTracked, bool TrackedByShares, AccountTypeRow parentAccountTypeRowByFK_BudgetAccount_AccountType) {
+            public BudgetAccountRow AddBudgetAccountRow(string AccountID, string AccountName, string SourceFileLocation, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1, BudgetSourceFileFormatRow parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2, AccountOwnerRow parentAccountOwnerRowByFK_BudgetAccount_AccountOwner, bool CurrentlyTracked, bool TrackedByShares, AccountTypeRow parentAccountTypeRowByFK_BudgetAccount_AccountType, FundRow parentFundRowByFK_BudgetAccount_Fund, string Comment, string AccountNumber) {
                 BudgetAccountRow rowBudgetAccountRow = ((BudgetAccountRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AccountID,
@@ -2736,7 +2829,10 @@ namespace Budget {
                         null,
                         CurrentlyTracked,
                         TrackedByShares,
-                        null};
+                        null,
+                        null,
+                        Comment,
+                        AccountNumber};
                 if ((parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1 != null)) {
                     columnValuesArray[3] = parentBudgetSourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1[0];
                 }
@@ -2748,6 +2844,9 @@ namespace Budget {
                 }
                 if ((parentAccountTypeRowByFK_BudgetAccount_AccountType != null)) {
                     columnValuesArray[8] = parentAccountTypeRowByFK_BudgetAccount_AccountType[0];
+                }
+                if ((parentFundRowByFK_BudgetAccount_Fund != null)) {
+                    columnValuesArray[9] = parentFundRowByFK_BudgetAccount_Fund[0];
                 }
                 rowBudgetAccountRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetAccountRow);
@@ -2787,6 +2886,9 @@ namespace Budget {
                 this.columnCurrentlyTracked = base.Columns["CurrentlyTracked"];
                 this.columnTrackedByShares = base.Columns["TrackedByShares"];
                 this.columnAccountType = base.Columns["AccountType"];
+                this.columnFund = base.Columns["Fund"];
+                this.columnComment = base.Columns["Comment"];
+                this.columnAccountNumber = base.Columns["AccountNumber"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2810,6 +2912,12 @@ namespace Budget {
                 base.Columns.Add(this.columnTrackedByShares);
                 this.columnAccountType = new global::System.Data.DataColumn("AccountType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAccountType);
+                this.columnFund = new global::System.Data.DataColumn("Fund", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFund);
+                this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComment);
+                this.columnAccountNumber = new global::System.Data.DataColumn("AccountNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccountNumber);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnAccountID}, true));
                 this.columnAccountID.AllowDBNull = false;
@@ -2826,6 +2934,9 @@ namespace Budget {
                 this.columnTrackedByShares.AllowDBNull = false;
                 this.columnAccountType.AllowDBNull = false;
                 this.columnAccountType.MaxLength = 1;
+                this.columnFund.MaxLength = 4;
+                this.columnComment.MaxLength = 250;
+                this.columnAccountNumber.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2963,13 +3074,13 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnFilePath;
             
-            private global::System.Data.DataColumn columnAccount;
-            
             private global::System.Data.DataColumn columnImportDateTime;
             
             private global::System.Data.DataColumn columnManuallyEntered;
             
             private global::System.Data.DataColumn columnStatementDate;
+            
+            private global::System.Data.DataColumn columnAccount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -3022,14 +3133,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AccountColumn {
-                get {
-                    return this.columnAccount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn ImportDateTimeColumn {
                 get {
                     return this.columnImportDateTime;
@@ -3049,6 +3152,14 @@ namespace Budget {
             public global::System.Data.DataColumn StatementDateColumn {
                 get {
                     return this.columnStatementDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AccountColumn {
+                get {
+                    return this.columnAccount;
                 }
             }
             
@@ -3089,15 +3200,15 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetSourceFileRow AddBudgetSourceFileRow(string FilePath, string Account, System.DateTime ImportDateTime, bool ManuallyEntered, System.DateTime StatementDate) {
+            public BudgetSourceFileRow AddBudgetSourceFileRow(string FilePath, System.DateTime ImportDateTime, bool ManuallyEntered, System.DateTime StatementDate, string Account) {
                 BudgetSourceFileRow rowBudgetSourceFileRow = ((BudgetSourceFileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         FilePath,
-                        Account,
                         ImportDateTime,
                         ManuallyEntered,
-                        StatementDate};
+                        StatementDate,
+                        Account};
                 rowBudgetSourceFileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetSourceFileRow);
                 return rowBudgetSourceFileRow;
@@ -3129,10 +3240,10 @@ namespace Budget {
             internal void InitVars() {
                 this.columnFileID = base.Columns["FileID"];
                 this.columnFilePath = base.Columns["FilePath"];
-                this.columnAccount = base.Columns["Account"];
                 this.columnImportDateTime = base.Columns["ImportDateTime"];
                 this.columnManuallyEntered = base.Columns["ManuallyEntered"];
                 this.columnStatementDate = base.Columns["StatementDate"];
+                this.columnAccount = base.Columns["Account"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3142,14 +3253,14 @@ namespace Budget {
                 base.Columns.Add(this.columnFileID);
                 this.columnFilePath = new global::System.Data.DataColumn("FilePath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFilePath);
-                this.columnAccount = new global::System.Data.DataColumn("Account", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccount);
                 this.columnImportDateTime = new global::System.Data.DataColumn("ImportDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImportDateTime);
                 this.columnManuallyEntered = new global::System.Data.DataColumn("ManuallyEntered", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnManuallyEntered);
                 this.columnStatementDate = new global::System.Data.DataColumn("StatementDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatementDate);
+                this.columnAccount = new global::System.Data.DataColumn("Account", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccount);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFileID}, true));
                 this.columnFileID.AutoIncrement = true;
@@ -3159,8 +3270,8 @@ namespace Budget {
                 this.columnFileID.ReadOnly = true;
                 this.columnFileID.Unique = true;
                 this.columnFilePath.MaxLength = 250;
-                this.columnAccount.MaxLength = 4;
                 this.columnManuallyEntered.AllowDBNull = false;
+                this.columnAccount.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3302,6 +3413,10 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnBudgetItem;
             
+            private global::System.Data.DataColumn columnSharePriceDate;
+            
+            private global::System.Data.DataColumn columnSharePriceFund;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BudgetSourceFileItemsDataTable() {
@@ -3369,6 +3484,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SharePriceDateColumn {
+                get {
+                    return this.columnSharePriceDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SharePriceFundColumn {
+                get {
+                    return this.columnSharePriceFund;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3404,13 +3535,18 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetSourceFileItemsRow AddBudgetSourceFileItemsRow(int SourceFile, int SourceFileLine, int BudgetItem) {
+            public BudgetSourceFileItemsRow AddBudgetSourceFileItemsRow(BudgetSourceFileRow parentBudgetSourceFileRowByFK_BudgetSourceFileItems_BudgetSourceFile, int SourceFileLine, int BudgetItem, System.DateTime SharePriceDate, string SharePriceFund) {
                 BudgetSourceFileItemsRow rowBudgetSourceFileItemsRow = ((BudgetSourceFileItemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        SourceFile,
+                        null,
                         SourceFileLine,
-                        BudgetItem};
+                        BudgetItem,
+                        SharePriceDate,
+                        SharePriceFund};
+                if ((parentBudgetSourceFileRowByFK_BudgetSourceFileItems_BudgetSourceFile != null)) {
+                    columnValuesArray[1] = parentBudgetSourceFileRowByFK_BudgetSourceFileItems_BudgetSourceFile[0];
+                }
                 rowBudgetSourceFileItemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetSourceFileItemsRow);
                 return rowBudgetSourceFileItemsRow;
@@ -3444,6 +3580,8 @@ namespace Budget {
                 this.columnSourceFile = base.Columns["SourceFile"];
                 this.columnSourceFileLine = base.Columns["SourceFileLine"];
                 this.columnBudgetItem = base.Columns["BudgetItem"];
+                this.columnSharePriceDate = base.Columns["SharePriceDate"];
+                this.columnSharePriceFund = base.Columns["SharePriceFund"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3457,6 +3595,10 @@ namespace Budget {
                 base.Columns.Add(this.columnSourceFileLine);
                 this.columnBudgetItem = new global::System.Data.DataColumn("BudgetItem", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBudgetItem);
+                this.columnSharePriceDate = new global::System.Data.DataColumn("SharePriceDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSharePriceDate);
+                this.columnSharePriceFund = new global::System.Data.DataColumn("SharePriceFund", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSharePriceFund);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnItemID}, true));
                 this.columnItemID.AutoIncrement = true;
@@ -3466,7 +3608,7 @@ namespace Budget {
                 this.columnItemID.ReadOnly = true;
                 this.columnItemID.Unique = true;
                 this.columnSourceFile.AllowDBNull = false;
-                this.columnBudgetItem.AllowDBNull = false;
+                this.columnSharePriceFund.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3918,8 +4060,6 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnTrCode;
             
-            private global::System.Data.DataColumn columnAmount;
-            
             private global::System.Data.DataColumn columnIgnore;
             
             private global::System.Data.DataColumn columnBalance;
@@ -3933,6 +4073,8 @@ namespace Budget {
             private global::System.Data.DataColumn columnDescripFromVendor;
             
             private global::System.Data.DataColumn columnCardTransDate;
+            
+            private global::System.Data.DataColumn columnAmount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -4017,14 +4159,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AmountColumn {
-                get {
-                    return this.columnAmount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn IgnoreColumn {
                 get {
                     return this.columnIgnore;
@@ -4081,6 +4215,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AmountColumn {
+                get {
+                    return this.columnAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4116,23 +4258,26 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetRow AddBudgetRow(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate) {
+            public BudgetRow AddBudgetRow(System.DateTime TrDate, string Descrip, string Account, BudgetTypeGroupingsRow parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings, string TrCode, bool Ignore, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate, decimal Amount) {
                 BudgetRow rowBudgetRow = ((BudgetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         TrDate,
                         Descrip,
                         Account,
-                        TrType,
+                        null,
                         TrCode,
-                        Amount,
                         Ignore,
                         Balance,
                         Comment,
                         Descrip2,
                         BalanceIsCalculated,
                         DescripFromVendor,
-                        CardTransDate};
+                        CardTransDate,
+                        Amount};
+                if ((parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings != null)) {
+                    columnValuesArray[4] = parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings[0];
+                }
                 rowBudgetRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBudgetRow);
                 return rowBudgetRow;
@@ -4168,7 +4313,6 @@ namespace Budget {
                 this.columnAccount = base.Columns["Account"];
                 this.columnTrType = base.Columns["TrType"];
                 this.columnTrCode = base.Columns["TrCode"];
-                this.columnAmount = base.Columns["Amount"];
                 this.columnIgnore = base.Columns["Ignore"];
                 this.columnBalance = base.Columns["Balance"];
                 this.columnComment = base.Columns["Comment"];
@@ -4176,6 +4320,7 @@ namespace Budget {
                 this.columnBalanceIsCalculated = base.Columns["BalanceIsCalculated"];
                 this.columnDescripFromVendor = base.Columns["DescripFromVendor"];
                 this.columnCardTransDate = base.Columns["CardTransDate"];
+                this.columnAmount = base.Columns["Amount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4193,8 +4338,6 @@ namespace Budget {
                 base.Columns.Add(this.columnTrType);
                 this.columnTrCode = new global::System.Data.DataColumn("TrCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTrCode);
-                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmount);
                 this.columnIgnore = new global::System.Data.DataColumn("Ignore", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIgnore);
                 this.columnBalance = new global::System.Data.DataColumn("Balance", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -4209,6 +4352,8 @@ namespace Budget {
                 base.Columns.Add(this.columnDescripFromVendor);
                 this.columnCardTransDate = new global::System.Data.DataColumn("CardTransDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCardTransDate);
+                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmount);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4218,13 +4363,11 @@ namespace Budget {
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
                 this.columnTrDate.AllowDBNull = false;
-                this.columnDescrip.AllowDBNull = false;
                 this.columnDescrip.MaxLength = 500;
                 this.columnAccount.AllowDBNull = false;
                 this.columnAccount.MaxLength = 4;
                 this.columnTrType.MaxLength = 8;
                 this.columnTrCode.MaxLength = 250;
-                this.columnAmount.AllowDBNull = false;
                 this.columnIgnore.AllowDBNull = false;
                 this.columnComment.MaxLength = 2147483647;
                 this.columnDescrip2.MaxLength = 500;
@@ -4904,11 +5047,11 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnSPDate;
             
-            private global::System.Data.DataColumn columnSPAccount;
-            
             private global::System.Data.DataColumn columnPricePerShare;
             
             private global::System.Data.DataColumn columnComment;
+            
+            private global::System.Data.DataColumn columnFund;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -4953,14 +5096,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn SPAccountColumn {
-                get {
-                    return this.columnSPAccount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn PricePerShareColumn {
                 get {
                     return this.columnPricePerShare;
@@ -4972,6 +5107,14 @@ namespace Budget {
             public global::System.Data.DataColumn CommentColumn {
                 get {
                     return this.columnComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FundColumn {
+                get {
+                    return this.columnFund;
                 }
             }
             
@@ -5012,13 +5155,16 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SharePriceRow AddSharePriceRow(System.DateTime SPDate, string SPAccount, decimal PricePerShare, string Comment) {
+            public SharePriceRow AddSharePriceRow(System.DateTime SPDate, decimal PricePerShare, string Comment, FundRow parentFundRowByFK_SharePrice_Fund) {
                 SharePriceRow rowSharePriceRow = ((SharePriceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SPDate,
-                        SPAccount,
                         PricePerShare,
-                        Comment};
+                        Comment,
+                        null};
+                if ((parentFundRowByFK_SharePrice_Fund != null)) {
+                    columnValuesArray[3] = parentFundRowByFK_SharePrice_Fund[0];
+                }
                 rowSharePriceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSharePriceRow);
                 return rowSharePriceRow;
@@ -5026,10 +5172,10 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SharePriceRow FindBySPDateSPAccount(System.DateTime SPDate, string SPAccount) {
+            public SharePriceRow FindBySPDateFund(System.DateTime SPDate, string Fund) {
                 return ((SharePriceRow)(this.Rows.Find(new object[] {
                             SPDate,
-                            SPAccount})));
+                            Fund})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5050,9 +5196,9 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnSPDate = base.Columns["SPDate"];
-                this.columnSPAccount = base.Columns["SPAccount"];
                 this.columnPricePerShare = base.Columns["PricePerShare"];
                 this.columnComment = base.Columns["Comment"];
+                this.columnFund = base.Columns["Fund"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5060,20 +5206,20 @@ namespace Budget {
             private void InitClass() {
                 this.columnSPDate = new global::System.Data.DataColumn("SPDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSPDate);
-                this.columnSPAccount = new global::System.Data.DataColumn("SPAccount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSPAccount);
                 this.columnPricePerShare = new global::System.Data.DataColumn("PricePerShare", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPricePerShare);
                 this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComment);
+                this.columnFund = new global::System.Data.DataColumn("Fund", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFund);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSPDate,
-                                this.columnSPAccount}, true));
+                                this.columnFund}, true));
                 this.columnSPDate.AllowDBNull = false;
-                this.columnSPAccount.AllowDBNull = false;
-                this.columnSPAccount.MaxLength = 4;
                 this.columnPricePerShare.AllowDBNull = false;
                 this.columnComment.MaxLength = 250;
+                this.columnFund.AllowDBNull = false;
+                this.columnFund.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5743,6 +5889,327 @@ namespace Budget {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "AccountTypeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class FundDataTable : global::System.Data.TypedTableBase<FundRow> {
+            
+            private global::System.Data.DataColumn columnFundID;
+            
+            private global::System.Data.DataColumn columnFundName;
+            
+            private global::System.Data.DataColumn columnFullName;
+            
+            private global::System.Data.DataColumn columnStockSymbol;
+            
+            private global::System.Data.DataColumn columnComment;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundDataTable() {
+                this.TableName = "Fund";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal FundDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected FundDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FundIDColumn {
+                get {
+                    return this.columnFundID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FundNameColumn {
+                get {
+                    return this.columnFundName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FullNameColumn {
+                get {
+                    return this.columnFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StockSymbolColumn {
+                get {
+                    return this.columnStockSymbol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CommentColumn {
+                get {
+                    return this.columnComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow this[int index] {
+                get {
+                    return ((FundRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event FundRowChangeEventHandler FundRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event FundRowChangeEventHandler FundRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event FundRowChangeEventHandler FundRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event FundRowChangeEventHandler FundRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddFundRow(FundRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow AddFundRow(string FundID, string FundName, string FullName, string StockSymbol, string Comment) {
+                FundRow rowFundRow = ((FundRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        FundID,
+                        FundName,
+                        FullName,
+                        StockSymbol,
+                        Comment};
+                rowFundRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowFundRow);
+                return rowFundRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow FindByFundID(string FundID) {
+                return ((FundRow)(this.Rows.Find(new object[] {
+                            FundID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                FundDataTable cln = ((FundDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new FundDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnFundID = base.Columns["FundID"];
+                this.columnFundName = base.Columns["FundName"];
+                this.columnFullName = base.Columns["FullName"];
+                this.columnStockSymbol = base.Columns["StockSymbol"];
+                this.columnComment = base.Columns["Comment"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnFundID = new global::System.Data.DataColumn("FundID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFundID);
+                this.columnFundName = new global::System.Data.DataColumn("FundName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFundName);
+                this.columnFullName = new global::System.Data.DataColumn("FullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullName);
+                this.columnStockSymbol = new global::System.Data.DataColumn("StockSymbol", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStockSymbol);
+                this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComment);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnFundID}, true));
+                this.columnFundID.AllowDBNull = false;
+                this.columnFundID.Unique = true;
+                this.columnFundID.MaxLength = 4;
+                this.columnFundName.AllowDBNull = false;
+                this.columnFundName.MaxLength = 50;
+                this.columnFullName.AllowDBNull = false;
+                this.columnFullName.MaxLength = 250;
+                this.columnStockSymbol.MaxLength = 50;
+                this.columnComment.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow NewFundRow() {
+                return ((FundRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new FundRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(FundRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.FundRowChanged != null)) {
+                    this.FundRowChanged(this, new FundRowChangeEvent(((FundRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.FundRowChanging != null)) {
+                    this.FundRowChanging(this, new FundRowChangeEvent(((FundRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.FundRowDeleted != null)) {
+                    this.FundRowDeleted(this, new FundRowChangeEvent(((FundRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.FundRowDeleting != null)) {
+                    this.FundRowDeleting(this, new FundRowChangeEvent(((FundRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveFundRow(FundRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "FundDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7045,6 +7512,54 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Fund {
+                get {
+                    try {
+                        return ((string)(this[this.tableBudgetAccount.FundColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fund\' in table \'BudgetAccount\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetAccount.FundColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Comment {
+                get {
+                    try {
+                        return ((string)(this[this.tableBudgetAccount.CommentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Comment\' in table \'BudgetAccount\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetAccount.CommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string AccountNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tableBudgetAccount.AccountNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AccountNumber\' in table \'BudgetAccount\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetAccount.AccountNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AccountOwnerRow AccountOwnerRow {
                 get {
                     return ((AccountOwnerRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetAccount_AccountOwner"])));
@@ -7089,6 +7604,17 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow FundRow {
+                get {
+                    return ((FundRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetAccount_Fund"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BudgetAccount_Fund"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSourceFileLocationNull() {
                 return this.IsNull(this.tableBudgetAccount.SourceFileLocationColumn);
             }
@@ -7121,6 +7647,42 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDefaultFormatManualEntryNull() {
                 this[this.tableBudgetAccount.DefaultFormatManualEntryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFundNull() {
+                return this.IsNull(this.tableBudgetAccount.FundColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFundNull() {
+                this[this.tableBudgetAccount.FundColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCommentNull() {
+                return this.IsNull(this.tableBudgetAccount.CommentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCommentNull() {
+                this[this.tableBudgetAccount.CommentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAccountNumberNull() {
+                return this.IsNull(this.tableBudgetAccount.AccountNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAccountNumberNull() {
+                this[this.tableBudgetAccount.AccountNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7178,22 +7740,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Account {
-                get {
-                    try {
-                        return ((string)(this[this.tableBudgetSourceFile.AccountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Account\' in table \'BudgetSourceFile\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBudgetSourceFile.AccountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime ImportDateTime {
                 get {
                     try {
@@ -7237,6 +7783,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Account {
+                get {
+                    try {
+                        return ((string)(this[this.tableBudgetSourceFile.AccountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Account\' in table \'BudgetSourceFile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetSourceFile.AccountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFilePathNull() {
                 return this.IsNull(this.tableBudgetSourceFile.FilePathColumn);
             }
@@ -7245,18 +7807,6 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFilePathNull() {
                 this[this.tableBudgetSourceFile.FilePathColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAccountNull() {
-                return this.IsNull(this.tableBudgetSourceFile.AccountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAccountNull() {
-                this[this.tableBudgetSourceFile.AccountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7281,6 +7831,29 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetStatementDateNull() {
                 this[this.tableBudgetSourceFile.StatementDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAccountNull() {
+                return this.IsNull(this.tableBudgetSourceFile.AccountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAccountNull() {
+                this[this.tableBudgetSourceFile.AccountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetSourceFileItemsRow[] GetBudgetSourceFileItemsRows() {
+                if ((this.Table.ChildRelations["FK_BudgetSourceFileItems_BudgetSourceFile"] == null)) {
+                    return new BudgetSourceFileItemsRow[0];
+                }
+                else {
+                    return ((BudgetSourceFileItemsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetSourceFileItems_BudgetSourceFile"])));
+                }
             }
         }
         
@@ -7341,10 +7914,60 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int BudgetItem {
                 get {
-                    return ((int)(this[this.tableBudgetSourceFileItems.BudgetItemColumn]));
+                    try {
+                        return ((int)(this[this.tableBudgetSourceFileItems.BudgetItemColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BudgetItem\' in table \'BudgetSourceFileItems\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableBudgetSourceFileItems.BudgetItemColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime SharePriceDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableBudgetSourceFileItems.SharePriceDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SharePriceDate\' in table \'BudgetSourceFileItems\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetSourceFileItems.SharePriceDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SharePriceFund {
+                get {
+                    try {
+                        return ((string)(this[this.tableBudgetSourceFileItems.SharePriceFundColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SharePriceFund\' in table \'BudgetSourceFileItems\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableBudgetSourceFileItems.SharePriceFundColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetSourceFileRow BudgetSourceFileRow {
+                get {
+                    return ((BudgetSourceFileRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetSourceFileItems_BudgetSourceFile"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BudgetSourceFileItems_BudgetSourceFile"]);
                 }
             }
             
@@ -7358,6 +7981,42 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSourceFileLineNull() {
                 this[this.tableBudgetSourceFileItems.SourceFileLineColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBudgetItemNull() {
+                return this.IsNull(this.tableBudgetSourceFileItems.BudgetItemColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBudgetItemNull() {
+                this[this.tableBudgetSourceFileItems.BudgetItemColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSharePriceDateNull() {
+                return this.IsNull(this.tableBudgetSourceFileItems.SharePriceDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSharePriceDateNull() {
+                this[this.tableBudgetSourceFileItems.SharePriceDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSharePriceFundNull() {
+                return this.IsNull(this.tableBudgetSourceFileItems.SharePriceFundColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSharePriceFundNull() {
+                this[this.tableBudgetSourceFileItems.SharePriceFundColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7453,6 +8112,17 @@ namespace Budget {
             public void SetCodeAndNameNull() {
                 this[this.tableBudgetTypeGroupings.CodeAndNameColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetRow[] GetBudgetRows() {
+                if ((this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings"] == null)) {
+                    return new BudgetRow[0];
+                }
+                else {
+                    return ((BudgetRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings"])));
+                }
+            }
         }
         
         /// <summary>
@@ -7495,7 +8165,12 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Descrip {
                 get {
-                    return ((string)(this[this.tableBudget.DescripColumn]));
+                    try {
+                        return ((string)(this[this.tableBudget.DescripColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Descrip\' in table \'Budget\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableBudget.DescripColumn] = value;
@@ -7542,17 +8217,6 @@ namespace Budget {
                 }
                 set {
                     this[this.tableBudget.TrCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal Amount {
-                get {
-                    return ((decimal)(this[this.tableBudget.AmountColumn]));
-                }
-                set {
-                    this[this.tableBudget.AmountColumn] = value;
                 }
             }
             
@@ -7660,6 +8324,45 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal Amount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableBudget.AmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'Budget\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBudget.AmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetTypeGroupingsRow BudgetTypeGroupingsRow {
+                get {
+                    return ((BudgetTypeGroupingsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDescripNull() {
+                return this.IsNull(this.tableBudget.DescripColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDescripNull() {
+                this[this.tableBudget.DescripColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTrTypeNull() {
                 return this.IsNull(this.tableBudget.TrTypeColumn);
             }
@@ -7740,6 +8443,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetCardTransDateNull() {
                 this[this.tableBudget.CardTransDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAmountNull() {
+                return this.IsNull(this.tableBudget.AmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAmountNull() {
+                this[this.tableBudget.AmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7872,17 +8587,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string SPAccount {
-                get {
-                    return ((string)(this[this.tableSharePrice.SPAccountColumn]));
-                }
-                set {
-                    this[this.tableSharePrice.SPAccountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal PricePerShare {
                 get {
                     return ((decimal)(this[this.tableSharePrice.PricePerShareColumn]));
@@ -7905,6 +8609,28 @@ namespace Budget {
                 }
                 set {
                     this[this.tableSharePrice.CommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Fund {
+                get {
+                    return ((string)(this[this.tableSharePrice.FundColumn]));
+                }
+                set {
+                    this[this.tableSharePrice.FundColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow FundRow {
+                get {
+                    return ((FundRow)(this.GetParentRow(this.Table.ParentRelations["FK_SharePrice_Fund"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SharePrice_Fund"]);
                 }
             }
             
@@ -8052,6 +8778,132 @@ namespace Budget {
                 }
                 else {
                     return ((BudgetAccountRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetAccount_AccountType"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class FundRow : global::System.Data.DataRow {
+            
+            private FundDataTable tableFund;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal FundRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableFund = ((FundDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FundID {
+                get {
+                    return ((string)(this[this.tableFund.FundIDColumn]));
+                }
+                set {
+                    this[this.tableFund.FundIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FundName {
+                get {
+                    return ((string)(this[this.tableFund.FundNameColumn]));
+                }
+                set {
+                    this[this.tableFund.FundNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FullName {
+                get {
+                    return ((string)(this[this.tableFund.FullNameColumn]));
+                }
+                set {
+                    this[this.tableFund.FullNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StockSymbol {
+                get {
+                    try {
+                        return ((string)(this[this.tableFund.StockSymbolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StockSymbol\' in table \'Fund\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFund.StockSymbolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Comment {
+                get {
+                    try {
+                        return ((string)(this[this.tableFund.CommentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Comment\' in table \'Fund\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFund.CommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStockSymbolNull() {
+                return this.IsNull(this.tableFund.StockSymbolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStockSymbolNull() {
+                this[this.tableFund.StockSymbolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCommentNull() {
+                return this.IsNull(this.tableFund.CommentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCommentNull() {
+                this[this.tableFund.CommentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BudgetAccountRow[] GetBudgetAccountRows() {
+                if ((this.Table.ChildRelations["FK_BudgetAccount_Fund"] == null)) {
+                    return new BudgetAccountRow[0];
+                }
+                else {
+                    return ((BudgetAccountRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetAccount_Fund"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SharePriceRow[] GetSharePriceRows() {
+                if ((this.Table.ChildRelations["FK_SharePrice_Fund"] == null)) {
+                    return new SharePriceRow[0];
+                }
+                else {
+                    return ((SharePriceRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SharePrice_Fund"])));
                 }
             }
         }
@@ -8680,6 +9532,40 @@ namespace Budget {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AccountTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class FundRowChangeEvent : global::System.EventArgs {
+            
+            private FundRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRowChangeEvent(FundRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public FundRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10376,10 +11262,13 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
             tableMapping.ColumnMappings.Add("CurrentlyTracked", "CurrentlyTracked");
             tableMapping.ColumnMappings.Add("TrackedByShares", "TrackedByShares");
             tableMapping.ColumnMappings.Add("AccountType", "AccountType");
+            tableMapping.ColumnMappings.Add("Fund", "Fund");
+            tableMapping.ColumnMappings.Add("Comment", "Comment");
+            tableMapping.ColumnMappings.Add("AccountNumber", "AccountNumber");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetAccount] WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetAccount] WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType) AND ((@IsNull_Fund = 1 AND [Fund] IS NULL) OR ([Fund] = @Original_Fund)) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_AccountNumber = 1 AND [AccountNumber] IS NULL) OR ([AccountNumber] = @Original_AccountNumber)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_AccountID";
@@ -10480,10 +11369,61 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM BudgetS
             param.SourceColumn = "AccountType";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Fund";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Comment";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_AccountNumber";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_AccountNumber";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetAccount] ([AccountID], [AccountName], [SourceFileLocation], [DefaultFormatAutoEntry], [DefaultFormatManualEntry], [AccountOwner], [CurrentlyTracked], [TrackedByShares], [AccountType]) VALUES (@AccountID, @AccountName, @SourceFileLocation, @DefaultFormatAutoEntry, @DefaultFormatManualEntry, @AccountOwner, @CurrentlyTracked, @TrackedByShares, @AccountType);
-SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetAccount] ([AccountID], [AccountName], [SourceFileLocation], [DefaultFormatAutoEntry], [DefaultFormatManualEntry], [AccountOwner], [CurrentlyTracked], [TrackedByShares], [AccountType], [Fund], [Comment], [AccountNumber]) VALUES (@AccountID, @AccountName, @SourceFileLocation, @DefaultFormatAutoEntry, @DefaultFormatManualEntry, @AccountOwner, @CurrentlyTracked, @TrackedByShares, @AccountType, @Fund, @Comment, @AccountNumber);
+SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType, Fund, Comment, AccountNumber FROM BudgetAccount WHERE (AccountID = @AccountID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountID";
@@ -10548,10 +11488,50 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.IsNullable = true;
             param.SourceColumn = "AccountType";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountNumber";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetAccount] SET [AccountID] = @AccountID, [AccountName] = @AccountName, [SourceFileLocation] = @SourceFileLocation, [DefaultFormatAutoEntry] = @DefaultFormatAutoEntry, [DefaultFormatManualEntry] = @DefaultFormatManualEntry, [AccountOwner] = @AccountOwner, [CurrentlyTracked] = @CurrentlyTracked, [TrackedByShares] = @TrackedByShares, [AccountType] = @AccountType WHERE (([AccountID] = @Original_AccountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLocation = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormatAutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEntry)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) AND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([AccountType] = @Original_AccountType));
-SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType FROM BudgetAccount WHERE (AccountID = @AccountID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [BudgetAccount] SET [AccountID] = @AccountID, [AccountName] = @AccountName" +
+                ", [SourceFileLocation] = @SourceFileLocation, [DefaultFormatAutoEntry] = @Defaul" +
+                "tFormatAutoEntry, [DefaultFormatManualEntry] = @DefaultFormatManualEntry, [Accou" +
+                "ntOwner] = @AccountOwner, [CurrentlyTracked] = @CurrentlyTracked, [TrackedByShar" +
+                "es] = @TrackedByShares, [AccountType] = @AccountType, [Fund] = @Fund, [Comment] " +
+                "= @Comment, [AccountNumber] = @AccountNumber WHERE (([AccountID] = @Original_Acc" +
+                "ountID) AND ([AccountName] = @Original_AccountName) AND ((@IsNull_SourceFileLoca" +
+                "tion = 1 AND [SourceFileLocation] IS NULL) OR ([SourceFileLocation] = @Original_" +
+                "SourceFileLocation)) AND ((@IsNull_DefaultFormatAutoEntry = 1 AND [DefaultFormat" +
+                "AutoEntry] IS NULL) OR ([DefaultFormatAutoEntry] = @Original_DefaultFormatAutoEn" +
+                "try)) AND ((@IsNull_DefaultFormatManualEntry = 1 AND [DefaultFormatManualEntry] " +
+                "IS NULL) OR ([DefaultFormatManualEntry] = @Original_DefaultFormatManualEntry)) A" +
+                "ND ([AccountOwner] = @Original_AccountOwner) AND ([CurrentlyTracked] = @Original" +
+                "_CurrentlyTracked) AND ([TrackedByShares] = @Original_TrackedByShares) AND ([Acc" +
+                "ountType] = @Original_AccountType) AND ((@IsNull_Fund = 1 AND [Fund] IS NULL) OR" +
+                " ([Fund] = @Original_Fund)) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR " +
+                "([Comment] = @Original_Comment)) AND ((@IsNull_AccountNumber = 1 AND [AccountNum" +
+                "ber] IS NULL) OR ([AccountNumber] = @Original_AccountNumber)));\r\nSELECT AccountI" +
+                "D, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualE" +
+                "ntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType, Fund, Commen" +
+                "t, AccountNumber FROM BudgetAccount WHERE (AccountID = @AccountID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountID";
@@ -10615,6 +11595,27 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SqlDbType = global::System.Data.SqlDbType.Char;
             param.IsNullable = true;
             param.SourceColumn = "AccountType";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountNumber";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_AccountID";
@@ -10715,6 +11716,57 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SourceColumn = "AccountType";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Fund";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Comment";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_AccountNumber";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_AccountNumber";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountNumber";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10732,7 +11784,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry," +
                 " DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, Acco" +
-                "untType\r\nFROM            BudgetAccount";
+                "untType, Fund, Comment, AccountNumber\r\nFROM            BudgetAccount";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10782,7 +11834,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_AccountID, string Original_AccountName, string Original_SourceFileLocation, string Original_DefaultFormatAutoEntry, string Original_DefaultFormatManualEntry, string Original_AccountOwner, bool Original_CurrentlyTracked, bool Original_TrackedByShares, string Original_AccountType) {
+        public virtual int Delete(string Original_AccountID, string Original_AccountName, string Original_SourceFileLocation, string Original_DefaultFormatAutoEntry, string Original_DefaultFormatManualEntry, string Original_AccountOwner, bool Original_CurrentlyTracked, bool Original_TrackedByShares, string Original_AccountType, string Original_Fund, string Original_Comment, string Original_AccountNumber) {
             if ((Original_AccountID == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountID");
             }
@@ -10833,6 +11885,30 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_AccountType));
             }
+            if ((Original_Fund == null)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_Fund));
+            }
+            if ((Original_Comment == null)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_Comment));
+            }
+            if ((Original_AccountNumber == null)) {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_AccountNumber));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10853,7 +11929,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string AccountID, string AccountName, string SourceFileLocation, string DefaultFormatAutoEntry, string DefaultFormatManualEntry, string AccountOwner, bool CurrentlyTracked, bool TrackedByShares, string AccountType) {
+        public virtual int Insert(string AccountID, string AccountName, string SourceFileLocation, string DefaultFormatAutoEntry, string DefaultFormatManualEntry, string AccountOwner, bool CurrentlyTracked, bool TrackedByShares, string AccountType, string Fund, string Comment, string AccountNumber) {
             if ((AccountID == null)) {
                 throw new global::System.ArgumentNullException("AccountID");
             }
@@ -10898,6 +11974,24 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(AccountType));
             }
+            if ((Fund == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Fund));
+            }
+            if ((Comment == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Comment));
+            }
+            if ((AccountNumber == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(AccountNumber));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10928,6 +12022,9 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     bool CurrentlyTracked, 
                     bool TrackedByShares, 
                     string AccountType, 
+                    string Fund, 
+                    string Comment, 
+                    string AccountNumber, 
                     string Original_AccountID, 
                     string Original_AccountName, 
                     string Original_SourceFileLocation, 
@@ -10936,7 +12033,10 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string Original_AccountOwner, 
                     bool Original_CurrentlyTracked, 
                     bool Original_TrackedByShares, 
-                    string Original_AccountType) {
+                    string Original_AccountType, 
+                    string Original_Fund, 
+                    string Original_Comment, 
+                    string Original_AccountNumber) {
             if ((AccountID == null)) {
                 throw new global::System.ArgumentNullException("AccountID");
             }
@@ -10981,55 +12081,97 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(AccountType));
             }
+            if ((Fund == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Fund));
+            }
+            if ((Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Comment));
+            }
+            if ((AccountNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(AccountNumber));
+            }
             if ((Original_AccountID == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_AccountID));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_AccountID));
             }
             if ((Original_AccountName == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_AccountName));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_AccountName));
             }
             if ((Original_SourceFileLocation == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_SourceFileLocation));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_SourceFileLocation));
             }
             if ((Original_DefaultFormatAutoEntry == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_DefaultFormatAutoEntry));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_DefaultFormatAutoEntry));
             }
             if ((Original_DefaultFormatManualEntry == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_DefaultFormatManualEntry));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_DefaultFormatManualEntry));
             }
             if ((Original_AccountOwner == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountOwner");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_AccountOwner));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_AccountOwner));
             }
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_CurrentlyTracked));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_TrackedByShares));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_CurrentlyTracked));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_TrackedByShares));
             if ((Original_AccountType == null)) {
                 throw new global::System.ArgumentNullException("Original_AccountType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_AccountType));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_AccountType));
+            }
+            if ((Original_Fund == null)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_Fund));
+            }
+            if ((Original_Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_Comment));
+            }
+            if ((Original_AccountNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_AccountNumber));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -11060,6 +12202,9 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     bool CurrentlyTracked, 
                     bool TrackedByShares, 
                     string AccountType, 
+                    string Fund, 
+                    string Comment, 
+                    string AccountNumber, 
                     string Original_AccountID, 
                     string Original_AccountName, 
                     string Original_SourceFileLocation, 
@@ -11068,8 +12213,11 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
                     string Original_AccountOwner, 
                     bool Original_CurrentlyTracked, 
                     bool Original_TrackedByShares, 
-                    string Original_AccountType) {
-            return this.Update(Original_AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType, Original_AccountID, Original_AccountName, Original_SourceFileLocation, Original_DefaultFormatAutoEntry, Original_DefaultFormatManualEntry, Original_AccountOwner, Original_CurrentlyTracked, Original_TrackedByShares, Original_AccountType);
+                    string Original_AccountType, 
+                    string Original_Fund, 
+                    string Original_Comment, 
+                    string Original_AccountNumber) {
+            return this.Update(Original_AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, DefaultFormatManualEntry, AccountOwner, CurrentlyTracked, TrackedByShares, AccountType, Fund, Comment, AccountNumber, Original_AccountID, Original_AccountName, Original_SourceFileLocation, Original_DefaultFormatAutoEntry, Original_DefaultFormatManualEntry, Original_AccountOwner, Original_CurrentlyTracked, Original_TrackedByShares, Original_AccountType, Original_Fund, Original_Comment, Original_AccountNumber);
         }
     }
     
@@ -11196,14 +12344,14 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             tableMapping.DataSetTable = "BudgetSourceFile";
             tableMapping.ColumnMappings.Add("FileID", "FileID");
             tableMapping.ColumnMappings.Add("FilePath", "FilePath");
-            tableMapping.ColumnMappings.Add("Account", "Account");
             tableMapping.ColumnMappings.Add("ImportDateTime", "ImportDateTime");
             tableMapping.ColumnMappings.Add("ManuallyEntered", "ManuallyEntered");
             tableMapping.ColumnMappings.Add("StatementDate", "StatementDate");
+            tableMapping.ColumnMappings.Add("Account", "Account");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFile] WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFile] WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_FileID";
@@ -11231,23 +12379,6 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_Account";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Account";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@IsNull_ImportDateTime";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -11289,10 +12420,27 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             param.SourceColumn = "StatementDate";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Account";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Account";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetSourceFile] ([FilePath], [Account], [ImportDateTime], [ManuallyEntered], [StatementDate]) VALUES (@FilePath, @Account, @ImportDateTime, @ManuallyEntered, @StatementDate);
-SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate FROM BudgetSourceFile WHERE (FileID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetSourceFile] ([FilePath], [ImportDateTime], [ManuallyEntered], [StatementDate], [Account]) VALUES (@FilePath, @ImportDateTime, @ManuallyEntered, @StatementDate, @Account);
+SELECT FileID, FilePath, ImportDateTime, ManuallyEntered, StatementDate, Account FROM BudgetSourceFile WHERE (FileID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FilePath";
@@ -11302,13 +12450,6 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceColumn = "FilePath";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Account";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ImportDateTime";
             param.DbType = global::System.Data.DbType.DateTime2;
             param.SqlDbType = global::System.Data.SqlDbType.DateTime2;
@@ -11329,10 +12470,17 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.IsNullable = true;
             param.SourceColumn = "StatementDate";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Account";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFile] SET [FilePath] = @FilePath, [Account] = @Account, [ImportDateTime] = @ImportDateTime, [ManuallyEntered] = @ManuallyEntered, [StatementDate] = @StatementDate WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)));
-SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate FROM BudgetSourceFile WHERE (FileID = @FileID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFile] SET [FilePath] = @FilePath, [ImportDateTime] = @ImportDateTime, [ManuallyEntered] = @ManuallyEntered, [StatementDate] = @StatementDate, [Account] = @Account WHERE (([FileID] = @Original_FileID) AND ((@IsNull_FilePath = 1 AND [FilePath] IS NULL) OR ([FilePath] = @Original_FilePath)) AND ((@IsNull_ImportDateTime = 1 AND [ImportDateTime] IS NULL) OR ([ImportDateTime] = @Original_ImportDateTime)) AND ([ManuallyEntered] = @Original_ManuallyEntered) AND ((@IsNull_StatementDate = 1 AND [StatementDate] IS NULL) OR ([StatementDate] = @Original_StatementDate)) AND ((@IsNull_Account = 1 AND [Account] IS NULL) OR ([Account] = @Original_Account)));
+SELECT FileID, FilePath, ImportDateTime, ManuallyEntered, StatementDate, Account FROM BudgetSourceFile WHERE (FileID = @FileID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FilePath";
@@ -11342,13 +12490,6 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceColumn = "FilePath";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Account";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ImportDateTime";
             param.DbType = global::System.Data.DbType.DateTime2;
             param.SqlDbType = global::System.Data.SqlDbType.DateTime2;
@@ -11368,6 +12509,13 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SqlDbType = global::System.Data.SqlDbType.Date;
             param.IsNullable = true;
             param.SourceColumn = "StatementDate";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Account";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_FileID";
@@ -11395,23 +12543,6 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_Account";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Account";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "Account";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@IsNull_ImportDateTime";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -11454,6 +12585,23 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Account";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Account";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Account";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FileID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -11476,14 +12624,14 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        FileID, FilePath, Account, ImportDateTime, ManuallyEntered, Stateme" +
-                "ntDate\r\nFROM            BudgetSourceFile";
+            this._commandCollection[0].CommandText = "SELECT        FileID, FilePath, ImportDateTime, ManuallyEntered, StatementDate, A" +
+                "ccount\r\nFROM            BudgetSourceFile";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        FileID, FilePath, Account, ImportDateTime, ManuallyEntered, Stateme" +
-                "ntDate\r\nFROM            BudgetSourceFile\r\nWHERE        (ImportDateTime >= DATEFR" +
-                "OMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))";
+            this._commandCollection[1].CommandText = "SELECT Account, FileID, FilePath, ImportDateTime, ManuallyEntered, StatementDate " +
+                "FROM BudgetSourceFile WHERE (ImportDateTime >= DATEFROMPARTS(YEAR(GETDATE()), MO" +
+                "NTH(GETDATE()), 1))";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11546,7 +12694,7 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate) {
+        public virtual int Delete(int Original_FileID, string Original_FilePath, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate, string Original_Account) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_FileID));
             if ((Original_FilePath == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -11556,30 +12704,30 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FilePath));
             }
-            if ((Original_Account == null)) {
+            if ((Original_ImportDateTime.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_ImportDateTime.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Account));
-            }
-            if ((Original_ImportDateTime.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_ImportDateTime.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_ManuallyEntered));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_ManuallyEntered));
             if ((Original_StatementDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_StatementDate.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_StatementDate.Value));
             }
             else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Account == null)) {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Account));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -11601,31 +12749,31 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate) {
+        public virtual int Insert(string FilePath, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, string Account) {
             if ((FilePath == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(FilePath));
             }
-            if ((Account == null)) {
+            if ((ImportDateTime.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(ImportDateTime.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Account));
-            }
-            if ((ImportDateTime.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(ImportDateTime.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(ManuallyEntered));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(ManuallyEntered));
             if ((StatementDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(StatementDate.Value));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(StatementDate.Value));
             }
             else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Account == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Account));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -11647,31 +12795,31 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate, int FileID) {
+        public virtual int Update(string FilePath, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, string Account, int Original_FileID, string Original_FilePath, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate, string Original_Account, int FileID) {
             if ((FilePath == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(FilePath));
             }
-            if ((Account == null)) {
+            if ((ImportDateTime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(ImportDateTime.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Account));
-            }
-            if ((ImportDateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(ImportDateTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(ManuallyEntered));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(ManuallyEntered));
             if ((StatementDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(StatementDate.Value));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(StatementDate.Value));
             }
             else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Account == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Account));
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_FileID));
             if ((Original_FilePath == null)) {
@@ -11682,30 +12830,30 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_FilePath));
             }
-            if ((Original_Account == null)) {
+            if ((Original_ImportDateTime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_ImportDateTime.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Account));
-            }
-            if ((Original_ImportDateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_ImportDateTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_ManuallyEntered));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_ManuallyEntered));
             if ((Original_StatementDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_StatementDate.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_StatementDate.Value));
             }
             else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Account == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Account));
             }
             this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(FileID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
@@ -11728,8 +12876,8 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FilePath, string Account, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, int Original_FileID, string Original_FilePath, string Original_Account, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate) {
-            return this.Update(FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate, Original_FileID, Original_FilePath, Original_Account, Original_ImportDateTime, Original_ManuallyEntered, Original_StatementDate, Original_FileID);
+        public virtual int Update(string FilePath, global::System.Nullable<global::System.DateTime> ImportDateTime, bool ManuallyEntered, global::System.Nullable<global::System.DateTime> StatementDate, string Account, int Original_FileID, string Original_FilePath, global::System.Nullable<global::System.DateTime> Original_ImportDateTime, bool Original_ManuallyEntered, global::System.Nullable<global::System.DateTime> Original_StatementDate, string Original_Account) {
+            return this.Update(FilePath, ImportDateTime, ManuallyEntered, StatementDate, Account, Original_FileID, Original_FilePath, Original_ImportDateTime, Original_ManuallyEntered, Original_StatementDate, Original_Account, Original_FileID);
         }
     }
     
@@ -11858,10 +13006,12 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             tableMapping.ColumnMappings.Add("SourceFile", "SourceFile");
             tableMapping.ColumnMappings.Add("SourceFileLine", "SourceFileLine");
             tableMapping.ColumnMappings.Add("BudgetItem", "BudgetItem");
+            tableMapping.ColumnMappings.Add("SharePriceDate", "SharePriceDate");
+            tableMapping.ColumnMappings.Add("SharePriceFund", "SharePriceFund");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFileItems] WHERE (([ItemID] = @Original_ItemID) AND ([SourceFile] = @Original_SourceFile) AND ((@IsNull_SourceFileLine = 1 AND [SourceFileLine] IS NULL) OR ([SourceFileLine] = @Original_SourceFileLine)) AND ([BudgetItem] = @Original_BudgetItem))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BudgetSourceFileItems] WHERE (([ItemID] = @Original_ItemID) AND ([SourceFile] = @Original_SourceFile) AND ((@IsNull_SourceFileLine = 1 AND [SourceFileLine] IS NULL) OR ([SourceFileLine] = @Original_SourceFileLine)) AND ((@IsNull_BudgetItem = 1 AND [BudgetItem] IS NULL) OR ([BudgetItem] = @Original_BudgetItem)) AND ((@IsNull_SharePriceDate = 1 AND [SharePriceDate] IS NULL) OR ([SharePriceDate] = @Original_SharePriceDate)) AND ((@IsNull_SharePriceFund = 1 AND [SharePriceFund] IS NULL) OR ([SharePriceFund] = @Original_SharePriceFund)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ItemID";
@@ -11897,6 +13047,15 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_BudgetItem";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "BudgetItem";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_BudgetItem";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -11904,12 +13063,44 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.SourceColumn = "BudgetItem";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_SharePriceDate";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_SharePriceDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_SharePriceFund";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_SharePriceFund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [BudgetSourceFileItems] ([SourceFile], [SourceFileLine], [BudgetItem]" +
-                ") VALUES (@SourceFile, @SourceFileLine, @BudgetItem);\r\nSELECT ItemID, SourceFile" +
-                ", SourceFileLine, BudgetItem FROM BudgetSourceFileItems WHERE (ItemID = SCOPE_ID" +
-                "ENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetSourceFileItems] ([SourceFile], [SourceFileLine], [BudgetItem], [SharePriceDate], [SharePriceFund]) VALUES (@SourceFile, @SourceFileLine, @BudgetItem, @SharePriceDate, @SharePriceFund);
+SELECT ItemID, SourceFile, SourceFileLine, BudgetItem, SharePriceDate, SharePriceFund FROM BudgetSourceFileItems WHERE (ItemID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@SourceFile";
@@ -11932,10 +13123,24 @@ SELECT FileID, FilePath, Account, ImportDateTime, ManuallyEntered, StatementDate
             param.IsNullable = true;
             param.SourceColumn = "BudgetItem";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@SharePriceDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@SharePriceFund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFileItems] SET [SourceFile] = @SourceFile, [SourceFileLine] = @SourceFileLine, [BudgetItem] = @BudgetItem WHERE (([ItemID] = @Original_ItemID) AND ([SourceFile] = @Original_SourceFile) AND ((@IsNull_SourceFileLine = 1 AND [SourceFileLine] IS NULL) OR ([SourceFileLine] = @Original_SourceFileLine)) AND ([BudgetItem] = @Original_BudgetItem));
-SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems WHERE (ItemID = @ItemID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetSourceFileItems] SET [SourceFile] = @SourceFile, [SourceFileLine] = @SourceFileLine, [BudgetItem] = @BudgetItem, [SharePriceDate] = @SharePriceDate, [SharePriceFund] = @SharePriceFund WHERE (([ItemID] = @Original_ItemID) AND ([SourceFile] = @Original_SourceFile) AND ((@IsNull_SourceFileLine = 1 AND [SourceFileLine] IS NULL) OR ([SourceFileLine] = @Original_SourceFileLine)) AND ((@IsNull_BudgetItem = 1 AND [BudgetItem] IS NULL) OR ([BudgetItem] = @Original_BudgetItem)) AND ((@IsNull_SharePriceDate = 1 AND [SharePriceDate] IS NULL) OR ([SharePriceDate] = @Original_SharePriceDate)) AND ((@IsNull_SharePriceFund = 1 AND [SharePriceFund] IS NULL) OR ([SharePriceFund] = @Original_SharePriceFund)));
+SELECT ItemID, SourceFile, SourceFileLine, BudgetItem, SharePriceDate, SharePriceFund FROM BudgetSourceFileItems WHERE (ItemID = @ItemID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@SourceFile";
@@ -11957,6 +13162,20 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
             param.SqlDbType = global::System.Data.SqlDbType.Int;
             param.IsNullable = true;
             param.SourceColumn = "BudgetItem";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@SharePriceDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@SharePriceFund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ItemID";
@@ -11992,11 +13211,54 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_BudgetItem";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "BudgetItem";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_BudgetItem";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
             param.IsNullable = true;
             param.SourceColumn = "BudgetItem";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_SharePriceDate";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_SharePriceDate";
+            param.DbType = global::System.Data.DbType.Date;
+            param.SqlDbType = global::System.Data.SqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceDate";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_SharePriceFund";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_SharePriceFund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "SharePriceFund";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
@@ -12022,8 +13284,8 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ItemID, SourceFile, SourceFileLine, BudgetItem\r\nFROM            Bud" +
-                "getSourceFileItems";
+            this._commandCollection[0].CommandText = "SELECT        ItemID, SourceFile, SourceFileLine, BudgetItem, SharePriceDate, Sha" +
+                "rePriceFund\r\nFROM            BudgetSourceFileItems";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12073,7 +13335,7 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, int Original_BudgetItem) {
+        public virtual int Delete(int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, global::System.Nullable<int> Original_BudgetItem, global::System.Nullable<global::System.DateTime> Original_SharePriceDate, string Original_SharePriceFund) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ItemID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_SourceFile));
             if ((Original_SourceFileLine.HasValue == true)) {
@@ -12084,7 +13346,30 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_BudgetItem));
+            if ((Original_BudgetItem.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_BudgetItem.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_SharePriceDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_SharePriceDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_SharePriceFund == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_SharePriceFund));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12105,7 +13390,7 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int SourceFile, global::System.Nullable<int> SourceFileLine, int BudgetItem) {
+        public virtual int Insert(int SourceFile, global::System.Nullable<int> SourceFileLine, global::System.Nullable<int> BudgetItem, global::System.Nullable<global::System.DateTime> SharePriceDate, string SharePriceFund) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SourceFile));
             if ((SourceFileLine.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SourceFileLine.Value));
@@ -12113,7 +13398,24 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(BudgetItem));
+            if ((BudgetItem.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(BudgetItem.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((SharePriceDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(SharePriceDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((SharePriceFund == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(SharePriceFund));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12134,7 +13436,7 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SourceFile, global::System.Nullable<int> SourceFileLine, int BudgetItem, int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, int Original_BudgetItem, int ItemID) {
+        public virtual int Update(int SourceFile, global::System.Nullable<int> SourceFileLine, global::System.Nullable<int> BudgetItem, global::System.Nullable<global::System.DateTime> SharePriceDate, string SharePriceFund, int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, global::System.Nullable<int> Original_BudgetItem, global::System.Nullable<global::System.DateTime> Original_SharePriceDate, string Original_SharePriceFund, int ItemID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SourceFile));
             if ((SourceFileLine.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SourceFileLine.Value));
@@ -12142,19 +13444,59 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(BudgetItem));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ItemID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_SourceFile));
-            if ((Original_SourceFileLine.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_SourceFileLine.Value));
+            if ((BudgetItem.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(BudgetItem.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_BudgetItem));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(ItemID));
+            if ((SharePriceDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(SharePriceDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((SharePriceFund == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(SharePriceFund));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ItemID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_SourceFile));
+            if ((Original_SourceFileLine.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_SourceFileLine.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Original_BudgetItem.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_BudgetItem.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Original_SharePriceDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_SharePriceDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((Original_SharePriceFund == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_SharePriceFund));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ItemID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12175,8 +13517,8 @@ SELECT ItemID, SourceFile, SourceFileLine, BudgetItem FROM BudgetSourceFileItems
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int SourceFile, global::System.Nullable<int> SourceFileLine, int BudgetItem, int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, int Original_BudgetItem) {
-            return this.Update(SourceFile, SourceFileLine, BudgetItem, Original_ItemID, Original_SourceFile, Original_SourceFileLine, Original_BudgetItem, Original_ItemID);
+        public virtual int Update(int SourceFile, global::System.Nullable<int> SourceFileLine, global::System.Nullable<int> BudgetItem, global::System.Nullable<global::System.DateTime> SharePriceDate, string SharePriceFund, int Original_ItemID, int Original_SourceFile, global::System.Nullable<int> Original_SourceFileLine, global::System.Nullable<int> Original_BudgetItem, global::System.Nullable<global::System.DateTime> Original_SharePriceDate, string Original_SharePriceFund) {
+            return this.Update(SourceFile, SourceFileLine, BudgetItem, SharePriceDate, SharePriceFund, Original_ItemID, Original_SourceFile, Original_SourceFileLine, Original_BudgetItem, Original_SharePriceDate, Original_SharePriceFund, Original_ItemID);
         }
     }
     
@@ -12813,7 +14155,6 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
             tableMapping.ColumnMappings.Add("Account", "Account");
             tableMapping.ColumnMappings.Add("TrType", "TrType");
             tableMapping.ColumnMappings.Add("TrCode", "TrCode");
-            tableMapping.ColumnMappings.Add("Amount", "Amount");
             tableMapping.ColumnMappings.Add("Ignore", "Ignore");
             tableMapping.ColumnMappings.Add("Balance", "Balance");
             tableMapping.ColumnMappings.Add("Comment", "Comment");
@@ -12821,10 +14162,11 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
             tableMapping.ColumnMappings.Add("BalanceIsCalculated", "BalanceIsCalculated");
             tableMapping.ColumnMappings.Add("DescripFromVendor", "DescripFromVendor");
             tableMapping.ColumnMappings.Add("CardTransDate", "CardTransDate");
+            tableMapping.ColumnMappings.Add("Amount", "Amount");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Budget] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Budget] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -12841,6 +14183,15 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
             param.IsNullable = true;
             param.SourceColumn = "TrDate";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Descrip";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Descrip";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_Descrip";
@@ -12890,14 +14241,6 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
             param.SqlDbType = global::System.Data.SqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "TrCode";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Amount";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
-            param.IsNullable = true;
-            param.SourceColumn = "Amount";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
@@ -12984,10 +14327,27 @@ SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetType
             param.SourceColumn = "CardTransDate";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Amount";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Budget] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Ignore], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Ignore, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate);
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Budget] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Ignore], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate], [Amount]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Ignore, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate, @Amount);
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Amount FROM Budget WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -13025,13 +14385,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceColumn = "TrCode";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Amount";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
-            param.IsNullable = true;
-            param.SourceColumn = "Amount";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Ignore";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
@@ -13080,10 +14433,17 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.IsNullable = true;
             param.SourceColumn = "CardTransDate";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Budget] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Ignore] = @Ignore, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ([Descrip] = @Original_Descrip) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Amount] = @Original_Amount) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)));
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Budget WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Budget] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Ignore] = @Ignore, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate, [Amount] = @Amount WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)));
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Amount FROM Budget WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -13121,13 +14481,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceColumn = "TrCode";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Amount";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
-            param.IsNullable = true;
-            param.SourceColumn = "Amount";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Ignore";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
@@ -13177,6 +14530,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceColumn = "CardTransDate";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -13191,6 +14551,15 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.IsNullable = true;
             param.SourceColumn = "TrDate";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Descrip";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Descrip";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_Descrip";
@@ -13240,14 +14609,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SqlDbType = global::System.Data.SqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "TrCode";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Amount";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
-            param.IsNullable = true;
-            param.SourceColumn = "Amount";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
@@ -13335,6 +14696,23 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Amount";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Amount";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.SqlDbType = global::System.Data.SqlDbType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Amount";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -13357,8 +14735,8 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balan" +
-                "ce, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate\r\nFR" +
+            this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Ignore, Balance, Comm" +
+                "ent, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Amount\r\nFR" +
                 "OM            Budget";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
@@ -13461,38 +14839,39 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, decimal Original_Amount, bool Original_Ignore, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate) {
+        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, bool Original_Ignore, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate, global::System.Nullable<decimal> Original_Amount) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
-                throw new global::System.ArgumentNullException("Original_Descrip");
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Descrip));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Descrip));
             }
             if ((Original_Account == null)) {
                 throw new global::System.ArgumentNullException("Original_Account");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Account));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Account));
             }
             if ((Original_TrType == null)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_TrType));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_TrType));
             }
             if ((Original_TrCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_TrCode));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_TrCode));
             }
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((decimal)(Original_Amount));
             this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_Ignore));
             if ((Original_Balance.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
@@ -13527,6 +14906,14 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
+            if ((Original_Amount.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((decimal)(Original_Amount.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13547,10 +14934,10 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, decimal Amount, bool Ignore, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate) {
+        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, bool Ignore, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate, global::System.Nullable<decimal> Amount) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
-                throw new global::System.ArgumentNullException("Descrip");
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Descrip));
@@ -13573,35 +14960,40 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(TrCode));
             }
-            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(Amount));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Ignore));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Ignore));
             if ((Balance.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(Balance.Value));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(Balance.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Comment == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Comment));
+            }
+            if ((Descrip2 == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Comment));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Descrip2));
             }
-            if ((Descrip2 == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Descrip2));
-            }
-            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(BalanceIsCalculated));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(BalanceIsCalculated));
             if ((DescripFromVendor == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(DescripFromVendor));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(DescripFromVendor));
             }
             if ((CardTransDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(CardTransDate.Value));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(CardTransDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Amount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(Amount.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
@@ -13632,7 +15024,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string Account, 
                     string TrType, 
                     string TrCode, 
-                    decimal Amount, 
                     bool Ignore, 
                     global::System.Nullable<decimal> Balance, 
                     string Comment, 
@@ -13640,23 +15031,24 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     bool BalanceIsCalculated, 
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
+                    global::System.Nullable<decimal> Amount, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
                     string Original_Account, 
                     string Original_TrType, 
                     string Original_TrCode, 
-                    decimal Original_Amount, 
                     bool Original_Ignore, 
                     global::System.Nullable<decimal> Original_Balance, 
                     string Original_Descrip2, 
                     bool Original_BalanceIsCalculated, 
                     string Original_DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
+                    global::System.Nullable<decimal> Original_Amount, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
-                throw new global::System.ArgumentNullException("Descrip");
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Descrip));
@@ -13679,35 +15071,40 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(TrCode));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Amount));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Ignore));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Ignore));
             if ((Balance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Balance.Value));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Balance.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Comment));
+            }
+            if ((Descrip2 == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Comment));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Descrip2));
             }
-            if ((Descrip2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Descrip2));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(BalanceIsCalculated));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(BalanceIsCalculated));
             if ((DescripFromVendor == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(DescripFromVendor));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(DescripFromVendor));
             }
             if ((CardTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(CardTransDate.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(CardTransDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Amount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(Amount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
@@ -13715,34 +15112,35 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
             this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
-                throw new global::System.ArgumentNullException("Original_Descrip");
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Descrip));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Descrip));
             }
             if ((Original_Account == null)) {
                 throw new global::System.ArgumentNullException("Original_Account");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Account));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Account));
             }
             if ((Original_TrType == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_TrType));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_TrType));
             }
             if ((Original_TrCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_TrCode));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_TrCode));
             }
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(Original_Amount));
             this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Ignore));
             if ((Original_Balance.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
@@ -13777,7 +15175,15 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                 this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[32].Value = ((int)(ID));
+            if ((Original_Amount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((decimal)(Original_Amount.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13804,7 +15210,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string Account, 
                     string TrType, 
                     string TrCode, 
-                    decimal Amount, 
                     bool Ignore, 
                     global::System.Nullable<decimal> Balance, 
                     string Comment, 
@@ -13812,20 +15217,21 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     bool BalanceIsCalculated, 
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
+                    global::System.Nullable<decimal> Amount, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
                     string Original_Account, 
                     string Original_TrType, 
                     string Original_TrCode, 
-                    decimal Original_Amount, 
                     bool Original_Ignore, 
                     global::System.Nullable<decimal> Original_Balance, 
                     string Original_Descrip2, 
                     bool Original_BalanceIsCalculated, 
                     string Original_DescripFromVendor, 
-                    global::System.Nullable<global::System.DateTime> Original_CardTransDate) {
-            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Ignore, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_ID);
+                    global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
+                    global::System.Nullable<decimal> Original_Amount) {
+            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Amount, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Ignore, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_Amount, Original_ID);
         }
     }
     
@@ -14513,15 +15919,15 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SharePrice";
             tableMapping.ColumnMappings.Add("SPDate", "SPDate");
-            tableMapping.ColumnMappings.Add("SPAccount", "SPAccount");
             tableMapping.ColumnMappings.Add("PricePerShare", "PricePerShare");
             tableMapping.ColumnMappings.Add("Comment", "Comment");
+            tableMapping.ColumnMappings.Add("Fund", "Fund");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [SharePrice] WHERE (([SPDate] = @Original_SPDate) AND ([SPAccount] = " +
-                "@Original_SPAccount) AND ([PricePerShare] = @Original_PricePerShare) AND ((@IsNu" +
-                "ll_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [SharePrice] WHERE (([SPDate] = @Original_SPDate) AND ([PricePerShare" +
+                "] = @Original_PricePerShare) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR" +
+                " ([Comment] = @Original_Comment)) AND ([Fund] = @Original_Fund))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_SPDate";
@@ -14532,14 +15938,6 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_SPAccount";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "SPAccount";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_PricePerShare";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -14564,12 +15962,19 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)";
             param.SourceColumn = "Comment";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [SharePrice] ([SPDate], [SPAccount], [PricePerShare], [Comment]) VALU" +
-                "ES (@SPDate, @SPAccount, @PricePerShare, @Comment);\r\nSELECT SPDate, SPAccount, P" +
-                "ricePerShare, Comment FROM SharePrice WHERE (SPAccount = @SPAccount) AND (SPDate" +
-                " = @SPDate)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [SharePrice] ([SPDate], [PricePerShare], [Comment], [Fund]) VALUES (@" +
+                "SPDate, @PricePerShare, @Comment, @Fund);\r\nSELECT SPDate, PricePerShare, Comment" +
+                ", Fund FROM SharePrice WHERE (Fund = @Fund) AND (SPDate = @SPDate)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@SPDate";
@@ -14579,13 +15984,6 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)";
             param.SourceColumn = "SPDate";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@SPAccount";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "SPAccount";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@PricePerShare";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -14599,10 +15997,17 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)";
             param.IsNullable = true;
             param.SourceColumn = "Comment";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [SharePrice] SET [SPDate] = @SPDate, [SPAccount] = @SPAccount, [PricePerShare] = @PricePerShare, [Comment] = @Comment WHERE (([SPDate] = @Original_SPDate) AND ([SPAccount] = @Original_SPAccount) AND ([PricePerShare] = @Original_PricePerShare) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)));
-SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccount = @SPAccount) AND (SPDate = @SPDate)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [SharePrice] SET [SPDate] = @SPDate, [PricePerShare] = @PricePerShare, [Comment] = @Comment, [Fund] = @Fund WHERE (([SPDate] = @Original_SPDate) AND ([PricePerShare] = @Original_PricePerShare) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ([Fund] = @Original_Fund));
+SELECT SPDate, PricePerShare, Comment, Fund FROM SharePrice WHERE (Fund = @Fund) AND (SPDate = @SPDate)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@SPDate";
@@ -14612,13 +16017,6 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
             param.SourceColumn = "SPDate";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@SPAccount";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "SPAccount";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@PricePerShare";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -14631,6 +16029,13 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
             param.SqlDbType = global::System.Data.SqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "Comment";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_SPDate";
@@ -14641,14 +16046,6 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_SPAccount";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "SPAccount";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_PricePerShare";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -14671,6 +16068,14 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
             param.SqlDbType = global::System.Data.SqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Fund";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "Fund";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -14688,21 +16093,20 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        SPDate, SPAccount, PricePerShare, Comment\r\nFROM            SharePri" +
-                "ce";
+            this._commandCollection[0].CommandText = "SELECT        SPDate, PricePerShare, Comment, Fund\r\nFROM            SharePrice";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        SPDate, SPAccount, PricePerShare, Comment\r\nFROM            SharePri" +
-                "ce\r\nWHERE        (SPAccount = @AccountID)";
+            this._commandCollection[1].CommandText = "SELECT        SPDate, PricePerShare, Comment, Fund\r\nFROM            SharePrice\r\nW" +
+                "HERE        (Fund = @Fund)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@AccountID";
+            param.ParameterName = "@Fund";
             param.DbType = global::System.Data.DbType.AnsiString;
             param.SqlDbType = global::System.Data.SqlDbType.Char;
             param.Size = 4;
             param.IsNullable = true;
-            param.SourceColumn = "SPAccount";
+            param.SourceColumn = "Fund";
             this._commandCollection[1].Parameters.Add(param);
         }
         
@@ -14723,13 +16127,13 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByAccount(MainDataSet.SharePriceDataTable dataTable, string AccountID) {
+        public virtual int FillByFund(MainDataSet.SharePriceDataTable dataTable, string Fund) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((AccountID == null)) {
-                throw new global::System.ArgumentNullException("AccountID");
+            if ((Fund == null)) {
+                throw new global::System.ArgumentNullException("Fund");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(AccountID));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Fund));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -14771,22 +16175,22 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(System.DateTime Original_SPDate, string Original_SPAccount, decimal Original_PricePerShare, string Original_Comment) {
+        public virtual int Delete(System.DateTime Original_SPDate, decimal Original_PricePerShare, string Original_Comment, string Original_Fund) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_SPDate));
-            if ((Original_SPAccount == null)) {
-                throw new global::System.ArgumentNullException("Original_SPAccount");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_SPAccount));
-            }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_PricePerShare));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((decimal)(Original_PricePerShare));
             if ((Original_Comment == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Comment));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Comment));
+            }
+            if ((Original_Fund == null)) {
+                throw new global::System.ArgumentNullException("Original_Fund");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Fund));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14808,20 +16212,20 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime SPDate, string SPAccount, decimal PricePerShare, string Comment) {
+        public virtual int Insert(System.DateTime SPDate, decimal PricePerShare, string Comment, string Fund) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(SPDate));
-            if ((SPAccount == null)) {
-                throw new global::System.ArgumentNullException("SPAccount");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SPAccount));
-            }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(PricePerShare));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(PricePerShare));
             if ((Comment == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Comment));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Comment));
+            }
+            if ((Fund == null)) {
+                throw new global::System.ArgumentNullException("Fund");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Fund));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14843,36 +16247,36 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime SPDate, string SPAccount, decimal PricePerShare, string Comment, System.DateTime Original_SPDate, string Original_SPAccount, decimal Original_PricePerShare, string Original_Comment) {
+        public virtual int Update(System.DateTime SPDate, decimal PricePerShare, string Comment, string Fund, System.DateTime Original_SPDate, decimal Original_PricePerShare, string Original_Comment, string Original_Fund) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(SPDate));
-            if ((SPAccount == null)) {
-                throw new global::System.ArgumentNullException("SPAccount");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SPAccount));
-            }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(PricePerShare));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(PricePerShare));
             if ((Comment == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Comment));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Comment));
+            }
+            if ((Fund == null)) {
+                throw new global::System.ArgumentNullException("Fund");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Fund));
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(Original_SPDate));
-            if ((Original_SPAccount == null)) {
-                throw new global::System.ArgumentNullException("Original_SPAccount");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_SPAccount));
-            }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Original_PricePerShare));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Original_PricePerShare));
             if ((Original_Comment == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Comment));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Comment));
+            }
+            if ((Original_Fund == null)) {
+                throw new global::System.ArgumentNullException("Original_Fund");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Fund));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14894,8 +16298,8 @@ SELECT SPDate, SPAccount, PricePerShare, Comment FROM SharePrice WHERE (SPAccoun
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal PricePerShare, string Comment, System.DateTime Original_SPDate, string Original_SPAccount, decimal Original_PricePerShare, string Original_Comment) {
-            return this.Update(Original_SPDate, Original_SPAccount, PricePerShare, Comment, Original_SPDate, Original_SPAccount, Original_PricePerShare, Original_Comment);
+        public virtual int Update(decimal PricePerShare, string Comment, System.DateTime Original_SPDate, decimal Original_PricePerShare, string Original_Comment, string Original_Fund) {
+            return this.Update(Original_SPDate, PricePerShare, Comment, Original_Fund, Original_SPDate, Original_PricePerShare, Original_Comment, Original_Fund);
         }
     }
     
@@ -15565,6 +16969,596 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class FundTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
+        
+        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public FundTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Fund";
+            tableMapping.ColumnMappings.Add("FundID", "FundID");
+            tableMapping.ColumnMappings.Add("FundName", "FundName");
+            tableMapping.ColumnMappings.Add("FullName", "FullName");
+            tableMapping.ColumnMappings.Add("StockSymbol", "StockSymbol");
+            tableMapping.ColumnMappings.Add("Comment", "Comment");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Fund] WHERE (([FundID] = @Original_FundID) AND ([FundName] = @Original_FundName) AND ([FullName] = @Original_FullName) AND ((@IsNull_StockSymbol = 1 AND [StockSymbol] IS NULL) OR ([StockSymbol] = @Original_StockSymbol)) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FundID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "FundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FundName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FundName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FullName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FullName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_StockSymbol";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_StockSymbol";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Comment";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Fund] ([FundID], [FundName], [FullName], [StockSymbol], [Comment]) V" +
+                "ALUES (@FundID, @FundName, @FullName, @StockSymbol, @Comment);\r\nSELECT FundID, F" +
+                "undName, FullName, StockSymbol, Comment FROM Fund WHERE (FundID = @FundID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FundID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "FundID";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FundName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FundName";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FullName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FullName";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@StockSymbol";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Fund] SET [FundID] = @FundID, [FundName] = @FundName, [FullName] = @FullName, [StockSymbol] = @StockSymbol, [Comment] = @Comment WHERE (([FundID] = @Original_FundID) AND ([FundName] = @Original_FundName) AND ([FullName] = @Original_FullName) AND ((@IsNull_StockSymbol = 1 AND [StockSymbol] IS NULL) OR ([StockSymbol] = @Original_StockSymbol)) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)));
+SELECT FundID, FundName, FullName, StockSymbol, Comment FROM Fund WHERE (FundID = @FundID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FundID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "FundID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FundName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FundName";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FullName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FullName";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@StockSymbol";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FundID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "FundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FundName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FundName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_FullName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "FullName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_StockSymbol";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_StockSymbol";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "StockSymbol";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_Comment";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_Comment";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Comment";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        FundID, FundName, FullName, StockSymbol, Comment\r\nFROM            F" +
+                "und";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MainDataSet.FundDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet.FundDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Fund");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_FundID, string Original_FundName, string Original_FullName, string Original_StockSymbol, string Original_Comment) {
+            if ((Original_FundID == null)) {
+                throw new global::System.ArgumentNullException("Original_FundID");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_FundID));
+            }
+            if ((Original_FundName == null)) {
+                throw new global::System.ArgumentNullException("Original_FundName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_FundName));
+            }
+            if ((Original_FullName == null)) {
+                throw new global::System.ArgumentNullException("Original_FullName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FullName));
+            }
+            if ((Original_StockSymbol == null)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_StockSymbol));
+            }
+            if ((Original_Comment == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Comment));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string FundID, string FundName, string FullName, string StockSymbol, string Comment) {
+            if ((FundID == null)) {
+                throw new global::System.ArgumentNullException("FundID");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(FundID));
+            }
+            if ((FundName == null)) {
+                throw new global::System.ArgumentNullException("FundName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FundName));
+            }
+            if ((FullName == null)) {
+                throw new global::System.ArgumentNullException("FullName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(FullName));
+            }
+            if ((StockSymbol == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(StockSymbol));
+            }
+            if ((Comment == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Comment));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string FundID, string FundName, string FullName, string StockSymbol, string Comment, string Original_FundID, string Original_FundName, string Original_FullName, string Original_StockSymbol, string Original_Comment) {
+            if ((FundID == null)) {
+                throw new global::System.ArgumentNullException("FundID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(FundID));
+            }
+            if ((FundName == null)) {
+                throw new global::System.ArgumentNullException("FundName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FundName));
+            }
+            if ((FullName == null)) {
+                throw new global::System.ArgumentNullException("FullName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(FullName));
+            }
+            if ((StockSymbol == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(StockSymbol));
+            }
+            if ((Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Comment));
+            }
+            if ((Original_FundID == null)) {
+                throw new global::System.ArgumentNullException("Original_FundID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_FundID));
+            }
+            if ((Original_FundName == null)) {
+                throw new global::System.ArgumentNullException("Original_FundName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_FundName));
+            }
+            if ((Original_FullName == null)) {
+                throw new global::System.ArgumentNullException("Original_FullName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_FullName));
+            }
+            if ((Original_StockSymbol == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_StockSymbol));
+            }
+            if ((Original_Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Comment));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string FundName, string FullName, string StockSymbol, string Comment, string Original_FundID, string Original_FundName, string Original_FullName, string Original_StockSymbol, string Original_Comment) {
+            return this.Update(Original_FundID, FundName, FullName, StockSymbol, Comment, Original_FundID, Original_FundName, Original_FullName, Original_StockSymbol, Original_Comment);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -15595,6 +17589,8 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
         private SharePriceTableAdapter _sharePriceTableAdapter;
         
         private ShareQuantityTableAdapter _shareQuantityTableAdapter;
+        
+        private FundTableAdapter _fundTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -15753,6 +17749,20 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public FundTableAdapter FundTableAdapter {
+            get {
+                return this._fundTableAdapter;
+            }
+            set {
+                this._fundTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -15810,6 +17820,10 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                             && (this._shareQuantityTableAdapter.Connection != null))) {
                     return this._shareQuantityTableAdapter.Connection;
                 }
+                if (((this._fundTableAdapter != null) 
+                            && (this._fundTableAdapter.Connection != null))) {
+                    return this._fundTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -15853,6 +17867,9 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                 if ((this._shareQuantityTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._fundTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -15864,12 +17881,12 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._budgetSourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._fundTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(updatedRows));
+                    result = (result + this._fundTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -15882,21 +17899,12 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._budgetAccountTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._budgetSourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetAccountTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(updatedRows));
+                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -15909,6 +17917,24 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._budgetTypeGroupingsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._budgetAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._budgetAccountTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._budgetSourceFileItemsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.BudgetSourceFileItems.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -15918,12 +17944,12 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._budgetTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(updatedRows));
+                    result = (result + this._budgetTypePatternTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -15964,11 +17990,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._budgetSourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._fundTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(addedRows));
+                    result = (result + this._fundTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -15980,19 +18006,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._budgetAccountTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._budgetSourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._budgetAccountTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(addedRows));
+                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -16004,6 +18022,22 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._budgetTypeGroupingsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._budgetAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._budgetAccountTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._budgetSourceFileItemsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.BudgetSourceFileItems.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -16012,11 +18046,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._budgetTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(addedRows));
+                    result = (result + this._budgetTypePatternTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -16078,11 +18112,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._budgetTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(deletedRows));
+                    result = (result + this._budgetTypePatternTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -16094,6 +18128,22 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._budgetAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._budgetAccountTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._budgetTypeGroupingsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._budgetSourceFileTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.BudgetSourceFile.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -16102,19 +18152,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._budgetSourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._budgetAccountTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetAccount.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetAccountTableAdapter.Update(deletedRows));
+                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -16126,11 +18168,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._budgetSourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetSourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._fundTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetSourceFileFormatTableAdapter.Update(deletedRows));
+                    result = (result + this._fundTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -16220,6 +18262,11 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
             }
             if (((this._shareQuantityTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._shareQuantityTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._fundTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._fundTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -16345,6 +18392,15 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                         adaptersWithAcceptChangesDuringUpdate.Add(this._shareQuantityTableAdapter.Adapter);
                     }
                 }
+                if ((this._fundTableAdapter != null)) {
+                    revertConnections.Add(this._fundTableAdapter, this._fundTableAdapter.Connection);
+                    this._fundTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
+                    this._fundTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._fundTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._fundTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._fundTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -16442,6 +18498,10 @@ SELECT SQDate, SQAccount, NumShares, Comment FROM ShareQuantity WHERE (SQAccount
                 if ((this._shareQuantityTableAdapter != null)) {
                     this._shareQuantityTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._shareQuantityTableAdapter]));
                     this._shareQuantityTableAdapter.Transaction = null;
+                }
+                if ((this._fundTableAdapter != null)) {
+                    this._fundTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._fundTableAdapter]));
+                    this._fundTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

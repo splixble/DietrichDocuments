@@ -46,7 +46,7 @@
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboAccountOwner = new System.Windows.Forms.ComboBox();
-            this.investmentSharesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
@@ -128,7 +128,7 @@
             this.applyTransactionTypesToolStripMenuItem,
             this.editGroupingsToolStripMenuItem,
             this.calculateAccountBalancesToolStripMenuItem,
-            this.investmentSharesToolStripMenuItem,
+            this.investmentsToolStripMenuItem,
             this.accountsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
@@ -244,12 +244,12 @@
             this.comboAccountOwner.TabIndex = 7;
             this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
             // 
-            // investmentSharesToolStripMenuItem
+            // investmentsToolStripMenuItem
             // 
-            this.investmentSharesToolStripMenuItem.Name = "investmentSharesToolStripMenuItem";
-            this.investmentSharesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.investmentSharesToolStripMenuItem.Text = "Investment Shares";
-            this.investmentSharesToolStripMenuItem.Click += new System.EventHandler(this.investmentSharesToolStripMenuItem_Click);
+            this.investmentsToolStripMenuItem.Name = "investmentsToolStripMenuItem";
+            this.investmentsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.investmentsToolStripMenuItem.Text = "Investments";
+            this.investmentsToolStripMenuItem.Click += new System.EventHandler(this.investmentsToolStripMenuItem_Click);
             // 
             // viewBudgetGroupingsInOrderBindingSource
             // 
@@ -324,7 +324,7 @@
         private System.Windows.Forms.ComboBox comboAccountOwner;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboAccountType;
-        private System.Windows.Forms.ToolStripMenuItem investmentSharesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
     }
 }

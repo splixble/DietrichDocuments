@@ -30,19 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSave = new System.Windows.Forms.Button();
             this.budgetAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.budgetAccountTableAdapter = new Budget.MainDataSetTableAdapters.BudgetAccountTableAdapter();
-            this.btnSave = new System.Windows.Forms.Button();
             this.accountIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountOwnerColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.AccountTypeColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.currentlyTrackedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.AccountNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trackedBySharesDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sourceFileLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defaultFormatManualEntryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FundColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -61,15 +64,29 @@
             this.AccountOwnerColumn,
             this.AccountTypeColumn,
             this.currentlyTrackedDataGridViewCheckBoxColumn,
+            this.AccountNumber,
             this.trackedBySharesDataGridViewCheckBoxColumn,
             this.sourceFileLocationDataGridViewTextBoxColumn,
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn,
-            this.defaultFormatManualEntryDataGridViewTextBoxColumn});
+            this.defaultFormatManualEntryDataGridViewTextBoxColumn,
+            this.FundColumn,
+            this.Comment});
             this.dataGridView1.DataSource = this.budgetAccountBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1306, 541);
+            this.dataGridView1.Size = new System.Drawing.Size(1418, 541);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(1355, 559);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // budgetAccountBindingSource
             // 
@@ -84,17 +101,6 @@
             // budgetAccountTableAdapter
             // 
             this.budgetAccountTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(1243, 559);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // accountIDDataGridViewTextBoxColumn
             // 
@@ -132,9 +138,16 @@
             // currentlyTrackedDataGridViewCheckBoxColumn
             // 
             this.currentlyTrackedDataGridViewCheckBoxColumn.DataPropertyName = "CurrentlyTracked";
-            this.currentlyTrackedDataGridViewCheckBoxColumn.HeaderText = "Currently Tracked?";
+            this.currentlyTrackedDataGridViewCheckBoxColumn.HeaderText = "Tracked?";
             this.currentlyTrackedDataGridViewCheckBoxColumn.Name = "currentlyTrackedDataGridViewCheckBoxColumn";
-            this.currentlyTrackedDataGridViewCheckBoxColumn.Width = 50;
+            this.currentlyTrackedDataGridViewCheckBoxColumn.Width = 45;
+            // 
+            // AccountNumber
+            // 
+            this.AccountNumber.DataPropertyName = "AccountNumber";
+            this.AccountNumber.FillWeight = 850F;
+            this.AccountNumber.HeaderText = "Account #";
+            this.AccountNumber.Name = "AccountNumber";
             // 
             // trackedBySharesDataGridViewCheckBoxColumn
             // 
@@ -148,27 +161,43 @@
             this.sourceFileLocationDataGridViewTextBoxColumn.DataPropertyName = "SourceFileLocation";
             this.sourceFileLocationDataGridViewTextBoxColumn.HeaderText = "Source File Location";
             this.sourceFileLocationDataGridViewTextBoxColumn.Name = "sourceFileLocationDataGridViewTextBoxColumn";
-            this.sourceFileLocationDataGridViewTextBoxColumn.Width = 160;
+            this.sourceFileLocationDataGridViewTextBoxColumn.Width = 130;
             // 
             // defaultFormatAutoEntryDataGridViewTextBoxColumn
             // 
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn.DataPropertyName = "DefaultFormatAutoEntry";
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn.HeaderText = "Default Format Auto-entry";
             this.defaultFormatAutoEntryDataGridViewTextBoxColumn.Name = "defaultFormatAutoEntryDataGridViewTextBoxColumn";
-            this.defaultFormatAutoEntryDataGridViewTextBoxColumn.Width = 160;
+            this.defaultFormatAutoEntryDataGridViewTextBoxColumn.Width = 130;
             // 
             // defaultFormatManualEntryDataGridViewTextBoxColumn
             // 
             this.defaultFormatManualEntryDataGridViewTextBoxColumn.DataPropertyName = "DefaultFormatManualEntry";
             this.defaultFormatManualEntryDataGridViewTextBoxColumn.HeaderText = "Default Format Manual Entry";
             this.defaultFormatManualEntryDataGridViewTextBoxColumn.Name = "defaultFormatManualEntryDataGridViewTextBoxColumn";
-            this.defaultFormatManualEntryDataGridViewTextBoxColumn.Width = 160;
+            this.defaultFormatManualEntryDataGridViewTextBoxColumn.Width = 130;
+            // 
+            // FundColumn
+            // 
+            this.FundColumn.DataPropertyName = "Fund";
+            this.FundColumn.HeaderText = "Fund";
+            this.FundColumn.Name = "FundColumn";
+            this.FundColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.FundColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.FundColumn.Width = 120;
+            // 
+            // Comment
+            // 
+            this.Comment.DataPropertyName = "Comment";
+            this.Comment.HeaderText = "Comment";
+            this.Comment.Name = "Comment";
+            this.Comment.Width = 160;
             // 
             // AccountsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 584);
+            this.ClientSize = new System.Drawing.Size(1442, 584);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
             this.Name = "AccountsForm";
@@ -193,9 +222,12 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn AccountOwnerColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn AccountTypeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn currentlyTrackedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccountNumber;
         private System.Windows.Forms.DataGridViewCheckBoxColumn trackedBySharesDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceFileLocationDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defaultFormatAutoEntryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defaultFormatManualEntryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn FundColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comment;
     }
 }

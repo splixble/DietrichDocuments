@@ -120,9 +120,7 @@ namespace Budget
 
         private void btnSaveGroupingPatterns_Click(object sender, EventArgs e)
         {
-            // DIAG DOES NOT Save! Why not?? Need 
             budgetTypePatternTableAdapter.Update(mainDataSet1.BudgetTypePattern);
-            //mainDataSet1.BudgetTypePattern.AcceptChanges(); // DIAG work now?
             LoadGroupingPatternTable();
             gridGroupingPatterns.Refresh();
         }

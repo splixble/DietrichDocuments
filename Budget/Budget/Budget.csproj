@@ -238,11 +238,17 @@
     <Compile Include="PDFField.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShareAmountAndPriceForm.cs">
+    <Compile Include="InvestmentBalancesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShareAmountAndPriceForm.Designer.cs">
-      <DependentUpon>ShareAmountAndPriceForm.cs</DependentUpon>
+    <Compile Include="InvestmentBalancesForm.Designer.cs">
+      <DependentUpon>InvestmentBalancesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharePriceEditingGridCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharePriceEditingGridCtrl.Designer.cs">
+      <DependentUpon>SharePriceEditingGridCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="SourceFileChecklistCtrl.cs">
       <SubType>UserControl</SubType>
@@ -303,8 +309,11 @@
     <EmbeddedResource Include="GroupingAssignmentForm.resx">
       <DependentUpon>GroupingAssignmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShareAmountAndPriceForm.resx">
-      <DependentUpon>ShareAmountAndPriceForm.cs</DependentUpon>
+    <EmbeddedResource Include="InvestmentBalancesForm.resx">
+      <DependentUpon>InvestmentBalancesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharePriceEditingGridCtrl.resx">
+      <DependentUpon>SharePriceEditingGridCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SourceFileChecklistCtrl.resx">
       <DependentUpon>SourceFileChecklistCtrl.cs</DependentUpon>

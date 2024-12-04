@@ -189,5 +189,22 @@ namespace Budget
 
             PostImport();
         }
+
+        private void yahooHoldingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /* DIAG finish
+            */
+            PreImport();
+
+            // DIAG USE NEW PROCESSOR -- _Processor = new SourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings"); // TODO s/get "YahooHoldings" from config
+            _Processor.Process();
+
+            tbFileText.Clear();
+
+            lblFilePath.Text = "File: " + _Processor.SourceFilePath;
+            lblFilePath.ForeColor = Color.Blue;
+
+            PostImport();
+        }
     }
 }
