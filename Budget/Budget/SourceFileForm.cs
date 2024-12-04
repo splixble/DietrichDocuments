@@ -39,10 +39,7 @@ namespace Budget
         {
             PreImport();
 
-            if (chBoxManualEntry.Checked)
-                _Processor = new ManualEnteredSourceTextProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string);
-            else
-                _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string);
+            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string, chBoxManualEntry.Checked);
             _Processor.Process();
 
             tbFileText.Clear();
@@ -57,7 +54,7 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat);
+            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
             _Processor.ProcessFromChecklist();
 
             PostImport();
@@ -185,15 +182,13 @@ namespace Budget
         {
             PreImport();
 
-            ((ManualEnteredSourceTextProcessor)_Processor).ProcessManualLines(tbFileText.Lines);
+            _Processor.ProcessManualLines(tbFileText.Lines);
 
             PostImport();
         }
 
         private void yahooHoldingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /* DIAG finish
-            */
             PreImport();
 
             // DIAG USE NEW PROCESSOR -- _Processor = new SourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings"); // TODO s/get "YahooHoldings" from config

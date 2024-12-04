@@ -17,7 +17,7 @@ namespace Budget
         public override bool AllowAddingNewBudgetRows => false;
 
         public AmazonDigitalItemsProcessor(BudgetDataTable budgetTable)
-            : base(budgetTable, null, null)
+            : base(budgetTable, null, null, false)
         {
             _ViewByDateAndAmount = new DataView(budgetTable);
             _ViewByDateAndAmount.Sort = "TrDate ASC, Amount ASC";

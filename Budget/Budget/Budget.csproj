@@ -228,7 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ManualEnteredSourceTextProcessor.cs" />
     <Compile Include="MonthGroupingForm.cs">
       <SubType>Form</SubType>
     </Compile>
