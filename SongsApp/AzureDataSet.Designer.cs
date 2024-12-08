@@ -9460,7 +9460,7 @@ namespace Songs.AzureDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9861,7 +9861,7 @@ SELECT TitlePrefix, Title, Code, Comment, PageNumberOriginal, Category, ID, Arti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10495,7 +10495,7 @@ SELECT TitlePrefix, Title, Code, Comment, PageNumberOriginal, Category, ID, Arti
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10681,7 +10681,7 @@ SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSong
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11003,7 +11003,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11330,7 +11330,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11488,7 +11488,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11662,7 +11662,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11835,7 +11835,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12017,7 +12017,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12195,7 +12195,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12204,7 +12204,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Song, Flags\r\nFROM            viewsongflags";
+            this._commandCollection[0].CommandText = "SELECT        Song, Flags\r\nFROM            songbook.viewsongflags";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12356,7 +12356,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12515,7 +12515,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [performances] WHERE (([ID] = @Original_ID) AND ([PerformanceDate] = @Original_PerformanceDate) AND ([Venue] = @Original_Venue) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_Series = 1 AND [Series] IS NULL) OR ([Series] = @Original_Series)) AND ((@IsNull_PerformanceType = 1 AND [PerformanceType] IS NULL) OR ([PerformanceType] = @Original_PerformanceType)) AND ([DidILead] = @Original_DidILead))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songbook].[performances] WHERE (([ID] = @Original_ID) AND ([PerformanceDate] = @Original_PerformanceDate) AND ([Venue] = @Original_Venue) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_Series = 1 AND [Series] IS NULL) OR ([Series] = @Original_Series)) AND ((@IsNull_PerformanceType = 1 AND [PerformanceType] IS NULL) OR ([PerformanceType] = @Original_PerformanceType)) AND ([DidILead] = @Original_DidILead))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PerformanceDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PerformanceDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12529,8 +12529,8 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DidILead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DidILead", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [performances] ([PerformanceDate], [Venue], [Comment], [Series], [PerformanceType], [DidILead]) VALUES (@PerformanceDate, @Venue, @Comment, @Series, @PerformanceType, @DidILead);
-SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FROM performances WHERE (ID = SCOPE_IDENTITY()) ORDER BY PerformanceDate";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [songbook].[performances] ([PerformanceDate], [Venue], [Comment], [Series], [PerformanceType], [DidILead]) VALUES (@PerformanceDate, @Venue, @Comment, @Series, @PerformanceType, @DidILead);
+SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FROM songbook.performances WHERE (ID = SCOPE_IDENTITY()) ORDER BY PerformanceDate";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PerformanceDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PerformanceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Venue", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Venue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12540,8 +12540,8 @@ SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FR
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DidILead", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DidILead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [performances] SET [PerformanceDate] = @PerformanceDate, [Venue] = @Venue, [Comment] = @Comment, [Series] = @Series, [PerformanceType] = @PerformanceType, [DidILead] = @DidILead WHERE (([ID] = @Original_ID) AND ([PerformanceDate] = @Original_PerformanceDate) AND ([Venue] = @Original_Venue) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_Series = 1 AND [Series] IS NULL) OR ([Series] = @Original_Series)) AND ((@IsNull_PerformanceType = 1 AND [PerformanceType] IS NULL) OR ([PerformanceType] = @Original_PerformanceType)) AND ([DidILead] = @Original_DidILead));
-SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FROM performances WHERE (ID = @ID) ORDER BY PerformanceDate";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[performances] SET [PerformanceDate] = @PerformanceDate, [Venue] = @Venue, [Comment] = @Comment, [Series] = @Series, [PerformanceType] = @PerformanceType, [DidILead] = @DidILead WHERE (([ID] = @Original_ID) AND ([PerformanceDate] = @Original_PerformanceDate) AND ([Venue] = @Original_Venue) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_Series = 1 AND [Series] IS NULL) OR ([Series] = @Original_Series)) AND ((@IsNull_PerformanceType = 1 AND [PerformanceType] IS NULL) OR ([PerformanceType] = @Original_PerformanceType)) AND ([DidILead] = @Original_DidILead));
+SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FROM songbook.performances WHERE (ID = @ID) ORDER BY PerformanceDate";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PerformanceDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PerformanceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Venue", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Venue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12566,7 +12566,7 @@ SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12576,19 +12576,18 @@ SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FR
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidIL" +
-                "ead\r\nFROM            performances\r\nORDER BY PerformanceDate";
+                "ead\r\nFROM            songbook.performances\r\nORDER BY PerformanceDate";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidIL" +
-                "ead\r\nFROM            performances\r\nWHERE        (DidILead = @DidILead)\r\nORDER BY" +
-                " PerformanceDate";
+            this._commandCollection[1].CommandText = "SELECT Comment, DidILead, ID, PerformanceDate, PerformanceType, Series, Venue FRO" +
+                "M songbook.performances WHERE (DidILead = @DidILead) ORDER BY PerformanceDate";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DidILead", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "DidILead", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidIL" +
-                "ead\r\nFROM            performances\r\nWHERE        (ID = @ID)";
+            this._commandCollection[2].CommandText = "SELECT Comment, DidILead, ID, PerformanceDate, PerformanceType, Series, Venue FRO" +
+                "M songbook.performances WHERE (ID = @ID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -12961,9 +12960,9 @@ SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FR
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [venues] WHERE (([ID] = @Original_ID) AND ([Name] = @Original_Name) A" +
-                "ND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Commen" +
-                "t)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [songbook].[venues] WHERE (([ID] = @Original_ID) AND ([Name] = @Origi" +
+                "nal_Name) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Orig" +
+                "inal_Comment)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12971,15 +12970,15 @@ SELECT ID, PerformanceDate, Venue, Comment, Series, PerformanceType, DidILead FR
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [venues] ([Name], [Comment]) VALUES (@Name, @Comment);\r\nSELECT ID, Na" +
-                "me, Comment FROM venues WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[venues] ([Name], [Comment]) VALUES (@Name, @Comment);\r\nSE" +
+                "LECT ID, Name, Comment FROM songbook.venues WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [venues] SET [Name] = @Name, [Comment] = @Comment WHERE (([ID] = @Original_ID) AND ([Name] = @Original_Name) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)));
-SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[venues] SET [Name] = @Name, [Comment] = @Comment WHERE (([ID] = @Original_ID) AND ([Name] = @Original_Name) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)));
+SELECT ID, Name, Comment FROM songbook.venues WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12994,7 +12993,7 @@ SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13003,7 +13002,7 @@ SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Name, Comment\r\nFROM            venues";
+            this._commandCollection[0].CommandText = "SELECT        ID, Name, Comment\r\nFROM            songbook.venues";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13305,7 +13304,7 @@ SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songperformances] WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songbook].[songperformances] WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -13316,9 +13315,10 @@ SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [songperformances] ([Performance], [Song], [Comment], [SetNumber]) VA" +
-                "LUES (@Performance, @Song, @Comment, @SetNumber);\r\nSELECT ID, Performance, Song," +
-                " Comment, SetNumber FROM songperformances WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[songperformances] ([Performance], [Song], [Comment], [Set" +
+                "Number]) VALUES (@Performance, @Song, @Comment, @SetNumber);\r\nSELECT ID, Perform" +
+                "ance, Song, Comment, SetNumber FROM songbook.songperformances WHERE (ID = SCOPE_" +
+                "IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13326,8 +13326,8 @@ SELECT ID, Name, Comment FROM venues WHERE (ID = @ID)";
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [songperformances] SET [Performance] = @Performance, [Song] = @Song, [Comment] = @Comment, [SetNumber] = @SetNumber WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)));
-SELECT ID, Performance, Song, Comment, SetNumber FROM songperformances WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[songperformances] SET [Performance] = @Performance, [Song] = @Song, [Comment] = @Comment, [SetNumber] = @SetNumber WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)));
+SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13347,7 +13347,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songperformances WHERE (ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13356,13 +13356,13 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songperformances WHERE (ID
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songperf" +
-                "ormances";
+            this._commandCollection[0].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songbook" +
+                ".songperformances";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Comment, ID, Performance, SetNumber, Song FROM songperformances WHERE (Per" +
-                "formance = @Performance)";
+            this._commandCollection[1].CommandText = "SELECT Comment, ID, Performance, SetNumber, Song FROM songbook.songperformances W" +
+                "HERE (Performance = @Performance)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -13722,7 +13722,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songperformances WHERE (ID
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.AzureConnectionString;
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

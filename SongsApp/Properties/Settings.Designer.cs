@@ -26,107 +26,22 @@ namespace Songs.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;" +
-            "password=EF94SEmPdi;persistsecurityinfo=True")]
-        public string freeConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLEXPRESS;Initial Catalog=songbook;Integrated Security=Tru" +
+            "e;Encrypt=False")]
+        public string LocalSongbookConnection {
             get {
-                return ((string)(this["freeConnectionString"]));
+                return ((string)(this["LocalSongbookConnection"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;data" +
-            "base=songbook")]
-        public string songbookConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=speepmaster\\SQLEXPRESS;Initial Catalog=Songbook;Integrated Security=T" +
+            "rue;TrustServerCertificate=True")]
+        public string LocalSpeepmasterSongbookConn {
             get {
-                return ((string)(this["songbookConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=TestUser;password=Mustard3;database=songbook;persistsecu" +
-            "rityinfo=True")]
-        public string songbookConnectionString_New {
-            get {
-                return ((string)(this["songbookConnectionString_New"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=TestUser;password=Mustard3;database=songbook")]
-        public string songbookConnectionString_newer {
-            get {
-                return ((string)(this["songbookConnectionString_newer"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=LOCALHOST;user id=root;database=songbook")]
-        public string songbookConnectionString_5Nov22 {
-            get {
-                return ((string)(this["songbookConnectionString_5Nov22"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=songbook")]
-        public string songbookConnectionString1 {
-            get {
-                return ((string)(this["songbookConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=athapas;database=songbook")]
-        public string songbookConnectionString2 {
-            get {
-                return ((string)(this["songbookConnectionString2"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=TestUser@SPEEPMASTER;password=Mustard3;database=songbook" +
-            ";persistsecurityinfo=True")]
-        public string songbookConnectionString3 {
-            get {
-                return ((string)(this["songbookConnectionString3"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=" +
-            "songbook")]
-        public string songbookConnectionString4 {
-            get {
-                return ((string)(this["songbookConnectionString4"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dietrich\\Music\\LYRICS\\TabletPDFs")]
-        public string LyricPDFsDirectory {
-            get {
-                return ((string)(this["LyricPDFsDirectory"]));
-            }
-            set {
-                this["LyricPDFsDirectory"] = value;
+                return ((string)(this["LocalSpeepmasterSongbookConn"]));
             }
         }
         
@@ -142,25 +57,15 @@ namespace Songs.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;Tr" +
-            "ustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=" +
-            "algonQin88")]
-        public string AzureConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dietrich\\Music\\LYRICS\\TabletPDFs")]
+        public string LyricPDFsDirectory {
             get {
-                return ((string)(this["AzureConnectionString"]));
+                return ((string)(this["LyricPDFsDirectory"]));
             }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3")]
-        public string MainConnectionString {
-            get {
-                return ((string)(this["MainConnectionString"]));
+            set {
+                this["LyricPDFsDirectory"] = value;
             }
         }
     }

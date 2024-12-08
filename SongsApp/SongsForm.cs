@@ -32,7 +32,7 @@ namespace Songs
         public SongsForm()
         {
             InitializeComponent();
-            _SongsAdap = new SqlDataAdapter("",  global::Songs.Properties.Settings.Default.AzureConnectionString);
+            _SongsAdap = new SqlDataAdapter("",  global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -64,7 +64,9 @@ namespace Songs
             dataSet1.songs.Clear();
             _SongsAdap.SelectCommand.CommandText =
                 "SELECT TitlePrefix, Title, Code, SongKey, OriginalKey, Comment, PageNumber, Category, Song" +
-                "bookOnly, ID, Artist, InTablet, SetlistAddable, DiffPDFName FROM songs " + tbWhereClause.Text;
+                "bookOnly, ID, Artist, InTablet, SetlistAddable, DiffPDFName FROM songbook.songs " + tbWhereClause.Text;
+            // NOTE: when I moved db from Azure back to local on 12/6/24, had to change "FROM songs" to "FROM songbook.songs" --
+            // dont know why it worked before
             _SongsAdap.Fill(dataSet1.songs);
             // was: this.songsTableAdapter.Fill(this.dataSet1.songs);
             grid1.Sort(titleDataGridViewTextBoxColumn, ListSortDirection.Ascending);

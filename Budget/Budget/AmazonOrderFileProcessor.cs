@@ -9,12 +9,12 @@ using static Budget.MainDataSet;
 
 namespace Budget
 {
-    internal class AmazonOrderFileProcessor : SourceFileProcessor
+    internal class AmazonOrderFileProcessor : BudgetSourceFileProcessor
     {
         DataView _ViewByDateAndAmount;
 
         public override bool UpdateAccountFromSourceFile => false;
-        public override bool AllowAddingNewBudgetRows => false;
+        public override bool AllowAddingNewImportedRows => false;
 
         public AmazonOrderFileProcessor(BudgetDataTable budgetTable)
             :base(budgetTable, null, null, false)
@@ -23,7 +23,7 @@ namespace Budget
             _ViewByDateAndAmount.Sort = "TrDate ASC, Amount ASC";
         }
 
-        protected override bool ExtractFields(string[] fileFields, Dictionary<string, object> fieldsByColumnName)
+        protected override bool ExtractFields(string[] fileFields, ColumnValueList fieldsByColumnName)
         {
             // Get date/time of order from column 2 (Order Date):
             DateTime dateTimeValue;
@@ -45,9 +45,9 @@ namespace Budget
             return true;
         }
 
-        protected override DataRowView[] FindDuplicateRowViews(Dictionary<string, object> fieldsByColumnName)
+        protected override DataRow[] FindDuplicateRows(ColumnValueList fieldsByColumnName)
         {
-            return _ViewByDateAndAmount.FindRows(new object[] { fieldsByColumnName["TrDate"], fieldsByColumnName["Amount"] });
+            return DataRowArrayFromDataRowViewArray(_ViewByDateAndAmount.FindRows(new object[] { fieldsByColumnName["TrDate"], fieldsByColumnName["Amount"] }));
         }
     }
 }

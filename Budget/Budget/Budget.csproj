@@ -207,6 +207,7 @@
       <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="DBRowsList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +250,7 @@
     <Compile Include="SharePriceEditingGridCtrl.Designer.cs">
       <DependentUpon>SharePriceEditingGridCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SharePriceSourceFileProcessor.cs" />
     <Compile Include="SourceFileChecklistCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -262,6 +264,7 @@
       <DependentUpon>SourceFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SourceFileFormats.cs" />
+    <Compile Include="BudgetSourceFileProcessor.cs" />
     <Compile Include="SourceFileProcessor.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="GroupingAssignmentForm.cs">

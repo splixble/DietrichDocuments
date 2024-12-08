@@ -37,9 +37,9 @@ namespace Budget
 
         private void btnOpenSourceFile_Click(object sender, EventArgs e)
         {
-            PreImport();
+            PreImport_Budget();
 
-            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string, chBoxManualEntry.Checked);
+            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string, chBoxManualEntry.Checked);
             _Processor.Process();
 
             tbFileText.Clear();
@@ -47,17 +47,17 @@ namespace Budget
             lblFilePath.Text = "File: " + _Processor.SourceFilePath;
             lblFilePath.ForeColor = Color.Blue;
             
-            PostImport();
+            PostImport_Budget();
         }
 
         public void ImportFileFromChecklist(string accountID, string accountFormat)
         {
-            PreImport();
+            PreImport_Budget();
 
-            _Processor = new SourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
+            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
             _Processor.ProcessFromChecklist();
 
-            PostImport();
+            PostImport_Budget();
         }
 
         void CloseSourceFile()
@@ -69,29 +69,46 @@ namespace Budget
             lblFilePath.ForeColor = SystemColors.ControlText;
         }
 
-        void PreImport()
+        void PreImport_Budget()
         {
             // By default, show only new (ID negative) records: 
-            budgetCtrl.BudgetBindingSource.Filter = "ID<0";
+            budgetCtrl.BindingSrc.Filter = "ID<0";
         }
 
-        void PostImport()
+        void PreImport_SharePrice()
         {
+            // DIAG figure out how to filter:
+            //sharePriceCtrl.ShareP
+        }
+
+        void PostImport_Budget()
+        {
+            // DIAG do this only if we're updating Budget control - like, separate Budget Pre/PostImport func from Share func
+            // DIAG s/n have to cast
+            BudgetSourceFileProcessor budgetProcessor = (BudgetSourceFileProcessor)_Processor;
+
+            // DIAG write a PrimaryKeyValue member thing to generate a Filter stmt -- this'll work fine with int, but not share stuff 
+
             // update to include changed duplicate rows:
             string dupBudgetIDsList = "";
-            foreach (int dupID in _Processor.MatchingBudgetIDs)
+            foreach (PrimaryKeyValue dupKey in budgetProcessor.MatchingPrimaryKeys)
             {
                 if (dupBudgetIDsList != "")
                     dupBudgetIDsList += ",";
-                dupBudgetIDsList += dupID;
+                dupBudgetIDsList += dupKey.ToString();
             }
 
-            budgetCtrl.BudgetBindingSource.Filter = "ID<0";
+            budgetCtrl.BindingSrc.Filter = "ID<0";
             if (dupBudgetIDsList.Length > 0) 
-                budgetCtrl.BudgetBindingSource.Filter += " OR ID IN (" + dupBudgetIDsList + ")";
+                budgetCtrl.BindingSrc.Filter += " OR ID IN (" + dupBudgetIDsList + ")";
             budgetCtrl.Refresh();
             btnSaveBudgetItems.Enabled = true;
         }
+
+        void PostImport_SharePrice()
+        {
+        }
+
 
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
@@ -144,24 +161,24 @@ namespace Budget
 
         private void amazonOrderFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport();
+            PreImport_Budget();
 
             _Processor = new AmazonOrderFileProcessor(budgetCtrl.BudgetTable);
             _Processor.Process();
 
-            PostImport();
+            PostImport_Budget();
 
         }
 
         private void amazonDigitalItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport();
+            PreImport_Budget();
 
             // DIAG these special format src file Processor classes s/spully a unique code to src file DB rec
             _Processor = new AmazonDigitalItemsProcessor(budgetCtrl.BudgetTable);
             _Processor.Process();
 
-            PostImport();
+            PostImport_Budget();
         }
 
         void UpdateManualEntryBasedControls()
@@ -180,26 +197,21 @@ namespace Budget
 
         private void btnImportManualText_Click(object sender, EventArgs e)
         {
-            PreImport();
+            PreImport_Budget();
 
             _Processor.ProcessManualLines(tbFileText.Lines);
 
-            PostImport();
+            PostImport_Budget();
         }
 
         private void yahooHoldingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport();
+            PreImport_SharePrice();
 
-            // DIAG USE NEW PROCESSOR -- _Processor = new SourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings"); // TODO s/get "YahooHoldings" from config
-            _Processor.Process();
+            _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings", false); // TODO s/get "YahooHoldings" from config
+            _Processor.ProcessFromChecklist();
 
-            tbFileText.Clear();
-
-            lblFilePath.Text = "File: " + _Processor.SourceFilePath;
-            lblFilePath.ForeColor = Color.Blue;
-
-            PostImport();
+            PostImport_SharePrice();
         }
     }
 }

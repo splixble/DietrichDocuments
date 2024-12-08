@@ -12,6 +12,10 @@ namespace Budget
 {
     public partial class SharePriceEditingGridCtrl : UserControl
     {
+        public MainDataSet.SharePriceDataTable SharePriceTable => mainDataSet.SharePrice;
+
+        public BindingSource BindingSrc => sharePriceBindingSource;
+
         public SharePriceEditingGridCtrl()
         {
             InitializeComponent();

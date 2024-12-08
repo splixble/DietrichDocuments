@@ -104,7 +104,7 @@ namespace Songs
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
             SqlDataAdapter songsAdap = new SqlDataAdapter(query, 
-                global::Songs.Properties.Settings.Default.AzureConnectionString);
+                global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
             songsAdap.Fill(tblSongs);
 
             foreach (AzureDataSet.ViewSongsSingleFieldRow rowSong in tblSongs)
@@ -119,7 +119,7 @@ namespace Songs
             string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + 
                 " ORDER BY ArtistLastName, ArtistFirstName, Title, TitlePrefix";
             SqlDataAdapter songsAdap = new SqlDataAdapter(query,
-                global::Songs.Properties.Settings.Default.AzureConnectionString);
+                global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
             songsAdap.Fill(tblSongs);
 
             string lastArtist = "";

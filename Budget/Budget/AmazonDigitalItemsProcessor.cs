@@ -9,12 +9,12 @@ using static Budget.MainDataSet;
 
 namespace Budget
 {
-    internal class AmazonDigitalItemsProcessor : SourceFileProcessor
+    internal class AmazonDigitalItemsProcessor : BudgetSourceFileProcessor
     {
         DataView _ViewByDateAndAmount;
 
         public override bool UpdateAccountFromSourceFile => false;
-        public override bool AllowAddingNewBudgetRows => false;
+        public override bool AllowAddingNewImportedRows => false;
 
         public AmazonDigitalItemsProcessor(BudgetDataTable budgetTable)
             : base(budgetTable, null, null, false)
@@ -23,7 +23,7 @@ namespace Budget
             _ViewByDateAndAmount.Sort = "TrDate ASC, Amount ASC";
         }
 
-        protected override bool ExtractFields(string[] fileFields, Dictionary<string, object> fieldsByColumnName)
+        protected override bool ExtractFields(string[] fileFields, ColumnValueList fieldsByColumnName)
         {
             // Get date of order from column 9:
             DateTime dateTimeValue;
@@ -39,15 +39,16 @@ namespace Budget
             else
                 return false;
 
-            // Get Aamzon's product description from column 1:
+            // Get Amazon's product description from column 1:
             fieldsByColumnName["DescripFromVendor"] = fileFields[1];
 
             return true;
         }
 
-        protected override DataRowView[] FindDuplicateRowViews(Dictionary<string, object> fieldsByColumnName)
+        protected override DataRow[] FindDuplicateRows(ColumnValueList fieldsByColumnName)
         {
-            return _ViewByDateAndAmount.FindRows(new object[] { fieldsByColumnName["TrDate"], fieldsByColumnName["Amount"] });
+            return DataRowArrayFromDataRowViewArray(
+                _ViewByDateAndAmount.FindRows(new object[] { fieldsByColumnName["TrDate"], fieldsByColumnName["Amount"] }) );
         }
     }
 }

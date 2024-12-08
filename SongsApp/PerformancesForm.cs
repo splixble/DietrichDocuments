@@ -11,8 +11,6 @@ namespace Songs
 {
     public partial class PerformancesForm : Form
     {
-        OdbcDataAdapter _PerformancesAdap;
-
         int _ContextMenuRow = -1;
         int _ContextMenuColumn = -1;
 
@@ -31,7 +29,6 @@ namespace Songs
         public PerformancesForm()
         {
             InitializeComponent();
-            _PerformancesAdap = new OdbcDataAdapter("", global::Songs.Properties.Settings.Default.AzureConnectionString);
         }
 
         private void PerformancesForm_Load(object sender, EventArgs e)

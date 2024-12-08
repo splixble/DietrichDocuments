@@ -19,7 +19,7 @@ namespace Budget
         public MainDataSet.BudgetDataTable BudgetTable => mainDataSet.Budget;
         public MainDataSetTableAdapters.BudgetTableAdapter BudgetAdapter => budgetTableAdapter;
 
-        public BindingSource BudgetBindingSource => budgetBindingSource;
+        public BindingSource BindingSrc => budgetBindingSource;
 
         public DataGridView Grid => grid1;
 

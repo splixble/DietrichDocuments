@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,8 +23,12 @@ namespace Budget
         AccountTypeTableAdapter _AccountTypeAdapter = new AccountTypeTableAdapter();
         ViewAccountTypesWithAllOptionTableAdapter _ViewAccountTypesWithAllOptionAdapter = new ViewAccountTypesWithAllOptionTableAdapter();
 
+        public DataView FundViewBySymbol => _FundViewBySymbol;
+        DataView _FundViewBySymbol;
+
         public LookupTableSet()
         {
+            _FundViewBySymbol = new DataView(MainDataSet.Fund, null, "StockSymbol", DataViewRowState.CurrentRows);
         }
 
         public bool LoadWithRetryOption()

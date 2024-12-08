@@ -1,117 +1,106 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using Budget.MainDataSetTableAdapters;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Budget.MainDataSet;
 using System.Windows.Forms;
-using Budget.MainDataSetTableAdapters;
-using System.Diagnostics;
-using Microsoft.ReportingServices.Diagnostics.Internal;
-using System.IO;
-using System.Text.RegularExpressions;
+using static Budget.BudgetSourceFileProcessor;
+using static Budget.MainDataSet;
 
 namespace Budget
 {
-    internal class SourceFileProcessor
+    internal abstract class SourceFileProcessor
     {
-        public BudgetDataTable BudgetTable => _BudgetTable;
-        BudgetDataTable _BudgetTable;
-
-        BudgetTableAdapter _BudgetAdapter;
-
-        protected string SelectedAccount => _SelectedAccount;
-        string _SelectedAccount = null;
-
-        protected MainDataSet.BudgetAccountRow _AccountRowSelected = null;
-        protected MainDataSet.BudgetSourceFileFormatRow _SourceFileFormatRow = null;
-
-        protected SourceFileFormats _SourceFileFormat;       
-
-        public virtual bool UpdateAccountFromSourceFile => true;
-        public virtual bool AllowAddingNewBudgetRows => true;
-
-        MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
-
-        public MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
-        public MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
-        public MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
-        public List<BudgetAndSourceItemRows> _ImportedBudgetItems = new List<BudgetAndSourceItemRows>();
-
-        public string SourceFilePath => _SourceFilePath;
-        string _SourceFilePath;
-
-        public List<int> MatchingBudgetIDs => _MatchingBudgetIDs;
-        List<int> _MatchingBudgetIDs = new List<int>();
-
         public bool IsManuallyEntered => _IsManuallyEntered;
         bool _IsManuallyEntered;
 
-        string[] _TextLines = null; // if manually entered
+        MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
 
-        public SourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount, string selectedFileFormat, bool isManuallyEntered)
+        protected MainDataSet.BudgetSourceFileFormatRow _SourceFileFormatRow = null;
+
+        protected SourceFileFormats _SourceFileFormat;
+
+        MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
+        MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
+        MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
+
+        public string SourceFilePath => _SourceFilePath;
+        protected string _SourceFilePath;
+
+        protected string[] _TextLines = null; // if manually entered
+
+        public List<PrimaryKeyValue> MatchingPrimaryKeys => _MatchingPrimaryKeys;
+        List<PrimaryKeyValue> _MatchingPrimaryKeys = new List<PrimaryKeyValue>();
+
+        public virtual bool AllowAddingNewImportedRows => true;
+
+        string DownloadsDirectory
         {
-            _BudgetAdapter = new BudgetTableAdapter();
-            _BudgetAdapter.Connection = Program.DbConnection;
-            _BudgetTable = budgetTable;
-            _SelectedAccount = selectedAccount;
+            get
+            {
+                return "C:\\Users\\Dietr\\Downloads"; //  make it a config field DIAG
+            }
+        }
+
+        protected abstract DataTable ImportedTable { get; } // the table the source file items get written to
+
+        public SourceFileProcessor(string selectedFileFormat, bool isManuallyEntered) 
+        {
             _IsManuallyEntered = isManuallyEntered;
+
+            _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(selectedFileFormat);
 
             _TextLines = new string[0];
 
-            if (_SelectedAccount != null)
-            {
-                // DIAG Is this the right thing to do? if no account is selected, it probably shoudn't even include account... it doesn't use it...
-                _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
-                _SourceFileFormatRow = SourceFileFormatTable.FindByFormatCode(selectedFileFormat);
 
-                // get source file format:
-                _SourceFileFormat = SourceFileFormats.None;
-                foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
+            // get source file format:
+            _SourceFileFormat = SourceFileFormats.None;
+            foreach (Enum enumVal in Enum.GetValues(typeof(SourceFileFormats)))
+            {
+                if (enumVal.ToString() == selectedFileFormat)
                 {
-                    if (enumVal.ToString() == selectedFileFormat)
-                    {
-                        _SourceFileFormat = (SourceFileFormats)enumVal;
-                        break;
-                    }
+                    _SourceFileFormat = (SourceFileFormats)enumVal;
+                    break;
                 }
             }
+        }
+
+        protected BudgetSourceFileItemsRow AddSourceFileItemRow(int lineNum)
+        {
+            BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
+            fileItemsRow.SourceFile = -1; // real value filled in on save 
+            fileItemsRow.SourceFileLine = lineNum; // 1-relative
+            _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
+            return fileItemsRow;
         }
 
         // Extracts fields from a line of the text file, puts them in fieldsByColumnName.
         // Returns whether line was parseable.
         // Can be overridden for custom source files like Amazon order lists.
-        protected virtual bool ExtractFields(string[] fileFields, Dictionary<string, object> fieldsByColumnName)
+        protected virtual bool ExtractFields(string[] fileFields, ColumnValueList fieldsByColumnName)
         {
             string[] formatFields = _SourceFileFormatRow.FormatColumns.Split(',');
 
-            bool lineParsable = true;
             for (int formatColIndex = 0; formatColIndex < formatFields.Length; formatColIndex++)
             {
-                // DIAG can remove var lineParsable; just return false
-                // 
                 if (formatFields[formatColIndex] != "")
                 {
                     if (formatColIndex >= fileFields.Length)
-                    {
-                        lineParsable = false;
-                        break;
-                    }
+                        return false;
 
-                    // which Budget column is it?
-                    if (!_BudgetTable.Columns.Contains(formatFields[formatColIndex]))
-                    {
-                        lineParsable = false;
-                        break;
-                    }
-                    DataColumn budgetColumn = _BudgetTable.Columns[formatFields[formatColIndex]];
+                    // which dest. column is it?
+                    if (!ImportedTable.Columns.Contains(formatFields[formatColIndex]))
+                        return false;
+                    DataColumn destColumn = ImportedTable.Columns[formatFields[formatColIndex]];
 
                     // Parse the fields, depending on the column's data type:
-                    if (budgetColumn.DataType == typeof(string))
-                        fieldsByColumnName[budgetColumn.ColumnName] = fileFields[formatColIndex];
-                    else if (budgetColumn.DataType == typeof(Decimal))
+                    if (destColumn.DataType == typeof(string))
+                        fieldsByColumnName[destColumn.ColumnName] = fileFields[formatColIndex];
+                    else if (destColumn.DataType == typeof(Decimal))
                     {
                         Decimal fileValue;
                         if (Decimal.TryParse(fileFields[formatColIndex], out fileValue))
@@ -120,115 +109,32 @@ namespace Budget
                             if (_SourceFileFormatRow.CreditsAreNegative)
                                 fileValue = -fileValue;
 
-                            fieldsByColumnName[budgetColumn.ColumnName] = fileValue;
+                            fieldsByColumnName[destColumn.ColumnName] = fileValue;
                         }
                         else
-                            lineParsable = false;
+                            return false;
                     }
-                    else if (budgetColumn.DataType == typeof(DateTime))
+                    else if (destColumn.DataType == typeof(DateTime))
                     {
                         DateTime fileValue;
                         if (DateTime.TryParse(fileFields[formatColIndex], out fileValue))
-                            fieldsByColumnName[budgetColumn.ColumnName] = fileValue;
+                            fieldsByColumnName[destColumn.ColumnName] = fileValue;
                         else
-                            lineParsable = false;
+                            return false;
                     }
-                    if (!lineParsable)
-                        break;
                 }
             }
-            return lineParsable;
+            return true;
         }
 
-        BudgetRow FindDuplicateRow(Dictionary<string, object> fieldsByColumnName)
+        protected virtual string AccountSourceFilePath
         {
-            {
-                DataRowView[] dupRowViews = FindDuplicateRowViews(fieldsByColumnName);
-                if (dupRowViews.Length == 0)
-                    return null;
-                else if (dupRowViews.Length == 1)
-                    return dupRowViews[0].Row as BudgetRow;
-                else
-                {
-                    string dupIDList = "";
-                    foreach (DataRowView dupRowView in dupRowViews)
-                    {
-                        if (dupIDList != "")
-                            dupIDList += ", ";
-                        dupIDList += ((BudgetRow)dupRowView.Row).ID.ToString();
-                    }
-                    MessageBox.Show("Multiple duplicate Budget rows, with IDs " + dupIDList);
-                    return null;
-                }
-            }
-
-        }
-
-        protected virtual DataRowView[] FindDuplicateRowViews(Dictionary<string, object> fieldsByColumnName)
-        {
-            // TODO maybe a custom made DataView per format, depending on what fields it captures...or just linear search...
-            return _BudgetTable.DuplicatesView.FindRows(
-                new object[] {
-                    (DateTime)fieldsByColumnName["TrDate"],
-                    (decimal)fieldsByColumnName["Amount"],
-                    (string)fieldsByColumnName["Descrip"],
-                    _SelectedAccount
-                });
-        }
-
-        public void Process()
-        {
-            _SourceFilePath = PromptForSourceFile(false);
-            if (_SourceFilePath != null)
-                ReadInSourceFile();
-        }
-
-        public void ProcessFromChecklist()
-        {
-            string downloadedFilePath = PromptForSourceFile(true);
-            if (downloadedFilePath != null)
-            {
-                // before processing, copy source file from Downloads to account's SourceFilePath:
-                string archivedFilePath = Path.Combine(AccountSourceFilePath, "S_" + DateTime.Now.ToString("yyMMdd_hhmmss_") + Path.GetFileName(downloadedFilePath));
-                try
-                {
-
-
-                    // DIAG seems to copy OK. So download a file and try it.
-
-
-                    File.Copy(downloadedFilePath, archivedFilePath);
-                    _SourceFilePath = archivedFilePath; 
-                }
-                catch (Exception ex) 
-                {
-                    MessageBox.Show("Error copying source file: " + ex.Message);
-                    return;
-                }
-
-                ReadInSourceFile();
-            }
-        }
-
-        string AccountSourceFilePath
-        { 
             get
             {
-                string srcRootDir = "D:\\Dietrich\\Business\\Budget App Input Files"; // DIAG get from Config file, which s/b read at beginning and globally available
-                if (_AccountRowSelected != null)
-                    return Path.Combine(srcRootDir, this._AccountRowSelected.SourceFileLocation);
-                else
-                    return srcRootDir;
+                return "D:\\Dietrich\\Business\\Budget App Input Files"; // DIAG get from Config file, which s/b read at beginning and globally available
             }
         }
 
-        string DownloadsDirectory
-        {
-            get 
-            {
-                return "C:\\Users\\Dietr\\Downloads"; //  make it a config field DIAG
-            }
-        }
 
         protected string PromptForSourceFile(bool startInDownloadsDir)
         {
@@ -251,9 +157,146 @@ namespace Budget
                 return null;
         }
 
+        // Finds a DataRow for each imported row that's considered a duplicate, i.e. represents the same transaction or end-of-day share value or whatever
+        protected abstract DataRow[] FindDuplicateRows(ColumnValueList fieldsByColumnName);
+
+        protected DataRow[] DataRowArrayFromDataRowViewArray(DataRowView[] rowViews)
+        {
+            // this is a general convenience utility
+            DataRow[] rows = new DataRow[rowViews.Length];
+            for (int i = 0; i < rowViews.Length; i++)
+                rows[i] = rowViews[i].Row;
+            return rows;
+        }
+
+        protected DataRow FindDuplicateRow(ColumnValueList fieldsByColumnName)
+        {
+            DataRow[] dupRows = FindDuplicateRows(fieldsByColumnName);
+            if (dupRows.Length == 0)
+                return null;
+            else if (dupRows.Length == 1)
+                return dupRows[0];
+            else
+            {
+                string dupIDList = "";
+                foreach (DataRow dupRow in dupRows)
+                {
+                    /* DIAG remove
+                    string keyValueString = "";
+                    foreach (DataColumn keyColumn in ImportedTable.PrimaryKey)
+                    {
+                        string keyVal = dupRowView.Row[keyColumn].ToString();
+                        if (keyValueString != "")
+                            keyValueString += ", ";
+                        keyValueString += keyVal.ToString();
+                    }
+                    */
+
+                    if (dupIDList != "")
+                        dupIDList += "; ";
+                    dupIDList += new PrimaryKeyValue(dupRow).ToString();
+                }
+                MessageBox.Show("Multiple duplicate rows, with keys " + dupIDList);
+                return null;
+            }
+        }
+
+
+
+
+
+        protected abstract DataRow NewImportedRow();
+
+        public virtual DataRow AddOrUpdateImportedRow(ColumnValueList fieldsByColumnName, int lineNum)
+            // returns imported row added or updated, or null if there's an error
+        {
+            DataRow importedRow = null;
+
+            // Check for duplicate Budget rows:
+            DataRow dupRow = FindDuplicateRow(fieldsByColumnName);
+
+            if (dupRow != null)
+            {
+                // Duplicate row found
+                importedRow = dupRow;
+                // Add row's primary key(s):
+                _MatchingPrimaryKeys.Add(new PrimaryKeyValue(dupRow)); ;
+            }
+            else
+            {
+                // no duplicate
+                if (AllowAddingNewImportedRows)
+                {
+                    // add new row to table
+                    importedRow = NewImportedRow();
+                }
+            }
+
+            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
+            if (importedRow == null)
+                return null;
+
+            // Copy fields in:
+            foreach (string columnName in fieldsByColumnName.Keys)
+            {
+                object newFieldValue = fieldsByColumnName[columnName];
+                if (newFieldValue != null)
+                    importedRow[columnName] = newFieldValue;
+            }
+
+            // if new row, we need to add it to the DataTable:
+            if (dupRow == null)
+                ImportedTable.Rows.Add(importedRow);
+
+            BudgetSourceFileItemsRow fileItemsRow = AddSourceFileItemRow(lineNum);
+
+            _ImportedBudgetItems.Add(new ImportedAndSourceItemRows(importedRow, fileItemsRow));
+
+            return importedRow;
+        }
+
+
+
+
+
+        public void Process()
+        {
+            _SourceFilePath = PromptForSourceFile(false);
+            if (_SourceFilePath != null)
+                ReadInSourceFile();
+        }
+
+        public virtual void ProcessManualLines(string[] textLines)
+        {
+            // TODO this should do something other than wimping out, rite?
+            MessageBox.Show("Base class cannot process text if source file format of account is " + _SourceFileFormat.ToString());
+        }
+
+        public void ProcessFromChecklist()
+        {
+            string downloadedFilePath = PromptForSourceFile(true);
+            if (downloadedFilePath != null)
+            {
+                // before processing, copy source file from Downloads to account's SourceFilePath:
+                string archivedFilePath = Path.Combine(AccountSourceFilePath, "S_" + DateTime.Now.ToString("yyMMdd_hhmmss_") + Path.GetFileName(downloadedFilePath));
+                try
+                {
+                    File.Copy(downloadedFilePath, archivedFilePath);
+                    _SourceFilePath = archivedFilePath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error copying source file: " + ex.Message);
+                    return;
+                }
+
+                ReadInSourceFile();
+            }
+        }
+
         protected virtual void ReadInSourceFile()
         {
-            if (_IsManuallyEntered)
+            if (IsManuallyEntered)
             {
                 StatementDatePrompt prompt = new StatementDatePrompt();
                 prompt.InitializeWithFilename(SourceFilePath);
@@ -268,7 +311,6 @@ namespace Budget
                     _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
                     _NewestSourceFileRow.FilePath = SourceFilePath;
                     _NewestSourceFileRow.StatementDate = prompt.StatementDate;
-                    _NewestSourceFileRow.Account = this.SelectedAccount;
                     _NewestSourceFileRow.ManuallyEntered = true;
                     _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
                 }
@@ -278,17 +320,12 @@ namespace Budget
                 // make new source file row:
                 _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
                 _NewestSourceFileRow.FilePath = _SourceFilePath;
-                _NewestSourceFileRow.Account = _SelectedAccount;
                 _NewestSourceFileRow.ManuallyEntered = false;
                 _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
-
-                // Read in the full Budget table, to check for duplicates:
-                _BudgetAdapter.Fill(_BudgetTable);
 
                 // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load source files:
                 using (TextFieldParser parser = new TextFieldParser(_SourceFilePath))
                 {
-                    _MatchingBudgetIDs.Clear();
 
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(","); // allow tab delim?
@@ -299,154 +336,39 @@ namespace Budget
                         string[] fileFields = parser.ReadFields();
                         lineNum++;
 
-                        Dictionary<string, object> fieldsByColumnName = new Dictionary<string, object>();
+                        ColumnValueList fieldsByColumnName = new ColumnValueList();
 
                         bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
 
                         if (lineParsable)
-                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
+                            AddOrUpdateImportedRow(fieldsByColumnName, lineNum);
                     }
                 }
             }
         }
 
-        public bool AddOrUpdateBudgetRow(Dictionary<string, object> fieldsByColumnName, int lineNum)
-        {
-            BudgetRow importedRow = null;
+        protected abstract void SaveImportedTable();
 
-            // Check for duplicate Budget rows:
-            BudgetRow dupRow = FindDuplicateRow(fieldsByColumnName);
+        protected abstract void PointSourceFileItemRowToImportedRow(ImportedAndSourceItemRows rowsOb);
 
-            if (dupRow != null)
-            {
-                // Duplicate row found
-                importedRow = dupRow;
-                // Add row ID:
-                _MatchingBudgetIDs.Add(dupRow.ID);
-            }
-            else
-            {
-                // no duplicate
-                if (AllowAddingNewBudgetRows)
-                {
-                    // add new row to table
-                    importedRow = _BudgetTable.NewBudgetRow();
-                    // REMOVED importedRow.IsIncome = false; // necessary initialization
-                    importedRow.Ignore = false; // necessary initialization
-                    importedRow.BalanceIsCalculated = false; // necessary initialization
-                }
-            }
-
-            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
-            if (importedRow == null)
-                return false;
-
-            // Copy fields in:
-            foreach (string columnName in fieldsByColumnName.Keys)
-            {
-                object newFieldValue = fieldsByColumnName[columnName];
-                if (newFieldValue != null)
-                    importedRow[columnName] = newFieldValue;
-            }
-
-            if (UpdateAccountFromSourceFile)
-                importedRow.Account = _SelectedAccount;
-
-            BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
-            fileItemsRow.SourceFile = -1; // real value filled in on save 
-            fileItemsRow.SourceFileLine = lineNum; // 1-relative
-            _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
-
-            _ImportedBudgetItems.Add(new BudgetAndSourceItemRows(importedRow, fileItemsRow));
-
-            // if new row, we need to add it to the DataTable:
-            if (dupRow == null)
-                _BudgetTable.AddBudgetRow(importedRow);
-
-            return true;
-        }
-
-        public virtual void SaveChanges()
+        public void SaveChanges()
         {
             // TODO use transactions (budgetTableAdapter.Transaction) in this
+            SaveImportedTable();
+
+            foreach (ImportedAndSourceItemRows rowsOb in _ImportedBudgetItems)
+                PointSourceFileItemRowToImportedRow(rowsOb);
+
             MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
             _NewestSourceFileRow.ImportDateTime = DateTime.Now;
             sourceFileAdap.Update(_SourceFileTable);
 
-             _BudgetAdapter.Update(_BudgetTable);
-
-            foreach (BudgetAndSourceItemRows budgetObj in _ImportedBudgetItems)
-            {
-                // fill in new Items rows with updated, permanent ID field values:
-                budgetObj._ItemsRow.BudgetItem = budgetObj._BudgetRow.ID; 
-                budgetObj._ItemsRow.SourceFile = _NewestSourceFileRow.FileID;
-            }
+            foreach (BudgetSourceFileItemsRow itemRow in _SourceFileItemsTable)
+                // fill in new Items rows with updated, permanent ID field value:
+                itemRow.SourceFile = _NewestSourceFileRow.FileID;
 
             MainDataSetTableAdapters.BudgetSourceFileItemsTableAdapter fileItemsAdap = new BudgetSourceFileItemsTableAdapter();
             fileItemsAdap.Update(_SourceFileItemsTable);
-        }
-
-        bool CaptureDateFieldInBofAWideStatementLine(string line, Dictionary<string, object> fieldsByColumnName, out string restOfLine)
-        {
-            restOfLine = ""; // initialize
-
-            string pattern = null;
-            // Capture date, ignore space if exists, and rest of line:
-            if (_SourceFileFormat == SourceFileFormats.BofAWidePDFWithYear)
-            {
-                pattern = @"^(\d\d/\d\d/\d\d)[ ]?(.*)$";
-                Match match = Regex.Match(line, pattern);
-                if (match.Success)
-                {
-                    // 2nd capture is rest of line
-                    restOfLine = match.Groups[2].Value;
-
-                    // 1st capture is TrDate
-                    DateTime dateValue;
-                    string dateString = match.Groups[1].Value;
-                    if (DateTime.TryParse(dateString, out dateValue))
-                        fieldsByColumnName["TrDate"] = dateValue;
-                    else
-                        return false;
-
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else if (_SourceFileFormat == SourceFileFormats.BofAWidePDF)
-            {
-                pattern = @"^(\d\d/\d\d) (\d\d/\d\d)[ ]?(.+)$";  // no year in date. Captures Card Trans Date, Posting Date
-                Match match = Regex.Match(line, pattern);
-                if (match.Success)
-                {
-                    // 3rd capture is rest of line
-                    restOfLine = match.Groups[3].Value;
-
-                    DateTime dateValue;
-
-                    // 1st capture is Card Trans Date
-                    string dateString = AddYearToYearlessDateString(match.Groups[1].Value);
-                    if (DateTime.TryParse(dateString, out dateValue))
-                        fieldsByColumnName["CardTransDate"] = dateValue;
-                    else
-                        return false;
-
-                    // 2nd capture is TrDate
-                    dateString = AddYearToYearlessDateString(match.Groups[2].Value);
-                    if (DateTime.TryParse(dateString, out dateValue))
-                        fieldsByColumnName["TrDate"] = dateValue;
-                    else
-                        return false;
-
-                    return true;
-
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
         }
 
         public string AddYearToYearlessDateString(string dateString)
@@ -466,293 +388,17 @@ namespace Budget
             return dateString + "/" + tYear.ToString();
         }
 
-        public void ProcessManualLines(string[] textLines)
+        List<ImportedAndSourceItemRows> _ImportedBudgetItems = new List<ImportedAndSourceItemRows>();
+
+        // internally used class
+        protected class ImportedAndSourceItemRows
         {
-            switch (_SourceFileFormat)
-            {
-                case SourceFileFormats.BofAWidePDF:
-                case SourceFileFormats.BofAWidePDFWithYear:
-                    ProcessBofAWidePDFLines(textLines);
-                    break;
-                case SourceFileFormats.BofANarrowPDF:
-                    ProcessBofANarrowPDFLines(textLines);
-                    break;
-                case SourceFileFormats.AmexStmt:
-                    ProcessAmexPDFLines(textLines);
-                    break;
-                default:
-                    MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
-                    break;
-            }
-        }
-
-
-        public void ProcessAmexPDFLines(string[] textLines)
-        {
-            // For BofA Statement PDFs that, when text is copied and pasted to text box, shows one field per line rather than one transaction per line.
-            _TextLines = textLines;
-
-            Dictionary<string, object> fieldsByColumnName = null;
-
-            PDFField _LastFieldRead = PDFField.None;
-
-            int lineNum = 0; // it's 1-relative
-            foreach (string line in _TextLines)
-            {
-                lineNum++;
-
-                // reused vars in switch stmt:
-                Match match;
-
-                switch (_LastFieldRead)
-                {
-                    case PDFField.None:
-                        // start of budget item, so initialize fieldsByColumnName:
-                        fieldsByColumnName = new Dictionary<string, object>();
-
-                        // does line start with a date (mm/dd/yy)?
-                        match = Regex.Match(line, @"^(\d\d/\d\d/\d\d)(.*)$");
-                        if (match.Success)
-                        {
-                            DateTime dateValue;
-                            if (DateTime.TryParse(match.Groups[1].Value, out dateValue))
-                            {
-                                fieldsByColumnName["TrDate"] = dateValue;
-
-                                // is there's anything to the right of the date?
-                                if (match.Groups[2].Value != "")
-                                {
-                                    string leftText = match.Groups[2].Value.Trim();
-
-                                    // Could be a description and amount, or just a description:
-                                    if (CaptureAmountField(leftText, fieldsByColumnName, false, true))
-                                    {
-                                        AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                                        _LastFieldRead = PDFField.None;
-                                    }
-                                    else
-                                    {
-                                        AddToDescripField(fieldsByColumnName, leftText);
-                                        _LastFieldRead = PDFField.Descrip;
-                                    }
-                                }
-                                else
-                                    _LastFieldRead = PDFField.PostDate;
-                            }
-                        }
-                        else
-                            _LastFieldRead = PDFField.None;
-                        break;
-                    case PDFField.Descrip:
-                        // Could be a description and amount, or just a description:
-                        if (CaptureAmountField(line, fieldsByColumnName, false, true))
-                        {
-                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                            _LastFieldRead = PDFField.None;
-                        }
-                        else
-                        {
-                            AddToDescripField(fieldsByColumnName, line);
-                            _LastFieldRead = PDFField.Descrip;
-                        }
-                        break;
-                }
-            }
-        }
-
-        public void ProcessBofANarrowPDFLines(string[] textLines)
-        {
-            // For BofA Statement PDFs that, when text is copied and pasted to text box, shows one field per line rather than one transaction per line.
-            _TextLines = textLines;
-
-            Dictionary<string, object> fieldsByColumnName = null;
-
-            PDFField _LastFieldRead = PDFField.None;
-
-            int lineNum = 0; // it's 1-relative
-            foreach (string line in _TextLines)
-            {
-                lineNum++;
-
-                // reused vars in switch stmt:
-                DateTime dateValue;
-                Match match;
-
-                switch (_LastFieldRead)
-                {
-                    case PDFField.None:
-                        // start of budget item, so initialize fieldsByColumnName:
-                        // DIAG make fieldsByColumnName its own class. Indexed by an enum insted of a string
-                        fieldsByColumnName = new Dictionary<string, object>();
-
-                        // is field a date (mm/dd)? That's the Transaction Date
-                        match = Regex.Match(line, @"^(\d\d/\d\d)$");
-                        if (match.Success)
-                        {
-                            if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
-                            {
-                                fieldsByColumnName["CardTransDate"] = dateValue;
-                                _LastFieldRead = PDFField.TransDate;
-                            }
-                        }
-                        else
-                            _LastFieldRead = PDFField.None;
-                        break;
-                    case PDFField.TransDate:
-                        // is field a date (mm/dd)? That's the Post Date (TrDate)
-                        match = Regex.Match(line, @"^(\d\d/\d\d)$");
-                        if (match.Success)
-                        {
-                            if (DateTime.TryParse(AddYearToYearlessDateString(match.Groups[1].Value), out dateValue))
-                            {
-                                fieldsByColumnName["TrDate"] = dateValue;
-                                _LastFieldRead = PDFField.PostDate;
-                            }
-                        }
-                        else
-                            _LastFieldRead = PDFField.None;
-                        break;
-                    case PDFField.PostDate:
-                        // next field is beginning of Descrip
-                        fieldsByColumnName["Descrip"] = line;
-                        _LastFieldRead = PDFField.Descrip;
-                        break;
-                    case PDFField.Descrip:
-                        // next field is Reference Number, appended to Descrip field:
-                        fieldsByColumnName["Descrip"] += " " + line;
-                        _LastFieldRead = PDFField.RefNum;
-                        break;
-                    case PDFField.RefNum:
-                        // next field is Acct Number, appended to Descrip field:
-                        fieldsByColumnName["Descrip"] += " " + line;
-                        _LastFieldRead = PDFField.AcctNum;
-                        break;
-                    case PDFField.AcctNum:
-                        // next field is Amount:
-
-                        if (CaptureAmountField(line, fieldsByColumnName, true, false))
-                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-
-                        // whether success or failure, go back to BofaPDFField.None:
-                        _LastFieldRead = PDFField.None;
-                        break;
-                }
-            }
-        }
-
-        public void ProcessBofAWidePDFLines(string[] textLines)
-        {
-            _TextLines = textLines;
-
-            bool foundLineWithOnlyDate = false; // line with only date (at beginning) indicates an incomplete item which will hopefully be completed by a dollar amount later
-
-            Dictionary<string, object> fieldsByColumnName = null;
-
-            int lineNum = 0; // it's 1-relative
-            foreach (string line in _TextLines)
-            {
-                lineNum++;
-
-                if (foundLineWithOnlyDate)
-                {
-                    // Check if line is dollar amount:
-                    if (CaptureAmountField(line, fieldsByColumnName, false, false))
-                    {
-                        AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                        foundLineWithOnlyDate = false;
-                    }
-                    else
-                        AddToDescripField(fieldsByColumnName, line); // whole line is capture is continuation of descrip
-                }
-                else
-                {
-                    // New budget item, not a continuation of old one. So, reset field dictionary:
-                    fieldsByColumnName = new Dictionary<string, object>();
-
-                    // Check for match of date at beginning:
-                    string restOfLine;
-                    bool lineBeginsWithDate = CaptureDateFieldInBofAWideStatementLine(line, fieldsByColumnName, out restOfLine);
-                    if (lineBeginsWithDate)
-                    {
-                        if (CaptureAmountField(restOfLine, fieldsByColumnName, false, false))
-                        {
-                            AddOrUpdateBudgetRow(fieldsByColumnName, lineNum);
-                        }
-                        else
-                        {
-                            foundLineWithOnlyDate = true;
-
-                            // rest of line is capture is continuation of descrip
-                            AddToDescripField(fieldsByColumnName, restOfLine);
-                        }
-                    }
-                }
-            }
-        }
-
-        bool CaptureAmountField(string lineText, Dictionary<string, object> fieldsByColumnName, bool fromWholeLine, bool hasDollarSign)
-        {
-            // DIAG use this in all the areas
-            // Check for match of dollar amount
-            // if fromWholeLine, amount must take up whole line. Otherwise, it checks for amount at right end, and captures any text to the left (and adds to Descrip field)
-            // if hasDollarSign, the amount figure is preceded by "$" (after negative sign if any)
-            string amountPattern; // pattern of just amount
-            if (hasDollarSign)
-                amountPattern = @"-?\$(\d|,)+\.\d\d";
-            else
-                amountPattern = @"-?(\d|,)+\.\d\d";
-            string pattern;
-            if (fromWholeLine)
-                pattern = @"^(" + amountPattern + ")$";
-            else
-                pattern = @"^(.* )?(" + amountPattern + ")$";
-
-            Match match = Regex.Match(lineText, pattern);
-            if (match.Success)
-            {
-                // Parse captured amount:
-                string amountString = match.Groups[fromWholeLine ? 1 : 2].Value;
-                if (hasDollarSign)
-                    amountString = amountString.Replace("$", ""); // remove dollar sign from string so it'll parse
-
-                Decimal amountValue;
-                if (Decimal.TryParse(amountString, out amountValue))
-                {
-                    // Handle the special case in which source file lists credits as negative and debits as positive:
-                    if (_SourceFileFormatRow.CreditsAreNegative)
-                        amountValue = -amountValue;
-                    fieldsByColumnName["Amount"] = amountValue;
-                }
-
-                if (!fromWholeLine)
-                {
-                    // 1st capture is descrip
-                    AddToDescripField(fieldsByColumnName, match.Groups[1].Value);
-                }
-                return true;
-            }
-            else
-                return false;
-        }
-
-        void AddToDescripField(Dictionary<string, object> fieldsByColumnName, string textValue)
-        {
-            if (!fieldsByColumnName.ContainsKey("Descrip"))
-                fieldsByColumnName["Descrip"] = "";
-            else
-                fieldsByColumnName["Descrip"] += " ";
-            fieldsByColumnName["Descrip"] += textValue;
-
-        }
-        // internally used classes
-        public class BudgetAndSourceItemRows
-        {
-            public BudgetRow _BudgetRow;
+            public DataRow _ImportedRow;
             public BudgetSourceFileItemsRow _ItemsRow;
 
-            public BudgetAndSourceItemRows(BudgetRow budgetRow, BudgetSourceFileItemsRow itemsRow)
+            public ImportedAndSourceItemRows(DataRow importedRow, BudgetSourceFileItemsRow itemsRow)
             {
-                _BudgetRow = budgetRow;
+                _ImportedRow = importedRow;
                 _ItemsRow = itemsRow;
             }
         }

@@ -2,99 +2,26 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Songs.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="freeConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="LocalSongbookConnection" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;password=EF94SEmPdi;persistsecurityinfo=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=localhost\SQLEXPRESS;Initial Catalog=songbook;Integrated Security=True;Encrypt=False&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=sql3.freesqldatabase.com;port=3306;database=sql3318278;user id=sql3318278;password=EF94SEmPdi;persistsecurityinfo=True</Value>
+      <Value Profile="(Default)">Data Source=localhost\SQLEXPRESS;Initial Catalog=songbook;Integrated Security=True;Encrypt=False</Value>
     </Setting>
-    <Setting Name="songbookConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="LocalSpeepmasterSongbookConn" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=speepmaster\SQLEXPRESS;Initial Catalog=Songbook;Integrated Security=True;TrustServerCertificate=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;Microsoft.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=TestUser;password=Mustard3;persistsecurityinfo=True;database=songbook</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString_New" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=TestUser;password=Mustard3;database=songbook;persistsecurityinfo=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=TestUser;password=Mustard3;database=songbook;persistsecurityinfo=True</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString_newer" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=TestUser;password=Mustard3;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=TestUser;password=Mustard3;database=songbook</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString_5Nov22" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=LOCALHOST;user id=root;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=LOCALHOST;user id=root;database=songbook</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString1" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=root;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=root;database=songbook</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString2" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=root;password=athapas;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=root;password=athapas;database=songbook</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString3" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=TestUser@SPEEPMASTER;password=Mustard3;database=songbook;persistsecurityinfo=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=TestUser@SPEEPMASTER;password=Mustard3;database=songbook;persistsecurityinfo=True</Value>
-    </Setting>
-    <Setting Name="songbookConnectionString4" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=songbook&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=localhost;user id=root;password=athapas;persistsecurityinfo=True;database=songbook</Value>
-    </Setting>
-    <Setting Name="LyricPDFsDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Dietrich\Music\LYRICS\TabletPDFs</Value>
+      <Value Profile="(Default)">Data Source=speepmaster\SQLEXPRESS;Initial Catalog=Songbook;Integrated Security=True;TrustServerCertificate=True</Value>
     </Setting>
     <Setting Name="MobilesheetsNoLyricsDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\Dietrich\Music\LYRICS\MobilesheetsTest</Value>
     </Setting>
-    <Setting Name="AzureConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;TrustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=algonQin88&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=tcp:dietrichsql.database.windows.net,1433;Initial Catalog=Songbook;TrustServerCertificate=False;Connection Timeout=30; User ID=dietrichuser;Password=algonQin88</Value>
-    </Setting>
-    <Setting Name="MainConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Dsn=Songbook;DATABASE=Songbook;uid=TestUser;pwd=Mustard3</Value>
+    <Setting Name="LyricPDFsDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Dietrich\Music\LYRICS\TabletPDFs</Value>
     </Setting>
   </Settings>
 </SettingsFile>
