@@ -95,7 +95,7 @@ namespace Budget
                 }
             }
             // Now, highlight all grid rows that have modified data:
-            budgetEditingGridCtrl1.SetRowColors();
+            Utils.SetImportedDataGridRowColors(budgetEditingGridCtrl1.Grid);
         }
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace Budget
             }
 
             // Now, highlight all grid rows that have modified data:
-            budgetEditingGridCtrl1.SetRowColors();
+            Utils.SetImportedDataGridRowColors(budgetEditingGridCtrl1.Grid);
         }
     }
 }

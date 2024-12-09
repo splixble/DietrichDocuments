@@ -33,8 +33,13 @@ namespace Budget
 
         protected string[] _TextLines = null; // if manually entered
 
+        /* REMOVE replaced by UpdatedImportedRows, below
         public List<PrimaryKeyValue> MatchingPrimaryKeys => _MatchingPrimaryKeys;
         List<PrimaryKeyValue> _MatchingPrimaryKeys = new List<PrimaryKeyValue>();
+        */
+
+        public Dictionary<DataRow, object> UpdatedImportedRows => _UpdatedImportedRows;
+        Dictionary<DataRow, object> _UpdatedImportedRows = new Dictionary<DataRow, object>(); // Values not used
 
         public virtual bool AllowAddingNewImportedRows => true;
 
@@ -201,10 +206,6 @@ namespace Budget
             }
         }
 
-
-
-
-
         protected abstract DataRow NewImportedRow();
 
         public virtual DataRow AddOrUpdateImportedRow(ColumnValueList fieldsByColumnName, int lineNum)
@@ -220,7 +221,7 @@ namespace Budget
                 // Duplicate row found
                 importedRow = dupRow;
                 // Add row's primary key(s):
-                _MatchingPrimaryKeys.Add(new PrimaryKeyValue(dupRow)); ;
+                // TODO remove _MatchingPrimaryKeys.Add(new PrimaryKeyValue(dupRow)); ;
             }
             else
             {
@@ -252,12 +253,10 @@ namespace Budget
 
             _ImportedBudgetItems.Add(new ImportedAndSourceItemRows(importedRow, fileItemsRow));
 
+            UpdatedImportedRows.Add(importedRow, null);
+
             return importedRow;
         }
-
-
-
-
 
         public void Process()
         {
@@ -296,6 +295,8 @@ namespace Budget
 
         protected virtual void ReadInSourceFile()
         {
+            UpdatedImportedRows.Clear();
+
             if (IsManuallyEntered)
             {
                 StatementDatePrompt prompt = new StatementDatePrompt();
@@ -345,6 +346,20 @@ namespace Budget
                     }
                 }
             }
+        }
+
+        public string GetBindingSrcFilterText()
+        {
+            string filterText = "";
+            foreach (DataRow dataRow in UpdatedImportedRows.Keys)
+            // DIAG remove foreach (PrimaryKeyValue keyVal in MatchingPrimaryKeys)
+            {
+                PrimaryKeyValue keyVal = new PrimaryKeyValue(dataRow);
+                if (filterText != "")
+                    filterText += " OR ";
+                filterText += "(" + keyVal.SQLFilterExpression + ")";
+            }
+            return filterText;
         }
 
         protected abstract void SaveImportedTable();

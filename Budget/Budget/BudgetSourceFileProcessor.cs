@@ -52,6 +52,8 @@ namespace Budget
             // REMOVED importedRow.IsIncome = false; // necessary initialization
             importedRow.Ignore = false; // necessary initialization
             importedRow.BalanceIsCalculated = false; // necessary initialization
+            if (UpdateAccountFromSourceFile)
+                importedRow.Account = _SelectedAccount;
             return importedRow;
         }
 
@@ -72,7 +74,7 @@ namespace Budget
         {
             // Read in the full Budget table, to check for duplicates:
             _BudgetAdapter.Fill(_BudgetTable);
-            MatchingPrimaryKeys.Clear();
+            // DIAG REMOVE MatchingPrimaryKeys.Clear();          
 
             base.ReadInSourceFile();
 
@@ -89,74 +91,6 @@ namespace Budget
                     return base.AccountSourceFilePath;
             }
         }
-
-        public override DataRow AddOrUpdateImportedRow(ColumnValueList fieldsByColumnName, int lineNum)
-        {
-            BudgetRow importedRow =  base.AddOrUpdateImportedRow(fieldsByColumnName, lineNum) as BudgetRow;
-            if (importedRow != null)
-            {
-                if (UpdateAccountFromSourceFile)
-                    importedRow.Account = _SelectedAccount;
-            }
-            return importedRow;
-        }
-
-        /* DIAG remove
-        public override bool AddOrUpdateImportedRow(ColumnValueList fieldsByColumnName, int lineNum)
-        {
-            // TODO maybe could normalize this further
-
-            BudgetRow importedRow = null;
-
-            // Check for duplicate Budget rows:
-            BudgetRow dupRow = FindDuplicateRow(fieldsByColumnName) as ;
-
-            if (dupRow != null)
-            {
-                // Duplicate row found
-                importedRow = dupRow;
-                // Add row ID:
-                _MatchingBudgetIDs.Add(dupRow.ID);
-            }
-            else
-            {
-                // no duplicate
-                if (AllowAddingNewBudgetRows)
-                {
-                    // add new row to table
-                    importedRow = _BudgetTable.NewBudgetRow();
-                    // REMOVED importedRow.IsIncome = false; // necessary initialization
-                    importedRow.Ignore = false; // necessary initialization
-                    importedRow.BalanceIsCalculated = false; // necessary initialization
-                }
-            }
-
-            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
-            if (importedRow == null)
-                return false;
-
-            // Copy fields in:
-            foreach (string columnName in fieldsByColumnName.Keys)
-            {
-                object newFieldValue = fieldsByColumnName[columnName];
-                if (newFieldValue != null)
-                    importedRow[columnName] = newFieldValue;
-            }
-
-            if (UpdateAccountFromSourceFile)
-                importedRow.Account = _SelectedAccount;
-
-            BudgetSourceFileItemsRow fileItemsRow = AddSourceFileItemRow(lineNum);
-
-            _ImportedBudgetItems.Add(new BudgetAndSourceItemRows(importedRow, fileItemsRow));
-
-            // if new row, we need to add it to the DataTable:
-            if (dupRow == null)
-                _BudgetTable.AddBudgetRow(importedRow);
-
-            return true;
-        }
-        */
 
         protected override void SaveImportedTable() 
         {

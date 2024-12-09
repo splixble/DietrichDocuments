@@ -279,6 +279,7 @@
     <Compile Include="StatementDatePrompt.Designer.cs">
       <DependentUpon>StatementDatePrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AccountsForm.resx">
       <DependentUpon>AccountsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,6 +376,10 @@
     <ProjectReference Include="..\..\PrintLib\PrintLib\PrintLib.csproj">
       <Project>{380bc570-913d-495c-a72b-2ed41b5e8b08}</Project>
       <Name>PrintLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TypeLib\TypeLib.csproj">
+      <Project>{7226ac75-5789-446a-af1d-375ccca0593f}</Project>
+      <Name>TypeLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

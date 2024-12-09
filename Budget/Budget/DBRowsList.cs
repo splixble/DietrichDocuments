@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Budget
 {
-    internal class DBRowsList // DIAG rename maybe. For tables that could have multiple primary keys
+    internal class DBRowsList // DIAG rename maybe - if I even use it? For tables that could have multiple primary keys
     {
         DataTable _Table;
 
@@ -42,12 +42,16 @@ namespace Budget
         IComparable[] _Values;
         public IComparable[] Values => _Values;
 
+        DataRow _DataRow;
+
         public PrimaryKeyValue(DataRow dataRow)
         {
+            _DataRow = dataRow;
+            
             // copy the primary key value(s) from this DataRow to the element(s) of the _Values array:
-            _Values = new IComparable[dataRow.Table.PrimaryKey.Length];
+            _Values = new IComparable[_DataRow.Table.PrimaryKey.Length];
             for (int i = 0; i < _Values.Length; i++)
-                _Values[i] = dataRow[dataRow.Table.PrimaryKey[i]] as IComparable;
+                _Values[i] = _DataRow[_DataRow.Table.PrimaryKey[i]] as IComparable;
         }
 
         public int CompareTo(object obj) // for IComparable interface
@@ -81,6 +85,22 @@ namespace Budget
                 str += val.ToString();
             }
             return str;
+        }
+
+        public string SQLFilterExpression
+        {
+            get 
+            {
+                string expr = "";
+                for (int i = 0; i < _Values.Length; i++)
+                {
+                    string comparison = _DataRow.Table.PrimaryKey[i].ColumnName + " = " + TypeLib.DBUtils.SQLServerQueryConstant(_Values[i]);
+                    if (expr != "")
+                        expr += " AND ";
+                    expr += comparison;
+                }
+                return expr;
+            }
         }
     }
 

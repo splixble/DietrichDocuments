@@ -30,7 +30,7 @@ namespace Budget
 
         private void gridBudgetItems_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            SetRowColors();
+            Utils.SetImportedDataGridRowColors(grid1);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -46,25 +46,6 @@ namespace Budget
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
-        }
-
-        public void SetRowColors()
-        {
-            for (int rowNum = 0; rowNum < grid1.Rows.Count; rowNum++)
-            {
-                grid1.Rows[rowNum].HeaderCell.Value = (rowNum + 1).ToString();
-                SetRowColor(rowNum);
-            }
-        }
-
-        void SetRowColor(int rowNum)
-        {
-            DataGridViewRow gridRow = grid1.Rows[rowNum];
-            DataRow dataRow = (gridRow.DataBoundItem as DataRowView).Row;
-            if (dataRow.RowState == DataRowState.Modified)
-                gridRow.DefaultCellStyle.BackColor = Color.LightBlue;
-            else if (dataRow.RowState == DataRowState.Added)
-                gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
         }
 
         private void tbFilter_Validated(object sender, EventArgs e)

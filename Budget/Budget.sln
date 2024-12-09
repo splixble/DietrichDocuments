@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintLib", "..\PrintLib\Pri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridLib", "..\GridLib\GridLib.csproj", "{292973CE-2080-4AF4-8FBF-6CEA310702EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeLib", "..\TypeLib\TypeLib.csproj", "{7226AC75-5789-446A-AF1D-375CCCA0593F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{292973CE-2080-4AF4-8FBF-6CEA310702EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

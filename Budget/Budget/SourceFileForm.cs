@@ -18,6 +18,22 @@ namespace Budget
     {
         // DIAG BUG!! UI payments (IUI), when loaded from src file, are not marked as Income with bit field, so are being Normalized as negative. Do we still use that bitt field??
 
+        public enum ImportedDataTypes { Bank, Investment, None};
+
+        public ImportedDataTypes ImportedDataType
+        {
+            get
+            {
+                if (_Processor is BudgetSourceFileProcessor)
+                    return ImportedDataTypes.Bank;
+                else if (_Processor is SharePriceSourceFileProcessor)
+                    return ImportedDataTypes.Investment;    
+                else
+                    return ImportedDataTypes.None;
+            }
+        }
+
+
         public SourceFileForm()
         {
             InitializeComponent();
@@ -37,7 +53,7 @@ namespace Budget
 
         private void btnOpenSourceFile_Click(object sender, EventArgs e)
         {
-            PreImport_Budget();
+            PreImport();
 
             _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string, chBoxManualEntry.Checked);
             _Processor.Process();
@@ -47,17 +63,17 @@ namespace Budget
             lblFilePath.Text = "File: " + _Processor.SourceFilePath;
             lblFilePath.ForeColor = Color.Blue;
             
-            PostImport_Budget();
+            PostImport();
         }
 
         public void ImportFileFromChecklist(string accountID, string accountFormat)
         {
-            PreImport_Budget();
+            PreImport();
 
             _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
             _Processor.ProcessFromChecklist();
 
-            PostImport_Budget();
+            PostImport();
         }
 
         void CloseSourceFile()
@@ -69,26 +85,20 @@ namespace Budget
             lblFilePath.ForeColor = SystemColors.ControlText;
         }
 
-        void PreImport_Budget()
+        void PreImport()
         {
-            // By default, show only new (ID negative) records: 
-            budgetCtrl.BindingSrc.Filter = "ID<0";
+            UpdateBindingSourceFilter();
         }
 
-        void PreImport_SharePrice()
-        {
-            // DIAG figure out how to filter:
-            //sharePriceCtrl.ShareP
-        }
-
-        void PostImport_Budget()
+        void PostImport()
         {
             // DIAG do this only if we're updating Budget control - like, separate Budget Pre/PostImport func from Share func
             // DIAG s/n have to cast
-            BudgetSourceFileProcessor budgetProcessor = (BudgetSourceFileProcessor)_Processor;
+            //BudgetSourceFileProcessor budgetProcessor = (BudgetSourceFileProcessor)_Processor;
 
             // DIAG write a PrimaryKeyValue member thing to generate a Filter stmt -- this'll work fine with int, but not share stuff 
 
+            /* REMOVE DIAG
             // update to include changed duplicate rows:
             string dupBudgetIDsList = "";
             foreach (PrimaryKeyValue dupKey in budgetProcessor.MatchingPrimaryKeys)
@@ -98,17 +108,38 @@ namespace Budget
                 dupBudgetIDsList += dupKey.ToString();
             }
 
+            */
+
+            UpdateBindingSourceFilter();
+
+            /* REMOVE DIAG
             budgetCtrl.BindingSrc.Filter = "ID<0";
             if (dupBudgetIDsList.Length > 0) 
                 budgetCtrl.BindingSrc.Filter += " OR ID IN (" + dupBudgetIDsList + ")";
+            */
             budgetCtrl.Refresh();
-            btnSaveBudgetItems.Enabled = true;
+            sharePriceCtrl.Refresh();
+
+            btnSaveBudgetItems.Enabled = true; // DIAG rename button
         }
 
-        void PostImport_SharePrice()
+        void UpdateBindingSourceFilter()
         {
-        }
 
+            // DIAG hide, not disable, unused ctrls
+            budgetCtrl.Enabled = (ImportedDataType == ImportedDataTypes.Bank);
+            sharePriceCtrl.Enabled = (ImportedDataType == ImportedDataTypes.Investment);
+
+            switch (ImportedDataType)
+            {
+                case ImportedDataTypes.Bank: // DIAG do these enums really buy us anything?
+                    budgetCtrl.BindingSrc.Filter = _Processor.GetBindingSrcFilterText();
+                    break;
+                case ImportedDataTypes.Investment: // DIAG do these enums really buy us anything?
+                    sharePriceCtrl.BindingSrc.Filter = _Processor.GetBindingSrcFilterText();
+                    break;
+            }
+        }
 
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
@@ -161,24 +192,24 @@ namespace Budget
 
         private void amazonOrderFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport_Budget();
+            PreImport();
 
             _Processor = new AmazonOrderFileProcessor(budgetCtrl.BudgetTable);
             _Processor.Process();
 
-            PostImport_Budget();
+            PostImport();
 
         }
 
         private void amazonDigitalItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport_Budget();
+            PreImport();
 
             // DIAG these special format src file Processor classes s/spully a unique code to src file DB rec
             _Processor = new AmazonDigitalItemsProcessor(budgetCtrl.BudgetTable);
             _Processor.Process();
 
-            PostImport_Budget();
+            PostImport();
         }
 
         void UpdateManualEntryBasedControls()
@@ -197,21 +228,21 @@ namespace Budget
 
         private void btnImportManualText_Click(object sender, EventArgs e)
         {
-            PreImport_Budget();
+            PreImport();
 
             _Processor.ProcessManualLines(tbFileText.Lines);
 
-            PostImport_Budget();
+            PostImport();
         }
 
         private void yahooHoldingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PreImport_SharePrice();
+            PreImport();
 
             _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings", false); // TODO s/get "YahooHoldings" from config
             _Processor.ProcessFromChecklist();
 
-            PostImport_SharePrice();
+            PostImport();
         }
     }
 }

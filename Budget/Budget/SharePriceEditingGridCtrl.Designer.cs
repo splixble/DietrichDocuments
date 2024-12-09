@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.mainDataSet = new Budget.MainDataSet();
-            this.sharePriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sharePriceTableAdapter = new Budget.MainDataSetTableAdapters.SharePriceTableAdapter();
             this.fundDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sPDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pricePerShareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sharePriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
+            this.sharePriceTableAdapter = new Budget.MainDataSetTableAdapters.SharePriceTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharePriceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // grid
@@ -57,20 +57,7 @@
             this.grid.Name = "grid";
             this.grid.Size = new System.Drawing.Size(484, 300);
             this.grid.TabIndex = 0;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sharePriceBindingSource
-            // 
-            this.sharePriceBindingSource.DataMember = "SharePrice";
-            this.sharePriceBindingSource.DataSource = this.mainDataSet;
-            // 
-            // sharePriceTableAdapter
-            // 
-            this.sharePriceTableAdapter.ClearBeforeFill = true;
+            this.grid.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.grid_RowsAdded);
             // 
             // fundDataGridViewTextBoxColumn
             // 
@@ -100,6 +87,20 @@
             this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
             // 
+            // sharePriceBindingSource
+            // 
+            this.sharePriceBindingSource.DataMember = "SharePrice";
+            this.sharePriceBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sharePriceTableAdapter
+            // 
+            this.sharePriceTableAdapter.ClearBeforeFill = true;
+            // 
             // SharePriceEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,8 +109,8 @@
             this.Name = "SharePriceEditingGridCtrl";
             this.Size = new System.Drawing.Size(484, 300);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharePriceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -20,5 +20,10 @@ namespace Budget
         {
             InitializeComponent();
         }
+
+        private void grid_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            Utils.SetImportedDataGridRowColors(this.grid);
+        }
     }
 }
