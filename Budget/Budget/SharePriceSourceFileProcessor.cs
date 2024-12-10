@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Budget.MainDataSet;
 
 namespace Budget
@@ -16,23 +18,39 @@ namespace Budget
 
         SharePriceTableAdapter _SharePriceAdapter;
 
+        string _FundID;
+
         protected override DataTable ImportedTable => SharePriceTable;
 
-        public SharePriceSourceFileProcessor(SharePriceDataTable sharePriceTable, string selectedFileFormat, bool isManuallyEntered)
+        // fundID can be null
+        public SharePriceSourceFileProcessor(SharePriceDataTable sharePriceTable, string fundID, string selectedFileFormat, bool isManuallyEntered)
              : base(selectedFileFormat, isManuallyEntered)
         {
+            _SharePriceTable = sharePriceTable;
+            _FundID = fundID;
+
             _SharePriceAdapter = new SharePriceTableAdapter();
             _SharePriceAdapter.Connection = Program.DbConnection;
-            _SharePriceTable = sharePriceTable;
         }
 
-        protected override void ReadInSourceFile()
+        /* DIAG no need, remove
+        public override void ProcessManualLines(string[] textLines)
         {
-            // Read in the full SharePrice table, to check for duplicates: - DIAG need to?
-            _SharePriceAdapter.Fill(_SharePriceTable);
-            //_MatchingSharePriceIDs.Clear();
+            switch (_SourceFileFormat)
+            {
+                case SourceFileFormats.YahooHistoricalData:
+                    ProcessYahooHistoricalDataLines(textLines);
+                    break;
+                default:
+                    MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
+                    break;
+            }
+        }
+        */
 
-            base.ReadInSourceFile();
+        protected override void FillImportedTable()
+        {
+            _SharePriceAdapter.Fill(_SharePriceTable);
         }
 
         string FundIDFromSymbol(string stockSymbol)
@@ -51,8 +69,19 @@ namespace Budget
 
         protected override bool ExtractFields(string[] fileFields, ColumnValueList fieldsByColumnName)
         {
-            // TODO only from the one kind of file - make it work with historical list too!
+            switch (_SourceFileFormat)
+            {
+                case SourceFileFormats.YahooHoldings:
+                    return ExtractFields_YahooHoldings(fileFields, fieldsByColumnName);
+                case SourceFileFormats.YahooHistoricalData:
+                    return ExtractFields_YahooHistoricalData(fileFields, fieldsByColumnName);
+                default:
+                    return false;
+            }
+        }
 
+        bool ExtractFields_YahooHoldings(string[] fileFields, ColumnValueList fieldsByColumnName)
+        { 
             // Get Fund (from ticker symbol) from column 0:
             string fundID = FundIDFromSymbol(fileFields[0]);
             if (fundID != null)
@@ -71,6 +100,28 @@ namespace Budget
             DateTime dateValue;
             if (DateTime.TryParse(fileFields[2], out dateValue))
                 fieldsByColumnName["SPDate"] = dateValue.Date;
+            else
+                return false;
+
+            return true;
+        }
+
+        bool ExtractFields_YahooHistoricalData (string[] fileFields, ColumnValueList fieldsByColumnName)
+        {
+            // Fund is from the Processor:
+            fieldsByColumnName["Fund"] = _FundID;
+
+            // Get date of price from column 0:
+            DateTime dateValue;
+            if (fileFields.Length > 0 && DateTime.TryParse(fileFields[0], out dateValue))
+                fieldsByColumnName["SPDate"] = dateValue.Date;
+            else
+                return false;
+
+            // Get share price (closing) from column 4:
+            Decimal sharePrice;
+            if (fileFields.Length > 4 && Decimal.TryParse(fileFields[4], out sharePrice))
+                fieldsByColumnName["PricePerShare"] = sharePrice;
             else
                 return false;
 

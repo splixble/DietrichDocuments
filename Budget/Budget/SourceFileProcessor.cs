@@ -267,8 +267,27 @@ namespace Budget
 
         public virtual void ProcessManualLines(string[] textLines)
         {
-            // TODO this should do something other than wimping out, rite?
-            MessageBox.Show("Base class cannot process text if source file format of account is " + _SourceFileFormat.ToString());
+            // This may be overridden if the lines are not neatly one line pre imported record. Otherwise, it's just like reading a file. 
+
+            InitializeImport(false);
+
+            _TextLines = textLines;
+
+            int lineNum = 0; // it's 1-relative
+            foreach (string line in _TextLines)
+            {
+                lineNum++;
+
+                // Initially parse the line to tab-separated values:
+                string[] fileFields = line.Split('\t');
+
+                ColumnValueList fieldsByColumnName = new ColumnValueList();
+
+                bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
+
+                if (lineParsable)
+                    AddOrUpdateImportedRow(fieldsByColumnName, lineNum);
+            }
         }
 
         public void ProcessFromChecklist()
@@ -293,9 +312,21 @@ namespace Budget
             }
         }
 
+        bool _ImportedFromSourceFile = false;
+
+        protected virtual void InitializeImport(bool importedFromSourceFile)
+        {
+            _ImportedFromSourceFile = importedFromSourceFile;
+            UpdatedImportedRows.Clear();
+            FillImportedTable();
+        }
+
+        // Reads in the full Imported table, to check for duplicates: (TODO dont need to read in ALL, right? just the ones that might match?)
+        protected abstract void FillImportedTable();
+
         protected virtual void ReadInSourceFile()
         {
-            UpdatedImportedRows.Clear();
+            InitializeImport(true);
 
             if (IsManuallyEntered)
             {
@@ -371,19 +402,23 @@ namespace Budget
             // TODO use transactions (budgetTableAdapter.Transaction) in this
             SaveImportedTable();
 
-            foreach (ImportedAndSourceItemRows rowsOb in _ImportedBudgetItems)
-                PointSourceFileItemRowToImportedRow(rowsOb);
+            // DIAG reword all these classes and UI labels. This is Importing, from EITHER a source file of just from text.
+            if (_ImportedFromSourceFile)
+            {
+                foreach (ImportedAndSourceItemRows rowsOb in _ImportedBudgetItems)
+                    PointSourceFileItemRowToImportedRow(rowsOb);
 
-            MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
-            _NewestSourceFileRow.ImportDateTime = DateTime.Now;
-            sourceFileAdap.Update(_SourceFileTable);
+                MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
+                _NewestSourceFileRow.ImportDateTime = DateTime.Now;
+                sourceFileAdap.Update(_SourceFileTable);
 
-            foreach (BudgetSourceFileItemsRow itemRow in _SourceFileItemsTable)
-                // fill in new Items rows with updated, permanent ID field value:
-                itemRow.SourceFile = _NewestSourceFileRow.FileID;
+                foreach (BudgetSourceFileItemsRow itemRow in _SourceFileItemsTable)
+                    // fill in new Items rows with updated, permanent ID field value:
+                    itemRow.SourceFile = _NewestSourceFileRow.FileID;
 
-            MainDataSetTableAdapters.BudgetSourceFileItemsTableAdapter fileItemsAdap = new BudgetSourceFileItemsTableAdapter();
-            fileItemsAdap.Update(_SourceFileItemsTable);
+                MainDataSetTableAdapters.BudgetSourceFileItemsTableAdapter fileItemsAdap = new BudgetSourceFileItemsTableAdapter();
+                fileItemsAdap.Update(_SourceFileItemsTable);
+            }
         }
 
         public string AddYearToYearlessDateString(string dateString)

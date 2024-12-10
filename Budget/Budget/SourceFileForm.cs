@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Budget.MainDataSetTableAdapters;
+using Microsoft.Identity.Client;
 using Microsoft.VisualBasic.FileIO;
 using static Budget.MainDataSet;
 
@@ -33,6 +34,9 @@ namespace Budget
             }
         }
 
+        string SelectedAccount => comboAccount.SelectedValue as string;
+
+        string SelectedFileFormat => comboFileFormat.SelectedValue as string;
 
         public SourceFileForm()
         {
@@ -55,7 +59,7 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, comboAccount.SelectedValue as string, comboFileFormat.SelectedValue as string, chBoxManualEntry.Checked);
+            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, SelectedAccount, SelectedFileFormat, chBoxManualEntry.Checked);
             _Processor.Process();
 
             tbFileText.Clear();
@@ -68,9 +72,10 @@ namespace Budget
 
         public void ImportFileFromChecklist(string accountID, string accountFormat)
         {
+            CreateDefaultSourceFileProcessor(accountID, accountFormat);
+
             PreImport();
 
-            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
             _Processor.ProcessFromChecklist();
 
             PostImport();
@@ -159,18 +164,18 @@ namespace Budget
         {
             CloseSourceFile();
 
-            btnSaveBudgetItems.Enabled = comboAccount.SelectedItem != null;
-            btnOpenSourceFile.Enabled = comboAccount.SelectedItem != null;
+            btnSaveBudgetItems.Enabled = SelectedAccount != null;
+            btnOpenSourceFile.Enabled = SelectedAccount != null;
 
             UpdateFileFormatSelection();
         }
         void UpdateFileFormatSelection()
         {
             // set file format combo to default one for account, if there is one:
-            if (comboAccount.SelectedValue == null)
+            if (SelectedAccount == null)
                 return;
 
-            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID((string)comboAccount.SelectedValue);
+            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(SelectedAccount);
             if (accountRow == null) 
                 return;
 
@@ -226,8 +231,19 @@ namespace Budget
             UpdateManualEntryBasedControls();
         }
 
+        void CreateDefaultSourceFileProcessor(string accountID, string accountFormat)
+        {
+            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(accountID);
+            if (accountRow.TrackedByShares)
+                _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, accountRow.Fund, accountFormat, false);
+            else
+                _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
+        }
+
         private void btnImportManualText_Click(object sender, EventArgs e)
         {
+
+            CreateDefaultSourceFileProcessor(SelectedAccount, SelectedFileFormat);
             PreImport();
 
             _Processor.ProcessManualLines(tbFileText.Lines);
@@ -237,9 +253,10 @@ namespace Budget
 
         private void yahooHoldingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, null, SourceFileFormats.YahooHoldings.ToString(), false);
+
             PreImport();
 
-            _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, "YahooHoldings", false); // TODO s/get "YahooHoldings" from config
             _Processor.ProcessFromChecklist();
 
             PostImport();

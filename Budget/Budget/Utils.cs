@@ -23,11 +23,14 @@ namespace Budget
         static void SetImportedDataGridRowColor(DataGridView grid, int rowNum)
         {
             DataGridViewRow gridRow = grid.Rows[rowNum];
-            DataRow dataRow = (gridRow.DataBoundItem as DataRowView).Row;
-            if (dataRow.RowState == DataRowState.Modified)
-                gridRow.DefaultCellStyle.BackColor = Color.LightBlue;
-            else if (dataRow.RowState == DataRowState.Added)
-                gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
+            if (gridRow.DataBoundItem != null)
+            {
+                DataRow dataRow = (gridRow.DataBoundItem as DataRowView).Row;
+                if (dataRow.RowState == DataRowState.Modified)
+                    gridRow.DefaultCellStyle.BackColor = Color.LightBlue;
+                else if (dataRow.RowState == DataRowState.Added)
+                    gridRow.DefaultCellStyle.BackColor = Color.LightGreen;
+            }
         }
     }
 }

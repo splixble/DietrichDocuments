@@ -70,15 +70,10 @@ namespace Budget
                 } ) );
         }
 
-        protected override void ReadInSourceFile()
+        protected override void FillImportedTable()
         {
             // Read in the full Budget table, to check for duplicates:
             _BudgetAdapter.Fill(_BudgetTable);
-            // DIAG REMOVE MatchingPrimaryKeys.Clear();          
-
-            base.ReadInSourceFile();
-
-            // _NewestSourceFileRow.Account = _SelectedAccount; // DIAG this is gonna go away
         }
 
         protected override string AccountSourceFilePath

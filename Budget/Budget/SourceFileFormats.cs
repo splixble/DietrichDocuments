@@ -11,6 +11,8 @@ namespace Budget
         BofANarrowPDF,
         BofAWidePDF,
         BofAWidePDFWithYear,
+        YahooHoldings,
+        YahooHistoricalData,
         None }
     // Based on keys in table. As needed.
 }
