@@ -13,12 +13,16 @@ namespace Budget
 {
     public partial class SourceFileChecklistCtrl : UserControl
     {
-        MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
-        MainDataSetTableAdapters.BudgetSourceFileTableAdapter _SourceFileAdapter = new MainDataSetTableAdapters.BudgetSourceFileTableAdapter();
+        MainDataSet.ViewSourceFileWithAccountsDataTable _SourceFileTable = new MainDataSet.ViewSourceFileWithAccountsDataTable();
+        MainDataSetTableAdapters.ViewSourceFileWithAccountsTableAdapter _SourceFileAdapter = new MainDataSetTableAdapters.ViewSourceFileWithAccountsTableAdapter();
+
+        MainDataSet.ViewLatestActivityPerAccountDataTable _LatestActivityTable = new MainDataSet.ViewLatestActivityPerAccountDataTable();
+        MainDataSetTableAdapters.ViewLatestActivityPerAccountTableAdapter _LatestActivityAdapter = new MainDataSetTableAdapters.ViewLatestActivityPerAccountTableAdapter();
 
         // columns:
         DataGridViewTextBoxColumn _AccountColumn;
         DataGridViewButtonColumn _LoadFileButtonColumn;
+        DataGridViewTextBoxColumn _LastTransDateColumn;
         DataGridViewTextBoxColumn _LoadedFilesColumn;
 
         public SourceFileChecklistCtrl()
@@ -47,6 +51,13 @@ namespace Budget
             _LoadFileButtonColumn.Name = "LoadFileButtonColumn";
             _LoadFileButtonColumn.Width = 80;
 
+            _LastTransDateColumn = new DataGridViewTextBoxColumn();
+            _LastTransDateColumn.Name = "LastTransDateColumn";
+            _LastTransDateColumn.Width = 70;
+            _LastTransDateColumn.HeaderText = "Last Trans. Date";
+            _LastTransDateColumn.ValueType = typeof(DateTime);
+            _LastTransDateColumn.ReadOnly = true;
+
             _LoadedFilesColumn = new DataGridViewTextBoxColumn();
             _LoadedFilesColumn.Name = "LoadedFilesColumn";
             _LoadedFilesColumn.Width = 300;
@@ -54,7 +65,7 @@ namespace Budget
             _LoadedFilesColumn.HeaderText = "File(s) Loaded";
             _LoadedFilesColumn.ReadOnly = true;
 
-            grid.Columns.AddRange(new DataGridViewColumn[] { _AccountColumn, _LoadFileButtonColumn, _LoadedFilesColumn });
+            grid.Columns.AddRange(new DataGridViewColumn[] { _AccountColumn, _LoadFileButtonColumn, _LastTransDateColumn, _LoadedFilesColumn });
 
             budgetAccountBindingSource.BindingComplete += BudgetAccountBindingSource_BindingComplete;
             grid.RowsAdded += Grid_RowsAdded;
@@ -87,23 +98,11 @@ namespace Budget
             _SourceFileAdapter.Connection = Program.DbConnection;
             _SourceFileAdapter.FillThisMonth(_SourceFileTable);
 
-
-
-
-            /* DIAG Should not have the Checkbox ctrl depend on Source Files for check status -- at least in the case of share funds, which don't involve saved files, and 
-             * only require one datum per month (balance near ind of fiscal month). Checkbox value should depend on acct type. 
-             * 
-             * Was gonna use new ViewAccountsPerSourceFile instead of BudgetSourceFile.Account for this... but we'd have to have that view reach into SourceFile table
-             * for that. And that is unnec in light of above paragr.  
-             * 
-             * In any case, Account is gonna be removed from sourceFile Row. Since source file can contain data for multiple accts.
-
-             * */
-
-
+            _LatestActivityAdapter.Connection = Program.DbConnection;
+            _LatestActivityAdapter.Fill(_LatestActivityTable);
 
             Dictionary<string, string> sourceFilesByAccount = new Dictionary<string, string>();
-            foreach (MainDataSet.BudgetSourceFileRow sourceFileRow in _SourceFileTable)
+            foreach (MainDataSet.ViewSourceFileWithAccountsRow sourceFileRow in _SourceFileTable)
             {
                 if (!sourceFileRow.IsAccountNull())
                 {
@@ -118,6 +117,11 @@ namespace Budget
             foreach (DataGridViewRow gridRow in grid.Rows) 
             {
                 MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(gridRow.Index);
+
+                MainDataSet.ViewLatestActivityPerAccountRow latestActivityRow = _LatestActivityTable.FindByAccount(accountRow.AccountID);
+                if (latestActivityRow != null)
+                    gridRow.Cells[_LastTransDateColumn.Index].Value = latestActivityRow.TrDate;
+
                 if (sourceFilesByAccount.ContainsKey(accountRow.AccountID))
                 {
                     gridRow.Cells[_LoadedFilesColumn.Index].Value = sourceFilesByAccount[accountRow.AccountID];

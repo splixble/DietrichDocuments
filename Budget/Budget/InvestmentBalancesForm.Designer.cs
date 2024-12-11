@@ -375,7 +375,7 @@
             this.ClientSize = new System.Drawing.Size(843, 534);
             this.Controls.Add(this.tabControl1);
             this.Name = "InvestmentBalancesForm";
-            this.Text = "Share Amount and Price Form";
+            this.Text = "Investment Balances";
             this.Load += new System.EventHandler(this.ShareAmountAndPriceForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

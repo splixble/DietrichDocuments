@@ -64,7 +64,9 @@ namespace Budget
         {
             MainDataSet.BudgetRow budgetRow = (MainDataSet.BudgetRow)e.Row;
             budgetRow.Account = SelectedDollarAccount;
-            budgetRow.TrType = "FBC"; // DIAG make this a const
+            budgetRow.TrType = Constants.GroupingName.FundBalanceChange;
+            budgetRow.Ignore = false;
+            budgetRow.BalanceIsCalculated = false;
         }
 
         private void ShareAmountAndPriceForm_Load(object sender, EventArgs e)

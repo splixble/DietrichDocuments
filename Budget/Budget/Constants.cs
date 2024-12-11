@@ -23,6 +23,7 @@ namespace Budget
         {
             public const string Income = "Income";
             public const string Expense = "Expenses";
+            public const string FundBalanceChange = "FBC";
         }
     }
 }

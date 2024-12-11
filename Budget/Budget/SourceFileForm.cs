@@ -132,8 +132,8 @@ namespace Budget
         {
 
             // DIAG hide, not disable, unused ctrls
-            budgetCtrl.Enabled = (ImportedDataType == ImportedDataTypes.Bank);
-            sharePriceCtrl.Enabled = (ImportedDataType == ImportedDataTypes.Investment);
+            budgetCtrl.Visible = (ImportedDataType == ImportedDataTypes.Bank);
+            sharePriceCtrl.Visible = (ImportedDataType == ImportedDataTypes.Investment);
 
             switch (ImportedDataType)
             {

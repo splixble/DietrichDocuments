@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="Songs.exe" version="6.1.2.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Songs" version="6.1.2.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Songs" version="6.1.2.255" language="neutral" processorArchitecture="msil" />
     <commandLine file="Songs.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -391,13 +391,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="339968">
-      <assemblyIdentity name="Songs" version="6.1.2.0" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Songs" version="6.1.2.255" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IBZLrHwk5Lx6rGBX5R2vITKORZ/6K91FfvdX2uZm5UY=</dsig:DigestValue>
+        <dsig:DigestValue>xKslz2jswkBW8lTFGROmIEzkRQfXk8OrKFi/N0j+LtM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
