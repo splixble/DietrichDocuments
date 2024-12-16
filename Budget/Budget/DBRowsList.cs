@@ -32,6 +32,13 @@ namespace Budget
 
     internal class ColumnValueList : Dictionary<string, object>
     {
+        public object FieldOrNull(string columnName)
+        {
+            if (ContainsKey(columnName))
+                return this[columnName];
+            else 
+                return null;
+        }
 
     }
 

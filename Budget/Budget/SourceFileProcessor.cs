@@ -253,7 +253,9 @@ namespace Budget
 
             _ImportedBudgetItems.Add(new ImportedAndSourceItemRows(importedRow, fileItemsRow));
 
-            UpdatedImportedRows.Add(importedRow, null);
+            UpdatedImportedRows.Add(importedRow, null); // NOTE: This shoule never get a duplicate key exception. If it does, FindDuplicateRow has mistakenly 
+            // determined that an imported row is duplicate data, whereas they represent two separate transactions (e.g. two charges from ODOT of $54 for drivers
+            // license renewals, for me and Lisa, that look like the same charge because it didn't check the ReferenceNumber field).
 
             return importedRow;
         }

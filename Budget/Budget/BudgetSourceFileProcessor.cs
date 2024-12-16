@@ -66,6 +66,7 @@ namespace Budget
                     (DateTime)fieldsByColumnName["TrDate"],
                     (decimal)fieldsByColumnName["Amount"],
                     (string)fieldsByColumnName["Descrip"],
+                    (string)fieldsByColumnName.FieldOrNull("TrCode"),
                     _SelectedAccount
                 } ) );
         }
