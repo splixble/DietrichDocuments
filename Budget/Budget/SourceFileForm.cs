@@ -46,7 +46,7 @@ namespace Budget
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
 
-            comboFileFormat.DataSource = Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
+            comboFileFormat.DataSource = Program.LookupTableSet.MainDataSet.SourceFileFormat;
             comboFileFormat.DisplayMember = "FormatCode";
             comboFileFormat.ValueMember = "FormatCode";
 

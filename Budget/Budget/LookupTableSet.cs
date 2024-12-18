@@ -15,7 +15,7 @@ namespace Budget
         public MainDataSet MainDataSet => _MainDataSet;
         MainDataSet _MainDataSet= new MainDataSet();
 
-        BudgetSourceFileFormatTableAdapter _BudgetSourceFileFormatAdapter = new BudgetSourceFileFormatTableAdapter();
+        SourceFileFormatTableAdapter _SourceFileFormatAdapter = new SourceFileFormatTableAdapter();
         BudgetAccountTableAdapter _BudgetAccountAdapter = new BudgetAccountTableAdapter();
         FundTableAdapter _FundAdapter = new FundTableAdapter();
         BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
@@ -60,8 +60,8 @@ namespace Budget
 
         void Load()
         {
-            _BudgetSourceFileFormatAdapter.Connection = Program.DbConnection;
-            _BudgetSourceFileFormatAdapter.Fill(_MainDataSet.BudgetSourceFileFormat);
+            _SourceFileFormatAdapter.Connection = Program.DbConnection;
+            _SourceFileFormatAdapter.Fill(_MainDataSet.SourceFileFormat);
 
             _BudgetAccountAdapter.Connection = Program.DbConnection; // TODO don't think we need this DbConnection any more, right?
             _BudgetAccountAdapter.Fill(_MainDataSet.BudgetAccount);

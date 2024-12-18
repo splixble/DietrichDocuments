@@ -18,15 +18,15 @@ namespace Budget
         public bool IsManuallyEntered => _IsManuallyEntered;
         bool _IsManuallyEntered;
 
-        MainDataSet.BudgetSourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.BudgetSourceFileFormat;
+        MainDataSet.SourceFileFormatDataTable SourceFileFormatTable => Program.LookupTableSet.MainDataSet.SourceFileFormat;
 
-        protected MainDataSet.BudgetSourceFileFormatRow _SourceFileFormatRow = null;
+        protected MainDataSet.SourceFileFormatRow _SourceFileFormatRow = null;
 
         protected SourceFileFormats _SourceFileFormat;
 
-        MainDataSet.BudgetSourceFileDataTable _SourceFileTable = new MainDataSet.BudgetSourceFileDataTable();
-        MainDataSet.BudgetSourceFileRow _NewestSourceFileRow = null;
-        MainDataSet.BudgetSourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.BudgetSourceFileItemsDataTable();
+        MainDataSet.SourceFileDataTable _SourceFileTable = new MainDataSet.SourceFileDataTable();
+        MainDataSet.SourceFileRow _NewestSourceFileRow = null;
+        MainDataSet.SourceFileItemsDataTable _SourceFileItemsTable = new MainDataSet.SourceFileItemsDataTable();
 
         public string SourceFilePath => _SourceFilePath;
         protected string _SourceFilePath;
@@ -74,12 +74,12 @@ namespace Budget
             }
         }
 
-        protected BudgetSourceFileItemsRow AddSourceFileItemRow(int lineNum)
+        protected SourceFileItemsRow AddSourceFileItemRow(int lineNum)
         {
-            BudgetSourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewBudgetSourceFileItemsRow();
+            SourceFileItemsRow fileItemsRow = _SourceFileItemsTable.NewSourceFileItemsRow();
             fileItemsRow.SourceFile = -1; // real value filled in on save 
             fileItemsRow.SourceFileLine = lineNum; // 1-relative
-            _SourceFileItemsTable.AddBudgetSourceFileItemsRow(fileItemsRow);
+            _SourceFileItemsTable.AddSourceFileItemsRow(fileItemsRow);
             return fileItemsRow;
         }
 
@@ -249,7 +249,7 @@ namespace Budget
             if (dupRow == null)
                 ImportedTable.Rows.Add(importedRow);
 
-            BudgetSourceFileItemsRow fileItemsRow = AddSourceFileItemRow(lineNum);
+            SourceFileItemsRow fileItemsRow = AddSourceFileItemRow(lineNum);
 
             _ImportedBudgetItems.Add(new ImportedAndSourceItemRows(importedRow, fileItemsRow));
 
@@ -342,20 +342,20 @@ namespace Budget
 
                     // TODO WHAT IF we dont real;ly need the statement date?
                     // make new source file row:
-                    _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
+                    _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
                     _NewestSourceFileRow.FilePath = SourceFilePath;
                     _NewestSourceFileRow.StatementDate = prompt.StatementDate;
                     _NewestSourceFileRow.ManuallyEntered = true;
-                    _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
+                    _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
                 }
             }
             else
             {
                 // make new source file row:
-                _NewestSourceFileRow = _SourceFileTable.NewBudgetSourceFileRow();
+                _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
                 _NewestSourceFileRow.FilePath = _SourceFilePath;
                 _NewestSourceFileRow.ManuallyEntered = false;
-                _SourceFileTable.AddBudgetSourceFileRow(_NewestSourceFileRow);
+                _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
 
                 // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load source files:
                 using (TextFieldParser parser = new TextFieldParser(_SourceFilePath))
@@ -410,15 +410,15 @@ namespace Budget
                 foreach (ImportedAndSourceItemRows rowsOb in _ImportedBudgetItems)
                     PointSourceFileItemRowToImportedRow(rowsOb);
 
-                MainDataSetTableAdapters.BudgetSourceFileTableAdapter sourceFileAdap = new BudgetSourceFileTableAdapter();
+                MainDataSetTableAdapters.SourceFileTableAdapter sourceFileAdap = new SourceFileTableAdapter();
                 _NewestSourceFileRow.ImportDateTime = DateTime.Now;
                 sourceFileAdap.Update(_SourceFileTable);
 
-                foreach (BudgetSourceFileItemsRow itemRow in _SourceFileItemsTable)
+                foreach (SourceFileItemsRow itemRow in _SourceFileItemsTable)
                     // fill in new Items rows with updated, permanent ID field value:
                     itemRow.SourceFile = _NewestSourceFileRow.FileID;
 
-                MainDataSetTableAdapters.BudgetSourceFileItemsTableAdapter fileItemsAdap = new BudgetSourceFileItemsTableAdapter();
+                MainDataSetTableAdapters.SourceFileItemsTableAdapter fileItemsAdap = new SourceFileItemsTableAdapter();
                 fileItemsAdap.Update(_SourceFileItemsTable);
             }
         }
@@ -446,9 +446,9 @@ namespace Budget
         protected class ImportedAndSourceItemRows
         {
             public DataRow _ImportedRow;
-            public BudgetSourceFileItemsRow _ItemsRow;
+            public SourceFileItemsRow _ItemsRow;
 
-            public ImportedAndSourceItemRows(DataRow importedRow, BudgetSourceFileItemsRow itemsRow)
+            public ImportedAndSourceItemRows(DataRow importedRow, SourceFileItemsRow itemsRow)
             {
                 _ImportedRow = importedRow;
                 _ItemsRow = itemsRow;
