@@ -5,7 +5,7 @@ namespace Budget
 {
     partial class MainDataSet
     {
-        partial class BudgetDataTable
+        partial class TransacDataTable
         {
             public DataView DuplicatesView => _DuplicatesView;
             DataView _DuplicatesView;

@@ -16,7 +16,7 @@ namespace Budget
         public override bool UpdateAccountFromSourceFile => false;
         public override bool AllowAddingNewImportedRows => false;
 
-        public AmazonDigitalItemsProcessor(BudgetDataTable budgetTable)
+        public AmazonDigitalItemsProcessor(TransacDataTable budgetTable)
             : base(budgetTable, null, null, false)
         {
             _ViewByDateAndAmount = new DataView(budgetTable);

@@ -16,8 +16,8 @@ namespace Budget
     {
         public bool CreateNewSourceFileRow = false;
 
-        public MainDataSet.BudgetDataTable BudgetTable => mainDataSet.Budget;
-        public MainDataSetTableAdapters.BudgetTableAdapter BudgetAdapter => budgetTableAdapter;
+        public MainDataSet.TransacDataTable BudgetTable => mainDataSet.Transac;
+        public MainDataSetTableAdapters.TransacTableAdapter BudgetAdapter => budgetTableAdapter;
 
         public BindingSource BindingSrc => budgetBindingSource;
 

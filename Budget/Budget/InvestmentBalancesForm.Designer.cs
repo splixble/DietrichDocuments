@@ -57,7 +57,7 @@
             this.btnSaveBudgetItems = new System.Windows.Forms.Button();
             this.gridBudgetItems = new System.Windows.Forms.DataGridView();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
+            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -428,7 +428,7 @@
         private System.Windows.Forms.DataGridView gridBudgetItems;
         private System.Windows.Forms.Button btnSaveBudgetItems;
         private System.Windows.Forms.BindingSource budgetBindingSource;
-        private MainDataSetTableAdapters.BudgetTableAdapter budgetTableAdapter;
+        private MainDataSetTableAdapters.TransacTableAdapter budgetTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn balanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comment;

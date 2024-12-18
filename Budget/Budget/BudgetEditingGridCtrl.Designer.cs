@@ -37,7 +37,7 @@
             this.mainDataSet = new Budget.MainDataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.tbFilter = new System.Windows.Forms.TextBox();
-            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTableAdapter();
+            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -271,7 +271,7 @@
 
         private System.Windows.Forms.BindingSource budgetBindingSource;
         private MainDataSet mainDataSet;
-        private MainDataSetTableAdapters.BudgetTableAdapter budgetTableAdapter;
+        private MainDataSetTableAdapters.TransacTableAdapter budgetTableAdapter;
         private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbFilter;

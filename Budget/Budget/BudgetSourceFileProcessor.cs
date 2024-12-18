@@ -17,10 +17,10 @@ namespace Budget
 {
     internal class BudgetSourceFileProcessor : SourceFileProcessor
     {
-        public BudgetDataTable BudgetTable => _BudgetTable;
-        BudgetDataTable _BudgetTable;
+        public TransacDataTable BudgetTable => _BudgetTable;
+        TransacDataTable _BudgetTable;
 
-        BudgetTableAdapter _BudgetAdapter;
+        TransacTableAdapter _BudgetAdapter;
 
         protected override DataTable ImportedTable => BudgetTable;
 
@@ -31,10 +31,10 @@ namespace Budget
 
         public virtual bool UpdateAccountFromSourceFile => true;
 
-        public BudgetSourceFileProcessor(BudgetDataTable budgetTable, string selectedAccount, string selectedFileFormat, bool isManuallyEntered)
+        public BudgetSourceFileProcessor(TransacDataTable budgetTable, string selectedAccount, string selectedFileFormat, bool isManuallyEntered)
             :base(selectedFileFormat, isManuallyEntered)
         {
-            _BudgetAdapter = new BudgetTableAdapter();
+            _BudgetAdapter = new TransacTableAdapter();
             _BudgetAdapter.Connection = Program.DbConnection;
             _BudgetTable = budgetTable;
             _SelectedAccount = selectedAccount;
@@ -48,7 +48,7 @@ namespace Budget
 
         protected override DataRow NewImportedRow()
         {
-            BudgetRow importedRow = _BudgetTable.NewBudgetRow();
+            TransacRow importedRow = _BudgetTable.NewTransacRow();
             // REMOVED importedRow.IsIncome = false; // necessary initialization
             importedRow.Ignore = false; // necessary initialization
             importedRow.BalanceIsCalculated = false; // necessary initialization
@@ -96,7 +96,7 @@ namespace Budget
         protected override void PointSourceFileItemRowToImportedRow(ImportedAndSourceItemRows rowsOb)
         {
             // fill in new Items rows with updated, permanent ID field value:
-            rowsOb._ItemsRow.BudgetItem = ((BudgetRow)rowsOb._ImportedRow).ID;
+            rowsOb._ItemsRow.BudgetItem = ((TransacRow)rowsOb._ImportedRow).ID;
         }
 
         bool CaptureDateFieldInBofAWideStatementLine(string line, ColumnValueList fieldsByColumnName, out string restOfLine)

@@ -33,7 +33,7 @@ namespace Budget
 
             mainDataSet.SharePrice.TableNewRow += SharePrice_TableNewRow;
             mainDataSet.ShareQuantity.TableNewRow += ShareQuantity_TableNewRow;
-            mainDataSet.Budget.TableNewRow += Budget_TableNewRow;
+            mainDataSet.Transac.TableNewRow += Budget_TableNewRow;
         }
 
         string SelectedShareAccount => comboAccountByShares.SelectedValue as string;
@@ -62,7 +62,7 @@ namespace Budget
 
         private void Budget_TableNewRow(object sender, DataTableNewRowEventArgs e)
         {
-            MainDataSet.BudgetRow budgetRow = (MainDataSet.BudgetRow)e.Row;
+            MainDataSet.TransacRow budgetRow = (MainDataSet.TransacRow)e.Row;
             budgetRow.Account = SelectedDollarAccount;
             budgetRow.TrType = Constants.GroupingName.FundBalanceChange;
             budgetRow.Ignore = false;
@@ -92,9 +92,9 @@ namespace Budget
         void RefreshDisplayByDollars()
         {
             if (SelectedDollarAccount == null)
-                mainDataSet.Budget.Clear();
+                mainDataSet.Transac.Clear();
             else
-                this.budgetTableAdapter.FillByAccount(this.mainDataSet.Budget, SelectedDollarAccount);
+                this.budgetTableAdapter.FillByAccount(this.mainDataSet.Transac, SelectedDollarAccount);
         }
 
         private void comboAccountByShares_SelectionChangeCommitted(object sender, EventArgs e)
@@ -122,7 +122,7 @@ namespace Budget
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
             // TODO save only if data changed, etc
-            budgetTableAdapter.Update(this.mainDataSet.Budget);
+            budgetTableAdapter.Update(this.mainDataSet.Transac);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Budget
         public override bool UpdateAccountFromSourceFile => false;
         public override bool AllowAddingNewImportedRows => false;
 
-        public AmazonOrderFileProcessor(BudgetDataTable budgetTable)
+        public AmazonOrderFileProcessor(TransacDataTable budgetTable)
             :base(budgetTable, null, null, false)
         {
             _ViewByDateAndAmount = new DataView(budgetTable);

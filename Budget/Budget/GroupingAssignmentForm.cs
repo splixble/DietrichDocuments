@@ -70,7 +70,7 @@ namespace Budget
 
         void ApplyPatternGrouping(string pattern, string trType, bool forIncome, bool forIgnore)
         {
-            foreach (MainDataSet.BudgetRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
+            foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
                 if (Regex.IsMatch(budgetRow.Descrip, pattern))
@@ -146,15 +146,15 @@ namespace Budget
                 return;
 
             // Gather Budget table rows: 
-            List<MainDataSet.BudgetRow> budgetRows = new List<MainDataSet.BudgetRow>();
+            List<MainDataSet.TransacRow> budgetRows = new List<MainDataSet.TransacRow>();
             foreach (int rowIndex in gridRowDict.Keys)
             {
                 DataGridViewRow gridRow = budgetEditingGridCtrl1.Grid.Rows[rowIndex];
-                budgetRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.BudgetRow);
+                budgetRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.TransacRow);
             }
 
             // Set TrType in each Budget table record:
-            foreach (MainDataSet.BudgetRow budgetRow in budgetRows)
+            foreach (MainDataSet.TransacRow budgetRow in budgetRows)
             { 
                 if (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType)
                     budgetRow.TrType = trType;

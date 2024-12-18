@@ -32,7 +32,7 @@ namespace Budget
             decimal currentBalance = 0;
             for (int rowNum = 0; rowNum < budgetCtrl.BudgetTable.Count; rowNum++)
             {
-                MainDataSet.BudgetRow row = budgetCtrl.BudgetTable[rowNum];
+                MainDataSet.TransacRow row = budgetCtrl.BudgetTable[rowNum];
                 if (foundBenchmarkBalance)
                 {
                     currentBalance += row.Amount;
@@ -63,7 +63,7 @@ namespace Budget
                         decimal previousBalance = currentBalance - row.Amount;
                         for (int prevRowNum = rowNum-1; prevRowNum >= 0; prevRowNum--)
                         {
-                            MainDataSet.BudgetRow prevRow = budgetCtrl.BudgetTable[prevRowNum];
+                            MainDataSet.TransacRow prevRow = budgetCtrl.BudgetTable[prevRowNum];
                             prevRow.Balance = previousBalance;
                             previousBalance -= prevRow.Amount;
                             prevRow.BalanceIsCalculated = true;
