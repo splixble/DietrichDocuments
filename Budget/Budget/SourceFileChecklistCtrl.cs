@@ -116,7 +116,7 @@ namespace Budget
 
             foreach (DataGridViewRow gridRow in grid.Rows) 
             {
-                MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(gridRow.Index);
+                MainDataSet.AccountRow accountRow = GetBudgetAccountRowFromGridRow(gridRow.Index);
 
                 MainDataSet.ViewLatestActivityPerAccountRow latestActivityRow = _LatestActivityTable.FindByAccount(accountRow.AccountID);
                 if (latestActivityRow != null)
@@ -129,10 +129,10 @@ namespace Budget
             }
         }
 
-        MainDataSet.BudgetAccountRow GetBudgetAccountRowFromGridRow(int gridRowIndex)
+        MainDataSet.AccountRow GetBudgetAccountRowFromGridRow(int gridRowIndex)
         {
             DataRowView dataRowView = budgetAccountBindingSource[gridRowIndex] as DataRowView;
-            return (MainDataSet.BudgetAccountRow)dataRowView.Row;
+            return (MainDataSet.AccountRow)dataRowView.Row;
         }
 
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -142,7 +142,7 @@ namespace Budget
                 if (_Form == null)
                     throw (new Exception("The SourceFileForm needs to call SourceFileChecklistControl.Initialize()."));
 
-                MainDataSet.BudgetAccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
+                MainDataSet.AccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
                 _Form.ImportFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
 
                 // TODO refresh the grid after the import goes thru

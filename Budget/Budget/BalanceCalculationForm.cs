@@ -16,7 +16,7 @@ namespace Budget
         {
             InitializeComponent();
 
-            comboAccount.DataSource = Program.LookupTableSet.MainDataSet.BudgetAccount;
+            comboAccount.DataSource = Program.LookupTableSet.MainDataSet.Account;
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
         }

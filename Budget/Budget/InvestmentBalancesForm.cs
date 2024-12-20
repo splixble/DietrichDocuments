@@ -17,13 +17,13 @@ namespace Budget
             InitializeComponent();
 
             // Set up Account combo boxes:
-            DataView dvAccountsByShare = new DataView(Program.LookupTableSet.MainDataSet.BudgetAccount);
+            DataView dvAccountsByShare = new DataView(Program.LookupTableSet.MainDataSet.Account);
             dvAccountsByShare.RowFilter = "TrackedByShares = 1 AND AccountType='" + Constants.AccountType.Investment + "'";
             comboAccountByShares.DataSource = dvAccountsByShare;
             comboAccountByShares.DisplayMember = "AccountName";
             comboAccountByShares.ValueMember = "AccountID";
 
-            DataView dvAccountsByDollar = new DataView(Program.LookupTableSet.MainDataSet.BudgetAccount);
+            DataView dvAccountsByDollar = new DataView(Program.LookupTableSet.MainDataSet.Account);
             dvAccountsByDollar.RowFilter = "TrackedByShares = 0 AND AccountType='" + Constants.AccountType.Investment + "'";
             comboAccountByDollars.DataSource = dvAccountsByDollar;
             comboAccountByDollars.DisplayMember = "AccountName";
@@ -44,7 +44,7 @@ namespace Budget
             get
             {
                 if (SelectedShareAccount != null)
-                    return Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(SelectedShareAccount).Fund;
+                    return Program.LookupTableSet.MainDataSet.Account.FindByAccountID(SelectedShareAccount).Fund;
                 else
                     return null;
             }

@@ -23,7 +23,8 @@
         </Grid.RowDefinitions>
         <ComboBox Name="FundCombo" Grid.Row="1" Grid.Column="1" SelectionChanged="FundCombo_SelectionChanged"></ComboBox>
         <TextBlock Name="GenText" Grid.Row="1" Grid.Column="2" FontSize="14"></TextBlock>
-        <DataGrid Name="SharePriceDataGrid" Grid.Row="2" Grid.Column="1"></DataGrid>
+        <DataGrid Name="SharePriceDataGrid" Grid.Row="2" Grid.Column="1" AutoGenerateColumns ="False">
+        </DataGrid>
         
     </Grid>
 </Window>

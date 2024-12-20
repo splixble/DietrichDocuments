@@ -33,7 +33,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.budgetAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
-            this.budgetAccountTableAdapter = new Budget.MainDataSetTableAdapters.BudgetAccountTableAdapter();
+            this.budgetAccountTableAdapter = new Budget.MainDataSetTableAdapters.AccountTableAdapter();
             this.accountIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountOwnerColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -215,7 +215,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private MainDataSet mainDataSet;
         private System.Windows.Forms.BindingSource budgetAccountBindingSource;
-        private MainDataSetTableAdapters.BudgetAccountTableAdapter budgetAccountTableAdapter;
+        private MainDataSetTableAdapters.AccountTableAdapter budgetAccountTableAdapter;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountNameDataGridViewTextBoxColumn;

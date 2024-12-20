@@ -27,7 +27,7 @@ namespace Budget
         protected string SelectedAccount => _SelectedAccount;
         string _SelectedAccount = null;
 
-        protected MainDataSet.BudgetAccountRow _AccountRowSelected = null;
+        protected MainDataSet.AccountRow _AccountRowSelected = null;
 
         public virtual bool UpdateAccountFromSourceFile => true;
 
@@ -42,7 +42,7 @@ namespace Budget
             if (_SelectedAccount != null)
             {
                 // DIAG Is this the right thing to do? if no account is selected, it probably shoudn't even include account... it doesn't use it...
-                _AccountRowSelected = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(_SelectedAccount as string);
+                _AccountRowSelected = Program.LookupTableSet.MainDataSet.Account.FindByAccountID(_SelectedAccount as string);
             }
         }
 

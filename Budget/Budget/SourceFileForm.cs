@@ -42,7 +42,7 @@ namespace Budget
         {
             InitializeComponent();
 
-            comboAccount.DataSource = Program.LookupTableSet.MainDataSet.BudgetAccount;
+            comboAccount.DataSource = Program.LookupTableSet.MainDataSet.Account;
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
 
@@ -175,7 +175,7 @@ namespace Budget
             if (SelectedAccount == null)
                 return;
 
-            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(SelectedAccount);
+            AccountRow accountRow = Program.LookupTableSet.MainDataSet.Account.FindByAccountID(SelectedAccount);
             if (accountRow == null) 
                 return;
 
@@ -233,7 +233,7 @@ namespace Budget
 
         void CreateDefaultSourceFileProcessor(string accountID, string accountFormat)
         {
-            BudgetAccountRow accountRow = Program.LookupTableSet.MainDataSet.BudgetAccount.FindByAccountID(accountID);
+            AccountRow accountRow = Program.LookupTableSet.MainDataSet.Account.FindByAccountID(accountID);
             if (accountRow.TrackedByShares)
                 _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, accountRow.Fund, accountFormat, false);
             else
