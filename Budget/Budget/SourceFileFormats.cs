@@ -11,6 +11,7 @@ namespace Budget
         BofANarrowPDF,
         BofAWidePDF,
         BofAWidePDFWithYear,
+        DateShareBalance,
         YahooHoldings,
         YahooHistoricalData,
         None }

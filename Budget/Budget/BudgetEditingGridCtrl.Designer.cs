@@ -103,7 +103,7 @@
             // 
             // budgetBindingSource
             // 
-            this.budgetBindingSource.DataMember = "Budget";
+            this.budgetBindingSource.DataMember = "Transac";
             this.budgetBindingSource.DataSource = this.mainDataSet;
             this.budgetBindingSource.Sort = "";
             // 

@@ -236,6 +236,7 @@ namespace Budget
             AccountRow accountRow = Program.LookupTableSet.MainDataSet.Account.FindByAccountID(accountID);
             if (accountRow.TrackedByShares)
                 _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, accountRow.Fund, accountFormat, false);
+            // TODO might want to import share QUANTITY instead
             else
                 _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
         }

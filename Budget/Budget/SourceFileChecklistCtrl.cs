@@ -32,7 +32,7 @@ namespace Budget
             if (Program.LookupTableSet != null) // if not in Designer mode
             {
                 budgetAccountBindingSource.DataSource = Program.LookupTableSet.MainDataSet;
-                budgetAccountBindingSource.DataMember = "BudgetAccount";
+                budgetAccountBindingSource.DataMember = "Account";
                 budgetAccountBindingSource.Position = 0;
             }
 

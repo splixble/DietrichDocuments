@@ -75,11 +75,14 @@ namespace Budget
                     return ExtractFields_YahooHoldings(fileFields, fieldsByColumnName);
                 case SourceFileFormats.YahooHistoricalData:
                     return ExtractFields_YahooHistoricalData(fileFields, fieldsByColumnName);
+                case SourceFileFormats.DateShareBalance:
+                    return ExtractFields_DateShareBalance(fileFields, fieldsByColumnName);
                 default:
                     return false;
             }
         }
 
+        // TODO this and the following ExtractFields_DateShareBalance can be normalized
         bool ExtractFields_YahooHoldings(string[] fileFields, ColumnValueList fieldsByColumnName)
         { 
             // Get Fund (from ticker symbol) from column 0:
@@ -100,6 +103,28 @@ namespace Budget
             DateTime dateValue;
             if (DateTime.TryParse(fileFields[2], out dateValue))
                 fieldsByColumnName["SPDate"] = dateValue.Date;
+            else
+                return false;
+
+            return true;
+        }
+
+        bool ExtractFields_DateShareBalance(string[] fileFields, ColumnValueList fieldsByColumnName)
+        {
+            // Fund is from the Processor:
+            fieldsByColumnName["Fund"] = _FundID;
+
+            // Get date of price from column 0:
+            DateTime dateValue;
+            if (fileFields.Length > 0 && DateTime.TryParse(fileFields[0], out dateValue))
+                fieldsByColumnName["SPDate"] = dateValue.Date;
+            else
+                return false;
+
+            // Get share price (closing) from column 1:
+            Decimal sharePrice;
+            if (fileFields.Length > 4 && Decimal.TryParse(fileFields[1], out sharePrice))
+                fieldsByColumnName["PricePerShare"] = sharePrice;
             else
                 return false;
 
