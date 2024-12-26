@@ -33,8 +33,12 @@ namespace BudgetWPF
             InitializeComponent();
 
             // initialize test tree DIAG
-            FooViewModel[] fooViewModels = BuildGroupingsTree();
+            IList<FooViewModel> fooViewModels = BuildGroupingsTree();
+            fooViewModels[0].Initialize();
             tvGroupings.ItemsSource = fooViewModels;
+
+            /*
+             * do not need this, right?
             FooViewModel root = fooViewModels[0]; // DIAG s/n assume it's first element
 
             base.CommandBindings.Add(
@@ -53,6 +57,7 @@ namespace BudgetWPF
                     }));
 
             this.tree.Focus();
+            */
         }
 
         private void _Loaded(object sender, RoutedEventArgs e)
@@ -70,20 +75,17 @@ namespace BudgetWPF
             return new List<FooViewModel>(new FooViewModel[] { new FooViewModel("Jimy", "Jammeess"), new FooViewModel("Flppoel") });
         }
 
-        FooViewModel[] BuildGroupingsTree()
+        IList<FooViewModel> BuildGroupingsTree()
         {
-            // returns root node
-
-
-            // DIAG rename w/ "_"
             FooViewModel balanceTotalNode = null;
             FooViewModel incomeNode = null;
             FooViewModel expensesNode = null;
 
-            FooViewModel rootNode = new FooViewModel("Things");
-
             List<FooViewModel> allNodes = new List<FooViewModel>();
             SortedList<string, FooViewModel> parentNodesByName = new SortedList<string, FooViewModel>();
+
+            // FooViewModel rootNode = new FooViewModel("Things"); // although, do we really need a root node?
+            // DIAG needed?? allNodes.Add(rootNode);
 
             // Clear and requery the table: 
             _GroupingsInOrderTbl.Clear();
@@ -158,7 +160,7 @@ namespace BudgetWPF
                 else if (groupingRow.GroupingType == Constants.GroupingType.BalanceOfAccount)
                     parentNode = balanceTotalNode;
                 else
-                    parentNode = rootNode;
+                    ; // parentNode = rootNode;
 
                 if (parentNode != null)
                 {
@@ -181,7 +183,10 @@ namespace BudgetWPF
                     break;
             }
             */
-            return allNodes.ToArray();
+
+            return allNodes;
+            // return parentNodesByName.Values; // displays them out of order
+            // return new FooViewModel[] { rootNode }; // if I have a root node for everything, it only displays the children, not the grandchildren - WTF??
         }
     }
 }

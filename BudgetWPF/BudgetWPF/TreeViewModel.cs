@@ -86,6 +86,7 @@ namespace BudgetWPF
             }
         }
 
+        /* NOT needed
         public static List<TreeViewModel> SetTree(string topLevelName)
         {
             List<TreeViewModel> treeView = new List<TreeViewModel>();
@@ -120,6 +121,7 @@ namespace BudgetWPF
 
             return treeView;
         }
+        */
 
         public static List<string> GetTree()
         {

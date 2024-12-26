@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
-                <Setter Property="IsExpanded" Value="True" />
+                <Setter Property="IsExpanded" Value="False" />
                 <Setter Property="IsSelected" Value="{Binding IsInitiallySelected, Mode=OneTime}" />
                 <Setter Property="KeyboardNavigation.AcceptsReturn" Value="True" />
                 <Setter Property="dw:VirtualToggleButton.IsVirtualToggleButton" Value="True" />
@@ -69,18 +69,23 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1" 
+>
+            <TreeView Name="tvGroupings" 
+                  ItemContainerStyle="{StaticResource TreeViewItemStyle}"
+                  ItemsSource="{Binding Mode=OneTime}"
+                ItemTemplate="{StaticResource CheckBoxItemTemplate}">
+            </TreeView>
+        </ScrollViewer>
+
         
-        <TreeView Name="tvGroupings" Grid.Column="1" Grid.Row="1" 
-              ItemContainerStyle="{StaticResource TreeViewItemStyle}"
-              ItemsSource="{Binding Mode=OneTime}"
-            ItemTemplate="{StaticResource CheckBoxItemTemplate}">
-        </TreeView>
-        
-        <!-- JUST TEST, will be removed -->
+        <!-- JUST TEST, will be removed 
+        -->
         <TreeView 
               x:Name="tree" Grid.Column="2" Grid.Row="1" 
               ItemContainerStyle="{StaticResource TreeViewItemStyle}"

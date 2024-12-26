@@ -79,7 +79,7 @@ namespace BudgetWPF
             this.Children = new List<FooViewModel>();
         }
 
-        void Initialize()
+        public void Initialize()
         {
             foreach (FooViewModel child in this.Children)
             {
