@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.gridMain = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -39,6 +42,8 @@
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
@@ -46,11 +51,12 @@
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboAccountOwner = new System.Windows.Forms.ComboBox();
-            this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -63,6 +69,11 @@
             this.splitConOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).BeginInit();
+            this.splitContainerCharts.Panel1.SuspendLayout();
+            this.splitContainerCharts.Panel2.SuspendLayout();
+            this.splitContainerCharts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -72,7 +83,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1175, 459);
+            this.reportViewer1.Size = new System.Drawing.Size(391, 459);
             this.reportViewer1.TabIndex = 0;
             // 
             // gridMain
@@ -155,6 +166,20 @@
             this.calculateAccountBalancesToolStripMenuItem.Text = "Calculate Account Balances";
             this.calculateAccountBalancesToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalancesToolStripMenuItem_Click);
             // 
+            // investmentsToolStripMenuItem
+            // 
+            this.investmentsToolStripMenuItem.Name = "investmentsToolStripMenuItem";
+            this.investmentsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.investmentsToolStripMenuItem.Text = "Investments";
+            this.investmentsToolStripMenuItem.Click += new System.EventHandler(this.investmentsToolStripMenuItem_Click);
+            // 
+            // accountsToolStripMenuItem
+            // 
+            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.accountsToolStripMenuItem.Text = "Accounts";
+            this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
+            // 
             // splitConInner
             // 
             this.splitConInner.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,7 +193,7 @@
             // 
             // splitConInner.Panel2
             // 
-            this.splitConInner.Panel2.Controls.Add(this.reportViewer1);
+            this.splitConInner.Panel2.Controls.Add(this.splitContainerCharts);
             this.splitConInner.Size = new System.Drawing.Size(1175, 626);
             this.splitConInner.SplitterDistance = 163;
             this.splitConInner.TabIndex = 5;
@@ -244,13 +269,6 @@
             this.comboAccountOwner.TabIndex = 7;
             this.comboAccountOwner.SelectionChangeCommitted += new System.EventHandler(this.comboAccountOwner_SelectionChangeCommitted);
             // 
-            // investmentsToolStripMenuItem
-            // 
-            this.investmentsToolStripMenuItem.Name = "investmentsToolStripMenuItem";
-            this.investmentsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.investmentsToolStripMenuItem.Text = "Investments";
-            this.investmentsToolStripMenuItem.Click += new System.EventHandler(this.investmentsToolStripMenuItem_Click);
-            // 
             // viewBudgetGroupingsInOrderBindingSource
             // 
             this.viewBudgetGroupingsInOrderBindingSource.DataMember = "ViewBudgetGroupingsInOrder";
@@ -265,12 +283,52 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // accountsToolStripMenuItem
+            // splitContainerCharts
             // 
-            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.accountsToolStripMenuItem.Text = "Accounts";
-            this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
+            this.splitContainerCharts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerCharts.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerCharts.Name = "splitContainerCharts";
+            // 
+            // splitContainerCharts.Panel1
+            // 
+            this.splitContainerCharts.Panel1.Controls.Add(this.reportViewer1);
+            // 
+            // splitContainerCharts.Panel2
+            // 
+            this.splitContainerCharts.Panel2.Controls.Add(this.label3);
+            this.splitContainerCharts.Panel2.Controls.Add(this.chart1);
+            this.splitContainerCharts.Size = new System.Drawing.Size(1175, 459);
+            this.splitContainerCharts.SplitterDistance = 391;
+            this.splitContainerCharts.TabIndex = 8;
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(17, 50);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(750, 382);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(220, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "All-New Chart Doodad, No Report Necessary";
             // 
             // Form1
             // 
@@ -297,6 +355,12 @@
             this.splitConOuter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
+            this.splitContainerCharts.Panel1.ResumeLayout(false);
+            this.splitContainerCharts.Panel2.ResumeLayout(false);
+            this.splitContainerCharts.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).EndInit();
+            this.splitContainerCharts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,6 +390,9 @@
         private System.Windows.Forms.ComboBox comboAccountType;
         private System.Windows.Forms.ToolStripMenuItem investmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainerCharts;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label3;
     }
 }
 

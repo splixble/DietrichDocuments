@@ -15,6 +15,7 @@ using System.Security.Cryptography.Xml;
 using PrintLib;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Budget.Constants;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Budget
 {
@@ -43,14 +44,10 @@ namespace Budget
             InitializeComponent();
         }
 
-        void AddToGroupingListIfChecked(TreeNode node, ref string groupingsList)
+        void AddToGroupingListIfChecked(TreeNode node, ref List<String> groupingsList)
         {
             if (node.Checked)
-            {
-                if (groupingsList != "")
-                    groupingsList += ",";
-                groupingsList += "'" + node.Text.Replace("'", "''") + "'"; // 'escape out' any single quotes in node text, since they're enclosed in single quotes in the SQL
-            }
+                groupingsList.Add(node.Text);
 
             // recursively call this for child nodes:
             foreach (TreeNode childNode in node.Nodes)
@@ -69,6 +66,7 @@ namespace Budget
                 + "GroupingType, dbo.BudgetTypeGroupings.ParentGroupingLabel "
                 + "FROM ViewBudgetWithMonthly left join BudgetTypeGroupings on ViewBudgetWithMonthly.Grouping = BudgetTypeGroupings.GroupingLabel "
                 + "WHERE (Grouping IS NOT NULL) AND AccountOwner = '" + AccountOwner + "'";
+            // DIAG this s/b put back in the DB, no? And get graph colors from Grouping and Account tables.
             if (AccountType != Constants.AccountType.BothValue)
                 groupingsInOrderSelectStr += "AND AccountType = '" + AccountType + "'";
             groupingsInOrderSelectStr += "ORDER BY OrderNum, Grouping";
@@ -151,19 +149,24 @@ namespace Budget
                 BuildGroupingsTree();
 
             // Get groupings to display, from checked 
-            string groupingsList = "";
-
+            List<string> groupingsList = new List<string>();
             foreach (TreeNode node in tvGroupings.Nodes)
-            {
                 AddToGroupingListIfChecked(node, ref groupingsList);
-            }
-            
-            MainData.ViewBudgetMonthlyReport.Clear();
-            if (groupingsList != "") // if no groupings checked, just leave it cleared
+
+            string groupingsListString = "";
+            foreach (string grouping in groupingsList)
             {
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsList + ")" 
+                if (groupingsListString != "")
+                    groupingsListString += ",";
+                groupingsListString += "'" + grouping.Replace("'", "''") + "'"; // 'escape out' any single quotes in node text, since they're enclosed in single quotes in the SQL
+            }
+
+            MainData.ViewBudgetMonthlyReport.Clear();
+            if (groupingsListString != "") // if no groupings checked, just leave it cleared
+            {
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsListString + ")"
                     + " AND AccountOwner = '" + AccountOwner + "'";
-                if (AccountType != Constants.AccountType.BothValue) 
+                if (AccountType != Constants.AccountType.BothValue)
                     selectStr += " AND AccountType = '" + AccountType + "'";
 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
@@ -178,7 +181,6 @@ namespace Budget
                     reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
                 }
             }
-
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
 
             PopulateMainGrid();
@@ -186,6 +188,46 @@ namespace Budget
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
+
+            DrawChart(MainData.ViewBudgetMonthlyReport, groupingsList);
+        }
+
+        void DrawChart(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable, List<string> groupingsList)
+        {
+            ClearChart();
+
+            // Clear previous things:
+            chart1.Series.Clear();
+
+            Axis axisX = chart1.ChartAreas[0].AxisX;
+            Axis axisY = chart1.ChartAreas[0].AxisY;
+
+            axisY.Minimum = 0;
+            axisY.Maximum = 30000; // DIAG set based on data
+
+            foreach (string grouping in groupingsList)
+            {
+                // make a simple Series: 
+                Series series = new Series(grouping);
+                series.ChartType = SeriesChartType.Line;
+                series.Color = Color.FromName("ForestGreen");  // Color.ForestGreen; // line color. DIAG set from DB
+                series.BorderWidth = 2; // line width
+                                        // series.BorderDashStyle = ChartDashStyle.Dot; // if not solid line
+                                        // (Color)Enum.Parse(typeof(Color), ); // 
+
+                DataView view = new DataView(dataTable);
+                view.Sort = "TrMonth ASC";
+                view.RowFilter = "Grouping = '" + grouping + "'";
+                //
+                series.Points.DataBindXY(view, "TrMonth", view, "AmountNormalized");
+                chart1.Series.Add(series);
+            }
+        }
+
+        protected virtual void ClearChart()
+        {
+            // Clear previous things:
+            chart1.Series.Clear();
         }
 
         void PopulateMainGrid()
@@ -194,7 +236,6 @@ namespace Budget
             gridMain.Columns.Clear();
 
             gridMain.RowHeadersWidth = 120;
-
 
             SortedList<DateTime, object> cols = new SortedList<DateTime, object>();
             SortedList<string, object> rows = new SortedList<string, object>();
