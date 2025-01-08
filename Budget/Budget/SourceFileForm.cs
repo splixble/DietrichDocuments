@@ -51,6 +51,8 @@ namespace Budget
             comboFileFormat.ValueMember = "FormatCode";
 
             sourceFileChecklistCtrl1.Initialize(this);
+
+            btnSaveBudgetItems.Initialize(null, budgetCtrl.BudgetTable);
         }
 
         SourceFileProcessor _Processor = null;
@@ -125,7 +127,7 @@ namespace Budget
             budgetCtrl.Refresh();
             sharePriceCtrl.Refresh();
 
-            btnSaveBudgetItems.Enabled = true; // DIAG rename button
+            btnSaveBudgetItems.Enabled = true; // DIAG rename button btnSaveTransactions
         }
 
         void UpdateBindingSourceFilter()

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridLib", "..\GridLib\GridL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeLib", "..\TypeLib\TypeLib.csproj", "{7226AC75-5789-446A-AF1D-375CCCA0593F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformsLib", "..\WinformsLib\WinformsLib\WinformsLib.csproj", "{F6B44A49-F409-4D46-833E-39F755A40E9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7226AC75-5789-446A-AF1D-375CCCA0593F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B44A49-F409-4D46-833E-39F755A40E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B44A49-F409-4D46-833E-39F755A40E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B44A49-F409-4D46-833E-39F755A40E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B44A49-F409-4D46-833E-39F755A40E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

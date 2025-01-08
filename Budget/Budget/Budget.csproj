@@ -382,6 +382,10 @@
       <Project>{7226ac75-5789-446a-af1d-375ccca0593f}</Project>
       <Name>TypeLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WinformsLib\WinformsLib\WinformsLib.csproj">
+      <Project>{f6b44a49-f409-4d46-833e-39f755a40e9b}</Project>
+      <Name>WinformsLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

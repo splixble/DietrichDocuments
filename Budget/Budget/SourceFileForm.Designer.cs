@@ -32,7 +32,7 @@
             this.comboAccount = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnSaveBudgetItems = new System.Windows.Forms.Button();
+            this.btnSaveBudgetItems = new WinformsLib.SaveButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.customFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonOrderFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -339,7 +339,7 @@
         private System.Windows.Forms.ComboBox comboAccount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnSaveBudgetItems;
+        private WinformsLib.SaveButton btnSaveBudgetItems;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem customFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem amazonOrderFileToolStripMenuItem;
