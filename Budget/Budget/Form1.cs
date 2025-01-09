@@ -13,6 +13,7 @@ using System.IO;
 using System.Xml.Linq;
 using System.Security.Cryptography.Xml;
 using PrintLib;
+using ChartLib;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Budget.Constants;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -67,6 +68,7 @@ namespace Budget
                 + "FROM ViewBudgetWithMonthly left join BudgetTypeGroupings on ViewBudgetWithMonthly.Grouping = BudgetTypeGroupings.GroupingLabel "
                 + "WHERE (Grouping IS NOT NULL) AND AccountOwner = '" + AccountOwner + "'";
             // DIAG this s/b put back in the DB, no? And get graph colors from Grouping and Account tables.
+
             if (AccountType != Constants.AccountType.BothValue)
                 groupingsInOrderSelectStr += "AND AccountType = '" + AccountType + "'";
             groupingsInOrderSelectStr += "ORDER BY OrderNum, Grouping";
@@ -179,6 +181,7 @@ namespace Budget
 
                     SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
                     reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
+                    // DIAG Do more work on this performance bottleneck
                 }
             }
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
@@ -194,23 +197,59 @@ namespace Budget
 
         void DrawChart(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable, List<string> groupingsList)
         {
-            ClearChart();
-
             // Clear previous things:
-            chart1.Series.Clear();
+            ClearChart();
 
             Axis axisX = chart1.ChartAreas[0].AxisX;
             Axis axisY = chart1.ChartAreas[0].AxisY;
 
-            axisY.Minimum = 0;
-            axisY.Maximum = 30000; // DIAG set based on data
+            // Y axis (dollar amount) chart settings:
+            decimal minAmount = Decimal.MaxValue;
+            decimal maxAmount = Decimal.MinValue;
+            foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
+            {
+                if (tblRow.AmountNormalized > maxAmount)
+                    maxAmount = tblRow.AmountNormalized; 
+                if (tblRow.AmountNormalized < minAmount)
+                    minAmount = tblRow.AmountNormalized;
+            }
+
+            double yMax = Convert.ToDouble(maxAmount);
+            double yMin = Convert.ToDouble(minAmount);
+            double yInterval;
+            DateTimeIntervalType yIntervalType;
+            ChartUtils.GetDefaultIntervalInfo(8, ref yMin, ref yMax, out yInterval, out yIntervalType);
+            axisY.Minimum = yMin;
+            axisY.Maximum = yMax;
+
+            // this apparently affects what numbers are shown on left side:
+            axisY.Interval = yInterval;
+            axisY.IntervalType = yIntervalType;
+            axisY.LabelStyle.Format = "{0:C}"; // show as currency
+            axisY.MajorGrid.LineColor = Color.LightGray;
+
+            // X axis (month) chart settings:
+            // DIAG Create form ctrls to adjust these:
+            DateTime minDate = new DateTime(2023, 1, 1);
+            DateTime maxDate = DateTime.Today;
+            double xInterval;
+            DateTimeIntervalType xIntervalType;
+            DateGraphInterval dateInterval;
+            ChartUtils.GetDefaultIntervalInfo(8, ref minDate, ref maxDate, out xInterval, out xIntervalType, out dateInterval);
+            axisX.Minimum = minDate.ToOADate();
+            axisX.Maximum = maxDate.ToOADate();
+            axisX.Interval = xInterval;
+            axisX.IntervalType = xIntervalType;
+            axisX.LabelStyle.Format = "MMM yy";
+            axisX.MajorGrid.LineColor = Color.LightGray;
+
+            ChartLineColorGenerator colorGenerator = new ChartLineColorGenerator();
 
             foreach (string grouping in groupingsList)
             {
-                // make a simple Series: 
                 Series series = new Series(grouping);
                 series.ChartType = SeriesChartType.Line;
-                series.Color = Color.FromName("ForestGreen");  // Color.ForestGreen; // line color. DIAG set from DB
+                series.Color = GetChartLineColor(grouping, colorGenerator);
                 series.BorderWidth = 2; // line width
                                         // series.BorderDashStyle = ChartDashStyle.Dot; // if not solid line
                                         // (Color)Enum.Parse(typeof(Color), ); // 
@@ -222,6 +261,20 @@ namespace Budget
                 series.Points.DataBindXY(view, "TrMonth", view, "AmountNormalized");
                 chart1.Series.Add(series);
             }
+        }
+
+        Color GetChartLineColor(string grouping, ChartLineColorGenerator colorGenerator)
+        {
+            // return Color.FromName("ForestGreen");  // Color.ForestGreen; // line color. DIAG set from DB
+ 
+            if (grouping == Constants.GroupingName.Income)
+                return Color.Green;
+            else if (grouping == Constants.GroupingName.Expense)
+                return Color.Red;
+            else if (grouping == Constants.GroupingName.Balance)
+                return Color.Blue;
+            else
+                return colorGenerator.GetNextColor();
         }
 
         protected virtual void ClearChart()

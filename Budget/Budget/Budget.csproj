@@ -207,6 +207,7 @@
     <Compile Include="BudgetEditingGridCtrl.Designer.cs">
       <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChartLineColorGenerator.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DBRowsList.cs" />
     <Compile Include="Form1.cs">
@@ -370,6 +371,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ChartLib\ChartLib\ChartLib.csproj">
+      <Project>{d4e569cf-c66c-4a00-a482-6acdcb8b8154}</Project>
+      <Name>ChartLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GridLib\GridLib.csproj">
       <Project>{292973ce-2080-4af4-8fbf-6cea310702ec}</Project>
       <Name>GridLib</Name>
