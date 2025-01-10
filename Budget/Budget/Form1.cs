@@ -218,7 +218,7 @@ namespace Budget
             double yMin = Convert.ToDouble(minAmount);
             double yInterval;
             DateTimeIntervalType yIntervalType;
-            ChartUtils.GetDefaultIntervalInfo(8, ref yMin, ref yMax, out yInterval, out yIntervalType);
+            ChartUtils.GetDefaultIntervalInfo(12, ref yMin, ref yMax, out yInterval, out yIntervalType);
             axisY.Minimum = yMin;
             axisY.Maximum = yMax;
 
@@ -235,7 +235,7 @@ namespace Budget
             double xInterval;
             DateTimeIntervalType xIntervalType;
             DateGraphInterval dateInterval;
-            ChartUtils.GetDefaultIntervalInfo(8, ref minDate, ref maxDate, out xInterval, out xIntervalType, out dateInterval);
+            ChartUtils.GetDefaultIntervalInfo(12, ref minDate, ref maxDate, out xInterval, out xIntervalType, out dateInterval);
             axisX.Minimum = minDate.ToOADate();
             axisX.Maximum = maxDate.ToOADate();
             axisX.Interval = xInterval;
@@ -250,7 +250,7 @@ namespace Budget
                 Series series = new Series(grouping);
                 series.ChartType = SeriesChartType.Line;
                 series.Color = GetChartLineColor(grouping, colorGenerator);
-                series.BorderWidth = 2; // line width
+                series.BorderWidth = 1; // line width
                                         // series.BorderDashStyle = ChartDashStyle.Dot; // if not solid line
                                         // (Color)Enum.Parse(typeof(Color), ); // 
 
@@ -268,7 +268,7 @@ namespace Budget
             // return Color.FromName("ForestGreen");  // Color.ForestGreen; // line color. DIAG set from DB
  
             if (grouping == Constants.GroupingName.Income)
-                return Color.Green;
+                return Color.Black;
             else if (grouping == Constants.GroupingName.Expense)
                 return Color.Red;
             else if (grouping == Constants.GroupingName.Balance)

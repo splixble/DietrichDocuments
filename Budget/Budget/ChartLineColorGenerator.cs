@@ -20,6 +20,7 @@ namespace Budget
                 Color.Coral,
                 Color.DarkGoldenrod,
                 Color.IndianRed,
+                Color.Green,
                 Color.Maroon,
                 Color.SaddleBrown,
                 Color.Peru,
