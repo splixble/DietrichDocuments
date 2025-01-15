@@ -26,7 +26,10 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
-        MainDataSet.GroupingsInOrderDataTable _GroupingsInOrderTbl = new MainDataSet.GroupingsInOrderDataTable();
+        // DIAG  remove MainDataSet.GroupingsInOrderDataTable _GroupingsInOrderTbl = new MainDataSet.GroupingsInOrderDataTable();
+        // DIAG  remove from dataset  MainDataSet.GroupingsInOrderDataTable
+        MainDataSet.ViewGroupingsDataTable _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
+        MainDataSetTableAdapters.ViewGroupingsTableAdapter _GroupingsAdap = new MainDataSetTableAdapters.ViewGroupingsTableAdapter();  
 
         const int groupingsGridCheckboxColumn = 0;
 
@@ -60,18 +63,31 @@ namespace Budget
             // Remove all nodes, of they exist:
             tvGroupings.Nodes.Clear();
 
-            // Clear and requery the table: 
+            // DIAG REMOVE ParentGroupingLabel field from BudgetTypeGroupings table, as soon as I know it works! Starting with the DataTable object.
+            // DIAG and remove _GroupingsInOrderTbl from this
+
+
+
+            // DIAG Replace this all with a query of ViewGroupings (which maybe should be in LookupTables), with ParentGroupingLabel removed.
+            // And check that there's at least one row in the ViewBudgetWithMonthly table with a Grouping value, before adding it to tree ctrl.
+            // And ordering s/b done in this code, at the tree node construction code.
+
+            // Requery the table: 
+            _GroupingsTbl.Clear();
+            _GroupingsAdap.FillInSelectorOrder(_GroupingsTbl);
+
+
+            /* DIAG REMOVE:
             _GroupingsInOrderTbl.Clear();
             string groupingsInOrderSelectStr = "SELECT DISTINCT TOP (100) PERCENT Grouping, "
                 + "CASE [grouping] WHEN 'Income' THEN 1 WHEN 'Expenses' THEN 2 ELSE 3 END AS OrderNum, "
                 + "GroupingType, dbo.BudgetTypeGroupings.ParentGroupingLabel "
                 + "FROM ViewBudgetWithMonthly left join BudgetTypeGroupings on ViewBudgetWithMonthly.Grouping = BudgetTypeGroupings.GroupingLabel "
                 + "WHERE (Grouping IS NOT NULL) AND AccountOwner = '" + AccountOwner + "'";
-            // DIAG this s/b put back in the DB, no? And get graph colors from Grouping and Account tables.
-
             if (AccountType != Constants.AccountType.BothValue)
                 groupingsInOrderSelectStr += "AND AccountType = '" + AccountType + "'";
             groupingsInOrderSelectStr += "ORDER BY OrderNum, Grouping";
+            // DIAG get graph colors from Grouping and Account tables.
 
             using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
             {
@@ -84,12 +100,15 @@ namespace Budget
                 SqlDataAdapter groupingsInOrderAdap = new SqlDataAdapter(groupingsInOrderCmd);
                 groupingsInOrderAdap.Fill(_GroupingsInOrderTbl);
             }
+            */
 
             // Populate Groupings tree, and save certain nodes for future reference:
-            // Add parent nodes:
-            foreach (MainDataSet.GroupingsInOrderRow groupingRow in _GroupingsInOrderTbl)
+
+            // First, add parent nodes:
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {
-                if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != Constants.GroupingType.BalanceOfAccount)
+                if (groupingRow.IsParentGroupingNull())
+                // DIAG was: if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != Constants.GroupingType.BalanceOfAccount)
                 {
                     TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
 
@@ -103,12 +122,12 @@ namespace Budget
             }
 
             // Now, add child nodes:
-            foreach (MainDataSet.GroupingsInOrderRow groupingRow in _GroupingsInOrderTbl)
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {
                 TreeNode parentNode = null;
-                if (!groupingRow.IsParentGroupingLabelNull())
+                if (!groupingRow.IsParentGroupingNull())
                 {
-                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGroupingLabel, false); // search only top level
+                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGrouping, false); // search only top level
                     if (parentNodeArray.Length > 0) // should never be 0, or >1
                         parentNode = parentNodeArray[0];
                 }
