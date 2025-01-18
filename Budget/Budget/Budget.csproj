@@ -231,6 +231,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MonthComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MonthGroupingForm.cs">
       <SubType>Form</SubType>
     </Compile>

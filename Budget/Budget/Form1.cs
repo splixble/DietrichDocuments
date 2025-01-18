@@ -14,6 +14,8 @@ using System.Xml.Linq;
 using System.Security.Cryptography.Xml;
 using PrintLib;
 using ChartLib;
+using TypeLib;
+using static TypeLib.DBUtils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Budget.Constants;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -39,6 +41,10 @@ namespace Budget
         public char AccountType => ((string)comboAccountType.SelectedValue)[0];
         char _PrevAccountType = ' ';
 
+        public DateTime FromMonth => (DateTime)comboFromMonth.SelectedMonth;
+
+        public DateTime ToMonth => (DateTime)comboToMonth.SelectedMonth;
+
         TreeNode _BalanceTotalNode = null;
         TreeNode _IncomeNode = null;
         TreeNode _ExpensesNode = null;
@@ -51,7 +57,7 @@ namespace Budget
         void AddToGroupingListIfChecked(TreeNode node, ref List<String> groupingsList)
         {
             if (node.Checked)
-                groupingsList.Add(node.Text);
+                groupingsList.Add(node.Name); 
 
             // recursively call this for child nodes:
             foreach (TreeNode childNode in node.Nodes)
@@ -112,11 +118,11 @@ namespace Budget
                 {
                     TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
 
-                    if (groupingRow.GroupingType == Constants.GroupingType.BalanceTotal)
+                    if (groupingRow.GroupingKey == Constants.GroupingType.BalanceTotal)
                         _BalanceTotalNode = node;
-                    else if (groupingRow.Grouping == Constants.GroupingName.Income)
+                    else if (groupingRow.GroupingKey == Constants.GroupingKey.Income)
                         _IncomeNode = node;
-                    else if (groupingRow.Grouping == Constants.GroupingName.Expense)
+                    else if (groupingRow.GroupingKey == Constants.GroupingKey.Expense)
                         _ExpensesNode = node;
                 }
             }
@@ -135,7 +141,7 @@ namespace Budget
                     parentNode = _BalanceTotalNode;
 
                 if (parentNode != null)
-                    parentNode.Nodes.Add(groupingRow.Grouping);
+                    parentNode.Nodes.Add(groupingRow.GroupingKey, groupingRow.Grouping);
             }
 
             // Check initial default groupings:
@@ -151,8 +157,11 @@ namespace Budget
             }
         }
 
-        void RefreshDisplay()
+        void RefreshData()
         {
+            // Requery database, and refresh display to show it
+
+            /* DIAG will be rebuilding groupings tree regrardless
             // If account owner or type changed, reset initial check state of grouping nodes: 
             bool accountOwnerOrTypeChanged = false;
             if (AccountOwner != _PrevAccountOwner)
@@ -167,13 +176,12 @@ namespace Budget
             }
 
             if (accountOwnerOrTypeChanged)
+            */
                 BuildGroupingsTree();
 
-            // Get groupings to display, from checked 
-            List<string> groupingsList = new List<string>();
-            foreach (TreeNode node in tvGroupings.Nodes)
-                AddToGroupingListIfChecked(node, ref groupingsList);
 
+
+/* DIAG what we used to do wher we queried DB
             string groupingsListString = "";
             foreach (string grouping in groupingsList)
             {
@@ -181,14 +189,19 @@ namespace Budget
                     groupingsListString += ",";
                 groupingsListString += "'" + grouping.Replace("'", "''") + "'"; // 'escape out' any single quotes in node text, since they're enclosed in single quotes in the SQL
             }
+*/
 
             MainData.ViewBudgetMonthlyReport.Clear();
-            if (groupingsListString != "") // if no groupings checked, just leave it cleared
+            // if (groupingsListString != "") // if no groupings checked, just leave it cleared
             {
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport WHERE Grouping IN (" + groupingsListString + ")"
-                    + " AND AccountOwner = '" + AccountOwner + "'";
+                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport " +
+                    " WHERE TrMonth >= " + FromMonth.SQLDateLiteral() + 
+                    " AND TrMonth <= " + ToMonth.SQLDateLiteral() +
+                    " AND AccountOwner = '" + AccountOwner + "'";
+                    // "WHERE Grouping IN (" + groupingsListString + ")"
                 if (AccountType != Constants.AccountType.BothValue)
                     selectStr += " AND AccountType = '" + AccountType + "'";
+
 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
@@ -203,6 +216,15 @@ namespace Budget
                     // DIAG Do more work on this performance bottleneck
                 }
             }
+
+
+
+
+            RefreshDisplay();
+        }
+
+        void RefreshDisplay()
+        {
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
 
             PopulateMainGrid();
@@ -211,13 +233,29 @@ namespace Budget
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
 
-            DrawChart(MainData.ViewBudgetMonthlyReport, groupingsList);
+
+            // Get groupings to display, from checked 
+            List<string> groupingKeysList = new List<string>();
+            foreach (TreeNode node in tvGroupings.Nodes)
+                AddToGroupingListIfChecked(node, ref groupingKeysList);
+
+
+            DrawChart(MainData.ViewBudgetMonthlyReport, groupingKeysList);
         }
 
-        void DrawChart(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable, List<string> groupingsList)
+        void DrawChart(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable, List<string> groupingKeysList)
         {
             // Clear previous things:
             ClearChart();
+
+            SortedList<string, DataView> dataByGroupingKey = new SortedList<string, DataView>();
+            foreach (string groupingKey in groupingKeysList)
+            {
+                DataView view = new DataView(dataTable);
+                view.Sort = "TrMonth ASC";
+                view.RowFilter = "GroupingKey = '" + groupingKey + "'"; 
+                dataByGroupingKey.Add(groupingKey, view);
+            }
 
             Axis axisX = chart1.ChartAreas[0].AxisX;
             Axis axisY = chart1.ChartAreas[0].AxisY;
@@ -225,12 +263,16 @@ namespace Budget
             // Y axis (dollar amount) chart settings:
             decimal minAmount = Decimal.MaxValue;
             decimal maxAmount = Decimal.MinValue;
-            foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
+            foreach (string grouping in dataByGroupingKey.Keys)
             {
-                if (tblRow.AmountNormalized > maxAmount)
-                    maxAmount = tblRow.AmountNormalized; 
-                if (tblRow.AmountNormalized < minAmount)
-                    minAmount = tblRow.AmountNormalized;
+                foreach (DataRowView rowView in dataByGroupingKey[grouping])
+                {
+                    MainDataSet.ViewBudgetMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewBudgetMonthlyReportRow;
+                    if (tblRow.AmountNormalized > maxAmount)
+                        maxAmount = tblRow.AmountNormalized; 
+                    if (tblRow.AmountNormalized < minAmount)
+                        minAmount = tblRow.AmountNormalized;
+                }
             }
 
             double yMax = Convert.ToDouble(maxAmount);
@@ -264,33 +306,32 @@ namespace Budget
 
             ChartLineColorGenerator colorGenerator = new ChartLineColorGenerator();
 
-            foreach (string grouping in groupingsList)
+
+            foreach (string groupingKey in dataByGroupingKey.Keys)
             {
-                Series series = new Series(grouping);
+                DataView view = dataByGroupingKey[groupingKey];
+                Series series = new Series(groupingKey);
                 series.ChartType = SeriesChartType.Line;
-                series.Color = GetChartLineColor(grouping, colorGenerator);
+                series.Color = GetChartLineColor(groupingKey, colorGenerator);
                 series.BorderWidth = 1; // line width
                                         // series.BorderDashStyle = ChartDashStyle.Dot; // if not solid line
                                         // (Color)Enum.Parse(typeof(Color), ); // 
 
-                DataView view = new DataView(dataTable);
-                view.Sort = "TrMonth ASC";
-                view.RowFilter = "Grouping = '" + grouping + "'";
                 //
                 series.Points.DataBindXY(view, "TrMonth", view, "AmountNormalized");
                 chart1.Series.Add(series);
             }
         }
 
-        Color GetChartLineColor(string grouping, ChartLineColorGenerator colorGenerator)
+        Color GetChartLineColor(string groupingKey, ChartLineColorGenerator colorGenerator)
         {
             // return Color.FromName("ForestGreen");  // Color.ForestGreen; // line color. DIAG set from DB
  
-            if (grouping == Constants.GroupingName.Income)
+            if (groupingKey == Constants.GroupingKey.Income)
                 return Color.Black;
-            else if (grouping == Constants.GroupingName.Expense)
+            else if (groupingKey == Constants.GroupingKey.Expense)
                 return Color.Red;
-            else if (grouping == Constants.GroupingName.Balance)
+            else if (groupingKey == Constants.GroupingKey.Balance)
                 return Color.Blue;
             else
                 return colorGenerator.GetNextColor();
@@ -304,6 +345,7 @@ namespace Budget
 
         void PopulateMainGrid()
         {
+            // DIAG this shows data for every grouping -- it should show only for selected
             gridMain.Rows.Clear();
             gridMain.Columns.Clear();
 
@@ -313,7 +355,7 @@ namespace Budget
             SortedList<string, object> rows = new SortedList<string, object>();
             foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
             {
-                if (!tblRow.IsGroupingNull())
+                // if (!tblRow.IsGroupingNull()) grouping cannot be null... why is this here in the 1st place?
                     rows[tblRow.GroupingWithParent] = tblRow.Grouping;
 
                 cols[tblRow.TrMonth] = null;
@@ -352,7 +394,7 @@ namespace Budget
 
             foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
             {
-                if (!tblRow.IsGroupingNull())
+                // if (!tblRow.IsGroupingNull()) grouping cannot be null... why is this here in the 1st place?
                 {
                     gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingWithParent]].Value = tblRow.AmountNormalized;
                 }
@@ -378,10 +420,18 @@ namespace Budget
             comboAccountType.DisplayMember = "TypeDescription";
             comboAccountType.SelectedValue = "B"; // initialize it to Bank            
 
+            DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
+            DateTime maxMonth = DateTime.Today.AddMonths(2);
+            DateTime fromMonth = DateTime.Today.AddMonths(-14);
+            DateTime toMonth = DateTime.Today;
+
+            comboFromMonth.Populate(minMonth, maxMonth, fromMonth);
+            comboToMonth.Populate(minMonth, maxMonth, toMonth);
+
             // Make gridMain printable by taking a Printable tag onto it:
             gridMain.Tag = new PrintableGridTag(gridMain);
 
-            RefreshDisplay();
+            RefreshData();
         }
 
         private void gridMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -433,12 +483,12 @@ namespace Budget
 
         private void comboAccountOwner_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            RefreshDisplay();
+            RefreshData();
         }
 
         private void comboAccountType_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            RefreshDisplay();
+            RefreshData();
         }
 
         private void investmentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -451,6 +501,26 @@ namespace Budget
         {
             AccountsForm form = new AccountsForm();
             form.ShowDialog();
+        }
+
+        private void comboFromMonth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboToMonth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboToMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboFromMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

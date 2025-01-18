@@ -21,10 +21,13 @@ namespace Budget
         }
         public static class GroupingName
         {
-            public const string Income = "Income";
-            public const string Expense = "Expenses";
-            public const string Balance = "Balance";
             public const string FundBalanceChange = "FBC";
+        }
+        public static class GroupingKey
+        {
+            public const string Income = "gIN";
+            public const string Expense = "e";
+            public const string Balance = "b";
         }
     }
 }

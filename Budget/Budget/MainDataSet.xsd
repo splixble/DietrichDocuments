@@ -9,10 +9,10 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewBudgetMonthlyReportTableAdapter" GeneratorDataComponentClassName="ViewBudgetMonthlyReportTableAdapter" Name="ViewBudgetMonthlyReport" UserDataComponentName="ViewBudgetMonthlyReportTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewBudgetMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        AmountNormalized, TrMonth, ViewKey, Grouping, GroupingWithParent, GroupingParent
+                    <CommandText>SELECT        AmountNormalized, TrMonth, ViewKey, Grouping, GroupingWithParent, GroupingParent, AccountOwner, AccountType
 FROM            ViewBudgetMonthlyReport</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -26,6 +26,8 @@ FROM            ViewBudgetMonthlyReport</CommandText>
               <Mapping SourceColumn="Grouping" DataSetColumn="Grouping" />
               <Mapping SourceColumn="GroupingWithParent" DataSetColumn="GroupingWithParent" />
               <Mapping SourceColumn="GroupingParent" DataSetColumn="GroupingParent" />
+              <Mapping SourceColumn="AccountOwner" DataSetColumn="AccountOwner" />
+              <Mapping SourceColumn="AccountType" DataSetColumn="AccountType" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Songbook.dbo.ViewBudgetMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByGroupingList" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByGroupingList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByGroupingList">
@@ -1079,10 +1081,10 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewGroupingsTableAdapter" GeneratorDataComponentClassName="ViewGroupingsTableAdapter" Name="ViewGroupings" UserDataComponentName="ViewGroupingsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewGroupings" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewGroupings" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Grouping, ParentGrouping, GroupingType, IsParentGrouping, SelectorTypeOrder
+                    <CommandText>SELECT        Grouping, ParentGrouping, GroupingType, IsParentGrouping, SelectorTypeOrder, GroupingKey
 FROM            ViewGroupings</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -1095,14 +1097,13 @@ FROM            ViewGroupings</CommandText>
               <Mapping SourceColumn="GroupingType" DataSetColumn="GroupingType" />
               <Mapping SourceColumn="IsParentGrouping" DataSetColumn="IsParentGrouping" />
               <Mapping SourceColumn="SelectorTypeOrder" DataSetColumn="SelectorTypeOrder" />
+              <Mapping SourceColumn="GroupingKey" DataSetColumn="GroupingKey" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewGroupings" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillInSelectorOrder" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillInSelectorOrder" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillInSelectorOrder">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Grouping, ParentGrouping, GroupingType, IsParentGrouping, SelectorTypeOrder
-FROM            ViewGroupings
-ORDER BY SelectorTypeOrder, Grouping</CommandText>
+                    <CommandText>SELECT Grouping, GroupingKey, GroupingType, IsParentGrouping, ParentGrouping, SelectorTypeOrder FROM ViewGroupings ORDER BY SelectorTypeOrder, Grouping</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1122,14 +1123,14 @@ ORDER BY SelectorTypeOrder, Grouping</CommandText>
             <xs:sequence>
               <xs:element name="AmountNormalized" msprop:Generator_ColumnPropNameInTable="AmountNormalizedColumn" msprop:Generator_ColumnPropNameInRow="AmountNormalized" msprop:Generator_UserColumnName="AmountNormalized" msprop:Generator_ColumnVarNameInTable="columnAmountNormalized" type="xs:decimal" minOccurs="0" />
               <xs:element name="TrMonth" msprop:Generator_ColumnPropNameInTable="TrMonthColumn" msprop:Generator_ColumnPropNameInRow="TrMonth" msprop:Generator_UserColumnName="TrMonth" msprop:Generator_ColumnVarNameInTable="columnTrMonth" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ViewKey" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="ViewKeyColumn" msprop:Generator_ColumnPropNameInRow="ViewKey" msprop:Generator_UserColumnName="ViewKey" msprop:Generator_ColumnVarNameInTable="columnViewKey">
+              <xs:element name="ViewKey" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="ViewKeyColumn" msprop:Generator_ColumnPropNameInRow="ViewKey" msprop:Generator_UserColumnName="ViewKey" msprop:Generator_ColumnVarNameInTable="columnViewKey" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="281" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Grouping" msprop:Generator_ColumnPropNameInTable="GroupingColumn" msprop:Generator_ColumnPropNameInRow="Grouping" msprop:Generator_UserColumnName="Grouping" msprop:Generator_ColumnVarNameInTable="columnGrouping" minOccurs="0">
+              <xs:element name="Grouping" msprop:Generator_ColumnPropNameInTable="GroupingColumn" msprop:Generator_ColumnPropNameInRow="Grouping" msprop:Generator_UserColumnName="Grouping" msprop:Generator_ColumnVarNameInTable="columnGrouping">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
@@ -1147,6 +1148,20 @@ ORDER BY SelectorTypeOrder, Grouping</CommandText>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountOwner" msprop:Generator_ColumnPropNameInRow="AccountOwner" msprop:Generator_ColumnPropNameInTable="AccountOwnerColumn" msprop:Generator_ColumnVarNameInTable="columnAccountOwner" msprop:Generator_UserColumnName="AccountOwner">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountType" msprop:Generator_ColumnPropNameInRow="AccountType" msprop:Generator_ColumnPropNameInTable="AccountTypeColumn" msprop:Generator_ColumnVarNameInTable="columnAccountType" msprop:Generator_UserColumnName="AccountType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1648,75 +1663,75 @@ ORDER BY SelectorTypeOrder, Grouping</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Account" msprop:Generator_RowClassName="AccountRow" msprop:Generator_RowEvHandlerName="AccountRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountRowDeleted" msprop:Generator_RowDeletingName="AccountRowDeleting" msprop:Generator_RowEvArgName="AccountRowChangeEvent" msprop:Generator_TablePropName="Account" msprop:Generator_RowChangedName="AccountRowChanged" msprop:Generator_UserTableName="Account" msprop:Generator_RowChangingName="AccountRowChanging" msprop:Generator_TableClassName="AccountDataTable" msprop:Generator_TableVarName="tableAccount">
+        <xs:element name="Account" msprop:Generator_RowEvHandlerName="AccountRowChangeEventHandler" msprop:Generator_RowDeletedName="AccountRowDeleted" msprop:Generator_RowDeletingName="AccountRowDeleting" msprop:Generator_RowEvArgName="AccountRowChangeEvent" msprop:Generator_TablePropName="Account" msprop:Generator_RowChangedName="AccountRowChanged" msprop:Generator_UserTableName="Account" msprop:Generator_RowChangingName="AccountRowChanging" msprop:Generator_RowClassName="AccountRow" msprop:Generator_TableClassName="AccountDataTable" msprop:Generator_TableVarName="tableAccount">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="AccountID" msprop:Generator_UserColumnName="AccountID" msprop:Generator_ColumnPropNameInTable="AccountIDColumn" msprop:Generator_ColumnPropNameInRow="AccountID" msprop:Generator_ColumnVarNameInTable="columnAccountID">
+              <xs:element name="AccountID" msprop:Generator_ColumnPropNameInTable="AccountIDColumn" msprop:Generator_ColumnPropNameInRow="AccountID" msprop:Generator_UserColumnName="AccountID" msprop:Generator_ColumnVarNameInTable="columnAccountID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AccountName" msprop:Generator_UserColumnName="AccountName" msprop:Generator_ColumnPropNameInTable="AccountNameColumn" msprop:Generator_ColumnPropNameInRow="AccountName" msprop:Generator_ColumnVarNameInTable="columnAccountName">
+              <xs:element name="AccountName" msprop:Generator_ColumnPropNameInTable="AccountNameColumn" msprop:Generator_ColumnPropNameInRow="AccountName" msprop:Generator_UserColumnName="AccountName" msprop:Generator_ColumnVarNameInTable="columnAccountName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="80" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SourceFileLocation" msprop:Generator_UserColumnName="SourceFileLocation" msprop:Generator_ColumnPropNameInTable="SourceFileLocationColumn" msprop:Generator_ColumnPropNameInRow="SourceFileLocation" msprop:Generator_ColumnVarNameInTable="columnSourceFileLocation" minOccurs="0">
+              <xs:element name="SourceFileLocation" msprop:Generator_ColumnPropNameInTable="SourceFileLocationColumn" msprop:Generator_ColumnPropNameInRow="SourceFileLocation" msprop:Generator_UserColumnName="SourceFileLocation" msprop:Generator_ColumnVarNameInTable="columnSourceFileLocation" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DefaultFormatAutoEntry" msprop:Generator_UserColumnName="DefaultFormatAutoEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatAutoEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatAutoEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatAutoEntry" minOccurs="0">
+              <xs:element name="DefaultFormatAutoEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatAutoEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatAutoEntry" msprop:Generator_UserColumnName="DefaultFormatAutoEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatAutoEntry" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DefaultFormatManualEntry" msprop:Generator_UserColumnName="DefaultFormatManualEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatManualEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatManualEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatManualEntry" minOccurs="0">
+              <xs:element name="DefaultFormatManualEntry" msprop:Generator_ColumnPropNameInTable="DefaultFormatManualEntryColumn" msprop:Generator_ColumnPropNameInRow="DefaultFormatManualEntry" msprop:Generator_UserColumnName="DefaultFormatManualEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultFormatManualEntry" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AccountOwner" msprop:Generator_UserColumnName="AccountOwner" msprop:Generator_ColumnPropNameInTable="AccountOwnerColumn" msprop:Generator_ColumnPropNameInRow="AccountOwner" msprop:Generator_ColumnVarNameInTable="columnAccountOwner">
+              <xs:element name="AccountOwner" msprop:Generator_ColumnPropNameInTable="AccountOwnerColumn" msprop:Generator_ColumnPropNameInRow="AccountOwner" msprop:Generator_UserColumnName="AccountOwner" msprop:Generator_ColumnVarNameInTable="columnAccountOwner">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CurrentlyTracked" msprop:Generator_UserColumnName="CurrentlyTracked" msprop:Generator_ColumnPropNameInTable="CurrentlyTrackedColumn" msprop:Generator_ColumnPropNameInRow="CurrentlyTracked" msprop:Generator_ColumnVarNameInTable="columnCurrentlyTracked" type="xs:boolean" />
-              <xs:element name="TrackedByShares" msprop:Generator_UserColumnName="TrackedByShares" msprop:Generator_ColumnPropNameInTable="TrackedBySharesColumn" msprop:Generator_ColumnPropNameInRow="TrackedByShares" msprop:Generator_ColumnVarNameInTable="columnTrackedByShares" type="xs:boolean" />
-              <xs:element name="AccountType" msprop:Generator_UserColumnName="AccountType" msprop:Generator_ColumnPropNameInTable="AccountTypeColumn" msprop:Generator_ColumnPropNameInRow="AccountType" msprop:Generator_ColumnVarNameInTable="columnAccountType">
+              <xs:element name="CurrentlyTracked" msprop:Generator_ColumnPropNameInTable="CurrentlyTrackedColumn" msprop:Generator_ColumnPropNameInRow="CurrentlyTracked" msprop:Generator_UserColumnName="CurrentlyTracked" msprop:Generator_ColumnVarNameInTable="columnCurrentlyTracked" type="xs:boolean" />
+              <xs:element name="TrackedByShares" msprop:Generator_ColumnPropNameInTable="TrackedBySharesColumn" msprop:Generator_ColumnPropNameInRow="TrackedByShares" msprop:Generator_UserColumnName="TrackedByShares" msprop:Generator_ColumnVarNameInTable="columnTrackedByShares" type="xs:boolean" />
+              <xs:element name="AccountType" msprop:Generator_ColumnPropNameInTable="AccountTypeColumn" msprop:Generator_ColumnPropNameInRow="AccountType" msprop:Generator_UserColumnName="AccountType" msprop:Generator_ColumnVarNameInTable="columnAccountType">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Fund" msprop:Generator_UserColumnName="Fund" msprop:Generator_ColumnPropNameInTable="FundColumn" msprop:Generator_ColumnPropNameInRow="Fund" msprop:Generator_ColumnVarNameInTable="columnFund" minOccurs="0">
+              <xs:element name="Fund" msprop:Generator_ColumnPropNameInTable="FundColumn" msprop:Generator_ColumnPropNameInRow="Fund" msprop:Generator_UserColumnName="Fund" msprop:Generator_ColumnVarNameInTable="columnFund" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Comment" msprop:Generator_UserColumnName="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" minOccurs="0">
+              <xs:element name="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_UserColumnName="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AccountNumber" msprop:Generator_UserColumnName="AccountNumber" msprop:Generator_ColumnPropNameInTable="AccountNumberColumn" msprop:Generator_ColumnPropNameInRow="AccountNumber" msprop:Generator_ColumnVarNameInTable="columnAccountNumber" minOccurs="0">
+              <xs:element name="AccountNumber" msprop:Generator_ColumnPropNameInTable="AccountNumberColumn" msprop:Generator_ColumnPropNameInRow="AccountNumber" msprop:Generator_UserColumnName="AccountNumber" msprop:Generator_ColumnVarNameInTable="columnAccountNumber" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1726,32 +1741,39 @@ ORDER BY SelectorTypeOrder, Grouping</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewGroupings" msprop:Generator_RowEvHandlerName="ViewGroupingsRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewGroupingsRowDeleted" msprop:Generator_RowDeletingName="ViewGroupingsRowDeleting" msprop:Generator_RowEvArgName="ViewGroupingsRowChangeEvent" msprop:Generator_TablePropName="ViewGroupings" msprop:Generator_RowChangedName="ViewGroupingsRowChanged" msprop:Generator_RowChangingName="ViewGroupingsRowChanging" msprop:Generator_TableClassName="ViewGroupingsDataTable" msprop:Generator_RowClassName="ViewGroupingsRow" msprop:Generator_TableVarName="tableViewGroupings" msprop:Generator_UserTableName="ViewGroupings">
+        <xs:element name="ViewGroupings" msprop:Generator_RowClassName="ViewGroupingsRow" msprop:Generator_RowEvHandlerName="ViewGroupingsRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewGroupingsRowDeleted" msprop:Generator_RowDeletingName="ViewGroupingsRowDeleting" msprop:Generator_RowEvArgName="ViewGroupingsRowChangeEvent" msprop:Generator_TablePropName="ViewGroupings" msprop:Generator_RowChangedName="ViewGroupingsRowChanged" msprop:Generator_UserTableName="ViewGroupings" msprop:Generator_RowChangingName="ViewGroupingsRowChanging" msprop:Generator_TableClassName="ViewGroupingsDataTable" msprop:Generator_TableVarName="tableViewGroupings">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Grouping" msprop:Generator_ColumnPropNameInRow="Grouping" msprop:Generator_ColumnPropNameInTable="GroupingColumn" msprop:Generator_ColumnVarNameInTable="columnGrouping" msprop:Generator_UserColumnName="Grouping">
+              <xs:element name="Grouping" msprop:Generator_UserColumnName="Grouping" msprop:Generator_ColumnPropNameInTable="GroupingColumn" msprop:Generator_ColumnPropNameInRow="Grouping" msprop:Generator_ColumnVarNameInTable="columnGrouping">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ParentGrouping" msprop:Generator_ColumnPropNameInRow="ParentGrouping" msprop:Generator_ColumnPropNameInTable="ParentGroupingColumn" msprop:Generator_ColumnVarNameInTable="columnParentGrouping" msprop:Generator_UserColumnName="ParentGrouping" minOccurs="0">
+              <xs:element name="ParentGrouping" msprop:Generator_UserColumnName="ParentGrouping" msprop:Generator_ColumnPropNameInTable="ParentGroupingColumn" msprop:Generator_ColumnPropNameInRow="ParentGrouping" msprop:Generator_ColumnVarNameInTable="columnParentGrouping" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="GroupingType" msprop:Generator_ColumnPropNameInRow="GroupingType" msprop:Generator_ColumnPropNameInTable="GroupingTypeColumn" msprop:Generator_ColumnVarNameInTable="columnGroupingType" msprop:Generator_UserColumnName="GroupingType">
+              <xs:element name="GroupingType" msprop:Generator_UserColumnName="GroupingType" msprop:Generator_ColumnPropNameInTable="GroupingTypeColumn" msprop:Generator_ColumnPropNameInRow="GroupingType" msprop:Generator_ColumnVarNameInTable="columnGroupingType">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IsParentGrouping" msprop:Generator_ColumnPropNameInRow="IsParentGrouping" msprop:Generator_ColumnPropNameInTable="IsParentGroupingColumn" msprop:Generator_ColumnVarNameInTable="columnIsParentGrouping" msprop:Generator_UserColumnName="IsParentGrouping" type="xs:int" />
-              <xs:element name="SelectorTypeOrder" msprop:Generator_ColumnPropNameInRow="SelectorTypeOrder" msprop:Generator_ColumnPropNameInTable="SelectorTypeOrderColumn" msprop:Generator_ColumnVarNameInTable="columnSelectorTypeOrder" msprop:Generator_UserColumnName="SelectorTypeOrder" type="xs:int" />
+              <xs:element name="IsParentGrouping" msprop:Generator_UserColumnName="IsParentGrouping" msprop:Generator_ColumnPropNameInTable="IsParentGroupingColumn" msprop:Generator_ColumnPropNameInRow="IsParentGrouping" msprop:Generator_ColumnVarNameInTable="columnIsParentGrouping" type="xs:int" />
+              <xs:element name="SelectorTypeOrder" msprop:Generator_UserColumnName="SelectorTypeOrder" msprop:Generator_ColumnPropNameInTable="SelectorTypeOrderColumn" msprop:Generator_ColumnPropNameInRow="SelectorTypeOrder" msprop:Generator_ColumnVarNameInTable="columnSelectorTypeOrder" type="xs:int" />
+              <xs:element name="GroupingKey" msprop:Generator_ColumnPropNameInRow="GroupingKey" msprop:Generator_ColumnPropNameInTable="GroupingKeyColumn" msprop:Generator_ColumnVarNameInTable="columnGroupingKey" msprop:Generator_UserColumnName="GroupingKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1822,15 +1844,15 @@ ORDER BY SelectorTypeOrder, Grouping</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_SharePrice_Fund" msdata:parent="Fund" msdata:child="SharePrice" msdata:parentkey="FundID" msdata:childkey="Fund" msprop:Generator_UserParentTable="Fund" msprop:Generator_UserChildTable="SharePrice" msprop:Generator_RelationVarName="relationFK_SharePrice_Fund" msprop:Generator_ChildPropName="GetSharePriceRows" msprop:Generator_UserRelationName="FK_SharePrice_Fund" msprop:Generator_ParentPropName="FundRow" />
-      <msdata:Relationship name="FK_BudgetSourceFileItems_BudgetSourceFile1" msdata:parent="SourceFile" msdata:child="SourceFileItems" msdata:parentkey="FileID" msdata:childkey="SourceFile" msprop:Generator_UserParentTable="SourceFile" msprop:Generator_UserChildTable="SourceFileItems" msprop:Generator_RelationVarName="relationFK_BudgetSourceFileItems_BudgetSourceFile1" msprop:Generator_ChildPropName="GetSourceFileItemsRows" msprop:Generator_UserRelationName="FK_BudgetSourceFileItems_BudgetSourceFile1" msprop:Generator_ParentPropName="SourceFileRow" />
-      <msdata:Relationship name="FK_Budget_BudgetTypeGroupings1" msdata:parent="BudgetTypeGroupings" msdata:child="Transac" msdata:parentkey="TRTypeID" msdata:childkey="TrType" msprop:Generator_UserParentTable="BudgetTypeGroupings" msprop:Generator_UserChildTable="Transac" msprop:Generator_RelationVarName="relationFK_Budget_BudgetTypeGroupings1" msprop:Generator_ChildPropName="GetTransacRows" msprop:Generator_ParentPropName="BudgetTypeGroupingsRow" msprop:Generator_UserRelationName="FK_Budget_BudgetTypeGroupings1" />
-      <msdata:Relationship name="FK_ShareQuantity_BudgetAccount1" msdata:parent="Account" msdata:child="ShareQuantity" msdata:parentkey="AccountID" msdata:childkey="SQAccount" msprop:Generator_UserParentTable="Account" msprop:Generator_UserChildTable="ShareQuantity" msprop:Generator_RelationVarName="relationFK_ShareQuantity_BudgetAccount1" msprop:Generator_ChildPropName="GetShareQuantityRows" msprop:Generator_ParentPropName="AccountRow" msprop:Generator_UserRelationName="FK_ShareQuantity_BudgetAccount1" />
-      <msdata:Relationship name="FK_BudgetAccount_AccountOwner1" msdata:parent="AccountOwner" msdata:child="Account" msdata:parentkey="OwnerID" msdata:childkey="AccountOwner" msprop:Generator_UserParentTable="AccountOwner" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_AccountOwner1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_UserRelationName="FK_BudgetAccount_AccountOwner1" msprop:Generator_ParentPropName="AccountOwnerRow" />
-      <msdata:Relationship name="FK_BudgetAccount_AccountType1" msdata:parent="AccountType" msdata:child="Account" msdata:parentkey="TypeCode" msdata:childkey="AccountType" msprop:Generator_UserParentTable="AccountType" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_AccountType1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_UserRelationName="FK_BudgetAccount_AccountType1" msprop:Generator_ParentPropName="AccountTypeRow" />
-      <msdata:Relationship name="FK_BudgetAccount_BudgetSourceFileFormat1" msdata:parent="SourceFileFormat" msdata:child="Account" msdata:parentkey="FormatCode" msdata:childkey="DefaultFormatAutoEntry" msprop:Generator_UserParentTable="SourceFileFormat" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_ChildPropName="GetAccountRowsByFK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_UserRelationName="FK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_ParentPropName="SourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1" />
-      <msdata:Relationship name="FK_BudgetAccount_BudgetSourceFileFormat2" msdata:parent="SourceFileFormat" msdata:child="Account" msdata:parentkey="FormatCode" msdata:childkey="DefaultFormatManualEntry" msprop:Generator_UserParentTable="SourceFileFormat" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_ChildPropName="GetAccountRowsByFK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_UserRelationName="FK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_ParentPropName="SourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2" />
-      <msdata:Relationship name="FK_BudgetAccount_Fund1" msdata:parent="Fund" msdata:child="Account" msdata:parentkey="FundID" msdata:childkey="Fund" msprop:Generator_UserParentTable="Fund" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_Fund1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_UserRelationName="FK_BudgetAccount_Fund1" msprop:Generator_ParentPropName="FundRow" />
+      <msdata:Relationship name="FK_SharePrice_Fund" msdata:parent="Fund" msdata:child="SharePrice" msdata:parentkey="FundID" msdata:childkey="Fund" msprop:Generator_UserParentTable="Fund" msprop:Generator_UserChildTable="SharePrice" msprop:Generator_RelationVarName="relationFK_SharePrice_Fund" msprop:Generator_ChildPropName="GetSharePriceRows" msprop:Generator_ParentPropName="FundRow" msprop:Generator_UserRelationName="FK_SharePrice_Fund" />
+      <msdata:Relationship name="FK_BudgetSourceFileItems_BudgetSourceFile1" msdata:parent="SourceFile" msdata:child="SourceFileItems" msdata:parentkey="FileID" msdata:childkey="SourceFile" msprop:Generator_UserParentTable="SourceFile" msprop:Generator_UserChildTable="SourceFileItems" msprop:Generator_RelationVarName="relationFK_BudgetSourceFileItems_BudgetSourceFile1" msprop:Generator_ChildPropName="GetSourceFileItemsRows" msprop:Generator_ParentPropName="SourceFileRow" msprop:Generator_UserRelationName="FK_BudgetSourceFileItems_BudgetSourceFile1" />
+      <msdata:Relationship name="FK_Budget_BudgetTypeGroupings1" msdata:parent="BudgetTypeGroupings" msdata:child="Transac" msdata:parentkey="TRTypeID" msdata:childkey="TrType" msprop:Generator_UserParentTable="BudgetTypeGroupings" msprop:Generator_UserChildTable="Transac" msprop:Generator_RelationVarName="relationFK_Budget_BudgetTypeGroupings1" msprop:Generator_ChildPropName="GetTransacRows" msprop:Generator_UserRelationName="FK_Budget_BudgetTypeGroupings1" msprop:Generator_ParentPropName="BudgetTypeGroupingsRow" />
+      <msdata:Relationship name="FK_ShareQuantity_BudgetAccount1" msdata:parent="Account" msdata:child="ShareQuantity" msdata:parentkey="AccountID" msdata:childkey="SQAccount" msprop:Generator_UserParentTable="Account" msprop:Generator_UserChildTable="ShareQuantity" msprop:Generator_RelationVarName="relationFK_ShareQuantity_BudgetAccount1" msprop:Generator_ChildPropName="GetShareQuantityRows" msprop:Generator_UserRelationName="FK_ShareQuantity_BudgetAccount1" msprop:Generator_ParentPropName="AccountRow" />
+      <msdata:Relationship name="FK_BudgetAccount_AccountOwner1" msdata:parent="AccountOwner" msdata:child="Account" msdata:parentkey="OwnerID" msdata:childkey="AccountOwner" msprop:Generator_UserParentTable="AccountOwner" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_AccountOwner1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_ParentPropName="AccountOwnerRow" msprop:Generator_UserRelationName="FK_BudgetAccount_AccountOwner1" />
+      <msdata:Relationship name="FK_BudgetAccount_AccountType1" msdata:parent="AccountType" msdata:child="Account" msdata:parentkey="TypeCode" msdata:childkey="AccountType" msprop:Generator_UserParentTable="AccountType" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_AccountType1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_ParentPropName="AccountTypeRow" msprop:Generator_UserRelationName="FK_BudgetAccount_AccountType1" />
+      <msdata:Relationship name="FK_BudgetAccount_BudgetSourceFileFormat1" msdata:parent="SourceFileFormat" msdata:child="Account" msdata:parentkey="FormatCode" msdata:childkey="DefaultFormatAutoEntry" msprop:Generator_UserParentTable="SourceFileFormat" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_ChildPropName="GetAccountRowsByFK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_ParentPropName="SourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat1" msprop:Generator_UserRelationName="FK_BudgetAccount_BudgetSourceFileFormat1" />
+      <msdata:Relationship name="FK_BudgetAccount_BudgetSourceFileFormat2" msdata:parent="SourceFileFormat" msdata:child="Account" msdata:parentkey="FormatCode" msdata:childkey="DefaultFormatManualEntry" msprop:Generator_UserParentTable="SourceFileFormat" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_ChildPropName="GetAccountRowsByFK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_ParentPropName="SourceFileFormatRowByFK_BudgetAccount_BudgetSourceFileFormat2" msprop:Generator_UserRelationName="FK_BudgetAccount_BudgetSourceFileFormat2" />
+      <msdata:Relationship name="FK_BudgetAccount_Fund1" msdata:parent="Fund" msdata:child="Account" msdata:parentkey="FundID" msdata:childkey="Fund" msprop:Generator_UserParentTable="Fund" msprop:Generator_UserChildTable="Account" msprop:Generator_RelationVarName="relationFK_BudgetAccount_Fund1" msprop:Generator_ChildPropName="GetAccountRows" msprop:Generator_ParentPropName="FundRow" msprop:Generator_UserRelationName="FK_BudgetAccount_Fund1" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

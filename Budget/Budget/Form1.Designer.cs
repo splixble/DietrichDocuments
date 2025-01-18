@@ -45,8 +45,13 @@
             this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
+            this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,26 +59,25 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label3 = new System.Windows.Forms.Label();
+            this.comboToMonth = new Budget.MonthComboBox();
+            this.comboFromMonth = new Budget.MonthComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
             this.splitConInner.Panel1.SuspendLayout();
             this.splitConInner.Panel2.SuspendLayout();
             this.splitConInner.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).BeginInit();
+            this.splitContainerCharts.Panel1.SuspendLayout();
+            this.splitContainerCharts.Panel2.SuspendLayout();
+            this.splitContainerCharts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).BeginInit();
             this.splitConOuter.Panel1.SuspendLayout();
             this.splitConOuter.Panel2.SuspendLayout();
             this.splitConOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).BeginInit();
-            this.splitContainerCharts.Panel1.SuspendLayout();
-            this.splitContainerCharts.Panel2.SuspendLayout();
-            this.splitContainerCharts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -198,15 +202,63 @@
             this.splitConInner.SplitterDistance = 163;
             this.splitConInner.TabIndex = 5;
             // 
+            // splitContainerCharts
+            // 
+            this.splitContainerCharts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerCharts.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerCharts.Name = "splitContainerCharts";
+            // 
+            // splitContainerCharts.Panel1
+            // 
+            this.splitContainerCharts.Panel1.Controls.Add(this.reportViewer1);
+            this.splitContainerCharts.Panel1Collapsed = true;
+            // 
+            // splitContainerCharts.Panel2
+            // 
+            this.splitContainerCharts.Panel2.Controls.Add(this.label3);
+            this.splitContainerCharts.Panel2.Controls.Add(this.chart1);
+            this.splitContainerCharts.Size = new System.Drawing.Size(1175, 459);
+            this.splitContainerCharts.SplitterDistance = 391;
+            this.splitContainerCharts.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(32, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(220, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "All-New Chart Doodad, No Report Necessary";
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(17, 50);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1145, 382);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
             // tvGroupings
             // 
             this.tvGroupings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvGroupings.CheckBoxes = true;
-            this.tvGroupings.Location = new System.Drawing.Point(0, 54);
+            this.tvGroupings.Location = new System.Drawing.Point(0, 82);
             this.tvGroupings.Name = "tvGroupings";
-            this.tvGroupings.Size = new System.Drawing.Size(192, 572);
+            this.tvGroupings.Size = new System.Drawing.Size(192, 544);
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
@@ -220,6 +272,10 @@
             // 
             // splitConOuter.Panel1
             // 
+            this.splitConOuter.Panel1.Controls.Add(this.label5);
+            this.splitConOuter.Panel1.Controls.Add(this.comboToMonth);
+            this.splitConOuter.Panel1.Controls.Add(this.label4);
+            this.splitConOuter.Panel1.Controls.Add(this.comboFromMonth);
             this.splitConOuter.Panel1.Controls.Add(this.label2);
             this.splitConOuter.Panel1.Controls.Add(this.comboAccountType);
             this.splitConOuter.Panel1.Controls.Add(this.label1);
@@ -232,6 +288,24 @@
             this.splitConOuter.Size = new System.Drawing.Size(1371, 626);
             this.splitConOuter.SplitterDistance = 192;
             this.splitConOuter.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(111, 58);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "to";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "From";
             // 
             // label2
             // 
@@ -283,52 +357,23 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // splitContainerCharts
+            // comboToMonth
             // 
-            this.splitContainerCharts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerCharts.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerCharts.Name = "splitContainerCharts";
+            this.comboToMonth.FormattingEnabled = true;
+            this.comboToMonth.Location = new System.Drawing.Point(129, 55);
+            this.comboToMonth.Name = "comboToMonth";
+            this.comboToMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboToMonth.TabIndex = 13;
+            this.comboToMonth.SelectionChangeCommitted += new System.EventHandler(this.comboToMonth_SelectionChangeCommitted);
             // 
-            // splitContainerCharts.Panel1
+            // comboFromMonth
             // 
-            this.splitContainerCharts.Panel1.Controls.Add(this.reportViewer1);
-            // 
-            // splitContainerCharts.Panel2
-            // 
-            this.splitContainerCharts.Panel2.Controls.Add(this.label3);
-            this.splitContainerCharts.Panel2.Controls.Add(this.chart1);
-            this.splitContainerCharts.Size = new System.Drawing.Size(1175, 459);
-            this.splitContainerCharts.SplitterDistance = 391;
-            this.splitContainerCharts.TabIndex = 8;
-            // 
-            // chart1
-            // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(17, 50);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(750, 382);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(220, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "All-New Chart Doodad, No Report Necessary";
+            this.comboFromMonth.FormattingEnabled = true;
+            this.comboFromMonth.Location = new System.Drawing.Point(46, 55);
+            this.comboFromMonth.Name = "comboFromMonth";
+            this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboFromMonth.TabIndex = 11;
+            this.comboFromMonth.SelectionChangeCommitted += new System.EventHandler(this.comboFromMonth_SelectionChangeCommitted);
             // 
             // Form1
             // 
@@ -348,6 +393,12 @@
             this.splitConInner.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).EndInit();
             this.splitConInner.ResumeLayout(false);
+            this.splitContainerCharts.Panel1.ResumeLayout(false);
+            this.splitContainerCharts.Panel2.ResumeLayout(false);
+            this.splitContainerCharts.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).EndInit();
+            this.splitContainerCharts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.splitConOuter.Panel1.ResumeLayout(false);
             this.splitConOuter.Panel1.PerformLayout();
             this.splitConOuter.Panel2.ResumeLayout(false);
@@ -355,12 +406,6 @@
             this.splitConOuter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            this.splitContainerCharts.Panel1.ResumeLayout(false);
-            this.splitContainerCharts.Panel2.ResumeLayout(false);
-            this.splitContainerCharts.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).EndInit();
-            this.splitContainerCharts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,6 +438,10 @@
         private System.Windows.Forms.SplitContainer splitContainerCharts;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label3;
+        private MonthComboBox comboFromMonth;
+        private System.Windows.Forms.Label label5;
+        private MonthComboBox comboToMonth;
+        private System.Windows.Forms.Label label4;
     }
 }
 
