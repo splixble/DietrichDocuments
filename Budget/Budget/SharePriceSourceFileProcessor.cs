@@ -33,21 +33,6 @@ namespace Budget
             _SharePriceAdapter.Connection = Program.DbConnection;
         }
 
-        /* DIAG no need, remove
-        public override void ProcessManualLines(string[] textLines)
-        {
-            switch (_SourceFileFormat)
-            {
-                case SourceFileFormats.YahooHistoricalData:
-                    ProcessYahooHistoricalDataLines(textLines);
-                    break;
-                default:
-                    MessageBox.Show("Cannot process text if source file format of account is " + _SourceFileFormat.ToString());
-                    break;
-            }
-        }
-        */
-
         protected override void FillImportedTable()
         {
             _SharePriceAdapter.Fill(_SharePriceTable);

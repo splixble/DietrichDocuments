@@ -105,25 +105,8 @@ namespace Budget
 
             // DIAG write a PrimaryKeyValue member thing to generate a Filter stmt -- this'll work fine with int, but not share stuff 
 
-            /* REMOVE DIAG
-            // update to include changed duplicate rows:
-            string dupBudgetIDsList = "";
-            foreach (PrimaryKeyValue dupKey in budgetProcessor.MatchingPrimaryKeys)
-            {
-                if (dupBudgetIDsList != "")
-                    dupBudgetIDsList += ",";
-                dupBudgetIDsList += dupKey.ToString();
-            }
-
-            */
-
             UpdateBindingSourceFilter();
 
-            /* REMOVE DIAG
-            budgetCtrl.BindingSrc.Filter = "ID<0";
-            if (dupBudgetIDsList.Length > 0) 
-                budgetCtrl.BindingSrc.Filter += " OR ID IN (" + dupBudgetIDsList + ")";
-            */
             budgetCtrl.Refresh();
             sharePriceCtrl.Refresh();
 

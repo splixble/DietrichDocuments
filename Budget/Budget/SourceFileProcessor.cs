@@ -186,17 +186,6 @@ namespace Budget
                 string dupIDList = "";
                 foreach (DataRow dupRow in dupRows)
                 {
-                    /* DIAG remove
-                    string keyValueString = "";
-                    foreach (DataColumn keyColumn in ImportedTable.PrimaryKey)
-                    {
-                        string keyVal = dupRowView.Row[keyColumn].ToString();
-                        if (keyValueString != "")
-                            keyValueString += ", ";
-                        keyValueString += keyVal.ToString();
-                    }
-                    */
-
                     if (dupIDList != "")
                         dupIDList += "; ";
                     dupIDList += new PrimaryKeyValue(dupRow).ToString();
@@ -385,7 +374,6 @@ namespace Budget
         {
             string filterText = "";
             foreach (DataRow dataRow in UpdatedImportedRows.Keys)
-            // DIAG remove foreach (PrimaryKeyValue keyVal in MatchingPrimaryKeys)
             {
                 PrimaryKeyValue keyVal = new PrimaryKeyValue(dataRow);
                 if (filterText != "")

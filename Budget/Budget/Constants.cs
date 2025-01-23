@@ -14,20 +14,15 @@ namespace Budget
             public const char Investment = 'I';
             public const char BothValue = '-';
         }
-        public static class GroupingType
-        {
-            public const string BalanceTotal = "L";
-            public const string BalanceOfAccount = "A";
-        }
         public static class GroupingName
         {
             public const string FundBalanceChange = "FBC";
         }
         public static class GroupingKey
         {
-            public const string Income = "gIN";
-            public const string Expense = "e";
-            public const string Balance = "b";
+            public const string Income = "TIN_";
+            public const string Expenses = "E_";
+            public const string BalanceTotal = "B_";
         }
     }
 }

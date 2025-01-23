@@ -28,8 +28,6 @@ namespace Budget
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
-        // DIAG  remove MainDataSet.GroupingsInOrderDataTable _GroupingsInOrderTbl = new MainDataSet.GroupingsInOrderDataTable();
-        // DIAG  remove from dataset  MainDataSet.GroupingsInOrderDataTable
         MainDataSet.ViewGroupingsDataTable _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
         MainDataSetTableAdapters.ViewGroupingsTableAdapter _GroupingsAdap = new MainDataSetTableAdapters.ViewGroupingsTableAdapter();  
 
@@ -69,60 +67,30 @@ namespace Budget
             // Remove all nodes, of they exist:
             tvGroupings.Nodes.Clear();
 
-            // DIAG REMOVE ParentGroupingLabel field from BudgetTypeGroupings table, as soon as I know it works! Starting with the DataTable object.
-            // DIAG and remove _GroupingsInOrderTbl from this
-
-
-
-            // DIAG Replace this all with a query of ViewGroupings (which maybe should be in LookupTables), with ParentGroupingLabel removed.
-            // And check that there's at least one row in the ViewBudgetWithMonthly table with a Grouping value, before adding it to tree ctrl.
+            // DIAG check that there's at least one row in the ViewBudgetWithMonthly table with a Grouping value, before adding it to tree ctrl.
             // And ordering s/b done in this code, at the tree node construction code.
 
             // Requery the table: 
             _GroupingsTbl.Clear();
             _GroupingsAdap.FillInSelectorOrder(_GroupingsTbl);
 
-
-            /* DIAG REMOVE:
-            _GroupingsInOrderTbl.Clear();
-            string groupingsInOrderSelectStr = "SELECT DISTINCT TOP (100) PERCENT Grouping, "
-                + "CASE [grouping] WHEN 'Income' THEN 1 WHEN 'Expenses' THEN 2 ELSE 3 END AS OrderNum, "
-                + "GroupingType, dbo.BudgetTypeGroupings.ParentGroupingLabel "
-                + "FROM ViewBudgetWithMonthly left join BudgetTypeGroupings on ViewBudgetWithMonthly.Grouping = BudgetTypeGroupings.GroupingLabel "
-                + "WHERE (Grouping IS NOT NULL) AND AccountOwner = '" + AccountOwner + "'";
-            if (AccountType != Constants.AccountType.BothValue)
-                groupingsInOrderSelectStr += "AND AccountType = '" + AccountType + "'";
-            groupingsInOrderSelectStr += "ORDER BY OrderNum, Grouping";
-            // DIAG get graph colors from Grouping and Account tables.
-
-            using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
-            {
-                // reportDataConn.Open();
-                SqlCommand groupingsInOrderCmd = new SqlCommand();
-                // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                groupingsInOrderCmd.Connection = Program.DbConnection;
-                groupingsInOrderCmd.CommandText = groupingsInOrderSelectStr;
-
-                SqlDataAdapter groupingsInOrderAdap = new SqlDataAdapter(groupingsInOrderCmd);
-                groupingsInOrderAdap.Fill(_GroupingsInOrderTbl);
-            }
-            */
-
             // Populate Groupings tree, and save certain nodes for future reference:
+
+            // DIAG should rename tables BudgetTypeGroupings and BudgetTypePattern to TransacType and TransacTypePattern at some point
 
             // First, add parent nodes:
             foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {
-                if (groupingRow.IsParentGroupingNull())
+                if (groupingRow.IsParentKeyNull())
                 // DIAG was: if (groupingRow.IsParentGroupingLabelNull() && groupingRow.GroupingType != Constants.GroupingType.BalanceOfAccount)
                 {
-                    TreeNode node = tvGroupings.Nodes.Add(groupingRow.Grouping, groupingRow.Grouping);
+                    TreeNode node = tvGroupings.Nodes.Add(groupingRow.GroupingKey, groupingRow.GroupingLabel);
 
-                    if (groupingRow.GroupingKey == Constants.GroupingType.BalanceTotal)
+                    if (groupingRow.GroupingKey == Constants.GroupingKey.BalanceTotal)
                         _BalanceTotalNode = node;
                     else if (groupingRow.GroupingKey == Constants.GroupingKey.Income)
                         _IncomeNode = node;
-                    else if (groupingRow.GroupingKey == Constants.GroupingKey.Expense)
+                    else if (groupingRow.GroupingKey == Constants.GroupingKey.Expenses)
                         _ExpensesNode = node;
                 }
             }
@@ -131,17 +99,19 @@ namespace Budget
             foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {
                 TreeNode parentNode = null;
-                if (!groupingRow.IsParentGroupingNull())
+                if (!groupingRow.IsParentKeyNull())
                 {
-                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentGrouping, false); // search only top level
+                    TreeNode[] parentNodeArray = tvGroupings.Nodes.Find(groupingRow.ParentKey, false); // search only top level
                     if (parentNodeArray.Length > 0) // should never be 0, or >1
                         parentNode = parentNodeArray[0];
                 }
+                /* REMOVE -- s/n need to make this s special case
                 else if (groupingRow.GroupingType == Constants.GroupingType.BalanceOfAccount)
                     parentNode = _BalanceTotalNode;
+                */
 
                 if (parentNode != null)
-                    parentNode.Nodes.Add(groupingRow.GroupingKey, groupingRow.Grouping);
+                    parentNode.Nodes.Add(groupingRow.GroupingKey, groupingRow.GroupingLabel);
             }
 
             // Check initial default groupings:
@@ -213,12 +183,8 @@ namespace Budget
 
                     SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
                     reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
-                    // DIAG Do more work on this performance bottleneck
                 }
             }
-
-
-
 
             RefreshDisplay();
         }
@@ -329,9 +295,9 @@ namespace Budget
  
             if (groupingKey == Constants.GroupingKey.Income)
                 return Color.Black;
-            else if (groupingKey == Constants.GroupingKey.Expense)
+            else if (groupingKey == Constants.GroupingKey.Expenses)
                 return Color.Red;
-            else if (groupingKey == Constants.GroupingKey.Balance)
+            else if (groupingKey == Constants.GroupingKey.BalanceTotal)
                 return Color.Blue;
             else
                 return colorGenerator.GetNextColor();
@@ -351,12 +317,12 @@ namespace Budget
 
             gridMain.RowHeadersWidth = 120;
 
-            SortedList<DateTime, object> cols = new SortedList<DateTime, object>();
-            SortedList<string, object> rows = new SortedList<string, object>();
+            SortedList<DateTime, object> cols = new SortedList<DateTime, object>(); // columns by Month -?
+            SortedList<string, object> rows = new SortedList<string, object>(); // rows by GroupingKey - ?
             foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
             {
-                // if (!tblRow.IsGroupingNull()) grouping cannot be null... why is this here in the 1st place?
-                    rows[tblRow.GroupingWithParent] = tblRow.Grouping;
+                // if (!tblRow.IsGroupingKeyNull()) grouping cannot be null... why is this here in the 1st place?
+                    rows[tblRow.GroupingKey] = tblRow.GroupingKey;
 
                 cols[tblRow.TrMonth] = null;
             }
@@ -396,11 +362,13 @@ namespace Budget
             {
                 // if (!tblRow.IsGroupingNull()) grouping cannot be null... why is this here in the 1st place?
                 {
-                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingWithParent]].Value = tblRow.AmountNormalized;
+                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
                 }
 
+                /* DIAG rework this... if it's even neccedary; otherwise remove
                 if (tblRow.IsGroupingParentNull())
                     gridMain.Rows[rowIndices[tblRow.GroupingWithParent]].DefaultCellStyle.BackColor = Color.PaleTurquoise;
+                */
             }
 
         }
