@@ -52,11 +52,11 @@
             this.ForIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.forIgnoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.budgetTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transacTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
             this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
             this.label1 = new System.Windows.Forms.Label();
-            this.budgetTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.BudgetTypePatternTableAdapter();
+            this.transacTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.TransacTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
             this.btnApplyToSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -64,7 +64,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingPatterns)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetTypePatternBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transacTypePatternBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,7 +253,7 @@
             this.ForIncomeColumn,
             this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
-            this.gridGroupingPatterns.DataSource = this.budgetTypePatternBindingSource;
+            this.gridGroupingPatterns.DataSource = this.transacTypePatternBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -315,10 +315,10 @@
             this.ColumnApply.Text = "Apply";
             this.ColumnApply.UseColumnTextForButtonValue = true;
             // 
-            // budgetTypePatternBindingSource
+            // transacTypePatternBindingSource
             // 
-            this.budgetTypePatternBindingSource.DataMember = "BudgetTypePattern";
-            this.budgetTypePatternBindingSource.DataSource = this.mainDataSet1;
+            this.transacTypePatternBindingSource.DataMember = "TransacTypePattern";
+            this.transacTypePatternBindingSource.DataSource = this.mainDataSet1;
             // 
             // mainDataSet1
             // 
@@ -346,9 +346,9 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Budget Items";
             // 
-            // budgetTypePatternTableAdapter
+            // transacTypePatternTableAdapter
             // 
-            this.budgetTypePatternTableAdapter.ClearBeforeFill = true;
+            this.transacTypePatternTableAdapter.ClearBeforeFill = true;
             // 
             // button3
             // 
@@ -388,7 +388,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingPatterns)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetTypePatternBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transacTypePatternBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet1)).EndInit();
             this.ResumeLayout(false);
 
@@ -404,8 +404,8 @@
         private System.Windows.Forms.Button btnSaveGroupingPatterns;
         private System.Windows.Forms.Label label2;
         private MainDataSet mainDataSet1;
-        private System.Windows.Forms.BindingSource budgetTypePatternBindingSource;
-        private MainDataSetTableAdapters.BudgetTypePatternTableAdapter budgetTypePatternTableAdapter;
+        private System.Windows.Forms.BindingSource transacTypePatternBindingSource;
+        private MainDataSetTableAdapters.TransacTypePatternTableAdapter transacTypePatternTableAdapter;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private BudgetEditingGridCtrl budgetEditingGridCtrl1;

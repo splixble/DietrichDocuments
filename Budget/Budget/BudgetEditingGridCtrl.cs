@@ -43,7 +43,7 @@ namespace Budget
 
             budgetTableAdapter.Connection = Program.DbConnection;
 
-            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
         }

@@ -29,11 +29,11 @@ namespace Budget
             if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
-            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
 
-            comboTrType.DataSource = Program.LookupTableSet.MainDataSet.BudgetTypeGroupings;
+            comboTrType.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             comboTrType.ValueMember = "TrTypeID";
             comboTrType.DisplayMember = "CodeAndName";           
 
@@ -52,17 +52,17 @@ namespace Budget
 
         void LoadGroupingPatternTable()
         {
-            budgetTypePatternTableAdapter.Fill(mainDataSet1.BudgetTypePattern);
+            transacTypePatternTableAdapter.Fill(mainDataSet1.TransacTypePattern);
         }
 
 
         private void btnApplyTypes_Click(object sender, EventArgs e)
         {
-            foreach (MainDataSet.BudgetTypePatternRow patternRow in mainDataSet1.BudgetTypePattern)
+            foreach (MainDataSet.TransacTypePatternRow patternRow in mainDataSet1.TransacTypePattern)
                 ApplyPatternGrouping(patternRow);
         }
 
-        void ApplyPatternGrouping(MainDataSet.BudgetTypePatternRow patternRow)
+        void ApplyPatternGrouping(MainDataSet.TransacTypePatternRow patternRow)
         {
             ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForIncome, patternRow.ForIgnore);
         }
@@ -104,7 +104,7 @@ namespace Budget
                 if (e.ColumnIndex == ColumnApply.Index)
                 {
                     // Apply the pattern grouping:
-                    MainDataSet.BudgetTypePatternRow patternRow = (gridGroupingPatterns.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.BudgetTypePatternRow;
+                    MainDataSet.TransacTypePatternRow patternRow = (gridGroupingPatterns.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.TransacTypePatternRow;
                     ApplyPatternGrouping(patternRow);
                 }
             }
@@ -112,7 +112,7 @@ namespace Budget
 
         private void btnSaveGroupingPatterns_Click(object sender, EventArgs e)
         {
-            budgetTypePatternTableAdapter.Update(mainDataSet1.BudgetTypePattern);
+            transacTypePatternTableAdapter.Update(mainDataSet1.TransacTypePattern);
             LoadGroupingPatternTable();
             gridGroupingPatterns.Refresh();
         }

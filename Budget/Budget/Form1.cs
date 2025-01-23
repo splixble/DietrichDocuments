@@ -76,8 +76,6 @@ namespace Budget
 
             // Populate Groupings tree, and save certain nodes for future reference:
 
-            // DIAG should rename tables BudgetTypeGroupings and BudgetTypePattern to TransacType and TransacTypePattern at some point
-
             // First, add parent nodes:
             foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {

@@ -18,7 +18,7 @@ namespace Budget
         SourceFileFormatTableAdapter _SourceFileFormatAdapter = new SourceFileFormatTableAdapter();
         AccountTableAdapter _BudgetAccountAdapter = new AccountTableAdapter();
         FundTableAdapter _FundAdapter = new FundTableAdapter();
-        BudgetTypeGroupingsTableAdapter _GroupingsAdapter = new BudgetTypeGroupingsTableAdapter();
+        TransacTypeTableAdapter _TransacTypeAdapter = new TransacTypeTableAdapter();
         AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
         AccountTypeTableAdapter _AccountTypeAdapter = new AccountTypeTableAdapter();
         ViewAccountTypesWithAllOptionTableAdapter _ViewAccountTypesWithAllOptionAdapter = new ViewAccountTypesWithAllOptionTableAdapter();
@@ -69,8 +69,8 @@ namespace Budget
             _FundAdapter.Connection = Program.DbConnection; 
             _FundAdapter.Fill(_MainDataSet.Fund);
 
-            _GroupingsAdapter.Connection = Program.DbConnection;
-            _GroupingsAdapter.Fill(_MainDataSet.BudgetTypeGroupings);
+            _TransacTypeAdapter.Connection = Program.DbConnection;
+            _TransacTypeAdapter.Fill(_MainDataSet.TransacType);
 
             _AccountOwnerAdapter.Connection = Program.DbConnection;
             _AccountOwnerAdapter.Fill(_MainDataSet.AccountOwner);

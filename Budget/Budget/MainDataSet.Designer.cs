@@ -24,11 +24,7 @@ namespace Budget {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class MainDataSet : global::System.Data.DataSet {
         
-        private BudgetTypePatternDataTable tableBudgetTypePattern;
-        
         private ViewBudgetGroupingsInOrderDataTable tableViewBudgetGroupingsInOrder;
-        
-        private BudgetTypeGroupingsDataTable tableBudgetTypeGroupings;
         
         private AccountOwnerDataTable tableAccountOwner;
         
@@ -62,13 +58,15 @@ namespace Budget {
         
         private ViewGroupingsDataTable tableViewGroupings;
         
+        private TransacTypeDataTable tableTransacType;
+        
+        private TransacTypePatternDataTable tableTransacTypePattern;
+        
         private GroupingsInOrderDataTable tableGroupingsInOrder;
         
         private global::System.Data.DataRelation relationFK_SharePrice_Fund;
         
         private global::System.Data.DataRelation relationFK_BudgetSourceFileItems_BudgetSourceFile1;
-        
-        private global::System.Data.DataRelation relationFK_Budget_BudgetTypeGroupings1;
         
         private global::System.Data.DataRelation relationFK_ShareQuantity_BudgetAccount1;
         
@@ -81,6 +79,12 @@ namespace Budget {
         private global::System.Data.DataRelation relationFK_BudgetAccount_BudgetSourceFileFormat2;
         
         private global::System.Data.DataRelation relationFK_BudgetAccount_Fund1;
+        
+        private global::System.Data.DataRelation relationFK_Budget_BudgetTypeGroupings;
+        
+        private global::System.Data.DataRelation relationFK_BudgetTypeGroupings_BudgetTypeGroupings;
+        
+        private global::System.Data.DataRelation relationFK_BudgetTypePattern_BudgetTypeGroupings;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -110,14 +114,8 @@ namespace Budget {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["BudgetTypePattern"] != null)) {
-                    base.Tables.Add(new BudgetTypePatternDataTable(ds.Tables["BudgetTypePattern"]));
-                }
                 if ((ds.Tables["ViewBudgetGroupingsInOrder"] != null)) {
                     base.Tables.Add(new ViewBudgetGroupingsInOrderDataTable(ds.Tables["ViewBudgetGroupingsInOrder"]));
-                }
-                if ((ds.Tables["BudgetTypeGroupings"] != null)) {
-                    base.Tables.Add(new BudgetTypeGroupingsDataTable(ds.Tables["BudgetTypeGroupings"]));
                 }
                 if ((ds.Tables["AccountOwner"] != null)) {
                     base.Tables.Add(new AccountOwnerDataTable(ds.Tables["AccountOwner"]));
@@ -167,6 +165,12 @@ namespace Budget {
                 if ((ds.Tables["ViewGroupings"] != null)) {
                     base.Tables.Add(new ViewGroupingsDataTable(ds.Tables["ViewGroupings"]));
                 }
+                if ((ds.Tables["TransacType"] != null)) {
+                    base.Tables.Add(new TransacTypeDataTable(ds.Tables["TransacType"]));
+                }
+                if ((ds.Tables["TransacTypePattern"] != null)) {
+                    base.Tables.Add(new TransacTypePatternDataTable(ds.Tables["TransacTypePattern"]));
+                }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
                 }
@@ -192,29 +196,9 @@ namespace Budget {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public BudgetTypePatternDataTable BudgetTypePattern {
-            get {
-                return this.tableBudgetTypePattern;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ViewBudgetGroupingsInOrderDataTable ViewBudgetGroupingsInOrder {
             get {
                 return this.tableViewBudgetGroupingsInOrder;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public BudgetTypeGroupingsDataTable BudgetTypeGroupings {
-            get {
-                return this.tableBudgetTypeGroupings;
             }
         }
         
@@ -382,6 +366,26 @@ namespace Budget {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TransacTypeDataTable TransacType {
+            get {
+                return this.tableTransacType;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public TransacTypePatternDataTable TransacTypePattern {
+            get {
+                return this.tableTransacTypePattern;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GroupingsInOrderDataTable GroupingsInOrder {
             get {
                 return this.tableGroupingsInOrder;
@@ -455,14 +459,8 @@ namespace Budget {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["BudgetTypePattern"] != null)) {
-                    base.Tables.Add(new BudgetTypePatternDataTable(ds.Tables["BudgetTypePattern"]));
-                }
                 if ((ds.Tables["ViewBudgetGroupingsInOrder"] != null)) {
                     base.Tables.Add(new ViewBudgetGroupingsInOrderDataTable(ds.Tables["ViewBudgetGroupingsInOrder"]));
-                }
-                if ((ds.Tables["BudgetTypeGroupings"] != null)) {
-                    base.Tables.Add(new BudgetTypeGroupingsDataTable(ds.Tables["BudgetTypeGroupings"]));
                 }
                 if ((ds.Tables["AccountOwner"] != null)) {
                     base.Tables.Add(new AccountOwnerDataTable(ds.Tables["AccountOwner"]));
@@ -512,6 +510,12 @@ namespace Budget {
                 if ((ds.Tables["ViewGroupings"] != null)) {
                     base.Tables.Add(new ViewGroupingsDataTable(ds.Tables["ViewGroupings"]));
                 }
+                if ((ds.Tables["TransacType"] != null)) {
+                    base.Tables.Add(new TransacTypeDataTable(ds.Tables["TransacType"]));
+                }
+                if ((ds.Tables["TransacTypePattern"] != null)) {
+                    base.Tables.Add(new TransacTypePatternDataTable(ds.Tables["TransacTypePattern"]));
+                }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
                 }
@@ -548,22 +552,10 @@ namespace Budget {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableBudgetTypePattern = ((BudgetTypePatternDataTable)(base.Tables["BudgetTypePattern"]));
-            if ((initTable == true)) {
-                if ((this.tableBudgetTypePattern != null)) {
-                    this.tableBudgetTypePattern.InitVars();
-                }
-            }
             this.tableViewBudgetGroupingsInOrder = ((ViewBudgetGroupingsInOrderDataTable)(base.Tables["ViewBudgetGroupingsInOrder"]));
             if ((initTable == true)) {
                 if ((this.tableViewBudgetGroupingsInOrder != null)) {
                     this.tableViewBudgetGroupingsInOrder.InitVars();
-                }
-            }
-            this.tableBudgetTypeGroupings = ((BudgetTypeGroupingsDataTable)(base.Tables["BudgetTypeGroupings"]));
-            if ((initTable == true)) {
-                if ((this.tableBudgetTypeGroupings != null)) {
-                    this.tableBudgetTypeGroupings.InitVars();
                 }
             }
             this.tableAccountOwner = ((AccountOwnerDataTable)(base.Tables["AccountOwner"]));
@@ -662,6 +654,18 @@ namespace Budget {
                     this.tableViewGroupings.InitVars();
                 }
             }
+            this.tableTransacType = ((TransacTypeDataTable)(base.Tables["TransacType"]));
+            if ((initTable == true)) {
+                if ((this.tableTransacType != null)) {
+                    this.tableTransacType.InitVars();
+                }
+            }
+            this.tableTransacTypePattern = ((TransacTypePatternDataTable)(base.Tables["TransacTypePattern"]));
+            if ((initTable == true)) {
+                if ((this.tableTransacTypePattern != null)) {
+                    this.tableTransacTypePattern.InitVars();
+                }
+            }
             this.tableGroupingsInOrder = ((GroupingsInOrderDataTable)(base.Tables["GroupingsInOrder"]));
             if ((initTable == true)) {
                 if ((this.tableGroupingsInOrder != null)) {
@@ -670,13 +674,15 @@ namespace Budget {
             }
             this.relationFK_SharePrice_Fund = this.Relations["FK_SharePrice_Fund"];
             this.relationFK_BudgetSourceFileItems_BudgetSourceFile1 = this.Relations["FK_BudgetSourceFileItems_BudgetSourceFile1"];
-            this.relationFK_Budget_BudgetTypeGroupings1 = this.Relations["FK_Budget_BudgetTypeGroupings1"];
             this.relationFK_ShareQuantity_BudgetAccount1 = this.Relations["FK_ShareQuantity_BudgetAccount1"];
             this.relationFK_BudgetAccount_AccountOwner1 = this.Relations["FK_BudgetAccount_AccountOwner1"];
             this.relationFK_BudgetAccount_AccountType1 = this.Relations["FK_BudgetAccount_AccountType1"];
             this.relationFK_BudgetAccount_BudgetSourceFileFormat1 = this.Relations["FK_BudgetAccount_BudgetSourceFileFormat1"];
             this.relationFK_BudgetAccount_BudgetSourceFileFormat2 = this.Relations["FK_BudgetAccount_BudgetSourceFileFormat2"];
             this.relationFK_BudgetAccount_Fund1 = this.Relations["FK_BudgetAccount_Fund1"];
+            this.relationFK_Budget_BudgetTypeGroupings = this.Relations["FK_Budget_BudgetTypeGroupings"];
+            this.relationFK_BudgetTypeGroupings_BudgetTypeGroupings = this.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"];
+            this.relationFK_BudgetTypePattern_BudgetTypeGroupings = this.Relations["FK_BudgetTypePattern_BudgetTypeGroupings"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -687,12 +693,8 @@ namespace Budget {
             this.Namespace = "http://tempuri.org/MainDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableBudgetTypePattern = new BudgetTypePatternDataTable();
-            base.Tables.Add(this.tableBudgetTypePattern);
             this.tableViewBudgetGroupingsInOrder = new ViewBudgetGroupingsInOrderDataTable();
             base.Tables.Add(this.tableViewBudgetGroupingsInOrder);
-            this.tableBudgetTypeGroupings = new BudgetTypeGroupingsDataTable();
-            base.Tables.Add(this.tableBudgetTypeGroupings);
             this.tableAccountOwner = new AccountOwnerDataTable();
             base.Tables.Add(this.tableAccountOwner);
             this.tableViewAccountTypesWithAllOption = new ViewAccountTypesWithAllOptionDataTable();
@@ -725,6 +727,10 @@ namespace Budget {
             base.Tables.Add(this.tableViewBudgetMonthlyReport);
             this.tableViewGroupings = new ViewGroupingsDataTable();
             base.Tables.Add(this.tableViewGroupings);
+            this.tableTransacType = new TransacTypeDataTable();
+            base.Tables.Add(this.tableTransacType);
+            this.tableTransacTypePattern = new TransacTypePatternDataTable();
+            base.Tables.Add(this.tableTransacTypePattern);
             this.tableGroupingsInOrder = new GroupingsInOrderDataTable();
             base.Tables.Add(this.tableGroupingsInOrder);
             this.relationFK_SharePrice_Fund = new global::System.Data.DataRelation("FK_SharePrice_Fund", new global::System.Data.DataColumn[] {
@@ -735,10 +741,6 @@ namespace Budget {
                         this.tableSourceFile.FileIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableSourceFileItems.SourceFileColumn}, false);
             this.Relations.Add(this.relationFK_BudgetSourceFileItems_BudgetSourceFile1);
-            this.relationFK_Budget_BudgetTypeGroupings1 = new global::System.Data.DataRelation("FK_Budget_BudgetTypeGroupings1", new global::System.Data.DataColumn[] {
-                        this.tableBudgetTypeGroupings.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTransac.TrTypeColumn}, false);
-            this.Relations.Add(this.relationFK_Budget_BudgetTypeGroupings1);
             this.relationFK_ShareQuantity_BudgetAccount1 = new global::System.Data.DataRelation("FK_ShareQuantity_BudgetAccount1", new global::System.Data.DataColumn[] {
                         this.tableAccount.AccountIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableShareQuantity.SQAccountColumn}, false);
@@ -763,23 +765,23 @@ namespace Budget {
                         this.tableFund.FundIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableAccount.FundColumn}, false);
             this.Relations.Add(this.relationFK_BudgetAccount_Fund1);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeBudgetTypePattern() {
-            return false;
+            this.relationFK_Budget_BudgetTypeGroupings = new global::System.Data.DataRelation("FK_Budget_BudgetTypeGroupings", new global::System.Data.DataColumn[] {
+                        this.tableTransacType.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTransac.TrTypeColumn}, false);
+            this.Relations.Add(this.relationFK_Budget_BudgetTypeGroupings);
+            this.relationFK_BudgetTypeGroupings_BudgetTypeGroupings = new global::System.Data.DataRelation("FK_BudgetTypeGroupings_BudgetTypeGroupings", new global::System.Data.DataColumn[] {
+                        this.tableTransacType.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTransacType.ParentGroupingIDColumn}, false);
+            this.Relations.Add(this.relationFK_BudgetTypeGroupings_BudgetTypeGroupings);
+            this.relationFK_BudgetTypePattern_BudgetTypeGroupings = new global::System.Data.DataRelation("FK_BudgetTypePattern_BudgetTypeGroupings", new global::System.Data.DataColumn[] {
+                        this.tableTransacType.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTransacTypePattern.TrTypeColumn}, false);
+            this.Relations.Add(this.relationFK_BudgetTypePattern_BudgetTypeGroupings);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeViewBudgetGroupingsInOrder() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeBudgetTypeGroupings() {
             return false;
         }
         
@@ -881,6 +883,18 @@ namespace Budget {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeTransacType() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeTransacTypePattern() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeGroupingsInOrder() {
             return false;
         }
@@ -941,13 +955,7 @@ namespace Budget {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void BudgetTypePatternRowChangeEventHandler(object sender, BudgetTypePatternRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ViewBudgetGroupingsInOrderRowChangeEventHandler(object sender, ViewBudgetGroupingsInOrderRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void BudgetTypeGroupingsRowChangeEventHandler(object sender, BudgetTypeGroupingsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void AccountOwnerRowChangeEventHandler(object sender, AccountOwnerRowChangeEvent e);
@@ -998,332 +1006,13 @@ namespace Budget {
         public delegate void ViewGroupingsRowChangeEventHandler(object sender, ViewGroupingsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void GroupingsInOrderRowChangeEventHandler(object sender, GroupingsInOrderRowChangeEvent e);
+        public delegate void TransacTypeRowChangeEventHandler(object sender, TransacTypeRowChangeEvent e);
         
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class BudgetTypePatternDataTable : global::System.Data.TypedTableBase<BudgetTypePatternRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnPattern;
-            
-            private global::System.Data.DataColumn columnTrType;
-            
-            private global::System.Data.DataColumn columnForIgnore;
-            
-            private global::System.Data.DataColumn columnForIncome;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternDataTable() {
-                this.TableName = "BudgetTypePattern";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BudgetTypePatternDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected BudgetTypePatternDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PatternColumn {
-                get {
-                    return this.columnPattern;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TrTypeColumn {
-                get {
-                    return this.columnTrType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ForIgnoreColumn {
-                get {
-                    return this.columnForIgnore;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ForIncomeColumn {
-                get {
-                    return this.columnForIncome;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow this[int index] {
-                get {
-                    return ((BudgetTypePatternRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypePatternRowChangeEventHandler BudgetTypePatternRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypePatternRowChangeEventHandler BudgetTypePatternRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypePatternRowChangeEventHandler BudgetTypePatternRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypePatternRowChangeEventHandler BudgetTypePatternRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddBudgetTypePatternRow(BudgetTypePatternRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow AddBudgetTypePatternRow(string Pattern, string TrType, bool ForIgnore, bool ForIncome) {
-                BudgetTypePatternRow rowBudgetTypePatternRow = ((BudgetTypePatternRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Pattern,
-                        TrType,
-                        ForIgnore,
-                        ForIncome};
-                rowBudgetTypePatternRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowBudgetTypePatternRow);
-                return rowBudgetTypePatternRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow FindByID(int ID) {
-                return ((BudgetTypePatternRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                BudgetTypePatternDataTable cln = ((BudgetTypePatternDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new BudgetTypePatternDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnPattern = base.Columns["Pattern"];
-                this.columnTrType = base.Columns["TrType"];
-                this.columnForIgnore = base.Columns["ForIgnore"];
-                this.columnForIncome = base.Columns["ForIncome"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnPattern = new global::System.Data.DataColumn("Pattern", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPattern);
-                this.columnTrType = new global::System.Data.DataColumn("TrType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrType);
-                this.columnForIgnore = new global::System.Data.DataColumn("ForIgnore", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnForIgnore);
-                this.columnForIncome = new global::System.Data.DataColumn("ForIncome", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnForIncome);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnPattern.AllowDBNull = false;
-                this.columnPattern.MaxLength = 2147483647;
-                this.columnTrType.MaxLength = 8;
-                this.columnForIgnore.AllowDBNull = false;
-                this.columnForIgnore.DefaultValue = ((bool)(false));
-                this.columnForIncome.AllowDBNull = false;
-                this.columnForIncome.DefaultValue = ((bool)(false));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow NewBudgetTypePatternRow() {
-                return ((BudgetTypePatternRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new BudgetTypePatternRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(BudgetTypePatternRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.BudgetTypePatternRowChanged != null)) {
-                    this.BudgetTypePatternRowChanged(this, new BudgetTypePatternRowChangeEvent(((BudgetTypePatternRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.BudgetTypePatternRowChanging != null)) {
-                    this.BudgetTypePatternRowChanging(this, new BudgetTypePatternRowChangeEvent(((BudgetTypePatternRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.BudgetTypePatternRowDeleted != null)) {
-                    this.BudgetTypePatternRowDeleted(this, new BudgetTypePatternRowChangeEvent(((BudgetTypePatternRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.BudgetTypePatternRowDeleting != null)) {
-                    this.BudgetTypePatternRowDeleting(this, new BudgetTypePatternRowChangeEvent(((BudgetTypePatternRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveBudgetTypePatternRow(BudgetTypePatternRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "BudgetTypePatternDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void TransacTypePatternRowChangeEventHandler(object sender, TransacTypePatternRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void GroupingsInOrderRowChangeEventHandler(object sender, GroupingsInOrderRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1619,297 +1308,6 @@ namespace Budget {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ViewBudgetGroupingsInOrderDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class BudgetTypeGroupingsDataTable : global::System.Data.TypedTableBase<BudgetTypeGroupingsRow> {
-            
-            private global::System.Data.DataColumn columnTRTypeID;
-            
-            private global::System.Data.DataColumn columnGroupingLabel;
-            
-            private global::System.Data.DataColumn columnCodeAndName;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsDataTable() {
-                this.TableName = "BudgetTypeGroupings";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BudgetTypeGroupingsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected BudgetTypeGroupingsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TRTypeIDColumn {
-                get {
-                    return this.columnTRTypeID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn GroupingLabelColumn {
-                get {
-                    return this.columnGroupingLabel;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CodeAndNameColumn {
-                get {
-                    return this.columnCodeAndName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow this[int index] {
-                get {
-                    return ((BudgetTypeGroupingsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypeGroupingsRowChangeEventHandler BudgetTypeGroupingsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypeGroupingsRowChangeEventHandler BudgetTypeGroupingsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypeGroupingsRowChangeEventHandler BudgetTypeGroupingsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BudgetTypeGroupingsRowChangeEventHandler BudgetTypeGroupingsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddBudgetTypeGroupingsRow(BudgetTypeGroupingsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow AddBudgetTypeGroupingsRow(string TRTypeID, string GroupingLabel, string CodeAndName) {
-                BudgetTypeGroupingsRow rowBudgetTypeGroupingsRow = ((BudgetTypeGroupingsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        TRTypeID,
-                        GroupingLabel,
-                        CodeAndName};
-                rowBudgetTypeGroupingsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowBudgetTypeGroupingsRow);
-                return rowBudgetTypeGroupingsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow FindByTRTypeID(string TRTypeID) {
-                return ((BudgetTypeGroupingsRow)(this.Rows.Find(new object[] {
-                            TRTypeID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                BudgetTypeGroupingsDataTable cln = ((BudgetTypeGroupingsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new BudgetTypeGroupingsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnTRTypeID = base.Columns["TRTypeID"];
-                this.columnGroupingLabel = base.Columns["GroupingLabel"];
-                this.columnCodeAndName = base.Columns["CodeAndName"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnTRTypeID = new global::System.Data.DataColumn("TRTypeID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTRTypeID);
-                this.columnGroupingLabel = new global::System.Data.DataColumn("GroupingLabel", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGroupingLabel);
-                this.columnCodeAndName = new global::System.Data.DataColumn("CodeAndName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCodeAndName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTRTypeID}, true));
-                this.columnTRTypeID.AllowDBNull = false;
-                this.columnTRTypeID.Unique = true;
-                this.columnTRTypeID.MaxLength = 8;
-                this.columnGroupingLabel.AllowDBNull = false;
-                this.columnGroupingLabel.MaxLength = 250;
-                this.columnCodeAndName.ReadOnly = true;
-                this.columnCodeAndName.MaxLength = 255;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow NewBudgetTypeGroupingsRow() {
-                return ((BudgetTypeGroupingsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new BudgetTypeGroupingsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(BudgetTypeGroupingsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.BudgetTypeGroupingsRowChanged != null)) {
-                    this.BudgetTypeGroupingsRowChanged(this, new BudgetTypeGroupingsRowChangeEvent(((BudgetTypeGroupingsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.BudgetTypeGroupingsRowChanging != null)) {
-                    this.BudgetTypeGroupingsRowChanging(this, new BudgetTypeGroupingsRowChangeEvent(((BudgetTypeGroupingsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.BudgetTypeGroupingsRowDeleted != null)) {
-                    this.BudgetTypeGroupingsRowDeleted(this, new BudgetTypeGroupingsRowChangeEvent(((BudgetTypeGroupingsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.BudgetTypeGroupingsRowDeleting != null)) {
-                    this.BudgetTypeGroupingsRowDeleting(this, new BudgetTypeGroupingsRowChangeEvent(((BudgetTypeGroupingsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveBudgetTypeGroupingsRow(BudgetTypeGroupingsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "BudgetTypeGroupingsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -5458,7 +4856,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, BudgetTypeGroupingsRow parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings1, string TrCode, decimal Amount, bool Ignore, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate) {
+            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, TransacTypeRow parentTransacTypeRowByFK_Budget_BudgetTypeGroupings, string TrCode, decimal Amount, bool Ignore, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate) {
                 TransacRow rowTransacRow = ((TransacRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5475,8 +4873,8 @@ namespace Budget {
                         BalanceIsCalculated,
                         DescripFromVendor,
                         CardTransDate};
-                if ((parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings1 != null)) {
-                    columnValuesArray[4] = parentBudgetTypeGroupingsRowByFK_Budget_BudgetTypeGroupings1[0];
+                if ((parentTransacTypeRowByFK_Budget_BudgetTypeGroupings != null)) {
+                    columnValuesArray[4] = parentTransacTypeRowByFK_Budget_BudgetTypeGroupings[0];
                 }
                 rowTransacRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTransacRow);
@@ -7248,6 +6646,686 @@ namespace Budget {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TransacTypeDataTable : global::System.Data.TypedTableBase<TransacTypeRow> {
+            
+            private global::System.Data.DataColumn columnTRTypeID;
+            
+            private global::System.Data.DataColumn columnGroupingLabel;
+            
+            private global::System.Data.DataColumn columnCodeAndName;
+            
+            private global::System.Data.DataColumn columnParentGroupingID;
+            
+            private global::System.Data.DataColumn columnIsParentGrouping;
+            
+            private global::System.Data.DataColumn columnGraphColor;
+            
+            private global::System.Data.DataColumn columnIsIncome;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeDataTable() {
+                this.TableName = "TransacType";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TransacTypeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected TransacTypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TRTypeIDColumn {
+                get {
+                    return this.columnTRTypeID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GroupingLabelColumn {
+                get {
+                    return this.columnGroupingLabel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CodeAndNameColumn {
+                get {
+                    return this.columnCodeAndName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ParentGroupingIDColumn {
+                get {
+                    return this.columnParentGroupingID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsParentGroupingColumn {
+                get {
+                    return this.columnIsParentGrouping;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GraphColorColumn {
+                get {
+                    return this.columnGraphColor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsIncomeColumn {
+                get {
+                    return this.columnIsIncome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow this[int index] {
+                get {
+                    return ((TransacTypeRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypeRowChangeEventHandler TransacTypeRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypeRowChangeEventHandler TransacTypeRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypeRowChangeEventHandler TransacTypeRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypeRowChangeEventHandler TransacTypeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddTransacTypeRow(TransacTypeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow AddTransacTypeRow(string TRTypeID, string GroupingLabel, string CodeAndName, TransacTypeRow parentTransacTypeRowByFK_BudgetTypeGroupings_BudgetTypeGroupings, bool IsParentGrouping, string GraphColor, int IsIncome) {
+                TransacTypeRow rowTransacTypeRow = ((TransacTypeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        TRTypeID,
+                        GroupingLabel,
+                        CodeAndName,
+                        null,
+                        IsParentGrouping,
+                        GraphColor,
+                        IsIncome};
+                if ((parentTransacTypeRowByFK_BudgetTypeGroupings_BudgetTypeGroupings != null)) {
+                    columnValuesArray[3] = parentTransacTypeRowByFK_BudgetTypeGroupings_BudgetTypeGroupings[0];
+                }
+                rowTransacTypeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTransacTypeRow);
+                return rowTransacTypeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow FindByTRTypeID(string TRTypeID) {
+                return ((TransacTypeRow)(this.Rows.Find(new object[] {
+                            TRTypeID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TransacTypeDataTable cln = ((TransacTypeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TransacTypeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnTRTypeID = base.Columns["TRTypeID"];
+                this.columnGroupingLabel = base.Columns["GroupingLabel"];
+                this.columnCodeAndName = base.Columns["CodeAndName"];
+                this.columnParentGroupingID = base.Columns["ParentGroupingID"];
+                this.columnIsParentGrouping = base.Columns["IsParentGrouping"];
+                this.columnGraphColor = base.Columns["GraphColor"];
+                this.columnIsIncome = base.Columns["IsIncome"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnTRTypeID = new global::System.Data.DataColumn("TRTypeID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTRTypeID);
+                this.columnGroupingLabel = new global::System.Data.DataColumn("GroupingLabel", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroupingLabel);
+                this.columnCodeAndName = new global::System.Data.DataColumn("CodeAndName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodeAndName);
+                this.columnParentGroupingID = new global::System.Data.DataColumn("ParentGroupingID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParentGroupingID);
+                this.columnIsParentGrouping = new global::System.Data.DataColumn("IsParentGrouping", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsParentGrouping);
+                this.columnGraphColor = new global::System.Data.DataColumn("GraphColor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGraphColor);
+                this.columnIsIncome = new global::System.Data.DataColumn("IsIncome", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsIncome);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnTRTypeID}, true));
+                this.columnTRTypeID.AllowDBNull = false;
+                this.columnTRTypeID.Unique = true;
+                this.columnTRTypeID.MaxLength = 8;
+                this.columnGroupingLabel.AllowDBNull = false;
+                this.columnGroupingLabel.MaxLength = 250;
+                this.columnCodeAndName.ReadOnly = true;
+                this.columnCodeAndName.MaxLength = 259;
+                this.columnParentGroupingID.MaxLength = 8;
+                this.columnIsParentGrouping.AllowDBNull = false;
+                this.columnGraphColor.MaxLength = 50;
+                this.columnIsIncome.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow NewTransacTypeRow() {
+                return ((TransacTypeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TransacTypeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TransacTypeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TransacTypeRowChanged != null)) {
+                    this.TransacTypeRowChanged(this, new TransacTypeRowChangeEvent(((TransacTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TransacTypeRowChanging != null)) {
+                    this.TransacTypeRowChanging(this, new TransacTypeRowChangeEvent(((TransacTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TransacTypeRowDeleted != null)) {
+                    this.TransacTypeRowDeleted(this, new TransacTypeRowChangeEvent(((TransacTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TransacTypeRowDeleting != null)) {
+                    this.TransacTypeRowDeleting(this, new TransacTypeRowChangeEvent(((TransacTypeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveTransacTypeRow(TransacTypeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TransacTypeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class TransacTypePatternDataTable : global::System.Data.TypedTableBase<TransacTypePatternRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnPattern;
+            
+            private global::System.Data.DataColumn columnTrType;
+            
+            private global::System.Data.DataColumn columnForIgnore;
+            
+            private global::System.Data.DataColumn columnForIncome;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternDataTable() {
+                this.TableName = "TransacTypePattern";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TransacTypePatternDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected TransacTypePatternDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PatternColumn {
+                get {
+                    return this.columnPattern;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TrTypeColumn {
+                get {
+                    return this.columnTrType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ForIgnoreColumn {
+                get {
+                    return this.columnForIgnore;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ForIncomeColumn {
+                get {
+                    return this.columnForIncome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow this[int index] {
+                get {
+                    return ((TransacTypePatternRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypePatternRowChangeEventHandler TransacTypePatternRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypePatternRowChangeEventHandler TransacTypePatternRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypePatternRowChangeEventHandler TransacTypePatternRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event TransacTypePatternRowChangeEventHandler TransacTypePatternRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddTransacTypePatternRow(TransacTypePatternRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow AddTransacTypePatternRow(string Pattern, TransacTypeRow parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings, bool ForIgnore, bool ForIncome) {
+                TransacTypePatternRow rowTransacTypePatternRow = ((TransacTypePatternRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Pattern,
+                        null,
+                        ForIgnore,
+                        ForIncome};
+                if ((parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings != null)) {
+                    columnValuesArray[2] = parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings[0];
+                }
+                rowTransacTypePatternRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTransacTypePatternRow);
+                return rowTransacTypePatternRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow FindByID(int ID) {
+                return ((TransacTypePatternRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                TransacTypePatternDataTable cln = ((TransacTypePatternDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new TransacTypePatternDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnPattern = base.Columns["Pattern"];
+                this.columnTrType = base.Columns["TrType"];
+                this.columnForIgnore = base.Columns["ForIgnore"];
+                this.columnForIncome = base.Columns["ForIncome"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnPattern = new global::System.Data.DataColumn("Pattern", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPattern);
+                this.columnTrType = new global::System.Data.DataColumn("TrType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTrType);
+                this.columnForIgnore = new global::System.Data.DataColumn("ForIgnore", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForIgnore);
+                this.columnForIncome = new global::System.Data.DataColumn("ForIncome", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForIncome);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnPattern.AllowDBNull = false;
+                this.columnPattern.MaxLength = 2147483647;
+                this.columnTrType.MaxLength = 8;
+                this.columnForIgnore.AllowDBNull = false;
+                this.columnForIncome.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow NewTransacTypePatternRow() {
+                return ((TransacTypePatternRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new TransacTypePatternRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(TransacTypePatternRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.TransacTypePatternRowChanged != null)) {
+                    this.TransacTypePatternRowChanged(this, new TransacTypePatternRowChangeEvent(((TransacTypePatternRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.TransacTypePatternRowChanging != null)) {
+                    this.TransacTypePatternRowChanging(this, new TransacTypePatternRowChangeEvent(((TransacTypePatternRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.TransacTypePatternRowDeleted != null)) {
+                    this.TransacTypePatternRowDeleted(this, new TransacTypePatternRowChangeEvent(((TransacTypePatternRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.TransacTypePatternRowDeleting != null)) {
+                    this.TransacTypePatternRowDeleting(this, new TransacTypePatternRowChangeEvent(((TransacTypePatternRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveTransacTypePatternRow(TransacTypePatternRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "TransacTypePatternDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GroupingsInOrderDataTable : global::System.Data.TypedTableBase<GroupingsInOrderRow> {
             
             private global::System.Data.DataColumn columnParentGroupingLabel;
@@ -7535,93 +7613,6 @@ namespace Budget {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class BudgetTypePatternRow : global::System.Data.DataRow {
-            
-            private BudgetTypePatternDataTable tableBudgetTypePattern;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BudgetTypePatternRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableBudgetTypePattern = ((BudgetTypePatternDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this.tableBudgetTypePattern.IDColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypePattern.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Pattern {
-                get {
-                    return ((string)(this[this.tableBudgetTypePattern.PatternColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypePattern.PatternColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string TrType {
-                get {
-                    try {
-                        return ((string)(this[this.tableBudgetTypePattern.TrTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrType\' in table \'BudgetTypePattern\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBudgetTypePattern.TrTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool ForIgnore {
-                get {
-                    return ((bool)(this[this.tableBudgetTypePattern.ForIgnoreColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypePattern.ForIgnoreColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool ForIncome {
-                get {
-                    return ((bool)(this[this.tableBudgetTypePattern.ForIncomeColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypePattern.ForIncomeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTrTypeNull() {
-                return this.IsNull(this.tableBudgetTypePattern.TrTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTrTypeNull() {
-                this[this.tableBudgetTypePattern.TrTypeColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class ViewBudgetGroupingsInOrderRow : global::System.Data.DataRow {
             
             private ViewBudgetGroupingsInOrderDataTable tableViewBudgetGroupingsInOrder;
@@ -7786,82 +7777,6 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetAccountTypeNull() {
                 this[this.tableViewBudgetGroupingsInOrder.AccountTypeColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class BudgetTypeGroupingsRow : global::System.Data.DataRow {
-            
-            private BudgetTypeGroupingsDataTable tableBudgetTypeGroupings;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BudgetTypeGroupingsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableBudgetTypeGroupings = ((BudgetTypeGroupingsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string TRTypeID {
-                get {
-                    return ((string)(this[this.tableBudgetTypeGroupings.TRTypeIDColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypeGroupings.TRTypeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string GroupingLabel {
-                get {
-                    return ((string)(this[this.tableBudgetTypeGroupings.GroupingLabelColumn]));
-                }
-                set {
-                    this[this.tableBudgetTypeGroupings.GroupingLabelColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string CodeAndName {
-                get {
-                    try {
-                        return ((string)(this[this.tableBudgetTypeGroupings.CodeAndNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CodeAndName\' in table \'BudgetTypeGroupings\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBudgetTypeGroupings.CodeAndNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCodeAndNameNull() {
-                return this.IsNull(this.tableBudgetTypeGroupings.CodeAndNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCodeAndNameNull() {
-                this[this.tableBudgetTypeGroupings.CodeAndNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacRow[] GetTransacRows() {
-                if ((this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings1"] == null)) {
-                    return new TransacRow[0];
-                }
-                else {
-                    return ((TransacRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings1"])));
-                }
             }
         }
         
@@ -9148,12 +9063,12 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow BudgetTypeGroupingsRow {
+            public TransacTypeRow TransacTypeRow {
                 get {
-                    return ((BudgetTypeGroupingsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings1"])));
+                    return ((TransacTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings1"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"]);
                 }
             }
             
@@ -10145,6 +10060,308 @@ namespace Budget {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class TransacTypeRow : global::System.Data.DataRow {
+            
+            private TransacTypeDataTable tableTransacType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TransacTypeRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTransacType = ((TransacTypeDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string TRTypeID {
+                get {
+                    return ((string)(this[this.tableTransacType.TRTypeIDColumn]));
+                }
+                set {
+                    this[this.tableTransacType.TRTypeIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GroupingLabel {
+                get {
+                    return ((string)(this[this.tableTransacType.GroupingLabelColumn]));
+                }
+                set {
+                    this[this.tableTransacType.GroupingLabelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CodeAndName {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransacType.CodeAndNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CodeAndName\' in table \'TransacType\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransacType.CodeAndNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ParentGroupingID {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransacType.ParentGroupingIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ParentGroupingID\' in table \'TransacType\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransacType.ParentGroupingIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsParentGrouping {
+                get {
+                    return ((bool)(this[this.tableTransacType.IsParentGroupingColumn]));
+                }
+                set {
+                    this[this.tableTransacType.IsParentGroupingColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string GraphColor {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransacType.GraphColorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GraphColor\' in table \'TransacType\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransacType.GraphColorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IsIncome {
+                get {
+                    try {
+                        return ((int)(this[this.tableTransacType.IsIncomeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsIncome\' in table \'TransacType\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransacType.IsIncomeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow TransacTypeRowParent {
+                get {
+                    return ((TransacTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetTypeGroupings_BudgetTypeGroupings"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BudgetTypeGroupings_BudgetTypeGroupings"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCodeAndNameNull() {
+                return this.IsNull(this.tableTransacType.CodeAndNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCodeAndNameNull() {
+                this[this.tableTransacType.CodeAndNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsParentGroupingIDNull() {
+                return this.IsNull(this.tableTransacType.ParentGroupingIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetParentGroupingIDNull() {
+                this[this.tableTransacType.ParentGroupingIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsGraphColorNull() {
+                return this.IsNull(this.tableTransacType.GraphColorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetGraphColorNull() {
+                this[this.tableTransacType.GraphColorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIsIncomeNull() {
+                return this.IsNull(this.tableTransacType.IsIncomeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIsIncomeNull() {
+                this[this.tableTransacType.IsIncomeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacRow[] GetTransacRows() {
+                if ((this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings"] == null)) {
+                    return new TransacRow[0];
+                }
+                else {
+                    return ((TransacRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Budget_BudgetTypeGroupings"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow[] GetTransacTypeRows() {
+                if ((this.Table.ChildRelations["FK_BudgetTypeGroupings_BudgetTypeGroupings"] == null)) {
+                    return new TransacTypeRow[0];
+                }
+                else {
+                    return ((TransacTypeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetTypeGroupings_BudgetTypeGroupings"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow[] GetTransacTypePatternRows() {
+                if ((this.Table.ChildRelations["FK_BudgetTypePattern_BudgetTypeGroupings"] == null)) {
+                    return new TransacTypePatternRow[0];
+                }
+                else {
+                    return ((TransacTypePatternRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BudgetTypePattern_BudgetTypeGroupings"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class TransacTypePatternRow : global::System.Data.DataRow {
+            
+            private TransacTypePatternDataTable tableTransacTypePattern;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal TransacTypePatternRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableTransacTypePattern = ((TransacTypePatternDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableTransacTypePattern.IDColumn]));
+                }
+                set {
+                    this[this.tableTransacTypePattern.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Pattern {
+                get {
+                    return ((string)(this[this.tableTransacTypePattern.PatternColumn]));
+                }
+                set {
+                    this[this.tableTransacTypePattern.PatternColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string TrType {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransacTypePattern.TrTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TrType\' in table \'TransacTypePattern\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransacTypePattern.TrTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ForIgnore {
+                get {
+                    return ((bool)(this[this.tableTransacTypePattern.ForIgnoreColumn]));
+                }
+                set {
+                    this[this.tableTransacTypePattern.ForIgnoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ForIncome {
+                get {
+                    return ((bool)(this[this.tableTransacTypePattern.ForIncomeColumn]));
+                }
+                set {
+                    this[this.tableTransacTypePattern.ForIncomeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow TransacTypeRow {
+                get {
+                    return ((TransacTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_BudgetTypePattern_BudgetTypeGroupings"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_BudgetTypePattern_BudgetTypeGroupings"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrTypeNull() {
+                return this.IsNull(this.tableTransacTypePattern.TrTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTrTypeNull() {
+                this[this.tableTransacTypePattern.TrTypeColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class GroupingsInOrderRow : global::System.Data.DataRow {
             
             private GroupingsInOrderDataTable tableGroupingsInOrder;
@@ -10274,40 +10491,6 @@ namespace Budget {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class BudgetTypePatternRowChangeEvent : global::System.EventArgs {
-            
-            private BudgetTypePatternRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRowChangeEvent(BudgetTypePatternRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypePatternRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public class ViewBudgetGroupingsInOrderRowChangeEvent : global::System.EventArgs {
             
             private ViewBudgetGroupingsInOrderRow eventRow;
@@ -10324,40 +10507,6 @@ namespace Budget {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetGroupingsInOrderRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class BudgetTypeGroupingsRowChangeEvent : global::System.EventArgs {
-            
-            private BudgetTypeGroupingsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRowChangeEvent(BudgetTypeGroupingsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BudgetTypeGroupingsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10920,6 +11069,74 @@ namespace Budget {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class TransacTypeRowChangeEvent : global::System.EventArgs {
+            
+            private TransacTypeRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRowChangeEvent(TransacTypeRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class TransacTypePatternRowChangeEvent : global::System.EventArgs {
+            
+            private TransacTypePatternRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRowChangeEvent(TransacTypePatternRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public TransacTypePatternRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public class GroupingsInOrderRowChangeEvent : global::System.EventArgs {
             
             private GroupingsInOrderRow eventRow;
@@ -10953,359 +11170,6 @@ namespace Budget {
 }
 namespace Budget.MainDataSetTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class BudgetTypePatternTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
-        
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BudgetTypePatternTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "BudgetTypePattern";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("Pattern", "Pattern");
-            tableMapping.ColumnMappings.Add("TrType", "TrType");
-            tableMapping.ColumnMappings.Add("ForIgnore", "ForIgnore");
-            tableMapping.ColumnMappings.Add("ForIncome", "ForIncome");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [BudgetTypePattern] WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType" +
-                " = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = " +
-                "@Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_TrType";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_TrType";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIgnore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIncome";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIncome";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [BudgetTypePattern] ([Pattern], [TrType], [ForIgnore], [ForIncome]) V" +
-                "ALUES (@Pattern, @TrType, @ForIgnore, @ForIncome);\r\nSELECT ID, Pattern, TrType, " +
-                "ForIgnore, ForIncome FROM BudgetTypePattern WHERE (ID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Pattern";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Pattern";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@TrType";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIgnore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIncome";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIncome";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForIgnore] = @ForIgnore, [ForIncome] = @ForIncome WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome));
-SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (ID = @ID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Pattern";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Pattern";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@TrType";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIgnore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIncome";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIncome";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_TrType";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_TrType";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TrType";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIgnore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIncome";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "ForIncome";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.Size = 4;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForIgnore, ForIncome\r\nFROM            BudgetTy" +
-                "pePattern";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.BudgetTypePatternDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet.BudgetTypePatternDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "BudgetTypePattern");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -11514,449 +11378,6 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM BudgetTypePattern WHERE (I
             }
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class BudgetTypeGroupingsTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
-        
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BudgetTypeGroupingsTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "BudgetTypeGroupings";
-            tableMapping.ColumnMappings.Add("TRTypeID", "TRTypeID");
-            tableMapping.ColumnMappings.Add("GroupingLabel", "GroupingLabel");
-            tableMapping.ColumnMappings.Add("CodeAndName", "CodeAndName");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [BudgetTypeGroupings] WHERE (([TRTypeID] = @Original_TRTypeID) AND ([" +
-                "GroupingLabel] = @Original_GroupingLabel) AND ((@IsNull_CodeAndName = 1 AND [Cod" +
-                "eAndName] IS NULL) OR ([CodeAndName] = @Original_CodeAndName)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_TRTypeID";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TRTypeID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_GroupingLabel";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "GroupingLabel";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_CodeAndName";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "CodeAndName";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_CodeAndName";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "CodeAndName";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BudgetTypeGroupings] ([TRTypeID], [GroupingLabel], [ParentGroupingLabel]) VALUES (@TRTypeID, @GroupingLabel, @ParentGroupingLabel);
-SELECT TRTypeID, GroupingLabel, ParentGroupingLabel, CodeAndName FROM BudgetTypeGroupings WHERE (TRTypeID = @TRTypeID)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@TRTypeID";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TRTypeID";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@GroupingLabel";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "GroupingLabel";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ParentGroupingLabel";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "ParentGroupingLabel";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [BudgetTypeGroupings] SET [TRTypeID] = @TRTypeID, [GroupingLabel] = @GroupingLabel WHERE (([TRTypeID] = @Original_TRTypeID) AND ([GroupingLabel] = @Original_GroupingLabel) AND ((@IsNull_CodeAndName = 1 AND [CodeAndName] IS NULL) OR ([CodeAndName] = @Original_CodeAndName)));
-SELECT TRTypeID, GroupingLabel, CodeAndName FROM BudgetTypeGroupings WHERE (TRTypeID = @TRTypeID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@TRTypeID";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TRTypeID";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@GroupingLabel";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "GroupingLabel";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_TRTypeID";
-            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
-            param.SqlDbType = global::System.Data.SqlDbType.Char;
-            param.IsNullable = true;
-            param.SourceColumn = "TRTypeID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_GroupingLabel";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "GroupingLabel";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_CodeAndName";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "CodeAndName";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_CodeAndName";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "CodeAndName";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TRTypeID, GroupingLabel, CodeAndName FROM BudgetTypeGroupings";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.BudgetTypeGroupingsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet.BudgetTypeGroupingsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "BudgetTypeGroupings");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName) {
-            if ((Original_TRTypeID == null)) {
-                throw new global::System.ArgumentNullException("Original_TRTypeID");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_TRTypeID));
-            }
-            if ((Original_GroupingLabel == null)) {
-                throw new global::System.ArgumentNullException("Original_GroupingLabel");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_GroupingLabel));
-            }
-            if ((Original_CodeAndName == null)) {
-                throw new global::System.ArgumentNullException("Original_CodeAndName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_CodeAndName));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string TRTypeID, string GroupingLabel, string ParentGroupingLabel) {
-            if ((TRTypeID == null)) {
-                throw new global::System.ArgumentNullException("TRTypeID");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(TRTypeID));
-            }
-            if ((GroupingLabel == null)) {
-                throw new global::System.ArgumentNullException("GroupingLabel");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(GroupingLabel));
-            }
-            if ((ParentGroupingLabel == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ParentGroupingLabel));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string TRTypeID, string GroupingLabel, string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName) {
-            if ((TRTypeID == null)) {
-                throw new global::System.ArgumentNullException("TRTypeID");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(TRTypeID));
-            }
-            if ((GroupingLabel == null)) {
-                throw new global::System.ArgumentNullException("GroupingLabel");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(GroupingLabel));
-            }
-            if ((Original_TRTypeID == null)) {
-                throw new global::System.ArgumentNullException("Original_TRTypeID");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_TRTypeID));
-            }
-            if ((Original_GroupingLabel == null)) {
-                throw new global::System.ArgumentNullException("Original_GroupingLabel");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_GroupingLabel));
-            }
-            if ((Original_CodeAndName == null)) {
-                throw new global::System.ArgumentNullException("Original_CodeAndName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_CodeAndName));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string GroupingLabel, string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName) {
-            return this.Update(Original_TRTypeID, GroupingLabel, Original_TRTypeID, Original_GroupingLabel, Original_CodeAndName);
         }
     }
     
@@ -19320,6 +18741,1118 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TransacTypeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
+        
+        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public TransacTypeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TransacType";
+            tableMapping.ColumnMappings.Add("TRTypeID", "TRTypeID");
+            tableMapping.ColumnMappings.Add("GroupingLabel", "GroupingLabel");
+            tableMapping.ColumnMappings.Add("CodeAndName", "CodeAndName");
+            tableMapping.ColumnMappings.Add("ParentGroupingID", "ParentGroupingID");
+            tableMapping.ColumnMappings.Add("IsParentGrouping", "IsParentGrouping");
+            tableMapping.ColumnMappings.Add("GraphColor", "GraphColor");
+            tableMapping.ColumnMappings.Add("IsIncome", "IsIncome");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [TransacType] WHERE (([TRTypeID] = @Original_TRTypeID) AND ([GroupingLabel] = @Original_GroupingLabel) AND ((@IsNull_CodeAndName = 1 AND [CodeAndName] IS NULL) OR ([CodeAndName] = @Original_CodeAndName)) AND ((@IsNull_ParentGroupingID = 1 AND [ParentGroupingID] IS NULL) OR ([ParentGroupingID] = @Original_ParentGroupingID)) AND ([IsParentGrouping] = @Original_IsParentGrouping) AND ((@IsNull_GraphColor = 1 AND [GraphColor] IS NULL) OR ([GraphColor] = @Original_GraphColor)) AND ([IsIncome] = @Original_IsIncome))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_TRTypeID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TRTypeID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_GroupingLabel";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GroupingLabel";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_CodeAndName";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "CodeAndName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_CodeAndName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "CodeAndName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_ParentGroupingID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ParentGroupingID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_IsParentGrouping";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "IsParentGrouping";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_GraphColor";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_GraphColor";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_IsIncome";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "IsIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [TransacType] ([TRTypeID], [GroupingLabel], [ParentGroupingID], [IsParentGrouping], [GraphColor]) VALUES (@TRTypeID, @GroupingLabel, @ParentGroupingID, @IsParentGrouping, @GraphColor);
+SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping, GraphColor, IsIncome FROM TransacType WHERE (TRTypeID = @TRTypeID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@TRTypeID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TRTypeID";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@GroupingLabel";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GroupingLabel";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ParentGroupingID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsParentGrouping";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "IsParentGrouping";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@GraphColor";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [TransacType] SET [TRTypeID] = @TRTypeID, [GroupingLabel] = @GroupingLabel, [ParentGroupingID] = @ParentGroupingID, [IsParentGrouping] = @IsParentGrouping, [GraphColor] = @GraphColor WHERE (([TRTypeID] = @Original_TRTypeID) AND ([GroupingLabel] = @Original_GroupingLabel) AND ((@IsNull_CodeAndName = 1 AND [CodeAndName] IS NULL) OR ([CodeAndName] = @Original_CodeAndName)) AND ((@IsNull_ParentGroupingID = 1 AND [ParentGroupingID] IS NULL) OR ([ParentGroupingID] = @Original_ParentGroupingID)) AND ([IsParentGrouping] = @Original_IsParentGrouping) AND ((@IsNull_GraphColor = 1 AND [GraphColor] IS NULL) OR ([GraphColor] = @Original_GraphColor)) AND ([IsIncome] = @Original_IsIncome));
+SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping, GraphColor, IsIncome FROM TransacType WHERE (TRTypeID = @TRTypeID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@TRTypeID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TRTypeID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@GroupingLabel";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GroupingLabel";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ParentGroupingID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsParentGrouping";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "IsParentGrouping";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@GraphColor";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_TRTypeID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TRTypeID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_GroupingLabel";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GroupingLabel";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_CodeAndName";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "CodeAndName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_CodeAndName";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "CodeAndName";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_ParentGroupingID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ParentGroupingID";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "ParentGroupingID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_IsParentGrouping";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "IsParentGrouping";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_GraphColor";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_GraphColor";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "GraphColor";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_IsIncome";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "IsIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGro" +
+                "uping, GraphColor, IsIncome\r\nFROM            TransacType";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MainDataSet.TransacTypeDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet.TransacTypeDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "TransacType");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName, string Original_ParentGroupingID, bool Original_IsParentGrouping, string Original_GraphColor, int Original_IsIncome) {
+            if ((Original_TRTypeID == null)) {
+                throw new global::System.ArgumentNullException("Original_TRTypeID");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_TRTypeID));
+            }
+            if ((Original_GroupingLabel == null)) {
+                throw new global::System.ArgumentNullException("Original_GroupingLabel");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_GroupingLabel));
+            }
+            if ((Original_CodeAndName == null)) {
+                throw new global::System.ArgumentNullException("Original_CodeAndName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_CodeAndName));
+            }
+            if ((Original_ParentGroupingID == null)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_ParentGroupingID));
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_IsParentGrouping));
+            if ((Original_GraphColor == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_GraphColor));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_IsIncome));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string TRTypeID, string GroupingLabel, string ParentGroupingID, bool IsParentGrouping, string GraphColor) {
+            if ((TRTypeID == null)) {
+                throw new global::System.ArgumentNullException("TRTypeID");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(TRTypeID));
+            }
+            if ((GroupingLabel == null)) {
+                throw new global::System.ArgumentNullException("GroupingLabel");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(GroupingLabel));
+            }
+            if ((ParentGroupingID == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ParentGroupingID));
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(IsParentGrouping));
+            if ((GraphColor == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(GraphColor));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string TRTypeID, string GroupingLabel, string ParentGroupingID, bool IsParentGrouping, string GraphColor, string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName, string Original_ParentGroupingID, bool Original_IsParentGrouping, string Original_GraphColor, int Original_IsIncome) {
+            if ((TRTypeID == null)) {
+                throw new global::System.ArgumentNullException("TRTypeID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(TRTypeID));
+            }
+            if ((GroupingLabel == null)) {
+                throw new global::System.ArgumentNullException("GroupingLabel");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(GroupingLabel));
+            }
+            if ((ParentGroupingID == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ParentGroupingID));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(IsParentGrouping));
+            if ((GraphColor == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(GraphColor));
+            }
+            if ((Original_TRTypeID == null)) {
+                throw new global::System.ArgumentNullException("Original_TRTypeID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_TRTypeID));
+            }
+            if ((Original_GroupingLabel == null)) {
+                throw new global::System.ArgumentNullException("Original_GroupingLabel");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_GroupingLabel));
+            }
+            if ((Original_CodeAndName == null)) {
+                throw new global::System.ArgumentNullException("Original_CodeAndName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_CodeAndName));
+            }
+            if ((Original_ParentGroupingID == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_ParentGroupingID));
+            }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_IsParentGrouping));
+            if ((Original_GraphColor == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_GraphColor));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_IsIncome));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string GroupingLabel, string ParentGroupingID, bool IsParentGrouping, string GraphColor, string Original_TRTypeID, string Original_GroupingLabel, string Original_CodeAndName, string Original_ParentGroupingID, bool Original_IsParentGrouping, string Original_GraphColor, int Original_IsIncome) {
+            return this.Update(Original_TRTypeID, GroupingLabel, ParentGroupingID, IsParentGrouping, GraphColor, Original_TRTypeID, Original_GroupingLabel, Original_CodeAndName, Original_ParentGroupingID, Original_IsParentGrouping, Original_GraphColor, Original_IsIncome);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class TransacTypePatternTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
+        
+        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public TransacTypePatternTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "TransacTypePattern";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("Pattern", "Pattern");
+            tableMapping.ColumnMappings.Add("TrType", "TrType");
+            tableMapping.ColumnMappings.Add("ForIgnore", "ForIgnore");
+            tableMapping.ColumnMappings.Add("ForIncome", "ForIncome");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [TransacTypePattern] WHERE (([ID] = @Original_ID) AND ((@IsNull_TrTyp" +
+                "e = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] =" +
+                " @Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_TrType";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_TrType";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIgnore";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIgnore";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [TransacTypePattern] ([Pattern], [TrType], [ForIgnore], [ForIncome]) " +
+                "VALUES (@Pattern, @TrType, @ForIgnore, @ForIncome);\r\nSELECT ID, Pattern, TrType," +
+                " ForIgnore, ForIncome FROM TransacTypePattern WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Pattern";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Pattern";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@TrType";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIgnore";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIgnore";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [TransacTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForIgnore] = @ForIgnore, [ForIncome] = @ForIncome WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore) AND ([ForIncome] = @Original_ForIncome));
+SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Pattern";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Pattern";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@TrType";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIgnore";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIgnore";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "ID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_TrType";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_TrType";
+            param.DbType = global::System.Data.DbType.AnsiStringFixedLength;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.IsNullable = true;
+            param.SourceColumn = "TrType";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIgnore";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIgnore";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_ForIncome";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "ForIncome";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.Size = 4;
+            param.IsNullable = true;
+            param.SourceColumn = "ID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForIgnore, ForIncome\r\nFROM            TransacT" +
+                "ypePattern";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MainDataSet.TransacTypePatternDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet.TransacTypePatternDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "TransacTypePattern");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID, string Original_TrType, bool Original_ForIgnore, bool Original_ForIncome) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            if ((Original_TrType == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_TrType));
+            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_ForIgnore));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_ForIncome));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string Pattern, string TrType, bool ForIgnore, bool ForIncome) {
+            if ((Pattern == null)) {
+                throw new global::System.ArgumentNullException("Pattern");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Pattern));
+            }
+            if ((TrType == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TrType));
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(ForIgnore));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(ForIncome));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Pattern, string TrType, bool ForIgnore, bool ForIncome, int Original_ID, string Original_TrType, bool Original_ForIgnore, bool Original_ForIncome, int ID) {
+            if ((Pattern == null)) {
+                throw new global::System.ArgumentNullException("Pattern");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Pattern));
+            }
+            if ((TrType == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TrType));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(ForIgnore));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(ForIncome));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID));
+            if ((Original_TrType == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_TrType));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_ForIgnore));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Original_ForIncome));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Pattern, string TrType, bool ForIgnore, bool ForIncome, int Original_ID, string Original_TrType, bool Original_ForIgnore, bool Original_ForIncome) {
+            return this.Update(Pattern, TrType, ForIgnore, ForIncome, Original_ID, Original_TrType, Original_ForIgnore, Original_ForIncome, Original_ID);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -19330,10 +19863,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
     public partial class TableAdapterManager : global::System.ComponentModel.Component {
         
         private UpdateOrderOption _updateOrder;
-        
-        private BudgetTypePatternTableAdapter _budgetTypePatternTableAdapter;
-        
-        private BudgetTypeGroupingsTableAdapter _budgetTypeGroupingsTableAdapter;
         
         private AccountOwnerTableAdapter _accountOwnerTableAdapter;
         
@@ -19353,6 +19882,10 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         
         private AccountTableAdapter _accountTableAdapter;
         
+        private TransacTypeTableAdapter _transacTypeTableAdapter;
+        
+        private TransacTypePatternTableAdapter _transacTypePatternTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -19365,34 +19898,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public BudgetTypePatternTableAdapter BudgetTypePatternTableAdapter {
-            get {
-                return this._budgetTypePatternTableAdapter;
-            }
-            set {
-                this._budgetTypePatternTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public BudgetTypeGroupingsTableAdapter BudgetTypeGroupingsTableAdapter {
-            get {
-                return this._budgetTypeGroupingsTableAdapter;
-            }
-            set {
-                this._budgetTypeGroupingsTableAdapter = value;
             }
         }
         
@@ -19524,6 +20029,34 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public TransacTypeTableAdapter TransacTypeTableAdapter {
+            get {
+                return this._transacTypeTableAdapter;
+            }
+            set {
+                this._transacTypeTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public TransacTypePatternTableAdapter TransacTypePatternTableAdapter {
+            get {
+                return this._transacTypePatternTableAdapter;
+            }
+            set {
+                this._transacTypePatternTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -19540,14 +20073,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
             get {
                 if ((this._connection != null)) {
                     return this._connection;
-                }
-                if (((this._budgetTypePatternTableAdapter != null) 
-                            && (this._budgetTypePatternTableAdapter.Connection != null))) {
-                    return this._budgetTypePatternTableAdapter.Connection;
-                }
-                if (((this._budgetTypeGroupingsTableAdapter != null) 
-                            && (this._budgetTypeGroupingsTableAdapter.Connection != null))) {
-                    return this._budgetTypeGroupingsTableAdapter.Connection;
                 }
                 if (((this._accountOwnerTableAdapter != null) 
                             && (this._accountOwnerTableAdapter.Connection != null))) {
@@ -19585,6 +20110,14 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                             && (this._accountTableAdapter.Connection != null))) {
                     return this._accountTableAdapter.Connection;
                 }
+                if (((this._transacTypeTableAdapter != null) 
+                            && (this._transacTypeTableAdapter.Connection != null))) {
+                    return this._transacTypeTableAdapter.Connection;
+                }
+                if (((this._transacTypePatternTableAdapter != null) 
+                            && (this._transacTypePatternTableAdapter.Connection != null))) {
+                    return this._transacTypePatternTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -19598,12 +20131,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._budgetTypePatternTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._accountOwnerTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -19631,6 +20158,12 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                 if ((this._accountTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._transacTypeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._transacTypePatternTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -19642,21 +20175,21 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._fundTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._fundTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._accountOwnerTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.AccountOwner.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._accountOwnerTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._fundTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._fundTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19669,21 +20202,22 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._accountTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Account.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._accountTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
+                    result = (result + this._transacTypeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -19705,24 +20239,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._sourceFileItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sourceFileItemsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._shareQuantityTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.ShareQuantity.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -19741,6 +20257,24 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._sourceFileItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._sourceFileItemsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -19751,19 +20285,19 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._fundTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._fundTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._accountOwnerTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.AccountOwner.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._accountOwnerTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._fundTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._fundTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19775,19 +20309,20 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._accountTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Account.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._accountTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
+                    result = (result + this._transacTypeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -19807,22 +20342,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._sourceFileItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sourceFileItemsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._shareQuantityTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.ShareQuantity.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -19839,6 +20358,22 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._sourceFileItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._sourceFileItemsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -19849,6 +20384,22 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._sourceFileItemsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._sourceFileItemsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._sharePriceTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.SharePrice.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -19862,22 +20413,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._shareQuantityTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._budgetTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetTypePatternTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._sourceFileItemsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SourceFileItems.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sourceFileItemsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19897,19 +20432,20 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], true);
+                    result = (result + this._transacTypeTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._accountTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Account.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._accountTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BudgetTypeGroupings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._budgetTypeGroupingsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19921,19 +20457,19 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._accountOwnerTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AccountOwner.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._accountOwnerTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._fundTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._fundTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._accountOwnerTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AccountOwner.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._accountOwnerTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -19975,16 +20511,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._budgetTypePatternTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._budgetTypePatternTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._budgetTypeGroupingsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._budgetTypeGroupingsTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             if (((this._accountOwnerTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._accountOwnerTableAdapter.Connection) == false))) {
@@ -20031,6 +20557,16 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._transacTypeTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._transacTypeTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._transacTypePatternTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._transacTypePatternTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -20063,24 +20599,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._budgetTypePatternTableAdapter != null)) {
-                    revertConnections.Add(this._budgetTypePatternTableAdapter, this._budgetTypePatternTableAdapter.Connection);
-                    this._budgetTypePatternTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
-                    this._budgetTypePatternTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._budgetTypePatternTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._budgetTypePatternTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._budgetTypePatternTableAdapter.Adapter);
-                    }
-                }
-                if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                    revertConnections.Add(this._budgetTypeGroupingsTableAdapter, this._budgetTypeGroupingsTableAdapter.Connection);
-                    this._budgetTypeGroupingsTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
-                    this._budgetTypeGroupingsTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._budgetTypeGroupingsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._budgetTypeGroupingsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._budgetTypeGroupingsTableAdapter.Adapter);
-                    }
-                }
                 if ((this._accountOwnerTableAdapter != null)) {
                     revertConnections.Add(this._accountOwnerTableAdapter, this._accountOwnerTableAdapter.Connection);
                     this._accountOwnerTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
@@ -20162,6 +20680,24 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                         adaptersWithAcceptChangesDuringUpdate.Add(this._accountTableAdapter.Adapter);
                     }
                 }
+                if ((this._transacTypeTableAdapter != null)) {
+                    revertConnections.Add(this._transacTypeTableAdapter, this._transacTypeTableAdapter.Connection);
+                    this._transacTypeTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
+                    this._transacTypeTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._transacTypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._transacTypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._transacTypeTableAdapter.Adapter);
+                    }
+                }
+                if ((this._transacTypePatternTableAdapter != null)) {
+                    revertConnections.Add(this._transacTypePatternTableAdapter, this._transacTypePatternTableAdapter.Connection);
+                    this._transacTypePatternTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
+                    this._transacTypePatternTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._transacTypePatternTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._transacTypePatternTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._transacTypePatternTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -20220,14 +20756,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._budgetTypePatternTableAdapter != null)) {
-                    this._budgetTypePatternTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._budgetTypePatternTableAdapter]));
-                    this._budgetTypePatternTableAdapter.Transaction = null;
-                }
-                if ((this._budgetTypeGroupingsTableAdapter != null)) {
-                    this._budgetTypeGroupingsTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._budgetTypeGroupingsTableAdapter]));
-                    this._budgetTypeGroupingsTableAdapter.Transaction = null;
-                }
                 if ((this._accountOwnerTableAdapter != null)) {
                     this._accountOwnerTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._accountOwnerTableAdapter]));
                     this._accountOwnerTableAdapter.Transaction = null;
@@ -20263,6 +20791,14 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
                 if ((this._accountTableAdapter != null)) {
                     this._accountTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._accountTableAdapter]));
                     this._accountTableAdapter.Transaction = null;
+                }
+                if ((this._transacTypeTableAdapter != null)) {
+                    this._transacTypeTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._transacTypeTableAdapter]));
+                    this._transacTypeTableAdapter.Transaction = null;
+                }
+                if ((this._transacTypePatternTableAdapter != null)) {
+                    this._transacTypePatternTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._transacTypePatternTableAdapter]));
+                    this._transacTypePatternTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
