@@ -62,12 +62,14 @@ namespace ChartLib
         public static void GetDefaultIntervalInfo(int minDivisions, ref DateTime minDate, ref DateTime maxDate,
             out double interval, out DateTimeIntervalType intervalType, out DateGraphInterval dateInterval)
         {
+            /* NOT NECESSARY
             // Deal with there being only 1 data point in range - make it look OK:
             if (minDate == maxDate)
             {
                 minDate = minDate.AddHours(-1);
                 maxDate = maxDate.AddHours(1);
             }
+            */
 
             TimeSpan dateRange = maxDate - minDate;
             dateInterval = DateGraphIntervals.GetInterval(dateRange, minDivisions);

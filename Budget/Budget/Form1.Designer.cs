@@ -46,7 +46,6 @@
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
-            this.label3 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
@@ -87,7 +86,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(391, 459);
+            this.reportViewer1.Size = new System.Drawing.Size(391, 100);
             this.reportViewer1.TabIndex = 0;
             // 
             // gridMain
@@ -215,38 +214,30 @@
             // 
             // splitContainerCharts.Panel2
             // 
-            this.splitContainerCharts.Panel2.Controls.Add(this.label3);
             this.splitContainerCharts.Panel2.Controls.Add(this.chart1);
             this.splitContainerCharts.Size = new System.Drawing.Size(1175, 459);
             this.splitContainerCharts.SplitterDistance = 391;
             this.splitContainerCharts.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(220, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "All-New Chart Doodad, No Report Necessary";
             // 
             // chart1
             // 
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.BorderlineColor = System.Drawing.Color.DimGray;
+            this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(17, 50);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1145, 382);
+            this.chart1.Size = new System.Drawing.Size(1175, 459);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -395,7 +386,6 @@
             this.splitConInner.ResumeLayout(false);
             this.splitContainerCharts.Panel1.ResumeLayout(false);
             this.splitContainerCharts.Panel2.ResumeLayout(false);
-            this.splitContainerCharts.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).EndInit();
             this.splitContainerCharts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -437,7 +427,6 @@
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainerCharts;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Label label3;
         private MonthComboBox comboFromMonth;
         private System.Windows.Forms.Label label5;
         private MonthComboBox comboToMonth;

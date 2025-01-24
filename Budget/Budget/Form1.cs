@@ -189,37 +189,36 @@ namespace Budget
 
         void RefreshDisplay()
         {
+            /* Report Viewer is no longer used
             ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
-
-            PopulateMainGrid();
-
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
-
+            */
 
             // Get groupings to display, from checked 
             List<string> groupingKeysList = new List<string>();
             foreach (TreeNode node in tvGroupings.Nodes)
                 AddToGroupingListIfChecked(node, ref groupingKeysList);
 
+            SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
+            foreach (string groupingKey in groupingKeysList)
+            {
+                DataView view = new DataView(MainData.ViewBudgetMonthlyReport);
+                view.Sort = "TrMonth ASC";
+                view.RowFilter = "GroupingKey = '" + groupingKey + "'";
+                reportDataByGroupingKey.Add(groupingKey, view);
+            }
 
-            DrawChart(MainData.ViewBudgetMonthlyReport, groupingKeysList);
+            PopulateMainGrid(reportDataByGroupingKey);
+
+            DrawChart(reportDataByGroupingKey);
         }
 
-        void DrawChart(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable, List<string> groupingKeysList)
+        void DrawChart(SortedList<string, DataView> reportDataByGroupingKey)
         {
             // Clear previous things:
             ClearChart();
-
-            SortedList<string, DataView> dataByGroupingKey = new SortedList<string, DataView>();
-            foreach (string groupingKey in groupingKeysList)
-            {
-                DataView view = new DataView(dataTable);
-                view.Sort = "TrMonth ASC";
-                view.RowFilter = "GroupingKey = '" + groupingKey + "'"; 
-                dataByGroupingKey.Add(groupingKey, view);
-            }
 
             Axis axisX = chart1.ChartAreas[0].AxisX;
             Axis axisY = chart1.ChartAreas[0].AxisY;
@@ -227,9 +226,9 @@ namespace Budget
             // Y axis (dollar amount) chart settings:
             decimal minAmount = Decimal.MaxValue;
             decimal maxAmount = Decimal.MinValue;
-            foreach (string grouping in dataByGroupingKey.Keys)
+            foreach (string grouping in reportDataByGroupingKey.Keys)
             {
-                foreach (DataRowView rowView in dataByGroupingKey[grouping])
+                foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
                     MainDataSet.ViewBudgetMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewBudgetMonthlyReportRow;
                     if (tblRow.AmountNormalized > maxAmount)
@@ -254,9 +253,8 @@ namespace Budget
             axisY.MajorGrid.LineColor = Color.LightGray;
 
             // X axis (month) chart settings:
-            // DIAG Create form ctrls to adjust these:
-            DateTime minDate = new DateTime(2023, 1, 1);
-            DateTime maxDate = DateTime.Today;
+            DateTime minDate = FromMonth;
+            DateTime maxDate = ToMonth;
             double xInterval;
             DateTimeIntervalType xIntervalType;
             DateGraphInterval dateInterval;
@@ -270,11 +268,11 @@ namespace Budget
 
             ChartLineColorGenerator colorGenerator = new ChartLineColorGenerator();
 
-
-            foreach (string groupingKey in dataByGroupingKey.Keys)
+            foreach (string groupingKey in reportDataByGroupingKey.Keys)
             {
-                DataView view = dataByGroupingKey[groupingKey];
-                Series series = new Series(groupingKey);
+                MainDataSet.ViewGroupingsRow groupingRow = _GroupingsTbl.FindByGroupingKey(groupingKey);
+                DataView view = reportDataByGroupingKey[groupingKey];
+                Series series = new Series(groupingRow.GroupingLabel);
                 series.ChartType = SeriesChartType.Line;
                 series.Color = GetChartLineColor(groupingKey, colorGenerator);
                 series.BorderWidth = 1; // line width
@@ -307,7 +305,7 @@ namespace Budget
             chart1.Series.Clear();
         }
 
-        void PopulateMainGrid()
+        void PopulateMainGrid(SortedList<string, DataView> reportDataByGroupingKey)
         {
             // DIAG this shows data for every grouping -- it should show only for selected
             gridMain.Rows.Clear();
@@ -315,19 +313,21 @@ namespace Budget
 
             gridMain.RowHeadersWidth = 120;
 
-            SortedList<DateTime, object> cols = new SortedList<DateTime, object>(); // columns by Month -?
-            SortedList<string, object> rows = new SortedList<string, object>(); // rows by GroupingKey - ?
-            foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
-            {
-                // if (!tblRow.IsGroupingKeyNull()) grouping cannot be null... why is this here in the 1st place?
-                    rows[tblRow.GroupingKey] = tblRow.GroupingKey;
+            SortedList<DateTime, object> monthsForGridColumns = new SortedList<DateTime, object>(); // Value not used
+            SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, Value = Grouping Label
 
-                cols[tblRow.TrMonth] = null;
+            for (DateTime month = FromMonth; month <= ToMonth; month = month.AddMonths(1)) 
+                monthsForGridColumns[month] = null;
+
+            foreach (string groupingKey in reportDataByGroupingKey.Keys)
+            {
+                MainDataSet.ViewGroupingsRow groupingRow = _GroupingsTbl.FindByGroupingKey(groupingKey);
+                groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
             }
 
             Dictionary<DateTime, int> colIndices = new Dictionary<DateTime, int>();
             int colIndex = 0;
-            foreach (DateTime trMonth in cols.Keys)
+            foreach (DateTime trMonth in monthsForGridColumns.Keys)
             {
                 colIndices[trMonth] = colIndex;
                 gridMain.Columns.Add("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
@@ -341,7 +341,7 @@ namespace Budget
 
             Dictionary<string, int> rowIndices = new Dictionary<string, int>();
             int rowIndex = 0;
-            foreach (string groupingWithParent in rows.Keys)
+            foreach (string groupingWithParent in groupingsForGridRows.Keys)
             {
                 rowIndices[groupingWithParent] = rowIndex;
                 //dataGridView1.Columns.Add("row" + rowIndex.ToString(), trMonth.ToString("MMM yy"));
@@ -352,23 +352,18 @@ namespace Budget
             for (int ri = 0; ri < gridMain.RowCount; ri++)
             {
                 DataGridViewRow row = gridMain.Rows[ri]; 
-                row.HeaderCell.Value = rows.Values[ri];
-                row.Tag = rows.Keys[ri];
+                row.HeaderCell.Value = groupingsForGridRows.Values[ri];
+                row.Tag = groupingsForGridRows.Keys[ri];
             }
 
-            foreach (MainDataSet.ViewBudgetMonthlyReportRow tblRow in MainData.ViewBudgetMonthlyReport)
+            foreach (string grouping in reportDataByGroupingKey.Keys)
             {
-                // if (!tblRow.IsGroupingNull()) grouping cannot be null... why is this here in the 1st place?
+                foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
+                    MainDataSet.ViewBudgetMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewBudgetMonthlyReportRow;
                     gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
                 }
-
-                /* DIAG rework this... if it's even neccedary; otherwise remove
-                if (tblRow.IsGroupingParentNull())
-                    gridMain.Rows[rowIndices[tblRow.GroupingWithParent]].DefaultCellStyle.BackColor = Color.PaleTurquoise;
-                */
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
