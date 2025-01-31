@@ -139,22 +139,21 @@ namespace Budget
             }
         }
 
-        int DIAG_New = 3;
-
         void RefreshData()
         {
-            // Requery database, and refresh display to show it
-            DataView dataByGroupingKey = null; //DIAG move down next to assignment
-            if (DIAG_New == 3)
+            if (AccountType == Constants.AccountType.BothValue)
             {
-                MainData.ViewMonthlyReport.Clear();
-
-                string selectStr = "SELECT * FROM ViewMonthlyReport" +
-                    " WHERE TrMonth >= " + FromMonth.SQLDateLiteral() +
-                    " AND TrMonth <= " + ToMonth.SQLDateLiteral() +
-                    " AND AccountOwner = '" + AccountOwner + "'";
-                if (AccountType != Constants.AccountType.BothValue)
-                    selectStr += " AND AccountType = '" + AccountType + "'";
+                // in this case we need to do a special query to combine total balances of both account types:
+                string selectStr = "SELECT SUM(AmountNormalized) AS AmountNormalized, " +
+                    "MAX(GroupingKey) AS GroupingKey, " +
+                    "MAX(TrMonth) AS TrMonth, " +
+                    "MAX(AccountOwner) AS AccountOwner, " +
+                    "'' AS AccountType " +
+                    "FROM ViewMonthlyReport " +
+                    "WHERE AccountOwner = '" + AccountOwner + "'" +
+                    "AND TrMonth >= " + FromMonth.SQLDateLiteral() +
+                    "AND TrMonth <= " + ToMonth.SQLDateLiteral() +
+                    "GROUP BY GroupingKey, TrMonth, AccountOwner";
 
                 using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
                 {
@@ -165,91 +164,48 @@ namespace Budget
                     reportDataCmd.CommandText = selectStr;
 
                     SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
+                    MainData.ViewMonthlyReport.Clear();
                     reportDataAdap.Fill(MainData.ViewMonthlyReport);
                 }
-
-                // Fill in missing months gaps in data for each Grouping, AccountOwner, and AccountType with 0-amount rows,
-                // to avoid discontinuous lines on the chart:
-                // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
-                SortedList<GroupingAccOwnerType, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerType, SortedList<DateTime, object>>();
-                foreach (ViewMonthlyReportRow reportRow in MainData.ViewMonthlyReport)
-                {
-                    GroupingAccOwnerType outerKey = new GroupingAccOwnerType(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.AccountType);
-                    if (!rowsByKeysAndMonth.ContainsKey(outerKey))
-                        rowsByKeysAndMonth.Add(outerKey, new SortedList<DateTime, object>());
-                    rowsByKeysAndMonth[outerKey][reportRow.TrMonth] = null;
-                }
-                foreach (GroupingAccOwnerType keyList in rowsByKeysAndMonth.Keys)
-                {
-                    // go through each month in specified range, and if there's not a row for it, add one with 0 amount:
-                    SortedList<DateTime, object> subList = rowsByKeysAndMonth[keyList];
-                    for (DateTime month = FromMonth; month <= ToMonth; month = month.AddMonths(1))
-                    {
-                        if (!subList.ContainsKey(month))
-                        {
-                            MainDataSet.ViewMonthlyReportRow newRow = MainData.ViewMonthlyReport.NewViewMonthlyReportRow();
-                            newRow.TrMonth = month;
-                            newRow.GroupingKey = keyList._GroupingKey;
-                            newRow.AccountOwner = keyList._AccountOwner;
-                            newRow.AccountType = keyList._AccountType;
-                            newRow.AmountNormalized = 0;
-                            MainData.ViewMonthlyReport.AddViewMonthlyReportRow(newRow);
-                            // subList.Add(month, null); // DIAG dont need to add it, rite?
-                        }
-                    }
-                }
-
-                dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
-            }
-            else if (DIAG_New == 2)
-            {
-                MainData.MonthlyReport.Clear();
-
-                string selectStr = "SELECT * FROM MonthlyReport (" + FromMonth.SQLDateLiteral() + "," + ToMonth.SQLDateLiteral() + " )" +
-                    " WHERE AccountOwner = '" + AccountOwner + "'";
-                if (AccountType != Constants.AccountType.BothValue)
-                    selectStr += " AND AccountType = '" + AccountType + "'";
-
-                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
-                {
-                    // reportDataConn.Open();
-                    SqlCommand reportDataCmd = new SqlCommand();
-                    // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                    reportDataCmd.Connection = Program.DbConnection;
-                    reportDataCmd.CommandText = selectStr;
-
-                    SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
-                    reportDataAdap.Fill(MainData.MonthlyReport);
-                }
-
-                dataByGroupingKey = new DataView(MainData.MonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
             }
             else
             {
-                MainData.ViewBudgetMonthlyReport.Clear();
-
-                string selectStr = "SELECT * FROM ViewBudgetMonthlyReport " +
-                    " WHERE TrMonth >= " + FromMonth.SQLDateLiteral() +
-                    " AND TrMonth <= " + ToMonth.SQLDateLiteral() +
-                    " AND AccountOwner = '" + AccountOwner + "'";
-                // "WHERE Grouping IN (" + groupingsListString + ")"
-                if (AccountType != Constants.AccountType.BothValue)
-                    selectStr += " AND AccountType = '" + AccountType + "'";
-
-                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
-                {
-                    // reportDataConn.Open();
-                    SqlCommand reportDataCmd = new SqlCommand();
-                    // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                    reportDataCmd.Connection = Program.DbConnection;
-                    reportDataCmd.CommandText = selectStr;
-
-                    SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
-                    reportDataAdap.Fill(MainData.ViewBudgetMonthlyReport);
-                }
-
-                dataByGroupingKey = new DataView(MainData.ViewBudgetMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
+                MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
+                adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, AccountType.ToString());
             }
+
+            // Fill in missing months gaps in data for each Grouping, AccountOwner, and AccountType with 0-amount rows,
+            // to avoid discontinuous lines on the chart:
+            // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
+            SortedList<GroupingAccOwnerType, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerType, SortedList<DateTime, object>>();
+            foreach (ViewMonthlyReportRow reportRow in MainData.ViewMonthlyReport)
+            {
+                GroupingAccOwnerType outerKey = new GroupingAccOwnerType(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.AccountType);
+                if (!rowsByKeysAndMonth.ContainsKey(outerKey))
+                    rowsByKeysAndMonth.Add(outerKey, new SortedList<DateTime, object>());
+                rowsByKeysAndMonth[outerKey][reportRow.TrMonth] = null;
+            }
+            foreach (GroupingAccOwnerType keyList in rowsByKeysAndMonth.Keys)
+            {
+                // go through each month in specified range, and if there's not a row for it, add one with 0 amount:
+                SortedList<DateTime, object> subList = rowsByKeysAndMonth[keyList];
+                for (DateTime month = FromMonth; month <= ToMonth; month = month.AddMonths(1))
+                {
+                    if (!subList.ContainsKey(month))
+                    {
+                        MainDataSet.ViewMonthlyReportRow newRow = MainData.ViewMonthlyReport.NewViewMonthlyReportRow();
+                        newRow.TrMonth = month;
+                        newRow.GroupingKey = keyList._GroupingKey;
+                        newRow.AccountOwner = keyList._AccountOwner;
+                        newRow.AccountType = keyList._AccountType;
+                        newRow.AmountNormalized = 0;
+                        MainData.ViewMonthlyReport.AddViewMonthlyReportRow(newRow);
+                        // subList.Add(month, null); // DIAG dont need to add it, rite?
+                    }
+                }
+            }
+
+            DataView dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
 
             BuildGroupingsTree(dataByGroupingKey);
 
@@ -273,13 +229,7 @@ namespace Budget
             SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
             foreach (string groupingKey in groupingKeysList)
             {
-                DataView view;
-                if (DIAG_New == 3)
-                    view = new DataView(MainData.ViewMonthlyReport);
-                else if (DIAG_New == 2)
-                    view = new DataView(MainData.MonthlyReport);
-                else
-                    view = new DataView(MainData.ViewBudgetMonthlyReport);
+                DataView view = new DataView(MainData.ViewMonthlyReport);
                 view.Sort = "TrMonth ASC";
                 view.RowFilter = "GroupingKey = '" + groupingKey + "'";
                 reportDataByGroupingKey.Add(groupingKey, view);
@@ -305,30 +255,11 @@ namespace Budget
             {
                 foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
-                    if (DIAG_New == 3)
-                    {
-                        MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                        if (tblRow.AmountNormalized > maxAmount)
-                            maxAmount = tblRow.AmountNormalized;
-                        if (tblRow.AmountNormalized < minAmount)
-                            minAmount = tblRow.AmountNormalized;
-                    }
-                    else if (DIAG_New == 2)
-                    {
-                        MainDataSet.MonthlyReportRow tblRow = rowView.Row as MainDataSet.MonthlyReportRow;
-                        if (tblRow.AmountNormalized > maxAmount)
-                            maxAmount = tblRow.AmountNormalized;
-                        if (tblRow.AmountNormalized < minAmount)
-                            minAmount = tblRow.AmountNormalized;
-                    }
-                    else
-                    {
-                        MainDataSet.ViewBudgetMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewBudgetMonthlyReportRow;
-                        if (tblRow.AmountNormalized > maxAmount)
-                            maxAmount = tblRow.AmountNormalized;
-                        if (tblRow.AmountNormalized < minAmount)
-                            minAmount = tblRow.AmountNormalized;
-                    }
+                    MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
+                    if (tblRow.AmountNormalized > maxAmount)
+                        maxAmount = tblRow.AmountNormalized;
+                    if (tblRow.AmountNormalized < minAmount)
+                        minAmount = tblRow.AmountNormalized;
                 }
             }
 
@@ -401,7 +332,6 @@ namespace Budget
 
         void PopulateMainGrid(SortedList<string, DataView> reportDataByGroupingKey)
         {
-            // DIAG this shows data for every grouping -- it should show only for selected
             gridMain.Rows.Clear();
             gridMain.Columns.Clear();
 
@@ -454,21 +384,8 @@ namespace Budget
             {
                 foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
-                    if (DIAG_New == 3)
-                    {
-                        MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                        gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
-                    }
-                    else if (DIAG_New == 2)
-                    {
-                        MainDataSet.MonthlyReportRow tblRow = rowView.Row as MainDataSet.MonthlyReportRow;
-                        gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
-                    }
-                    else
-                    {
-                        MainDataSet.ViewBudgetMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewBudgetMonthlyReportRow;
-                        gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
-                    }
+                    MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
+                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
                 }
             }
         }

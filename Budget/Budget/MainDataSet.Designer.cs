@@ -54,15 +54,11 @@ namespace Budget {
         
         private ViewBudgetWithMonthlyDataTable tableViewBudgetWithMonthly;
         
-        private ViewBudgetMonthlyReportDataTable tableViewBudgetMonthlyReport;
-        
         private ViewGroupingsDataTable tableViewGroupings;
         
         private TransacTypeDataTable tableTransacType;
         
         private TransacTypePatternDataTable tableTransacTypePattern;
-        
-        private MonthlyReportDataTable tableMonthlyReport;
         
         private ViewMonthlyReportDataTable tableViewMonthlyReport;
         
@@ -163,9 +159,6 @@ namespace Budget {
                 if ((ds.Tables["ViewBudgetWithMonthly"] != null)) {
                     base.Tables.Add(new ViewBudgetWithMonthlyDataTable(ds.Tables["ViewBudgetWithMonthly"]));
                 }
-                if ((ds.Tables["ViewBudgetMonthlyReport"] != null)) {
-                    base.Tables.Add(new ViewBudgetMonthlyReportDataTable(ds.Tables["ViewBudgetMonthlyReport"]));
-                }
                 if ((ds.Tables["ViewGroupings"] != null)) {
                     base.Tables.Add(new ViewGroupingsDataTable(ds.Tables["ViewGroupings"]));
                 }
@@ -174,9 +167,6 @@ namespace Budget {
                 }
                 if ((ds.Tables["TransacTypePattern"] != null)) {
                     base.Tables.Add(new TransacTypePatternDataTable(ds.Tables["TransacTypePattern"]));
-                }
-                if ((ds.Tables["MonthlyReport"] != null)) {
-                    base.Tables.Add(new MonthlyReportDataTable(ds.Tables["MonthlyReport"]));
                 }
                 if ((ds.Tables["ViewMonthlyReport"] != null)) {
                     base.Tables.Add(new ViewMonthlyReportDataTable(ds.Tables["ViewMonthlyReport"]));
@@ -356,16 +346,6 @@ namespace Budget {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ViewBudgetMonthlyReportDataTable ViewBudgetMonthlyReport {
-            get {
-                return this.tableViewBudgetMonthlyReport;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ViewGroupingsDataTable ViewGroupings {
             get {
                 return this.tableViewGroupings;
@@ -389,16 +369,6 @@ namespace Budget {
         public TransacTypePatternDataTable TransacTypePattern {
             get {
                 return this.tableTransacTypePattern;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MonthlyReportDataTable MonthlyReport {
-            get {
-                return this.tableMonthlyReport;
             }
         }
         
@@ -534,9 +504,6 @@ namespace Budget {
                 if ((ds.Tables["ViewBudgetWithMonthly"] != null)) {
                     base.Tables.Add(new ViewBudgetWithMonthlyDataTable(ds.Tables["ViewBudgetWithMonthly"]));
                 }
-                if ((ds.Tables["ViewBudgetMonthlyReport"] != null)) {
-                    base.Tables.Add(new ViewBudgetMonthlyReportDataTable(ds.Tables["ViewBudgetMonthlyReport"]));
-                }
                 if ((ds.Tables["ViewGroupings"] != null)) {
                     base.Tables.Add(new ViewGroupingsDataTable(ds.Tables["ViewGroupings"]));
                 }
@@ -545,9 +512,6 @@ namespace Budget {
                 }
                 if ((ds.Tables["TransacTypePattern"] != null)) {
                     base.Tables.Add(new TransacTypePatternDataTable(ds.Tables["TransacTypePattern"]));
-                }
-                if ((ds.Tables["MonthlyReport"] != null)) {
-                    base.Tables.Add(new MonthlyReportDataTable(ds.Tables["MonthlyReport"]));
                 }
                 if ((ds.Tables["ViewMonthlyReport"] != null)) {
                     base.Tables.Add(new ViewMonthlyReportDataTable(ds.Tables["ViewMonthlyReport"]));
@@ -678,12 +642,6 @@ namespace Budget {
                     this.tableViewBudgetWithMonthly.InitVars();
                 }
             }
-            this.tableViewBudgetMonthlyReport = ((ViewBudgetMonthlyReportDataTable)(base.Tables["ViewBudgetMonthlyReport"]));
-            if ((initTable == true)) {
-                if ((this.tableViewBudgetMonthlyReport != null)) {
-                    this.tableViewBudgetMonthlyReport.InitVars();
-                }
-            }
             this.tableViewGroupings = ((ViewGroupingsDataTable)(base.Tables["ViewGroupings"]));
             if ((initTable == true)) {
                 if ((this.tableViewGroupings != null)) {
@@ -700,12 +658,6 @@ namespace Budget {
             if ((initTable == true)) {
                 if ((this.tableTransacTypePattern != null)) {
                     this.tableTransacTypePattern.InitVars();
-                }
-            }
-            this.tableMonthlyReport = ((MonthlyReportDataTable)(base.Tables["MonthlyReport"]));
-            if ((initTable == true)) {
-                if ((this.tableMonthlyReport != null)) {
-                    this.tableMonthlyReport.InitVars();
                 }
             }
             this.tableViewMonthlyReport = ((ViewMonthlyReportDataTable)(base.Tables["ViewMonthlyReport"]));
@@ -771,16 +723,12 @@ namespace Budget {
             base.Tables.Add(this.tableAccount);
             this.tableViewBudgetWithMonthly = new ViewBudgetWithMonthlyDataTable();
             base.Tables.Add(this.tableViewBudgetWithMonthly);
-            this.tableViewBudgetMonthlyReport = new ViewBudgetMonthlyReportDataTable();
-            base.Tables.Add(this.tableViewBudgetMonthlyReport);
             this.tableViewGroupings = new ViewGroupingsDataTable();
             base.Tables.Add(this.tableViewGroupings);
             this.tableTransacType = new TransacTypeDataTable();
             base.Tables.Add(this.tableTransacType);
             this.tableTransacTypePattern = new TransacTypePatternDataTable();
             base.Tables.Add(this.tableTransacTypePattern);
-            this.tableMonthlyReport = new MonthlyReportDataTable();
-            base.Tables.Add(this.tableMonthlyReport);
             this.tableViewMonthlyReport = new ViewMonthlyReportDataTable();
             base.Tables.Add(this.tableViewMonthlyReport);
             this.tableGroupingsInOrder = new GroupingsInOrderDataTable();
@@ -923,12 +871,6 @@ namespace Budget {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeViewBudgetMonthlyReport() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeViewGroupings() {
             return false;
         }
@@ -942,12 +884,6 @@ namespace Budget {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeTransacTypePattern() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeMonthlyReport() {
             return false;
         }
         
@@ -1064,9 +1000,6 @@ namespace Budget {
         public delegate void ViewBudgetWithMonthlyRowChangeEventHandler(object sender, ViewBudgetWithMonthlyRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void ViewBudgetMonthlyReportRowChangeEventHandler(object sender, ViewBudgetMonthlyReportRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ViewGroupingsRowChangeEventHandler(object sender, ViewGroupingsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1074,9 +1007,6 @@ namespace Budget {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void TransacTypePatternRowChangeEventHandler(object sender, TransacTypePatternRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void MonthlyReportRowChangeEventHandler(object sender, MonthlyReportRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ViewMonthlyReportRowChangeEventHandler(object sender, ViewMonthlyReportRowChangeEvent e);
@@ -6010,343 +5940,6 @@ namespace Budget {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ViewBudgetMonthlyReportDataTable : global::System.Data.TypedTableBase<ViewBudgetMonthlyReportRow> {
-            
-            private global::System.Data.DataColumn columnAmountNormalized;
-            
-            private global::System.Data.DataColumn columnGroupingKey;
-            
-            private global::System.Data.DataColumn columnTrMonth;
-            
-            private global::System.Data.DataColumn columnAccountOwner;
-            
-            private global::System.Data.DataColumn columnAccountType;
-            
-            private global::System.Data.DataColumn columnViewKey;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportDataTable() {
-                this.TableName = "ViewBudgetMonthlyReport";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal ViewBudgetMonthlyReportDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected ViewBudgetMonthlyReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AmountNormalizedColumn {
-                get {
-                    return this.columnAmountNormalized;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn GroupingKeyColumn {
-                get {
-                    return this.columnGroupingKey;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TrMonthColumn {
-                get {
-                    return this.columnTrMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AccountOwnerColumn {
-                get {
-                    return this.columnAccountOwner;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AccountTypeColumn {
-                get {
-                    return this.columnAccountType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ViewKeyColumn {
-                get {
-                    return this.columnViewKey;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow this[int index] {
-                get {
-                    return ((ViewBudgetMonthlyReportRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ViewBudgetMonthlyReportRowChangeEventHandler ViewBudgetMonthlyReportRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ViewBudgetMonthlyReportRowChangeEventHandler ViewBudgetMonthlyReportRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ViewBudgetMonthlyReportRowChangeEventHandler ViewBudgetMonthlyReportRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event ViewBudgetMonthlyReportRowChangeEventHandler ViewBudgetMonthlyReportRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddViewBudgetMonthlyReportRow(ViewBudgetMonthlyReportRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow AddViewBudgetMonthlyReportRow(decimal AmountNormalized, string GroupingKey, System.DateTime TrMonth, string AccountOwner, string AccountType, string ViewKey) {
-                ViewBudgetMonthlyReportRow rowViewBudgetMonthlyReportRow = ((ViewBudgetMonthlyReportRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        AmountNormalized,
-                        GroupingKey,
-                        TrMonth,
-                        AccountOwner,
-                        AccountType,
-                        ViewKey};
-                rowViewBudgetMonthlyReportRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowViewBudgetMonthlyReportRow);
-                return rowViewBudgetMonthlyReportRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow FindByViewKey(string ViewKey) {
-                return ((ViewBudgetMonthlyReportRow)(this.Rows.Find(new object[] {
-                            ViewKey})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                ViewBudgetMonthlyReportDataTable cln = ((ViewBudgetMonthlyReportDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new ViewBudgetMonthlyReportDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnAmountNormalized = base.Columns["AmountNormalized"];
-                this.columnGroupingKey = base.Columns["GroupingKey"];
-                this.columnTrMonth = base.Columns["TrMonth"];
-                this.columnAccountOwner = base.Columns["AccountOwner"];
-                this.columnAccountType = base.Columns["AccountType"];
-                this.columnViewKey = base.Columns["ViewKey"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnAmountNormalized = new global::System.Data.DataColumn("AmountNormalized", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmountNormalized);
-                this.columnGroupingKey = new global::System.Data.DataColumn("GroupingKey", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGroupingKey);
-                this.columnTrMonth = new global::System.Data.DataColumn("TrMonth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrMonth);
-                this.columnAccountOwner = new global::System.Data.DataColumn("AccountOwner", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccountOwner);
-                this.columnAccountType = new global::System.Data.DataColumn("AccountType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccountType);
-                this.columnViewKey = new global::System.Data.DataColumn("ViewKey", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnViewKey);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnViewKey}, true));
-                this.columnAmountNormalized.ReadOnly = true;
-                this.columnGroupingKey.ReadOnly = true;
-                this.columnGroupingKey.MaxLength = 9;
-                this.columnAccountOwner.AllowDBNull = false;
-                this.columnAccountOwner.MaxLength = 4;
-                this.columnAccountType.AllowDBNull = false;
-                this.columnAccountType.MaxLength = 1;
-                this.columnViewKey.AllowDBNull = false;
-                this.columnViewKey.ReadOnly = true;
-                this.columnViewKey.Unique = true;
-                this.columnViewKey.MaxLength = 47;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow NewViewBudgetMonthlyReportRow() {
-                return ((ViewBudgetMonthlyReportRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ViewBudgetMonthlyReportRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(ViewBudgetMonthlyReportRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.ViewBudgetMonthlyReportRowChanged != null)) {
-                    this.ViewBudgetMonthlyReportRowChanged(this, new ViewBudgetMonthlyReportRowChangeEvent(((ViewBudgetMonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.ViewBudgetMonthlyReportRowChanging != null)) {
-                    this.ViewBudgetMonthlyReportRowChanging(this, new ViewBudgetMonthlyReportRowChangeEvent(((ViewBudgetMonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.ViewBudgetMonthlyReportRowDeleted != null)) {
-                    this.ViewBudgetMonthlyReportRowDeleted(this, new ViewBudgetMonthlyReportRowChangeEvent(((ViewBudgetMonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.ViewBudgetMonthlyReportRowDeleting != null)) {
-                    this.ViewBudgetMonthlyReportRowDeleting(this, new ViewBudgetMonthlyReportRowChangeEvent(((ViewBudgetMonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveViewBudgetMonthlyReportRow(ViewBudgetMonthlyReportRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ViewBudgetMonthlyReportDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ViewGroupingsDataTable : global::System.Data.TypedTableBase<ViewGroupingsRow> {
             
             private global::System.Data.DataColumn columnGroupingType;
@@ -7351,329 +6944,6 @@ namespace Budget {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TransacTypePatternDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MonthlyReportDataTable : global::System.Data.TypedTableBase<MonthlyReportRow> {
-            
-            private global::System.Data.DataColumn columnAmountNormalized;
-            
-            private global::System.Data.DataColumn columnGroupingKey;
-            
-            private global::System.Data.DataColumn columnTrMonth;
-            
-            private global::System.Data.DataColumn columnAccountOwner;
-            
-            private global::System.Data.DataColumn columnAccountType;
-            
-            private global::System.Data.DataColumn columnViewKey;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportDataTable() {
-                this.TableName = "MonthlyReport";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal MonthlyReportDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected MonthlyReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AmountNormalizedColumn {
-                get {
-                    return this.columnAmountNormalized;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn GroupingKeyColumn {
-                get {
-                    return this.columnGroupingKey;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TrMonthColumn {
-                get {
-                    return this.columnTrMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AccountOwnerColumn {
-                get {
-                    return this.columnAccountOwner;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AccountTypeColumn {
-                get {
-                    return this.columnAccountType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ViewKeyColumn {
-                get {
-                    return this.columnViewKey;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportRow this[int index] {
-                get {
-                    return ((MonthlyReportRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event MonthlyReportRowChangeEventHandler MonthlyReportRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event MonthlyReportRowChangeEventHandler MonthlyReportRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event MonthlyReportRowChangeEventHandler MonthlyReportRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event MonthlyReportRowChangeEventHandler MonthlyReportRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddMonthlyReportRow(MonthlyReportRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportRow AddMonthlyReportRow(decimal AmountNormalized, string GroupingKey, System.DateTime TrMonth, string AccountOwner, string AccountType, string ViewKey) {
-                MonthlyReportRow rowMonthlyReportRow = ((MonthlyReportRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        AmountNormalized,
-                        GroupingKey,
-                        TrMonth,
-                        AccountOwner,
-                        AccountType,
-                        ViewKey};
-                rowMonthlyReportRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMonthlyReportRow);
-                return rowMonthlyReportRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                MonthlyReportDataTable cln = ((MonthlyReportDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new MonthlyReportDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnAmountNormalized = base.Columns["AmountNormalized"];
-                this.columnGroupingKey = base.Columns["GroupingKey"];
-                this.columnTrMonth = base.Columns["TrMonth"];
-                this.columnAccountOwner = base.Columns["AccountOwner"];
-                this.columnAccountType = base.Columns["AccountType"];
-                this.columnViewKey = base.Columns["ViewKey"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnAmountNormalized = new global::System.Data.DataColumn("AmountNormalized", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmountNormalized);
-                this.columnGroupingKey = new global::System.Data.DataColumn("GroupingKey", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGroupingKey);
-                this.columnTrMonth = new global::System.Data.DataColumn("TrMonth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrMonth);
-                this.columnAccountOwner = new global::System.Data.DataColumn("AccountOwner", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccountOwner);
-                this.columnAccountType = new global::System.Data.DataColumn("AccountType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAccountType);
-                this.columnViewKey = new global::System.Data.DataColumn("ViewKey", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnViewKey);
-                this.columnAmountNormalized.ReadOnly = true;
-                this.columnGroupingKey.MaxLength = 255;
-                this.columnAccountOwner.MaxLength = 4;
-                this.columnAccountType.MaxLength = 1;
-                this.columnViewKey.ReadOnly = true;
-                this.columnViewKey.MaxLength = 293;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportRow NewMonthlyReportRow() {
-                return ((MonthlyReportRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MonthlyReportRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(MonthlyReportRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.MonthlyReportRowChanged != null)) {
-                    this.MonthlyReportRowChanged(this, new MonthlyReportRowChangeEvent(((MonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.MonthlyReportRowChanging != null)) {
-                    this.MonthlyReportRowChanging(this, new MonthlyReportRowChangeEvent(((MonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.MonthlyReportRowDeleted != null)) {
-                    this.MonthlyReportRowDeleted(this, new MonthlyReportRowChangeEvent(((MonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.MonthlyReportRowDeleting != null)) {
-                    this.MonthlyReportRowDeleting(this, new MonthlyReportRowChangeEvent(((MonthlyReportRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveMonthlyReportRow(MonthlyReportRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MonthlyReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -10489,139 +9759,6 @@ namespace Budget {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ViewBudgetMonthlyReportRow : global::System.Data.DataRow {
-            
-            private ViewBudgetMonthlyReportDataTable tableViewBudgetMonthlyReport;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal ViewBudgetMonthlyReportRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableViewBudgetMonthlyReport = ((ViewBudgetMonthlyReportDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal AmountNormalized {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableViewBudgetMonthlyReport.AmountNormalizedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AmountNormalized\' in table \'ViewBudgetMonthlyReport\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.AmountNormalizedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string GroupingKey {
-                get {
-                    try {
-                        return ((string)(this[this.tableViewBudgetMonthlyReport.GroupingKeyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GroupingKey\' in table \'ViewBudgetMonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.GroupingKeyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime TrMonth {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableViewBudgetMonthlyReport.TrMonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrMonth\' in table \'ViewBudgetMonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.TrMonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string AccountOwner {
-                get {
-                    return ((string)(this[this.tableViewBudgetMonthlyReport.AccountOwnerColumn]));
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.AccountOwnerColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string AccountType {
-                get {
-                    return ((string)(this[this.tableViewBudgetMonthlyReport.AccountTypeColumn]));
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.AccountTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ViewKey {
-                get {
-                    return ((string)(this[this.tableViewBudgetMonthlyReport.ViewKeyColumn]));
-                }
-                set {
-                    this[this.tableViewBudgetMonthlyReport.ViewKeyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAmountNormalizedNull() {
-                return this.IsNull(this.tableViewBudgetMonthlyReport.AmountNormalizedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAmountNormalizedNull() {
-                this[this.tableViewBudgetMonthlyReport.AmountNormalizedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsGroupingKeyNull() {
-                return this.IsNull(this.tableViewBudgetMonthlyReport.GroupingKeyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetGroupingKeyNull() {
-                this[this.tableViewBudgetMonthlyReport.GroupingKeyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTrMonthNull() {
-                return this.IsNull(this.tableViewBudgetMonthlyReport.TrMonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTrMonthNull() {
-                this[this.tableViewBudgetMonthlyReport.TrMonthColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class ViewGroupingsRow : global::System.Data.DataRow {
             
             private ViewGroupingsDataTable tableViewGroupings;
@@ -11055,189 +10192,6 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTrTypeNull() {
                 this[this.tableTransacTypePattern.TrTypeColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class MonthlyReportRow : global::System.Data.DataRow {
-            
-            private MonthlyReportDataTable tableMonthlyReport;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal MonthlyReportRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableMonthlyReport = ((MonthlyReportDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal AmountNormalized {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableMonthlyReport.AmountNormalizedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AmountNormalized\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.AmountNormalizedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string GroupingKey {
-                get {
-                    try {
-                        return ((string)(this[this.tableMonthlyReport.GroupingKeyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GroupingKey\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.GroupingKeyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime TrMonth {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableMonthlyReport.TrMonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrMonth\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.TrMonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string AccountOwner {
-                get {
-                    try {
-                        return ((string)(this[this.tableMonthlyReport.AccountOwnerColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AccountOwner\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.AccountOwnerColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string AccountType {
-                get {
-                    try {
-                        return ((string)(this[this.tableMonthlyReport.AccountTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AccountType\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.AccountTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ViewKey {
-                get {
-                    try {
-                        return ((string)(this[this.tableMonthlyReport.ViewKeyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ViewKey\' in table \'MonthlyReport\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMonthlyReport.ViewKeyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAmountNormalizedNull() {
-                return this.IsNull(this.tableMonthlyReport.AmountNormalizedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAmountNormalizedNull() {
-                this[this.tableMonthlyReport.AmountNormalizedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsGroupingKeyNull() {
-                return this.IsNull(this.tableMonthlyReport.GroupingKeyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetGroupingKeyNull() {
-                this[this.tableMonthlyReport.GroupingKeyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTrMonthNull() {
-                return this.IsNull(this.tableMonthlyReport.TrMonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTrMonthNull() {
-                this[this.tableMonthlyReport.TrMonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAccountOwnerNull() {
-                return this.IsNull(this.tableMonthlyReport.AccountOwnerColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAccountOwnerNull() {
-                this[this.tableMonthlyReport.AccountOwnerColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAccountTypeNull() {
-                return this.IsNull(this.tableMonthlyReport.AccountTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAccountTypeNull() {
-                this[this.tableMonthlyReport.AccountTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsViewKeyNull() {
-                return this.IsNull(this.tableMonthlyReport.ViewKeyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetViewKeyNull() {
-                this[this.tableMonthlyReport.ViewKeyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12038,40 +10992,6 @@ namespace Budget {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class ViewBudgetMonthlyReportRowChangeEvent : global::System.EventArgs {
-            
-            private ViewBudgetMonthlyReportRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRowChangeEvent(ViewBudgetMonthlyReportRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetMonthlyReportRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public class ViewGroupingsRowChangeEvent : global::System.EventArgs {
             
             private ViewGroupingsRow eventRow;
@@ -12156,40 +11076,6 @@ namespace Budget {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public TransacTypePatternRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class MonthlyReportRowChangeEvent : global::System.EventArgs {
-            
-            private MonthlyReportRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportRowChangeEvent(MonthlyReportRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public MonthlyReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -19509,168 +18395,6 @@ WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class ViewBudgetMonthlyReportTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
-        
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public ViewBudgetMonthlyReportTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "ViewBudgetMonthlyReport";
-            tableMapping.ColumnMappings.Add("AmountNormalized", "AmountNormalized");
-            tableMapping.ColumnMappings.Add("GroupingKey", "GroupingKey");
-            tableMapping.ColumnMappings.Add("TrMonth", "TrMonth");
-            tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
-            tableMapping.ColumnMappings.Add("AccountType", "AccountType");
-            tableMapping.ColumnMappings.Add("ViewKey", "ViewKey");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType, " +
-                "ViewKey\r\nFROM            ViewBudgetMonthlyReport";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.ViewBudgetMonthlyReportDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class ViewGroupingsTableAdapter : global::System.ComponentModel.Component {
         
         private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
@@ -20966,193 +19690,6 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MonthlyReportTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
-        
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public MonthlyReportTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MonthlyReport";
-            tableMapping.ColumnMappings.Add("AmountNormalized", "AmountNormalized");
-            tableMapping.ColumnMappings.Add("GroupingKey", "GroupingKey");
-            tableMapping.ColumnMappings.Add("TrMonth", "TrMonth");
-            tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
-            tableMapping.ColumnMappings.Add("AccountType", "AccountType");
-            tableMapping.ColumnMappings.Add("ViewKey", "ViewKey");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType, " +
-                "ViewKey\r\nFROM            dbo.MonthlyReport(@FromMonth, @ToMonth) AS MonthlyRepor" +
-                "t_Return";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@FromMonth";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.Size = 1024;
-            param.IsNullable = true;
-            this._commandCollection[0].Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ToMonth";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.Size = 1024;
-            param.IsNullable = true;
-            this._commandCollection[0].Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.MonthlyReportDataTable dataTable, string FromMonth, string ToMonth) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((FromMonth == null)) {
-                throw new global::System.ArgumentNullException("FromMonth");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(FromMonth));
-            }
-            if ((ToMonth == null)) {
-                throw new global::System.ArgumentNullException("ToMonth");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ToMonth));
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class ViewMonthlyReportTableAdapter : global::System.ComponentModel.Component {
         
         private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
@@ -21283,12 +19820,51 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType\r\n" +
                 "FROM            ViewMonthlyReport";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType\r\n" +
+                "FROM            ViewMonthlyReport\r\nWHERE        (TrMonth >= @FromMonth) AND (TrM" +
+                "onth <= @ToMonth) AND (AccountOwner = @AccountOwner) AND (AccountType = @Account" +
+                "Type)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@FromMonth";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.SqlDbType = global::System.Data.SqlDbType.DateTime;
+            param.Size = 3;
+            param.IsNullable = true;
+            param.SourceColumn = "TrMonth";
+            this._commandCollection[1].Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@ToMonth";
+            param.DbType = global::System.Data.DbType.DateTime;
+            param.SqlDbType = global::System.Data.SqlDbType.DateTime;
+            param.Size = 3;
+            param.IsNullable = true;
+            param.SourceColumn = "TrMonth";
+            this._commandCollection[1].Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountOwner";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.Size = 4;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountOwner";
+            this._commandCollection[1].Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AccountType";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.Char;
+            param.Size = 1;
+            param.IsNullable = true;
+            param.SourceColumn = "AccountType";
+            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21297,6 +19873,43 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
         public virtual int Fill(MainDataSet.ViewMonthlyReportDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByDateRange(MainDataSet.ViewMonthlyReportDataTable dataTable, global::System.Nullable<global::System.DateTime> FromMonth, global::System.Nullable<global::System.DateTime> ToMonth, string AccountOwner, string AccountType) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((FromMonth.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(FromMonth.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((ToMonth.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(ToMonth.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((AccountOwner == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(AccountOwner));
+            }
+            if ((AccountType == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(AccountType));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -21655,15 +20268,6 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._sourceFileTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sourceFileTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._transacTypeTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -21683,12 +20287,12 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._transacTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sourceFileTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._transacTypePatternTableAdapter.Update(updatedRows));
+                    result = (result + this._sourceFileTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21698,6 +20302,15 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._transacTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21762,14 +20375,6 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._sourceFileTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sourceFileTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._transacTypeTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -21787,11 +20392,11 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._transacTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sourceFileTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._transacTypePatternTableAdapter.Update(addedRows));
+                    result = (result + this._sourceFileTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21800,6 +20405,14 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._transacTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21861,6 +20474,14 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._transacTypePatternTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._transacTypePatternTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._transacTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -21869,11 +20490,11 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._transacTypePatternTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TransacTypePattern.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sourceFileTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._transacTypePatternTableAdapter.Update(deletedRows));
+                    result = (result + this._sourceFileTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21891,14 +20512,6 @@ SELECT ID, Pattern, TrType, ForIgnore, ForIncome FROM TransacTypePattern WHERE (
                             && (0 < deletedRows.Length))) {
                     this.SortSelfReferenceRows(deletedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], true);
                     result = (result + this._transacTypeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._sourceFileTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sourceFileTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
