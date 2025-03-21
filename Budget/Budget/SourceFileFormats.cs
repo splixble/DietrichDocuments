@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Budget
 {
-    enum SourceFileFormats { 
+    public enum SourceFileFormats { 
         AmexStmt, 
         BofANarrowPDF,
         BofAWidePDF,

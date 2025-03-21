@@ -13,7 +13,7 @@ using static Budget.MainDataSet;
 
 namespace Budget
 {
-    internal abstract class SourceFileProcessor
+    public abstract class SourceFileProcessor
     {
         public bool IsManuallyEntered => _IsManuallyEntered;
         bool _IsManuallyEntered;
@@ -53,7 +53,7 @@ namespace Budget
 
         protected abstract DataTable ImportedTable { get; } // the table the source file items get written to
 
-        public SourceFileProcessor(string selectedFileFormat, bool isManuallyEntered) 
+        public SourceFileProcessor(string selectedFileFormat, bool isManuallyEntered)
         {
             _IsManuallyEntered = isManuallyEntered;
 
@@ -198,7 +198,7 @@ namespace Budget
         protected abstract DataRow NewImportedRow();
 
         public virtual DataRow AddOrUpdateImportedRow(ColumnValueList fieldsByColumnName, int lineNum)
-            // returns imported row added or updated, or null if there's an error
+        // returns imported row added or updated, or null if there's an error
         {
             DataRow importedRow = null;
 
@@ -370,17 +370,37 @@ namespace Budget
             }
         }
 
+        public bool AnyItemsImported => UpdatedImportedRows.Count > 0;
+
         public string GetBindingSrcFilterText()
         {
-            string filterText = "";
-            foreach (DataRow dataRow in UpdatedImportedRows.Keys)
+            if (AnyItemsImported)
             {
-                PrimaryKeyValue keyVal = new PrimaryKeyValue(dataRow);
-                if (filterText != "")
-                    filterText += " OR ";
-                filterText += "(" + keyVal.SQLFilterExpression + ")";
+                string filterText = "";
+                foreach (DataRow dataRow in UpdatedImportedRows.Keys)
+                {
+                    PrimaryKeyValue keyVal = new PrimaryKeyValue(dataRow);
+                    if (filterText != "")
+                        filterText += " OR ";
+                    filterText += "(" + keyVal.SQLFilterExpression + ")";
+                }
+                return filterText;
             }
-            return filterText;
+            else
+                return "FALSE";
+        }
+
+        public string GetImportResultStatus()
+        {
+            switch (UpdatedImportedRows.Count)
+            {
+                case 0:
+                    return "No items imported";
+                case 1:
+                    return "1 item imported";
+                default:
+                    return UpdatedImportedRows.Count.ToString() + " items imported";
+            }
         }
 
         protected abstract void SaveImportedTable();

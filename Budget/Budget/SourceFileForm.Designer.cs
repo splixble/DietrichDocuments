@@ -41,7 +41,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.comboFileFormat = new System.Windows.Forms.ComboBox();
             this.chBoxManualEntry = new System.Windows.Forms.CheckBox();
@@ -49,6 +48,7 @@
             this.lblFilePath = new System.Windows.Forms.Label();
             this.btnImportManualText = new System.Windows.Forms.Button();
             this.tbFileText = new System.Windows.Forms.TextBox();
+            this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.sharePriceCtrl = new Budget.SharePriceEditingGridCtrl();
             this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
             this.menuStrip1.SuspendLayout();
@@ -198,14 +198,6 @@
             this.tabPage1.Text = "Checklist";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // sourceFileChecklistCtrl1
-            // 
-            this.sourceFileChecklistCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourceFileChecklistCtrl1.Location = new System.Drawing.Point(3, 3);
-            this.sourceFileChecklistCtrl1.Name = "sourceFileChecklistCtrl1";
-            this.sourceFileChecklistCtrl1.Size = new System.Drawing.Size(1209, 226);
-            this.sourceFileChecklistCtrl1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.comboFileFormat);
@@ -286,6 +278,14 @@
             this.tbFileText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbFileText.Size = new System.Drawing.Size(1203, 169);
             this.tbFileText.TabIndex = 6;
+            // 
+            // sourceFileChecklistCtrl1
+            // 
+            this.sourceFileChecklistCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceFileChecklistCtrl1.Location = new System.Drawing.Point(3, 3);
+            this.sourceFileChecklistCtrl1.Name = "sourceFileChecklistCtrl1";
+            this.sourceFileChecklistCtrl1.Size = new System.Drawing.Size(1209, 226);
+            this.sourceFileChecklistCtrl1.TabIndex = 0;
             // 
             // sharePriceCtrl
             // 

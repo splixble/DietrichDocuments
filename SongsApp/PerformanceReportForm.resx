@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,89 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="viewArtistNameForListBoxBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>518, 17</value>
-  </metadata>
-  <metadata name="dataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="SongKey.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="OriginalKey.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="InTabletColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SetlistAddable.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SongbookOnly.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="DiffPDFName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ColFlags.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 54</value>
-  </metadata>
-  <metadata name="songsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>112, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>409, 17</value>
-  </metadata>
-  <metadata name="songsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>263, 17</value>
-  </metadata>
-  <metadata name="viewArtistNameForListBoxTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>770, 17</value>
-  </metadata>
-  <metadata name="flagsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>162, 54</value>
-  </metadata>
-  <metadata name="flagsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>308, 54</value>
-  </metadata>
-  <metadata name="viewSongsSingleFieldBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>806, 54</value>
-  </metadata>
-  <metadata name="viewSongsSingleFieldTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 91</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>179</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        AAABAAEAEAwAAAEACAAYBQAAFgAAACgAAAAQAAAAGAAAAAEACAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAA
-        AACcrQD/nLUA/5y1CP+ltQj/pb0I/5ytEP+lvRD/rb0Q/5ytGP+ctRj/pbUY/629GP+MlCH/jJwh/5Sl
-        If+ltSH/lKUp/3N7Mf9zhDH/e4wx/629Mf+9zjH/Y2s5/4SUOf+UnDn/pbU5/629Of+9xjn/xs45/4yc
-        Qv+ttUL/vc5C/3uMSv+EjEr/tcZK/wAAUv8pMVL/OTlS/zlCUv9CSlL/WlJS/1pjUv9ja1L/e3tS/5Sc
-        Uv+tvVL/tb1S/wAAWv8ACFr/CAha/wgQWv8YGFr/OUJa/0JCWv9KUlr/Ulpa/1pjWv9ja1r/e4Ra/5Sl
-        Wv8ACGP/EBBj/xgYY/8hIWP/jKVj/6W1Y/8xMWv/QkJr/1pja/9ja2v/tcZr/0pac/9aWnP/jIxz/621
-        c/+9xnv/xs57/73GhP/GzoT/ztaE/2tzjP+MjJT/xtaU/87WnP+MlKX/xs6l/87Wpf/W3qX/nJyt/62t
-        rf+9xq3/1tat/9berf/W1rX/zta9/9bexv/e3sb/3ufG/87Gzv/Ozs7/zs7W/9bO1v/W1tb/3tbW/+fn
-        1v/W1t7/3tbe/97e3v/n597/5+/e/97e5//e5+f/5+fn/+/v5//v9+f/5+fv/+/n7//39/f/9/f/////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        ////////a1pKSlVwdXV3d3d3dXV1dUsKHxsaHlZ1d3d3d3V1dXUICCIfHBUULlZgXE5LUm11CBgqKEkr
-        RSkhOjk2OCxbdRkCBAYPDCoyPT09P0hRcXVGAgMKExASIzAxPTtsdXV1VQACBjZENzE8MT8XQEFea2YI
-        AgMgOSc/Pz9DNTVHUFRmTQACAwQNMz4/QiQnJiY1ZGZNCAIDBg4RFhYSDx1ZWGJkaWddVl9saE8LCwst
-        aW5iY2Vpa25wcHNzbFNMX25rAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAA
+        AAABAAEAIBgAAAEAGACICQAAFgAAACgAAAAgAAAAMAAAAAEAGAAAAAAAYAkAAAAAAAAAAAAAAAAAAAAA
+        AADe3t7e3t7e3t7W1s7Gzr21xpy9xpzOzrXe597n5+fv7+/v9+/39/f39/f39/f39/f39/f3///3///3
+        ///3///3///3///39/f39/f39/f39/f39/f39/f39/f39/fv7+/e3ufe3t61xpyQlFaUoEiYoD2YoD2Y
+        oD2gsUK1vXPW3sbv7+fv9+/39/f39/f39/f////////////////////////////////39/f39/f39/f3
+        9/f39/f39/f39/f39/fe3t61xnucrRitvSG1xjm9xkK1xjmttTGcrTGcrTmcrTm1vXPe587v7+/39/f3
+        9/f///f////////////////////////////39/f///f39/f39/f39/f39/f39/f39/fGzpScrQictQil
+        vRi9xkK9zkK9zkrGzkq9zkK1xjGltTGltTmltTnGzozn59739+/39/f3//f///f///////////////f3
+        //f3//f39/f39/f39/f39/f39/f39/f39/ettUKcrQiltQiltRC1xjm9zkK9zkq9zkrGzkrG1kLG1kK1
+        xjGltTGltTmtvUrO1qXv7+f39/f39/f39/f39/fv7+fe58bO1qXO1pzO1qXW3r3v7+fv9+/39+/39/f3
+        9/ecrSGcrQiltRCUnDGttVK9y1K9zkq9xjG9zjG9zim9zim9zim1xjmtvTGltTmltTmttUq1xnPGzoy9
+        zoy1vXO1vWutvVqtvVKtvVKttVKttUqtvVrW3rXv7+f39/f39/ecrSGcrQiltRCEhHNzc2NGSko5OTlz
+        a2OclHutrXu1vXOUoEiQlFZKSmOQlFatvTGttTmttUKtvUq1xkqttUqUoEh/jFZ7hFKQlFaltUq9xkKt
+        tUKtvWPn5+fv7+/39/eltTGcrQictQh7hFKEhFJSWjlCQkJzc3OUlIRjY2NaYFhCQkpra3NKUnMQEFIp
+        MWtSVlZjY2NSWmMxMWMhIWMhIWMhIWMhIWMhIWshKWNCSmuUrVK9xnvv7+/v9+/39/etvVKUrQicrQil
+        tQiltQitvRCtvRCcrSGUpTGUnDFCQhh7jEZ7hGNKSmsQEFoQEFoQEFoQEFoQGGMQEGMQEFoQGGMYGGMY
+        GGMhIWshIWMpMWtSWmPe57X39/f39/f39/e9xoSUrQCcrQictQiltQilvQitvQitvRC1xhC1xhC1xhC1
+        xhitxhgYGFoICFoICFoIEFoIEFoQEGMQEGMQEFoQEGMYGGM5Qlp7hGutrYzGzqXe58739/f39/f39/f3
+        9/fO1r2UrQCcrQictQiltQiltQitvRCtvRCltRCtvRC1xhC9zhi1xhgYIVIICFIAAFIAAFoICFoICFoI
+        CGMIEGMQEGNaYFjGzpTn5+f39+/39/f39/f39/f39/f39/f39/fe1t6crRiUrQictQiltQiltQilvRCc
+        rSlSWmNSVlZ7hFJzezGImClzfzkAAFIAAFoAAFoAAFoAAFIACFIICFIQGGOUpTGltVrW3r3n597v7+fv
+        7+/v9+/39/f39/f39/fe1t6ltUqUrQCcrQictQiltQiltQiltRhSVlZCUmNrc3tKTlJKTlJrc3MICFoI
+        CFoAAGMAAFoAAFIAAFIQEFoYIWOcrSmUpTGcrSmcrTmttVK9xnvO1rXe5+fn5+/n5+fW1t69xoSUrQCc
+        rQictQiltQiltQilvQhaYFhCUmNrc3tSWmNCSlJaY2MICFIICGMQEGMIEHMICGMYGFpKSmsQEGNaYFh7
+        jEZ7lJSMpYSUpXOUrVKtvYzGzs7O1tbW1t7W1tbW1saUrQicrQictQictQiltQiltRB7jGNKWmtja3Na
+        Y2tCQlJCSlIhKWMYGGMYGGMhIWMhIWMhKWNKUmMYGGNCQlpCQlpCSmNKWnNaa4xrhKV7lLWqt7Wqt7W9
+        xs7W1t7e1t6ltUqUrQCcrQictQictQiltRCltSGDlDNzfzlaZURCQkpKTlIxMVohIWMhIWMhIWMhGGMx
+        MWt7e4QhIWMxOVJKUms5PVI5PVI5Qlo5PVJCQlpKSmNjY3trc4TW1tbW1tbOzrWUrQiUrQicrQictQil
+        tRCltQilvQilvRClvQilvRBaZUQYGFIhIWMhIWshIWMpKWsxMWtzc4QhIWMxNUoxOVIxOVJKUmMxOVJK
+        Ums5PVJCSlpKSlpCQlrWztbW1tbW1ta1vXOUrQiUrQicrQictRCltRCltRCltQilvQilvQiDlDMYGFoY
+        GFoYGFoYGFoYGGMYGGMYIWMhIWMhKVopMVo5QlpGSkoxNUoxOVIxNUpCSlpCQlpCQlrOztbWztbW1tbW
+        1ta1vXOUrQicrQicrQictRCltRCltQiltQilvRClvRCUpRhaZURGSkopMVohIWMhIWMhGGMhIWMpMWNK
+        TlKImCmtvRiUnDF7jGOUlJx7hIxjY3NCSlrOzs7OztbW1tbWztbe1t7OzrWgsUKcrQictRCctQictRCl
+        tRCltQilvRCtvRCtvRCtvRCtvRCtvRiltRiltRiltRitvRCtvRitvRitvRiltSGEjFq9xr3e3t7n5+fe
+        5+fGxs7Ozs7OztbWztbW1tbe1t7e3t7W1sbGzoy9xnO9xmO9xnPG1oTO1qXe58bn59be587W1qW9xkqt
+        vRCtvRCtvRCtvRCtvRitvRitvRitvSGUpXPGzs7e3t7n5+fe3ufGxs7Ozs7Ozs7OztbWztbW1t7e1t7e
+        3t7e3ufe3ufn3ufn5+fn5+fn5+/n5+/n5+/n5+/n5+/n5+/e3r21xkqlvRitvRitvRitvRitvRitvSHG
+        zqXe3t7e3ufn5+fe3ufGxs7Ozs7Ozs7OztbOztbW1t7W1t7e1t7e3t7e3ufe3ufn3ufn5+fn5+fn5+/n
+        5+/n5+/n5+/n5+/n5+/n5+/W3rW9xmOtvTGtvSGtvSGtvVre3t7e3ufn5+fe3ufe3t7Gxs7Gxs7Ozs7O
+        zs7OztbOztbW1t7W1t7e1t7e3t7e3ufe3ufn3ufn5+fn5+fn5+fn5+fn5+fn5+/n5+/n5+fn5+/n5+fn
+        5+fe3t7e3t7e3ufe3ufe3ufe3ufe3t7W3t4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAA=
 </value>
   </data>
 </root>

@@ -104,3 +104,4 @@ D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+D:\Dietrich\SoftwareDevelopment\GitHubRepository\DietrichDocuments\SongsApp\obj\Debug\Songs.PerformanceReportForm.resources

@@ -233,6 +233,12 @@
     <Compile Include="PerformanceDetailForm.Designer.cs">
       <DependentUpon>PerformanceDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PerformanceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceReportForm.Designer.cs">
+      <DependentUpon>PerformanceReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PerformancesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +274,9 @@
     <EmbeddedResource Include="PerformanceDetailForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PerformanceDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceReportForm.resx">
+      <DependentUpon>PerformanceReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PerformancesForm.resx">
       <SubType>Designer</SubType>

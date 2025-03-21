@@ -430,5 +430,10 @@ namespace Songs
             form.Show();
         }
 
+        private void performancesNewCommandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PerformanceReportForm form = new PerformanceReportForm();
+            form.ShowDialog();
+        }
     }
 }

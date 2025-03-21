@@ -115,18 +115,16 @@ namespace Budget
 
         void UpdateBindingSourceFilter()
         {
-
-            // DIAG hide, not disable, unused ctrls
             budgetCtrl.Visible = (ImportedDataType == ImportedDataTypes.Bank);
             sharePriceCtrl.Visible = (ImportedDataType == ImportedDataTypes.Investment);
 
             switch (ImportedDataType)
             {
-                case ImportedDataTypes.Bank: // DIAG do these enums really buy us anything?
-                    budgetCtrl.BindingSrc.Filter = _Processor.GetBindingSrcFilterText();
+                case ImportedDataTypes.Bank: // DIAG do these enums really buy us anything?                  
+                    budgetCtrl.UpdateForImportedItems(_Processor);
                     break;
                 case ImportedDataTypes.Investment: // DIAG do these enums really buy us anything?
-                    sharePriceCtrl.BindingSrc.Filter = _Processor.GetBindingSrcFilterText();
+                    sharePriceCtrl.UpdateForImportedItems(_Processor);
                     break;
             }
         }

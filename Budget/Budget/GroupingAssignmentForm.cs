@@ -64,10 +64,10 @@ namespace Budget
 
         void ApplyPatternGrouping(MainDataSet.TransacTypePatternRow patternRow)
         {
-            ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForIncome, patternRow.ForIgnore);
+            ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForIgnore);
         }
 
-        void ApplyPatternGrouping(string pattern, string trType, bool forIncome, bool forIgnore)
+        void ApplyPatternGrouping(string pattern, string trType, bool forIgnore)
         {
             foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
             {
@@ -124,7 +124,7 @@ namespace Budget
 
         private void btnApplyOneTime_Click(object sender, EventArgs e)
         {
-            ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxIncome.Checked, chBoxIgnore.Checked);
+            ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxIgnore.Checked);
         }
 
         private void btnApplyToSelected_Click(object sender, EventArgs e)

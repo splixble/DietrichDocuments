@@ -25,5 +25,9 @@ namespace Budget
         {
             Utils.SetImportedDataGridRowColors(this.grid);
         }
+        public void UpdateForImportedItems(SourceFileProcessor processor)
+        {
+            BindingSrc.Filter = processor.GetBindingSrcFilterText();
+        }
     }
 }

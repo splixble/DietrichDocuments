@@ -33,11 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grid1 = new System.Windows.Forms.DataGridView();
-            this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet = new Budget.MainDataSet();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbFilter = new System.Windows.Forms.TextBox();
-            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,8 +47,14 @@
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
+            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -83,8 +84,8 @@
             this.Balance,
             this.BalanceIsCalculatedColumn,
             this.CommentColumn,
-            this.IsIncomeColumn,
-            this.ignoreDataGridViewCheckBoxColumn});
+            this.ignoreDataGridViewCheckBoxColumn,
+            this.IsIncomeColumn});
             this.grid1.DataSource = this.budgetBindingSource;
             this.grid1.Location = new System.Drawing.Point(0, 30);
             this.grid1.Name = "grid1";
@@ -97,43 +98,9 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grid1.RowHeadersWidth = 50;
-            this.grid1.Size = new System.Drawing.Size(1395, 449);
+            this.grid1.Size = new System.Drawing.Size(1395, 430);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
-            // 
-            // budgetBindingSource
-            // 
-            this.budgetBindingSource.DataMember = "Transac";
-            this.budgetBindingSource.DataSource = this.mainDataSet;
-            this.budgetBindingSource.Sort = "";
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Filter:";
-            // 
-            // tbFilter
-            // 
-            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFilter.Location = new System.Drawing.Point(43, 4);
-            this.tbFilter.Name = "tbFilter";
-            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
-            this.tbFilter.TabIndex = 3;
-            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
-            // 
-            // budgetTableAdapter
-            // 
-            this.budgetTableAdapter.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -237,12 +204,6 @@
             this.CommentColumn.Name = "CommentColumn";
             this.CommentColumn.Width = 230;
             // 
-            // IsIncomeColumn
-            // 
-            this.IsIncomeColumn.HeaderText = "Income?";
-            this.IsIncomeColumn.Name = "IsIncomeColumn";
-            this.IsIncomeColumn.Width = 40;
-            // 
             // ignoreDataGridViewCheckBoxColumn
             // 
             this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";
@@ -250,10 +211,62 @@
             this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
             this.ignoreDataGridViewCheckBoxColumn.Width = 40;
             // 
+            // IsIncomeColumn
+            // 
+            this.IsIncomeColumn.HeaderText = "Income?";
+            this.IsIncomeColumn.Name = "IsIncomeColumn";
+            this.IsIncomeColumn.Width = 40;
+            // 
+            // budgetBindingSource
+            // 
+            this.budgetBindingSource.DataMember = "Transac";
+            this.budgetBindingSource.DataSource = this.mainDataSet;
+            this.budgetBindingSource.Sort = "";
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Filter:";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilter.Location = new System.Drawing.Point(43, 4);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
+            this.tbFilter.TabIndex = 3;
+            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
+            // 
+            // budgetTableAdapter
+            // 
+            this.budgetTableAdapter.ClearBeforeFill = true;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(4, 463);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(22, 13);
+            this.lblStatus.TabIndex = 4;
+            this.lblStatus.Text = "- - -";
+            this.lblStatus.Visible = false;
+            // 
             // BudgetEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.tbFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grid1);
@@ -291,5 +304,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

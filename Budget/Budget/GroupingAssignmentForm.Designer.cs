@@ -35,9 +35,9 @@
             this.chBoxShowUntypedOnly = new System.Windows.Forms.CheckBox();
             this.btnSaveBudgetItems = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnApplyToSelected = new System.Windows.Forms.Button();
             this.btnApplyOneTime = new System.Windows.Forms.Button();
             this.chBoxIgnore = new System.Windows.Forms.CheckBox();
-            this.chBoxIncome = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboTrType = new System.Windows.Forms.ComboBox();
             this.tbPattern = new System.Windows.Forms.TextBox();
@@ -58,7 +58,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.transacTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.TransacTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnApplyToSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -116,7 +115,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyToSelected);
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyOneTime);
             this.splitContainer1.Panel1.Controls.Add(this.chBoxIgnore);
-            this.splitContainer1.Panel1.Controls.Add(this.chBoxIncome);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.comboTrType);
             this.splitContainer1.Panel1.Controls.Add(this.tbPattern);
@@ -136,6 +134,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(1276, 658);
             this.splitContainer1.SplitterDistance = 223;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // btnApplyToSelected
+            // 
+            this.btnApplyToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApplyToSelected.Location = new System.Drawing.Point(1166, 0);
+            this.btnApplyToSelected.Name = "btnApplyToSelected";
+            this.btnApplyToSelected.Size = new System.Drawing.Size(107, 23);
+            this.btnApplyToSelected.TabIndex = 15;
+            this.btnApplyToSelected.Text = "Apply to Selected";
+            this.btnApplyToSelected.UseVisualStyleBackColor = true;
+            this.btnApplyToSelected.Click += new System.EventHandler(this.btnApplyToSelected_Click);
             // 
             // btnApplyOneTime
             // 
@@ -159,22 +168,11 @@
             this.chBoxIgnore.Text = "Ignore";
             this.chBoxIgnore.UseVisualStyleBackColor = true;
             // 
-            // chBoxIncome
-            // 
-            this.chBoxIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chBoxIncome.AutoSize = true;
-            this.chBoxIncome.Location = new System.Drawing.Point(992, 3);
-            this.chBoxIncome.Name = "chBoxIncome";
-            this.chBoxIncome.Size = new System.Drawing.Size(61, 17);
-            this.chBoxIncome.TabIndex = 12;
-            this.chBoxIncome.Text = "Income";
-            this.chBoxIncome.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(715, 4);
+            this.label4.Location = new System.Drawing.Point(772, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 11;
@@ -184,7 +182,7 @@
             // 
             this.comboTrType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboTrType.FormattingEnabled = true;
-            this.comboTrType.Location = new System.Drawing.Point(765, 1);
+            this.comboTrType.Location = new System.Drawing.Point(822, 0);
             this.comboTrType.Name = "comboTrType";
             this.comboTrType.Size = new System.Drawing.Size(221, 21);
             this.comboTrType.TabIndex = 10;
@@ -192,7 +190,7 @@
             // tbPattern
             // 
             this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPattern.Location = new System.Drawing.Point(415, 2);
+            this.tbPattern.Location = new System.Drawing.Point(472, 1);
             this.tbPattern.Name = "tbPattern";
             this.tbPattern.Size = new System.Drawing.Size(294, 20);
             this.tbPattern.TabIndex = 9;
@@ -201,7 +199,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 5);
+            this.label3.Location = new System.Drawing.Point(378, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 8;
@@ -360,17 +358,6 @@
             this.button3.Text = "Cancel Changes";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // btnApplyToSelected
-            // 
-            this.btnApplyToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApplyToSelected.Location = new System.Drawing.Point(1166, 0);
-            this.btnApplyToSelected.Name = "btnApplyToSelected";
-            this.btnApplyToSelected.Size = new System.Drawing.Size(107, 23);
-            this.btnApplyToSelected.TabIndex = 15;
-            this.btnApplyToSelected.Text = "Apply to Selected";
-            this.btnApplyToSelected.UseVisualStyleBackColor = true;
-            this.btnApplyToSelected.Click += new System.EventHandler(this.btnApplyToSelected_Click);
-            // 
             // GroupingAssignmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,7 +404,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chBoxIgnore;
-        private System.Windows.Forms.CheckBox chBoxIncome;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboTrType;
         private System.Windows.Forms.TextBox tbPattern;

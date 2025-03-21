@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace Budget
 {
+    // DIAG rename Transac...
     public partial class BudgetEditingGridCtrl : UserControl
     {
         public bool CreateNewSourceFileRow = false;
@@ -46,6 +47,13 @@ namespace Budget
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
+        }
+
+        public void UpdateForImportedItems(SourceFileProcessor processor)
+        {
+            BindingSrc.Filter = processor.GetBindingSrcFilterText();
+            lblStatus.Text = processor.GetImportResultStatus();
+            lblStatus.Visible = true;
         }
 
         private void tbFilter_Validated(object sender, EventArgs e)
