@@ -390,14 +390,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="349184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="349696">
       <assemblyIdentity name="Songs" version="6.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vbodMpeuNmlYjn7diD/KW62P2Cw7fRYAKAXpxvCJeuc=</dsig:DigestValue>
+        <dsig:DigestValue>8riIEJUyO2KOBlkNCUC7d2Gf2Kp/dk1i2ydIz2CSR6Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

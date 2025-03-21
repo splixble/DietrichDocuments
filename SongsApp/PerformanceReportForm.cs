@@ -97,8 +97,8 @@ namespace Songs
             // DIAG convert to HTML as necessary
             string html = "";
             html += "<html>" + NL;
-            html += "<body>" + NL;
-            html += "should show date <p>" + NL;
+            html += "<body style=\"font-family: sans-serif\">" + NL;
+            html += "Updated " + DateTime.Now.ToString("f")+ "<p>" + NL;
             html += "<table>" + NL;
             html += "<tr style=\"vertical-align:top\">" + NL;
 
