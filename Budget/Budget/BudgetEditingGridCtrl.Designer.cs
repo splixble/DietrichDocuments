@@ -47,7 +47,7 @@
             this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ignoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
@@ -84,7 +84,7 @@
             this.Balance,
             this.BalanceIsCalculatedColumn,
             this.CommentColumn,
-            this.ignoreDataGridViewCheckBoxColumn,
+            this.acctTransferDataGridViewCheckBoxColumn,
             this.IsIncomeColumn});
             this.grid1.DataSource = this.budgetBindingSource;
             this.grid1.Location = new System.Drawing.Point(0, 30);
@@ -204,12 +204,12 @@
             this.CommentColumn.Name = "CommentColumn";
             this.CommentColumn.Width = 230;
             // 
-            // ignoreDataGridViewCheckBoxColumn
+            // acctTransferDataGridViewCheckBoxColumn
             // 
-            this.ignoreDataGridViewCheckBoxColumn.DataPropertyName = "Ignore";
-            this.ignoreDataGridViewCheckBoxColumn.HeaderText = "Ignore";
-            this.ignoreDataGridViewCheckBoxColumn.Name = "ignoreDataGridViewCheckBoxColumn";
-            this.ignoreDataGridViewCheckBoxColumn.Width = 40;
+            this.acctTransferDataGridViewCheckBoxColumn.DataPropertyName = "AcctTransfer";
+            this.acctTransferDataGridViewCheckBoxColumn.HeaderText = "Acct Xfer?";
+            this.acctTransferDataGridViewCheckBoxColumn.Name = "acctTransferDataGridViewCheckBoxColumn";
+            this.acctTransferDataGridViewCheckBoxColumn.Width = 40;
             // 
             // IsIncomeColumn
             // 
@@ -303,7 +303,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ignoreDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn acctTransferDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Label lblStatus;
     }
 }

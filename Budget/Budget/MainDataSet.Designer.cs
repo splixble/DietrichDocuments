@@ -4660,8 +4660,6 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnAmount;
             
-            private global::System.Data.DataColumn columnIgnore;
-            
             private global::System.Data.DataColumn columnBalance;
             
             private global::System.Data.DataColumn columnComment;
@@ -4673,6 +4671,8 @@ namespace Budget {
             private global::System.Data.DataColumn columnDescripFromVendor;
             
             private global::System.Data.DataColumn columnCardTransDate;
+            
+            private global::System.Data.DataColumn columnAcctTransfer;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -4765,14 +4765,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IgnoreColumn {
-                get {
-                    return this.columnIgnore;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn BalanceColumn {
                 get {
                     return this.columnBalance;
@@ -4821,6 +4813,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AcctTransferColumn {
+                get {
+                    return this.columnAcctTransfer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4856,7 +4856,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, TransacTypeRow parentTransacTypeRowByFK_Budget_BudgetTypeGroupings, string TrCode, decimal Amount, bool Ignore, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate) {
+            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, TransacTypeRow parentTransacTypeRowByFK_Budget_BudgetTypeGroupings, string TrCode, decimal Amount, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate, bool AcctTransfer) {
                 TransacRow rowTransacRow = ((TransacRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4866,13 +4866,13 @@ namespace Budget {
                         null,
                         TrCode,
                         Amount,
-                        Ignore,
                         Balance,
                         Comment,
                         Descrip2,
                         BalanceIsCalculated,
                         DescripFromVendor,
-                        CardTransDate};
+                        CardTransDate,
+                        AcctTransfer};
                 if ((parentTransacTypeRowByFK_Budget_BudgetTypeGroupings != null)) {
                     columnValuesArray[4] = parentTransacTypeRowByFK_Budget_BudgetTypeGroupings[0];
                 }
@@ -4912,13 +4912,13 @@ namespace Budget {
                 this.columnTrType = base.Columns["TrType"];
                 this.columnTrCode = base.Columns["TrCode"];
                 this.columnAmount = base.Columns["Amount"];
-                this.columnIgnore = base.Columns["Ignore"];
                 this.columnBalance = base.Columns["Balance"];
                 this.columnComment = base.Columns["Comment"];
                 this.columnDescrip2 = base.Columns["Descrip2"];
                 this.columnBalanceIsCalculated = base.Columns["BalanceIsCalculated"];
                 this.columnDescripFromVendor = base.Columns["DescripFromVendor"];
                 this.columnCardTransDate = base.Columns["CardTransDate"];
+                this.columnAcctTransfer = base.Columns["AcctTransfer"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4938,8 +4938,6 @@ namespace Budget {
                 base.Columns.Add(this.columnTrCode);
                 this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAmount);
-                this.columnIgnore = new global::System.Data.DataColumn("Ignore", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIgnore);
                 this.columnBalance = new global::System.Data.DataColumn("Balance", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBalance);
                 this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
@@ -4952,6 +4950,8 @@ namespace Budget {
                 base.Columns.Add(this.columnDescripFromVendor);
                 this.columnCardTransDate = new global::System.Data.DataColumn("CardTransDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCardTransDate);
+                this.columnAcctTransfer = new global::System.Data.DataColumn("AcctTransfer", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAcctTransfer);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4966,11 +4966,11 @@ namespace Budget {
                 this.columnAccount.MaxLength = 4;
                 this.columnTrType.MaxLength = 8;
                 this.columnTrCode.MaxLength = 250;
-                this.columnIgnore.AllowDBNull = false;
                 this.columnComment.MaxLength = 2147483647;
                 this.columnDescrip2.MaxLength = 500;
                 this.columnBalanceIsCalculated.AllowDBNull = false;
                 this.columnDescripFromVendor.MaxLength = 500;
+                this.columnAcctTransfer.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6977,7 +6977,7 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnTrType;
             
-            private global::System.Data.DataColumn columnForIgnore;
+            private global::System.Data.DataColumn columnForAcctTransfer;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -7038,9 +7038,9 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ForIgnoreColumn {
+            public global::System.Data.DataColumn ForAcctTransferColumn {
                 get {
-                    return this.columnForIgnore;
+                    return this.columnForAcctTransfer;
                 }
             }
             
@@ -7081,13 +7081,13 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacTypePatternRow AddTransacTypePatternRow(string Pattern, TransacTypeRow parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings, bool ForIgnore) {
+            public TransacTypePatternRow AddTransacTypePatternRow(string Pattern, TransacTypeRow parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings, bool ForAcctTransfer) {
                 TransacTypePatternRow rowTransacTypePatternRow = ((TransacTypePatternRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Pattern,
                         null,
-                        ForIgnore};
+                        ForAcctTransfer};
                 if ((parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings != null)) {
                     columnValuesArray[2] = parentTransacTypeRowByFK_BudgetTypePattern_BudgetTypeGroupings[0];
                 }
@@ -7123,7 +7123,7 @@ namespace Budget {
                 this.columnID = base.Columns["ID"];
                 this.columnPattern = base.Columns["Pattern"];
                 this.columnTrType = base.Columns["TrType"];
-                this.columnForIgnore = base.Columns["ForIgnore"];
+                this.columnForAcctTransfer = base.Columns["ForAcctTransfer"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7135,8 +7135,8 @@ namespace Budget {
                 base.Columns.Add(this.columnPattern);
                 this.columnTrType = new global::System.Data.DataColumn("TrType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTrType);
-                this.columnForIgnore = new global::System.Data.DataColumn("ForIgnore", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnForIgnore);
+                this.columnForAcctTransfer = new global::System.Data.DataColumn("ForAcctTransfer", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForAcctTransfer);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -7148,8 +7148,7 @@ namespace Budget {
                 this.columnPattern.AllowDBNull = false;
                 this.columnPattern.MaxLength = 2147483647;
                 this.columnTrType.MaxLength = 8;
-                this.columnForIgnore.AllowDBNull = false;
-                this.columnForIgnore.DefaultValue = ((bool)(false));
+                this.columnForAcctTransfer.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8916,17 +8915,6 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Ignore {
-                get {
-                    return ((bool)(this[this.tableTransac.IgnoreColumn]));
-                }
-                set {
-                    this[this.tableTransac.IgnoreColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal Balance {
                 get {
                     try {
@@ -9013,6 +9001,17 @@ namespace Budget {
                 }
                 set {
                     this[this.tableTransac.CardTransDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool AcctTransfer {
+                get {
+                    return ((bool)(this[this.tableTransac.AcctTransferColumn]));
+                }
+                set {
+                    this[this.tableTransac.AcctTransferColumn] = value;
                 }
             }
             
@@ -10292,12 +10291,12 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool ForIgnore {
+            public bool ForAcctTransfer {
                 get {
-                    return ((bool)(this[this.tableTransacTypePattern.ForIgnoreColumn]));
+                    return ((bool)(this[this.tableTransacTypePattern.ForAcctTransferColumn]));
                 }
                 set {
-                    this[this.tableTransacTypePattern.ForIgnoreColumn] = value;
+                    this[this.tableTransacTypePattern.ForAcctTransferColumn] = value;
                 }
             }
             
@@ -15949,17 +15948,17 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM SourceF
             tableMapping.ColumnMappings.Add("TrType", "TrType");
             tableMapping.ColumnMappings.Add("TrCode", "TrCode");
             tableMapping.ColumnMappings.Add("Amount", "Amount");
-            tableMapping.ColumnMappings.Add("Ignore", "Ignore");
             tableMapping.ColumnMappings.Add("Balance", "Balance");
             tableMapping.ColumnMappings.Add("Comment", "Comment");
             tableMapping.ColumnMappings.Add("Descrip2", "Descrip2");
             tableMapping.ColumnMappings.Add("BalanceIsCalculated", "BalanceIsCalculated");
             tableMapping.ColumnMappings.Add("DescripFromVendor", "DescripFromVendor");
             tableMapping.ColumnMappings.Add("CardTransDate", "CardTransDate");
+            tableMapping.ColumnMappings.Add("AcctTransfer", "AcctTransfer");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transac] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transac] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -16054,14 +16053,6 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM SourceF
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Ignore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "Ignore";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@IsNull_Balance";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -16137,10 +16128,18 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM SourceF
             param.SourceColumn = "CardTransDate";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_AcctTransfer";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "AcctTransfer";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transac] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Ignore], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Ignore, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate);
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Transac WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transac] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate], [AcctTransfer]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate, @AcctTransfer);
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer FROM Transac WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -16185,13 +16184,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceColumn = "Amount";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Ignore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "Ignore";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Balance";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -16233,10 +16225,17 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.IsNullable = true;
             param.SourceColumn = "CardTransDate";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AcctTransfer";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "AcctTransfer";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transac] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Ignore] = @Ignore, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ([Ignore] = @Original_Ignore) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)));
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate FROM Transac WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transac] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate, [AcctTransfer] = @AcctTransfer WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer));
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer FROM Transac WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -16281,13 +16280,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceColumn = "Amount";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Ignore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "Ignore";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Balance";
             param.DbType = global::System.Data.DbType.Decimal;
             param.SqlDbType = global::System.Data.SqlDbType.Decimal;
@@ -16328,6 +16320,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SqlDbType = global::System.Data.SqlDbType.Date;
             param.IsNullable = true;
             param.SourceColumn = "CardTransDate";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@AcctTransfer";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "AcctTransfer";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -16422,14 +16421,6 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Ignore";
-            param.DbType = global::System.Data.DbType.Boolean;
-            param.SqlDbType = global::System.Data.SqlDbType.Bit;
-            param.IsNullable = true;
-            param.SourceColumn = "Ignore";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@IsNull_Balance";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -16506,6 +16497,14 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_AcctTransfer";
+            param.DbType = global::System.Data.DbType.Boolean;
+            param.SqlDbType = global::System.Data.SqlDbType.Bit;
+            param.IsNullable = true;
+            param.SourceColumn = "AcctTransfer";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -16528,16 +16527,15 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balan" +
-                "ce, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate\r\nFR" +
-                "OM            Transac";
+            this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comm" +
+                "ent, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransf" +
+                "er\r\nFROM            Transac";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        Account, Amount, Balance, BalanceIsCalculated, CardTransDate, Comme" +
-                "nt, Descrip, Descrip2, DescripFromVendor, ID, Ignore, TrCode, TrDate, TrType\r\nFR" +
-                "OM            Transac\r\nWHERE        (Account = @AccountCode)\r\nORDER BY TrDate, I" +
-                "D";
+            this._commandCollection[1].CommandText = "SELECT Account, AcctTransfer, Amount, Balance, BalanceIsCalculated, CardTransDate" +
+                ", Comment, Descrip, Descrip2, DescripFromVendor, ID, TrCode, TrDate, TrType FROM" +
+                " Transac WHERE (Account = @AccountCode) ORDER BY TrDate, ID";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountCode";
@@ -16549,9 +16547,10 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT Account, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Des" +
-                "crip, Descrip2, DescripFromVendor, ID, Ignore, TrCode, TrDate, TrType FROM Trans" +
-                "ac WHERE (TrType IS NULL) AND (Ignore = 0) ORDER BY TrDate, ID";
+            this._commandCollection[2].CommandText = @"SELECT        Account, AcctTransfer, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Descrip, Descrip2, DescripFromVendor, ID, TrCode, TrDate, TrType
+FROM            Transac
+WHERE        (TrType IS NULL) AND (AcctTransfer = 0)
+ORDER BY TrDate, ID";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -16591,7 +16590,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillUntypedUnignored(MainDataSet.TransacDataTable dataTable) {
+        public virtual int FillUntypedNotAcctTransfer(MainDataSet.TransacDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16633,7 +16632,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, global::System.Nullable<decimal> Original_Amount, bool Original_Ignore, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate) {
+        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, global::System.Nullable<decimal> Original_Amount, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate, bool Original_AcctTransfer) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
@@ -16674,40 +16673,40 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_Ignore));
             if ((Original_Balance.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_Balance.Value));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((decimal)(Original_Balance.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_Descrip2 == null)) {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_Descrip2));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_Descrip2));
             }
-            this.Adapter.DeleteCommand.Parameters[16].Value = ((bool)(Original_BalanceIsCalculated));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((bool)(Original_BalanceIsCalculated));
             if ((Original_DescripFromVendor == null)) {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_DescripFromVendor));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_DescripFromVendor));
             }
             if ((Original_CardTransDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((System.DateTime)(Original_CardTransDate.Value));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((System.DateTime)(Original_CardTransDate.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
+            this.Adapter.DeleteCommand.Parameters[20].Value = ((bool)(Original_AcctTransfer));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16728,7 +16727,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, global::System.Nullable<decimal> Amount, bool Ignore, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate) {
+        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, global::System.Nullable<decimal> Amount, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate, bool AcctTransfer) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -16760,38 +16759,38 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Ignore));
             if ((Balance.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(Balance.Value));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(Balance.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Comment == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Comment));
+            }
+            if ((Descrip2 == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Comment));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Descrip2));
             }
-            if ((Descrip2 == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Descrip2));
-            }
-            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(BalanceIsCalculated));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(BalanceIsCalculated));
             if ((DescripFromVendor == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(DescripFromVendor));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(DescripFromVendor));
             }
             if ((CardTransDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(CardTransDate.Value));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(CardTransDate.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(AcctTransfer));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16819,13 +16818,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string TrType, 
                     string TrCode, 
                     global::System.Nullable<decimal> Amount, 
-                    bool Ignore, 
                     global::System.Nullable<decimal> Balance, 
                     string Comment, 
                     string Descrip2, 
                     bool BalanceIsCalculated, 
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
+                    bool AcctTransfer, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -16833,12 +16832,12 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string Original_TrType, 
                     string Original_TrCode, 
                     global::System.Nullable<decimal> Original_Amount, 
-                    bool Original_Ignore, 
                     global::System.Nullable<decimal> Original_Balance, 
                     string Original_Descrip2, 
                     bool Original_BalanceIsCalculated, 
                     string Original_DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
+                    bool Original_AcctTransfer, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
@@ -16871,38 +16870,38 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Ignore));
             if ((Balance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Balance.Value));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Balance.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Comment));
+            }
+            if ((Descrip2 == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Comment));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Descrip2));
             }
-            if ((Descrip2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Descrip2));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(BalanceIsCalculated));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(BalanceIsCalculated));
             if ((DescripFromVendor == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(DescripFromVendor));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(DescripFromVendor));
             }
             if ((CardTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(CardTransDate.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(CardTransDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(AcctTransfer));
             this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
             this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
@@ -16943,40 +16942,40 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                 this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_Ignore));
             if ((Original_Balance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(Original_Balance.Value));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(Original_Balance.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             if ((Original_Descrip2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Descrip2));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_Descrip2));
             }
-            this.Adapter.UpdateCommand.Parameters[29].Value = ((bool)(Original_BalanceIsCalculated));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_BalanceIsCalculated));
             if ((Original_DescripFromVendor == null)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_DescripFromVendor));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_DescripFromVendor));
             }
             if ((Original_CardTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((System.DateTime)(Original_CardTransDate.Value));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((System.DateTime)(Original_CardTransDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((bool)(Original_AcctTransfer));
             this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17005,13 +17004,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string TrType, 
                     string TrCode, 
                     global::System.Nullable<decimal> Amount, 
-                    bool Ignore, 
                     global::System.Nullable<decimal> Balance, 
                     string Comment, 
                     string Descrip2, 
                     bool BalanceIsCalculated, 
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
+                    bool AcctTransfer, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -17019,13 +17018,13 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Co
                     string Original_TrType, 
                     string Original_TrCode, 
                     global::System.Nullable<decimal> Original_Amount, 
-                    bool Original_Ignore, 
                     global::System.Nullable<decimal> Original_Balance, 
                     string Original_Descrip2, 
                     bool Original_BalanceIsCalculated, 
                     string Original_DescripFromVendor, 
-                    global::System.Nullable<global::System.DateTime> Original_CardTransDate) {
-            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Ignore, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Ignore, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_ID);
+                    global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
+                    bool Original_AcctTransfer) {
+            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_AcctTransfer, Original_ID);
         }
     }
     
@@ -19542,13 +19541,13 @@ SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping,
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("Pattern", "Pattern");
             tableMapping.ColumnMappings.Add("TrType", "TrType");
-            tableMapping.ColumnMappings.Add("ForIgnore", "ForIgnore");
+            tableMapping.ColumnMappings.Add("ForAcctTransfer", "ForAcctTransfer");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [TransacTypePattern] WHERE (([ID] = @Original_ID) AND ((@IsNull_TrTyp" +
-                "e = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] =" +
-                " @Original_ForIgnore))";
+                "e = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForAcctTrans" +
+                "fer] = @Original_ForAcctTransfer))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -19576,18 +19575,18 @@ SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping,
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIgnore";
+            param.ParameterName = "@Original_ForAcctTransfer";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
+            param.SourceColumn = "ForAcctTransfer";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [TransacTypePattern] ([Pattern], [TrType], [ForIgnore]) VALUES (@Patt" +
-                "ern, @TrType, @ForIgnore);\r\nSELECT ID, Pattern, TrType, ForIgnore FROM TransacTy" +
-                "pePattern WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [TransacTypePattern] ([Pattern], [TrType], [ForAcctTransfer]) VALUES " +
+                "(@Pattern, @TrType, @ForAcctTransfer);\r\nSELECT ID, Pattern, TrType, ForAcctTrans" +
+                "fer FROM TransacTypePattern WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Pattern";
@@ -19604,16 +19603,16 @@ SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping,
             param.SourceColumn = "TrType";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIgnore";
+            param.ParameterName = "@ForAcctTransfer";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
+            param.SourceColumn = "ForAcctTransfer";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [TransacTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForIgnore] = @ForIgnore WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForIgnore] = @Original_ForIgnore));
-SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [TransacTypePattern] SET [Pattern] = @Pattern, [TrType] = @TrType, [ForAcctTransfer] = @ForAcctTransfer WHERE (([ID] = @Original_ID) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ([ForAcctTransfer] = @Original_ForAcctTransfer));
+SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Pattern";
@@ -19630,11 +19629,11 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
             param.SourceColumn = "TrType";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ForIgnore";
+            param.ParameterName = "@ForAcctTransfer";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
+            param.SourceColumn = "ForAcctTransfer";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -19662,11 +19661,11 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ForIgnore";
+            param.ParameterName = "@Original_ForAcctTransfer";
             param.DbType = global::System.Data.DbType.Boolean;
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
-            param.SourceColumn = "ForIgnore";
+            param.SourceColumn = "ForAcctTransfer";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
@@ -19692,7 +19691,8 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForIgnore\r\nFROM            TransacTypePattern";
+            this._commandCollection[0].CommandText = "SELECT        ID, Pattern, TrType, ForAcctTransfer\r\nFROM            TransacTypePa" +
+                "ttern";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19742,7 +19742,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_TrType, bool Original_ForIgnore) {
+        public virtual int Delete(int Original_ID, string Original_TrType, bool Original_ForAcctTransfer) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_TrType == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -19752,7 +19752,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_TrType));
             }
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_ForIgnore));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_ForAcctTransfer));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19773,7 +19773,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Pattern, string TrType, bool ForIgnore) {
+        public virtual int Insert(string Pattern, string TrType, bool ForAcctTransfer) {
             if ((Pattern == null)) {
                 throw new global::System.ArgumentNullException("Pattern");
             }
@@ -19786,7 +19786,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TrType));
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(ForIgnore));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(ForAcctTransfer));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19807,7 +19807,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Pattern, string TrType, bool ForIgnore, int Original_ID, string Original_TrType, bool Original_ForIgnore, int ID) {
+        public virtual int Update(string Pattern, string TrType, bool ForAcctTransfer, int Original_ID, string Original_TrType, bool Original_ForAcctTransfer, int ID) {
             if ((Pattern == null)) {
                 throw new global::System.ArgumentNullException("Pattern");
             }
@@ -19820,7 +19820,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TrType));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(ForIgnore));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(ForAcctTransfer));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ID));
             if ((Original_TrType == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
@@ -19830,7 +19830,7 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_TrType));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Original_ForIgnore));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Original_ForAcctTransfer));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -19852,8 +19852,8 @@ SELECT ID, Pattern, TrType, ForIgnore FROM TransacTypePattern WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Pattern, string TrType, bool ForIgnore, int Original_ID, string Original_TrType, bool Original_ForIgnore) {
-            return this.Update(Pattern, TrType, ForIgnore, Original_ID, Original_TrType, Original_ForIgnore, Original_ID);
+        public virtual int Update(string Pattern, string TrType, bool ForAcctTransfer, int Original_ID, string Original_TrType, bool Original_ForAcctTransfer) {
+            return this.Update(Pattern, TrType, ForAcctTransfer, Original_ID, Original_TrType, Original_ForAcctTransfer, Original_ID);
         }
     }
     

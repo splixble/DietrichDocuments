@@ -35,10 +35,8 @@ namespace Budget
         const int groupingsGridCheckboxColumn = 0;
 
         public string AccountOwner => comboAccountOwner.SelectedValue as string;
-        string _PrevAccountOwner = "";
 
         public char AccountType => ((string)comboAccountType.SelectedValue)[0];
-        char _PrevAccountType = ' ';
 
         public DateTime FromMonth => (DateTime)comboFromMonth.SelectedMonth;
 

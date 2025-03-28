@@ -65,7 +65,7 @@ namespace Budget
             MainDataSet.TransacRow budgetRow = (MainDataSet.TransacRow)e.Row;
             budgetRow.Account = SelectedDollarAccount;
             budgetRow.TrType = Constants.GroupingName.FundBalanceChange;
-            budgetRow.Ignore = false;
+            budgetRow.AcctTransfer = false;
             budgetRow.BalanceIsCalculated = false;
         }
 

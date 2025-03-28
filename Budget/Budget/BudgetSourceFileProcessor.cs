@@ -49,7 +49,7 @@ namespace Budget
         protected override DataRow NewImportedRow()
         {
             TransacRow importedRow = _BudgetTable.NewTransacRow();
-            importedRow.Ignore = false; // necessary initialization
+            importedRow.AcctTransfer = false; // necessary initialization
             importedRow.BalanceIsCalculated = false; // necessary initialization
             if (UpdateAccountFromSourceFile)
                 importedRow.Account = _SelectedAccount;

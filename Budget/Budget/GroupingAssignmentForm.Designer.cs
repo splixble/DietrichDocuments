@@ -37,7 +37,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnApplyToSelected = new System.Windows.Forms.Button();
             this.btnApplyOneTime = new System.Windows.Forms.Button();
-            this.chBoxIgnore = new System.Windows.Forms.CheckBox();
+            this.chBoxAcctTransfer = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboTrType = new System.Windows.Forms.ComboBox();
             this.tbPattern = new System.Windows.Forms.TextBox();
@@ -50,7 +50,6 @@
             this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ForIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.forIgnoreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.transacTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
@@ -114,7 +113,7 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyToSelected);
             this.splitContainer1.Panel1.Controls.Add(this.btnApplyOneTime);
-            this.splitContainer1.Panel1.Controls.Add(this.chBoxIgnore);
+            this.splitContainer1.Panel1.Controls.Add(this.chBoxAcctTransfer);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.comboTrType);
             this.splitContainer1.Panel1.Controls.Add(this.tbPattern);
@@ -157,22 +156,22 @@
             this.btnApplyOneTime.UseVisualStyleBackColor = true;
             this.btnApplyOneTime.Click += new System.EventHandler(this.btnApplyOneTime_Click);
             // 
-            // chBoxIgnore
+            // chBoxAcctTransfer
             // 
-            this.chBoxIgnore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chBoxIgnore.AutoSize = true;
-            this.chBoxIgnore.Location = new System.Drawing.Point(1049, 4);
-            this.chBoxIgnore.Name = "chBoxIgnore";
-            this.chBoxIgnore.Size = new System.Drawing.Size(56, 17);
-            this.chBoxIgnore.TabIndex = 13;
-            this.chBoxIgnore.Text = "Ignore";
-            this.chBoxIgnore.UseVisualStyleBackColor = true;
+            this.chBoxAcctTransfer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chBoxAcctTransfer.AutoSize = true;
+            this.chBoxAcctTransfer.Location = new System.Drawing.Point(1039, 4);
+            this.chBoxAcctTransfer.Name = "chBoxAcctTransfer";
+            this.chBoxAcctTransfer.Size = new System.Drawing.Size(70, 17);
+            this.chBoxAcctTransfer.TabIndex = 13;
+            this.chBoxAcctTransfer.Text = "Acct Xfer";
+            this.chBoxAcctTransfer.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(772, 3);
+            this.label4.Location = new System.Drawing.Point(758, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 11;
@@ -182,7 +181,7 @@
             // 
             this.comboTrType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboTrType.FormattingEnabled = true;
-            this.comboTrType.Location = new System.Drawing.Point(822, 0);
+            this.comboTrType.Location = new System.Drawing.Point(808, 0);
             this.comboTrType.Name = "comboTrType";
             this.comboTrType.Size = new System.Drawing.Size(221, 21);
             this.comboTrType.TabIndex = 10;
@@ -190,7 +189,7 @@
             // tbPattern
             // 
             this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPattern.Location = new System.Drawing.Point(472, 1);
+            this.tbPattern.Location = new System.Drawing.Point(458, 1);
             this.tbPattern.Name = "tbPattern";
             this.tbPattern.Size = new System.Drawing.Size(294, 20);
             this.tbPattern.TabIndex = 9;
@@ -199,7 +198,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(378, 4);
+            this.label3.Location = new System.Drawing.Point(364, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 8;
@@ -233,7 +232,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 16);
+            this.label2.Size = new System.Drawing.Size(134, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -249,7 +248,6 @@
             this.patternDataGridViewTextBoxColumn,
             this.TrTypeComboColumn,
             this.ForIncomeColumn,
-            this.forIgnoreDataGridViewCheckBoxColumn,
             this.ColumnApply});
             this.gridGroupingPatterns.DataSource = this.transacTypePatternBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -297,13 +295,6 @@
             this.ForIncomeColumn.Name = "ForIncomeColumn";
             this.ForIncomeColumn.Width = 45;
             // 
-            // forIgnoreDataGridViewCheckBoxColumn
-            // 
-            this.forIgnoreDataGridViewCheckBoxColumn.DataPropertyName = "ForIgnore";
-            this.forIgnoreDataGridViewCheckBoxColumn.HeaderText = "Ignore";
-            this.forIgnoreDataGridViewCheckBoxColumn.Name = "forIgnoreDataGridViewCheckBoxColumn";
-            this.forIgnoreDataGridViewCheckBoxColumn.Width = 45;
-            // 
             // ColumnApply
             // 
             this.ColumnApply.HeaderText = "Apply";
@@ -340,7 +331,7 @@
             this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(-3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Budget Items";
             // 
@@ -403,7 +394,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn forIgnoreDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chBoxIgnore;
+        private System.Windows.Forms.CheckBox chBoxAcctTransfer;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboTrType;
         private System.Windows.Forms.TextBox tbPattern;

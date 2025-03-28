@@ -44,7 +44,7 @@ namespace Budget
         void LoadBudgetTable()
         {
             if (chBoxShowUntypedOnly.Checked)
-                budgetEditingGridCtrl1.BudgetAdapter.FillUntypedUnignored(budgetEditingGridCtrl1.BudgetTable);
+                budgetEditingGridCtrl1.BudgetAdapter.FillUntypedNotAcctTransfer(budgetEditingGridCtrl1.BudgetTable);
             else
                 budgetEditingGridCtrl1.BudgetAdapter.Fill(budgetEditingGridCtrl1.BudgetTable);
             // TODO just use the binding ctrl's filter, rather than rereading table, right?
@@ -64,20 +64,20 @@ namespace Budget
 
         void ApplyPatternGrouping(MainDataSet.TransacTypePatternRow patternRow)
         {
-            ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForIgnore);
+            ApplyPatternGrouping(patternRow.Pattern, patternRow.IsTrTypeNull() ? null : patternRow.TrType, patternRow.ForAcctTransfer);
         }
 
-        void ApplyPatternGrouping(string pattern, string trType, bool forIgnore)
+        void ApplyPatternGrouping(string pattern, string trType, bool forAcctTransfer)
         {
             foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
                 if (Regex.IsMatch(budgetRow.Descrip, pattern))
                 {
-                    if (forIgnore)
+                    if (forAcctTransfer)
                     {
-                        if (!budgetRow.Ignore)
-                            budgetRow.Ignore = true;
+                        if (!budgetRow.AcctTransfer)
+                            budgetRow.AcctTransfer = true;
                     }
                     else
                     {
@@ -124,7 +124,7 @@ namespace Budget
 
         private void btnApplyOneTime_Click(object sender, EventArgs e)
         {
-            ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxIgnore.Checked);
+            ApplyPatternGrouping(tbPattern.Text, comboTrType.SelectedValue as string, chBoxAcctTransfer.Checked);
         }
 
         private void btnApplyToSelected_Click(object sender, EventArgs e)
