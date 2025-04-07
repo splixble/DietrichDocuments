@@ -16,6 +16,8 @@ namespace Budget
         {
             InitializeComponent();
 
+            budgetCtrl.Initialize(BudgetEditingGridCtrl.Usages.BalanceCalculation);
+
             comboAccount.DataSource = Program.LookupTableSet.MainDataSet.Account;
             comboAccount.DisplayMember = "AccountName";
             comboAccount.ValueMember = "AccountID";
@@ -23,16 +25,16 @@ namespace Budget
 
         private void comboAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            budgetCtrl.BudgetAdapter.FillByAccount(budgetCtrl.BudgetTable, (string)comboAccount.SelectedValue);
+            budgetCtrl.TransacAdapter.FillByAccount(budgetCtrl.TransacTable, (string)comboAccount.SelectedValue);
         }
 
         private void btnCalcBalances_Click(object sender, EventArgs e)
         {
             bool foundBenchmarkBalance = false;
             decimal currentBalance = 0;
-            for (int rowNum = 0; rowNum < budgetCtrl.BudgetTable.Count; rowNum++)
+            for (int rowNum = 0; rowNum < budgetCtrl.TransacTable.Count; rowNum++)
             {
-                MainDataSet.TransacRow row = budgetCtrl.BudgetTable[rowNum];
+                MainDataSet.TransacRow row = budgetCtrl.TransacTable[rowNum];
                 if (foundBenchmarkBalance)
                 {
                     currentBalance += row.Amount;
@@ -63,7 +65,7 @@ namespace Budget
                         decimal previousBalance = currentBalance - row.Amount;
                         for (int prevRowNum = rowNum-1; prevRowNum >= 0; prevRowNum--)
                         {
-                            MainDataSet.TransacRow prevRow = budgetCtrl.BudgetTable[prevRowNum];
+                            MainDataSet.TransacRow prevRow = budgetCtrl.TransacTable[prevRowNum];
                             prevRow.Balance = previousBalance;
                             previousBalance -= prevRow.Amount;
                             prevRow.BalanceIsCalculated = true;
@@ -77,7 +79,7 @@ namespace Budget
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            budgetCtrl.BudgetAdapter.Update(budgetCtrl.BudgetTable);
+            budgetCtrl.TransacAdapter.Update(budgetCtrl.TransacTable);
             budgetCtrl.Grid.Refresh();
         }
     }

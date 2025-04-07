@@ -50,7 +50,9 @@
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboToMonth = new Budget.MonthComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboFromMonth = new Budget.MonthComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,8 +60,7 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.comboToMonth = new Budget.MonthComboBox();
-            this.comboFromMonth = new Budget.MonthComboBox();
+            this.cashPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -139,6 +140,7 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cashPurchasesToolStripMenuItem,
             this.applyTransactionTypesToolStripMenuItem,
             this.editGroupingsToolStripMenuItem,
             this.calculateAccountBalancesToolStripMenuItem,
@@ -289,6 +291,15 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "to";
             // 
+            // comboToMonth
+            // 
+            this.comboToMonth.FormattingEnabled = true;
+            this.comboToMonth.Location = new System.Drawing.Point(129, 55);
+            this.comboToMonth.Name = "comboToMonth";
+            this.comboToMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboToMonth.TabIndex = 13;
+            this.comboToMonth.SelectionChangeCommitted += new System.EventHandler(this.comboToMonth_SelectionChangeCommitted);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -297,6 +308,15 @@
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "From";
+            // 
+            // comboFromMonth
+            // 
+            this.comboFromMonth.FormattingEnabled = true;
+            this.comboFromMonth.Location = new System.Drawing.Point(46, 55);
+            this.comboFromMonth.Name = "comboFromMonth";
+            this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboFromMonth.TabIndex = 11;
+            this.comboFromMonth.SelectionChangeCommitted += new System.EventHandler(this.comboFromMonth_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -348,23 +368,12 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // comboToMonth
+            // cashPurchasesToolStripMenuItem
             // 
-            this.comboToMonth.FormattingEnabled = true;
-            this.comboToMonth.Location = new System.Drawing.Point(129, 55);
-            this.comboToMonth.Name = "comboToMonth";
-            this.comboToMonth.Size = new System.Drawing.Size(63, 21);
-            this.comboToMonth.TabIndex = 13;
-            this.comboToMonth.SelectionChangeCommitted += new System.EventHandler(this.comboToMonth_SelectionChangeCommitted);
-            // 
-            // comboFromMonth
-            // 
-            this.comboFromMonth.FormattingEnabled = true;
-            this.comboFromMonth.Location = new System.Drawing.Point(46, 55);
-            this.comboFromMonth.Name = "comboFromMonth";
-            this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
-            this.comboFromMonth.TabIndex = 11;
-            this.comboFromMonth.SelectionChangeCommitted += new System.EventHandler(this.comboFromMonth_SelectionChangeCommitted);
+            this.cashPurchasesToolStripMenuItem.Name = "cashPurchasesToolStripMenuItem";
+            this.cashPurchasesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.cashPurchasesToolStripMenuItem.Text = "Cash Purchases";
+            this.cashPurchasesToolStripMenuItem.Click += new System.EventHandler(this.cashPurchasesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -431,6 +440,7 @@
         private System.Windows.Forms.Label label5;
         private MonthComboBox comboToMonth;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem cashPurchasesToolStripMenuItem;
     }
 }
 

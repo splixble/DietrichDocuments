@@ -50,9 +50,11 @@ namespace Budget
             comboFileFormat.DisplayMember = "FormatCode";
             comboFileFormat.ValueMember = "FormatCode";
 
+            transacCtrl.Initialize(BudgetEditingGridCtrl.Usages.SourceFile);
+
             sourceFileChecklistCtrl1.Initialize(this);
 
-            btnSaveBudgetItems.Initialize(null, budgetCtrl.BudgetTable);
+            btnSaveBudgetItems.Initialize(null, transacCtrl.TransacTable);
         }
 
         SourceFileProcessor _Processor = null;
@@ -61,7 +63,7 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, SelectedAccount, SelectedFileFormat, chBoxManualEntry.Checked);
+            _Processor = new BudgetSourceFileProcessor(transacCtrl.TransacTable, SelectedAccount, SelectedFileFormat, chBoxManualEntry.Checked);
             _Processor.Process();
 
             tbFileText.Clear();
@@ -107,7 +109,7 @@ namespace Budget
 
             UpdateBindingSourceFilter();
 
-            budgetCtrl.Refresh();
+            transacCtrl.Refresh();
             sharePriceCtrl.Refresh();
 
             btnSaveBudgetItems.Enabled = true; // DIAG rename button btnSaveTransactions
@@ -115,13 +117,13 @@ namespace Budget
 
         void UpdateBindingSourceFilter()
         {
-            budgetCtrl.Visible = (ImportedDataType == ImportedDataTypes.Bank);
+            transacCtrl.Visible = (ImportedDataType == ImportedDataTypes.Bank);
             sharePriceCtrl.Visible = (ImportedDataType == ImportedDataTypes.Investment);
 
             switch (ImportedDataType)
             {
                 case ImportedDataTypes.Bank: // DIAG do these enums really buy us anything?                  
-                    budgetCtrl.UpdateForImportedItems(_Processor);
+                    transacCtrl.UpdateForImportedItems(_Processor);
                     break;
                 case ImportedDataTypes.Investment: // DIAG do these enums really buy us anything?
                     sharePriceCtrl.UpdateForImportedItems(_Processor);
@@ -131,7 +133,7 @@ namespace Budget
 
         private void SourceFileForm_Load(object sender, EventArgs e)
         {
-            budgetCtrl.CreateNewSourceFileRow = true;
+            transacCtrl.CreateNewSourceFileRow = true;
 
             UpdateManualEntryBasedControls();
         }
@@ -140,7 +142,7 @@ namespace Budget
         {
             _Processor.SaveChanges();
             // not needed: budgetCtrl.BudgetBindingSource.Filter = "SourceFile=" + _NewestSourceFileRow.FileID;
-            budgetCtrl.Grid.Refresh();
+            transacCtrl.Grid.Refresh();
         }
 
         private void comboAccount_SelectionChangeCommitted(object sender, EventArgs e)
@@ -182,7 +184,7 @@ namespace Budget
         {
             PreImport();
 
-            _Processor = new AmazonOrderFileProcessor(budgetCtrl.BudgetTable);
+            _Processor = new AmazonOrderFileProcessor(transacCtrl.TransacTable);
             _Processor.Process();
 
             PostImport();
@@ -194,7 +196,7 @@ namespace Budget
             PreImport();
 
             // DIAG these special format src file Processor classes s/spully a unique code to src file DB rec
-            _Processor = new AmazonDigitalItemsProcessor(budgetCtrl.BudgetTable);
+            _Processor = new AmazonDigitalItemsProcessor(transacCtrl.TransacTable);
             _Processor.Process();
 
             PostImport();
@@ -221,7 +223,7 @@ namespace Budget
                 _Processor = new SharePriceSourceFileProcessor(sharePriceCtrl.SharePriceTable, accountRow.Fund, accountFormat, false);
             // TODO might want to import share QUANTITY instead
             else
-                _Processor = new BudgetSourceFileProcessor(budgetCtrl.BudgetTable, accountID, accountFormat, false);
+                _Processor = new BudgetSourceFileProcessor(transacCtrl.TransacTable, accountID, accountFormat, false);
         }
 
         private void btnImportManualText_Click(object sender, EventArgs e)

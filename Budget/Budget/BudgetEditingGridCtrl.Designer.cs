@@ -49,14 +49,14 @@
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.budgetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.transacBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.tbFilter = new System.Windows.Forms.TextBox();
-            this.budgetTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
+            this.transacTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +86,7 @@
             this.CommentColumn,
             this.acctTransferDataGridViewCheckBoxColumn,
             this.IsIncomeColumn});
-            this.grid1.DataSource = this.budgetBindingSource;
+            this.grid1.DataSource = this.transacBindingSource;
             this.grid1.Location = new System.Drawing.Point(0, 30);
             this.grid1.Name = "grid1";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -219,9 +219,9 @@
             // 
             // budgetBindingSource
             // 
-            this.budgetBindingSource.DataMember = "Transac";
-            this.budgetBindingSource.DataSource = this.mainDataSet;
-            this.budgetBindingSource.Sort = "";
+            this.transacBindingSource.DataMember = "Transac";
+            this.transacBindingSource.DataSource = this.mainDataSet;
+            this.transacBindingSource.Sort = "";
             // 
             // mainDataSet
             // 
@@ -249,7 +249,7 @@
             // 
             // budgetTableAdapter
             // 
-            this.budgetTableAdapter.ClearBeforeFill = true;
+            this.transacTableAdapter.ClearBeforeFill = true;
             // 
             // lblStatus
             // 
@@ -273,7 +273,7 @@
             this.Name = "BudgetEditingGridCtrl";
             this.Size = new System.Drawing.Size(1395, 479);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.budgetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -282,9 +282,9 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource budgetBindingSource;
+        private System.Windows.Forms.BindingSource transacBindingSource;
         private MainDataSet mainDataSet;
-        private MainDataSetTableAdapters.TransacTableAdapter budgetTableAdapter;
+        private MainDataSetTableAdapters.TransacTableAdapter transacTableAdapter;
         private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbFilter;

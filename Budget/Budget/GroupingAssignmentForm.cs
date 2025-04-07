@@ -21,6 +21,7 @@ namespace Budget
         public GroupingAssignmentForm()
         {
             InitializeComponent();
+            budgetEditingGridCtrl1.Initialize(BudgetEditingGridCtrl.Usages.GroupingAssignment);
         }
 
         private void TrTypeForm_Load(object sender, EventArgs e)
@@ -44,9 +45,9 @@ namespace Budget
         void LoadBudgetTable()
         {
             if (chBoxShowUntypedOnly.Checked)
-                budgetEditingGridCtrl1.BudgetAdapter.FillUntypedNotAcctTransfer(budgetEditingGridCtrl1.BudgetTable);
+                budgetEditingGridCtrl1.TransacAdapter.FillUntypedNotAcctTransfer(budgetEditingGridCtrl1.TransacTable);
             else
-                budgetEditingGridCtrl1.BudgetAdapter.Fill(budgetEditingGridCtrl1.BudgetTable);
+                budgetEditingGridCtrl1.TransacAdapter.Fill(budgetEditingGridCtrl1.TransacTable);
             // TODO just use the binding ctrl's filter, rather than rereading table, right?
         }
 
@@ -69,7 +70,7 @@ namespace Budget
 
         void ApplyPatternGrouping(string pattern, string trType, bool forAcctTransfer)
         {
-            foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.BudgetTable)
+            foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.TransacTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
                 if (Regex.IsMatch(budgetRow.Descrip, pattern))
@@ -92,7 +93,7 @@ namespace Budget
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            budgetEditingGridCtrl1.BudgetAdapter.Update(budgetEditingGridCtrl1.BudgetTable);
+            budgetEditingGridCtrl1.TransacAdapter.Update(budgetEditingGridCtrl1.TransacTable);
             LoadBudgetTable();
             budgetEditingGridCtrl1.Grid.Refresh();
     }

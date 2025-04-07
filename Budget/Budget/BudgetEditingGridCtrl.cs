@@ -15,18 +15,26 @@ namespace Budget
     // DIAG rename Transac...
     public partial class BudgetEditingGridCtrl : UserControl
     {
+        public enum Usages { BalanceCalculation, CashPurchases, GroupingAssignment, SourceFile };
+        Usages _Usage;
+
         public bool CreateNewSourceFileRow = false;
 
-        public MainDataSet.TransacDataTable BudgetTable => mainDataSet.Transac;
-        public MainDataSetTableAdapters.TransacTableAdapter BudgetAdapter => budgetTableAdapter;
+        public MainDataSet.TransacDataTable TransacTable => mainDataSet.Transac;
+        public MainDataSetTableAdapters.TransacTableAdapter TransacAdapter => transacTableAdapter;
 
-        public BindingSource BindingSrc => budgetBindingSource;
+        public BindingSource BindingSrc => transacBindingSource;
 
         public DataGridView Grid => grid1;
 
         public BudgetEditingGridCtrl()
         {
             InitializeComponent();
+        }
+
+        public void Initialize(Usages usage)
+        {
+            _Usage = usage;
         }
 
         private void gridBudgetItems_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -42,7 +50,7 @@ namespace Budget
             if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
-            budgetTableAdapter.Connection = Program.DbConnection;
+            transacTableAdapter.Connection = Program.DbConnection;
 
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
@@ -60,7 +68,7 @@ namespace Budget
         {
             try
             {
-                budgetBindingSource.Filter = tbFilter.Text;
+                transacBindingSource.Filter = tbFilter.Text;
             }
             catch (Exception ex) 
             {

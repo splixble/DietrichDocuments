@@ -50,7 +50,7 @@
             this.tbFileText = new System.Windows.Forms.TextBox();
             this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.sharePriceCtrl = new Budget.SharePriceEditingGridCtrl();
-            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.transacCtrl = new Budget.BudgetEditingGridCtrl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -171,7 +171,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.sharePriceCtrl);
-            this.splitContainer1.Panel2.Controls.Add(this.budgetCtrl);
+            this.splitContainer1.Panel2.Controls.Add(this.transacCtrl);
             this.splitContainer1.Size = new System.Drawing.Size(1223, 460);
             this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 14;
@@ -297,12 +297,12 @@
             // 
             // budgetCtrl
             // 
-            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.budgetCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.budgetCtrl.Location = new System.Drawing.Point(0, 0);
-            this.budgetCtrl.Name = "budgetCtrl";
-            this.budgetCtrl.Size = new System.Drawing.Size(1223, 198);
-            this.budgetCtrl.TabIndex = 3;
+            this.transacCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.transacCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.transacCtrl.Location = new System.Drawing.Point(0, 0);
+            this.transacCtrl.Name = "budgetCtrl";
+            this.transacCtrl.Size = new System.Drawing.Size(1223, 198);
+            this.transacCtrl.TabIndex = 3;
             // 
             // SourceFileForm
             // 
@@ -335,7 +335,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnOpenSourceFile;
-        private BudgetEditingGridCtrl budgetCtrl;
+        private BudgetEditingGridCtrl transacCtrl;
         private System.Windows.Forms.ComboBox comboAccount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;

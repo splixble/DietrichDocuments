@@ -207,6 +207,12 @@
     <Compile Include="BudgetEditingGridCtrl.Designer.cs">
       <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CashPurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CashPurchasesForm.Designer.cs">
+      <DependentUpon>CashPurchasesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChartLineColorGenerator.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DBRowsList.cs" />
@@ -295,6 +301,9 @@
       <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BudgetReport2.rdlc" />
+    <EmbeddedResource Include="CashPurchasesForm.resx">
+      <DependentUpon>CashPurchasesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
