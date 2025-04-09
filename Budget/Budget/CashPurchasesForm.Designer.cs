@@ -28,25 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
+            this.btnSaveSharePrices = new System.Windows.Forms.Button();
+            this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.SuspendLayout();
             // 
-            // budgetEditingGridCtrl1
+            // btnSaveSharePrices
             // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnSaveSharePrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveSharePrices.Location = new System.Drawing.Point(1142, 415);
+            this.btnSaveSharePrices.Name = "btnSaveSharePrices";
+            this.btnSaveSharePrices.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveSharePrices.TabIndex = 7;
+            this.btnSaveSharePrices.Text = "Save";
+            this.btnSaveSharePrices.UseVisualStyleBackColor = true;
+            this.btnSaveSharePrices.Click += new System.EventHandler(this.btnSaveSharePrices_Click);
+            // 
+            // transacCtrl
+            // 
+            this.transacCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(12, 12);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(776, 426);
-            this.budgetEditingGridCtrl1.TabIndex = 0;
+            this.transacCtrl.Location = new System.Drawing.Point(12, 12);
+            this.transacCtrl.Name = "transacCtrl";
+            this.transacCtrl.Size = new System.Drawing.Size(1205, 416);
+            this.transacCtrl.TabIndex = 0;
             // 
             // CashPurchasesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.budgetEditingGridCtrl1);
+            this.ClientSize = new System.Drawing.Size(1229, 450);
+            this.Controls.Add(this.btnSaveSharePrices);
+            this.Controls.Add(this.transacCtrl);
             this.Name = "CashPurchasesForm";
             this.Text = "Cash Purchases";
             this.ResumeLayout(false);
@@ -55,6 +68,7 @@
 
         #endregion
 
-        private BudgetEditingGridCtrl budgetEditingGridCtrl1;
+        private TransacEditingGridCtrl transacCtrl;
+        private System.Windows.Forms.Button btnSaveSharePrices;
     }
 }

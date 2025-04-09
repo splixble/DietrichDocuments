@@ -187,6 +187,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetType.cs" />
     <Compile Include="AccountsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,11 +202,11 @@
     <Compile Include="BalanceCalculationForm.Designer.cs">
       <DependentUpon>BalanceCalculationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BudgetEditingGridCtrl.cs">
+    <Compile Include="TransacEditingGridCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BudgetEditingGridCtrl.Designer.cs">
-      <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
+    <Compile Include="TransacEditingGridCtrl.Designer.cs">
+      <DependentUpon>TransacEditingGridCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="CashPurchasesForm.cs">
       <SubType>Form</SubType>
@@ -297,8 +298,8 @@
     <EmbeddedResource Include="BalanceCalculationForm.resx">
       <DependentUpon>BalanceCalculationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BudgetEditingGridCtrl.resx">
-      <DependentUpon>BudgetEditingGridCtrl.cs</DependentUpon>
+    <EmbeddedResource Include="TransacEditingGridCtrl.resx">
+      <DependentUpon>TransacEditingGridCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BudgetReport2.rdlc" />
     <EmbeddedResource Include="CashPurchasesForm.resx">

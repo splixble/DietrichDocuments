@@ -53,7 +53,7 @@
             this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.transacTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
-            this.budgetEditingGridCtrl1 = new Budget.BudgetEditingGridCtrl();
+            this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.label1 = new System.Windows.Forms.Label();
             this.transacTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.TransacTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
@@ -126,7 +126,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.budgetEditingGridCtrl1);
+            this.splitContainer1.Panel2.Controls.Add(this.transacCtrl);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.chBoxShowUntypedOnly);
             this.splitContainer1.Panel2.Controls.Add(this.btnSaveBudgetItems);
@@ -316,13 +316,13 @@
             // 
             // budgetEditingGridCtrl1
             // 
-            this.budgetEditingGridCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.transacCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetEditingGridCtrl1.Location = new System.Drawing.Point(0, 37);
-            this.budgetEditingGridCtrl1.Name = "budgetEditingGridCtrl1";
-            this.budgetEditingGridCtrl1.Size = new System.Drawing.Size(1272, 365);
-            this.budgetEditingGridCtrl1.TabIndex = 5;
+            this.transacCtrl.Location = new System.Drawing.Point(0, 37);
+            this.transacCtrl.Name = "budgetEditingGridCtrl1";
+            this.transacCtrl.Size = new System.Drawing.Size(1272, 365);
+            this.transacCtrl.TabIndex = 5;
             // 
             // label1
             // 
@@ -386,7 +386,7 @@
         private MainDataSetTableAdapters.TransacTypePatternTableAdapter transacTypePatternTableAdapter;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private BudgetEditingGridCtrl budgetEditingGridCtrl1;
+        private TransacEditingGridCtrl transacCtrl;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;

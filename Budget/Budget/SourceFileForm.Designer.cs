@@ -50,7 +50,7 @@
             this.tbFileText = new System.Windows.Forms.TextBox();
             this.sourceFileChecklistCtrl1 = new Budget.SourceFileChecklistCtrl();
             this.sharePriceCtrl = new Budget.SharePriceEditingGridCtrl();
-            this.transacCtrl = new Budget.BudgetEditingGridCtrl();
+            this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -335,7 +335,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnOpenSourceFile;
-        private BudgetEditingGridCtrl transacCtrl;
+        private TransacEditingGridCtrl transacCtrl;
         private System.Windows.Forms.ComboBox comboAccount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;

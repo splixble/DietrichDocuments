@@ -36,7 +36,7 @@ namespace Budget
 
         public string AccountOwner => comboAccountOwner.SelectedValue as string;
 
-        public char AccountType => ((string)comboAccountType.SelectedValue)[0];
+        public AssetType AssetType => (AssetType)comboAccountType.SelectedValue;
 
         public DateTime FromMonth => (DateTime)comboFromMonth.SelectedMonth;
 
@@ -125,13 +125,13 @@ namespace Budget
             }
 
             // Check initial default groupings:
-            switch (AccountType)
+            switch (AssetType)
             {
-                case Constants.AccountType.Bank:
+                case AssetType.BankAndCash:
                     _ExpensesNode.Checked = true;
                     _IncomeNode.Checked = true;
                     break;
-                case Constants.AccountType.Investment:
+                case AssetType.Investments:
                     _BalanceTotalNode.Checked = true;
                     break;
             }
@@ -139,7 +139,7 @@ namespace Budget
 
         void RefreshData()
         {
-            if (AccountType == Constants.AccountType.BothValue)
+            if (AssetType == AssetType.Both)
             {
                 // in this case we need to do a special query to combine total balances of both account types:
                 string selectStr = "SELECT SUM(AmountNormalized) AS AmountNormalized, " +
@@ -169,21 +169,21 @@ namespace Budget
             else
             {
                 MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
-                adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, AccountType.ToString());
+                adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, (AssetType == AssetType.Investments ? (byte)1 : (byte)0));
             }
 
-            // Fill in missing months gaps in data for each Grouping, AccountOwner, and AccountType with 0-amount rows,
+            // Fill in missing months gaps in data for each Grouping, AccountOwner, and IsInv with 0-amount rows,
             // to avoid discontinuous lines on the chart:
             // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
-            SortedList<GroupingAccOwnerType, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerType, SortedList<DateTime, object>>();
+            SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>>();
             foreach (ViewMonthlyReportRow reportRow in MainData.ViewMonthlyReport)
             {
-                GroupingAccOwnerType outerKey = new GroupingAccOwnerType(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.AccountType);
+                GroupingAccOwnerIsInvestment outerKey = new GroupingAccOwnerIsInvestment(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.IsInvestment);
                 if (!rowsByKeysAndMonth.ContainsKey(outerKey))
                     rowsByKeysAndMonth.Add(outerKey, new SortedList<DateTime, object>());
                 rowsByKeysAndMonth[outerKey][reportRow.TrMonth] = null;
             }
-            foreach (GroupingAccOwnerType keyList in rowsByKeysAndMonth.Keys)
+            foreach (GroupingAccOwnerIsInvestment keyList in rowsByKeysAndMonth.Keys)
             {
                 // go through each month in specified range, and if there's not a row for it, add one with 0 amount:
                 SortedList<DateTime, object> subList = rowsByKeysAndMonth[keyList];
@@ -195,7 +195,7 @@ namespace Budget
                         newRow.TrMonth = month;
                         newRow.GroupingKey = keyList._GroupingKey;
                         newRow.AccountOwner = keyList._AccountOwner;
-                        newRow.AccountType = keyList._AccountType;
+                        newRow.IsInvestment = keyList._IsInvestment;
                         newRow.AmountNormalized = 0;
                         MainData.ViewMonthlyReport.AddViewMonthlyReportRow(newRow);
                         // subList.Add(month, null); // DIAG dont need to add it, rite?
@@ -398,10 +398,10 @@ namespace Budget
             comboAccountOwner.DisplayMember = "OwnerDescription";
             comboAccountOwner.SelectedValue = "D";// initialize it
 
-            comboAccountType.DataSource = Program.LookupTableSet.MainDataSet.ViewAccountTypesWithAllOption;
-            comboAccountType.ValueMember = "TypeCode";
-            comboAccountType.DisplayMember = "TypeDescription";
-            comboAccountType.SelectedValue = "B"; // initialize it to Bank            
+            comboAccountType.DataSource = AssetTypeClass.List;
+            comboAccountType.ValueMember = "AssetType";
+            comboAccountType.DisplayMember = "Label";
+            comboAccountType.SelectedValue = AssetType.BankAndCash; // initialize it to Bank/Cash          
 
             DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
             DateTime maxMonth = DateTime.Today.AddMonths(2);
@@ -425,7 +425,7 @@ namespace Budget
             DateTime cellMonth = (DateTime)gridMain.Columns[e.ColumnIndex].Tag;
             string cellGrouping = (string)gridMain.Rows[e.RowIndex].Tag;
             MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner, AccountType);
+            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner, AssetType);
             monthGroupingForm.ShowDialog();
         }
 
@@ -506,28 +506,28 @@ namespace Budget
 
         }
 
-        struct GroupingAccOwnerType : IComparable // internally used type
+        struct GroupingAccOwnerIsInvestment : IComparable // internally used type
         {
             public string _GroupingKey;
             public string _AccountOwner;
-            public string _AccountType;
+            public byte _IsInvestment;
 
-            public GroupingAccOwnerType(string groupingKey, string accountOwner, string accountType)
+            public GroupingAccOwnerIsInvestment(string groupingKey, string accountOwner, byte isInvestment)
             {
                 _GroupingKey = groupingKey;
                 _AccountOwner = accountOwner;
-                _AccountType = accountType;
+                _IsInvestment = isInvestment;
             }
 
             public int CompareTo(object obj) 
             {
-                GroupingAccOwnerType other = (GroupingAccOwnerType)obj;
+                GroupingAccOwnerIsInvestment other = (GroupingAccOwnerIsInvestment)obj;
                 int res1 = _GroupingKey.CompareTo(other._GroupingKey);
                 if (res1 == 0) 
                 {
                     int res2 = _AccountOwner.CompareTo(other._AccountOwner);
                     if (res2 == 0)
-                        return _AccountType.CompareTo(other._AccountType);
+                        return _IsInvestment.CompareTo(other._IsInvestment);
                     else
                         return res2;
                 }

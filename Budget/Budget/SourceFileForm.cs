@@ -50,7 +50,7 @@ namespace Budget
             comboFileFormat.DisplayMember = "FormatCode";
             comboFileFormat.ValueMember = "FormatCode";
 
-            transacCtrl.Initialize(BudgetEditingGridCtrl.Usages.SourceFile);
+            transacCtrl.Initialize(TransacEditingGridCtrl.Usages.SourceFile);
 
             sourceFileChecklistCtrl1.Initialize(this);
 

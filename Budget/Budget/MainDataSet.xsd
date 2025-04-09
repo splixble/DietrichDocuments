@@ -96,24 +96,6 @@ SELECT OwnerID, OwnerDescription FROM AccountOwner WHERE (OwnerID = @OwnerID)</C
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewAccountTypesWithAllOptionTableAdapter" GeneratorDataComponentClassName="ViewAccountTypesWithAllOptionTableAdapter" Name="ViewAccountTypesWithAllOption" UserDataComponentName="ViewAccountTypesWithAllOptionTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewAccountTypesWithAllOption" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        TypeCode, TypeDescription
-FROM            ViewAccountTypesWithAllOption</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="TypeCode" DataSetColumn="TypeCode" />
-              <Mapping SourceColumn="TypeDescription" DataSetColumn="TypeDescription" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SharePriceTableAdapter" GeneratorDataComponentClassName="SharePriceTableAdapter" Name="SharePrice" UserDataComponentName="SharePriceTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.SharePrice" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
@@ -878,10 +860,10 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewBudgetWithMonthlyTableAdapter" GeneratorDataComponentClassName="ViewBudgetWithMonthlyTableAdapter" Name="ViewBudgetWithMonthly" UserDataComponentName="ViewBudgetWithMonthlyTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        TrDate, Amount, AmountNormalized, TrType, GroupingKey, Descrip, Account, TrCode, MonthWithMBOffset, AccountOwner, AccountType
+                    <CommandText>SELECT        TrDate, Amount, AmountNormalized, TrType, GroupingKey, Descrip, Account, TrCode, MonthWithMBOffset, AccountOwner, IsInvestment
 FROM            ViewBudgetWithMonthly</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -899,20 +881,20 @@ FROM            ViewBudgetWithMonthly</CommandText>
               <Mapping SourceColumn="TrCode" DataSetColumn="TrCode" />
               <Mapping SourceColumn="MonthWithMBOffset" DataSetColumn="MonthWithMBOffset" />
               <Mapping SourceColumn="AccountOwner" DataSetColumn="AccountOwner" />
-              <Mapping SourceColumn="AccountType" DataSetColumn="AccountType" />
+              <Mapping SourceColumn="IsInvestment" DataSetColumn="IsInvestment" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByMonthGroupingAccountOwnerType" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByMonthGroupingAccountOwnerType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByMonthGroupingAccountOwnerType">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewBudgetWithMonthly" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByMonthGroupingAccountOwnerIsInv" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByMonthGroupingAccountOwnerIsInv" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByMonthGroupingAccountOwnerIsInv">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        TrDate, Amount, AmountNormalized, TrType, GroupingKey, Descrip, Account, TrCode, MonthWithMBOffset, AccountOwner, AccountType
+                    <CommandText>SELECT        Account, AccountOwner, Amount, AmountNormalized, Descrip, GroupingKey, IsInvestment, MonthWithMBOffset, TrCode, TrDate, TrType
 FROM            ViewBudgetWithMonthly
-WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (AccountOwner = @AccountOwner) AND (AccountType = @AccountType)</CommandText>
+WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (AccountOwner = @AccountOwner) AND (IsInvestment = @IsInvestment)</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="Month" ColumnName="MonthWithMBOffset" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@Month" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="MonthWithMBOffset" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Month" ColumnName="MonthWithMBOffset" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="date" DbType="DateTime" Direction="Input" ParameterName="@Month" Precision="0" ProviderType="DateTime" Scale="0" Size="3" SourceColumn="MonthWithMBOffset" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="GroupingKey" ColumnName="GroupingKey" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="varchar(255)" DbType="AnsiString" Direction="Input" ParameterName="@GroupingKey" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="GroupingKey" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="AccountOwner" ColumnName="AccountOwner" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="char(4)" DbType="AnsiString" Direction="Input" ParameterName="@AccountOwner" Precision="0" ProviderType="Char" Scale="0" Size="4" SourceColumn="AccountOwner" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="AccountType" ColumnName="AccountType" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="char(1)" DbType="AnsiString" Direction="Input" ParameterName="@AccountType" Precision="0" ProviderType="Char" Scale="0" Size="1" SourceColumn="AccountType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IsInvestment" ColumnName="IsInvestment" DataSourceName="Budget.dbo.ViewBudgetWithMonthly" DataTypeServer="tinyint" DbType="Byte" Direction="Input" ParameterName="@IsInvestment" Precision="0" ProviderType="TinyInt" Scale="0" Size="1" SourceColumn="IsInvestment" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -1029,10 +1011,10 @@ SELECT TRTypeID, GroupingLabel, CodeAndName, ParentGroupingID, IsParentGrouping,
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewMonthlyReportTableAdapter" GeneratorDataComponentClassName="ViewMonthlyReportTableAdapter" Name="ViewMonthlyReport" UserDataComponentName="ViewMonthlyReportTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType
+                    <CommandText>SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, IsInvestment
 FROM            ViewMonthlyReport</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -1044,20 +1026,18 @@ FROM            ViewMonthlyReport</CommandText>
               <Mapping SourceColumn="GroupingKey" DataSetColumn="GroupingKey" />
               <Mapping SourceColumn="TrMonth" DataSetColumn="TrMonth" />
               <Mapping SourceColumn="AccountOwner" DataSetColumn="AccountOwner" />
-              <Mapping SourceColumn="AccountType" DataSetColumn="AccountType" />
+              <Mapping SourceColumn="IsInvestment" DataSetColumn="IsInvestment" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="BudgetConnectionString (Settings)" DbObjectName="Budget.dbo.ViewMonthlyReport" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDateRange" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByDateRange" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByDateRange">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, AccountType
-FROM            ViewMonthlyReport
-WHERE        (TrMonth &gt;= @FromMonth) AND (TrMonth &lt;= @ToMonth) AND (AccountOwner = @AccountOwner) AND (AccountType = @AccountType)</CommandText>
+                    <CommandText>SELECT AccountOwner, AmountNormalized, GroupingKey, IsInvestment, TrMonth FROM ViewMonthlyReport WHERE (TrMonth &gt;= @FromMonth) AND (TrMonth &lt;= @ToMonth) AND (AccountOwner = @AccountOwner) AND (IsInvestment = @IsInvestment)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="FromMonth" ColumnName="TrMonth" DataSourceName="Budget.dbo.ViewMonthlyReport" DataTypeServer="date" DbType="DateTime" Direction="Input" ParameterName="@FromMonth" Precision="0" ProviderType="DateTime" Scale="0" Size="3" SourceColumn="TrMonth" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="ToMonth" ColumnName="TrMonth" DataSourceName="Budget.dbo.ViewMonthlyReport" DataTypeServer="date" DbType="DateTime" Direction="Input" ParameterName="@ToMonth" Precision="0" ProviderType="DateTime" Scale="0" Size="3" SourceColumn="TrMonth" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="AccountOwner" ColumnName="AccountOwner" DataSourceName="Budget.dbo.ViewMonthlyReport" DataTypeServer="char(4)" DbType="AnsiString" Direction="Input" ParameterName="@AccountOwner" Precision="0" ProviderType="Char" Scale="0" Size="4" SourceColumn="AccountOwner" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="AccountType" ColumnName="AccountType" DataSourceName="Budget.dbo.ViewMonthlyReport" DataTypeServer="char(1)" DbType="AnsiString" Direction="Input" ParameterName="@AccountType" Precision="0" ProviderType="Char" Scale="0" Size="1" SourceColumn="AccountType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IsInvestment" ColumnName="IsInvestment" DataSourceName="Budget.dbo.ViewMonthlyReport" DataTypeServer="tinyint" DbType="Byte" Direction="Input" ParameterName="@IsInvestment" Precision="0" ProviderType="TinyInt" Scale="0" Size="1" SourceColumn="IsInvestment" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -1183,26 +1163,6 @@ SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = 
                 </xs:simpleType>
               </xs:element>
               <xs:element name="OwnerDescription" msprop:Generator_ColumnPropNameInTable="OwnerDescriptionColumn" msprop:Generator_ColumnPropNameInRow="OwnerDescription" msprop:Generator_UserColumnName="OwnerDescription" msprop:Generator_ColumnVarNameInTable="columnOwnerDescription" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="ViewAccountTypesWithAllOption" msprop:Generator_RowEvHandlerName="ViewAccountTypesWithAllOptionRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewAccountTypesWithAllOptionRowDeleted" msprop:Generator_RowDeletingName="ViewAccountTypesWithAllOptionRowDeleting" msprop:Generator_RowEvArgName="ViewAccountTypesWithAllOptionRowChangeEvent" msprop:Generator_TablePropName="ViewAccountTypesWithAllOption" msprop:Generator_RowChangedName="ViewAccountTypesWithAllOptionRowChanged" msprop:Generator_UserTableName="ViewAccountTypesWithAllOption" msprop:Generator_RowChangingName="ViewAccountTypesWithAllOptionRowChanging" msprop:Generator_RowClassName="ViewAccountTypesWithAllOptionRow" msprop:Generator_TableClassName="ViewAccountTypesWithAllOptionDataTable" msprop:Generator_TableVarName="tableViewAccountTypesWithAllOption">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="TypeCode" msprop:Generator_ColumnPropNameInTable="TypeCodeColumn" msprop:Generator_ColumnPropNameInRow="TypeCode" msprop:Generator_UserColumnName="TypeCode" msprop:Generator_ColumnVarNameInTable="columnTypeCode">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="TypeDescription" msprop:Generator_ColumnPropNameInTable="TypeDescriptionColumn" msprop:Generator_ColumnPropNameInRow="TypeDescription" msprop:Generator_UserColumnName="TypeDescription" msprop:Generator_ColumnVarNameInTable="columnTypeDescription">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1491,7 +1451,7 @@ SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = 
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CardTransDate" msprop:Generator_ColumnPropNameInTable="CardTransDateColumn" msprop:Generator_ColumnPropNameInRow="CardTransDate" msprop:Generator_UserColumnName="CardTransDate" msprop:Generator_ColumnVarNameInTable="columnCardTransDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="AcctTransfer" msprop:Generator_ColumnPropNameInRow="AcctTransfer" msprop:Generator_ColumnPropNameInTable="AcctTransferColumn" msprop:Generator_ColumnVarNameInTable="columnAcctTransfer" msprop:Generator_UserColumnName="AcctTransfer" type="xs:boolean" />
+              <xs:element name="AcctTransfer" msprop:Generator_ColumnPropNameInTable="AcctTransferColumn" msprop:Generator_ColumnPropNameInRow="AcctTransfer" msprop:Generator_UserColumnName="AcctTransfer" msprop:Generator_ColumnVarNameInTable="columnAcctTransfer" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1622,13 +1582,7 @@ SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = 
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AccountType" msprop:Generator_ColumnPropNameInTable="AccountTypeColumn" msprop:Generator_ColumnPropNameInRow="AccountType" msprop:Generator_UserColumnName="AccountType" msprop:Generator_ColumnVarNameInTable="columnAccountType" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="IsInvestment" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="IsInvestment" msprop:Generator_ColumnPropNameInTable="IsInvestmentColumn" msprop:Generator_ColumnVarNameInTable="columnIsInvestment" msprop:Generator_UserColumnName="IsInvestment" type="xs:unsignedByte" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1744,35 +1698,29 @@ SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = 
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AccountType" msprop:Generator_ColumnPropNameInTable="AccountTypeColumn" msprop:Generator_ColumnPropNameInRow="AccountType" msprop:Generator_UserColumnName="AccountType" msprop:Generator_ColumnVarNameInTable="columnAccountType" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="IsInvestment" msprop:Generator_ColumnPropNameInRow="IsInvestment" msprop:Generator_ColumnPropNameInTable="IsInvestmentColumn" msprop:Generator_ColumnVarNameInTable="columnIsInvestment" msprop:Generator_UserColumnName="IsInvestment" type="xs:unsignedByte" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TransacTypePattern" msprop:Generator_RowClassName="TransacTypePatternRow" msprop:Generator_RowEvHandlerName="TransacTypePatternRowChangeEventHandler" msprop:Generator_RowDeletedName="TransacTypePatternRowDeleted" msprop:Generator_RowDeletingName="TransacTypePatternRowDeleting" msprop:Generator_RowEvArgName="TransacTypePatternRowChangeEvent" msprop:Generator_TablePropName="TransacTypePattern" msprop:Generator_RowChangedName="TransacTypePatternRowChanged" msprop:Generator_UserTableName="TransacTypePattern" msprop:Generator_RowChangingName="TransacTypePatternRowChanging" msprop:Generator_TableClassName="TransacTypePatternDataTable" msprop:Generator_TableVarName="tableTransacTypePattern">
+        <xs:element name="TransacTypePattern" msprop:Generator_RowEvHandlerName="TransacTypePatternRowChangeEventHandler" msprop:Generator_RowDeletedName="TransacTypePatternRowDeleted" msprop:Generator_RowDeletingName="TransacTypePatternRowDeleting" msprop:Generator_RowEvArgName="TransacTypePatternRowChangeEvent" msprop:Generator_TablePropName="TransacTypePattern" msprop:Generator_RowChangedName="TransacTypePatternRowChanged" msprop:Generator_UserTableName="TransacTypePattern" msprop:Generator_RowChangingName="TransacTypePatternRowChanging" msprop:Generator_RowClassName="TransacTypePatternRow" msprop:Generator_TableClassName="TransacTypePatternDataTable" msprop:Generator_TableVarName="tableTransacTypePattern">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
-              <xs:element name="Pattern" msprop:Generator_UserColumnName="Pattern" msprop:Generator_ColumnPropNameInTable="PatternColumn" msprop:Generator_ColumnPropNameInRow="Pattern" msprop:Generator_ColumnVarNameInTable="columnPattern">
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
+              <xs:element name="Pattern" msprop:Generator_ColumnPropNameInTable="PatternColumn" msprop:Generator_ColumnPropNameInRow="Pattern" msprop:Generator_UserColumnName="Pattern" msprop:Generator_ColumnVarNameInTable="columnPattern">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
+              <xs:element name="TrType" msprop:Generator_ColumnPropNameInTable="TrTypeColumn" msprop:Generator_ColumnPropNameInRow="TrType" msprop:Generator_UserColumnName="TrType" msprop:Generator_ColumnVarNameInTable="columnTrType" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ForAcctTransfer" msprop:Generator_ColumnPropNameInRow="ForAcctTransfer" msprop:Generator_ColumnPropNameInTable="ForAcctTransferColumn" msprop:Generator_ColumnVarNameInTable="columnForAcctTransfer" msprop:Generator_UserColumnName="ForAcctTransfer" type="xs:boolean" />
+              <xs:element name="ForAcctTransfer" msprop:Generator_ColumnPropNameInTable="ForAcctTransferColumn" msprop:Generator_ColumnPropNameInRow="ForAcctTransfer" msprop:Generator_UserColumnName="ForAcctTransfer" msprop:Generator_ColumnVarNameInTable="columnForAcctTransfer" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

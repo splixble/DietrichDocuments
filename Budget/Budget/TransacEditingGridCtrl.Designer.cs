@@ -1,6 +1,6 @@
 ﻿namespace Budget
 {
-    partial class BudgetEditingGridCtrl
+    partial class TransacEditingGridCtrl
     {
         /// <summary> 
         /// Required designer variable.
@@ -262,7 +262,7 @@
             this.lblStatus.Text = "- - -";
             this.lblStatus.Visible = false;
             // 
-            // BudgetEditingGridCtrl
+            // TransacEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -270,7 +270,7 @@
             this.Controls.Add(this.tbFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grid1);
-            this.Name = "BudgetEditingGridCtrl";
+            this.Name = "TransacEditingGridCtrl";
             this.Size = new System.Drawing.Size(1395, 479);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).EndInit();

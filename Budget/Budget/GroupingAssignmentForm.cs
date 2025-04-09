@@ -21,7 +21,7 @@ namespace Budget
         public GroupingAssignmentForm()
         {
             InitializeComponent();
-            budgetEditingGridCtrl1.Initialize(BudgetEditingGridCtrl.Usages.GroupingAssignment);
+            transacCtrl.Initialize(TransacEditingGridCtrl.Usages.GroupingAssignment);
         }
 
         private void TrTypeForm_Load(object sender, EventArgs e)
@@ -38,16 +38,16 @@ namespace Budget
             comboTrType.ValueMember = "TrTypeID";
             comboTrType.DisplayMember = "CodeAndName";           
 
-            LoadBudgetTable();
+            LoadTransacTable();
             LoadGroupingPatternTable();
         }
 
-        void LoadBudgetTable()
+        void LoadTransacTable()
         {
             if (chBoxShowUntypedOnly.Checked)
-                budgetEditingGridCtrl1.TransacAdapter.FillUntypedNotAcctTransfer(budgetEditingGridCtrl1.TransacTable);
+                transacCtrl.TransacAdapter.FillUntypedNotAcctTransfer(transacCtrl.TransacTable);
             else
-                budgetEditingGridCtrl1.TransacAdapter.Fill(budgetEditingGridCtrl1.TransacTable);
+                transacCtrl.TransacAdapter.Fill(transacCtrl.TransacTable);
             // TODO just use the binding ctrl's filter, rather than rereading table, right?
         }
 
@@ -70,7 +70,7 @@ namespace Budget
 
         void ApplyPatternGrouping(string pattern, string trType, bool forAcctTransfer)
         {
-            foreach (MainDataSet.TransacRow budgetRow in budgetEditingGridCtrl1.TransacTable)
+            foreach (MainDataSet.TransacRow budgetRow in transacCtrl.TransacTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
                 if (Regex.IsMatch(budgetRow.Descrip, pattern))
@@ -88,14 +88,14 @@ namespace Budget
                 }
             }
             // Now, highlight all grid rows that have modified data:
-            Utils.SetImportedDataGridRowColors(budgetEditingGridCtrl1.Grid);
+            Utils.SetImportedDataGridRowColors(transacCtrl.Grid);
         }
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            budgetEditingGridCtrl1.TransacAdapter.Update(budgetEditingGridCtrl1.TransacTable);
-            LoadBudgetTable();
-            budgetEditingGridCtrl1.Grid.Refresh();
+            transacCtrl.TransacAdapter.Update(transacCtrl.TransacTable);
+            LoadTransacTable();
+            transacCtrl.Grid.Refresh();
     }
 
         private void gridGroupingPatterns_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,7 +120,7 @@ namespace Budget
 
         private void chBoxShowUntypedOnly_CheckStateChanged(object sender, EventArgs e)
         {
-            LoadBudgetTable();
+            LoadTransacTable();
         }
 
         private void btnApplyOneTime_Click(object sender, EventArgs e)
@@ -130,7 +130,7 @@ namespace Budget
 
         private void btnApplyToSelected_Click(object sender, EventArgs e)
         {
-            SortedList<int, object> gridRowDict = budgetEditingGridCtrl1.Grid.RowsContainingSelectedData();
+            SortedList<int, object> gridRowDict = transacCtrl.Grid.RowsContainingSelectedData();
             if (gridRowDict == null)
                 return;
 
@@ -142,7 +142,7 @@ namespace Budget
             List<MainDataSet.TransacRow> budgetRows = new List<MainDataSet.TransacRow>();
             foreach (int rowIndex in gridRowDict.Keys)
             {
-                DataGridViewRow gridRow = budgetEditingGridCtrl1.Grid.Rows[rowIndex];
+                DataGridViewRow gridRow = transacCtrl.Grid.Rows[rowIndex];
                 budgetRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.TransacRow);
             }
 
@@ -154,7 +154,7 @@ namespace Budget
             }
 
             // Now, highlight all grid rows that have modified data:
-            Utils.SetImportedDataGridRowColors(budgetEditingGridCtrl1.Grid);
+            Utils.SetImportedDataGridRowColors(transacCtrl.Grid);
         }
     }
 }

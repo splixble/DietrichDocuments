@@ -18,11 +18,11 @@ namespace Budget
             InitializeComponent();
         }
 
-        public void Initialize(DateTime cellMonth, string cellGrouping, string accountOwner, char accountType)
+        public void Initialize(DateTime cellMonth, string cellGrouping, string accountOwner, AssetType assetType)
         {
             viewBudgetWithMonthlyTableAdapter.Connection = Program.DbConnection;
-            viewBudgetWithMonthlyTableAdapter.FillByMonthGroupingAccountOwnerType(mainDataSet.ViewBudgetWithMonthly, 
-                cellMonth, cellGrouping, accountOwner, accountType.ToString()); 
+            viewBudgetWithMonthlyTableAdapter.FillByMonthGroupingAccountOwnerIsInv(mainDataSet.ViewBudgetWithMonthly, 
+                cellMonth, cellGrouping, accountOwner, (byte)(assetType == AssetType.Investments ? 1 : 0)); 
         }
 
         private void MonthGroupingForm_Load(object sender, EventArgs e)

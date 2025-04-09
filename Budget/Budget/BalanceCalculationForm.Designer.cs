@@ -30,7 +30,7 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.comboAccount = new System.Windows.Forms.ComboBox();
-            this.budgetCtrl = new Budget.BudgetEditingGridCtrl();
+            this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.btnCalcBalances = new System.Windows.Forms.Button();
             this.btnSaveBudgetItems = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -57,14 +57,14 @@
             // 
             // budgetCtrl
             // 
-            this.budgetCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.transacCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.budgetCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.budgetCtrl.Location = new System.Drawing.Point(12, 40);
-            this.budgetCtrl.Name = "budgetCtrl";
-            this.budgetCtrl.Size = new System.Drawing.Size(776, 369);
-            this.budgetCtrl.TabIndex = 6;
+            this.transacCtrl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.transacCtrl.Location = new System.Drawing.Point(12, 40);
+            this.transacCtrl.Name = "budgetCtrl";
+            this.transacCtrl.Size = new System.Drawing.Size(776, 369);
+            this.transacCtrl.TabIndex = 6;
             // 
             // btnCalcBalances
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.btnCalcBalances);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboAccount);
-            this.Controls.Add(this.budgetCtrl);
+            this.Controls.Add(this.transacCtrl);
             this.Name = "BalanceCalculationForm";
             this.Text = "BalanceCalculationForm";
             this.ResumeLayout(false);
@@ -108,7 +108,7 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboAccount;
-        private BudgetEditingGridCtrl budgetCtrl;
+        private TransacEditingGridCtrl transacCtrl;
         private System.Windows.Forms.Button btnCalcBalances;
         private System.Windows.Forms.Button btnSaveBudgetItems;
     }

@@ -21,7 +21,6 @@ namespace Budget
         TransacTypeTableAdapter _TransacTypeAdapter = new TransacTypeTableAdapter();
         AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
         AccountTypeTableAdapter _AccountTypeAdapter = new AccountTypeTableAdapter();
-        ViewAccountTypesWithAllOptionTableAdapter _ViewAccountTypesWithAllOptionAdapter = new ViewAccountTypesWithAllOptionTableAdapter();
 
         public DataView FundViewBySymbol => _FundViewBySymbol;
         DataView _FundViewBySymbol;
@@ -77,9 +76,6 @@ namespace Budget
 
             _AccountTypeAdapter.Connection = Program.DbConnection;
             _AccountTypeAdapter.Fill(_MainDataSet.AccountType);
-
-            _ViewAccountTypesWithAllOptionAdapter.Connection = Program.DbConnection;
-            _ViewAccountTypesWithAllOptionAdapter.Fill(_MainDataSet.ViewAccountTypesWithAllOption);           
         }
     }
 }

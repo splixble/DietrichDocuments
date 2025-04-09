@@ -16,7 +16,7 @@ namespace Budget
         {
             InitializeComponent();
 
-            budgetCtrl.Initialize(BudgetEditingGridCtrl.Usages.BalanceCalculation);
+            transacCtrl.Initialize(TransacEditingGridCtrl.Usages.BalanceCalculation);
 
             comboAccount.DataSource = Program.LookupTableSet.MainDataSet.Account;
             comboAccount.DisplayMember = "AccountName";
@@ -25,16 +25,16 @@ namespace Budget
 
         private void comboAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            budgetCtrl.TransacAdapter.FillByAccount(budgetCtrl.TransacTable, (string)comboAccount.SelectedValue);
+            transacCtrl.TransacAdapter.FillByAccount(transacCtrl.TransacTable, (string)comboAccount.SelectedValue);
         }
 
         private void btnCalcBalances_Click(object sender, EventArgs e)
         {
             bool foundBenchmarkBalance = false;
             decimal currentBalance = 0;
-            for (int rowNum = 0; rowNum < budgetCtrl.TransacTable.Count; rowNum++)
+            for (int rowNum = 0; rowNum < transacCtrl.TransacTable.Count; rowNum++)
             {
-                MainDataSet.TransacRow row = budgetCtrl.TransacTable[rowNum];
+                MainDataSet.TransacRow row = transacCtrl.TransacTable[rowNum];
                 if (foundBenchmarkBalance)
                 {
                     currentBalance += row.Amount;
@@ -65,7 +65,7 @@ namespace Budget
                         decimal previousBalance = currentBalance - row.Amount;
                         for (int prevRowNum = rowNum-1; prevRowNum >= 0; prevRowNum--)
                         {
-                            MainDataSet.TransacRow prevRow = budgetCtrl.TransacTable[prevRowNum];
+                            MainDataSet.TransacRow prevRow = transacCtrl.TransacTable[prevRowNum];
                             prevRow.Balance = previousBalance;
                             previousBalance -= prevRow.Amount;
                             prevRow.BalanceIsCalculated = true;
@@ -73,14 +73,14 @@ namespace Budget
                     }
                 }
             }
-            budgetCtrl.Grid.Refresh();
+            transacCtrl.Grid.Refresh();
             MessageBox.Show("Balance calculation complete.");
         }
 
         private void btnSaveBudgetItems_Click(object sender, EventArgs e)
         {
-            budgetCtrl.TransacAdapter.Update(budgetCtrl.TransacTable);
-            budgetCtrl.Grid.Refresh();
+            transacCtrl.TransacAdapter.Update(transacCtrl.TransacTable);
+            transacCtrl.Grid.Refresh();
         }
     }
 }

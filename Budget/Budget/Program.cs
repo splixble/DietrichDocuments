@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
+using MySql.Installer.Dialogs;
 
 namespace Budget
 {
@@ -28,6 +29,21 @@ namespace Budget
         }
         static SqlConnection _DbConnection = null;
 
+        static Form1 _MainForm;
+
+        public static string AccountOwner => _MainForm.AccountOwner;
+
+        public static string CashAccountID
+        {
+            get
+            {
+                int acctRowIndex = _LookupTableSet.MainDataSet.Account.CashAccountsView.Find(AccountOwner);
+                // DIAG check this, throw if cash acc not found for account owner
+                MainDataSet.AccountRow acctRow = _LookupTableSet.MainDataSet.Account.CashAccountsView[acctRowIndex].Row as MainDataSet.AccountRow;
+                return acctRow.AccountID;
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -39,7 +55,8 @@ namespace Budget
             
             _LookupTableSet = new LookupTableSet();
 
-            Application.Run(new Form1());
+            _MainForm = new Form1();
+            Application.Run(_MainForm);
         }
     }
 }
