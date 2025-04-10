@@ -46,17 +46,17 @@
             this.btnSaveGroupingPatterns = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.gridGroupingPatterns = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ForIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.transacTypePatternBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet1 = new Budget.MainDataSet();
             this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.label1 = new System.Windows.Forms.Label();
             this.transacTypePatternTableAdapter = new Budget.MainDataSetTableAdapters.TransacTypePatternTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ForAcctXferColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnApply = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -232,7 +232,7 @@
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(0, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Grouping Patterns";
             // 
@@ -247,7 +247,7 @@
             this.iDDataGridViewTextBoxColumn1,
             this.patternDataGridViewTextBoxColumn,
             this.TrTypeComboColumn,
-            this.ForIncomeColumn,
+            this.ForAcctXferColumn,
             this.ColumnApply});
             this.gridGroupingPatterns.DataSource = this.transacTypePatternBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -263,6 +263,51 @@
             this.gridGroupingPatterns.Size = new System.Drawing.Size(1276, 159);
             this.gridGroupingPatterns.TabIndex = 0;
             this.gridGroupingPatterns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridGroupingPatterns_CellContentClick);
+            // 
+            // transacTypePatternBindingSource
+            // 
+            this.transacTypePatternBindingSource.DataMember = "TransacTypePattern";
+            this.transacTypePatternBindingSource.DataSource = this.mainDataSet1;
+            // 
+            // mainDataSet1
+            // 
+            this.mainDataSet1.DataSetName = "MainDataSet";
+            this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // transacCtrl
+            // 
+            this.transacCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.transacCtrl.Location = new System.Drawing.Point(0, 37);
+            this.transacCtrl.Name = "transacCtrl";
+            this.transacCtrl.Size = new System.Drawing.Size(1272, 365);
+            this.transacCtrl.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label1.Location = new System.Drawing.Point(-3, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Budget Items";
+            // 
+            // transacTypePatternTableAdapter
+            // 
+            this.transacTypePatternTableAdapter.ClearBeforeFill = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(131, 647);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Cancel Changes";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // iDDataGridViewTextBoxColumn1
             // 
@@ -288,12 +333,12 @@
             this.TrTypeComboColumn.Name = "TrTypeComboColumn";
             this.TrTypeComboColumn.Width = 140;
             // 
-            // ForIncomeColumn
+            // ForAcctXferColumn
             // 
-            this.ForIncomeColumn.DataPropertyName = "ForIncome";
-            this.ForIncomeColumn.HeaderText = "Income";
-            this.ForIncomeColumn.Name = "ForIncomeColumn";
-            this.ForIncomeColumn.Width = 45;
+            this.ForAcctXferColumn.DataPropertyName = "ForAcctTransfer";
+            this.ForAcctXferColumn.HeaderText = "Acct Xfer";
+            this.ForAcctXferColumn.Name = "ForAcctXferColumn";
+            this.ForAcctXferColumn.Width = 45;
             // 
             // ColumnApply
             // 
@@ -303,51 +348,6 @@
             this.ColumnApply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColumnApply.Text = "Apply";
             this.ColumnApply.UseColumnTextForButtonValue = true;
-            // 
-            // transacTypePatternBindingSource
-            // 
-            this.transacTypePatternBindingSource.DataMember = "TransacTypePattern";
-            this.transacTypePatternBindingSource.DataSource = this.mainDataSet1;
-            // 
-            // mainDataSet1
-            // 
-            this.mainDataSet1.DataSetName = "MainDataSet";
-            this.mainDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // budgetEditingGridCtrl1
-            // 
-            this.transacCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.transacCtrl.Location = new System.Drawing.Point(0, 37);
-            this.transacCtrl.Name = "budgetEditingGridCtrl1";
-            this.transacCtrl.Size = new System.Drawing.Size(1272, 365);
-            this.transacCtrl.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label1.Location = new System.Drawing.Point(-3, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Budget Items";
-            // 
-            // transacTypePatternTableAdapter
-            // 
-            this.transacTypePatternTableAdapter.ClearBeforeFill = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(131, 647);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Cancel Changes";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // GroupingAssignmentForm
             // 
@@ -387,12 +387,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private TransacEditingGridCtrl transacCtrl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ForIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn forIgnoreDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chBoxAcctTransfer;
         private System.Windows.Forms.Label label4;
@@ -400,5 +395,10 @@
         private System.Windows.Forms.TextBox tbPattern;
         private System.Windows.Forms.Button btnApplyOneTime;
         private System.Windows.Forms.Button btnApplyToSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ForAcctXferColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnApply;
     }
 }
