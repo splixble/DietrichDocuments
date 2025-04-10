@@ -34,5 +34,29 @@ namespace Budget
                 base.EndInit();
             }
         }
+
+        partial class TransacRow
+        {
+            // DIAG does not work!!
+            public decimal AmountNegated
+            {
+                get
+                {
+                    try
+                    {
+                        return -Amount;
+                    }
+                    catch (global::System.InvalidCastException e)
+                    {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'Transac\' is DBNull.", e);
+                    }
+                }
+                set
+                {
+                    this[this.tableTransac.AmountColumn] = -value;
+                }
+            }
+
+        }
     }
 }

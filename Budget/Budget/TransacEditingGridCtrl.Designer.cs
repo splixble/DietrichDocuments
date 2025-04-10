@@ -33,10 +33,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grid1 = new System.Windows.Forms.DataGridView();
+            this.transacBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.transacTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountNegatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripFromVendorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,12 +56,6 @@
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.transacBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet = new Budget.MainDataSet();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbFilter = new System.Windows.Forms.TextBox();
-            this.transacTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
-            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -73,7 +74,8 @@
             this.iDDataGridViewTextBoxColumn,
             this.trDateDataGridViewTextBoxColumn,
             this.CardTransDateColumn,
-            this.amountDataGridViewTextBoxColumn,
+            this.AmountColumn,
+            this.AmountNegatedColumn,
             this.descripDataGridViewTextBoxColumn,
             this.Descrip2Column,
             this.DescripFromVendorColumn,
@@ -102,6 +104,51 @@
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
             // 
+            // transacBindingSource
+            // 
+            this.transacBindingSource.DataMember = "Transac";
+            this.transacBindingSource.DataSource = this.mainDataSet;
+            this.transacBindingSource.Sort = "";
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Filter:";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilter.Location = new System.Drawing.Point(43, 4);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
+            this.tbFilter.TabIndex = 3;
+            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(4, 463);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(22, 13);
+            this.lblStatus.TabIndex = 4;
+            this.lblStatus.Text = "- - -";
+            this.lblStatus.Visible = false;
+            // 
+            // transacTableAdapter
+            // 
+            this.transacTableAdapter.ClearBeforeFill = true;
+            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -128,12 +175,17 @@
             this.CardTransDateColumn.Name = "CardTransDateColumn";
             this.CardTransDateColumn.Width = 65;
             // 
-            // amountDataGridViewTextBoxColumn
+            // AmountColumn
             // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.Width = 80;
+            this.AmountColumn.DataPropertyName = "Amount";
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.Width = 80;
+            // 
+            // AmNegColumn
+            // 
+            this.AmountNegatedColumn.HeaderText = "Amount*";
+            this.AmountNegatedColumn.Name = "AmNegColumn";
             // 
             // descripDataGridViewTextBoxColumn
             // 
@@ -217,51 +269,6 @@
             this.IsIncomeColumn.Name = "IsIncomeColumn";
             this.IsIncomeColumn.Width = 40;
             // 
-            // budgetBindingSource
-            // 
-            this.transacBindingSource.DataMember = "Transac";
-            this.transacBindingSource.DataSource = this.mainDataSet;
-            this.transacBindingSource.Sort = "";
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Filter:";
-            // 
-            // tbFilter
-            // 
-            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFilter.Location = new System.Drawing.Point(43, 4);
-            this.tbFilter.Name = "tbFilter";
-            this.tbFilter.Size = new System.Drawing.Size(1349, 20);
-            this.tbFilter.TabIndex = 3;
-            this.tbFilter.Validated += new System.EventHandler(this.tbFilter_Validated);
-            // 
-            // budgetTableAdapter
-            // 
-            this.transacTableAdapter.ClearBeforeFill = true;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(4, 463);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(22, 13);
-            this.lblStatus.TabIndex = 4;
-            this.lblStatus.Text = "- - -";
-            this.lblStatus.Visible = false;
-            // 
             // TransacEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,10 +295,12 @@
         private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbFilter;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardTransDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountNegatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripFromVendorColumn;
@@ -302,8 +311,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
         private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn acctTransferDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
     }
 }

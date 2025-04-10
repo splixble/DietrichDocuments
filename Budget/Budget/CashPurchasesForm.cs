@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,9 @@ namespace Budget
             base.OnLoad(e);
 
             transacCtrl.TransacAdapter.FillByAccount(transacCtrl.TransacTable, Program.CashAccountID);
+
+            Debug.WriteLine("DIAG CASH form queried!");
+            transacCtrl.UpdateAmountNegatedDisplayedValues();         // For AmountNegated column. S/n hafta call it from here, but... no better way found
         }
 
         private void btnSaveSharePrices_Click(object sender, EventArgs e)

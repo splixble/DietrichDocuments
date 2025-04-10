@@ -40,22 +40,82 @@ namespace Budget
             if (_Usage == Usages.CashPurchases)
                 grid1.AllowUserToAddRows = true;
 
-            Debug.WriteLine("Spud!!!! DIAG");
+            AmountNegatedColumn.ValueType = typeof(Decimal); // can't do this in designer
 
+            // For AmountNegated column
             grid1.CellEndEdit += Grid1_CellEndEdit;
-            grid1.CellFormatting += Grid1_CellFormatting;
+            this.BindingSrc.CurrentChanged += BindingSrc_CurrentChanged;
         }
 
-        private void Grid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        // For AmountNegated column
+        public void UpdateAmountNegatedDisplayedValues()
         {
-            if (e.ColumnIndex == amountDataGridViewTextBoxColumn.Index)
-                Debug.WriteLine("DIAG Cell Formatting!! ");
+            foreach (DataGridViewRow gridRow in grid1.Rows)
+            {
+                if (gridRow.DataBoundItem is DataRowView)
+                {
+                    decimal? negatedAmount = null;
+                    DataRowView dataRowView = (DataRowView)gridRow.DataBoundItem;
+                    MainDataSet.TransacRow transacRow = (MainDataSet.TransacRow)dataRowView.Row;
+                    Debug.WriteLine("DIAG Upd... " + gridRow.Index.ToString() + " | " + transacRow.Amount.ToString());
+
+                    if (transacRow != null && !transacRow.IsAmountNull())
+                        negatedAmount = -(decimal)transacRow.Amount;
+                    // e.Value = val;
+
+                    DataGridViewCell amountNegCell = grid1[AmountNegatedColumn.Index, gridRow.Index];
+                    if ((decimal?)amountNegCell.Value != negatedAmount)
+                    {
+                        amountNegCell.Value = negatedAmount;
+                    }
+
+                }
+            }
         }
 
+        private void BindingSrc_CurrentChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("DIAG BindingSrc_CurrentChanged");
+        // NO LONGER CALLED - it only updated the "current" (selected) grid row
+            // BeginInvoke(new ParameterlessDelegate(UpdateAmountNegatedCell));           
+        }
+
+        public delegate void ParameterlessDelegate();
+
+        // NO LONGER USED - for AmountNegated column
+        void UpdateAmountNegatedCell()
+        {
+            decimal? negatedAmount = null;
+            DataRowView dataRowView = this.BindingSrc.Current as DataRowView;
+            MainDataSet.TransacRow transacRow = dataRowView.Row as MainDataSet.TransacRow;
+            if (transacRow != null && !transacRow.IsAmountNull())
+                negatedAmount = -(decimal)transacRow.Amount;
+            // e.Value = val;
+
+            DataGridViewCell amountNegCell = grid1[AmountNegatedColumn.Index, BindingSrc.Position];
+            if ((decimal?)amountNegCell.Value != negatedAmount)
+            {
+                amountNegCell.Value = negatedAmount;
+            }
+
+            Debug.WriteLine("DIAG UpdateAmountNegativeCell!! " + (negatedAmount==null ? " null" : negatedAmount.ToString()) + " pos " + this.BindingSrc.Position.ToString());
+        }
+
+        // For AmountNegated column
         private void Grid1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == amountDataGridViewTextBoxColumn.Index)
-                Debug.WriteLine("DIAG Cell End Edit!! ");
+            if (e.ColumnIndex == AmountNegatedColumn.Index)
+            {
+                DataGridViewCell amountNegCell = grid1[e.ColumnIndex, e.RowIndex];
+                DataRowView dataRowView = this.BindingSrc.Current as DataRowView;
+                MainDataSet.TransacRow transacRow = dataRowView.Row as MainDataSet.TransacRow;
+                if (amountNegCell.Value is decimal)
+                    transacRow.Amount = -(decimal)amountNegCell.Value;
+                else
+                    transacRow.SetAmountNull();
+
+                Debug.WriteLine("DIAG Cell End Edit!! " + amountNegCell.Value.ToString());
+            }
         }
 
         private void gridBudgetItems_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -74,8 +134,10 @@ namespace Budget
             // Hide unused grid columns:
             switch (_Usage)
             {
+                // DIAG make this customization easier -- or at least set it up for other usages
                 case Usages.CashPurchases: 
                     this.accountDataGridViewTextBoxColumn.Visible = false;
+                    this.AmountColumn.Visible = false;
                     this.Descrip2Column.Visible = false;
                     this.DescripFromVendorColumn.Visible = false;
                     this.CardTransDateColumn.Visible = false;
@@ -92,6 +154,9 @@ namespace Budget
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
+
+            // DIAG only do this if it uses it
+            //UpdateAmountNegatedDisplayedValues();
         }
 
         public void UpdateForImportedItems(SourceFileProcessor processor)
