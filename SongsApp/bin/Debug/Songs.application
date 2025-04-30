@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Songs.exe.manifest" size="41223">
+    <dependentAssembly dependencyType="install" codebase="Songs.exe.manifest" size="37791">
       <assemblyIdentity name="Songs.exe" version="6.2.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vK55A+IxLnLmHfy8K2G6d392U9XCI9jrwBGzyss8dsE=</dsig:DigestValue>
+        <dsig:DigestValue>nLq30BKaH1EBo/kbSe29DlcfgKm8A9q1ra25Rj1fVx8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

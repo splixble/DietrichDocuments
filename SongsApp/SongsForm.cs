@@ -4,8 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using System.Xml;
+using System.Runtime.InteropServices.ComTypes;
+using MySqlX.XDevAPI.Relational;
+using System.Diagnostics;
+using static Songs.AzureDataSet;
 
 namespace Songs
 {
@@ -32,7 +39,7 @@ namespace Songs
         public SongsForm()
         {
             InitializeComponent();
-            _SongsAdap = new SqlDataAdapter("",  global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
+            _SongsAdap = new SqlDataAdapter("", global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -72,13 +79,13 @@ namespace Songs
             grid1.Sort(titleDataGridViewTextBoxColumn, ListSortDirection.Ascending);
 
             // Read in the SongFlags view:
-            AzureDataSetTableAdapters.viewsongflagsTableAdapter flagAdap = 
+            AzureDataSetTableAdapters.viewsongflagsTableAdapter flagAdap =
                 new Songs.AzureDataSetTableAdapters.viewsongflagsTableAdapter();
-            AzureDataSet.viewsongflagsDataTable flagsTable = 
+            AzureDataSet.viewsongflagsDataTable flagsTable =
                 new AzureDataSet.viewsongflagsDataTable();
             flagAdap.Fill(flagsTable);
             // now, fill in the Flags field:
-            for (int rowIndex=0; rowIndex<grid1.RowCount; rowIndex++)
+            for (int rowIndex = 0; rowIndex < grid1.RowCount; rowIndex++)
             {
                 int songID = GetSongIDFromRowIndex(rowIndex);
                 if (songID != -1)
@@ -414,7 +421,7 @@ namespace Songs
 
         private void pDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PdfProcessor proc = new PdfProcessor();            
+            PdfProcessor proc = new PdfProcessor();
             proc.ProcessPDFs();
         }
 
@@ -434,6 +441,83 @@ namespace Songs
         {
             PerformanceReportForm form = new PerformanceReportForm();
             form.ShowDialog();
+        }
+
+        private void songsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter adap = new AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
+            AzureDataSet.ViewSongsSingleFieldDataTable tbl = new AzureDataSet.ViewSongsSingleFieldDataTable();
+            adap.FillSortedByPrefixedTitle(tbl);
+
+            DataColumn[] columns = new DataColumn[]
+            {
+                tbl.IDColumn,
+                tbl.TitleAndArtistColumn
+            };
+
+            JSTableFile tblFile = new JSTableFile(tbl, columns, "Songs");
+            tblFile.IntroComments.Add("ViewSongsSingleField, sorted by prefixed title");
+            tblFile.WriteFile();
+        }
+
+        private void venuesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AzureDataSetTableAdapters.venuesTableAdapter adap = new AzureDataSetTableAdapters.venuesTableAdapter();
+            AzureDataSet.venuesDataTable tbl = new AzureDataSet.venuesDataTable();
+            adap.Fill(tbl);
+
+            DataColumn[] columns = new DataColumn[]
+            {
+                tbl.IDColumn,
+                tbl.NameColumn,
+                tbl.CommentColumn
+            };
+
+            JSTableFile tblFile = new JSTableFile(tbl, columns, "Venues");
+            tblFile.WriteFile();
+        }
+
+        private void performancesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            AzureDataSetTableAdapters.performancesTableAdapter adap = new AzureDataSetTableAdapters.performancesTableAdapter();
+            AzureDataSet.performancesDataTable tbl = new AzureDataSet.performancesDataTable();
+            adap.Fill(tbl);
+
+            DataColumn[] columns = new DataColumn[]
+            {
+                tbl.IDColumn,
+                tbl.PerformanceDateColumn,
+                tbl.VenueColumn,
+                tbl.CommentColumn,
+                tbl.DidILeadColumn
+            };
+
+            JSTableFile tblFile = new JSTableFile(tbl, columns, "Performances");
+            tblFile.IntroComments.Add("Performances, sorted by PerformanceDate");
+            tblFile.AddGroupingMap("PerformancesPerVenue", tbl.VenueColumn, new DataColumn[] { tbl.PerformanceDateColumn, tbl.IDColumn});
+            tblFile.WriteFile();
+        }
+
+        private void songPerformancesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AzureDataSetTableAdapters.songperformancesTableAdapter adap = new AzureDataSetTableAdapters.songperformancesTableAdapter();
+            AzureDataSet.songperformancesDataTable tbl = new AzureDataSet.songperformancesDataTable();
+            adap.FillInPerformanceAndIDOrder(tbl);
+
+            DataColumn[] columns = new DataColumn[]
+            {
+                tbl.IDColumn,
+                tbl.PerformanceColumn,
+                tbl.SongColumn,
+                tbl.CommentColumn,
+                tbl.SetNumberColumn
+            };
+
+            JSTableFile tblFile = new JSTableFile(tbl, columns, "SongPerformances");
+            tblFile.IntroComments.Add( "Song Performances, sorted by Performance and Date");
+            tblFile.AddGroupingMap("SongsPerPerformance", tbl.PerformanceColumn, new DataColumn[] { tbl.IDColumn });
+            // DIAG use View! tblFile.AddGroupingMap("PerformancesPerSongs", tbl.SongColumn, new DataColumn[] { tbl.PerformanceDate, tbl.IDColumn });
+            tblFile.WriteFile();
         }
     }
 }

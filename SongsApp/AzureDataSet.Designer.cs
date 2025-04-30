@@ -56,6 +56,10 @@ namespace Songs {
         
         private viewsongperformancetotalsDataTable tableviewsongperformancetotals;
         
+        private global::System.Data.DataRelation relationFK_AlternateArtists_ArtistID;
+        
+        private global::System.Data.DataRelation relationFK_AlternateArtists_SongID;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -554,6 +558,8 @@ namespace Songs {
                     this.tableviewsongperformancetotals.InitVars();
                 }
             }
+            this.relationFK_AlternateArtists_ArtistID = this.Relations["FK_AlternateArtists_ArtistID"];
+            this.relationFK_AlternateArtists_SongID = this.Relations["FK_AlternateArtists_SongID"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -596,6 +602,14 @@ namespace Songs {
             base.Tables.Add(this.tableAlternateArtists);
             this.tableviewsongperformancetotals = new viewsongperformancetotalsDataTable();
             base.Tables.Add(this.tableviewsongperformancetotals);
+            this.relationFK_AlternateArtists_ArtistID = new global::System.Data.DataRelation("FK_AlternateArtists_ArtistID", new global::System.Data.DataColumn[] {
+                        this.tableartists.ArtistIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAlternateArtists.ArtistIDColumn}, false);
+            this.Relations.Add(this.relationFK_AlternateArtists_ArtistID);
+            this.relationFK_AlternateArtists_SongID = new global::System.Data.DataRelation("FK_AlternateArtists_SongID", new global::System.Data.DataColumn[] {
+                        this.tablesongs.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAlternateArtists.SongIDColumn}, false);
+            this.Relations.Add(this.relationFK_AlternateArtists_SongID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5768,12 +5782,18 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AlternateArtistsRow AddAlternateArtistsRow(int SongID, int ArtistID) {
+            public AlternateArtistsRow AddAlternateArtistsRow(songsRow parentsongsRowByFK_AlternateArtists_SongID, artistsRow parentartistsRowByFK_AlternateArtists_ArtistID) {
                 AlternateArtistsRow rowAlternateArtistsRow = ((AlternateArtistsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        SongID,
-                        ArtistID};
+                        null,
+                        null};
+                if ((parentsongsRowByFK_AlternateArtists_SongID != null)) {
+                    columnValuesArray[1] = parentsongsRowByFK_AlternateArtists_SongID[6];
+                }
+                if ((parentartistsRowByFK_AlternateArtists_ArtistID != null)) {
+                    columnValuesArray[2] = parentartistsRowByFK_AlternateArtists_ArtistID[0];
+                }
                 rowAlternateArtistsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAlternateArtistsRow);
                 return rowAlternateArtistsRow;
@@ -6352,6 +6372,17 @@ namespace Songs {
             public void SetArtistFirstNameNull() {
                 this[this.tableartists.ArtistFirstNameColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AlternateArtistsRow[] GetAlternateArtistsRows() {
+                if ((this.Table.ChildRelations["FK_AlternateArtists_ArtistID"] == null)) {
+                    return new AlternateArtistsRow[0];
+                }
+                else {
+                    return ((AlternateArtistsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AlternateArtists_ArtistID"])));
+                }
+            }
         }
         
         /// <summary>
@@ -6718,6 +6749,17 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetDiffPDFNameNull() {
                 this[this.tablesongs.DiffPDFNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public AlternateArtistsRow[] GetAlternateArtistsRows() {
+                if ((this.Table.ChildRelations["FK_AlternateArtists_SongID"] == null)) {
+                    return new AlternateArtistsRow[0];
+                }
+                else {
+                    return ((AlternateArtistsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AlternateArtists_SongID"])));
+                }
             }
         }
         
@@ -8584,6 +8626,28 @@ namespace Songs {
                 }
                 set {
                     this[this.tableAlternateArtists.ArtistIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public artistsRow artistsRow {
+                get {
+                    return ((artistsRow)(this.GetParentRow(this.Table.ParentRelations["FK_AlternateArtists_ArtistID"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_AlternateArtists_ArtistID"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public songsRow songsRow {
+                get {
+                    return ((songsRow)(this.GetParentRow(this.Table.ParentRelations["FK_AlternateArtists_SongID"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_AlternateArtists_SongID"]);
                 }
             }
         }
@@ -11850,7 +11914,9 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT ArtistFirstName, ArtistLastName, Code, FullArtistName, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover FROM ViewSongsSingleField ORDER BY SongFull, ArtistLastName, ArtistFirstName";
+            this._commandCollection[1].CommandText = @"SELECT        ArtistFirstName, ArtistLastName, Code, FullArtistName, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover
+FROM            songbook.viewsongssinglefield
+ORDER BY Title, TitlePrefix, ArtistLastName, ArtistFirstName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12027,12 +12093,13 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistC" +
-                "aption, FullTitle, ArtistList\r\nFROM            viewsongsforsetlists";
+                "aption, FullTitle, ArtistList\r\nFROM            songbook.viewsongsforsetlists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT ArtistList, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, SetlistA" +
-                "ddable, SetlistCaption FROM viewsongsforsetlists WHERE (InTablet = @InTablet)";
+                "ddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTablet = @InT" +
+                "ablet)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InTablet", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "InTablet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -13217,7 +13284,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songbook" +
@@ -13229,6 +13296,11 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
                 "HERE (Performance = @Performance)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songbook" +
+                ".songperformances\r\nORDER BY Performance, ID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13251,6 +13323,19 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         public virtual int FillByPerformance(AzureDataSet.songperformancesDataTable dataTable, int Performance) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Performance));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillInPerformanceAndIDOrder(AzureDataSet.songperformancesDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -13553,26 +13638,24 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [alternateartists] WHERE (([ID] = @Original_ID) AND ([SongID] = @Orig" +
-                "inal_SongID) AND ([ArtistID] = @Original_ArtistID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [songbook].[alternateartists] WHERE (([ID] = @Original_ID) AND ([Song" +
+                "ID] = @Original_SongID) AND ([ArtistID] = @Original_ArtistID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ArtistID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ArtistID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [alternateartists] ([SongID], [ArtistID]) VALUES (@SongID, @ArtistID)" +
-                ";\r\nSELECT ID, SongID, ArtistID FROM alternateartists WHERE (ID = SCOPE_IDENTITY(" +
-                "))";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[alternateartists] ([SongID], [ArtistID]) VALUES (@SongID," +
+                " @ArtistID);\r\nSELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (" +
+                "ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ArtistID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ArtistID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [alternateartists] SET [SongID] = @SongID, [ArtistID] = @ArtistID WHERE ((" +
-                "[ID] = @Original_ID) AND ([SongID] = @Original_SongID) AND ([ArtistID] = @Origin" +
-                "al_ArtistID));\r\nSELECT ID, SongID, ArtistID FROM alternateartists WHERE (ID = @I" +
-                "D)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[alternateartists] SET [SongID] = @SongID, [ArtistID] = @ArtistID WHERE (([ID] = @Original_ID) AND ([SongID] = @Original_SongID) AND ([ArtistID] = @Original_ArtistID));
+SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ArtistID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ArtistID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13595,12 +13678,12 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, SongID, ArtistID\r\nFROM            alternateartists";
+            this._commandCollection[0].CommandText = "SELECT        ID, SongID, ArtistID\r\nFROM            songbook.alternateartists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        ID, SongID, ArtistID\r\nFROM            alternateartists\r\nWHERE      " +
-                "  (SongID = @SongID)";
+            this._commandCollection[1].CommandText = "SELECT        ArtistID, ID, SongID\r\nFROM            songbook.alternateartists\r\nWH" +
+                "ERE        (SongID = @SongID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

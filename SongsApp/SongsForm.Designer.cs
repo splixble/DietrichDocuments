@@ -71,9 +71,15 @@ namespace Songs
             this.listByArtistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listByFlagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.performancesNewCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.performancesNewCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeDBTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.songsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.venuesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.performancesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.songPerformancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsTableAdapter = new Songs.AzureDataSetTableAdapters.songsTableAdapter();
             this.viewArtistNameForListBoxTableAdapter = new Songs.AzureDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             this.cbMemorized = new System.Windows.Forms.CheckBox();
@@ -299,7 +305,8 @@ namespace Songs
             this.viewToolStripMenuItem,
             this.tablesToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.reportToolStripMenuItem});
+            this.reportToolStripMenuItem,
+            this.websiteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1340, 24);
@@ -446,6 +453,13 @@ namespace Songs
             this.performancesToolStripMenuItem1.Text = "&Performances OLD";
             this.performancesToolStripMenuItem1.Click += new System.EventHandler(this.performancesListingToolStripMenuItem_Click);
             // 
+            // performancesNewCommandToolStripMenuItem
+            // 
+            this.performancesNewCommandToolStripMenuItem.Name = "performancesNewCommandToolStripMenuItem";
+            this.performancesNewCommandToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.performancesNewCommandToolStripMenuItem.Text = "&Performances New Command";
+            this.performancesNewCommandToolStripMenuItem.Click += new System.EventHandler(this.performancesNewCommandToolStripMenuItem_Click);
+            // 
             // performanceTotalsToolStripMenuItem
             // 
             this.performanceTotalsToolStripMenuItem.Name = "performanceTotalsToolStripMenuItem";
@@ -460,12 +474,52 @@ namespace Songs
             this.bandGigsToolStripMenuItem.Text = "&Band Gigs";
             this.bandGigsToolStripMenuItem.Click += new System.EventHandler(this.bandGigsToolStripMenuItem_Click);
             // 
-            // performancesNewCommandToolStripMenuItem
+            // websiteToolStripMenuItem
             // 
-            this.performancesNewCommandToolStripMenuItem.Name = "performancesNewCommandToolStripMenuItem";
-            this.performancesNewCommandToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.performancesNewCommandToolStripMenuItem.Text = "&Performances New Command";
-            this.performancesNewCommandToolStripMenuItem.Click += new System.EventHandler(this.performancesNewCommandToolStripMenuItem_Click);
+            this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.writeDBTableToolStripMenuItem});
+            this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.websiteToolStripMenuItem.Text = "&Website";
+            // 
+            // writeDBTableToolStripMenuItem
+            // 
+            this.writeDBTableToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.songsToolStripMenuItem,
+            this.venuesToolStripMenuItem1,
+            this.performancesToolStripMenuItem2,
+            this.songPerformancesToolStripMenuItem});
+            this.writeDBTableToolStripMenuItem.Name = "writeDBTableToolStripMenuItem";
+            this.writeDBTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writeDBTableToolStripMenuItem.Text = "Write &DB Table";
+            // 
+            // songsToolStripMenuItem
+            // 
+            this.songsToolStripMenuItem.Name = "songsToolStripMenuItem";
+            this.songsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.songsToolStripMenuItem.Text = "&Songs";
+            this.songsToolStripMenuItem.Click += new System.EventHandler(this.songsToolStripMenuItem_Click);
+            // 
+            // venuesToolStripMenuItem1
+            // 
+            this.venuesToolStripMenuItem1.Name = "venuesToolStripMenuItem1";
+            this.venuesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.venuesToolStripMenuItem1.Text = "&Venues";
+            this.venuesToolStripMenuItem1.Click += new System.EventHandler(this.venuesToolStripMenuItem1_Click);
+            // 
+            // performancesToolStripMenuItem2
+            // 
+            this.performancesToolStripMenuItem2.Name = "performancesToolStripMenuItem2";
+            this.performancesToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.performancesToolStripMenuItem2.Text = "&Performances";
+            this.performancesToolStripMenuItem2.Click += new System.EventHandler(this.performancesToolStripMenuItem2_Click);
+            // 
+            // songPerformancesToolStripMenuItem
+            // 
+            this.songPerformancesToolStripMenuItem.Name = "songPerformancesToolStripMenuItem";
+            this.songPerformancesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.songPerformancesToolStripMenuItem.Text = "Song P&erformances";
+            this.songPerformancesToolStripMenuItem.Click += new System.EventHandler(this.songPerformancesToolStripMenuItem_Click);
             // 
             // songsTableAdapter
             // 
@@ -662,6 +716,12 @@ namespace Songs
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFlags;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem performancesNewCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeDBTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem songsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem venuesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem performancesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem songPerformancesToolStripMenuItem;
     }
 }
 
