@@ -12,6 +12,7 @@ namespace Songs
 {
     class JSTableFile
     {
+        // DIAG Pass flags with columns, to specify whether date/time columns should include time, for instance.
         public JSTableFile(DataTable tbl, IList< DataColumn > columns, string tableName) 
         {
             _DataTable = tbl;
@@ -74,10 +75,12 @@ namespace Songs
                         }
                         writer.WriteLine(@"    ];");
 
-                        // write out records, and track mapping of key to row index:
-                        Dictionary<string, int> _KeyValueToRowIndex = new Dictionary<string, int>();
+                        // determine primary key column:
+                        if (_DataTable.PrimaryKey.Length != 1)
+                            throw (new Exception("DataTable " + _DataTable.TableName + " must have a single Primary Key defined in the DataSet."));
                         DataColumn primaryKeyColumn = _DataTable.PrimaryKey[0];
 
+                        // write out records:
                         writer.WriteLine(@"  static Rows = ");
                         writer.WriteLine(@"    [");
                         for (int iRow = 0; iRow < _DataTable.Rows.Count; iRow++)
@@ -92,9 +95,6 @@ namespace Songs
                                     recLine += ", ";
                             }
                             recLine += @"]";
-
-                            // track mapping of key to row index: (NOTE: FIRST COLUMN IN _Columns MUST be primary key)
-                            _KeyValueToRowIndex[FieldValueToJavascript(row[0])] = iRow;
 
                             if (iRow < _DataTable.Rows.Count - 1)
                                 recLine += ",";
@@ -139,7 +139,7 @@ namespace Songs
                             dataView.Sort = viewSortFields;
 
                             // Go through all the rows in the DataView, and write out a 2-level array, breaking on change of _GroupingColumn: 
-                            string JSMapName = "this." + groupingMap._MapName + "_GroupingMap";
+                            string JSMapName = "this.GMap_" + groupingMap._MapName;
                             writer.WriteLine(@"    " + JSMapName +" = new Map();");
                             string lastGroupingColumnValue = null;
                             string rowIndexList = "";
@@ -158,12 +158,11 @@ namespace Songs
 
                                 // Determine the JS row index of this row, by primary key field value:
                                 string primaryKeyValue = FieldValueToJavascript(rowView.Row[primaryKeyColumn]);
-                                int rowIndex = _KeyValueToRowIndex[primaryKeyValue];
 
                                 // Add row index to rowIndexList:
                                 if (rowIndexList != "")
                                     rowIndexList += ", ";
-                                rowIndexList += "\"" + rowIndex.ToString() + "\"";
+                                rowIndexList += primaryKeyValue;
                             }
                             // Write the last line out:
                             WriteGroupingMapItemLine(writer, JSMapName, lastGroupingColumnValue, rowIndexList);

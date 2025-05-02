@@ -56,6 +56,8 @@ namespace Songs {
         
         private viewsongperformancetotalsDataTable tableviewsongperformancetotals;
         
+        private viewsongperformancesDataTable tableviewsongperformances;
+        
         private global::System.Data.DataRelation relationFK_AlternateArtists_ArtistID;
         
         private global::System.Data.DataRelation relationFK_AlternateArtists_SongID;
@@ -135,6 +137,9 @@ namespace Songs {
                 }
                 if ((ds.Tables["viewsongperformancetotals"] != null)) {
                     base.Tables.Add(new viewsongperformancetotalsDataTable(ds.Tables["viewsongperformancetotals"]));
+                }
+                if ((ds.Tables["viewsongperformances"] != null)) {
+                    base.Tables.Add(new viewsongperformancesDataTable(ds.Tables["viewsongperformances"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -316,6 +321,16 @@ namespace Songs {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public viewsongperformancesDataTable viewsongperformances {
+            get {
+                return this.tableviewsongperformances;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -428,6 +443,9 @@ namespace Songs {
                 }
                 if ((ds.Tables["viewsongperformancetotals"] != null)) {
                     base.Tables.Add(new viewsongperformancetotalsDataTable(ds.Tables["viewsongperformancetotals"]));
+                }
+                if ((ds.Tables["viewsongperformances"] != null)) {
+                    base.Tables.Add(new viewsongperformancesDataTable(ds.Tables["viewsongperformances"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -558,6 +576,12 @@ namespace Songs {
                     this.tableviewsongperformancetotals.InitVars();
                 }
             }
+            this.tableviewsongperformances = ((viewsongperformancesDataTable)(base.Tables["viewsongperformances"]));
+            if ((initTable == true)) {
+                if ((this.tableviewsongperformances != null)) {
+                    this.tableviewsongperformances.InitVars();
+                }
+            }
             this.relationFK_AlternateArtists_ArtistID = this.Relations["FK_AlternateArtists_ArtistID"];
             this.relationFK_AlternateArtists_SongID = this.Relations["FK_AlternateArtists_SongID"];
         }
@@ -602,6 +626,8 @@ namespace Songs {
             base.Tables.Add(this.tableAlternateArtists);
             this.tableviewsongperformancetotals = new viewsongperformancetotalsDataTable();
             base.Tables.Add(this.tableviewsongperformancetotals);
+            this.tableviewsongperformances = new viewsongperformancesDataTable();
+            base.Tables.Add(this.tableviewsongperformances);
             this.relationFK_AlternateArtists_ArtistID = new global::System.Data.DataRelation("FK_AlternateArtists_ArtistID", new global::System.Data.DataColumn[] {
                         this.tableartists.ArtistIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableAlternateArtists.ArtistIDColumn}, false);
@@ -710,6 +736,12 @@ namespace Songs {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeviewsongperformances() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -810,6 +842,9 @@ namespace Songs {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void viewsongperformancetotalsRowChangeEventHandler(object sender, viewsongperformancetotalsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void viewsongperformancesRowChangeEventHandler(object sender, viewsongperformancesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3632,6 +3667,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columncover;
             
+            private global::System.Data.DataColumn columnFullTitle;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewSongsSingleFieldDataTable() {
@@ -3787,6 +3824,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FullTitleColumn {
+                get {
+                    return this.columnFullTitle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3822,7 +3867,23 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewSongsSingleFieldRow AddViewSongsSingleFieldRow(string SongFull, string TitleAndInfo, string TitleAndArtist, string SongFullArtistFirst, string SongInfo, string ArtistFirstName, string ArtistLastName, string FullArtistName, string Title, string TitlePrefix, int ID, string Code, string PageNumber, bool InTablet, int cover) {
+            public ViewSongsSingleFieldRow AddViewSongsSingleFieldRow(
+                        string SongFull, 
+                        string TitleAndInfo, 
+                        string TitleAndArtist, 
+                        string SongFullArtistFirst, 
+                        string SongInfo, 
+                        string ArtistFirstName, 
+                        string ArtistLastName, 
+                        string FullArtistName, 
+                        string Title, 
+                        string TitlePrefix, 
+                        int ID, 
+                        string Code, 
+                        string PageNumber, 
+                        bool InTablet, 
+                        int cover, 
+                        string FullTitle) {
                 ViewSongsSingleFieldRow rowViewSongsSingleFieldRow = ((ViewSongsSingleFieldRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SongFull,
@@ -3839,7 +3900,8 @@ namespace Songs {
                         Code,
                         PageNumber,
                         InTablet,
-                        cover};
+                        cover,
+                        FullTitle};
                 rowViewSongsSingleFieldRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewSongsSingleFieldRow);
                 return rowViewSongsSingleFieldRow;
@@ -3884,6 +3946,7 @@ namespace Songs {
                 this.columnPageNumber = base.Columns["PageNumber"];
                 this.columnInTablet = base.Columns["InTablet"];
                 this.columncover = base.Columns["cover"];
+                this.columnFullTitle = base.Columns["FullTitle"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3919,6 +3982,8 @@ namespace Songs {
                 base.Columns.Add(this.columnInTablet);
                 this.columncover = new global::System.Data.DataColumn("cover", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncover);
+                this.columnFullTitle = new global::System.Data.DataColumn("FullTitle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullTitle);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnSongFull.ReadOnly = true;
@@ -3944,6 +4009,8 @@ namespace Songs {
                 this.columnPageNumber.MaxLength = 50;
                 this.columnInTablet.AllowDBNull = false;
                 this.columncover.AllowDBNull = false;
+                this.columnFullTitle.ReadOnly = true;
+                this.columnFullTitle.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6293,6 +6360,477 @@ namespace Songs {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class viewsongperformancesDataTable : global::System.Data.TypedTableBase<viewsongperformancesRow> {
+            
+            private global::System.Data.DataColumn columnPerformanceID;
+            
+            private global::System.Data.DataColumn columnSong;
+            
+            private global::System.Data.DataColumn columnComment;
+            
+            private global::System.Data.DataColumn columnSetNumber;
+            
+            private global::System.Data.DataColumn columnPerfComment;
+            
+            private global::System.Data.DataColumn columnTitleAndArtist;
+            
+            private global::System.Data.DataColumn columnPerformanceDate;
+            
+            private global::System.Data.DataColumn columnDidILead;
+            
+            private global::System.Data.DataColumn columnPerformanceYear;
+            
+            private global::System.Data.DataColumn columnPerformanceQtr;
+            
+            private global::System.Data.DataColumn columnPerformanceMonth;
+            
+            private global::System.Data.DataColumn columnVenueName;
+            
+            private global::System.Data.DataColumn columnVenue;
+            
+            private global::System.Data.DataColumn columnPerfID;
+            
+            private global::System.Data.DataColumn columnSongPerfID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesDataTable() {
+                this.TableName = "viewsongperformances";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal viewsongperformancesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected viewsongperformancesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerformanceIDColumn {
+                get {
+                    return this.columnPerformanceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SongColumn {
+                get {
+                    return this.columnSong;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CommentColumn {
+                get {
+                    return this.columnComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SetNumberColumn {
+                get {
+                    return this.columnSetNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerfCommentColumn {
+                get {
+                    return this.columnPerfComment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TitleAndArtistColumn {
+                get {
+                    return this.columnTitleAndArtist;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerformanceDateColumn {
+                get {
+                    return this.columnPerformanceDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DidILeadColumn {
+                get {
+                    return this.columnDidILead;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerformanceYearColumn {
+                get {
+                    return this.columnPerformanceYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerformanceQtrColumn {
+                get {
+                    return this.columnPerformanceQtr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerformanceMonthColumn {
+                get {
+                    return this.columnPerformanceMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VenueNameColumn {
+                get {
+                    return this.columnVenueName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VenueColumn {
+                get {
+                    return this.columnVenue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PerfIDColumn {
+                get {
+                    return this.columnPerfID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SongPerfIDColumn {
+                get {
+                    return this.columnSongPerfID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRow this[int index] {
+                get {
+                    return ((viewsongperformancesRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event viewsongperformancesRowChangeEventHandler viewsongperformancesRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event viewsongperformancesRowChangeEventHandler viewsongperformancesRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event viewsongperformancesRowChangeEventHandler viewsongperformancesRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event viewsongperformancesRowChangeEventHandler viewsongperformancesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddviewsongperformancesRow(viewsongperformancesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRow AddviewsongperformancesRow(int PerformanceID, int Song, string Comment, byte SetNumber, string PerfComment, string TitleAndArtist, System.DateTime PerformanceDate, bool DidILead, int PerformanceYear, string PerformanceQtr, string PerformanceMonth, string VenueName, int Venue, int PerfID, int SongPerfID) {
+                viewsongperformancesRow rowviewsongperformancesRow = ((viewsongperformancesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        PerformanceID,
+                        Song,
+                        Comment,
+                        SetNumber,
+                        PerfComment,
+                        TitleAndArtist,
+                        PerformanceDate,
+                        DidILead,
+                        PerformanceYear,
+                        PerformanceQtr,
+                        PerformanceMonth,
+                        VenueName,
+                        Venue,
+                        PerfID,
+                        SongPerfID};
+                rowviewsongperformancesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowviewsongperformancesRow);
+                return rowviewsongperformancesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRow FindBySongPerfID(int SongPerfID) {
+                return ((viewsongperformancesRow)(this.Rows.Find(new object[] {
+                            SongPerfID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                viewsongperformancesDataTable cln = ((viewsongperformancesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new viewsongperformancesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnPerformanceID = base.Columns["PerformanceID"];
+                this.columnSong = base.Columns["Song"];
+                this.columnComment = base.Columns["Comment"];
+                this.columnSetNumber = base.Columns["SetNumber"];
+                this.columnPerfComment = base.Columns["PerfComment"];
+                this.columnTitleAndArtist = base.Columns["TitleAndArtist"];
+                this.columnPerformanceDate = base.Columns["PerformanceDate"];
+                this.columnDidILead = base.Columns["DidILead"];
+                this.columnPerformanceYear = base.Columns["PerformanceYear"];
+                this.columnPerformanceQtr = base.Columns["PerformanceQtr"];
+                this.columnPerformanceMonth = base.Columns["PerformanceMonth"];
+                this.columnVenueName = base.Columns["VenueName"];
+                this.columnVenue = base.Columns["Venue"];
+                this.columnPerfID = base.Columns["PerfID"];
+                this.columnSongPerfID = base.Columns["SongPerfID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnPerformanceID = new global::System.Data.DataColumn("PerformanceID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerformanceID);
+                this.columnSong = new global::System.Data.DataColumn("Song", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSong);
+                this.columnComment = new global::System.Data.DataColumn("Comment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComment);
+                this.columnSetNumber = new global::System.Data.DataColumn("SetNumber", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSetNumber);
+                this.columnPerfComment = new global::System.Data.DataColumn("PerfComment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerfComment);
+                this.columnTitleAndArtist = new global::System.Data.DataColumn("TitleAndArtist", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTitleAndArtist);
+                this.columnPerformanceDate = new global::System.Data.DataColumn("PerformanceDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerformanceDate);
+                this.columnDidILead = new global::System.Data.DataColumn("DidILead", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDidILead);
+                this.columnPerformanceYear = new global::System.Data.DataColumn("PerformanceYear", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerformanceYear);
+                this.columnPerformanceQtr = new global::System.Data.DataColumn("PerformanceQtr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerformanceQtr);
+                this.columnPerformanceMonth = new global::System.Data.DataColumn("PerformanceMonth", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerformanceMonth);
+                this.columnVenueName = new global::System.Data.DataColumn("VenueName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVenueName);
+                this.columnVenue = new global::System.Data.DataColumn("Venue", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVenue);
+                this.columnPerfID = new global::System.Data.DataColumn("PerfID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerfID);
+                this.columnSongPerfID = new global::System.Data.DataColumn("SongPerfID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSongPerfID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnSongPerfID}, true));
+                this.columnPerformanceID.ReadOnly = true;
+                this.columnSong.AllowDBNull = false;
+                this.columnComment.MaxLength = 250;
+                this.columnPerfComment.MaxLength = 250;
+                this.columnTitleAndArtist.ReadOnly = true;
+                this.columnTitleAndArtist.MaxLength = 2147483647;
+                this.columnPerformanceDate.AllowDBNull = false;
+                this.columnDidILead.AllowDBNull = false;
+                this.columnPerformanceYear.ReadOnly = true;
+                this.columnPerformanceQtr.ReadOnly = true;
+                this.columnPerformanceQtr.MaxLength = 101;
+                this.columnPerformanceMonth.ReadOnly = true;
+                this.columnPerformanceMonth.MaxLength = 101;
+                this.columnVenueName.AllowDBNull = false;
+                this.columnVenueName.MaxLength = 100;
+                this.columnVenue.AllowDBNull = false;
+                this.columnPerfID.AllowDBNull = false;
+                this.columnSongPerfID.AllowDBNull = false;
+                this.columnSongPerfID.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRow NewviewsongperformancesRow() {
+                return ((viewsongperformancesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new viewsongperformancesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(viewsongperformancesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.viewsongperformancesRowChanged != null)) {
+                    this.viewsongperformancesRowChanged(this, new viewsongperformancesRowChangeEvent(((viewsongperformancesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.viewsongperformancesRowChanging != null)) {
+                    this.viewsongperformancesRowChanging(this, new viewsongperformancesRowChangeEvent(((viewsongperformancesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.viewsongperformancesRowDeleted != null)) {
+                    this.viewsongperformancesRowDeleted(this, new viewsongperformancesRowChangeEvent(((viewsongperformancesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.viewsongperformancesRowDeleting != null)) {
+                    this.viewsongperformancesRowDeleting(this, new viewsongperformancesRowChangeEvent(((viewsongperformancesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveviewsongperformancesRow(viewsongperformancesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AzureDataSet ds = new AzureDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "viewsongperformancesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class artistsRow : global::System.Data.DataRow {
@@ -7897,6 +8435,22 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FullTitle {
+                get {
+                    try {
+                        return ((string)(this[this.tableViewSongsSingleField.FullTitleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FullTitle\' in table \'ViewSongsSingleField\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewSongsSingleField.FullTitleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSongFullNull() {
                 return this.IsNull(this.tableViewSongsSingleField.SongFullColumn);
             }
@@ -8025,6 +8579,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPageNumberNull() {
                 this[this.tableViewSongsSingleField.PageNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFullTitleNull() {
+                return this.IsNull(this.tableViewSongsSingleField.FullTitleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFullTitleNull() {
+                this[this.tableViewSongsSingleField.FullTitleColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8822,6 +9388,324 @@ namespace Songs {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class viewsongperformancesRow : global::System.Data.DataRow {
+            
+            private viewsongperformancesDataTable tableviewsongperformances;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal viewsongperformancesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableviewsongperformances = ((viewsongperformancesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PerformanceID {
+                get {
+                    try {
+                        return ((int)(this[this.tableviewsongperformances.PerformanceIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PerformanceID\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.PerformanceIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Song {
+                get {
+                    return ((int)(this[this.tableviewsongperformances.SongColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.SongColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Comment {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongperformances.CommentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Comment\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.CommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte SetNumber {
+                get {
+                    try {
+                        return ((byte)(this[this.tableviewsongperformances.SetNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SetNumber\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.SetNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PerfComment {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongperformances.PerfCommentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PerfComment\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.PerfCommentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string TitleAndArtist {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongperformances.TitleAndArtistColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TitleAndArtist\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.TitleAndArtistColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime PerformanceDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tableviewsongperformances.PerformanceDateColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.PerformanceDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool DidILead {
+                get {
+                    return ((bool)(this[this.tableviewsongperformances.DidILeadColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.DidILeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PerformanceYear {
+                get {
+                    try {
+                        return ((int)(this[this.tableviewsongperformances.PerformanceYearColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PerformanceYear\' in table \'viewsongperformances\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.PerformanceYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PerformanceQtr {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongperformances.PerformanceQtrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PerformanceQtr\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.PerformanceQtrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PerformanceMonth {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongperformances.PerformanceMonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PerformanceMonth\' in table \'viewsongperformances\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.PerformanceMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string VenueName {
+                get {
+                    return ((string)(this[this.tableviewsongperformances.VenueNameColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.VenueNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Venue {
+                get {
+                    return ((int)(this[this.tableviewsongperformances.VenueColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.VenueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PerfID {
+                get {
+                    return ((int)(this[this.tableviewsongperformances.PerfIDColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.PerfIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int SongPerfID {
+                get {
+                    return ((int)(this[this.tableviewsongperformances.SongPerfIDColumn]));
+                }
+                set {
+                    this[this.tableviewsongperformances.SongPerfIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPerformanceIDNull() {
+                return this.IsNull(this.tableviewsongperformances.PerformanceIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPerformanceIDNull() {
+                this[this.tableviewsongperformances.PerformanceIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCommentNull() {
+                return this.IsNull(this.tableviewsongperformances.CommentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCommentNull() {
+                this[this.tableviewsongperformances.CommentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSetNumberNull() {
+                return this.IsNull(this.tableviewsongperformances.SetNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSetNumberNull() {
+                this[this.tableviewsongperformances.SetNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPerfCommentNull() {
+                return this.IsNull(this.tableviewsongperformances.PerfCommentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPerfCommentNull() {
+                this[this.tableviewsongperformances.PerfCommentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTitleAndArtistNull() {
+                return this.IsNull(this.tableviewsongperformances.TitleAndArtistColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTitleAndArtistNull() {
+                this[this.tableviewsongperformances.TitleAndArtistColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPerformanceYearNull() {
+                return this.IsNull(this.tableviewsongperformances.PerformanceYearColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPerformanceYearNull() {
+                this[this.tableviewsongperformances.PerformanceYearColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPerformanceQtrNull() {
+                return this.IsNull(this.tableviewsongperformances.PerformanceQtrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPerformanceQtrNull() {
+                this[this.tableviewsongperformances.PerformanceQtrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPerformanceMonthNull() {
+                return this.IsNull(this.tableviewsongperformances.PerformanceMonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPerformanceMonthNull() {
+                this[this.tableviewsongperformances.PerformanceMonthColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -9351,6 +10235,40 @@ namespace Songs {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongperformancetotalsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class viewsongperformancesRowChangeEvent : global::System.EventArgs {
+            
+            private viewsongperformancesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRowChangeEvent(viewsongperformancesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public viewsongperformancesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11892,6 +12810,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             tableMapping.ColumnMappings.Add("PageNumber", "PageNumber");
             tableMapping.ColumnMappings.Add("InTablet", "InTablet");
             tableMapping.ColumnMappings.Add("cover", "cover");
+            tableMapping.ColumnMappings.Add("FullTitle", "FullTitle");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11910,13 +12829,12 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        SongFull, TitleAndInfo, TitleAndArtist, SongFullArtistFirst, SongIn" +
                 "fo, ArtistFirstName, ArtistLastName, FullArtistName, Title, TitlePrefix, ID, Cod" +
-                "e, PageNumber, InTablet, cover\r\nFROM            songbook.viewsongssinglefield";
+                "e, PageNumber, InTablet, cover, FullTitle\r\nFROM            songbook.viewsongssin" +
+                "glefield";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        ArtistFirstName, ArtistLastName, Code, FullArtistName, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover
-FROM            songbook.viewsongssinglefield
-ORDER BY Title, TitlePrefix, ArtistLastName, ArtistFirstName";
+            this._commandCollection[1].CommandText = @"SELECT ArtistFirstName, ArtistLastName, Code, FullArtistName, FullTitle, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover FROM songbook.viewsongssinglefield ORDER BY Title, TitlePrefix, ArtistLastName, ArtistFirstName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -13990,6 +14908,178 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class viewsongperformancesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public viewsongperformancesTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "viewsongperformances";
+            tableMapping.ColumnMappings.Add("PerformanceID", "PerformanceID");
+            tableMapping.ColumnMappings.Add("Song", "Song");
+            tableMapping.ColumnMappings.Add("Comment", "Comment");
+            tableMapping.ColumnMappings.Add("SetNumber", "SetNumber");
+            tableMapping.ColumnMappings.Add("PerfComment", "PerfComment");
+            tableMapping.ColumnMappings.Add("TitleAndArtist", "TitleAndArtist");
+            tableMapping.ColumnMappings.Add("PerformanceDate", "PerformanceDate");
+            tableMapping.ColumnMappings.Add("DidILead", "DidILead");
+            tableMapping.ColumnMappings.Add("PerformanceYear", "PerformanceYear");
+            tableMapping.ColumnMappings.Add("PerformanceQtr", "PerformanceQtr");
+            tableMapping.ColumnMappings.Add("PerformanceMonth", "PerformanceMonth");
+            tableMapping.ColumnMappings.Add("VenueName", "VenueName");
+            tableMapping.ColumnMappings.Add("Venue", "Venue");
+            tableMapping.ColumnMappings.Add("PerfID", "PerfID");
+            tableMapping.ColumnMappings.Add("SongPerfID", "SongPerfID");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        PerformanceID, Song, Comment, SetNumber, PerfComment, TitleAndArtist, PerformanceDate, DidILead, PerformanceYear, PerformanceQtr, PerformanceMonth, VenueName, Venue, PerfID, SongPerfID
+FROM            songbook.viewsongperformances
+ORDER BY PerformanceID, PerformanceDate, SongPerfID";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AzureDataSet.viewsongperformancesDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -14261,39 +15351,12 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._alternateArtistsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._flagsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.flags.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._flagsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._venuesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._venuesTableAdapter.Update(updatedRows));
+                    result = (result + this._alternateArtistsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -14306,12 +15369,39 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._alternateArtistsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._venuesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._alternateArtistsTableAdapter.Update(updatedRows));
+                    result = (result + this._venuesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._performancesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._flagsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.flags.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._flagsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._flaggedsongsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._flaggedsongsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -14341,35 +15431,11 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._alternateArtistsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._flagsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.flags.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._flagsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._venuesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._venuesTableAdapter.Update(addedRows));
+                    result = (result + this._alternateArtistsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -14381,11 +15447,35 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._alternateArtistsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._venuesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._alternateArtistsTableAdapter.Update(addedRows));
+                    result = (result + this._venuesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._performancesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._flagsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.flags.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._flagsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._flaggedsongsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._flaggedsongsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -14399,35 +15489,11 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(AzureDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._alternateArtistsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._flaggedsongsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._alternateArtistsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._songperformancesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.songperformances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._songperformancesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._venuesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._venuesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(deletedRows));
+                    result = (result + this._flaggedsongsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -14439,11 +15505,35 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(deletedRows));
+                    result = (result + this._performancesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._venuesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.venues.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._venuesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._songperformancesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.songperformances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._songperformancesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._alternateArtistsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.AlternateArtists.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._alternateArtistsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

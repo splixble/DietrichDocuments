@@ -102,7 +102,7 @@ namespace Songs
                 songsWhereClause = "WHERE Cover = 0";
 
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
-            string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
+            string query = "SELECT * FROM songbook.ViewSongsSingleField " + songsWhereClause + " ORDER BY Title, TitlePrefix";
             SqlDataAdapter songsAdap = new SqlDataAdapter(query, 
                 global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);
             songsAdap.Fill(tblSongs);
@@ -116,7 +116,7 @@ namespace Songs
         public void ShowListByArtist(string songsWhereClause)
         {
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();
-            string query = "SELECT * FROM ViewSongsSingleField " + songsWhereClause + 
+            string query = "SELECT * FROM songbook.ViewSongsSingleField " + songsWhereClause + 
                 " ORDER BY ArtistLastName, ArtistFirstName, Title, TitlePrefix";
             SqlDataAdapter songsAdap = new SqlDataAdapter(query,
                 global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn);

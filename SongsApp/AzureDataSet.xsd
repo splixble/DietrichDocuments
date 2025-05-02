@@ -413,7 +413,7 @@ FROM            songbook.viewsongs</CommandText>
               <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.viewsongssinglefield" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        SongFull, TitleAndInfo, TitleAndArtist, SongFullArtistFirst, SongInfo, ArtistFirstName, ArtistLastName, FullArtistName, Title, TitlePrefix, ID, Code, PageNumber, InTablet, cover
+                    <CommandText>SELECT        SongFull, TitleAndInfo, TitleAndArtist, SongFullArtistFirst, SongInfo, ArtistFirstName, ArtistLastName, FullArtistName, Title, TitlePrefix, ID, Code, PageNumber, InTablet, cover, FullTitle
 FROM            songbook.viewsongssinglefield</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -436,14 +436,13 @@ FROM            songbook.viewsongssinglefield</CommandText>
               <Mapping SourceColumn="PageNumber" DataSetColumn="PageNumber" />
               <Mapping SourceColumn="InTablet" DataSetColumn="InTablet" />
               <Mapping SourceColumn="cover" DataSetColumn="cover" />
+              <Mapping SourceColumn="FullTitle" DataSetColumn="FullTitle" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.viewsongssinglefield" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillSortedByPrefixedTitle" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillSortedByPrefixedTitle" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillSortedByPrefixedTitle">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ArtistFirstName, ArtistLastName, Code, FullArtistName, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover
-FROM            songbook.viewsongssinglefield
-ORDER BY Title, TitlePrefix, ArtistLastName, ArtistFirstName</CommandText>
+                    <CommandText>SELECT ArtistFirstName, ArtistLastName, Code, FullArtistName, FullTitle, ID, InTablet, PageNumber, SongFull, SongFullArtistFirst, SongInfo, Title, TitleAndArtist, TitleAndInfo, TitlePrefix, cover FROM songbook.viewsongssinglefield ORDER BY Title, TitlePrefix, ArtistLastName, ArtistFirstName</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -847,6 +846,38 @@ FROM            songbook.viewsongperformancetotals</CommandText>
               <Mapping SourceColumn="firstPerformed" DataSetColumn="firstPerformed" />
               <Mapping SourceColumn="lastPerformed" DataSetColumn="lastPerformed" />
               <Mapping SourceColumn="RowNum" DataSetColumn="RowNum" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="viewsongperformancesTableAdapter" GeneratorDataComponentClassName="viewsongperformancesTableAdapter" Name="viewsongperformances" UserDataComponentName="viewsongperformancesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.viewsongperformances" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PerformanceID, Song, Comment, SetNumber, PerfComment, TitleAndArtist, PerformanceDate, DidILead, PerformanceYear, PerformanceQtr, PerformanceMonth, VenueName, Venue, PerfID, SongPerfID
+FROM            songbook.viewsongperformances
+ORDER BY PerformanceID, PerformanceDate, SongPerfID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PerformanceID" DataSetColumn="PerformanceID" />
+              <Mapping SourceColumn="Song" DataSetColumn="Song" />
+              <Mapping SourceColumn="Comment" DataSetColumn="Comment" />
+              <Mapping SourceColumn="SetNumber" DataSetColumn="SetNumber" />
+              <Mapping SourceColumn="PerfComment" DataSetColumn="PerfComment" />
+              <Mapping SourceColumn="TitleAndArtist" DataSetColumn="TitleAndArtist" />
+              <Mapping SourceColumn="PerformanceDate" DataSetColumn="PerformanceDate" />
+              <Mapping SourceColumn="DidILead" DataSetColumn="DidILead" />
+              <Mapping SourceColumn="PerformanceYear" DataSetColumn="PerformanceYear" />
+              <Mapping SourceColumn="PerformanceQtr" DataSetColumn="PerformanceQtr" />
+              <Mapping SourceColumn="PerformanceMonth" DataSetColumn="PerformanceMonth" />
+              <Mapping SourceColumn="VenueName" DataSetColumn="VenueName" />
+              <Mapping SourceColumn="Venue" DataSetColumn="Venue" />
+              <Mapping SourceColumn="PerfID" DataSetColumn="PerfID" />
+              <Mapping SourceColumn="SongPerfID" DataSetColumn="SongPerfID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1278,6 +1309,13 @@ FROM            songbook.viewsongperformancetotals</CommandText>
               </xs:element>
               <xs:element name="InTablet" msprop:Generator_ColumnPropNameInTable="InTabletColumn" msprop:Generator_ColumnPropNameInRow="InTablet" msprop:Generator_UserColumnName="InTablet" msprop:Generator_ColumnVarNameInTable="columnInTablet" type="xs:boolean" />
               <xs:element name="cover" msprop:Generator_ColumnPropNameInTable="coverColumn" msprop:Generator_ColumnPropNameInRow="cover" msprop:Generator_UserColumnName="cover" msprop:Generator_ColumnVarNameInTable="columncover" type="xs:int" />
+              <xs:element name="FullTitle" msdata:ReadOnly="true" msprop:Generator_UserColumnName="FullTitle" msprop:Generator_ColumnPropNameInTable="FullTitleColumn" msprop:Generator_ColumnPropNameInRow="FullTitle" msprop:Generator_ColumnVarNameInTable="columnFullTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1429,6 +1467,63 @@ FROM            songbook.viewsongperformancetotals</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="viewsongperformances" msprop:Generator_RowEvHandlerName="viewsongperformancesRowChangeEventHandler" msprop:Generator_RowDeletedName="viewsongperformancesRowDeleted" msprop:Generator_RowDeletingName="viewsongperformancesRowDeleting" msprop:Generator_RowEvArgName="viewsongperformancesRowChangeEvent" msprop:Generator_TablePropName="viewsongperformances" msprop:Generator_RowChangedName="viewsongperformancesRowChanged" msprop:Generator_RowChangingName="viewsongperformancesRowChanging" msprop:Generator_TableClassName="viewsongperformancesDataTable" msprop:Generator_RowClassName="viewsongperformancesRow" msprop:Generator_TableVarName="tableviewsongperformances" msprop:Generator_UserTableName="viewsongperformances">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PerformanceID" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="PerformanceID" msprop:Generator_ColumnPropNameInTable="PerformanceIDColumn" msprop:Generator_ColumnVarNameInTable="columnPerformanceID" msprop:Generator_UserColumnName="PerformanceID" type="xs:int" minOccurs="0" />
+              <xs:element name="Song" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_ColumnVarNameInTable="columnSong" msprop:Generator_UserColumnName="Song" type="xs:int" />
+              <xs:element name="Comment" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnPropNameInTable="CommentColumn" msprop:Generator_ColumnVarNameInTable="columnComment" msprop:Generator_UserColumnName="Comment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SetNumber" msprop:Generator_ColumnPropNameInRow="SetNumber" msprop:Generator_ColumnPropNameInTable="SetNumberColumn" msprop:Generator_ColumnVarNameInTable="columnSetNumber" msprop:Generator_UserColumnName="SetNumber" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="PerfComment" msprop:Generator_ColumnPropNameInRow="PerfComment" msprop:Generator_ColumnPropNameInTable="PerfCommentColumn" msprop:Generator_ColumnVarNameInTable="columnPerfComment" msprop:Generator_UserColumnName="PerfComment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TitleAndArtist" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TitleAndArtist" msprop:Generator_ColumnPropNameInTable="TitleAndArtistColumn" msprop:Generator_ColumnVarNameInTable="columnTitleAndArtist" msprop:Generator_UserColumnName="TitleAndArtist" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PerformanceDate" msprop:Generator_ColumnPropNameInRow="PerformanceDate" msprop:Generator_ColumnPropNameInTable="PerformanceDateColumn" msprop:Generator_ColumnVarNameInTable="columnPerformanceDate" msprop:Generator_UserColumnName="PerformanceDate" type="xs:dateTime" />
+              <xs:element name="DidILead" msprop:Generator_ColumnPropNameInRow="DidILead" msprop:Generator_ColumnPropNameInTable="DidILeadColumn" msprop:Generator_ColumnVarNameInTable="columnDidILead" msprop:Generator_UserColumnName="DidILead" type="xs:boolean" />
+              <xs:element name="PerformanceYear" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="PerformanceYear" msprop:Generator_ColumnPropNameInTable="PerformanceYearColumn" msprop:Generator_ColumnVarNameInTable="columnPerformanceYear" msprop:Generator_UserColumnName="PerformanceYear" type="xs:int" minOccurs="0" />
+              <xs:element name="PerformanceQtr" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="PerformanceQtr" msprop:Generator_ColumnPropNameInTable="PerformanceQtrColumn" msprop:Generator_ColumnVarNameInTable="columnPerformanceQtr" msprop:Generator_UserColumnName="PerformanceQtr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PerformanceMonth" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="PerformanceMonth" msprop:Generator_ColumnPropNameInTable="PerformanceMonthColumn" msprop:Generator_ColumnVarNameInTable="columnPerformanceMonth" msprop:Generator_UserColumnName="PerformanceMonth" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="101" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VenueName" msprop:Generator_ColumnPropNameInRow="VenueName" msprop:Generator_ColumnPropNameInTable="VenueNameColumn" msprop:Generator_ColumnVarNameInTable="columnVenueName" msprop:Generator_UserColumnName="VenueName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Venue" msprop:Generator_ColumnPropNameInRow="Venue" msprop:Generator_ColumnPropNameInTable="VenueColumn" msprop:Generator_ColumnVarNameInTable="columnVenue" msprop:Generator_UserColumnName="Venue" type="xs:int" />
+              <xs:element name="PerfID" msprop:Generator_ColumnPropNameInRow="PerfID" msprop:Generator_ColumnPropNameInTable="PerfIDColumn" msprop:Generator_ColumnVarNameInTable="columnPerfID" msprop:Generator_UserColumnName="PerfID" type="xs:int" />
+              <xs:element name="SongPerfID" msprop:Generator_ColumnPropNameInRow="SongPerfID" msprop:Generator_ColumnPropNameInTable="SongPerfIDColumn" msprop:Generator_ColumnVarNameInTable="columnSongPerfID" msprop:Generator_UserColumnName="SongPerfID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1482,6 +1577,10 @@ FROM            songbook.viewsongperformancetotals</CommandText>
     <xs:unique name="AlternateArtists_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:AlternateArtists" />
       <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="viewsongperformances_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:viewsongperformances" />
+      <xs:field xpath="mstns:SongPerfID" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

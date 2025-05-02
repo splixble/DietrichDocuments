@@ -500,23 +500,26 @@ namespace Songs
 
         private void songPerformancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AzureDataSetTableAdapters.songperformancesTableAdapter adap = new AzureDataSetTableAdapters.songperformancesTableAdapter();
-            AzureDataSet.songperformancesDataTable tbl = new AzureDataSet.songperformancesDataTable();
-            adap.FillInPerformanceAndIDOrder(tbl);
+            AzureDataSetTableAdapters.viewsongperformancesTableAdapter adap = new AzureDataSetTableAdapters.viewsongperformancesTableAdapter();
+            AzureDataSet.viewsongperformancesDataTable tbl = new AzureDataSet.viewsongperformancesDataTable();
+            adap.Fill(tbl);
 
             DataColumn[] columns = new DataColumn[]
             {
-                tbl.IDColumn,
-                tbl.PerformanceColumn,
+                tbl.SongPerfIDColumn,
+                tbl.PerfIDColumn,
+                tbl.PerformanceDateColumn,
                 tbl.SongColumn,
                 tbl.CommentColumn,
+                tbl.PerfCommentColumn,
+                tbl.VenueNameColumn,
                 tbl.SetNumberColumn
             };
 
             JSTableFile tblFile = new JSTableFile(tbl, columns, "SongPerformances");
-            tblFile.IntroComments.Add( "Song Performances, sorted by Performance and Date");
-            tblFile.AddGroupingMap("SongsPerPerformance", tbl.PerformanceColumn, new DataColumn[] { tbl.IDColumn });
-            // DIAG use View! tblFile.AddGroupingMap("PerformancesPerSongs", tbl.SongColumn, new DataColumn[] { tbl.PerformanceDate, tbl.IDColumn });
+            tblFile.IntroComments.Add( "ViewSongPerformances, sorted by Performance, Date, and Song Perf. ID");
+            tblFile.AddGroupingMap("SongsPerPerformance", tbl.PerfIDColumn, new DataColumn[] { tbl.SongPerfIDColumn });
+            tblFile.AddGroupingMap("PerformancesPerSongs", tbl.SongColumn, new DataColumn[] { tbl.PerformanceDateColumn, tbl.SongPerfIDColumn });
             tblFile.WriteFile();
         }
     }
