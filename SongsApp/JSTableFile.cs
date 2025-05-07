@@ -90,7 +90,7 @@ namespace Songs
                             for (int iCol = 0; iCol < _Columns.Count; iCol++)
                             {
                                 DataColumn recColumn = _Columns[iCol];
-                                recLine += FieldValueToJavascript(row[recColumn]);
+                                recLine += FieldValueToJavascript(row, recColumn);
                                 if (iCol < _Columns.Count - 1)
                                     recLine += ", ";
                             }
@@ -145,7 +145,7 @@ namespace Songs
                             string rowIndexList = "";
                             foreach (DataRowView rowView in dataView)
                             {
-                                string groupingColValue = FieldValueToJavascript(rowView.Row[groupingMap._GroupingColumn]);
+                                string groupingColValue = FieldValueToJavascript(rowView.Row, groupingMap._GroupingColumn);
                                 if (groupingColValue != lastGroupingColumnValue)
                                 {
                                     if (lastGroupingColumnValue != null) // if it's not on the very first field
@@ -157,7 +157,7 @@ namespace Songs
                                 }
 
                                 // Determine the JS row index of this row, by primary key field value:
-                                string primaryKeyValue = FieldValueToJavascript(rowView.Row[primaryKeyColumn]);
+                                string primaryKeyValue = FieldValueToJavascript(rowView.Row, primaryKeyColumn);
 
                                 // Add row index to rowIndexList:
                                 if (rowIndexList != "")
@@ -200,9 +200,14 @@ namespace Songs
             }
         }
 
-        static string FieldValueToJavascript(object fieldVal)
+        static string FieldValueToJavascript(DataRow row, DataColumn column)
         {
-            string valStr = fieldVal.ToString(); // TODO gotta account for null, and for string formatting of odd types?
+            object fieldVal = row[column];
+            string valStr;
+            if(column.DataType == typeof(DateTime)) 
+                valStr = ((DateTime)fieldVal).ToString("dd-MMM-yy"); // TODO what if field's Time is significant? Should have formatting options
+            else
+                valStr = fieldVal.ToString(); // TODO gotta account for null, and for string formatting of odd types?
             valStr = valStr.Replace(@"\", @"\\"); // escape \ with \\
             valStr = valStr.Replace(@"""", @"\"""); // escape " with \"
             return "\"" + valStr + "\"";
