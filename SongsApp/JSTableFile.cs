@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +29,12 @@ namespace Songs
         List<string> _IntroComments = new List<string>();
 
         List<GroupingMap> _GroupingMaps = new List<GroupingMap>();
+        List<Ordering> _Orderings = new List<Ordering>();
+
+        public void AddOrdering(string name, DataTable tbl, DataColumn keyColumn)
+        {
+            _Orderings.Add(new Ordering(name, tbl, keyColumn));
+        }
 
         public void AddGroupingMap(string mapName, DataColumn groupingColumn, IList<DataColumn> orderingColumns)
         {
@@ -111,6 +118,29 @@ namespace Songs
                         writer.WriteLine(@"    }");
                         writer.WriteLine(@"");
 
+                        // Create any Orderings defined:
+                        if (_Orderings.Count > 0)
+                            writer.WriteLine(@"    // Create Orderings:");
+
+                        foreach (Ordering ord in _Orderings)
+                        {
+                            // Go through all the rows in the Ordering's DataTable, and extract the primary key column and add it:
+
+                            string keyList = "";
+                            foreach (DataRow dataRow in ord._Table.Rows)
+                            {
+                                string primaryKeyValue = FieldValueToJavascript(dataRow, ord._KeyColumn);
+                                if (keyList != "")
+                                    keyList += ", ";
+                                keyList += primaryKeyValue;
+                            }
+                            string jsOrderingName = "static Ord_" + ord._Name;
+                            writer.WriteLine(@"    " + jsOrderingName + " = ");
+                            writer.WriteLine(@"    [" + keyList + "];");
+                            writer.WriteLine(@"");
+                        }
+
+                        // Create maps:
                         writer.WriteLine(@"  static");
                         writer.WriteLine(@"  {");
                         writer.WriteLine(@"    // create maps:");
@@ -125,7 +155,7 @@ namespace Songs
 
                         // Create any GroupingMaps defined:
                         if (_GroupingMaps.Count > 0)
-                            writer.WriteLine(@"    // Create Grouping Maps:");
+                        writer.WriteLine(@"    // Create Grouping Maps:");
 
                         foreach (GroupingMap groupingMap in _GroupingMaps)
                         {
@@ -142,7 +172,7 @@ namespace Songs
                             string JSMapName = "this.GMap_" + groupingMap._MapName;
                             writer.WriteLine(@"    " + JSMapName +" = new Map();");
                             string lastGroupingColumnValue = null;
-                            string rowIndexList = "";
+                            string keyList = "";
                             foreach (DataRowView rowView in dataView)
                             {
                                 string groupingColValue = FieldValueToJavascript(rowView.Row, groupingMap._GroupingColumn);
@@ -150,22 +180,22 @@ namespace Songs
                                 {
                                     if (lastGroupingColumnValue != null) // if it's not on the very first field
                                     {
-                                        WriteGroupingMapItemLine(writer, JSMapName, lastGroupingColumnValue, rowIndexList);
-                                        rowIndexList = "";
+                                        WriteGroupingMapItemLine(writer, JSMapName, lastGroupingColumnValue, keyList);
+                                        keyList = "";
                                     }
                                     lastGroupingColumnValue = groupingColValue;
                                 }
 
-                                // Determine the JS row index of this row, by primary key field value:
+                                // Get the primary key field value of this row:
                                 string primaryKeyValue = FieldValueToJavascript(rowView.Row, primaryKeyColumn);
 
                                 // Add row index to rowIndexList:
-                                if (rowIndexList != "")
-                                    rowIndexList += ", ";
-                                rowIndexList += primaryKeyValue;
+                                if (keyList != "")
+                                    keyList += ", ";
+                                keyList += primaryKeyValue;
                             }
                             // Write the last line out:
-                            WriteGroupingMapItemLine(writer, JSMapName, lastGroupingColumnValue, rowIndexList);
+                            WriteGroupingMapItemLine(writer, JSMapName, lastGroupingColumnValue, keyList);
                             writer.WriteLine(@"");
                         }
 
@@ -211,6 +241,20 @@ namespace Songs
             valStr = valStr.Replace(@"\", @"\\"); // escape \ with \\
             valStr = valStr.Replace(@"""", @"\"""); // escape " with \"
             return "\"" + valStr + "\"";
+        }
+
+        class Ordering
+        {
+            public string _Name;
+            public DataTable _Table;
+            public DataColumn _KeyColumn;
+
+            public Ordering(string name, DataTable table, DataColumn keyColumn)
+            {
+                _Name = name;
+                _Table = table;
+                _KeyColumn = keyColumn; 
+            }
         }
 
         class GroupingMap

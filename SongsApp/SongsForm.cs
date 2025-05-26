@@ -466,6 +466,10 @@ namespace Songs
             AzureDataSet.venuesDataTable tbl = new AzureDataSet.venuesDataTable();
             adap.Fill(tbl);
 
+            AzureDataSetTableAdapters.ViewVenuesByLastDateTableAdapter lastDateAdap = new AzureDataSetTableAdapters.ViewVenuesByLastDateTableAdapter();
+            AzureDataSet.ViewVenuesByLastDateDataTable lastDateTbl = new AzureDataSet.ViewVenuesByLastDateDataTable();
+            lastDateAdap.Fill(lastDateTbl);
+
             DataColumn[] columns = new DataColumn[]
             {
                 tbl.IDColumn,
@@ -474,6 +478,7 @@ namespace Songs
             };
 
             JSTableFile tblFile = new JSTableFile(tbl, columns, "Venues");
+            tblFile.AddOrdering("ByLastDate", lastDateTbl, lastDateTbl.VenueColumn);
             tblFile.WriteFile();
         }
 
