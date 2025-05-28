@@ -443,88 +443,90 @@ namespace Songs
             form.ShowDialog();
         }
 
-        private void songsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void writeDBTablesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter adap = new AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            AzureDataSet.ViewSongsSingleFieldDataTable tbl = new AzureDataSet.ViewSongsSingleFieldDataTable();
-            adap.FillSortedByPrefixedTitle(tbl);
+            JSTableFile tblFile = new JSTableFile();
 
-            DataColumn[] columns = new DataColumn[]
+            // Songs tbl: 
+
+            AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter songsAdap = new AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
+            AzureDataSet.ViewSongsSingleFieldDataTable songsTbl = new AzureDataSet.ViewSongsSingleFieldDataTable();
+            songsAdap.FillSortedByPrefixedTitle(songsTbl);
+
+            DataColumn[] songsColumns = new DataColumn[]
             {
-                tbl.IDColumn,
-                tbl.TitleAndArtistColumn
+                songsTbl.IDColumn,
+                songsTbl.TitleAndArtistColumn
             };
 
-            JSTableFile tblFile = new JSTableFile(tbl, columns, "Songs");
-            tblFile.IntroComments.Add("ViewSongsSingleField, sorted by prefixed title");
-            tblFile.WriteFile();
-        }
+            JSTable songsJSTbl = new JSTable(songsTbl, songsColumns, "Songs");
+            songsJSTbl.IntroComments.Add("ViewSongsSingleField, sorted by prefixed title");
+            tblFile.Add(songsJSTbl);
 
-        private void venuesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            AzureDataSetTableAdapters.venuesTableAdapter adap = new AzureDataSetTableAdapters.venuesTableAdapter();
-            AzureDataSet.venuesDataTable tbl = new AzureDataSet.venuesDataTable();
-            adap.Fill(tbl);
+            // Venues tbl: 
+
+            AzureDataSetTableAdapters.venuesTableAdapter venueAdap = new AzureDataSetTableAdapters.venuesTableAdapter();
+            AzureDataSet.venuesDataTable venueTbk = new AzureDataSet.venuesDataTable();
+            venueAdap.Fill(venueTbk);
 
             AzureDataSetTableAdapters.ViewVenuesByLastDateTableAdapter lastDateAdap = new AzureDataSetTableAdapters.ViewVenuesByLastDateTableAdapter();
             AzureDataSet.ViewVenuesByLastDateDataTable lastDateTbl = new AzureDataSet.ViewVenuesByLastDateDataTable();
             lastDateAdap.Fill(lastDateTbl);
 
-            DataColumn[] columns = new DataColumn[]
+            DataColumn[] venueColumns = new DataColumn[]
             {
-                tbl.IDColumn,
-                tbl.NameColumn,
-                tbl.CommentColumn
+                venueTbk.IDColumn,
+                venueTbk.NameColumn,
+                venueTbk.CommentColumn
             };
 
-            JSTableFile tblFile = new JSTableFile(tbl, columns, "Venues");
-            tblFile.AddOrdering("ByLastDate", lastDateTbl, lastDateTbl.VenueColumn);
-            tblFile.WriteFile();
-        }
+            JSTable venueJSTbl = new JSTable(venueTbk, venueColumns, "Venues");
+            venueJSTbl.AddOrdering("ByLastDate", lastDateTbl, lastDateTbl.VenueColumn);
+            tblFile.Add(venueJSTbl);
 
-        private void performancesToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            AzureDataSetTableAdapters.performancesTableAdapter adap = new AzureDataSetTableAdapters.performancesTableAdapter();
-            AzureDataSet.performancesDataTable tbl = new AzureDataSet.performancesDataTable();
-            adap.Fill(tbl);
+            // Performances tbl: 
 
-            DataColumn[] columns = new DataColumn[]
+            AzureDataSetTableAdapters.performancesTableAdapter perfAdap = new AzureDataSetTableAdapters.performancesTableAdapter();
+            AzureDataSet.performancesDataTable perfTbl = new AzureDataSet.performancesDataTable();
+            perfAdap.Fill(perfTbl);
+
+            DataColumn[] perfColumns = new DataColumn[]
             {
-                tbl.IDColumn,
-                tbl.PerformanceDateColumn,
-                tbl.VenueColumn,
-                tbl.CommentColumn,
-                tbl.DidILeadColumn
+                perfTbl.IDColumn,
+                perfTbl.PerformanceDateColumn,
+                perfTbl.VenueColumn,
+                perfTbl.CommentColumn,
+                perfTbl.DidILeadColumn
             };
 
-            JSTableFile tblFile = new JSTableFile(tbl, columns, "Performances");
-            tblFile.IntroComments.Add("Performances, sorted by PerformanceDate");
-            tblFile.AddGroupingMap("PerformancesPerVenue", tbl.VenueColumn, new DataColumn[] { tbl.PerformanceDateColumn, tbl.IDColumn});
-            tblFile.WriteFile();
-        }
+            JSTable perfJSTbl = new JSTable(perfTbl, perfColumns, "Performances");
+            perfJSTbl.IntroComments.Add("Performances, sorted by PerformanceDate");
+            perfJSTbl.AddGroupingMap("PerformancesPerVenue", perfTbl.VenueColumn, new DataColumn[] { perfTbl.PerformanceDateColumn, perfTbl.IDColumn });
+            tblFile.Add(perfJSTbl);
 
-        private void songPerformancesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AzureDataSetTableAdapters.viewsongperformancesTableAdapter adap = new AzureDataSetTableAdapters.viewsongperformancesTableAdapter();
-            AzureDataSet.viewsongperformancesDataTable tbl = new AzureDataSet.viewsongperformancesDataTable();
-            adap.Fill(tbl);
+            // SongPerformances tbl: 
+            AzureDataSetTableAdapters.viewsongperformancesTableAdapter songperfAdap = new AzureDataSetTableAdapters.viewsongperformancesTableAdapter();
+            AzureDataSet.viewsongperformancesDataTable songperfTbl = new AzureDataSet.viewsongperformancesDataTable();
+            songperfAdap.Fill(songperfTbl);
 
-            DataColumn[] columns = new DataColumn[]
+            DataColumn[] songperfColumns = new DataColumn[]
             {
-                tbl.SongPerfIDColumn,
-                tbl.PerfIDColumn,
-                tbl.PerformanceDateColumn,
-                tbl.SongColumn,
-                tbl.CommentColumn,
-                tbl.PerfCommentColumn,
-                tbl.VenueNameColumn,
-                tbl.SetNumberColumn
+                songperfTbl.SongPerfIDColumn,
+                songperfTbl.PerfIDColumn,
+                songperfTbl.PerformanceDateColumn,
+                songperfTbl.SongColumn,
+                songperfTbl.CommentColumn,
+                songperfTbl.PerfCommentColumn,
+                songperfTbl.VenueNameColumn,
+                songperfTbl.SetNumberColumn
             };
 
-            JSTableFile tblFile = new JSTableFile(tbl, columns, "SongPerformances");
-            tblFile.IntroComments.Add( "ViewSongPerformances, sorted by Performance, Date, and Song Perf. ID");
-            tblFile.AddGroupingMap("SongsPerPerformance", tbl.PerfIDColumn, new DataColumn[] { tbl.SongPerfIDColumn });
-            tblFile.AddGroupingMap("PerformancesPerSongs", tbl.SongColumn, new DataColumn[] { tbl.PerformanceDateColumn, tbl.SongPerfIDColumn });
+            JSTable songperfJSTbl = new JSTable(songperfTbl, songperfColumns, "SongPerformances");
+            songperfJSTbl.IntroComments.Add("ViewSongPerformances, sorted by Performance, Date, and Song Perf. ID");
+            songperfJSTbl.AddGroupingMap("SongsPerPerformance", songperfTbl.PerfIDColumn, new DataColumn[] { songperfTbl.SongPerfIDColumn });
+            songperfJSTbl.AddGroupingMap("PerformancesPerSongs", songperfTbl.SongColumn, new DataColumn[] { songperfTbl.PerformanceDateColumn, songperfTbl.SongPerfIDColumn });
+            tblFile.Add(songperfJSTbl);
+
             tblFile.WriteFile();
         }
     }

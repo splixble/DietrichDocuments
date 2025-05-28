@@ -220,6 +220,7 @@
     <Compile Include="FlagsForm.Designer.cs">
       <DependentUpon>FlagsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="JSTable.cs" />
     <Compile Include="JSTableFile.cs" />
     <Compile Include="ListingForm.cs">
       <SubType>Form</SubType>
