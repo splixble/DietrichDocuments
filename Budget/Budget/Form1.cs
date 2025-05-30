@@ -541,5 +541,11 @@ namespace Budget
             CashPurchasesForm form = new CashPurchasesForm();
             form.ShowDialog();
         }
+
+        private void refundsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefundsForm form = new RefundsForm();
+            form.ShowDialog();
+        }
     }
 }

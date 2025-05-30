@@ -123,6 +123,9 @@ namespace Budget
             Utils.SetImportedDataGridRowColors(grid1);
         }
 
+        TransacTypeTableAdapter _TransacTypeAdapter = new TransacTypeTableAdapter();
+        MainDataSet.TransacTypeDataTable _TransacTypeTable = new MainDataSet.TransacTypeDataTable();
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -155,8 +158,30 @@ namespace Budget
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
 
+            // comboTrType has to contain a null item:
+            _TransacTypeAdapter.FillWithNullRow(_TransacTypeTable);
+            comboTrType.DataSource = _TransacTypeTable;
+            comboTrType.ValueMember = "TrTypeID";
+            comboTrType.DisplayMember = "CodeAndName";
+            comboTrType.SelectionChangeCommitted += ComboTrType_SelectionChangeCommitted;
+
             // DIAG only do this if it uses it
             //UpdateAmountNegatedDisplayedValues();
+        }
+
+        private void ComboTrType_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateTransacFilter();
+        }
+
+        void UpdateTransacFilter()
+        {
+            // make filter string from more fields in the future
+            // DIAG also, note that changing tbFilter has no effect... either delete that text box, or make it work with others
+            if ((string)comboTrType.SelectedValue == "")
+                transacBindingSource.Filter = "";
+            else
+                transacBindingSource.Filter = "TrType = '"+ (string)comboTrType.SelectedValue + "'";
         }
 
         public void UpdateForImportedItems(SourceFileProcessor processor)

@@ -39,6 +39,7 @@
             this.loadSourceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cashPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyTransactionTypesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGroupingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,7 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.cashPurchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -145,10 +146,18 @@
             this.editGroupingsToolStripMenuItem,
             this.calculateAccountBalancesToolStripMenuItem,
             this.investmentsToolStripMenuItem,
-            this.accountsToolStripMenuItem});
+            this.accountsToolStripMenuItem,
+            this.refundsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // cashPurchasesToolStripMenuItem
+            // 
+            this.cashPurchasesToolStripMenuItem.Name = "cashPurchasesToolStripMenuItem";
+            this.cashPurchasesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.cashPurchasesToolStripMenuItem.Text = "Cash Purchases";
+            this.cashPurchasesToolStripMenuItem.Click += new System.EventHandler(this.cashPurchasesToolStripMenuItem_Click);
             // 
             // applyTransactionTypesToolStripMenuItem
             // 
@@ -368,12 +377,12 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // cashPurchasesToolStripMenuItem
+            // refundsToolStripMenuItem
             // 
-            this.cashPurchasesToolStripMenuItem.Name = "cashPurchasesToolStripMenuItem";
-            this.cashPurchasesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.cashPurchasesToolStripMenuItem.Text = "Cash Purchases";
-            this.cashPurchasesToolStripMenuItem.Click += new System.EventHandler(this.cashPurchasesToolStripMenuItem_Click);
+            this.refundsToolStripMenuItem.Name = "refundsToolStripMenuItem";
+            this.refundsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.refundsToolStripMenuItem.Text = "&Refunds";
+            this.refundsToolStripMenuItem.Click += new System.EventHandler(this.refundsToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -441,6 +450,7 @@
         private MonthComboBox comboToMonth;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem cashPurchasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refundsToolStripMenuItem;
     }
 }
 
