@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinformsLib
 {
-    class Utils
+    public class Utils
     {
         public static bool DataTableIsModified(DataTable tbl)
         {
