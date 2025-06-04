@@ -57,21 +57,22 @@
             this.transacTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
             this.label4 = new System.Windows.Forms.Label();
             this.comboTrType = new System.Windows.Forms.ComboBox();
-            this.gBoxFilter = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.panelMiddle = new System.Windows.Forms.Panel();
+            this.panelBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            this.gBoxFilter.SuspendLayout();
+            this.panelTop.SuspendLayout();
+            this.panelMiddle.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // grid1
             // 
             this.grid1.AllowUserToAddRows = false;
             this.grid1.AllowUserToDeleteRows = false;
-            this.grid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grid1.AutoGenerateColumns = false;
             this.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -79,7 +80,6 @@
             this.trDateDataGridViewTextBoxColumn,
             this.CardTransDateColumn,
             this.AmountColumn,
-            this.AmountNegatedColumn,
             this.descripDataGridViewTextBoxColumn,
             this.Descrip2Column,
             this.DescripFromVendorColumn,
@@ -91,9 +91,11 @@
             this.BalanceIsCalculatedColumn,
             this.CommentColumn,
             this.acctTransferDataGridViewCheckBoxColumn,
+            this.AmountNegatedColumn,
             this.IsIncomeColumn});
             this.grid1.DataSource = this.transacBindingSource;
-            this.grid1.Location = new System.Drawing.Point(0, 35);
+            this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid1.Location = new System.Drawing.Point(0, 0);
             this.grid1.Name = "grid1";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -104,7 +106,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grid1.RowHeadersWidth = 50;
-            this.grid1.Size = new System.Drawing.Size(1395, 425);
+            this.grid1.Size = new System.Drawing.Size(1395, 449);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
             // 
@@ -242,7 +244,7 @@
             // tbFilter
             // 
             this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFilter.Location = new System.Drawing.Point(534, 4);
+            this.tbFilter.Location = new System.Drawing.Point(331, 3);
             this.tbFilter.Name = "tbFilter";
             this.tbFilter.Size = new System.Drawing.Size(848, 20);
             this.tbFilter.TabIndex = 3;
@@ -250,9 +252,8 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(4, 463);
+            this.lblStatus.Location = new System.Drawing.Point(3, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(22, 13);
             this.lblStatus.TabIndex = 4;
@@ -266,7 +267,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(56, 7);
+            this.label4.Location = new System.Drawing.Point(47, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 13;
@@ -275,50 +276,69 @@
             // comboTrType
             // 
             this.comboTrType.FormattingEnabled = true;
-            this.comboTrType.Location = new System.Drawing.Point(102, 4);
+            this.comboTrType.Location = new System.Drawing.Point(94, 3);
             this.comboTrType.Name = "comboTrType";
             this.comboTrType.Size = new System.Drawing.Size(221, 21);
             this.comboTrType.TabIndex = 12;
             // 
-            // gBoxFilter
-            // 
-            this.gBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gBoxFilter.Controls.Add(this.label1);
-            this.gBoxFilter.Controls.Add(this.comboTrType);
-            this.gBoxFilter.Controls.Add(this.tbFilter);
-            this.gBoxFilter.Controls.Add(this.label4);
-            this.gBoxFilter.Location = new System.Drawing.Point(7, 4);
-            this.gBoxFilter.Name = "gBoxFilter";
-            this.gBoxFilter.Size = new System.Drawing.Size(1388, 29);
-            this.gBoxFilter.TabIndex = 14;
-            this.gBoxFilter.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(4, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 14;
             this.label1.Text = "Filters:";
             // 
+            // panelTop
+            // 
+            this.panelTop.Controls.Add(this.label4);
+            this.panelTop.Controls.Add(this.label1);
+            this.panelTop.Controls.Add(this.comboTrType);
+            this.panelTop.Controls.Add(this.tbFilter);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1395, 30);
+            this.panelTop.TabIndex = 15;
+            // 
+            // panelMiddle
+            // 
+            this.panelMiddle.Controls.Add(this.panelBottom);
+            this.panelMiddle.Controls.Add(this.grid1);
+            this.panelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMiddle.Location = new System.Drawing.Point(0, 30);
+            this.panelMiddle.Name = "panelMiddle";
+            this.panelMiddle.Size = new System.Drawing.Size(1395, 449);
+            this.panelMiddle.TabIndex = 15;
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.lblStatus);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 428);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(1395, 21);
+            this.panelBottom.TabIndex = 2;
+            // 
             // TransacEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gBoxFilter);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.grid1);
+            this.Controls.Add(this.panelMiddle);
+            this.Controls.Add(this.panelTop);
             this.Name = "TransacEditingGridCtrl";
             this.Size = new System.Drawing.Size(1395, 479);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transacBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            this.gBoxFilter.ResumeLayout(false);
-            this.gBoxFilter.PerformLayout();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
+            this.panelMiddle.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -349,7 +369,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboTrType;
-        private System.Windows.Forms.GroupBox gBoxFilter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelMiddle;
+        private System.Windows.Forms.Panel panelBottom;
     }
 }

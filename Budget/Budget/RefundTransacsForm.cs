@@ -19,6 +19,9 @@ namespace Budget
             InitializeComponent();
 
             WinformsLib.Utils.AllowNullFields(this.mainDataSet.RefundTransac); // for newly added rows; FK will be filled in on save
+
+            transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable);
+            transCtrlInRefund.Initialize(TransacEditingGridCtrl.Usages.RefundTransactions);
         }
 
         public DialogResult ShowDialog(int refundID)
@@ -29,10 +32,32 @@ namespace Budget
 
         private void RefundTransacsForm_Load(object sender, EventArgs e)
         {
+            transCtrlSelectable.TransacAdapter.Fill(transCtrlSelectable.TransacTable);
+            transCtrlInRefund.TransacAdapter.Fill(transCtrlInRefund.TransacTable);
+            // Should not have to fill Transac Table of both ctrls!
+
+
             // TODO: This line of code loads data into the 'mainDataSet.RefundTransac' table. You can move, or remove it, as needed.
             this.refundTransacTableAdapter.FillByRefund(this.mainDataSet.RefundTransac, _RefundID);
 
             btnSave.Initialize(this.refundTransacBindingSource, this.mainDataSet.RefundTransac);
+
+            UpdateTransacsDisplayed();
+        }
+
+        void UpdateTransacsDisplayed()
+        {
+            string filterText = string.Empty;
+            foreach (MainDataSet.RefundTransacRow reTraRow in this.mainDataSet.RefundTransac)
+            {
+                if (filterText != "")
+                    filterText += " OR ";
+                filterText += "ID=" + reTraRow.Transac.ToString();
+            }
+
+            transCtrlInRefund.UpdateTransacFilter(filterText);
+
+            // DIAG do the reverse for Selectable ctrl?
         }
 
         private void btnSave_Click(object sender, EventArgs e)

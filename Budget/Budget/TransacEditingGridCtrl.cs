@@ -15,7 +15,7 @@ namespace Budget
 {
     public partial class TransacEditingGridCtrl : UserControl
     {
-        public enum Usages { BalanceCalculation, CashPurchases, GroupingAssignment, SourceFile };
+        public enum Usages { BalanceCalculation, CashPurchases, GroupingAssignment, RefundSelectable, RefundTransactions, SourceFile };
         Usages _Usage;
 
         public bool CreateNewSourceFileRow = false;
@@ -134,6 +134,10 @@ namespace Budget
             if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
+            // Filter ctrls used?
+            if (_Usage == Usages.RefundTransactions)
+                panelTop.Visible = false;
+
             // Hide unused grid columns:
             switch (_Usage)
             {
@@ -182,6 +186,12 @@ namespace Budget
                 transacBindingSource.Filter = "";
             else
                 transacBindingSource.Filter = "TrType = '"+ (string)comboTrType.SelectedValue + "'";
+        }
+
+        public void UpdateTransacFilter(string filterText)
+        {
+            // DIAG make ctrls like comboTrType interact correctly
+            transacBindingSource.Filter = filterText;
         }
 
         public void UpdateForImportedItems(SourceFileProcessor processor)
