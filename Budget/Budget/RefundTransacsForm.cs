@@ -12,7 +12,9 @@ namespace Budget
 {
     public partial class RefundTransacsForm : Form
     {
-        int _RefundID; 
+        int _RefundID;
+
+        MainDataSet.TransacDataTable _TransacTbl;
 
         public RefundTransacsForm()
         {
@@ -20,8 +22,9 @@ namespace Budget
 
             WinformsLib.Utils.AllowNullFields(this.mainDataSet.RefundTransac); // for newly added rows; FK will be filled in on save
 
-            transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable);
-            transCtrlInRefund.Initialize(TransacEditingGridCtrl.Usages.RefundTransactions);
+            _TransacTbl = new MainDataSet.TransacDataTable();
+            transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable, _TransacTbl);
+            transCtrlInRefund.Initialize(TransacEditingGridCtrl.Usages.RefundTransactions, _TransacTbl);
         }
 
         public DialogResult ShowDialog(int refundID)
@@ -32,9 +35,7 @@ namespace Budget
 
         private void RefundTransacsForm_Load(object sender, EventArgs e)
         {
-            transCtrlSelectable.TransacAdapter.Fill(transCtrlSelectable.TransacTable);
-            transCtrlInRefund.TransacAdapter.Fill(transCtrlInRefund.TransacTable);
-            // Should not have to fill Transac Table of both ctrls!
+            transCtrlSelectable.TransacAdapter.Fill(_TransacTbl);
 
 
             // TODO: This line of code loads data into the 'mainDataSet.RefundTransac' table. You can move, or remove it, as needed.

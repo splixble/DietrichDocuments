@@ -19,7 +19,6 @@ namespace Budget
 
             transacCtrl.Initialize(TransacEditingGridCtrl.Usages.CashPurchases);
 
-
             transacCtrl.TransacTable.TableNewRow += TransacTable_TableNewRow;
         }
 

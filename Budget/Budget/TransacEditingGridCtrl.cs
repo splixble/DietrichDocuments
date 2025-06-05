@@ -20,12 +20,16 @@ namespace Budget
 
         public bool CreateNewSourceFileRow = false;
 
-        public MainDataSet.TransacDataTable TransacTable => mainDataSet.Transac;
+        public BindingSource BindingSrc => _BindingSrc;
+        BindingSource _BindingSrc;
+
+        public MainDataSet.TransacDataTable TransacTable => _TransacTbl;
+        MainDataSet.TransacDataTable _TransacTbl;
+
         public MainDataSetTableAdapters.TransacTableAdapter TransacAdapter => transacTableAdapter;
 
-        public BindingSource BindingSrc => transacBindingSource;
-
         public DataGridView Grid => grid1;
+
 
         public TransacEditingGridCtrl()
         {
@@ -34,7 +38,30 @@ namespace Budget
 
         public void Initialize(Usages usage)
         {
+            Initialize(usage, null);
+        }
+
+        // if transacTbl param is null, it creates its own table
+        public void Initialize(Usages usage, MainDataSet.TransacDataTable transacTbl)
+        {
             _Usage = usage;
+
+            if (transacTbl == null) 
+                _TransacTbl = new MainDataSet.TransacDataTable();
+            else
+                _TransacTbl = transacTbl;
+
+            _BindingSrc = new BindingSource(_TransacTbl, "");
+            _BindingSrc.Sort = "";
+
+            /* old code in Designer:
+            this.transacBindingSource.DataMember = "Transac";
+            this.transacBindingSource.DataSource = this.mainDataSet;
+            this.transacBindingSource.Sort = "";
+             */
+
+            // need to suspend layout?
+            this.grid1.DataSource = _BindingSrc;
 
             // allow adding rows?
             if (_Usage == Usages.CashPurchases)
@@ -183,15 +210,15 @@ namespace Budget
             // make filter string from more fields in the future
             // DIAG also, note that changing tbFilter has no effect... either delete that text box, or make it work with others
             if ((string)comboTrType.SelectedValue == "")
-                transacBindingSource.Filter = "";
+                BindingSrc.Filter = "";
             else
-                transacBindingSource.Filter = "TrType = '"+ (string)comboTrType.SelectedValue + "'";
+                BindingSrc.Filter = "TrType = '"+ (string)comboTrType.SelectedValue + "'";
         }
 
         public void UpdateTransacFilter(string filterText)
         {
             // DIAG make ctrls like comboTrType interact correctly
-            transacBindingSource.Filter = filterText;
+            BindingSrc.Filter = filterText;
         }
 
         public void UpdateForImportedItems(SourceFileProcessor processor)
@@ -205,7 +232,7 @@ namespace Budget
         {
             try
             {
-                transacBindingSource.Filter = tbFilter.Text;
+                BindingSrc.Filter = tbFilter.Text;
             }
             catch (Exception ex) 
             {
