@@ -50,6 +50,7 @@
             this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.mainDataSet = new Budget.MainDataSet();
             this.tbFilter = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.transacTableAdapter = new Budget.MainDataSetTableAdapters.TransacTableAdapter();
@@ -59,10 +60,13 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.transacTableBindingSource1 = new Budget.TransacTableBindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.panelTop.SuspendLayout();
             this.panelMiddle.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transacTableBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // grid1
@@ -89,6 +93,7 @@
             this.acctTransferDataGridViewCheckBoxColumn,
             this.AmountNegatedColumn,
             this.IsIncomeColumn});
+            this.grid1.DataSource = this.transacTableBindingSource1;
             this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid1.Location = new System.Drawing.Point(0, 0);
             this.grid1.Name = "grid1";
@@ -225,6 +230,11 @@
             this.IsIncomeColumn.Name = "IsIncomeColumn";
             this.IsIncomeColumn.Width = 40;
             // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tbFilter
             // 
             this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -306,6 +316,10 @@
             this.panelBottom.Size = new System.Drawing.Size(1395, 21);
             this.panelBottom.TabIndex = 2;
             // 
+            // transacTableBindingSource1
+            // 
+            this.transacTableBindingSource1.Sort = "";
+            // 
             // TransacEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,17 +329,20 @@
             this.Name = "TransacEditingGridCtrl";
             this.Size = new System.Drawing.Size(1395, 479);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelMiddle.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transacTableBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private MainDataSet mainDataSet;
         private MainDataSetTableAdapters.TransacTableAdapter transacTableAdapter;
         private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.TextBox tbFilter;
@@ -353,5 +370,6 @@
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Panel panelMiddle;
         private System.Windows.Forms.Panel panelBottom;
+        private TransacTableBindingSource transacTableBindingSource1;
     }
 }

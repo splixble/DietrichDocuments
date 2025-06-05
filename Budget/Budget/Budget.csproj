@@ -303,6 +303,9 @@
     <Compile Include="StatementDatePrompt.Designer.cs">
       <DependentUpon>StatementDatePrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransacTableBindingSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AccountsForm.resx">
       <DependentUpon>AccountsForm.cs</DependentUpon>
@@ -315,9 +318,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RefundTransacsForm.resx">
       <DependentUpon>RefundTransacsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TransacEditingGridCtrl.resx">
-      <DependentUpon>TransacEditingGridCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BudgetReport2.rdlc" />
     <EmbeddedResource Include="CashPurchasesForm.resx">

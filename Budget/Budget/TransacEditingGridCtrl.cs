@@ -15,16 +15,14 @@ namespace Budget
 {
     public partial class TransacEditingGridCtrl : UserControl
     {
-        public enum Usages { BalanceCalculation, CashPurchases, GroupingAssignment, RefundSelectable, RefundTransactions, SourceFile };
-        Usages _Usage;
+        public enum Usages { None, BalanceCalculation, CashPurchases, GroupingAssignment, RefundSelectable, RefundTransactions, SourceFile };
+        Usages _Usage = Usages.None;
 
         public bool CreateNewSourceFileRow = false;
 
-        public BindingSource BindingSrc => _BindingSrc;
-        BindingSource _BindingSrc;
+        public BindingSource BindingSrc => this.transacTableBindingSource1;
 
-        public MainDataSet.TransacDataTable TransacTable => _TransacTbl;
-        MainDataSet.TransacDataTable _TransacTbl;
+        public MainDataSet.TransacDataTable TransacTable => transacTableBindingSource1.TransacTable; // DIAG needed?
 
         public MainDataSetTableAdapters.TransacTableAdapter TransacAdapter => transacTableAdapter;
 
@@ -33,6 +31,7 @@ namespace Budget
 
         public TransacEditingGridCtrl()
         {
+            // DIAG Columns are not being properly drawn in Designer mode!! What we missing? And now it's not even coming up in Designer!
             InitializeComponent();
         }
 
@@ -46,22 +45,17 @@ namespace Budget
         {
             _Usage = usage;
 
-            if (transacTbl == null) 
-                _TransacTbl = new MainDataSet.TransacDataTable();
-            else
-                _TransacTbl = transacTbl;
-
-            _BindingSrc = new BindingSource(_TransacTbl, "");
-            _BindingSrc.Sort = "";
+            if (transacTbl != null)
+            {
+                // DIAG _TransacTbl = transacTbl;
+                // DIAG _BindingSrc.DataSource = transacTbl; // gotta reset this
+            }
 
             /* old code in Designer:
             this.transacBindingSource.DataMember = "Transac";
             this.transacBindingSource.DataSource = this.mainDataSet;
             this.transacBindingSource.Sort = "";
              */
-
-            // need to suspend layout?
-            this.grid1.DataSource = _BindingSrc;
 
             // allow adding rows?
             if (_Usage == Usages.CashPurchases)
