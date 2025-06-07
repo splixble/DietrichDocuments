@@ -14,7 +14,6 @@ namespace Budget
     {
         int _RefundID;
 
-        MainDataSet.TransacDataTable _TransacTbl;
 
         public RefundTransacsForm()
         {
@@ -22,9 +21,13 @@ namespace Budget
 
             WinformsLib.Utils.AllowNullFields(this.mainDataSet.RefundTransac); // for newly added rows; FK will be filled in on save
 
-            _TransacTbl = new MainDataSet.TransacDataTable();
-            transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable, _TransacTbl);
-            transCtrlInRefund.Initialize(TransacEditingGridCtrl.Usages.RefundTransactions, _TransacTbl);
+            transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable);
+            transCtrlSelectable.TransacAdapter.Fill(transCtrlSelectable.TransacTable);
+
+            // The 2nd TransacEditingGridCtrl shows the same data as the 1st, but we can't pass the same table to Initialize -- that will make
+            // the BindingSource.Filter apply to both ctrls, since Filter, stupidly, points to the DataTable's DefaultView rather than using one of its own.
+            MainDataSet.TransacDataTable transacTblCopy = transCtrlSelectable.TransacTable.Copy() as MainDataSet.TransacDataTable;
+            transCtrlInRefund.Initialize(TransacEditingGridCtrl.Usages.RefundTransactions, transacTblCopy);
         }
 
         public DialogResult ShowDialog(int refundID)
@@ -35,13 +38,9 @@ namespace Budget
 
         private void RefundTransacsForm_Load(object sender, EventArgs e)
         {
-            transCtrlSelectable.TransacAdapter.Fill(_TransacTbl);
-
-
-            // TODO: This line of code loads data into the 'mainDataSet.RefundTransac' table. You can move, or remove it, as needed.
-            this.refundTransacTableAdapter.FillByRefund(this.mainDataSet.RefundTransac, _RefundID);
-
             btnSave.Initialize(this.refundTransacBindingSource, this.mainDataSet.RefundTransac);
+
+            this.refundTransacTableAdapter.FillByRefund(this.mainDataSet.RefundTransac, _RefundID);
 
             UpdateTransacsDisplayed();
         }
@@ -49,11 +48,16 @@ namespace Budget
         void UpdateTransacsDisplayed()
         {
             string filterText = string.Empty;
-            foreach (MainDataSet.RefundTransacRow reTraRow in this.mainDataSet.RefundTransac)
+            if (mainDataSet.RefundTransac.Rows.Count == 0)
+                filterText = "1 = 0"; // no rows get thru filter
+            else
             {
-                if (filterText != "")
-                    filterText += " OR ";
-                filterText += "ID=" + reTraRow.Transac.ToString();
+                foreach (MainDataSet.RefundTransacRow reTraRow in mainDataSet.RefundTransac)
+                {
+                    if (filterText != "")
+                        filterText += " OR ";
+                    filterText += "ID=" + reTraRow.Transac.ToString();
+                }
             }
 
             transCtrlInRefund.UpdateTransacFilter(filterText);

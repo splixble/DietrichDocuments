@@ -22,7 +22,7 @@ namespace Budget
 
         public BindingSource BindingSrc => this.transacTableBindingSource1;
 
-        public MainDataSet.TransacDataTable TransacTable => transacTableBindingSource1.TransacTable; // DIAG needed?
+        public MainDataSet.TransacDataTable TransacTable => transacTableBindingSource1.TransacTable;
 
         public MainDataSetTableAdapters.TransacTableAdapter TransacAdapter => transacTableAdapter;
 
@@ -31,7 +31,6 @@ namespace Budget
 
         public TransacEditingGridCtrl()
         {
-            // DIAG Columns are not being properly drawn in Designer mode!! What we missing? And now it's not even coming up in Designer!
             InitializeComponent();
         }
 
@@ -48,7 +47,7 @@ namespace Budget
             if (transacTbl != null)
             {
                 // DIAG _TransacTbl = transacTbl;
-                // DIAG _BindingSrc.DataSource = transacTbl; // gotta reset this
+                transacTableBindingSource1.DataSource = transacTbl; // gotta reset this
             }
 
             /* old code in Designer:
