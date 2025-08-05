@@ -50,7 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.transacCtrl.Location = new System.Drawing.Point(12, 12);
             this.transacCtrl.Name = "transacCtrl";
-            this.transacCtrl.Size = new System.Drawing.Size(1205, 416);
+            this.transacCtrl.Size = new System.Drawing.Size(1205, 397);
             this.transacCtrl.TabIndex = 0;
             // 
             // CashPurchasesForm

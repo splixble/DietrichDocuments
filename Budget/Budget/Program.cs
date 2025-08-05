@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
-using MySql.Installer.Dialogs;
 
 namespace Budget
 {

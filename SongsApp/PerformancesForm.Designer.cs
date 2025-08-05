@@ -32,31 +32,35 @@ namespace Songs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PerformancesForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.grid1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.performanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.venuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.AzureDataSet = new Songs.AzureDataSet();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.seriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.venuesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AzureDataSet = new Songs.AzureDataSet();
             this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.performancesTableAdapter = new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
             this.venuesTableAdapter = new Songs.AzureDataSetTableAdapters.venuesTableAdapter();
+            this.bandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bandsTableAdapter = new Songs.AzureDataSetTableAdapters.bandsTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.performanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VenueColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.seriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DidILead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Band = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bandsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSave.Location = new System.Drawing.Point(801, 342);
+            this.btnSave.Location = new System.Drawing.Point(886, 342);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -77,15 +81,64 @@ namespace Songs
             this.VenueColumn,
             this.commentDataGridViewTextBoxColumn,
             this.seriesDataGridViewTextBoxColumn,
-            this.DidILead});
+            this.DidILead,
+            this.Band});
             this.grid1.ContextMenuStrip = this.contextMenuStrip1;
             this.grid1.DataSource = this.performancesBindingSource;
             this.grid1.Location = new System.Drawing.Point(12, 12);
             this.grid1.Name = "grid1";
-            this.grid1.Size = new System.Drawing.Size(864, 324);
+            this.grid1.Size = new System.Drawing.Size(949, 324);
             this.grid1.TabIndex = 2;
             this.grid1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentDoubleClick);
             this.grid1.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.grid1_CellContextMenuStripNeeded);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.detailToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 26);
+            // 
+            // detailToolStripMenuItem
+            // 
+            this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
+            this.detailToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.detailToolStripMenuItem.Text = "&Detail";
+            this.detailToolStripMenuItem.Click += new System.EventHandler(this.detailToolStripMenuItem_Click);
+            // 
+            // venuesBindingSource
+            // 
+            this.venuesBindingSource.DataMember = "venues";
+            this.venuesBindingSource.DataSource = this.AzureDataSet;
+            // 
+            // AzureDataSet
+            // 
+            this.AzureDataSet.DataSetName = "AzureDataSet";
+            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // performancesBindingSource
+            // 
+            this.performancesBindingSource.DataMember = "performances";
+            this.performancesBindingSource.DataSource = this.AzureDataSet;
+            this.performancesBindingSource.CurrentChanged += new System.EventHandler(this.performancesBindingSource_CurrentChanged);
+            this.performancesBindingSource.CurrentItemChanged += new System.EventHandler(this.performancesBindingSource_CurrentItemChanged);
+            // 
+            // performancesTableAdapter
+            // 
+            this.performancesTableAdapter.ClearBeforeFill = true;
+            // 
+            // venuesTableAdapter
+            // 
+            this.venuesTableAdapter.ClearBeforeFill = true;
+            // 
+            // bandsBindingSource
+            // 
+            this.bandsBindingSource.DataMember = "bands";
+            this.bandsBindingSource.DataSource = this.AzureDataSet;
+            // 
+            // bandsTableAdapter
+            // 
+            this.bandsTableAdapter.ClearBeforeFill = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -113,16 +166,6 @@ namespace Songs
             this.VenueColumn.ValueMember = "ID";
             this.VenueColumn.Width = 220;
             // 
-            // venuesBindingSource
-            // 
-            this.venuesBindingSource.DataMember = "venues";
-            this.venuesBindingSource.DataSource = this.AzureDataSet;
-            // 
-            // AzureDataSet
-            // 
-            this.AzureDataSet.DataSetName = "AzureDataSet";
-            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // commentDataGridViewTextBoxColumn
             // 
             this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
@@ -147,41 +190,24 @@ namespace Songs
             this.DidILead.TrueValue = "True";
             this.DidILead.Width = 40;
             // 
-            // contextMenuStrip1
+            // Band
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detailToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 26);
-            // 
-            // detailToolStripMenuItem
-            // 
-            this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            this.detailToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.detailToolStripMenuItem.Text = "&Detail";
-            this.detailToolStripMenuItem.Click += new System.EventHandler(this.detailToolStripMenuItem_Click);
-            // 
-            // performancesBindingSource
-            // 
-            this.performancesBindingSource.DataMember = "performances";
-            this.performancesBindingSource.DataSource = this.AzureDataSet;
-            this.performancesBindingSource.CurrentChanged += new System.EventHandler(this.performancesBindingSource_CurrentChanged);
-            this.performancesBindingSource.CurrentItemChanged += new System.EventHandler(this.performancesBindingSource_CurrentItemChanged);
-            // 
-            // performancesTableAdapter
-            // 
-            this.performancesTableAdapter.ClearBeforeFill = true;
-            // 
-            // venuesTableAdapter
-            // 
-            this.venuesTableAdapter.ClearBeforeFill = true;
+            this.Band.DataPropertyName = "Band";
+            this.Band.DataSource = this.bandsBindingSource;
+            this.Band.DisplayMember = "BandName";
+            this.Band.HeaderText = "Band";
+            this.Band.Name = "Band";
+            this.Band.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Band.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Band.ValueMember = "BandID";
+            this.Band.Width = 150;
             // 
             // PerformancesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(888, 377);
+            this.ClientSize = new System.Drawing.Size(973, 377);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grid1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -190,10 +216,11 @@ namespace Songs
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PerformancesForm_FormClosing);
             this.Load += new System.EventHandler(this.PerformancesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.venuesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bandsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,11 +236,14 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem detailToolStripMenuItem;
         private System.Windows.Forms.BindingSource venuesBindingSource;
         private Songs.AzureDataSetTableAdapters.venuesTableAdapter venuesTableAdapter;
+        private System.Windows.Forms.BindingSource bandsBindingSource;
+        private AzureDataSetTableAdapters.bandsTableAdapter bandsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn performanceDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn VenueColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn seriesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DidILead;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Band;
     }
 }

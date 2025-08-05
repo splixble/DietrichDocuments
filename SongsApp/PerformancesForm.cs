@@ -33,6 +33,8 @@ namespace Songs
 
         private void PerformancesForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'AzureDataSet.bands' table. You can move, or remove it, as needed.
+            this.bandsTableAdapter.Fill(this.AzureDataSet.bands);
             Redraw();
             DataModified = false;
 
@@ -46,6 +48,7 @@ namespace Songs
 
         void Redraw()
         {
+            this.bandsTableAdapter.Fill(this.AzureDataSet.bands);
             // TODO: This line of code loads data into the 'AzureDataSet.venues' table. You can move, or remove it, as needed.
             this.venuesTableAdapter.Fill(this.AzureDataSet.venues);
             // TODO: This line of code loads data into the 'AzureDataSet.performances' table. You can move, or remove it, as needed.
