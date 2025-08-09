@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.refundTransacBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
-            this.refundTransacTableAdapter = new Budget.MainDataSetTableAdapters.RefundTransacTableAdapter();
             this.btnSave = new WinformsLib.SaveButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.transCtrlSelectable = new Budget.TransacEditingGridCtrl();
@@ -56,7 +55,7 @@
             // 
             // refundTransacTableAdapter
             // 
-            this.refundTransacTableAdapter.ClearBeforeFill = true;
+            // REDESIGN THIS FORM   this.refundTransacTableAdapter.ClearBeforeFill = true;
             // 
             // btnSave
             // 
@@ -129,7 +128,6 @@
         #endregion
         private MainDataSet mainDataSet;
         private System.Windows.Forms.BindingSource refundTransacBindingSource;
-        private MainDataSetTableAdapters.RefundTransacTableAdapter refundTransacTableAdapter;
         private WinformsLib.SaveButton btnSave;
         private TransacEditingGridCtrl transCtrlSelectable;
         private System.Windows.Forms.SplitContainer splitContainer1;

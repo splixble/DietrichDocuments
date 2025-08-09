@@ -46,6 +46,17 @@ namespace Budget
         TreeNode _IncomeNode = null;
         TreeNode _ExpensesNode = null;
 
+        DataColumn AmountColumn
+        {
+            get
+            {
+                if (chBoxRefunds.Checked)
+                    return MainData.ViewMonthlyReport.AmountRefundAdjustedNormalizedColumn;
+                else
+                    return MainData.ViewMonthlyReport.AmountNormalizedColumn;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -141,8 +152,10 @@ namespace Budget
         {
             if (AssetType == AssetType.Both)
             {
+
                 // in this case we need to do a special query to combine total balances of both account types:
                 string selectStr = "SELECT SUM(AmountNormalized) AS AmountNormalized, " +
+                    "SUM(AmountRefundAdjustedNormalized) AS AmountRefundAdjustedNormalized, " +
                     "MAX(GroupingKey) AS GroupingKey, " +
                     "MAX(TrMonth) AS TrMonth, " +
                     "MAX(AccountOwner) AS AccountOwner, " +
@@ -164,6 +177,7 @@ namespace Budget
                     SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
                     MainData.ViewMonthlyReport.Clear();
                     reportDataAdap.Fill(MainData.ViewMonthlyReport);
+
                 }
             }
             else
@@ -196,7 +210,7 @@ namespace Budget
                         newRow.GroupingKey = keyList._GroupingKey;
                         newRow.AccountOwner = keyList._AccountOwner;
                         newRow.IsInvestment = keyList._IsInvestment;
-                        newRow.AmountNormalized = 0;
+                        newRow[AmountColumn] = 0;
                         MainData.ViewMonthlyReport.AddViewMonthlyReportRow(newRow);
                         // subList.Add(month, null); // DIAG dont need to add it, rite?
                     }
@@ -254,10 +268,11 @@ namespace Budget
                 foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                    if (tblRow.AmountNormalized > maxAmount)
-                        maxAmount = tblRow.AmountNormalized;
-                    if (tblRow.AmountNormalized < minAmount)
-                        minAmount = tblRow.AmountNormalized;
+                    decimal amount = (decimal)tblRow[AmountColumn];
+                    if (amount > maxAmount)
+                        maxAmount = amount;
+                    if (amount < minAmount)
+                        minAmount = amount;
                 }
             }
 
@@ -303,7 +318,7 @@ namespace Budget
                                         // (Color)Enum.Parse(typeof(Color), ); // 
 
                 //
-                series.Points.DataBindXY(view, "TrMonth", view, "AmountNormalized");
+                series.Points.DataBindXY(view, "TrMonth", view, AmountColumn.ColumnName);
                 chart1.Series.Add(series);
             }
         }
@@ -383,7 +398,7 @@ namespace Budget
                 foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow.AmountNormalized;
+                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[AmountColumn];
                 }
             }
         }
@@ -496,16 +511,6 @@ namespace Budget
             RefreshData();
         }
 
-        private void comboToMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboFromMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         struct GroupingAccOwnerIsInvestment : IComparable // internally used type
         {
             public string _GroupingKey;
@@ -546,6 +551,11 @@ namespace Budget
         {
             RefundsForm form = new RefundsForm();
             form.ShowDialog();
+        }
+
+        private void chBoxRefunds_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }

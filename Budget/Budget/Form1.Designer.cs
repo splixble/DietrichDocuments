@@ -45,6 +45,7 @@
             this.calculateAccountBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -61,7 +62,7 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.refundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chBoxRefunds = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -194,6 +195,13 @@
             this.accountsToolStripMenuItem.Text = "Accounts";
             this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
             // 
+            // refundsToolStripMenuItem
+            // 
+            this.refundsToolStripMenuItem.Name = "refundsToolStripMenuItem";
+            this.refundsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.refundsToolStripMenuItem.Text = "&Refunds";
+            this.refundsToolStripMenuItem.Click += new System.EventHandler(this.refundsToolStripMenuItem_Click);
+            // 
             // splitConInner
             // 
             this.splitConInner.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -258,9 +266,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvGroupings.CheckBoxes = true;
-            this.tvGroupings.Location = new System.Drawing.Point(0, 82);
+            this.tvGroupings.Location = new System.Drawing.Point(0, 104);
             this.tvGroupings.Name = "tvGroupings";
-            this.tvGroupings.Size = new System.Drawing.Size(192, 544);
+            this.tvGroupings.Size = new System.Drawing.Size(192, 521);
             this.tvGroupings.TabIndex = 6;
             this.tvGroupings.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvGroupings_AfterCheck);
             // 
@@ -274,6 +282,7 @@
             // 
             // splitConOuter.Panel1
             // 
+            this.splitConOuter.Panel1.Controls.Add(this.chBoxRefunds);
             this.splitConOuter.Panel1.Controls.Add(this.label5);
             this.splitConOuter.Panel1.Controls.Add(this.comboToMonth);
             this.splitConOuter.Panel1.Controls.Add(this.label4);
@@ -294,7 +303,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 58);
+            this.label5.Location = new System.Drawing.Point(111, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(16, 13);
             this.label5.TabIndex = 14;
@@ -303,7 +312,7 @@
             // comboToMonth
             // 
             this.comboToMonth.FormattingEnabled = true;
-            this.comboToMonth.Location = new System.Drawing.Point(129, 55);
+            this.comboToMonth.Location = new System.Drawing.Point(129, 77);
             this.comboToMonth.Name = "comboToMonth";
             this.comboToMonth.Size = new System.Drawing.Size(63, 21);
             this.comboToMonth.TabIndex = 13;
@@ -312,7 +321,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 58);
+            this.label4.Location = new System.Drawing.Point(14, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 12;
@@ -321,7 +330,7 @@
             // comboFromMonth
             // 
             this.comboFromMonth.FormattingEnabled = true;
-            this.comboFromMonth.Location = new System.Drawing.Point(46, 55);
+            this.comboFromMonth.Location = new System.Drawing.Point(46, 77);
             this.comboFromMonth.Name = "comboFromMonth";
             this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
             this.comboFromMonth.TabIndex = 11;
@@ -377,12 +386,16 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // refundsToolStripMenuItem
+            // chBoxRefunds
             // 
-            this.refundsToolStripMenuItem.Name = "refundsToolStripMenuItem";
-            this.refundsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.refundsToolStripMenuItem.Text = "&Refunds";
-            this.refundsToolStripMenuItem.Click += new System.EventHandler(this.refundsToolStripMenuItem_Click);
+            this.chBoxRefunds.AutoSize = true;
+            this.chBoxRefunds.Location = new System.Drawing.Point(78, 54);
+            this.chBoxRefunds.Name = "chBoxRefunds";
+            this.chBoxRefunds.Size = new System.Drawing.Size(113, 17);
+            this.chBoxRefunds.TabIndex = 15;
+            this.chBoxRefunds.Text = "Adjust for Refunds";
+            this.chBoxRefunds.UseVisualStyleBackColor = true;
+            this.chBoxRefunds.CheckedChanged += new System.EventHandler(this.chBoxRefunds_CheckedChanged);
             // 
             // Form1
             // 
@@ -451,6 +464,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem cashPurchasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refundsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chBoxRefunds;
     }
 }
 

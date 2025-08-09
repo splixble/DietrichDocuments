@@ -19,7 +19,7 @@ namespace Budget
         {
             InitializeComponent();
 
-            WinformsLib.Utils.AllowNullFields(this.mainDataSet.RefundTransac); // for newly added rows; FK will be filled in on save
+            // REDESIGN THIS FORM   WinformsLib.Utils.AllowNullFields(this.mainDataSet.RefundTransac); // for newly added rows; FK will be filled in on save
 
             transCtrlSelectable.Initialize(TransacEditingGridCtrl.Usages.RefundSelectable);
             transCtrlSelectable.TransacAdapter.Fill(transCtrlSelectable.TransacTable);
@@ -38,9 +38,9 @@ namespace Budget
 
         private void RefundTransacsForm_Load(object sender, EventArgs e)
         {
-            btnSave.Initialize(this.refundTransacBindingSource, this.mainDataSet.RefundTransac);
+            // REDESIGN THIS FORM   btnSave.Initialize(this.refundTransacBindingSource, this.mainDataSet.RefundTransac);
 
-            this.refundTransacTableAdapter.FillByRefund(this.mainDataSet.RefundTransac, _RefundID);
+            // REDESIGN THIS FORM   this.refundTransacTableAdapter.FillByRefund(this.mainDataSet.RefundTransac, _RefundID);
 
             UpdateTransacsDisplayed();
         }
@@ -48,6 +48,7 @@ namespace Budget
         void UpdateTransacsDisplayed()
         {
             string filterText = string.Empty;
+            /* REDESIGN THIS FORM   
             if (mainDataSet.RefundTransac.Rows.Count == 0)
                 filterText = "1 = 0"; // no rows get thru filter
             else
@@ -59,7 +60,7 @@ namespace Budget
                     filterText += "ID=" + reTraRow.Transac.ToString();
                 }
             }
-
+            */
             transCtrlInRefund.UpdateTransacFilter(filterText);
 
             // DIAG do the reverse for Selectable ctrl?
@@ -73,6 +74,7 @@ namespace Budget
         private void UpdateDB()
         {
             refundTransacBindingSource.EndEdit();
+            /* REDESIGN THIS FORM   
 
             // Set Refund on any new RefundTransac records: 
             foreach (MainDataSet.RefundTransacRow row in mainDataSet.RefundTransac)
@@ -82,6 +84,7 @@ namespace Budget
             }
 
             this.refundTransacTableAdapter.Update(mainDataSet.RefundTransac);
+            */
         }
     }
 }

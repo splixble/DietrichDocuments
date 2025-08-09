@@ -62,8 +62,6 @@ namespace Budget {
         
         private RefundDataTable tableRefund;
         
-        private RefundTransacDataTable tableRefundTransac;
-        
         private GroupingsInOrderDataTable tableGroupingsInOrder;
         
         private global::System.Data.DataRelation relationFK_SharePrice_Fund;
@@ -88,9 +86,7 @@ namespace Budget {
         
         private global::System.Data.DataRelation relationFK_BudgetTypePattern_BudgetTypeGroupings;
         
-        private global::System.Data.DataRelation relationFK_RefundTransac_Refund;
-        
-        private global::System.Data.DataRelation relationFK_RefundTransac_Transac;
+        private global::System.Data.DataRelation relationFK_Transac_Refund;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -176,9 +172,6 @@ namespace Budget {
                 }
                 if ((ds.Tables["Refund"] != null)) {
                     base.Tables.Add(new RefundDataTable(ds.Tables["Refund"]));
-                }
-                if ((ds.Tables["RefundTransac"] != null)) {
-                    base.Tables.Add(new RefundTransacDataTable(ds.Tables["RefundTransac"]));
                 }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
@@ -395,16 +388,6 @@ namespace Budget {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public RefundTransacDataTable RefundTransac {
-            get {
-                return this.tableRefundTransac;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public GroupingsInOrderDataTable GroupingsInOrder {
             get {
                 return this.tableGroupingsInOrder;
@@ -534,9 +517,6 @@ namespace Budget {
                 }
                 if ((ds.Tables["Refund"] != null)) {
                     base.Tables.Add(new RefundDataTable(ds.Tables["Refund"]));
-                }
-                if ((ds.Tables["RefundTransac"] != null)) {
-                    base.Tables.Add(new RefundTransacDataTable(ds.Tables["RefundTransac"]));
                 }
                 if ((ds.Tables["GroupingsInOrder"] != null)) {
                     base.Tables.Add(new GroupingsInOrderDataTable(ds.Tables["GroupingsInOrder"]));
@@ -688,12 +668,6 @@ namespace Budget {
                     this.tableRefund.InitVars();
                 }
             }
-            this.tableRefundTransac = ((RefundTransacDataTable)(base.Tables["RefundTransac"]));
-            if ((initTable == true)) {
-                if ((this.tableRefundTransac != null)) {
-                    this.tableRefundTransac.InitVars();
-                }
-            }
             this.tableGroupingsInOrder = ((GroupingsInOrderDataTable)(base.Tables["GroupingsInOrder"]));
             if ((initTable == true)) {
                 if ((this.tableGroupingsInOrder != null)) {
@@ -711,8 +685,7 @@ namespace Budget {
             this.relationFK_Budget_BudgetTypeGroupings = this.Relations["FK_Budget_BudgetTypeGroupings"];
             this.relationFK_BudgetTypeGroupings_BudgetTypeGroupings = this.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"];
             this.relationFK_BudgetTypePattern_BudgetTypeGroupings = this.Relations["FK_BudgetTypePattern_BudgetTypeGroupings"];
-            this.relationFK_RefundTransac_Refund = this.Relations["FK_RefundTransac_Refund"];
-            this.relationFK_RefundTransac_Transac = this.Relations["FK_RefundTransac_Transac"];
+            this.relationFK_Transac_Refund = this.Relations["FK_Transac_Refund"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -761,8 +734,6 @@ namespace Budget {
             base.Tables.Add(this.tableTransacTypePattern);
             this.tableRefund = new RefundDataTable();
             base.Tables.Add(this.tableRefund);
-            this.tableRefundTransac = new RefundTransacDataTable();
-            base.Tables.Add(this.tableRefundTransac);
             this.tableGroupingsInOrder = new GroupingsInOrderDataTable();
             base.Tables.Add(this.tableGroupingsInOrder);
             this.relationFK_SharePrice_Fund = new global::System.Data.DataRelation("FK_SharePrice_Fund", new global::System.Data.DataColumn[] {
@@ -809,14 +780,10 @@ namespace Budget {
                         this.tableTransacType.TRTypeIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTransacTypePattern.TrTypeColumn}, false);
             this.Relations.Add(this.relationFK_BudgetTypePattern_BudgetTypeGroupings);
-            this.relationFK_RefundTransac_Refund = new global::System.Data.DataRelation("FK_RefundTransac_Refund", new global::System.Data.DataColumn[] {
+            this.relationFK_Transac_Refund = new global::System.Data.DataRelation("FK_Transac_Refund", new global::System.Data.DataColumn[] {
                         this.tableRefund.RefundIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableRefundTransac.RefundColumn}, false);
-            this.Relations.Add(this.relationFK_RefundTransac_Refund);
-            this.relationFK_RefundTransac_Transac = new global::System.Data.DataRelation("FK_RefundTransac_Transac", new global::System.Data.DataColumn[] {
-                        this.tableTransac.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableRefundTransac.TransacColumn}, false);
-            this.Relations.Add(this.relationFK_RefundTransac_Transac);
+                        this.tableTransac.RefundIDColumn}, false);
+            this.Relations.Add(this.relationFK_Transac_Refund);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -930,12 +897,6 @@ namespace Budget {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeRefund() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeRefundTransac() {
             return false;
         }
         
@@ -1056,9 +1017,6 @@ namespace Budget {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void RefundRowChangeEventHandler(object sender, RefundRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void RefundTransacRowChangeEventHandler(object sender, RefundTransacRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void GroupingsInOrderRowChangeEventHandler(object sender, GroupingsInOrderRowChangeEvent e);
@@ -4458,6 +4416,10 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnAcctTransfer;
             
+            private global::System.Data.DataColumn columnRefundID;
+            
+            private global::System.Data.DataColumn columnRefundNotes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public TransacDataTable() {
@@ -4605,6 +4567,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RefundIDColumn {
+                get {
+                    return this.columnRefundID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RefundNotesColumn {
+                get {
+                    return this.columnRefundNotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4640,7 +4618,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, TransacTypeRow parentTransacTypeRowByFK_Budget_BudgetTypeGroupings, string TrCode, decimal Amount, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate, bool AcctTransfer) {
+            public TransacRow AddTransacRow(System.DateTime TrDate, string Descrip, string Account, TransacTypeRow parentTransacTypeRowByFK_Budget_BudgetTypeGroupings, string TrCode, decimal Amount, decimal Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, System.DateTime CardTransDate, bool AcctTransfer, RefundRow parentRefundRowByFK_Transac_Refund, string RefundNotes) {
                 TransacRow rowTransacRow = ((TransacRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4656,9 +4634,14 @@ namespace Budget {
                         BalanceIsCalculated,
                         DescripFromVendor,
                         CardTransDate,
-                        AcctTransfer};
+                        AcctTransfer,
+                        null,
+                        RefundNotes};
                 if ((parentTransacTypeRowByFK_Budget_BudgetTypeGroupings != null)) {
                     columnValuesArray[4] = parentTransacTypeRowByFK_Budget_BudgetTypeGroupings[0];
+                }
+                if ((parentRefundRowByFK_Transac_Refund != null)) {
+                    columnValuesArray[14] = parentRefundRowByFK_Transac_Refund[0];
                 }
                 rowTransacRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTransacRow);
@@ -4703,6 +4686,8 @@ namespace Budget {
                 this.columnDescripFromVendor = base.Columns["DescripFromVendor"];
                 this.columnCardTransDate = base.Columns["CardTransDate"];
                 this.columnAcctTransfer = base.Columns["AcctTransfer"];
+                this.columnRefundID = base.Columns["RefundID"];
+                this.columnRefundNotes = base.Columns["RefundNotes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4736,6 +4721,10 @@ namespace Budget {
                 base.Columns.Add(this.columnCardTransDate);
                 this.columnAcctTransfer = new global::System.Data.DataColumn("AcctTransfer", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAcctTransfer);
+                this.columnRefundID = new global::System.Data.DataColumn("RefundID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRefundID);
+                this.columnRefundNotes = new global::System.Data.DataColumn("RefundNotes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRefundNotes);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4755,6 +4744,7 @@ namespace Budget {
                 this.columnBalanceIsCalculated.AllowDBNull = false;
                 this.columnDescripFromVendor.MaxLength = 500;
                 this.columnAcctTransfer.AllowDBNull = false;
+                this.columnRefundNotes.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5352,6 +5342,10 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnIsInvestment;
             
+            private global::System.Data.DataColumn columnAmountRefundAdjusted;
+            
+            private global::System.Data.DataColumn columnAmountRefundAdjustedNormalized;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBudgetWithMonthlyDataTable() {
@@ -5475,6 +5469,22 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AmountRefundAdjustedColumn {
+                get {
+                    return this.columnAmountRefundAdjusted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AmountRefundAdjustedNormalizedColumn {
+                get {
+                    return this.columnAmountRefundAdjustedNormalized;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5510,7 +5520,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBudgetWithMonthlyRow AddViewBudgetWithMonthlyRow(System.DateTime TrDate, decimal Amount, decimal AmountNormalized, string TrType, string GroupingKey, string Descrip, string Account, string TrCode, System.DateTime MonthWithMBOffset, string AccountOwner, byte IsInvestment) {
+            public ViewBudgetWithMonthlyRow AddViewBudgetWithMonthlyRow(System.DateTime TrDate, decimal Amount, decimal AmountNormalized, string TrType, string GroupingKey, string Descrip, string Account, string TrCode, System.DateTime MonthWithMBOffset, string AccountOwner, byte IsInvestment, decimal AmountRefundAdjusted, decimal AmountRefundAdjustedNormalized) {
                 ViewBudgetWithMonthlyRow rowViewBudgetWithMonthlyRow = ((ViewBudgetWithMonthlyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TrDate,
@@ -5523,7 +5533,9 @@ namespace Budget {
                         TrCode,
                         MonthWithMBOffset,
                         AccountOwner,
-                        IsInvestment};
+                        IsInvestment,
+                        AmountRefundAdjusted,
+                        AmountRefundAdjustedNormalized};
                 rowViewBudgetWithMonthlyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBudgetWithMonthlyRow);
                 return rowViewBudgetWithMonthlyRow;
@@ -5557,6 +5569,8 @@ namespace Budget {
                 this.columnMonthWithMBOffset = base.Columns["MonthWithMBOffset"];
                 this.columnAccountOwner = base.Columns["AccountOwner"];
                 this.columnIsInvestment = base.Columns["IsInvestment"];
+                this.columnAmountRefundAdjusted = base.Columns["AmountRefundAdjusted"];
+                this.columnAmountRefundAdjustedNormalized = base.Columns["AmountRefundAdjustedNormalized"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5584,6 +5598,10 @@ namespace Budget {
                 base.Columns.Add(this.columnAccountOwner);
                 this.columnIsInvestment = new global::System.Data.DataColumn("IsInvestment", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsInvestment);
+                this.columnAmountRefundAdjusted = new global::System.Data.DataColumn("AmountRefundAdjusted", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmountRefundAdjusted);
+                this.columnAmountRefundAdjustedNormalized = new global::System.Data.DataColumn("AmountRefundAdjustedNormalized", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmountRefundAdjustedNormalized);
                 this.columnTrDate.AllowDBNull = false;
                 this.columnTrType.MaxLength = 8;
                 this.columnGroupingKey.MaxLength = 255;
@@ -6459,6 +6477,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnIsInvestment;
             
+            private global::System.Data.DataColumn columnAmountRefundAdjustedNormalized;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewMonthlyReportDataTable() {
@@ -6534,6 +6554,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AmountRefundAdjustedNormalizedColumn {
+                get {
+                    return this.columnAmountRefundAdjustedNormalized;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6569,14 +6597,15 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewMonthlyReportRow AddViewMonthlyReportRow(decimal AmountNormalized, string GroupingKey, System.DateTime TrMonth, string AccountOwner, byte IsInvestment) {
+            public ViewMonthlyReportRow AddViewMonthlyReportRow(decimal AmountNormalized, string GroupingKey, System.DateTime TrMonth, string AccountOwner, byte IsInvestment, decimal AmountRefundAdjustedNormalized) {
                 ViewMonthlyReportRow rowViewMonthlyReportRow = ((ViewMonthlyReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AmountNormalized,
                         GroupingKey,
                         TrMonth,
                         AccountOwner,
-                        IsInvestment};
+                        IsInvestment,
+                        AmountRefundAdjustedNormalized};
                 rowViewMonthlyReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewMonthlyReportRow);
                 return rowViewMonthlyReportRow;
@@ -6604,6 +6633,7 @@ namespace Budget {
                 this.columnTrMonth = base.Columns["TrMonth"];
                 this.columnAccountOwner = base.Columns["AccountOwner"];
                 this.columnIsInvestment = base.Columns["IsInvestment"];
+                this.columnAmountRefundAdjustedNormalized = base.Columns["AmountRefundAdjustedNormalized"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6619,6 +6649,8 @@ namespace Budget {
                 base.Columns.Add(this.columnAccountOwner);
                 this.columnIsInvestment = new global::System.Data.DataColumn("IsInvestment", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsInvestment);
+                this.columnAmountRefundAdjustedNormalized = new global::System.Data.DataColumn("AmountRefundAdjustedNormalized", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmountRefundAdjustedNormalized);
                 this.columnGroupingKey.MaxLength = 255;
                 this.columnAccountOwner.MaxLength = 4;
             }
@@ -7295,319 +7327,6 @@ namespace Budget {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "RefundDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class RefundTransacDataTable : global::System.Data.TypedTableBase<RefundTransacRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnRefund;
-            
-            private global::System.Data.DataColumn columnTransac;
-            
-            private global::System.Data.DataColumn columnNotes;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacDataTable() {
-                this.TableName = "RefundTransac";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal RefundTransacDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected RefundTransacDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn RefundColumn {
-                get {
-                    return this.columnRefund;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TransacColumn {
-                get {
-                    return this.columnTransac;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NotesColumn {
-                get {
-                    return this.columnNotes;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow this[int index] {
-                get {
-                    return ((RefundTransacRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RefundTransacRowChangeEventHandler RefundTransacRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RefundTransacRowChangeEventHandler RefundTransacRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RefundTransacRowChangeEventHandler RefundTransacRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RefundTransacRowChangeEventHandler RefundTransacRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddRefundTransacRow(RefundTransacRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow AddRefundTransacRow(RefundRow parentRefundRowByFK_RefundTransac_Refund, TransacRow parentTransacRowByFK_RefundTransac_Transac, string Notes) {
-                RefundTransacRow rowRefundTransacRow = ((RefundTransacRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        null,
-                        Notes};
-                if ((parentRefundRowByFK_RefundTransac_Refund != null)) {
-                    columnValuesArray[1] = parentRefundRowByFK_RefundTransac_Refund[0];
-                }
-                if ((parentTransacRowByFK_RefundTransac_Transac != null)) {
-                    columnValuesArray[2] = parentTransacRowByFK_RefundTransac_Transac[0];
-                }
-                rowRefundTransacRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowRefundTransacRow);
-                return rowRefundTransacRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow FindByID(int ID) {
-                return ((RefundTransacRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                RefundTransacDataTable cln = ((RefundTransacDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new RefundTransacDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnRefund = base.Columns["Refund"];
-                this.columnTransac = base.Columns["Transac"];
-                this.columnNotes = base.Columns["Notes"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnRefund = new global::System.Data.DataColumn("Refund", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRefund);
-                this.columnTransac = new global::System.Data.DataColumn("Transac", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTransac);
-                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNotes);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnRefund.AllowDBNull = false;
-                this.columnTransac.AllowDBNull = false;
-                this.columnNotes.MaxLength = 250;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow NewRefundTransacRow() {
-                return ((RefundTransacRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new RefundTransacRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(RefundTransacRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.RefundTransacRowChanged != null)) {
-                    this.RefundTransacRowChanged(this, new RefundTransacRowChangeEvent(((RefundTransacRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.RefundTransacRowChanging != null)) {
-                    this.RefundTransacRowChanging(this, new RefundTransacRowChangeEvent(((RefundTransacRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.RefundTransacRowDeleted != null)) {
-                    this.RefundTransacRowDeleted(this, new RefundTransacRowChangeEvent(((RefundTransacRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.RefundTransacRowDeleting != null)) {
-                    this.RefundTransacRowDeleting(this, new RefundTransacRowChangeEvent(((RefundTransacRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveRefundTransacRow(RefundTransacRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "RefundTransacDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -9353,12 +9072,55 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int RefundID {
+                get {
+                    try {
+                        return ((int)(this[this.tableTransac.RefundIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RefundID\' in table \'Transac\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransac.RefundIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RefundNotes {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransac.RefundNotesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RefundNotes\' in table \'Transac\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransac.RefundNotesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public TransacTypeRow TransacTypeRow {
                 get {
                     return ((TransacTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Budget_BudgetTypeGroupings"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RefundRow RefundRow {
+                get {
+                    return ((RefundRow)(this.GetParentRow(this.Table.ParentRelations["FK_Transac_Refund"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Transac_Refund"]);
                 }
             }
             
@@ -9472,13 +9234,26 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow[] GetRefundTransacRows() {
-                if ((this.Table.ChildRelations["FK_RefundTransac_Transac"] == null)) {
-                    return new RefundTransacRow[0];
-                }
-                else {
-                    return ((RefundTransacRow[])(base.GetChildRows(this.Table.ChildRelations["FK_RefundTransac_Transac"])));
-                }
+            public bool IsRefundIDNull() {
+                return this.IsNull(this.tableTransac.RefundIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRefundIDNull() {
+                this[this.tableTransac.RefundIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRefundNotesNull() {
+                return this.IsNull(this.tableTransac.RefundNotesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRefundNotesNull() {
+                this[this.tableTransac.RefundNotesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9981,6 +9756,40 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal AmountRefundAdjusted {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AmountRefundAdjusted\' in table \'ViewBudgetWithMonthly\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal AmountRefundAdjustedNormalized {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedNormalizedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AmountRefundAdjustedNormalized\' in table \'ViewBudgetWithMon" +
+                                "thly\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedNormalizedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAmountNull() {
                 return this.IsNull(this.tableViewBudgetWithMonthly.AmountColumn);
             }
@@ -10085,6 +9894,30 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetIsInvestmentNull() {
                 this[this.tableViewBudgetWithMonthly.IsInvestmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAmountRefundAdjustedNull() {
+                return this.IsNull(this.tableViewBudgetWithMonthly.AmountRefundAdjustedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAmountRefundAdjustedNull() {
+                this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAmountRefundAdjustedNormalizedNull() {
+                return this.IsNull(this.tableViewBudgetWithMonthly.AmountRefundAdjustedNormalizedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAmountRefundAdjustedNormalizedNull() {
+                this[this.tableViewBudgetWithMonthly.AmountRefundAdjustedNormalizedColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10525,6 +10358,23 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal AmountRefundAdjustedNormalized {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableViewMonthlyReport.AmountRefundAdjustedNormalizedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AmountRefundAdjustedNormalized\' in table \'ViewMonthlyReport" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewMonthlyReport.AmountRefundAdjustedNormalizedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAmountNormalizedNull() {
                 return this.IsNull(this.tableViewMonthlyReport.AmountNormalizedColumn);
             }
@@ -10581,6 +10431,18 @@ namespace Budget {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetIsInvestmentNull() {
                 this[this.tableViewMonthlyReport.IsInvestmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAmountRefundAdjustedNormalizedNull() {
+                return this.IsNull(this.tableViewMonthlyReport.AmountRefundAdjustedNormalizedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAmountRefundAdjustedNormalizedNull() {
+                this[this.tableViewMonthlyReport.AmountRefundAdjustedNormalizedColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10726,111 +10588,13 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow[] GetRefundTransacRows() {
-                if ((this.Table.ChildRelations["FK_RefundTransac_Refund"] == null)) {
-                    return new RefundTransacRow[0];
+            public TransacRow[] GetTransacRows() {
+                if ((this.Table.ChildRelations["FK_Transac_Refund"] == null)) {
+                    return new TransacRow[0];
                 }
                 else {
-                    return ((RefundTransacRow[])(base.GetChildRows(this.Table.ChildRelations["FK_RefundTransac_Refund"])));
+                    return ((TransacRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Transac_Refund"])));
                 }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class RefundTransacRow : global::System.Data.DataRow {
-            
-            private RefundTransacDataTable tableRefundTransac;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal RefundTransacRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableRefundTransac = ((RefundTransacDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this.tableRefundTransac.IDColumn]));
-                }
-                set {
-                    this[this.tableRefundTransac.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Refund {
-                get {
-                    return ((int)(this[this.tableRefundTransac.RefundColumn]));
-                }
-                set {
-                    this[this.tableRefundTransac.RefundColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Transac {
-                get {
-                    return ((int)(this[this.tableRefundTransac.TransacColumn]));
-                }
-                set {
-                    this[this.tableRefundTransac.TransacColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Notes {
-                get {
-                    try {
-                        return ((string)(this[this.tableRefundTransac.NotesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Notes\' in table \'RefundTransac\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRefundTransac.NotesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundRow RefundRow {
-                get {
-                    return ((RefundRow)(this.GetParentRow(this.Table.ParentRelations["FK_RefundTransac_Refund"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_RefundTransac_Refund"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransacRow TransacRow {
-                get {
-                    return ((TransacRow)(this.GetParentRow(this.Table.ParentRelations["FK_RefundTransac_Transac"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_RefundTransac_Transac"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNotesNull() {
-                return this.IsNull(this.tableRefundTransac.NotesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNotesNull() {
-                this[this.tableRefundTransac.NotesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11594,40 +11358,6 @@ namespace Budget {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RefundRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class RefundTransacRowChangeEvent : global::System.EventArgs {
-            
-            private RefundTransacRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRowChangeEvent(RefundTransacRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RefundTransacRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16341,10 +16071,12 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM SourceF
             tableMapping.ColumnMappings.Add("DescripFromVendor", "DescripFromVendor");
             tableMapping.ColumnMappings.Add("CardTransDate", "CardTransDate");
             tableMapping.ColumnMappings.Add("AcctTransfer", "AcctTransfer");
+            tableMapping.ColumnMappings.Add("RefundID", "RefundID");
+            tableMapping.ColumnMappings.Add("RefundNotes", "RefundNotes");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transac] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transac] WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer) AND ((@IsNull_RefundID = 1 AND [RefundID] IS NULL) OR ([RefundID] = @Original_RefundID)) AND ((@IsNull_RefundNotes = 1 AND [RefundNotes] IS NULL) OR ([RefundNotes] = @Original_RefundNotes)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -16522,10 +16254,44 @@ SELECT FormatCode, FormatColumns, CreditsAreNegative, FileExtension FROM SourceF
             param.SourceColumn = "AcctTransfer";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_RefundNotes";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_RefundNotes";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transac] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate], [AcctTransfer]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate, @AcctTransfer);
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer FROM Transac WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transac] ([TrDate], [Descrip], [Account], [TrType], [TrCode], [Amount], [Balance], [Comment], [Descrip2], [BalanceIsCalculated], [DescripFromVendor], [CardTransDate], [AcctTransfer], [RefundID], [RefundNotes]) VALUES (@TrDate, @Descrip, @Account, @TrType, @TrCode, @Amount, @Balance, @Comment, @Descrip2, @BalanceIsCalculated, @DescripFromVendor, @CardTransDate, @AcctTransfer, @RefundID, @RefundNotes);
+SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer, RefundID, RefundNotes FROM Transac WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -16618,10 +16384,45 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, D
             param.IsNullable = true;
             param.SourceColumn = "AcctTransfer";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@RefundNotes";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transac] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Account, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Balance] = @Balance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @BalanceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @CardTransDate, [AcctTransfer] = @AcctTransfer WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate) AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Descrip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType] IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amount] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Balance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AND [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalculated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND [DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVendor)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTransDate] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer));
-SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer FROM Transac WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [Transac] SET [TrDate] = @TrDate, [Descrip] = @Descrip, [Account] = @Accou" +
+                "nt, [TrType] = @TrType, [TrCode] = @TrCode, [Amount] = @Amount, [Balance] = @Bal" +
+                "ance, [Comment] = @Comment, [Descrip2] = @Descrip2, [BalanceIsCalculated] = @Bal" +
+                "anceIsCalculated, [DescripFromVendor] = @DescripFromVendor, [CardTransDate] = @C" +
+                "ardTransDate, [AcctTransfer] = @AcctTransfer, [RefundID] = @RefundID, [RefundNot" +
+                "es] = @RefundNotes WHERE (([ID] = @Original_ID) AND ([TrDate] = @Original_TrDate" +
+                ") AND ((@IsNull_Descrip = 1 AND [Descrip] IS NULL) OR ([Descrip] = @Original_Des" +
+                "crip)) AND ([Account] = @Original_Account) AND ((@IsNull_TrType = 1 AND [TrType]" +
+                " IS NULL) OR ([TrType] = @Original_TrType)) AND ((@IsNull_TrCode = 1 AND [TrCode" +
+                "] IS NULL) OR ([TrCode] = @Original_TrCode)) AND ((@IsNull_Amount = 1 AND [Amoun" +
+                "t] IS NULL) OR ([Amount] = @Original_Amount)) AND ((@IsNull_Balance = 1 AND [Bal" +
+                "ance] IS NULL) OR ([Balance] = @Original_Balance)) AND ((@IsNull_Descrip2 = 1 AN" +
+                "D [Descrip2] IS NULL) OR ([Descrip2] = @Original_Descrip2)) AND ([BalanceIsCalcu" +
+                "lated] = @Original_BalanceIsCalculated) AND ((@IsNull_DescripFromVendor = 1 AND " +
+                "[DescripFromVendor] IS NULL) OR ([DescripFromVendor] = @Original_DescripFromVend" +
+                "or)) AND ((@IsNull_CardTransDate = 1 AND [CardTransDate] IS NULL) OR ([CardTrans" +
+                "Date] = @Original_CardTransDate)) AND ([AcctTransfer] = @Original_AcctTransfer) " +
+                "AND ((@IsNull_RefundID = 1 AND [RefundID] IS NULL) OR ([RefundID] = @Original_Re" +
+                "fundID)) AND ((@IsNull_RefundNotes = 1 AND [RefundNotes] IS NULL) OR ([RefundNot" +
+                "es] = @Original_RefundNotes)));\r\nSELECT ID, TrDate, Descrip, Account, TrType, Tr" +
+                "Code, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor" +
+                ", CardTransDate, AcctTransfer, RefundID, RefundNotes FROM Transac WHERE (ID = @I" +
+                "D)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@TrDate";
@@ -16713,6 +16514,20 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, D
             param.SqlDbType = global::System.Data.SqlDbType.Bit;
             param.IsNullable = true;
             param.SourceColumn = "AcctTransfer";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@RefundNotes";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Original_ID";
@@ -16891,6 +16706,40 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, D
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_RefundID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@IsNull_RefundNotes";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SqlDbType = global::System.Data.SqlDbType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
+            param.ParameterName = "@Original_RefundNotes";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "RefundNotes";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@ID";
             param.DbType = global::System.Data.DbType.Int32;
             param.SqlDbType = global::System.Data.SqlDbType.Int;
@@ -16915,13 +16764,14 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, D
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comm" +
                 "ent, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransf" +
-                "er\r\nFROM            Transac";
+                "er, RefundID, RefundNotes\r\nFROM            Transac";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT Account, AcctTransfer, Amount, Balance, BalanceIsCalculated, CardTransDate" +
-                ", Comment, Descrip, Descrip2, DescripFromVendor, ID, TrCode, TrDate, TrType FROM" +
-                " Transac WHERE (Account = @AccountCode) ORDER BY TrDate, ID";
+                ", Comment, Descrip, Descrip2, DescripFromVendor, ID, RefundID, RefundNotes, TrCo" +
+                "de, TrDate, TrType FROM Transac WHERE (Account = @AccountCode) ORDER BY TrDate, " +
+                "ID";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@AccountCode";
@@ -16933,10 +16783,7 @@ SELECT ID, TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, D
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        Account, AcctTransfer, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Descrip, Descrip2, DescripFromVendor, ID, TrCode, TrDate, TrType
-FROM            Transac
-WHERE        (TrType IS NULL) AND (AcctTransfer = 0)
-ORDER BY TrDate, ID";
+            this._commandCollection[2].CommandText = @"SELECT Account, AcctTransfer, Amount, Balance, BalanceIsCalculated, CardTransDate, Comment, Descrip, Descrip2, DescripFromVendor, ID, RefundID, RefundNotes, TrCode, TrDate, TrType FROM Transac WHERE (TrType IS NULL) AND (AcctTransfer = 0) ORDER BY TrDate, ID";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -17018,7 +16865,7 @@ ORDER BY TrDate, ID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, global::System.Nullable<decimal> Original_Amount, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate, bool Original_AcctTransfer) {
+        public virtual int Delete(int Original_ID, System.DateTime Original_TrDate, string Original_Descrip, string Original_Account, string Original_TrType, string Original_TrCode, global::System.Nullable<decimal> Original_Amount, global::System.Nullable<decimal> Original_Balance, string Original_Descrip2, bool Original_BalanceIsCalculated, string Original_DescripFromVendor, global::System.Nullable<global::System.DateTime> Original_CardTransDate, bool Original_AcctTransfer, global::System.Nullable<int> Original_RefundID, string Original_RefundNotes) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_TrDate));
             if ((Original_Descrip == null)) {
@@ -17093,6 +16940,22 @@ ORDER BY TrDate, ID";
                 this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             this.Adapter.DeleteCommand.Parameters[20].Value = ((bool)(Original_AcctTransfer));
+            if ((Original_RefundID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_RefundID.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((Original_RefundNotes == null)) {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((string)(Original_RefundNotes));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17113,7 +16976,7 @@ ORDER BY TrDate, ID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, global::System.Nullable<decimal> Amount, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate, bool AcctTransfer) {
+        public virtual int Insert(System.DateTime TrDate, string Descrip, string Account, string TrType, string TrCode, global::System.Nullable<decimal> Amount, global::System.Nullable<decimal> Balance, string Comment, string Descrip2, bool BalanceIsCalculated, string DescripFromVendor, global::System.Nullable<global::System.DateTime> CardTransDate, bool AcctTransfer, global::System.Nullable<int> RefundID, string RefundNotes) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -17177,6 +17040,18 @@ ORDER BY TrDate, ID";
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(AcctTransfer));
+            if ((RefundID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((int)(RefundID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((RefundNotes == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(RefundNotes));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17211,6 +17086,8 @@ ORDER BY TrDate, ID";
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
                     bool AcctTransfer, 
+                    global::System.Nullable<int> RefundID, 
+                    string RefundNotes, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -17224,6 +17101,8 @@ ORDER BY TrDate, ID";
                     string Original_DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
                     bool Original_AcctTransfer, 
+                    global::System.Nullable<int> Original_RefundID, 
+                    string Original_RefundNotes, 
                     int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(TrDate));
             if ((Descrip == null)) {
@@ -17288,81 +17167,109 @@ ORDER BY TrDate, ID";
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(AcctTransfer));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_TrDate));
-            if ((Original_Descrip == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            if ((RefundID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(RefundID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Descrip));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((RefundNotes == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(RefundNotes));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_TrDate));
+            if ((Original_Descrip == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Descrip));
             }
             if ((Original_Account == null)) {
                 throw new global::System.ArgumentNullException("Original_Account");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Account));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Account));
             }
             if ((Original_TrType == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_TrType));
-            }
-            if ((Original_TrCode == null)) {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_TrCode));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_TrType));
             }
-            if ((Original_Amount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((decimal)(Original_Amount.Value));
-            }
-            else {
+            if ((Original_TrCode == null)) {
                 this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            if ((Original_Balance.HasValue == true)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_TrCode));
+            }
+            if ((Original_Amount.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(Original_Balance.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(Original_Amount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
-            if ((Original_Descrip2 == null)) {
+            if ((Original_Balance.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((decimal)(Original_Balance.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_Descrip2));
+            if ((Original_Descrip2 == null)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_BalanceIsCalculated));
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_Descrip2));
+            }
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((bool)(Original_BalanceIsCalculated));
             if ((Original_DescripFromVendor == null)) {
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_DescripFromVendor));
-            }
-            if ((Original_CardTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((System.DateTime)(Original_CardTransDate.Value));
-            }
-            else {
                 this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[33].Value = ((bool)(Original_AcctTransfer));
-            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(ID));
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(Original_DescripFromVendor));
+            }
+            if ((Original_CardTransDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((System.DateTime)(Original_CardTransDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((bool)(Original_AcctTransfer));
+            if ((Original_RefundID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(Original_RefundID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+            }
+            if ((Original_RefundNotes == null)) {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(Original_RefundNotes));
+            }
+            this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17397,6 +17304,8 @@ ORDER BY TrDate, ID";
                     string DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> CardTransDate, 
                     bool AcctTransfer, 
+                    global::System.Nullable<int> RefundID, 
+                    string RefundNotes, 
                     int Original_ID, 
                     System.DateTime Original_TrDate, 
                     string Original_Descrip, 
@@ -17409,8 +17318,10 @@ ORDER BY TrDate, ID";
                     bool Original_BalanceIsCalculated, 
                     string Original_DescripFromVendor, 
                     global::System.Nullable<global::System.DateTime> Original_CardTransDate, 
-                    bool Original_AcctTransfer) {
-            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_AcctTransfer, Original_ID);
+                    bool Original_AcctTransfer, 
+                    global::System.Nullable<int> Original_RefundID, 
+                    string Original_RefundNotes) {
+            return this.Update(TrDate, Descrip, Account, TrType, TrCode, Amount, Balance, Comment, Descrip2, BalanceIsCalculated, DescripFromVendor, CardTransDate, AcctTransfer, RefundID, RefundNotes, Original_ID, Original_TrDate, Original_Descrip, Original_Account, Original_TrType, Original_TrCode, Original_Amount, Original_Balance, Original_Descrip2, Original_BalanceIsCalculated, Original_DescripFromVendor, Original_CardTransDate, Original_AcctTransfer, Original_RefundID, Original_RefundNotes, Original_ID);
         }
     }
     
@@ -18635,6 +18546,8 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             tableMapping.ColumnMappings.Add("MonthWithMBOffset", "MonthWithMBOffset");
             tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
             tableMapping.ColumnMappings.Add("IsInvestment", "IsInvestment");
+            tableMapping.ColumnMappings.Add("AmountRefundAdjusted", "AmountRefundAdjusted");
+            tableMapping.ColumnMappings.Add("AmountRefundAdjustedNormalized", "AmountRefundAdjustedNormalized");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18652,14 +18565,12 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        TrDate, Amount, AmountNormalized, TrType, GroupingKey, Descrip, Acc" +
-                "ount, TrCode, MonthWithMBOffset, AccountOwner, IsInvestment\r\nFROM            Vie" +
-                "wBudgetWithMonthly";
+                "ount, TrCode, MonthWithMBOffset, AccountOwner, IsInvestment, AmountRefundAdjuste" +
+                "d, AmountRefundAdjustedNormalized\r\nFROM            ViewBudgetWithMonthly";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        Account, AccountOwner, Amount, AmountNormalized, Descrip, GroupingKey, IsInvestment, MonthWithMBOffset, TrCode, TrDate, TrType
-FROM            ViewBudgetWithMonthly
-WHERE        (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (AccountOwner = @AccountOwner) AND (IsInvestment = @IsInvestment)";
+            this._commandCollection[1].CommandText = @"SELECT Account, AccountOwner, Amount, AmountNormalized, AmountRefundAdjusted, AmountRefundAdjustedNormalized, Descrip, GroupingKey, IsInvestment, MonthWithMBOffset, TrCode, TrDate, TrType FROM ViewBudgetWithMonthly WHERE (MonthWithMBOffset = @Month) AND (GroupingKey = @GroupingKey) AND (AccountOwner = @AccountOwner) AND (IsInvestment = @IsInvestment)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@Month";
@@ -19712,6 +19623,7 @@ SELECT        '' AS TRTypeID, '' AS GroupingLabel, '' AS CodeAndName, '' AS Pare
             tableMapping.ColumnMappings.Add("TrMonth", "TrMonth");
             tableMapping.ColumnMappings.Add("AccountOwner", "AccountOwner");
             tableMapping.ColumnMappings.Add("IsInvestment", "IsInvestment");
+            tableMapping.ColumnMappings.Add("AmountRefundAdjustedNormalized", "AmountRefundAdjustedNormalized");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19728,14 +19640,15 @@ SELECT        '' AS TRTypeID, '' AS GroupingLabel, '' AS CodeAndName, '' AS Pare
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, IsInvestment\r" +
-                "\nFROM            ViewMonthlyReport";
+            this._commandCollection[0].CommandText = "SELECT        AmountNormalized, GroupingKey, TrMonth, AccountOwner, IsInvestment," +
+                " AmountRefundAdjustedNormalized\r\nFROM            ViewMonthlyReport";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT AccountOwner, AmountNormalized, GroupingKey, IsInvestment, TrMonth FROM Vi" +
-                "ewMonthlyReport WHERE (TrMonth >= @FromMonth) AND (TrMonth <= @ToMonth) AND (Acc" +
-                "ountOwner = @AccountOwner) AND (IsInvestment = @IsInvestment)";
+            this._commandCollection[1].CommandText = "SELECT AccountOwner, AmountNormalized, AmountRefundAdjustedNormalized, GroupingKe" +
+                "y, IsInvestment, TrMonth FROM ViewMonthlyReport WHERE (TrMonth >= @FromMonth) AN" +
+                "D (TrMonth <= @ToMonth) AND (AccountOwner = @AccountOwner) AND (IsInvestment = @" +
+                "IsInvestment)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
             param.ParameterName = "@FromMonth";
@@ -20639,480 +20552,6 @@ SELECT ID, Pattern, TrType, ForAcctTransfer FROM TransacTypePattern WHERE (ID = 
     }
     
     /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class RefundTransacTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::Microsoft.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::Microsoft.Data.SqlClient.SqlConnection _connection;
-        
-        private global::Microsoft.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::Microsoft.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public RefundTransacTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::Microsoft.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::Microsoft.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::Microsoft.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::Microsoft.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::Microsoft.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "RefundTransac";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("Refund", "Refund");
-            tableMapping.ColumnMappings.Add("Transac", "Transac");
-            tableMapping.ColumnMappings.Add("Notes", "Notes");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [RefundTransac] WHERE (([ID] = @Original_ID) AND ([Refund] = @Origina" +
-                "l_Refund) AND ([Transac] = @Original_Transac) AND ((@IsNull_Notes = 1 AND [Notes" +
-                "] IS NULL) OR ([Notes] = @Original_Notes)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Refund";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Refund";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Transac";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Transac";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_Notes";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Notes";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            this._adapter.InsertCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [RefundTransac] ([Refund], [Transac], [Notes]) VALUES (@Refund, @Tran" +
-                "sac, @Notes);\r\nSELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = " +
-                "SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Refund";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Refund";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Transac";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Transac";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Notes";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            this._adapter.InsertCommand.Parameters.Add(param);
-            this._adapter.UpdateCommand = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [RefundTransac] SET [Refund] = @Refund, [Transac] = @Transac, [Notes] = @Notes WHERE (([ID] = @Original_ID) AND ([Refund] = @Original_Refund) AND ([Transac] = @Original_Transac) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)));
-SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Refund";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Refund";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Transac";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Transac";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Notes";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Refund";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Refund";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Transac";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Transac";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@IsNull_Notes";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@Original_Notes";
-            param.DbType = global::System.Data.DbType.AnsiString;
-            param.SqlDbType = global::System.Data.SqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "Notes";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@ID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.Size = 4;
-            param.IsNullable = true;
-            param.SourceColumn = "ID";
-            this._adapter.UpdateCommand.Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::Microsoft.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget.Properties.Settings.Default.BudgetConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
-            this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Refund, Transac, Notes\r\nFROM            RefundTransac";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        ID, Refund, Transac, Notes\r\nFROM            RefundTransac\r\nWHERE   " +
-                "     (Refund = @RefundID)";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            global::Microsoft.Data.SqlClient.SqlParameter param = new global::Microsoft.Data.SqlClient.SqlParameter();
-            param.ParameterName = "@RefundID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.SqlDbType = global::System.Data.SqlDbType.Int;
-            param.Size = 4;
-            param.IsNullable = true;
-            param.SourceColumn = "Refund";
-            this._commandCollection[1].Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.RefundTransacDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByRefund(MainDataSet.RefundTransacDataTable dataTable, int RefundID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(RefundID));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet.RefundTransacDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "RefundTransac");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_Refund, int Original_Transac, string Original_Notes) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Refund));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Transac));
-            if ((Original_Notes == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Notes));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Refund, int Transac, string Notes) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Refund));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Transac));
-            if ((Notes == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Notes));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Refund, int Transac, string Notes, int Original_ID, int Original_Refund, int Original_Transac, string Original_Notes, int ID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Refund));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Transac));
-            if ((Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Notes));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Refund));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Transac));
-            if ((Original_Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Notes));
-            }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Refund, int Transac, string Notes, int Original_ID, int Original_Refund, int Original_Transac, string Original_Notes) {
-            return this.Update(Refund, Transac, Notes, Original_ID, Original_Refund, Original_Transac, Original_Notes, Original_ID);
-        }
-    }
-    
-    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -21147,8 +20586,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
         private TransacTypePatternTableAdapter _transacTypePatternTableAdapter;
         
         private RefundTableAdapter _refundTableAdapter;
-        
-        private RefundTransacTableAdapter _refundTransacTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -21335,20 +20772,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public RefundTransacTableAdapter RefundTransacTableAdapter {
-            get {
-                return this._refundTransacTableAdapter;
-            }
-            set {
-                this._refundTransacTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -21414,10 +20837,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                             && (this._refundTableAdapter.Connection != null))) {
                     return this._refundTableAdapter.Connection;
                 }
-                if (((this._refundTransacTableAdapter != null) 
-                            && (this._refundTransacTableAdapter.Connection != null))) {
-                    return this._refundTransacTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -21467,9 +20886,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                 if ((this._refundTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._refundTransacTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -21490,13 +20906,12 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._transacTypeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
-                    result = (result + this._transacTypeTableAdapter.Update(updatedRows));
+                    result = (result + this._sourceFileFormatTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21509,15 +20924,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._sourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sourceFileFormatTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._sourceFileTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -21527,21 +20933,13 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._refundTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._refundTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._transacTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._transacTableAdapter.Update(updatedRows));
+                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
+                    result = (result + this._transacTypeTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21551,6 +20949,15 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._accountTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._refundTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._refundTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21581,21 +20988,21 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._transacTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._transacTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._sharePriceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.SharePrice.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._sharePriceTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._refundTransacTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.RefundTransac.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._refundTransacTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21617,12 +21024,11 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._transacTypeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
-                    result = (result + this._transacTypeTableAdapter.Update(addedRows));
+                    result = (result + this._sourceFileFormatTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21634,14 +21040,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._sourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sourceFileFormatTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._sourceFileTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.SourceFile.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -21650,19 +21048,12 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._refundTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._refundTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._transacTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._transacTableAdapter.Update(addedRows));
+                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], false);
+                    result = (result + this._transacTypeTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21671,6 +21062,14 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._accountTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._refundTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._refundTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21698,19 +21097,19 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._transacTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._transacTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._sharePriceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.SharePrice.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._sharePriceTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._refundTransacTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.RefundTransac.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._refundTransacTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21724,19 +21123,19 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._refundTransacTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.RefundTransac.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._refundTransacTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._sharePriceTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.SharePrice.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._sharePriceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._transacTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._transacTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21764,6 +21163,14 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._refundTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._refundTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._accountTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Account.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -21772,19 +21179,12 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._transacTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Transac.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._transacTypeTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._transacTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._refundTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Refund.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._refundTableAdapter.Update(deletedRows));
+                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], true);
+                    result = (result + this._transacTypeTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21796,14 +21196,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sourceFileFormatTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sourceFileFormatTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._fundTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Fund.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -21812,12 +21204,11 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._transacTypeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TransacType.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sourceFileFormatTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SourceFileFormat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["FK_BudgetTypeGroupings_BudgetTypeGroupings"], true);
-                    result = (result + this._transacTypeTableAdapter.Update(deletedRows));
+                    result = (result + this._sourceFileFormatTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21925,11 +21316,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
             }
             if (((this._refundTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._refundTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._refundTransacTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._refundTransacTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -22073,15 +21459,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                         adaptersWithAcceptChangesDuringUpdate.Add(this._refundTableAdapter.Adapter);
                     }
                 }
-                if ((this._refundTransacTableAdapter != null)) {
-                    revertConnections.Add(this._refundTransacTableAdapter, this._refundTransacTableAdapter.Connection);
-                    this._refundTransacTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(workConnection));
-                    this._refundTransacTableAdapter.Transaction = ((global::Microsoft.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._refundTransacTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._refundTransacTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._refundTransacTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -22187,10 +21564,6 @@ SELECT ID, Refund, Transac, Notes FROM RefundTransac WHERE (ID = @ID)";
                 if ((this._refundTableAdapter != null)) {
                     this._refundTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._refundTableAdapter]));
                     this._refundTableAdapter.Transaction = null;
-                }
-                if ((this._refundTransacTableAdapter != null)) {
-                    this._refundTransacTableAdapter.Connection = ((global::Microsoft.Data.SqlClient.SqlConnection)(revertConnections[this._refundTransacTableAdapter]));
-                    this._refundTransacTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

@@ -16,4 +16,5 @@ namespace Budget
         YahooHistoricalData,
         None }
     // Based on keys in table. As needed.
+    // DIAG Implement Imperfect CSV option ("'s, if followed by other than comma, are treated literal)
 }
