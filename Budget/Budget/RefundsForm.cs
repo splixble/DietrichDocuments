@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.PeerToPeer.Collaboration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,21 +24,25 @@ namespace Budget
             this.refundTableAdapter.Fill(this.mainDataSet.Refund);
 
             btnSave.Initialize(this.refundBindingSource, this.mainDataSet.Refund);
+
+            transacCtrl.Initialize(TransacEditingGridCtrl.Usages.Refunds);
+
+            RefreshData();
+        }
+
+        void RefreshData()
+        {
+            transacCtrl.TransacAdapter.Fill(transacCtrl.TransacTable);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             refundTableAdapter.Update(this.mainDataSet.Refund);
+
+            // DIAG Update transac table too -- after checking for any changes! And disable button! Prompt on close! 
+
+            transacCtrl.TransacAdapter.Update(transacCtrl.TransacTable);
         }
 
-        private void grid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            MainDataSet.RefundRow refundRow = (grid1.Rows[e.RowIndex].DataBoundItem as DataRowView).Row as MainDataSet.RefundRow;
-            RefundTransacsForm form = new RefundTransacsForm();
-            form.ShowDialog(refundRow.RefundID);
-        }
     }
 }

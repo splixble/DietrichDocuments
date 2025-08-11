@@ -223,12 +223,6 @@
     <Compile Include="RefundsForm.Designer.cs">
       <DependentUpon>RefundsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RefundTransacsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RefundTransacsForm.Designer.cs">
-      <DependentUpon>RefundTransacsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="TransacEditingGridCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -330,9 +324,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RefundsForm.resx">
       <DependentUpon>RefundsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RefundTransacsForm.resx">
-      <DependentUpon>RefundTransacsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BudgetReport2.rdlc" />
     <EmbeddedResource Include="CashPurchasesForm.resx">

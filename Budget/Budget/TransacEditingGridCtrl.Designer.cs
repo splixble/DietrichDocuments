@@ -29,27 +29,10 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransacEditingGridCtrl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransacEditingGridCtrl));
             this.grid1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescripFromVendorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TrType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.AmountNegatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.transacTableBindingSource1 = new Budget.TransacTableBindingSource();
             this.mainDataSet = new Budget.MainDataSet();
             this.tbFilter = new System.Windows.Forms.TextBox();
@@ -61,6 +44,25 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardTransDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descrip2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripFromVendorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrTypeComboColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TrType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefundIDCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.RefundNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BalanceIsCalculatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CommentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acctTransferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.AmountNegatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsIncomeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transacTableBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
@@ -90,6 +92,8 @@
             this.TrTypeComboColumn,
             this.TrType,
             this.accountDataGridViewTextBoxColumn,
+            this.RefundIDCol,
+            this.RefundNotes,
             this.Balance,
             this.BalanceIsCalculatedColumn,
             this.CommentColumn,
@@ -111,126 +115,6 @@
             this.grid1.Size = new System.Drawing.Size(1395, 424);
             this.grid1.TabIndex = 1;
             this.grid1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridBudgetItems_RowsAdded);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // trDateDataGridViewTextBoxColumn
-            // 
-            this.trDateDataGridViewTextBoxColumn.DataPropertyName = "TrDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yy";
-            this.trDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.trDateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.trDateDataGridViewTextBoxColumn.Name = "trDateDataGridViewTextBoxColumn";
-            this.trDateDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // CardTransDateColumn
-            // 
-            this.CardTransDateColumn.DataPropertyName = "CardTransDate";
-            dataGridViewCellStyle2.Format = "MM/dd/yy";
-            this.CardTransDateColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CardTransDateColumn.HeaderText = "Card Tr Date";
-            this.CardTransDateColumn.Name = "CardTransDateColumn";
-            this.CardTransDateColumn.Width = 65;
-            // 
-            // AmountColumn
-            // 
-            this.AmountColumn.DataPropertyName = "Amount";
-            this.AmountColumn.HeaderText = "Amount";
-            this.AmountColumn.Name = "AmountColumn";
-            this.AmountColumn.Width = 80;
-            // 
-            // descripDataGridViewTextBoxColumn
-            // 
-            this.descripDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripDataGridViewTextBoxColumn.DataPropertyName = "Descrip";
-            this.descripDataGridViewTextBoxColumn.HeaderText = "Descrip";
-            this.descripDataGridViewTextBoxColumn.Name = "descripDataGridViewTextBoxColumn";
-            // 
-            // Descrip2Column
-            // 
-            this.Descrip2Column.DataPropertyName = "Descrip2";
-            this.Descrip2Column.HeaderText = "Descrip2";
-            this.Descrip2Column.Name = "Descrip2Column";
-            // 
-            // DescripFromVendorColumn
-            // 
-            this.DescripFromVendorColumn.DataPropertyName = "DescripFromVendor";
-            this.DescripFromVendorColumn.HeaderText = "Descrip. from Vendor";
-            this.DescripFromVendorColumn.Name = "DescripFromVendorColumn";
-            // 
-            // trCodeDataGridViewTextBoxColumn
-            // 
-            this.trCodeDataGridViewTextBoxColumn.DataPropertyName = "TrCode";
-            this.trCodeDataGridViewTextBoxColumn.HeaderText = "TrCode";
-            this.trCodeDataGridViewTextBoxColumn.Name = "trCodeDataGridViewTextBoxColumn";
-            this.trCodeDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // TrTypeComboColumn
-            // 
-            this.TrTypeComboColumn.DataPropertyName = "TrType";
-            this.TrTypeComboColumn.HeaderText = "TrType";
-            this.TrTypeComboColumn.Name = "TrTypeComboColumn";
-            this.TrTypeComboColumn.Width = 130;
-            // 
-            // TrType
-            // 
-            this.TrType.DataPropertyName = "TrType";
-            this.TrType.HeaderText = "TrType";
-            this.TrType.Name = "TrType";
-            this.TrType.ReadOnly = true;
-            this.TrType.Width = 36;
-            // 
-            // accountDataGridViewTextBoxColumn
-            // 
-            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
-            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
-            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
-            this.accountDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // Balance
-            // 
-            this.Balance.DataPropertyName = "Balance";
-            this.Balance.HeaderText = "Balance";
-            this.Balance.Name = "Balance";
-            this.Balance.Width = 80;
-            // 
-            // BalanceIsCalculatedColumn
-            // 
-            this.BalanceIsCalculatedColumn.DataPropertyName = "BalanceIsCalculated";
-            this.BalanceIsCalculatedColumn.HeaderText = "Balance Calc\'d?";
-            this.BalanceIsCalculatedColumn.Name = "BalanceIsCalculatedColumn";
-            this.BalanceIsCalculatedColumn.Width = 45;
-            // 
-            // CommentColumn
-            // 
-            this.CommentColumn.DataPropertyName = "Comment";
-            this.CommentColumn.HeaderText = "Comment";
-            this.CommentColumn.Name = "CommentColumn";
-            this.CommentColumn.Width = 230;
-            // 
-            // acctTransferDataGridViewCheckBoxColumn
-            // 
-            this.acctTransferDataGridViewCheckBoxColumn.DataPropertyName = "AcctTransfer";
-            this.acctTransferDataGridViewCheckBoxColumn.HeaderText = "Acct Xfer?";
-            this.acctTransferDataGridViewCheckBoxColumn.Name = "acctTransferDataGridViewCheckBoxColumn";
-            this.acctTransferDataGridViewCheckBoxColumn.Width = 40;
-            // 
-            // AmountNegatedColumn
-            // 
-            this.AmountNegatedColumn.HeaderText = "Amount";
-            this.AmountNegatedColumn.Name = "AmountNegatedColumn";
-            // 
-            // IsIncomeColumn
-            // 
-            this.IsIncomeColumn.HeaderText = "Income?";
-            this.IsIncomeColumn.Name = "IsIncomeColumn";
-            this.IsIncomeColumn.Width = 40;
             // 
             // transacTableBindingSource1
             // 
@@ -323,6 +207,138 @@
             this.panelBottom.Size = new System.Drawing.Size(1395, 24);
             this.panelBottom.TabIndex = 2;
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // trDateDataGridViewTextBoxColumn
+            // 
+            this.trDateDataGridViewTextBoxColumn.DataPropertyName = "TrDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yy";
+            this.trDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.trDateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.trDateDataGridViewTextBoxColumn.Name = "trDateDataGridViewTextBoxColumn";
+            this.trDateDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // CardTransDateColumn
+            // 
+            this.CardTransDateColumn.DataPropertyName = "CardTransDate";
+            dataGridViewCellStyle2.Format = "MM/dd/yy";
+            this.CardTransDateColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CardTransDateColumn.HeaderText = "Card Tr Date";
+            this.CardTransDateColumn.Name = "CardTransDateColumn";
+            this.CardTransDateColumn.Width = 65;
+            // 
+            // AmountColumn
+            // 
+            this.AmountColumn.DataPropertyName = "Amount";
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.Width = 80;
+            // 
+            // descripDataGridViewTextBoxColumn
+            // 
+            this.descripDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripDataGridViewTextBoxColumn.DataPropertyName = "Descrip";
+            this.descripDataGridViewTextBoxColumn.HeaderText = "Descrip";
+            this.descripDataGridViewTextBoxColumn.Name = "descripDataGridViewTextBoxColumn";
+            // 
+            // Descrip2Column
+            // 
+            this.Descrip2Column.DataPropertyName = "Descrip2";
+            this.Descrip2Column.HeaderText = "Descrip2";
+            this.Descrip2Column.Name = "Descrip2Column";
+            // 
+            // DescripFromVendorColumn
+            // 
+            this.DescripFromVendorColumn.DataPropertyName = "DescripFromVendor";
+            this.DescripFromVendorColumn.HeaderText = "Descrip. from Vendor";
+            this.DescripFromVendorColumn.Name = "DescripFromVendorColumn";
+            // 
+            // trCodeDataGridViewTextBoxColumn
+            // 
+            this.trCodeDataGridViewTextBoxColumn.DataPropertyName = "TrCode";
+            this.trCodeDataGridViewTextBoxColumn.HeaderText = "TrCode";
+            this.trCodeDataGridViewTextBoxColumn.Name = "trCodeDataGridViewTextBoxColumn";
+            this.trCodeDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // TrTypeComboColumn
+            // 
+            this.TrTypeComboColumn.DataPropertyName = "TrType";
+            this.TrTypeComboColumn.HeaderText = "TrType";
+            this.TrTypeComboColumn.Name = "TrTypeComboColumn";
+            this.TrTypeComboColumn.Width = 130;
+            // 
+            // TrType
+            // 
+            this.TrType.DataPropertyName = "TrType";
+            this.TrType.HeaderText = "TrType";
+            this.TrType.Name = "TrType";
+            this.TrType.ReadOnly = true;
+            this.TrType.Width = 36;
+            // 
+            // accountDataGridViewTextBoxColumn
+            // 
+            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
+            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
+            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
+            this.accountDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // RefundIDCol
+            // 
+            this.RefundIDCol.DataPropertyName = "RefundID";
+            this.RefundIDCol.HeaderText = "Refund ID";
+            this.RefundIDCol.Name = "RefundIDCol";
+            // 
+            // RefundNotes
+            // 
+            this.RefundNotes.DataPropertyName = "RefundNotes";
+            this.RefundNotes.HeaderText = "Refund Notes";
+            this.RefundNotes.Name = "RefundNotes";
+            // 
+            // Balance
+            // 
+            this.Balance.DataPropertyName = "Balance";
+            this.Balance.HeaderText = "Balance";
+            this.Balance.Name = "Balance";
+            this.Balance.Width = 80;
+            // 
+            // BalanceIsCalculatedColumn
+            // 
+            this.BalanceIsCalculatedColumn.DataPropertyName = "BalanceIsCalculated";
+            this.BalanceIsCalculatedColumn.HeaderText = "Balance Calc\'d?";
+            this.BalanceIsCalculatedColumn.Name = "BalanceIsCalculatedColumn";
+            this.BalanceIsCalculatedColumn.Width = 45;
+            // 
+            // CommentColumn
+            // 
+            this.CommentColumn.DataPropertyName = "Comment";
+            this.CommentColumn.HeaderText = "Comment";
+            this.CommentColumn.Name = "CommentColumn";
+            this.CommentColumn.Width = 230;
+            // 
+            // acctTransferDataGridViewCheckBoxColumn
+            // 
+            this.acctTransferDataGridViewCheckBoxColumn.DataPropertyName = "AcctTransfer";
+            this.acctTransferDataGridViewCheckBoxColumn.HeaderText = "Acct Xfer?";
+            this.acctTransferDataGridViewCheckBoxColumn.Name = "acctTransferDataGridViewCheckBoxColumn";
+            this.acctTransferDataGridViewCheckBoxColumn.Width = 40;
+            // 
+            // AmountNegatedColumn
+            // 
+            this.AmountNegatedColumn.HeaderText = "Amount";
+            this.AmountNegatedColumn.Name = "AmountNegatedColumn";
+            // 
+            // IsIncomeColumn
+            // 
+            this.IsIncomeColumn.HeaderText = "Income?";
+            this.IsIncomeColumn.Name = "IsIncomeColumn";
+            this.IsIncomeColumn.Width = 40;
+            // 
             // TransacEditingGridCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,23 +367,6 @@
         private System.Windows.Forms.DataGridView grid1;
         private System.Windows.Forms.TextBox tbFilter;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CardTransDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountNegatedColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescripFromVendorColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn acctTransferDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboTrType;
         private System.Windows.Forms.Label label1;
@@ -375,5 +374,24 @@
         private System.Windows.Forms.Panel panelMiddle;
         private System.Windows.Forms.Panel panelBottom;
         private TransacTableBindingSource transacTableBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CardTransDateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descrip2Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripFromVendorColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn TrTypeComboColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn RefundIDCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefundNotes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn BalanceIsCalculatedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommentColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn acctTransferDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountNegatedColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsIncomeColumn;
     }
 }

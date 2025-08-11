@@ -21,6 +21,7 @@ namespace Budget
         TransacTypeTableAdapter _TransacTypeAdapter = new TransacTypeTableAdapter();
         AccountOwnerTableAdapter _AccountOwnerAdapter = new AccountOwnerTableAdapter();
         AccountTypeTableAdapter _AccountTypeAdapter = new AccountTypeTableAdapter();
+        RefundTableAdapter _RefundAdapter = new RefundTableAdapter();
 
         public DataView FundViewBySymbol => _FundViewBySymbol;
         DataView _FundViewBySymbol;
@@ -76,6 +77,9 @@ namespace Budget
 
             _AccountTypeAdapter.Connection = Program.DbConnection;
             _AccountTypeAdapter.Fill(_MainDataSet.AccountType);
+
+            _RefundAdapter.Connection = Program.DbConnection;
+            _RefundAdapter.Fill(_MainDataSet.Refund);
         }
     }
 }

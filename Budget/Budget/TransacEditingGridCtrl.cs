@@ -15,7 +15,7 @@ namespace Budget
 {
     public partial class TransacEditingGridCtrl : UserControl
     {
-        public enum Usages { None, BalanceCalculation, CashPurchases, GroupingAssignment, RefundSelectable, RefundTransactions, SourceFile };
+        public enum Usages { None, BalanceCalculation, CashPurchases, GroupingAssignment, Refunds, SourceFile };
         Usages _Usage = Usages.None;
 
         public bool CreateNewSourceFileRow = false;
@@ -154,26 +154,26 @@ namespace Budget
             if (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
+            /*
             // Filter ctrls used?
-            if (_Usage == Usages.RefundTransactions)
+            if (_Usage == Usages....)
                 panelTop.Visible = false;
+            */
 
             // Hide unused grid columns:
-            switch (_Usage)
+            // DIAG make this customization easier -- or at least set it up for other usages
+            if (_Usage == Usages.CashPurchases)
             {
-                // DIAG make this customization easier -- or at least set it up for other usages
-                case Usages.CashPurchases: 
-                    this.accountDataGridViewTextBoxColumn.Visible = false;
-                    this.AmountColumn.Visible = false;
-                    this.Descrip2Column.Visible = false;
-                    this.DescripFromVendorColumn.Visible = false;
-                    this.CardTransDateColumn.Visible = false;
-                    this.Balance.Visible = false;
-                    this.BalanceIsCalculatedColumn.Visible = false;
-                    this.IsIncomeColumn.Visible = false;    
-                    this.acctTransferDataGridViewCheckBoxColumn.Visible = false;
-                    this.trCodeDataGridViewTextBoxColumn.Visible = false;
-                    break;
+                this.accountDataGridViewTextBoxColumn.Visible = false;
+                this.AmountColumn.Visible = false;
+                this.Descrip2Column.Visible = false;
+                this.DescripFromVendorColumn.Visible = false;
+                this.CardTransDateColumn.Visible = false;
+                this.Balance.Visible = false;
+                this.BalanceIsCalculatedColumn.Visible = false;
+                this.IsIncomeColumn.Visible = false;    
+                this.acctTransferDataGridViewCheckBoxColumn.Visible = false;
+                this.trCodeDataGridViewTextBoxColumn.Visible = false;
             }
 
             transacTableAdapter.Connection = Program.DbConnection;
@@ -181,6 +181,10 @@ namespace Budget
             TrTypeComboColumn.DataSource = Program.LookupTableSet.MainDataSet.TransacType;
             TrTypeComboColumn.ValueMember = "TrTypeID";
             TrTypeComboColumn.DisplayMember = "CodeAndName";
+
+            RefundIDCol.DataSource = Program.LookupTableSet.MainDataSet.Refund;
+            RefundIDCol.ValueMember = "RefundID";
+            RefundIDCol.DisplayMember = "RefundName";
 
             // comboTrType has to contain a null item:
             _TransacTypeAdapter.FillWithNullRow(_TransacTypeTable);
