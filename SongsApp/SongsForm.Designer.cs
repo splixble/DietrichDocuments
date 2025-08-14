@@ -75,6 +75,7 @@ namespace Songs
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeDBTablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsTableAdapter = new Songs.AzureDataSetTableAdapters.songsTableAdapter();
             this.viewArtistNameForListBoxTableAdapter = new Songs.AzureDataSetTableAdapters.ViewArtistNameForListBoxTableAdapter();
             this.cbMemorized = new System.Windows.Forms.CheckBox();
@@ -87,7 +88,7 @@ namespace Songs
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.writeDBTablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandRepertoireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -409,7 +410,8 @@ namespace Songs
             this.performancesToolStripMenuItem1,
             this.performancesNewCommandToolStripMenuItem,
             this.performanceTotalsToolStripMenuItem,
-            this.bandGigsToolStripMenuItem});
+            this.bandGigsToolStripMenuItem,
+            this.bandRepertoireToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.reportToolStripMenuItem.Text = "&Report";
@@ -477,6 +479,13 @@ namespace Songs
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
             this.websiteToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.websiteToolStripMenuItem.Text = "&Website";
+            // 
+            // writeDBTablesToolStripMenuItem
+            // 
+            this.writeDBTablesToolStripMenuItem.Name = "writeDBTablesToolStripMenuItem";
+            this.writeDBTablesToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.writeDBTablesToolStripMenuItem.Text = "Write DB &Tables";
+            this.writeDBTablesToolStripMenuItem.Click += new System.EventHandler(this.writeDBTablesToolStripMenuItem_Click);
             // 
             // songsTableAdapter
             // 
@@ -580,12 +589,12 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // writeDBTablesToolStripMenuItem
+            // bandRepertoireToolStripMenuItem
             // 
-            this.writeDBTablesToolStripMenuItem.Name = "writeDBTablesToolStripMenuItem";
-            this.writeDBTablesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.writeDBTablesToolStripMenuItem.Text = "Write DB &Tables";
-            this.writeDBTablesToolStripMenuItem.Click += new System.EventHandler(this.writeDBTablesToolStripMenuItem_Click);
+            this.bandRepertoireToolStripMenuItem.Name = "bandRepertoireToolStripMenuItem";
+            this.bandRepertoireToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.bandRepertoireToolStripMenuItem.Text = "Band &Repertoire";
+            this.bandRepertoireToolStripMenuItem.Click += new System.EventHandler(this.bandRepertoireToolStripMenuItem_Click);
             // 
             // SongsForm
             // 
@@ -682,6 +691,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem performancesNewCommandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeDBTablesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bandRepertoireToolStripMenuItem;
     }
 }
 

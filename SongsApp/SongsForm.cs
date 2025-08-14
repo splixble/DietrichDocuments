@@ -529,5 +529,11 @@ namespace Songs
 
             tblFile.WriteFile();
         }
+
+        private void bandRepertoireToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListingForm form = new ListingForm();
+            form.ShowBandRepertoire(1); // TODO: Prompt for which band
+        }
     }
 }

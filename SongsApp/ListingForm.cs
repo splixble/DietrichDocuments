@@ -113,6 +113,23 @@ namespace Songs
             }
         }
 
+        public void ShowBandRepertoire(int bandID)
+        {
+            AzureDataSet.ViewRepertoireDataTable repTable = new AzureDataSet.ViewRepertoireDataTable();
+            AzureDataSetTableAdapters.ViewRepertoireTableAdapter repAdap = new AzureDataSetTableAdapters.ViewRepertoireTableAdapter();
+            repAdap.FillByBand(repTable, bandID);
+
+            foreach (AzureDataSet.ViewRepertoireRow row in repTable)
+            {
+                tb.Text += row.TitleAndArtist; 
+                if (!row.IsPerformanceNotesNull() && row.PerformanceNotes != "")
+                    tb.Text += ": " + row.PerformanceNotes;
+                tb.Text += Environment.NewLine;
+            }
+
+            ShowDialog();
+        }
+
         public void ShowListByArtist(string songsWhereClause)
         {
             AzureDataSet.ViewSongsSingleFieldDataTable tblSongs = new AzureDataSet.ViewSongsSingleFieldDataTable();

@@ -330,14 +330,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PdfSharp.dll" size="625664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PdfSharp.dll" size="626176">
       <assemblyIdentity name="PdfSharp" version="1.50.4740.0" publicKeyToken="F94615AA0424F9EB" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ruacrIu/188+1t/agl77INqchu3uEJN2JrscmAZg1VU=</dsig:DigestValue>
+        <dsig:DigestValue>bunGJO84+2sE9bN5FCpQ4F6utrR6/+dQgKhdvCUUrWE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -349,19 +349,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dOrGcnG4vCKsHTEv0wZOigDO7sh4ldseZnt0ery6iss=</dsig:DigestValue>
+        <dsig:DigestValue>f6GrUD9geP+UoPo0mACaLFCG7ecv7ba/d8UaxsTfOfA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="399872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="432640">
       <assemblyIdentity name="Songs" version="6.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EKysrG54ZHFEwJO+yASALt9uBgtmJKLV1vl5T78MNCQ=</dsig:DigestValue>
+        <dsig:DigestValue>KfrhyKZuUHwtUfL7UlJXzGDPhdwv0vvlnAZRKov3nFk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.grid1 = new System.Windows.Forms.DataGridView();
+            this.gridRefunds = new System.Windows.Forms.DataGridView();
             this.refundBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.refundTableAdapter = new Budget.MainDataSetTableAdapters.RefundTableAdapter();
-            this.btnSave = new WinformsLib.SaveButton();
-            this.transacCtrl = new Budget.TransacEditingGridCtrl();
+            this.btnSaveTransactions = new WinformsLib.SaveButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSaveRefundSets = new WinformsLib.SaveButton();
+            this.transacCtrl = new Budget.TransacEditingGridCtrl();
             this.refundIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RefundName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColApplyToSelected = new System.Windows.Forms.DataGridViewButtonColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRefunds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.refundBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -48,20 +50,24 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grid1
+            // gridRefunds
             // 
-            this.grid1.AutoGenerateColumns = false;
-            this.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gridRefunds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridRefunds.AutoGenerateColumns = false;
+            this.gridRefunds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRefunds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.refundIDDataGridViewTextBoxColumn,
             this.RefundName,
+            this.ColApplyToSelected,
             this.notesDataGridViewTextBoxColumn});
-            this.grid1.DataSource = this.refundBindingSource;
-            this.grid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid1.Location = new System.Drawing.Point(0, 0);
-            this.grid1.Name = "grid1";
-            this.grid1.Size = new System.Drawing.Size(1451, 178);
-            this.grid1.TabIndex = 0;
+            this.gridRefunds.DataSource = this.refundBindingSource;
+            this.gridRefunds.Location = new System.Drawing.Point(0, 0);
+            this.gridRefunds.Name = "gridRefunds";
+            this.gridRefunds.Size = new System.Drawing.Size(1451, 147);
+            this.gridRefunds.TabIndex = 0;
+            this.gridRefunds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellClick);
             // 
             // refundBindingSource
             // 
@@ -77,25 +83,18 @@
             // 
             this.refundTableAdapter.ClearBeforeFill = true;
             // 
-            // btnSave
+            // btnSaveTransactions
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(1385, 590);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(78, 23);
-            this.btnSave.TabIndex = 12;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // transacCtrl
-            // 
-            this.transacCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.transacCtrl.Location = new System.Drawing.Point(0, 0);
-            this.transacCtrl.Name = "transacCtrl";
-            this.transacCtrl.Size = new System.Drawing.Size(1451, 390);
-            this.transacCtrl.TabIndex = 13;
+            this.btnSaveTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveTransactions.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSaveTransactions.Enabled = false;
+            this.btnSaveTransactions.Location = new System.Drawing.Point(1222, 367);
+            this.btnSaveTransactions.Name = "btnSaveTransactions";
+            this.btnSaveTransactions.Size = new System.Drawing.Size(114, 23);
+            this.btnSaveTransactions.TabIndex = 12;
+            this.btnSaveTransactions.Text = "Save Transactions";
+            this.btnSaveTransactions.UseVisualStyleBackColor = false;
+            this.btnSaveTransactions.Click += new System.EventHandler(this.btnSaveTransactions_Click);
             // 
             // splitContainer1
             // 
@@ -108,14 +107,37 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.grid1);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSaveRefundSets);
+            this.splitContainer1.Panel1.Controls.Add(this.gridRefunds);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnSaveTransactions);
             this.splitContainer1.Panel2.Controls.Add(this.transacCtrl);
             this.splitContainer1.Size = new System.Drawing.Size(1451, 572);
             this.splitContainer1.SplitterDistance = 178;
             this.splitContainer1.TabIndex = 14;
+            // 
+            // btnSaveRefundSets
+            // 
+            this.btnSaveRefundSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveRefundSets.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSaveRefundSets.Enabled = false;
+            this.btnSaveRefundSets.Location = new System.Drawing.Point(1337, 153);
+            this.btnSaveRefundSets.Name = "btnSaveRefundSets";
+            this.btnSaveRefundSets.Size = new System.Drawing.Size(114, 23);
+            this.btnSaveRefundSets.TabIndex = 13;
+            this.btnSaveRefundSets.Text = "Save Refund Sets";
+            this.btnSaveRefundSets.UseVisualStyleBackColor = false;
+            this.btnSaveRefundSets.Click += new System.EventHandler(this.saveRefundSets_Click);
+            // 
+            // transacCtrl
+            // 
+            this.transacCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.transacCtrl.Location = new System.Drawing.Point(0, 0);
+            this.transacCtrl.Name = "transacCtrl";
+            this.transacCtrl.Size = new System.Drawing.Size(1451, 390);
+            this.transacCtrl.TabIndex = 13;
             // 
             // refundIDDataGridViewTextBoxColumn
             // 
@@ -132,6 +154,14 @@
             this.RefundName.Name = "RefundName";
             this.RefundName.Width = 150;
             // 
+            // ColApplyToSelected
+            // 
+            this.ColApplyToSelected.HeaderText = "Apply to Selected Transacs";
+            this.ColApplyToSelected.Name = "ColApplyToSelected";
+            this.ColApplyToSelected.Text = "Apply to Selected Transacs";
+            this.ColApplyToSelected.UseColumnTextForButtonValue = true;
+            this.ColApplyToSelected.Width = 160;
+            // 
             // notesDataGridViewTextBoxColumn
             // 
             this.notesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -145,11 +175,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1475, 625);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.btnSave);
             this.Name = "RefundsForm";
             this.Text = "RefundsForm";
             this.Load += new System.EventHandler(this.RefundsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRefunds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.refundBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -162,15 +191,17 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView grid1;
+        private System.Windows.Forms.DataGridView gridRefunds;
         private MainDataSet mainDataSet;
         private System.Windows.Forms.BindingSource refundBindingSource;
         private MainDataSetTableAdapters.RefundTableAdapter refundTableAdapter;
-        private WinformsLib.SaveButton btnSave;
+        private WinformsLib.SaveButton btnSaveTransactions;
         private TransacEditingGridCtrl transacCtrl;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private WinformsLib.SaveButton btnSaveRefundSets;
         private System.Windows.Forms.DataGridViewTextBoxColumn refundIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn RefundName;
+        private System.Windows.Forms.DataGridViewButtonColumn ColApplyToSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
     }
 }

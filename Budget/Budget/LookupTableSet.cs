@@ -78,6 +78,11 @@ namespace Budget
             _AccountTypeAdapter.Connection = Program.DbConnection;
             _AccountTypeAdapter.Fill(_MainDataSet.AccountType);
 
+            LoadRefundTable();
+        }
+
+        public void LoadRefundTable()
+        {
             _RefundAdapter.Connection = Program.DbConnection;
             _RefundAdapter.Fill(_MainDataSet.Refund);
         }

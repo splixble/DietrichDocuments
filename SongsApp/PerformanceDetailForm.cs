@@ -1,3 +1,4 @@
+using Songs.AzureDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,6 +91,34 @@ namespace Songs
         {
             UpdateDB();
             DialogResult = DialogResult.OK;
+        }
+
+        private void btnPrintSetlistWithPerformanceNotes_Click(object sender, EventArgs e)
+        {
+            // Get Repertoire records:
+            int bandID = this.AzureDataSet.performances[0].Band;
+            AzureDataSet.RepertoireDataTable repertoireTbl = new AzureDataSet.RepertoireDataTable();
+            RepertoireTableAdapter repAdap = new RepertoireTableAdapter();
+            repAdap.FillByBand(repertoireTbl, bandID);
+
+            // List all songs:
+            string listingText = "";
+            foreach (AzureDataSet.songperformancesRow songPerfRow in AzureDataSet.songperformances)
+            {
+                AzureDataSet.ViewSongsSingleFieldRow viewSongRow = this.AzureDataSet.ViewSongsSingleField.FindByID(songPerfRow.Song);
+                AzureDataSet.RepertoireRow repertoireRow = repertoireTbl.FindBySongBand(songPerfRow.Song, bandID);
+
+                listingText += viewSongRow.TitleAndArtist;
+                if (repertoireRow != null && !repertoireRow.IsPerformanceNotesNull() && repertoireRow.PerformanceNotes != "")
+                    listingText += ": " + repertoireRow.PerformanceNotes;
+                listingText += Environment.NewLine;
+
+                // DIAG put set breaks in
+            }
+
+            ListingForm form = new ListingForm();
+            form.TB.Text = listingText;
+            form.ShowDialog();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using GridLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using GridLib;
 
 namespace Budget
 {
@@ -130,27 +130,27 @@ namespace Budget
 
         private void btnApplyToSelected_Click(object sender, EventArgs e)
         {
-            SortedList<int, object> gridRowDict = transacCtrl.Grid.RowsContainingSelectedData();
-            if (gridRowDict == null)
-                return;
-
             string trType = comboTrType.SelectedValue as string;
             if (trType == null)
                 return;
 
-            // Gather Budget table rows: 
-            List<MainDataSet.TransacRow> budgetRows = new List<MainDataSet.TransacRow>();
+            SortedList<int, object> gridRowDict = transacCtrl.Grid.RowsContainingSelectedData();
+            if (gridRowDict == null)
+                return;
+
+            // Gather Transac table rows: 
+            List<MainDataSet.TransacRow> transacRows = new List<MainDataSet.TransacRow>();
             foreach (int rowIndex in gridRowDict.Keys)
             {
                 DataGridViewRow gridRow = transacCtrl.Grid.Rows[rowIndex];
-                budgetRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.TransacRow);
+                transacRows.Add((gridRow.DataBoundItem as DataRowView).Row as MainDataSet.TransacRow);
             }
 
-            // Set TrType in each Budget table record:
-            foreach (MainDataSet.TransacRow budgetRow in budgetRows)
+            // Set TrType in each Transac table record:
+            foreach (MainDataSet.TransacRow transacRow in transacRows)
             { 
-                if (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType)
-                    budgetRow.TrType = trType;
+                if (transacRow.IsTrTypeNull() || transacRow.TrType != trType)
+                    transacRow.TrType = trType;
             }
 
             // Now, highlight all grid rows that have modified data:
