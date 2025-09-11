@@ -13,12 +13,15 @@ using System.Runtime.InteropServices.ComTypes;
 using MySqlX.XDevAPI.Relational;
 using System.Diagnostics;
 using static Songs.AzureDataSet;
+using System.Linq;
 
 namespace Songs
 {
     public partial class SongsForm : Form
     {
         SqlDataAdapter _SongsAdap;
+
+        SortedList<string, DataGridViewCheckBoxColumn> _FlagColumnList;
 
         int _ContextMenuRow = -1;
         int _ContextMenuColumn = -1;
@@ -36,6 +39,8 @@ namespace Songs
             }
         }
 
+        DataView _FlaggedSongsByFlagAndSong; // DIAG Wont be needed when we make Flag & Song the primary keys
+
         public SongsForm()
         {
             InitializeComponent();
@@ -44,8 +49,33 @@ namespace Songs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dataSet1.flags' table. You can move, or remove it, as needed.
             this.flagsTableAdapter.Fill(this.dataSet1.flags);
+            this.flaggedsongsTableAdapter1.Fill(this.dataSet1.flaggedsongs);
+
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime) // if not in Designer mode
+            {
+                _FlaggedSongsByFlagAndSong = new DataView(this.dataSet1.flaggedsongs);
+                _FlaggedSongsByFlagAndSong.Sort = "FlagID ASC, Song ASC";
+
+                _FlagColumnList = new SortedList< string, DataGridViewCheckBoxColumn >(); // Key is FlagCode
+                foreach (flagsRow flagRow in this.dataSet1.flags)
+                {
+                    if (flagRow.Active)
+                    {
+                        DataGridViewCheckBoxColumn flagCol = new DataGridViewCheckBoxColumn();
+                        flagCol.Name = "col" + flagRow.FlagCode;
+                        flagCol.HeaderText = flagRow.FlagCode;
+                        flagCol.Resizable = DataGridViewTriState.True;
+                        flagCol.Width = 40;
+                        flagCol.CellTemplate.Style.BackColor = Color.LightCyan;
+                        flagCol.Tag = new FlagColumnTag(flagRow.FlagID, flagRow.FlagCode);
+
+                        _FlagColumnList.Add(flagRow.FlagCode, flagCol);
+                    }
+                }
+
+                grid1.Columns.AddRange(_FlagColumnList.Values.ToArray());
+            }
 
             Redraw();
             _Initialized = true;
@@ -84,7 +114,8 @@ namespace Songs
             AzureDataSet.viewsongflagsDataTable flagsTable =
                 new AzureDataSet.viewsongflagsDataTable();
             flagAdap.Fill(flagsTable);
-            // now, fill in the Flags field:
+
+            // now, fill in the Flags columns:
             for (int rowIndex = 0; rowIndex < grid1.RowCount; rowIndex++)
             {
                 int songID = GetSongIDFromRowIndex(rowIndex);
@@ -95,6 +126,18 @@ namespace Songs
                     {
                         grid1[ColFlags.Index, rowIndex].Value = flagsRow.Flags;
                     }
+                }
+            }
+
+            foreach(flaggedsongsRow flaggedSongRow in dataSet1.flaggedsongs)
+            {
+                int rowIndex = GetRowIndexFromSongID(flaggedSongRow.Song);
+
+                flagsRow flagRow = this.dataSet1.flags.FindByFlagID(flaggedSongRow.FlagID);
+                if (flagRow != null && flagRow.Active)
+                {
+                    DataGridViewCheckBoxColumn flagCol = _FlagColumnList[flagRow.FlagCode];
+                    grid1[flagCol.Index, rowIndex].Value = true;
                 }
             }
 
@@ -122,6 +165,9 @@ namespace Songs
         {
             songsBindingSource.EndEdit();
             this.songsTableAdapter.Update(this.dataSet1.songs);
+
+            this.flaggedsongsTableAdapter1.Update(this.dataSet1.flaggedsongs);
+
             DataModified = false;
             Redraw();
         }
@@ -534,6 +580,48 @@ namespace Songs
         {
             ListingForm form = new ListingForm();
             form.ShowBandRepertoire(1); // TODO: Prompt for which band
+        }
+
+        private void grid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+            
+            if (grid1.Columns[e.ColumnIndex].Tag is FlagColumnTag)
+            {
+                FlagColumnTag tag = (FlagColumnTag)grid1.Columns[e.ColumnIndex].Tag;
+
+                int songID = GetSongIDFromRowIndex(e.RowIndex);
+
+                int flaggedSongIndex = _FlaggedSongsByFlagAndSong.Find(new object[]{ tag._FlagID, songID});
+                if (flaggedSongIndex == -1)
+                {
+                    // no flagged song rec; create one
+                    flaggedsongsRow fsRow = dataSet1.flaggedsongs.NewflaggedsongsRow();
+                    fsRow.FlagID = tag._FlagID;
+                    fsRow.Song = songID;
+                    dataSet1.flaggedsongs.AddflaggedsongsRow(fsRow);
+                }
+                else
+                {
+                    // flagged song rec exists; delete it
+                    flaggedsongsRow fsRow = this._FlaggedSongsByFlagAndSong[flaggedSongIndex].Row as flaggedsongsRow;
+                    fsRow.Delete();
+                }
+                DataModified = true;
+            }
+        }
+
+        class FlagColumnTag
+        {
+            public int _FlagID;
+            public string _FlagCode;
+
+            public FlagColumnTag(int flagID, string flagCode) 
+            {
+                _FlagID = flagID;
+                _FlagCode = flagCode;
+            }
         }
     }
 }

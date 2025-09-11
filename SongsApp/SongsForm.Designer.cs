@@ -74,6 +74,7 @@ namespace Songs
             this.performancesNewCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performanceTotalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandGigsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandRepertoireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeDBTablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.songsTableAdapter = new Songs.AzureDataSetTableAdapters.songsTableAdapter();
@@ -88,7 +89,7 @@ namespace Songs
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.bandRepertoireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flaggedsongsTableAdapter1 = new Songs.AzureDataSetTableAdapters.flaggedsongsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -128,6 +129,7 @@ namespace Songs
             this.grid1.Name = "grid1";
             this.grid1.Size = new System.Drawing.Size(1316, 249);
             this.grid1.TabIndex = 0;
+            this.grid1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentClick);
             this.grid1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid1_CellContentDoubleClick);
             this.grid1.CellContextMenuStripNeeded += new System.Windows.Forms.DataGridViewCellContextMenuStripNeededEventHandler(this.grid1_CellContextMenuStripNeeded);
             this.grid1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grid1_ColumnHeaderMouseClick);
@@ -472,6 +474,13 @@ namespace Songs
             this.bandGigsToolStripMenuItem.Text = "&Band Gigs";
             this.bandGigsToolStripMenuItem.Click += new System.EventHandler(this.bandGigsToolStripMenuItem_Click);
             // 
+            // bandRepertoireToolStripMenuItem
+            // 
+            this.bandRepertoireToolStripMenuItem.Name = "bandRepertoireToolStripMenuItem";
+            this.bandRepertoireToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.bandRepertoireToolStripMenuItem.Text = "Band &Repertoire";
+            this.bandRepertoireToolStripMenuItem.Click += new System.EventHandler(this.bandRepertoireToolStripMenuItem_Click);
+            // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -589,12 +598,9 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // bandRepertoireToolStripMenuItem
+            // flaggedsongsTableAdapter1
             // 
-            this.bandRepertoireToolStripMenuItem.Name = "bandRepertoireToolStripMenuItem";
-            this.bandRepertoireToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.bandRepertoireToolStripMenuItem.Text = "Band &Repertoire";
-            this.bandRepertoireToolStripMenuItem.Click += new System.EventHandler(this.bandRepertoireToolStripMenuItem_Click);
+            this.flaggedsongsTableAdapter1.ClearBeforeFill = true;
             // 
             // SongsForm
             // 
@@ -692,6 +698,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeDBTablesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bandRepertoireToolStripMenuItem;
+        private AzureDataSetTableAdapters.flaggedsongsTableAdapter flaggedsongsTableAdapter1;
     }
 }
 

@@ -2411,6 +2411,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnFlagCode;
             
+            private global::System.Data.DataColumn columnActive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public flagsDataTable() {
@@ -2478,6 +2480,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ActiveColumn {
+                get {
+                    return this.columnActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2513,13 +2523,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flagsRow AddflagsRow(string FlagName, string FlagDescription, string FlagCode) {
+            public flagsRow AddflagsRow(string FlagName, string FlagDescription, string FlagCode, bool Active) {
                 flagsRow rowflagsRow = ((flagsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         FlagName,
                         FlagDescription,
-                        FlagCode};
+                        FlagCode,
+                        Active};
                 rowflagsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowflagsRow);
                 return rowflagsRow;
@@ -2553,6 +2564,7 @@ namespace Songs {
                 this.columnFlagName = base.Columns["FlagName"];
                 this.columnFlagDescription = base.Columns["FlagDescription"];
                 this.columnFlagCode = base.Columns["FlagCode"];
+                this.columnActive = base.Columns["Active"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2566,6 +2578,8 @@ namespace Songs {
                 base.Columns.Add(this.columnFlagDescription);
                 this.columnFlagCode = new global::System.Data.DataColumn("FlagCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFlagCode);
+                this.columnActive = new global::System.Data.DataColumn("Active", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFlagID}, true));
                 this.columnFlagID.AutoIncrement = true;
@@ -2579,6 +2593,7 @@ namespace Songs {
                 this.columnFlagDescription.MaxLength = 250;
                 this.columnFlagCode.AllowDBNull = false;
                 this.columnFlagCode.MaxLength = 6;
+                this.columnActive.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8958,6 +8973,17 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Active {
+                get {
+                    return ((bool)(this[this.tableflags.ActiveColumn]));
+                }
+                set {
+                    this[this.tableflags.ActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFlagDescriptionNull() {
                 return this.IsNull(this.tableflags.FlagDescriptionColumn);
             }
@@ -13702,17 +13728,23 @@ SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSong
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        FlaggedSongID, Song, FlagID\r\nFROM            songbook.flaggedsongs";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT FlagID, FlaggedSongID, Song FROM songbook.flaggedsongs WHERE (Song = @song" +
-                ")";
+            this._commandCollection[1].CommandText = "SELECT        FS.FlaggedSongID, FS.Song, FS.FlagID\r\nFROM            songbook.flag" +
+                "gedsongs AS FS INNER JOIN\r\n                         songbook.flags AS FL ON FS.F" +
+                "lagID = FL.FlagID AND FL.Active = 1";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@song", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT FlagID, FlaggedSongID, Song FROM songbook.flaggedsongs WHERE (Song = @song" +
+                ")";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@song", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13732,8 +13764,21 @@ SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSong
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBySong(AzureDataSet.flaggedsongsDataTable dataTable, int song) {
+        public virtual int FillActiveFlagSongs(AzureDataSet.flaggedsongsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBySong(AzureDataSet.flaggedsongsDataTable dataTable, int song) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(song));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -13979,38 +14024,40 @@ SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSong
             tableMapping.ColumnMappings.Add("FlagName", "FlagName");
             tableMapping.ColumnMappings.Add("FlagDescription", "FlagDescription");
             tableMapping.ColumnMappings.Add("FlagCode", "FlagCode");
+            tableMapping.ColumnMappings.Add("Active", "Active");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [songbook].[flags] WHERE (([FlagID] = @Original_FlagID) AND ((@IsNull" +
-                "_FlagDescription = 1 AND [FlagDescription] IS NULL) OR ([FlagDescription] = @Ori" +
-                "ginal_FlagDescription)) AND ([FlagCode] = @Original_FlagCode))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songbook].[flags] WHERE (([FlagID] = @Original_FlagID) AND ((@IsNull_FlagDescription = 1 AND [FlagDescription] IS NULL) OR ([FlagDescription] = @Original_FlagDescription)) AND ([FlagCode] = @Original_FlagCode) AND ([Active] = @Original_Active))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FlagDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[flags] ([FlagName], [FlagDescription], [FlagCode]) VALUES" +
-                " (@FlagName, @FlagDescription, @FlagCode);\r\nSELECT FlagID, FlagName, FlagDescrip" +
-                "tion, FlagCode FROM songbook.flags WHERE (FlagID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [songbook].[flags] ([FlagName], [FlagDescription], [FlagCode], [Active]) VALUES (@FlagName, @FlagDescription, @FlagCode, @Active);
+SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags WHERE (FlagID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[flags] SET [FlagName] = @FlagName, [FlagDescription] = @FlagDescription, [FlagCode] = @FlagCode WHERE (([FlagID] = @Original_FlagID) AND ((@IsNull_FlagDescription = 1 AND [FlagDescription] IS NULL) OR ([FlagDescription] = @Original_FlagDescription)) AND ([FlagCode] = @Original_FlagCode));
-SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (FlagID = @FlagID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[flags] SET [FlagName] = @FlagName, [FlagDescription] = @FlagDescription, [FlagCode] = @FlagCode, [Active] = @Active WHERE (([FlagID] = @Original_FlagID) AND ((@IsNull_FlagDescription = 1 AND [FlagDescription] IS NULL) OR ([FlagDescription] = @Original_FlagDescription)) AND ([FlagCode] = @Original_FlagCode) AND ([Active] = @Original_Active));
+SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags WHERE (FlagID = @FlagID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_FlagDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Active", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -14027,8 +14074,8 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        FlagID, FlagName, FlagDescription, FlagCode\r\nFROM            songbo" +
-                "ok.flags";
+            this._commandCollection[0].CommandText = "SELECT        FlagID, FlagName, FlagDescription, FlagCode, Active\r\nFROM          " +
+                "  songbook.flags";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14078,7 +14125,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_FlagID, string Original_FlagDescription, string Original_FlagCode) {
+        public virtual int Delete(int Original_FlagID, string Original_FlagDescription, string Original_FlagCode, bool Original_Active) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_FlagID));
             if ((Original_FlagDescription == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -14094,6 +14141,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_FlagCode));
             }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Active));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14114,7 +14162,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string FlagName, string FlagDescription, string FlagCode) {
+        public virtual int Insert(string FlagName, string FlagDescription, string FlagCode, bool Active) {
             if ((FlagName == null)) {
                 throw new global::System.ArgumentNullException("FlagName");
             }
@@ -14133,6 +14181,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(FlagCode));
             }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Active));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14153,7 +14202,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FlagName, string FlagDescription, string FlagCode, int Original_FlagID, string Original_FlagDescription, string Original_FlagCode, int FlagID) {
+        public virtual int Update(string FlagName, string FlagDescription, string FlagCode, bool Active, int Original_FlagID, string Original_FlagDescription, string Original_FlagCode, bool Original_Active, int FlagID) {
             if ((FlagName == null)) {
                 throw new global::System.ArgumentNullException("FlagName");
             }
@@ -14172,22 +14221,24 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(FlagCode));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FlagID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Active));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FlagID));
             if ((Original_FlagDescription == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_FlagDescription));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_FlagDescription));
             }
             if ((Original_FlagCode == null)) {
                 throw new global::System.ArgumentNullException("Original_FlagCode");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_FlagCode));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_FlagCode));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(FlagID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Original_Active));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(FlagID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14208,8 +14259,8 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode FROM songbook.flags WHERE (Fl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FlagName, string FlagDescription, string FlagCode, int Original_FlagID, string Original_FlagDescription, string Original_FlagCode) {
-            return this.Update(FlagName, FlagDescription, FlagCode, Original_FlagID, Original_FlagDescription, Original_FlagCode, Original_FlagID);
+        public virtual int Update(string FlagName, string FlagDescription, string FlagCode, bool Active, int Original_FlagID, string Original_FlagDescription, string Original_FlagCode, bool Original_Active) {
+            return this.Update(FlagName, FlagDescription, FlagCode, Active, Original_FlagID, Original_FlagDescription, Original_FlagCode, Original_Active, Original_FlagID);
         }
     }
     
