@@ -17,6 +17,7 @@ namespace Songs
         {
             const string customProperty = "/Custom";
             const string artistsProperty = "/Artists";
+            const string collectionProperty = "/Collection";
 
             // FolderBrowserDialog 
 
@@ -82,7 +83,8 @@ namespace Songs
                     string inputfile = pdfDir + "\\" + pdfFileName;
                     string outputfile = pdfDir + "\\Altered\\" + pdfFileName; // because norton firewall wont let me change in place...DIAG wtat to do?
                     string custValue = pdfsInDir[pdfFileName].SetlistCaption;
-                    string artistsValue = pdfsInDir[pdfFileName].ArtistList; 
+                    string artistsValue = pdfsInDir[pdfFileName].ArtistList;
+                    string collectionsValue = pdfsInDir[pdfFileName].FlagList;
                     PdfDocument document = PdfReader.Open(inputfile);
 
                     bool setCustomProperty;
@@ -105,12 +107,24 @@ namespace Songs
                     else
                         setArtistProperty = true;
 
-                    if (setCustomProperty || setArtistProperty)
+                    bool setCollectionProperty;
+                    if (document.Info.Elements.ContainsKey(collectionProperty))
+                    {
+                        // set only if value changed
+                        setCollectionProperty = !(document.Info.Elements[collectionProperty] is PdfString)
+                            || ((PdfString)document.Info.Elements[collectionProperty]).Value != collectionsValue;
+                    }
+                    else
+                        setCollectionProperty = true;
+
+                    if (setCustomProperty || setArtistProperty || setCollectionProperty)
                     {
                         if (setCustomProperty)
                             document.Info.Elements[customProperty] = new PdfString(custValue);
                         if (setArtistProperty)
                             document.Info.Elements[artistsProperty] = new PdfString(artistsValue);
+                        if (setCollectionProperty)
+                            document.Info.Elements[collectionProperty] = new PdfString(collectionsValue);
                         document.Save(outputfile);
                         matches += (matches == "" ? "" : ", ") + pdfFileName;
                     }

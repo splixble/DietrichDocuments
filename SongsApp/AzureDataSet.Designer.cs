@@ -4360,6 +4360,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnArtistList;
             
+            private global::System.Data.DataColumn columnFlagList;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongsforsetlistsDataTable() {
@@ -4459,6 +4461,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FlagListColumn {
+                get {
+                    return this.columnFlagList;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4494,7 +4504,7 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList) {
+            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList, string FlagList) {
                 viewsongsforsetlistsRow rowviewsongsforsetlistsRow = ((viewsongsforsetlistsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -4504,7 +4514,8 @@ namespace Songs {
                         InTablet,
                         SetlistCaption,
                         FullTitle,
-                        ArtistList};
+                        ArtistList,
+                        FlagList};
                 rowviewsongsforsetlistsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewsongsforsetlistsRow);
                 return rowviewsongsforsetlistsRow;
@@ -4542,6 +4553,7 @@ namespace Songs {
                 this.columnSetlistCaption = base.Columns["SetlistCaption"];
                 this.columnFullTitle = base.Columns["FullTitle"];
                 this.columnArtistList = base.Columns["ArtistList"];
+                this.columnFlagList = base.Columns["FlagList"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4563,6 +4575,8 @@ namespace Songs {
                 base.Columns.Add(this.columnFullTitle);
                 this.columnArtistList = new global::System.Data.DataColumn("ArtistList", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnArtistList);
+                this.columnFlagList = new global::System.Data.DataColumn("FlagList", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlagList);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -4577,6 +4591,7 @@ namespace Songs {
                 this.columnFullTitle.ReadOnly = true;
                 this.columnFullTitle.MaxLength = 2147483647;
                 this.columnArtistList.MaxLength = 2147483647;
+                this.columnFlagList.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10192,6 +10207,22 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string FlagList {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.FlagListColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FlagList\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.FlagListColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFullArtistNameNull() {
                 return this.IsNull(this.tableviewsongsforsetlists.FullArtistNameColumn);
             }
@@ -10248,6 +10279,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetArtistListNull() {
                 this[this.tableviewsongsforsetlists.ArtistListColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFlagListNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.FlagListColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFlagListNull() {
+                this[this.tableviewsongsforsetlists.FlagListColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15078,6 +15121,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
             tableMapping.ColumnMappings.Add("SetlistCaption", "SetlistCaption");
             tableMapping.ColumnMappings.Add("FullTitle", "FullTitle");
             tableMapping.ColumnMappings.Add("ArtistList", "ArtistList");
+            tableMapping.ColumnMappings.Add("FlagList", "FlagList");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -15095,13 +15139,14 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistC" +
-                "aption, FullTitle, ArtistList\r\nFROM            songbook.viewsongsforsetlists";
+                "aption, FullTitle, ArtistList, FlagList\r\nFROM            songbook.viewsongsforse" +
+                "tlists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT ArtistList, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, SetlistA" +
-                "ddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTablet = @InT" +
-                "ablet)";
+            this._commandCollection[1].CommandText = "SELECT ArtistList, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet" +
+                ", SetlistAddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTab" +
+                "let = @InTablet)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InTablet", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "InTablet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

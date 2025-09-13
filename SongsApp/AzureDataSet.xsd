@@ -263,7 +263,7 @@ SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSong
               <Mapping SourceColumn="FlagID" DataSetColumn="FlagID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.flaggedsongs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillActiveFlagSongs" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillActiveFlagSongs" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillActiveFlagSongs">
+              <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.flaggedsongs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillActiveFlagSongs" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillActiveFlagSongs" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillActiveFlagSongs">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        FS.FlaggedSongID, FS.Song, FS.FlagID
@@ -273,7 +273,7 @@ FROM            songbook.flaggedsongs AS FS INNER JOIN
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.flaggedsongs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySong" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBySong" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBySong">
+              <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.flaggedsongs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySong" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBySong" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBySong">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT FlagID, FlaggedSongID, Song FROM songbook.flaggedsongs WHERE (Song = @song)</CommandText>
@@ -467,7 +467,7 @@ FROM            songbook.viewsongssinglefield</CommandText>
               <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.viewsongsforsetlists" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistCaption, FullTitle, ArtistList
+                    <CommandText>SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistCaption, FullTitle, ArtistList, FlagList
 FROM            songbook.viewsongsforsetlists</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -483,12 +483,13 @@ FROM            songbook.viewsongsforsetlists</CommandText>
               <Mapping SourceColumn="SetlistCaption" DataSetColumn="SetlistCaption" />
               <Mapping SourceColumn="FullTitle" DataSetColumn="FullTitle" />
               <Mapping SourceColumn="ArtistList" DataSetColumn="ArtistList" />
+              <Mapping SourceColumn="FlagList" DataSetColumn="FlagList" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="LocalSpeepmasterSongbookConn (Settings)" DbObjectName="Songbook.songbook.viewsongsforsetlists" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByInTablet" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByInTablet" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByInTablet">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ArtistList, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, SetlistAddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet)</CommandText>
+                    <CommandText>SELECT ArtistList, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet, SetlistAddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="InTablet" ColumnName="InTablet" DataSourceName="Songbook.songbook.viewsongsforsetlists" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@InTablet" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="InTablet" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -1236,7 +1237,7 @@ FROM            ViewRepertoire</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Active" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+              <xs:element name="Active" msprop:Generator_UserColumnName="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnVarNameInTable="columnActive" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1544,6 +1545,13 @@ FROM            ViewRepertoire</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="FlagList" msprop:Generator_ColumnPropNameInRow="FlagList" msprop:Generator_ColumnPropNameInTable="FlagListColumn" msprop:Generator_ColumnVarNameInTable="columnFlagList" msprop:Generator_UserColumnName="FlagList" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1738,12 +1746,12 @@ FROM            ViewRepertoire</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Repertoire" msprop:Generator_RowClassName="RepertoireRow" msprop:Generator_RowEvHandlerName="RepertoireRowChangeEventHandler" msprop:Generator_RowDeletedName="RepertoireRowDeleted" msprop:Generator_RowDeletingName="RepertoireRowDeleting" msprop:Generator_RowEvArgName="RepertoireRowChangeEvent" msprop:Generator_TablePropName="Repertoire" msprop:Generator_RowChangedName="RepertoireRowChanged" msprop:Generator_UserTableName="Repertoire" msprop:Generator_RowChangingName="RepertoireRowChanging" msprop:Generator_TableClassName="RepertoireDataTable" msprop:Generator_TableVarName="tableRepertoire">
+        <xs:element name="Repertoire" msprop:Generator_RowEvHandlerName="RepertoireRowChangeEventHandler" msprop:Generator_RowDeletedName="RepertoireRowDeleted" msprop:Generator_RowDeletingName="RepertoireRowDeleting" msprop:Generator_RowEvArgName="RepertoireRowChangeEvent" msprop:Generator_TablePropName="Repertoire" msprop:Generator_RowChangedName="RepertoireRowChanged" msprop:Generator_UserTableName="Repertoire" msprop:Generator_RowChangingName="RepertoireRowChanging" msprop:Generator_RowClassName="RepertoireRow" msprop:Generator_TableClassName="RepertoireDataTable" msprop:Generator_TableVarName="tableRepertoire">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Song" msprop:Generator_UserColumnName="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnVarNameInTable="columnSong" type="xs:int" />
-              <xs:element name="Band" msprop:Generator_UserColumnName="Band" msprop:Generator_ColumnPropNameInTable="BandColumn" msprop:Generator_ColumnPropNameInRow="Band" msprop:Generator_ColumnVarNameInTable="columnBand" type="xs:int" />
-              <xs:element name="PerformanceNotes" msprop:Generator_UserColumnName="PerformanceNotes" msprop:Generator_ColumnPropNameInTable="PerformanceNotesColumn" msprop:Generator_ColumnPropNameInRow="PerformanceNotes" msprop:Generator_ColumnVarNameInTable="columnPerformanceNotes" minOccurs="0">
+              <xs:element name="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_UserColumnName="Song" msprop:Generator_ColumnVarNameInTable="columnSong" type="xs:int" />
+              <xs:element name="Band" msprop:Generator_ColumnPropNameInTable="BandColumn" msprop:Generator_ColumnPropNameInRow="Band" msprop:Generator_UserColumnName="Band" msprop:Generator_ColumnVarNameInTable="columnBand" type="xs:int" />
+              <xs:element name="PerformanceNotes" msprop:Generator_ColumnPropNameInTable="PerformanceNotesColumn" msprop:Generator_ColumnPropNameInRow="PerformanceNotes" msprop:Generator_UserColumnName="PerformanceNotes" msprop:Generator_ColumnVarNameInTable="columnPerformanceNotes" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -1753,40 +1761,40 @@ FROM            ViewRepertoire</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ViewRepertoire" msprop:Generator_RowClassName="ViewRepertoireRow" msprop:Generator_RowEvHandlerName="ViewRepertoireRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewRepertoireRowDeleted" msprop:Generator_RowDeletingName="ViewRepertoireRowDeleting" msprop:Generator_RowEvArgName="ViewRepertoireRowChangeEvent" msprop:Generator_TablePropName="ViewRepertoire" msprop:Generator_RowChangedName="ViewRepertoireRowChanged" msprop:Generator_UserTableName="ViewRepertoire" msprop:Generator_RowChangingName="ViewRepertoireRowChanging" msprop:Generator_TableClassName="ViewRepertoireDataTable" msprop:Generator_TableVarName="tableViewRepertoire">
+        <xs:element name="ViewRepertoire" msprop:Generator_RowEvHandlerName="ViewRepertoireRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewRepertoireRowDeleted" msprop:Generator_RowDeletingName="ViewRepertoireRowDeleting" msprop:Generator_RowEvArgName="ViewRepertoireRowChangeEvent" msprop:Generator_TablePropName="ViewRepertoire" msprop:Generator_RowChangedName="ViewRepertoireRowChanged" msprop:Generator_UserTableName="ViewRepertoire" msprop:Generator_RowChangingName="ViewRepertoireRowChanging" msprop:Generator_RowClassName="ViewRepertoireRow" msprop:Generator_TableClassName="ViewRepertoireDataTable" msprop:Generator_TableVarName="tableViewRepertoire">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Song" msprop:Generator_UserColumnName="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_ColumnVarNameInTable="columnSong" type="xs:int" />
-              <xs:element name="Band" msprop:Generator_UserColumnName="Band" msprop:Generator_ColumnPropNameInTable="BandColumn" msprop:Generator_ColumnPropNameInRow="Band" msprop:Generator_ColumnVarNameInTable="columnBand" type="xs:int" />
-              <xs:element name="BandName" msprop:Generator_UserColumnName="BandName" msprop:Generator_ColumnPropNameInTable="BandNameColumn" msprop:Generator_ColumnPropNameInRow="BandName" msprop:Generator_ColumnVarNameInTable="columnBandName">
+              <xs:element name="Song" msprop:Generator_ColumnPropNameInTable="SongColumn" msprop:Generator_ColumnPropNameInRow="Song" msprop:Generator_UserColumnName="Song" msprop:Generator_ColumnVarNameInTable="columnSong" type="xs:int" />
+              <xs:element name="Band" msprop:Generator_ColumnPropNameInTable="BandColumn" msprop:Generator_ColumnPropNameInRow="Band" msprop:Generator_UserColumnName="Band" msprop:Generator_ColumnVarNameInTable="columnBand" type="xs:int" />
+              <xs:element name="BandName" msprop:Generator_ColumnPropNameInTable="BandNameColumn" msprop:Generator_ColumnPropNameInRow="BandName" msprop:Generator_UserColumnName="BandName" msprop:Generator_ColumnVarNameInTable="columnBandName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PerformanceNotes" msprop:Generator_UserColumnName="PerformanceNotes" msprop:Generator_ColumnPropNameInTable="PerformanceNotesColumn" msprop:Generator_ColumnPropNameInRow="PerformanceNotes" msprop:Generator_ColumnVarNameInTable="columnPerformanceNotes" minOccurs="0">
+              <xs:element name="PerformanceNotes" msprop:Generator_ColumnPropNameInTable="PerformanceNotesColumn" msprop:Generator_ColumnPropNameInRow="PerformanceNotes" msprop:Generator_UserColumnName="PerformanceNotes" msprop:Generator_ColumnVarNameInTable="columnPerformanceNotes" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Title" msprop:Generator_UserColumnName="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnVarNameInTable="columnTitle">
+              <xs:element name="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_UserColumnName="Title" msprop:Generator_ColumnVarNameInTable="columnTitle">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TitlePrefix" msprop:Generator_UserColumnName="TitlePrefix" msprop:Generator_ColumnPropNameInTable="TitlePrefixColumn" msprop:Generator_ColumnPropNameInRow="TitlePrefix" msprop:Generator_ColumnVarNameInTable="columnTitlePrefix" minOccurs="0">
+              <xs:element name="TitlePrefix" msprop:Generator_ColumnPropNameInTable="TitlePrefixColumn" msprop:Generator_ColumnPropNameInRow="TitlePrefix" msprop:Generator_UserColumnName="TitlePrefix" msprop:Generator_ColumnVarNameInTable="columnTitlePrefix" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TitleAndArtist" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TitleAndArtist" msprop:Generator_ColumnPropNameInTable="TitleAndArtistColumn" msprop:Generator_ColumnPropNameInRow="TitleAndArtist" msprop:Generator_ColumnVarNameInTable="columnTitleAndArtist" minOccurs="0">
+              <xs:element name="TitleAndArtist" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="TitleAndArtistColumn" msprop:Generator_ColumnPropNameInRow="TitleAndArtist" msprop:Generator_UserColumnName="TitleAndArtist" msprop:Generator_ColumnVarNameInTable="columnTitleAndArtist" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -1871,14 +1879,14 @@ FROM            ViewRepertoire</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_AlternateArtists_ArtistID" msdata:parent="artists" msdata:child="AlternateArtists" msdata:parentkey="ArtistID" msdata:childkey="ArtistID" msprop:Generator_UserParentTable="artists" msprop:Generator_UserChildTable="AlternateArtists" msprop:Generator_RelationVarName="relationFK_AlternateArtists_ArtistID" msprop:Generator_ChildPropName="GetAlternateArtistsRows" msprop:Generator_ParentPropName="artistsRow" msprop:Generator_UserRelationName="FK_AlternateArtists_ArtistID" />
-      <msdata:Relationship name="FK_AlternateArtists_SongID" msdata:parent="songs" msdata:child="AlternateArtists" msdata:parentkey="ID" msdata:childkey="SongID" msprop:Generator_UserParentTable="songs" msprop:Generator_UserChildTable="AlternateArtists" msprop:Generator_RelationVarName="relationFK_AlternateArtists_SongID" msprop:Generator_ChildPropName="GetAlternateArtistsRows" msprop:Generator_ParentPropName="songsRow" msprop:Generator_UserRelationName="FK_AlternateArtists_SongID" />
-      <msdata:Relationship name="FK_songperformances_performances" msdata:parent="performances" msdata:child="songperformances" msdata:parentkey="ID" msdata:childkey="Performance" msprop:Generator_UserParentTable="performances" msprop:Generator_UserChildTable="songperformances" msprop:Generator_RelationVarName="relationFK_songperformances_performances" msprop:Generator_ChildPropName="GetsongperformancesRows" msprop:Generator_ParentPropName="performancesRow" msprop:Generator_UserRelationName="FK_songperformances_performances" />
-      <msdata:Relationship name="FK_performances_venues" msdata:parent="venues" msdata:child="performances" msdata:parentkey="ID" msdata:childkey="Venue" msprop:Generator_UserParentTable="venues" msprop:Generator_UserChildTable="performances" msprop:Generator_RelationVarName="relationFK_performances_venues" msprop:Generator_ChildPropName="GetperformancesRows" msprop:Generator_UserRelationName="FK_performances_venues" msprop:Generator_ParentPropName="venuesRow" />
-      <msdata:Relationship name="FK_performances_bands" msdata:parent="bands" msdata:child="performances" msdata:parentkey="BandID" msdata:childkey="Band" msprop:Generator_UserParentTable="bands" msprop:Generator_UserChildTable="performances" msprop:Generator_RelationVarName="relationFK_performances_bands" msprop:Generator_ChildPropName="GetperformancesRows" msprop:Generator_UserRelationName="FK_performances_bands" msprop:Generator_ParentPropName="bandsRow" />
-      <msdata:Relationship name="FK_flaggedsongs_flags" msdata:parent="flags" msdata:child="flaggedsongs" msdata:parentkey="FlagID" msdata:childkey="FlagID" msprop:Generator_UserParentTable="flags" msprop:Generator_UserChildTable="flaggedsongs" msprop:Generator_RelationVarName="relationFK_flaggedsongs_flags" msprop:Generator_ChildPropName="GetflaggedsongsRows" msprop:Generator_ParentPropName="flagsRow" msprop:Generator_UserRelationName="FK_flaggedsongs_flags" />
-      <msdata:Relationship name="FK_Repertoire_bands" msdata:parent="bands" msdata:child="Repertoire" msdata:parentkey="BandID" msdata:childkey="Band" msprop:Generator_UserParentTable="bands" msprop:Generator_UserChildTable="Repertoire" msprop:Generator_RelationVarName="relationFK_Repertoire_bands" msprop:Generator_ChildPropName="GetRepertoireRows" msprop:Generator_UserRelationName="FK_Repertoire_bands" msprop:Generator_ParentPropName="bandsRow" />
-      <msdata:Relationship name="FK_Repertoire_songs" msdata:parent="songs" msdata:child="Repertoire" msdata:parentkey="ID" msdata:childkey="Song" msprop:Generator_UserParentTable="songs" msprop:Generator_UserChildTable="Repertoire" msprop:Generator_RelationVarName="relationFK_Repertoire_songs" msprop:Generator_ChildPropName="GetRepertoireRows" msprop:Generator_UserRelationName="FK_Repertoire_songs" msprop:Generator_ParentPropName="songsRow" />
+      <msdata:Relationship name="FK_AlternateArtists_ArtistID" msdata:parent="artists" msdata:child="AlternateArtists" msdata:parentkey="ArtistID" msdata:childkey="ArtistID" msprop:Generator_UserParentTable="artists" msprop:Generator_UserChildTable="AlternateArtists" msprop:Generator_RelationVarName="relationFK_AlternateArtists_ArtistID" msprop:Generator_ChildPropName="GetAlternateArtistsRows" msprop:Generator_UserRelationName="FK_AlternateArtists_ArtistID" msprop:Generator_ParentPropName="artistsRow" />
+      <msdata:Relationship name="FK_AlternateArtists_SongID" msdata:parent="songs" msdata:child="AlternateArtists" msdata:parentkey="ID" msdata:childkey="SongID" msprop:Generator_UserParentTable="songs" msprop:Generator_UserChildTable="AlternateArtists" msprop:Generator_RelationVarName="relationFK_AlternateArtists_SongID" msprop:Generator_ChildPropName="GetAlternateArtistsRows" msprop:Generator_UserRelationName="FK_AlternateArtists_SongID" msprop:Generator_ParentPropName="songsRow" />
+      <msdata:Relationship name="FK_songperformances_performances" msdata:parent="performances" msdata:child="songperformances" msdata:parentkey="ID" msdata:childkey="Performance" msprop:Generator_UserParentTable="performances" msprop:Generator_UserChildTable="songperformances" msprop:Generator_RelationVarName="relationFK_songperformances_performances" msprop:Generator_ChildPropName="GetsongperformancesRows" msprop:Generator_UserRelationName="FK_songperformances_performances" msprop:Generator_ParentPropName="performancesRow" />
+      <msdata:Relationship name="FK_performances_venues" msdata:parent="venues" msdata:child="performances" msdata:parentkey="ID" msdata:childkey="Venue" msprop:Generator_UserParentTable="venues" msprop:Generator_UserChildTable="performances" msprop:Generator_RelationVarName="relationFK_performances_venues" msprop:Generator_ChildPropName="GetperformancesRows" msprop:Generator_ParentPropName="venuesRow" msprop:Generator_UserRelationName="FK_performances_venues" />
+      <msdata:Relationship name="FK_performances_bands" msdata:parent="bands" msdata:child="performances" msdata:parentkey="BandID" msdata:childkey="Band" msprop:Generator_UserParentTable="bands" msprop:Generator_UserChildTable="performances" msprop:Generator_RelationVarName="relationFK_performances_bands" msprop:Generator_ChildPropName="GetperformancesRows" msprop:Generator_ParentPropName="bandsRow" msprop:Generator_UserRelationName="FK_performances_bands" />
+      <msdata:Relationship name="FK_flaggedsongs_flags" msdata:parent="flags" msdata:child="flaggedsongs" msdata:parentkey="FlagID" msdata:childkey="FlagID" msprop:Generator_UserParentTable="flags" msprop:Generator_UserChildTable="flaggedsongs" msprop:Generator_RelationVarName="relationFK_flaggedsongs_flags" msprop:Generator_ChildPropName="GetflaggedsongsRows" msprop:Generator_UserRelationName="FK_flaggedsongs_flags" msprop:Generator_ParentPropName="flagsRow" />
+      <msdata:Relationship name="FK_Repertoire_bands" msdata:parent="bands" msdata:child="Repertoire" msdata:parentkey="BandID" msdata:childkey="Band" msprop:Generator_UserParentTable="bands" msprop:Generator_UserChildTable="Repertoire" msprop:Generator_RelationVarName="relationFK_Repertoire_bands" msprop:Generator_ChildPropName="GetRepertoireRows" msprop:Generator_ParentPropName="bandsRow" msprop:Generator_UserRelationName="FK_Repertoire_bands" />
+      <msdata:Relationship name="FK_Repertoire_songs" msdata:parent="songs" msdata:child="Repertoire" msdata:parentkey="ID" msdata:childkey="Song" msprop:Generator_UserParentTable="songs" msprop:Generator_UserChildTable="Repertoire" msprop:Generator_RelationVarName="relationFK_Repertoire_songs" msprop:Generator_ChildPropName="GetRepertoireRows" msprop:Generator_ParentPropName="songsRow" msprop:Generator_UserRelationName="FK_Repertoire_songs" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
