@@ -85,6 +85,17 @@ namespace Budget
             PostImport();
         }
 
+        public void RepairFileFromChecklist(string accountID, string accountFormat)
+        {
+            CreateDefaultSourceFileProcessor(accountID, accountFormat);
+
+            PreImport();
+
+            _Processor.RepairFile();
+
+            PostImport();
+        }
+
         void CloseSourceFile()
         {
             _Processor = null;

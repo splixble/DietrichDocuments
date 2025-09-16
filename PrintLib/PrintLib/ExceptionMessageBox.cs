@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace PrintLib

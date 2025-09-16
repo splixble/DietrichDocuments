@@ -22,6 +22,7 @@ namespace Budget
         // columns:
         DataGridViewTextBoxColumn _AccountColumn;
         DataGridViewButtonColumn _LoadFileButtonColumn;
+        DataGridViewButtonColumn _RepairFileButtonColumn;
         DataGridViewTextBoxColumn _LastTransDateColumn;
         DataGridViewTextBoxColumn _LoadedFilesColumn;
 
@@ -51,6 +52,13 @@ namespace Budget
             _LoadFileButtonColumn.Name = "LoadFileButtonColumn";
             _LoadFileButtonColumn.Width = 80;
 
+            _RepairFileButtonColumn = new DataGridViewButtonColumn();
+            _RepairFileButtonColumn.HeaderText = "Repair File";
+            _RepairFileButtonColumn.Text = "Repair File";
+            _RepairFileButtonColumn.UseColumnTextForButtonValue = true;
+            _RepairFileButtonColumn.Name = "RepairFileButtonColumn";
+            _RepairFileButtonColumn.Width = 80;
+
             _LastTransDateColumn = new DataGridViewTextBoxColumn();
             _LastTransDateColumn.Name = "LastTransDateColumn";
             _LastTransDateColumn.Width = 70;
@@ -65,7 +73,8 @@ namespace Budget
             _LoadedFilesColumn.HeaderText = "File(s) Loaded";
             _LoadedFilesColumn.ReadOnly = true;
 
-            grid.Columns.AddRange(new DataGridViewColumn[] { _AccountColumn, _LoadFileButtonColumn, _LastTransDateColumn, _LoadedFilesColumn });
+            grid.Columns.AddRange(new DataGridViewColumn[] { _AccountColumn, _LoadFileButtonColumn, _RepairFileButtonColumn, 
+                _LastTransDateColumn, _LoadedFilesColumn });
 
             budgetAccountBindingSource.BindingComplete += BudgetAccountBindingSource_BindingComplete;
             grid.RowsAdded += Grid_RowsAdded;
@@ -137,13 +146,21 @@ namespace Budget
 
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == _LoadFileButtonColumn.Index)
+            if (e.RowIndex >= 0 && (e.ColumnIndex == _LoadFileButtonColumn.Index || e.ColumnIndex == _RepairFileButtonColumn.Index))
             {
                 if (_Form == null)
                     throw (new Exception("The SourceFileForm needs to call SourceFileChecklistControl.Initialize()."));
 
-                MainDataSet.AccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
-                _Form.ImportFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
+                if (e.ColumnIndex == _LoadFileButtonColumn.Index)
+                {
+                    MainDataSet.AccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
+                    _Form.ImportFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
+                }
+                else if (e.ColumnIndex == _RepairFileButtonColumn.Index)
+                {
+                    MainDataSet.AccountRow accountRow = GetBudgetAccountRowFromGridRow(e.RowIndex);
+                    _Form.RepairFileFromChecklist(accountRow.AccountID, accountRow.DefaultFormatAutoEntry);
+                }
 
                 // TODO refresh the grid after the import goes thru
             }

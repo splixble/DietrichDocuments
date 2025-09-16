@@ -1,5 +1,7 @@
 ﻿using Budget.MainDataSetTableAdapters;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
 using Microsoft.VisualBasic.FileIO;
+using PrintLib;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -83,8 +85,8 @@ namespace Budget
             return fileItemsRow;
         }
 
-        // Extracts fields from a line of the text file, puts them in fieldsByColumnName.
-        // Returns whether line was parseable.
+        // Extracts fields from a repairedLine of the text file, puts them in fieldsByColumnName.
+        // Returns whether repairedLine was parseable.
         // Can be overridden for custom source files like Amazon order lists.
         protected virtual bool ExtractFields(string[] fileFields, ColumnValueList fieldsByColumnName)
         {
@@ -222,7 +224,7 @@ namespace Budget
                 }
             }
 
-            // if no duplicate is found, and we're not allowed to add rows, then just move to the next line in src file:
+            // if no duplicate is found, and we're not allowed to add rows, then just move to the next repairedLine in src file:
             if (importedRow == null)
                 return null;
 
@@ -258,7 +260,7 @@ namespace Budget
 
         public virtual void ProcessManualLines(string[] textLines)
         {
-            // This may be overridden if the lines are not neatly one line pre imported record. Otherwise, it's just like reading a file. 
+            // This may be overridden if the lines are not neatly one repairedLine pre imported record. Otherwise, it's just like reading a file. 
 
             InitializeImport(false);
 
@@ -269,7 +271,7 @@ namespace Budget
             {
                 lineNum++;
 
-                // Initially parse the line to tab-separated values:
+                // Initially parse the repairedLine to tab-separated values:
                 string[] fileFields = line.Split('\t');
 
                 ColumnValueList fieldsByColumnName = new ColumnValueList();
@@ -279,6 +281,83 @@ namespace Budget
                 if (lineParsable)
                     AddOrUpdateImportedRow(fieldsByColumnName, lineNum);
             }
+        }
+
+        public void RepairFile()
+        {
+            string downloadedFilePath = PromptForSourceFile(true);
+            if (downloadedFilePath == null)
+                return;
+
+            if (MessageBox.Show("Repair nested, non-escaped double quotes in file? (possibly other repair options in the future)", "Repair Source File",
+                MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                return;
+
+            // Read in file to be repaired:
+            List<string> oldFileLines = new List<string>();
+            using (StreamReader sr = new StreamReader(downloadedFilePath))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                    oldFileLines.Add(line);
+            }
+
+            // Repair each repairedLine:
+            List<string> repairedFileLines = new List<string>();
+            for (int i = 0; i < oldFileLines.Count; i++)
+            {
+                string repairedLine = RepairSourceFileLine(oldFileLines[i], i+1); // displays error message and returns null if error found
+                if (repairedLine == null)
+                    return;
+                else
+                    repairedFileLines.Add((repairedLine));
+            }
+
+            string repairedFilePath = Path.Combine(Path.GetDirectoryName(downloadedFilePath), Path.GetFileNameWithoutExtension(downloadedFilePath) 
+                + "_Repaired" + DateTime.Now.ToString("yyMMdd_hhmmss") + Path.GetExtension(downloadedFilePath));
+
+            using (StreamWriter sw = new StreamWriter(repairedFilePath))
+            {
+                foreach (string repairedLine in repairedFileLines)
+                    sw.WriteLine(repairedLine);
+            }
+
+            MessageBox.Show("Repaired source file " + repairedFilePath + " written.");
+        }
+
+        string RepairSourceFileLine(string fileLine, int lineNum) // displays error message and returns null if error found
+        {
+            // Repair BofA CSV problem: Any nested double quote (after the open quote, but not followed by a comma or end of repairedLine) 
+            // needs to be replaced by escaped out (doubled) quote:
+            bool insideQuotes = false;
+            string outputLine = "";
+            for (int i = 0; i < fileLine.Length; i++)
+            {
+                if (fileLine[i] == '"')
+                {
+                    if (insideQuotes)
+                    {
+                        // If it's followed by a comma or end of repairedLine, it's a close quote:
+                        if (i == fileLine.Length - 1 || fileLine[i + 1] == ',')
+                            insideQuotes = false;
+                        // Otherwise, it's a nested literal quote, and as such needs to be doubled:
+                        else
+                            outputLine += '"'; // the first of a doubled quote mark
+                    }
+                    else
+                        insideQuotes = true;
+                }
+                outputLine += fileLine[i];
+            }
+
+            // It better end up outside the quotes; otherwise it's corrupt beyond repair:
+            if (insideQuotes)
+            {
+                MessageBox.Show("Unclosed quotes in repairedLine " + lineNum.ToString() + "; file cannot be repaired");
+                return null;
+            }
+
+            return outputLine;
         }
 
         public void ProcessFromChecklist()
@@ -319,54 +398,61 @@ namespace Budget
         {
             InitializeImport(true);
 
-            if (IsManuallyEntered)
+            try
             {
-                StatementDatePrompt prompt = new StatementDatePrompt();
-                prompt.InitializeWithFilename(SourceFilePath);
-                DialogResult res = prompt.ShowDialog();
-                if (res == DialogResult.OK)
+                if (IsManuallyEntered)
                 {
-                    // Bring up PDF (or whatever format) file:
-                    System.Diagnostics.Process.Start(SourceFilePath);
-
-                    // TODO WHAT IF we dont real;ly need the statement date?
-                    // make new source file row:
-                    _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
-                    _NewestSourceFileRow.FilePath = SourceFilePath;
-                    _NewestSourceFileRow.StatementDate = prompt.StatementDate;
-                    _NewestSourceFileRow.ManuallyEntered = true;
-                    _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
-                }
-            }
-            else
-            {
-                // make new source file row:
-                _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
-                _NewestSourceFileRow.FilePath = _SourceFilePath;
-                _NewestSourceFileRow.ManuallyEntered = false;
-                _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
-
-                // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load source files:
-                using (TextFieldParser parser = new TextFieldParser(_SourceFilePath))
-                {
-
-                    parser.TextFieldType = FieldType.Delimited;
-                    parser.SetDelimiters(","); // allow tab delim?
-                    int lineNum = 0; // it's 1-relative
-                    while (!parser.EndOfData)
+                    StatementDatePrompt prompt = new StatementDatePrompt();
+                    prompt.InitializeWithFilename(SourceFilePath);
+                    DialogResult res = prompt.ShowDialog();
+                    if (res == DialogResult.OK)
                     {
-                        //Processing row
-                        string[] fileFields = parser.ReadFields();
-                        lineNum++;
+                        // Bring up PDF (or whatever format) file:
+                        System.Diagnostics.Process.Start(SourceFilePath);
 
-                        ColumnValueList fieldsByColumnName = new ColumnValueList();
-
-                        bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
-
-                        if (lineParsable)
-                            AddOrUpdateImportedRow(fieldsByColumnName, lineNum);
+                        // TODO WHAT IF we dont real;ly need the statement date?
+                        // make new source file row:
+                        _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
+                        _NewestSourceFileRow.FilePath = SourceFilePath;
+                        _NewestSourceFileRow.StatementDate = prompt.StatementDate;
+                        _NewestSourceFileRow.ManuallyEntered = true;
+                        _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
                     }
                 }
+                else
+                {
+                    // make new source file row:
+                    _NewestSourceFileRow = _SourceFileTable.NewSourceFileRow();
+                    _NewestSourceFileRow.FilePath = _SourceFilePath;
+                    _NewestSourceFileRow.ManuallyEntered = false;
+                    _SourceFileTable.AddSourceFileRow(_NewestSourceFileRow);
+
+                    // use Microsoft.VisualBasic.FileIO objects (TextFieldParser, TextFieldType) to load source files:
+                    using (TextFieldParser parser = new TextFieldParser(_SourceFilePath))
+                    {
+
+                        parser.TextFieldType = FieldType.Delimited;
+                        parser.SetDelimiters(","); // allow tab delim?
+                        int lineNum = 0; // it's 1-relative
+                        while (!parser.EndOfData)
+                        {
+                            //Processing row
+                            string[] fileFields = parser.ReadFields();
+                            lineNum++;
+
+                            ColumnValueList fieldsByColumnName = new ColumnValueList();
+
+                            bool lineParsable = ExtractFields(fileFields, fieldsByColumnName);
+
+                            if (lineParsable)
+                                AddOrUpdateImportedRow(fieldsByColumnName, lineNum);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                ExceptionMessageBox.Show("Error in SourceFileProcessor.ReadInSourceFile:", e, new System.Diagnostics.StackTrace(true));
             }
         }
 
