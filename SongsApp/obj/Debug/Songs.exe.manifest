@@ -337,7 +337,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bunGJO84+2sE9bN5FCpQ4F6utrR6/+dQgKhdvCUUrWE=</dsig:DigestValue>
+        <dsig:DigestValue>szqo+hD5ggeFqCrulSXwibz/EQNLRaEtBY4+Jg8R+fI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -349,7 +349,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>f6GrUD9geP+UoPo0mACaLFCG7ecv7ba/d8UaxsTfOfA=</dsig:DigestValue>
+        <dsig:DigestValue>4+ps69BU3dMKQuvJIXz3Eo853jAxdcqB7WGWcJyWzoY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -361,7 +361,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vYgzhvsTGPegXFek4dqbC2DItcDUwDFPFbLu7DMH1Hk=</dsig:DigestValue>
+        <dsig:DigestValue>aWTWazS149UZVE0uttzjOpnnoph6GLFoiFQgKwLL/LQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -626,13 +626,13 @@
       <dsig:DigestValue>g9QqPSkzxtsk849i8aQiNUgyEDtAZWqqWehb+rOnGkA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Songs.exe.config" size="3968">
+  <file name="Songs.exe.config" size="4004">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>N1HoHZXX7E8BXzugYtCKjNUy3GfiTdSpjSP6QNZRhiA=</dsig:DigestValue>
+      <dsig:DigestValue>qYOl/S6lAhwF+FxPOWt0OHcpSUBZ67L+9a4mf5PEI2A=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

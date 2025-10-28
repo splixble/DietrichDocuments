@@ -51,10 +51,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>34012C38EF8D3BAD31BC23D8F7BFEC5B644081C9</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B6B2AECC4D618A796850E29A6AE53EC36840B38C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Budget_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Budget_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -368,6 +368,7 @@
     <EmbeddedResource Include="StatementDatePrompt.resx">
       <DependentUpon>StatementDatePrompt.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Budget_1_TemporaryKey.pfx" />
     <None Include="Budget_TemporaryKey.pfx" />
     <None Include="MainDataSet.xsc">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
