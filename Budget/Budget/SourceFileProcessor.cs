@@ -138,7 +138,7 @@ namespace Budget
         {
             get
             {
-                return "D:\\Dietrich\\Business\\Budget App Input Files"; // DIAG get from Config file, which s/b read at beginning and globally available
+                return "D:\\Dietrich\\Financial\\Budget App Input Files"; // DIAG get from Config file, which s/b read at beginning and globally available
             }
         }
 
