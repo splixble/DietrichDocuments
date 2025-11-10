@@ -130,6 +130,13 @@ namespace PrintLib
         /// <param name="owner">Represents the top-level window that will own the modal dialog box
         public static void Show(string headingMessage, Exception ex, StackTrace stackTrace, bool showDetail, string bannerText, IWin32Window owner)
         {
+            /*
+             * DIAG THIS CRASHES ON NEW COMPUTER "Commander", 7-Nov-25: System.Resources.MissingManifestResourceException: 
+             * 'Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "PrintLib.ErrorMessageBox.resources" 
+             * was correctly embedded or linked into assembly "PrintLib" at compile time, or that all the satellite assemblies required are loadable and fully signed.'
+             * -- when input source file in Budget app needs to be "corrected" because of nested quotes.
+             * */
+
             ExceptionMessageBox msgBox = new ExceptionMessageBox(showDetail);
 
             // Set banner text to include app name and user, per 21 CFR part 11:: 

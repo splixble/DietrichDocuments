@@ -28,7 +28,7 @@ namespace Songs
             InitializeComponent();
 
             Utils.AllowNullFields(this.dataSet.AlternateArtists); // for newly added rows; FK will be filled in on save
-            Utils.AllowNullFields(dataSet1.flaggedsongs); // for newly added rows; FK will be filled in on save
+            Utils.AllowNullFields(dataSet1.SongsFlagged); // for newly added rows; FK will be filled in on save
         }
 
         public DialogResult ShowDialog(int songID, string artistName)
@@ -48,8 +48,8 @@ namespace Songs
         {
             // TODO: This line of code loads data into the 'dataSet1.songs' table. You can move, or remove it, as needed.
             this.songsTableAdapter.FillByID(this.dataSet1.songs, _SongID);
-            // TODO: This line of code loads data into the 'dataSet1.flaggedsongs' table. You can move, or remove it, as needed.
-            this.flaggedsongsTableAdapter.FillBySong(this.dataSet1.flaggedsongs, _SongID);
+            // TODO: This line of code loads data into the 'dataSet1.SongsFlagged' table. You can move, or remove it, as needed.
+            this.SongsFlaggedTableAdapter.FillBySong(this.dataSet1.SongsFlagged, _SongID);
             // TODO: This line of code loads data into the 'dataSet1.flags' table. You can move, or remove it, as needed.
             this.flagsTableAdapter.Fill(this.dataSet1.flags);
             // TODO: This line of code loads data into the 'dataSet1.ViewArtistNameForListBox' table. You can move, or remove it, as needed.
@@ -60,14 +60,14 @@ namespace Songs
 
         private void UpdateDB()
         {
-            flaggedsongsBindingSource.EndEdit();
+            SongsFlaggedBindingSource.EndEdit();
             alternateArtistsBindingSource.EndEdit();
             
             // Set SongID on any new Flag records: 
-            foreach (AzureDataSet.flaggedsongsRow row in dataSet1.flaggedsongs)
+            foreach (AzureDataSet.SongsFlaggedRow row in dataSet1.SongsFlagged)
             {
-                if (row[dataSet1.flaggedsongs.SongColumn] == DBNull.Value)
-                    row.Song = _SongID;
+                if (row[dataSet1.SongsFlagged.SongIDColumn] == DBNull.Value)
+                    row.SongID = _SongID;
             }
 
             // Set SongID on any new Alt Artist records: 
@@ -77,7 +77,7 @@ namespace Songs
                     row.SongID = _SongID;
             }
 
-            this.flaggedsongsTableAdapter.Update(dataSet1.flaggedsongs);
+            this.SongsFlaggedTableAdapter.Update(dataSet1.SongsFlagged);
             this.alternateArtistsTableAdapter.Update(dataSet.AlternateArtists);
             DataModified = false;
         }
@@ -95,14 +95,14 @@ namespace Songs
             }
         }
 
-        private void flaggedsongsBindingSource_CurrentItemChanged(object sender, EventArgs e)
+        private void SongsFlaggedBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
             CheckIfDataModified();
         }
 
         void CheckIfDataModified()
         {
-            DataModified = Utils.DataTableIsModified(dataSet1.flaggedsongs) || 
+            DataModified = Utils.DataTableIsModified(dataSet1.SongsFlagged) || 
                 Utils.DataTableIsModified(dataSet.AlternateArtists);
         }
 

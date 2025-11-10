@@ -89,7 +89,7 @@ namespace Songs
             this.comboSongFinder = new System.Windows.Forms.ComboBox();
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.flaggedsongsTableAdapter1 = new Songs.AzureDataSetTableAdapters.flaggedsongsTableAdapter();
+            this.songsFlaggedTableAdapter1 = new Songs.AzureDataSetTableAdapters.SongsFlaggedTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -598,9 +598,9 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // flaggedsongsTableAdapter1
+            // songsFlaggedTableAdapter1
             // 
-            this.flaggedsongsTableAdapter1.ClearBeforeFill = true;
+            this.songsFlaggedTableAdapter1.ClearBeforeFill = true;
             // 
             // SongsForm
             // 
@@ -698,7 +698,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeDBTablesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bandRepertoireToolStripMenuItem;
-        private AzureDataSetTableAdapters.flaggedsongsTableAdapter flaggedsongsTableAdapter1;
+        private AzureDataSetTableAdapters.SongsFlaggedTableAdapter songsFlaggedTableAdapter1;
     }
 }
 

@@ -39,7 +39,7 @@ namespace Songs
             }
         }
 
-        DataView _FlaggedSongsByFlagAndSong; // DIAG Wont be needed when we make Flag & Song the primary keys
+        // REMOVED 10Nov25 DataView _FlaggedSongsByFlagAndSong; // Wont be needed when we make Flag & Song the primary keys
 
         public SongsForm()
         {
@@ -50,13 +50,10 @@ namespace Songs
         private void Form1_Load(object sender, EventArgs e)
         {
             this.flagsTableAdapter.Fill(this.dataSet1.flags);
-            this.flaggedsongsTableAdapter1.Fill(this.dataSet1.flaggedsongs);
+            this.songsFlaggedTableAdapter1.Fill(this.dataSet1.SongsFlagged);
 
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime) // if not in Designer mode
             {
-                _FlaggedSongsByFlagAndSong = new DataView(this.dataSet1.flaggedsongs);
-                _FlaggedSongsByFlagAndSong.Sort = "FlagID ASC, Song ASC";
-
                 _FlagColumnList = new SortedList< string, DataGridViewCheckBoxColumn >(); // Key is FlagCode
                 foreach (flagsRow flagRow in this.dataSet1.flags)
                 {
@@ -129,9 +126,9 @@ namespace Songs
                 }
             }
 
-            foreach(flaggedsongsRow flaggedSongRow in dataSet1.flaggedsongs)
+            foreach(SongsFlaggedRow flaggedSongRow in dataSet1.SongsFlagged)
             {
-                int rowIndex = GetRowIndexFromSongID(flaggedSongRow.Song);
+                int rowIndex = GetRowIndexFromSongID(flaggedSongRow.SongID);
 
                 flagsRow flagRow = this.dataSet1.flags.FindByFlagID(flaggedSongRow.FlagID);
                 if (flagRow != null && flagRow.Active)
@@ -166,7 +163,7 @@ namespace Songs
             songsBindingSource.EndEdit();
             this.songsTableAdapter.Update(this.dataSet1.songs);
 
-            this.flaggedsongsTableAdapter1.Update(this.dataSet1.flaggedsongs);
+            this.songsFlaggedTableAdapter1.Update(this.dataSet1.SongsFlagged);
 
             DataModified = false;
             Redraw();
@@ -593,19 +590,19 @@ namespace Songs
 
                 int songID = GetSongIDFromRowIndex(e.RowIndex);
 
-                int flaggedSongIndex = _FlaggedSongsByFlagAndSong.Find(new object[]{ tag._FlagID, songID});
-                if (flaggedSongIndex == -1)
+
+                SongsFlaggedRow fsRow = this.dataSet1.SongsFlagged.FindBySongIDFlagID(songID, tag._FlagID);
+                if (fsRow == null)
                 {
                     // no flagged song rec; create one
-                    flaggedsongsRow fsRow = dataSet1.flaggedsongs.NewflaggedsongsRow();
+                    fsRow = dataSet1.SongsFlagged.NewSongsFlaggedRow();
                     fsRow.FlagID = tag._FlagID;
-                    fsRow.Song = songID;
-                    dataSet1.flaggedsongs.AddflaggedsongsRow(fsRow);
+                    fsRow.SongID = songID;
+                    dataSet1.SongsFlagged.AddSongsFlaggedRow(fsRow);
                 }
                 else
                 {
                     // flagged song rec exists; delete it
-                    flaggedsongsRow fsRow = this._FlaggedSongsByFlagAndSong[flaggedSongIndex].Row as flaggedsongsRow;
                     fsRow.Delete();
                 }
                 DataModified = true;

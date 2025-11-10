@@ -206,9 +206,6 @@
     <Compile Include="ArtistsForm.Designer.cs">
       <DependentUpon>ArtistsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AzureDataSet.cs">
-      <DependentUpon>AzureDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="AzureDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

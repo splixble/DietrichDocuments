@@ -30,8 +30,6 @@ namespace Songs {
         
         private ViewArtistNameForListBoxDataTable tableViewArtistNameForListBox;
         
-        private flaggedsongsDataTable tableflaggedsongs;
-        
         private flagsDataTable tableflags;
         
         private ViewTOCArtistDataTable tableViewTOCArtist;
@@ -66,6 +64,8 @@ namespace Songs {
         
         private ViewRepertoireDataTable tableViewRepertoire;
         
+        private SongsFlaggedDataTable tableSongsFlagged;
+        
         private global::System.Data.DataRelation relationFK_AlternateArtists_ArtistID;
         
         private global::System.Data.DataRelation relationFK_AlternateArtists_SongID;
@@ -76,11 +76,11 @@ namespace Songs {
         
         private global::System.Data.DataRelation relationFK_performances_bands;
         
-        private global::System.Data.DataRelation relationFK_flaggedsongs_flags;
-        
         private global::System.Data.DataRelation relationFK_Repertoire_bands;
         
         private global::System.Data.DataRelation relationFK_Repertoire_songs;
+        
+        private global::System.Data.DataRelation relationFK_SongsFlagged_flags;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -118,9 +118,6 @@ namespace Songs {
                 }
                 if ((ds.Tables["ViewArtistNameForListBox"] != null)) {
                     base.Tables.Add(new ViewArtistNameForListBoxDataTable(ds.Tables["ViewArtistNameForListBox"]));
-                }
-                if ((ds.Tables["flaggedsongs"] != null)) {
-                    base.Tables.Add(new flaggedsongsDataTable(ds.Tables["flaggedsongs"]));
                 }
                 if ((ds.Tables["flags"] != null)) {
                     base.Tables.Add(new flagsDataTable(ds.Tables["flags"]));
@@ -173,6 +170,9 @@ namespace Songs {
                 if ((ds.Tables["ViewRepertoire"] != null)) {
                     base.Tables.Add(new ViewRepertoireDataTable(ds.Tables["ViewRepertoire"]));
                 }
+                if ((ds.Tables["SongsFlagged"] != null)) {
+                    base.Tables.Add(new SongsFlaggedDataTable(ds.Tables["SongsFlagged"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,16 +218,6 @@ namespace Songs {
         public ViewArtistNameForListBoxDataTable ViewArtistNameForListBox {
             get {
                 return this.tableViewArtistNameForListBox;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public flaggedsongsDataTable flaggedsongs {
-            get {
-                return this.tableflaggedsongs;
             }
         }
         
@@ -403,6 +393,16 @@ namespace Songs {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SongsFlaggedDataTable SongsFlagged {
+            get {
+                return this.tableSongsFlagged;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -477,9 +477,6 @@ namespace Songs {
                 if ((ds.Tables["ViewArtistNameForListBox"] != null)) {
                     base.Tables.Add(new ViewArtistNameForListBoxDataTable(ds.Tables["ViewArtistNameForListBox"]));
                 }
-                if ((ds.Tables["flaggedsongs"] != null)) {
-                    base.Tables.Add(new flaggedsongsDataTable(ds.Tables["flaggedsongs"]));
-                }
                 if ((ds.Tables["flags"] != null)) {
                     base.Tables.Add(new flagsDataTable(ds.Tables["flags"]));
                 }
@@ -531,6 +528,9 @@ namespace Songs {
                 if ((ds.Tables["ViewRepertoire"] != null)) {
                     base.Tables.Add(new ViewRepertoireDataTable(ds.Tables["ViewRepertoire"]));
                 }
+                if ((ds.Tables["SongsFlagged"] != null)) {
+                    base.Tables.Add(new SongsFlaggedDataTable(ds.Tables["SongsFlagged"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -580,12 +580,6 @@ namespace Songs {
             if ((initTable == true)) {
                 if ((this.tableViewArtistNameForListBox != null)) {
                     this.tableViewArtistNameForListBox.InitVars();
-                }
-            }
-            this.tableflaggedsongs = ((flaggedsongsDataTable)(base.Tables["flaggedsongs"]));
-            if ((initTable == true)) {
-                if ((this.tableflaggedsongs != null)) {
-                    this.tableflaggedsongs.InitVars();
                 }
             }
             this.tableflags = ((flagsDataTable)(base.Tables["flags"]));
@@ -690,14 +684,20 @@ namespace Songs {
                     this.tableViewRepertoire.InitVars();
                 }
             }
+            this.tableSongsFlagged = ((SongsFlaggedDataTable)(base.Tables["SongsFlagged"]));
+            if ((initTable == true)) {
+                if ((this.tableSongsFlagged != null)) {
+                    this.tableSongsFlagged.InitVars();
+                }
+            }
             this.relationFK_AlternateArtists_ArtistID = this.Relations["FK_AlternateArtists_ArtistID"];
             this.relationFK_AlternateArtists_SongID = this.Relations["FK_AlternateArtists_SongID"];
             this.relationFK_songperformances_performances = this.Relations["FK_songperformances_performances"];
             this.relationFK_performances_venues = this.Relations["FK_performances_venues"];
             this.relationFK_performances_bands = this.Relations["FK_performances_bands"];
-            this.relationFK_flaggedsongs_flags = this.Relations["FK_flaggedsongs_flags"];
             this.relationFK_Repertoire_bands = this.Relations["FK_Repertoire_bands"];
             this.relationFK_Repertoire_songs = this.Relations["FK_Repertoire_songs"];
+            this.relationFK_SongsFlagged_flags = this.Relations["FK_SongsFlagged_flags"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -714,8 +714,6 @@ namespace Songs {
             base.Tables.Add(this.tablesongs);
             this.tableViewArtistNameForListBox = new ViewArtistNameForListBoxDataTable();
             base.Tables.Add(this.tableViewArtistNameForListBox);
-            this.tableflaggedsongs = new flaggedsongsDataTable();
-            base.Tables.Add(this.tableflaggedsongs);
             this.tableflags = new flagsDataTable();
             base.Tables.Add(this.tableflags);
             this.tableViewTOCArtist = new ViewTOCArtistDataTable();
@@ -750,6 +748,8 @@ namespace Songs {
             base.Tables.Add(this.tableRepertoire);
             this.tableViewRepertoire = new ViewRepertoireDataTable();
             base.Tables.Add(this.tableViewRepertoire);
+            this.tableSongsFlagged = new SongsFlaggedDataTable();
+            base.Tables.Add(this.tableSongsFlagged);
             this.relationFK_AlternateArtists_ArtistID = new global::System.Data.DataRelation("FK_AlternateArtists_ArtistID", new global::System.Data.DataColumn[] {
                         this.tableartists.ArtistIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableAlternateArtists.ArtistIDColumn}, false);
@@ -770,10 +770,6 @@ namespace Songs {
                         this.tablebands.BandIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableperformances.BandColumn}, false);
             this.Relations.Add(this.relationFK_performances_bands);
-            this.relationFK_flaggedsongs_flags = new global::System.Data.DataRelation("FK_flaggedsongs_flags", new global::System.Data.DataColumn[] {
-                        this.tableflags.FlagIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableflaggedsongs.FlagIDColumn}, false);
-            this.Relations.Add(this.relationFK_flaggedsongs_flags);
             this.relationFK_Repertoire_bands = new global::System.Data.DataRelation("FK_Repertoire_bands", new global::System.Data.DataColumn[] {
                         this.tablebands.BandIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableRepertoire.BandColumn}, false);
@@ -782,6 +778,10 @@ namespace Songs {
                         this.tablesongs.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableRepertoire.SongColumn}, false);
             this.Relations.Add(this.relationFK_Repertoire_songs);
+            this.relationFK_SongsFlagged_flags = new global::System.Data.DataRelation("FK_SongsFlagged_flags", new global::System.Data.DataColumn[] {
+                        this.tableflags.FlagIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSongsFlagged.FlagIDColumn}, false);
+            this.Relations.Add(this.relationFK_SongsFlagged_flags);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -799,12 +799,6 @@ namespace Songs {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeViewArtistNameForListBox() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeflaggedsongs() {
             return false;
         }
         
@@ -912,6 +906,12 @@ namespace Songs {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeSongsFlagged() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -975,9 +975,6 @@ namespace Songs {
         public delegate void ViewArtistNameForListBoxRowChangeEventHandler(object sender, ViewArtistNameForListBoxRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void flaggedsongsRowChangeEventHandler(object sender, flaggedsongsRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void flagsRowChangeEventHandler(object sender, flagsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1027,6 +1024,9 @@ namespace Songs {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ViewRepertoireRowChangeEventHandler(object sender, ViewRepertoireRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void SongsFlaggedRowChangeEventHandler(object sender, SongsFlaggedRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2061,301 +2061,6 @@ namespace Songs {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ViewArtistNameForListBoxDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class flaggedsongsDataTable : global::System.Data.TypedTableBase<flaggedsongsRow> {
-            
-            private global::System.Data.DataColumn columnFlaggedSongID;
-            
-            private global::System.Data.DataColumn columnSong;
-            
-            private global::System.Data.DataColumn columnFlagID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsDataTable() {
-                this.TableName = "flaggedsongs";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal flaggedsongsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected flaggedsongsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn FlaggedSongIDColumn {
-                get {
-                    return this.columnFlaggedSongID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn SongColumn {
-                get {
-                    return this.columnSong;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn FlagIDColumn {
-                get {
-                    return this.columnFlagID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow this[int index] {
-                get {
-                    return ((flaggedsongsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event flaggedsongsRowChangeEventHandler flaggedsongsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event flaggedsongsRowChangeEventHandler flaggedsongsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event flaggedsongsRowChangeEventHandler flaggedsongsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event flaggedsongsRowChangeEventHandler flaggedsongsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddflaggedsongsRow(flaggedsongsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow AddflaggedsongsRow(int Song, flagsRow parentflagsRowByFK_flaggedsongs_flags) {
-                flaggedsongsRow rowflaggedsongsRow = ((flaggedsongsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Song,
-                        null};
-                if ((parentflagsRowByFK_flaggedsongs_flags != null)) {
-                    columnValuesArray[2] = parentflagsRowByFK_flaggedsongs_flags[0];
-                }
-                rowflaggedsongsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowflaggedsongsRow);
-                return rowflaggedsongsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow FindByFlaggedSongID(int FlaggedSongID) {
-                return ((flaggedsongsRow)(this.Rows.Find(new object[] {
-                            FlaggedSongID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                flaggedsongsDataTable cln = ((flaggedsongsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new flaggedsongsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnFlaggedSongID = base.Columns["FlaggedSongID"];
-                this.columnSong = base.Columns["Song"];
-                this.columnFlagID = base.Columns["FlagID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnFlaggedSongID = new global::System.Data.DataColumn("FlaggedSongID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFlaggedSongID);
-                this.columnSong = new global::System.Data.DataColumn("Song", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSong);
-                this.columnFlagID = new global::System.Data.DataColumn("FlagID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFlagID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnFlaggedSongID}, true));
-                this.columnFlaggedSongID.AutoIncrement = true;
-                this.columnFlaggedSongID.AutoIncrementSeed = -1;
-                this.columnFlaggedSongID.AutoIncrementStep = -1;
-                this.columnFlaggedSongID.AllowDBNull = false;
-                this.columnFlaggedSongID.ReadOnly = true;
-                this.columnFlaggedSongID.Unique = true;
-                this.columnSong.AllowDBNull = false;
-                this.columnFlagID.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow NewflaggedsongsRow() {
-                return ((flaggedsongsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new flaggedsongsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(flaggedsongsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.flaggedsongsRowChanged != null)) {
-                    this.flaggedsongsRowChanged(this, new flaggedsongsRowChangeEvent(((flaggedsongsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.flaggedsongsRowChanging != null)) {
-                    this.flaggedsongsRowChanging(this, new flaggedsongsRowChangeEvent(((flaggedsongsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.flaggedsongsRowDeleted != null)) {
-                    this.flaggedsongsRowDeleted(this, new flaggedsongsRowChangeEvent(((flaggedsongsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.flaggedsongsRowDeleting != null)) {
-                    this.flaggedsongsRowDeleting(this, new flaggedsongsRowChangeEvent(((flaggedsongsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveflaggedsongsRow(flaggedsongsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AzureDataSet ds = new AzureDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "flaggedsongsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -8271,6 +7976,283 @@ namespace Songs {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SongsFlaggedDataTable : global::System.Data.TypedTableBase<SongsFlaggedRow> {
+            
+            private global::System.Data.DataColumn columnSongID;
+            
+            private global::System.Data.DataColumn columnFlagID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedDataTable() {
+                this.TableName = "SongsFlagged";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SongsFlaggedDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected SongsFlaggedDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SongIDColumn {
+                get {
+                    return this.columnSongID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FlagIDColumn {
+                get {
+                    return this.columnFlagID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRow this[int index] {
+                get {
+                    return ((SongsFlaggedRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SongsFlaggedRowChangeEventHandler SongsFlaggedRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SongsFlaggedRowChangeEventHandler SongsFlaggedRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SongsFlaggedRowChangeEventHandler SongsFlaggedRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SongsFlaggedRowChangeEventHandler SongsFlaggedRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddSongsFlaggedRow(SongsFlaggedRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRow AddSongsFlaggedRow(int SongID, flagsRow parentflagsRowByFK_SongsFlagged_flags) {
+                SongsFlaggedRow rowSongsFlaggedRow = ((SongsFlaggedRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        SongID,
+                        null};
+                if ((parentflagsRowByFK_SongsFlagged_flags != null)) {
+                    columnValuesArray[1] = parentflagsRowByFK_SongsFlagged_flags[0];
+                }
+                rowSongsFlaggedRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSongsFlaggedRow);
+                return rowSongsFlaggedRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRow FindBySongIDFlagID(int SongID, int FlagID) {
+                return ((SongsFlaggedRow)(this.Rows.Find(new object[] {
+                            SongID,
+                            FlagID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SongsFlaggedDataTable cln = ((SongsFlaggedDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SongsFlaggedDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnSongID = base.Columns["SongID"];
+                this.columnFlagID = base.Columns["FlagID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnSongID = new global::System.Data.DataColumn("SongID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSongID);
+                this.columnFlagID = new global::System.Data.DataColumn("FlagID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlagID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnSongID,
+                                this.columnFlagID}, true));
+                this.columnSongID.AllowDBNull = false;
+                this.columnFlagID.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRow NewSongsFlaggedRow() {
+                return ((SongsFlaggedRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SongsFlaggedRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SongsFlaggedRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SongsFlaggedRowChanged != null)) {
+                    this.SongsFlaggedRowChanged(this, new SongsFlaggedRowChangeEvent(((SongsFlaggedRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SongsFlaggedRowChanging != null)) {
+                    this.SongsFlaggedRowChanging(this, new SongsFlaggedRowChangeEvent(((SongsFlaggedRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SongsFlaggedRowDeleted != null)) {
+                    this.SongsFlaggedRowDeleted(this, new SongsFlaggedRowChangeEvent(((SongsFlaggedRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SongsFlaggedRowDeleting != null)) {
+                    this.SongsFlaggedRowDeleting(this, new SongsFlaggedRowChangeEvent(((SongsFlaggedRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveSongsFlaggedRow(SongsFlaggedRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                AzureDataSet ds = new AzureDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SongsFlaggedDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class artistsRow : global::System.Data.DataRow {
@@ -8867,65 +8849,6 @@ namespace Songs {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class flaggedsongsRow : global::System.Data.DataRow {
-            
-            private flaggedsongsDataTable tableflaggedsongs;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal flaggedsongsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableflaggedsongs = ((flaggedsongsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int FlaggedSongID {
-                get {
-                    return ((int)(this[this.tableflaggedsongs.FlaggedSongIDColumn]));
-                }
-                set {
-                    this[this.tableflaggedsongs.FlaggedSongIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Song {
-                get {
-                    return ((int)(this[this.tableflaggedsongs.SongColumn]));
-                }
-                set {
-                    this[this.tableflaggedsongs.SongColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int FlagID {
-                get {
-                    return ((int)(this[this.tableflaggedsongs.FlagIDColumn]));
-                }
-                set {
-                    this[this.tableflaggedsongs.FlagIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flagsRow flagsRow {
-                get {
-                    return ((flagsRow)(this.GetParentRow(this.Table.ParentRelations["FK_flaggedsongs_flags"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_flaggedsongs_flags"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class flagsRow : global::System.Data.DataRow {
             
             private flagsDataTable tableflags;
@@ -9011,12 +8934,12 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow[] GetflaggedsongsRows() {
-                if ((this.Table.ChildRelations["FK_flaggedsongs_flags"] == null)) {
-                    return new flaggedsongsRow[0];
+            public SongsFlaggedRow[] GetSongsFlaggedRows() {
+                if ((this.Table.ChildRelations["FK_SongsFlagged_flags"] == null)) {
+                    return new SongsFlaggedRow[0];
                 }
                 else {
-                    return ((flaggedsongsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_flaggedsongs_flags"])));
+                    return ((SongsFlaggedRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SongsFlagged_flags"])));
                 }
             }
         }
@@ -11672,6 +11595,54 @@ namespace Songs {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SongsFlaggedRow : global::System.Data.DataRow {
+            
+            private SongsFlaggedDataTable tableSongsFlagged;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SongsFlaggedRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSongsFlagged = ((SongsFlaggedDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int SongID {
+                get {
+                    return ((int)(this[this.tableSongsFlagged.SongIDColumn]));
+                }
+                set {
+                    this[this.tableSongsFlagged.SongIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int FlagID {
+                get {
+                    return ((int)(this[this.tableSongsFlagged.FlagIDColumn]));
+                }
+                set {
+                    this[this.tableSongsFlagged.FlagIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public flagsRow flagsRow {
+                get {
+                    return ((flagsRow)(this.GetParentRow(this.Table.ParentRelations["FK_SongsFlagged_flags"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SongsFlagged_flags"]);
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -11759,40 +11730,6 @@ namespace Songs {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewArtistNameForListBoxRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class flaggedsongsRowChangeEvent : global::System.EventArgs {
-            
-            private flaggedsongsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRowChangeEvent(flaggedsongsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public flaggedsongsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -12371,6 +12308,40 @@ namespace Songs {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewRepertoireRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class SongsFlaggedRowChangeEvent : global::System.EventArgs {
+            
+            private SongsFlaggedRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRowChangeEvent(SongsFlaggedRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SongsFlaggedRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -13604,341 +13575,6 @@ SELECT TitlePrefix, Title, Code, Comment, PageNumberOriginal, Category, ID, Arti
             }
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class flaggedsongsTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public flaggedsongsTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "flaggedsongs";
-            tableMapping.ColumnMappings.Add("FlaggedSongID", "FlaggedSongID");
-            tableMapping.ColumnMappings.Add("Song", "Song");
-            tableMapping.ColumnMappings.Add("FlagID", "FlagID");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [songbook].[flaggedsongs] WHERE (([FlaggedSongID] = @Original_Flagged" +
-                "SongID) AND ([Song] = @Original_Song) AND ([FlagID] = @Original_FlagID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlaggedSongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlaggedSongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[flaggedsongs] ([Song], [FlagID]) VALUES (@Song, @FlagID);" +
-                "\r\nSELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSo" +
-                "ngID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[flaggedsongs] SET [Song] = @Song, [FlagID] = @FlagID WHERE (([FlaggedSongID] = @Original_FlaggedSongID) AND ([Song] = @Original_Song) AND ([FlagID] = @Original_FlagID));
-SELECT FlaggedSongID, Song, FlagID FROM songbook.flaggedsongs WHERE (FlaggedSongID = @FlaggedSongID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlaggedSongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlaggedSongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlaggedSongID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FlaggedSongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        FlaggedSongID, Song, FlagID\r\nFROM            songbook.flaggedsongs";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        FS.FlaggedSongID, FS.Song, FS.FlagID\r\nFROM            songbook.flag" +
-                "gedsongs AS FS INNER JOIN\r\n                         songbook.flags AS FL ON FS.F" +
-                "lagID = FL.FlagID AND FL.Active = 1";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT FlagID, FlaggedSongID, Song FROM songbook.flaggedsongs WHERE (Song = @song" +
-                ")";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@song", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(AzureDataSet.flaggedsongsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillActiveFlagSongs(AzureDataSet.flaggedsongsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBySong(AzureDataSet.flaggedsongsDataTable dataTable, int song) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(song));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AzureDataSet.flaggedsongsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AzureDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "flaggedsongs");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_FlaggedSongID, int Original_Song, int Original_FlagID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_FlaggedSongID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Song));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_FlagID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Song, int FlagID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Song));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FlagID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Song, int FlagID, int Original_FlaggedSongID, int Original_Song, int Original_FlagID, int FlaggedSongID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Song));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FlagID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_FlaggedSongID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Song));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_FlagID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(FlaggedSongID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Song, int FlagID, int Original_FlaggedSongID, int Original_Song, int Original_FlagID) {
-            return this.Update(Song, FlagID, Original_FlaggedSongID, Original_Song, Original_FlagID, Original_FlaggedSongID);
         }
     }
     
@@ -18236,6 +17872,335 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SongsFlaggedTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public SongsFlaggedTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SongsFlagged";
+            tableMapping.ColumnMappings.Add("SongID", "SongID");
+            tableMapping.ColumnMappings.Add("FlagID", "FlagID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [SongsFlagged] WHERE (([SongID] = @Original_SongID) AND ([FlagID] = @" +
+                "Original_FlagID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [SongsFlagged] ([SongID], [FlagID]) VALUES (@SongID, @FlagID);\r\nSELEC" +
+                "T SongID, FlagID FROM SongsFlagged WHERE (FlagID = @FlagID) AND (SongID = @SongI" +
+                "D)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [SongsFlagged] SET [SongID] = @SongID, [FlagID] = @FlagID WHERE (([SongID]" +
+                " = @Original_SongID) AND ([FlagID] = @Original_FlagID));\r\nSELECT SongID, FlagID " +
+                "FROM SongsFlagged WHERE (FlagID = @FlagID) AND (SongID = @SongID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SongID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FlagID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FlagID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Songs.Properties.Settings.Default.LocalSpeepmasterSongbookConn;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        SongID, FlagID\r\nFROM            SongsFlagged";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        FS.SongID, FS.FlagID\r\nFROM            SongsFlagged AS FS INNER JOIN" +
+                "\r\n                         songbook.flags AS FL ON FS.FlagID = FL.FlagID AND FL." +
+                "Active = 1";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        SongID, FlagID\r\nFROM            SongsFlagged\r\nWHERE        (SongID " +
+                "= @Song)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SongID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(AzureDataSet.SongsFlaggedDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillActiveFlagSongs(AzureDataSet.SongsFlaggedDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBySong(AzureDataSet.SongsFlaggedDataTable dataTable, int Song) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Song));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(AzureDataSet.SongsFlaggedDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(AzureDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "SongsFlagged");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_SongID, int Original_FlagID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SongID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_FlagID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int SongID, int FlagID) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SongID));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(FlagID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int SongID, int FlagID, int Original_SongID, int Original_FlagID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SongID));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(FlagID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_SongID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_FlagID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int Original_SongID, int Original_FlagID) {
+            return this.Update(Original_SongID, Original_FlagID, Original_SongID, Original_FlagID);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -18251,8 +18216,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
         
         private songsTableAdapter _songsTableAdapter;
         
-        private flaggedsongsTableAdapter _flaggedsongsTableAdapter;
-        
         private flagsTableAdapter _flagsTableAdapter;
         
         private performancesTableAdapter _performancesTableAdapter;
@@ -18266,6 +18229,8 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
         private bandsTableAdapter _bandsTableAdapter;
         
         private RepertoireTableAdapter _repertoireTableAdapter;
+        
+        private SongsFlaggedTableAdapter _songsFlaggedTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -18307,20 +18272,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
             }
             set {
                 this._songsTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public flaggedsongsTableAdapter flaggedsongsTableAdapter {
-            get {
-                return this._flaggedsongsTableAdapter;
-            }
-            set {
-                this._flaggedsongsTableAdapter = value;
             }
         }
         
@@ -18424,6 +18375,20 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public SongsFlaggedTableAdapter SongsFlaggedTableAdapter {
+            get {
+                return this._songsFlaggedTableAdapter;
+            }
+            set {
+                this._songsFlaggedTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -18448,10 +18413,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                 if (((this._songsTableAdapter != null) 
                             && (this._songsTableAdapter.Connection != null))) {
                     return this._songsTableAdapter.Connection;
-                }
-                if (((this._flaggedsongsTableAdapter != null) 
-                            && (this._flaggedsongsTableAdapter.Connection != null))) {
-                    return this._flaggedsongsTableAdapter.Connection;
                 }
                 if (((this._flagsTableAdapter != null) 
                             && (this._flagsTableAdapter.Connection != null))) {
@@ -18481,6 +18442,10 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                             && (this._repertoireTableAdapter.Connection != null))) {
                     return this._repertoireTableAdapter.Connection;
                 }
+                if (((this._songsFlaggedTableAdapter != null) 
+                            && (this._songsFlaggedTableAdapter.Connection != null))) {
+                    return this._songsFlaggedTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -18498,9 +18463,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     count = (count + 1);
                 }
                 if ((this._songsTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._flaggedsongsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._flagsTableAdapter != null)) {
@@ -18522,6 +18484,9 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     count = (count + 1);
                 }
                 if ((this._repertoireTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._songsFlaggedTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -18562,6 +18527,15 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._performancesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._songsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.songs.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -18580,12 +18554,12 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._repertoireTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(updatedRows));
+                    result = (result + this._repertoireTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18607,21 +18581,12 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._songsFlaggedTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SongsFlagged.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._repertoireTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._repertoireTableAdapter.Update(updatedRows));
+                    result = (result + this._songsFlaggedTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18659,6 +18624,14 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._performancesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._songsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.songs.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -18675,11 +18648,11 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._repertoireTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(addedRows));
+                    result = (result + this._repertoireTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18699,19 +18672,11 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._songsFlaggedTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SongsFlagged.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._repertoireTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._repertoireTableAdapter.Update(addedRows));
+                    result = (result + this._songsFlaggedTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18725,19 +18690,11 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(AzureDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._repertoireTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._songsFlaggedTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SongsFlagged.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._repertoireTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._flaggedsongsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.flaggedsongs.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._flaggedsongsTableAdapter.Update(deletedRows));
+                    result = (result + this._songsFlaggedTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18757,11 +18714,11 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._performancesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._repertoireTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Repertoire.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._performancesTableAdapter.Update(deletedRows));
+                    result = (result + this._repertoireTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18778,6 +18735,14 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._songsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._performancesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.performances.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._performancesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18854,11 +18819,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._flaggedsongsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._flaggedsongsTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._flagsTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._flagsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -18891,6 +18851,11 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
             }
             if (((this._repertoireTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._repertoireTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._songsFlaggedTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._songsFlaggedTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -18942,15 +18907,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     if (this._songsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._songsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._songsTableAdapter.Adapter);
-                    }
-                }
-                if ((this._flaggedsongsTableAdapter != null)) {
-                    revertConnections.Add(this._flaggedsongsTableAdapter, this._flaggedsongsTableAdapter.Connection);
-                    this._flaggedsongsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._flaggedsongsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._flaggedsongsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._flaggedsongsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._flaggedsongsTableAdapter.Adapter);
                     }
                 }
                 if ((this._flagsTableAdapter != null)) {
@@ -19014,6 +18970,15 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     if (this._repertoireTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._repertoireTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._repertoireTableAdapter.Adapter);
+                    }
+                }
+                if ((this._songsFlaggedTableAdapter != null)) {
+                    revertConnections.Add(this._songsFlaggedTableAdapter, this._songsFlaggedTableAdapter.Connection);
+                    this._songsFlaggedTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._songsFlaggedTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._songsFlaggedTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._songsFlaggedTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._songsFlaggedTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -19082,10 +19047,6 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                     this._songsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._songsTableAdapter]));
                     this._songsTableAdapter.Transaction = null;
                 }
-                if ((this._flaggedsongsTableAdapter != null)) {
-                    this._flaggedsongsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._flaggedsongsTableAdapter]));
-                    this._flaggedsongsTableAdapter.Transaction = null;
-                }
                 if ((this._flagsTableAdapter != null)) {
                     this._flagsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._flagsTableAdapter]));
                     this._flagsTableAdapter.Transaction = null;
@@ -19113,6 +19074,10 @@ ORDER BY PerformanceID, PerformanceDate, SongPerfID";
                 if ((this._repertoireTableAdapter != null)) {
                     this._repertoireTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._repertoireTableAdapter]));
                     this._repertoireTableAdapter.Transaction = null;
+                }
+                if ((this._songsFlaggedTableAdapter != null)) {
+                    this._songsFlaggedTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._songsFlaggedTableAdapter]));
+                    this._songsFlaggedTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
