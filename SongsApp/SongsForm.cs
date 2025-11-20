@@ -620,5 +620,11 @@ namespace Songs
                 _FlagCode = flagCode;
             }
         }
+
+        private void bandRepertoireToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            RepertoireForm form = new RepertoireForm();
+            form.ShowDialog();
+        }
     }
 }

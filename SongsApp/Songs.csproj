@@ -244,6 +244,12 @@
     <Compile Include="PerformancesForm.Designer.cs">
       <DependentUpon>PerformancesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RepertoireForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepertoireForm.Designer.cs">
+      <DependentUpon>RepertoireForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SongDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     <EmbeddedResource Include="PerformancesForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PerformancesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepertoireForm.resx">
+      <DependentUpon>RepertoireForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SongDetailForm.resx">
       <SubType>Designer</SubType>
