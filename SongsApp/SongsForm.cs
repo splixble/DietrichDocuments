@@ -545,6 +545,7 @@ namespace Songs
             JSTable perfJSTbl = new JSTable(perfTbl, perfColumns, "Performances");
             perfJSTbl.IntroComments.Add("Performances, sorted by PerformanceDate");
             perfJSTbl.AddGroupingMap("PerformancesPerVenue", perfTbl.VenueColumn, new DataColumn[] { perfTbl.PerformanceDateColumn, perfTbl.IDColumn });
+            perfJSTbl.AddGroupingMap("PerformancesPerBand", perfTbl.BandColumn, new DataColumn[] { perfTbl.PerformanceDateColumn, perfTbl.IDColumn });
             tblFile.Add(perfJSTbl);
 
             // SongPerformances tbl: 
@@ -570,6 +571,22 @@ namespace Songs
             songperfJSTbl.AddGroupingMap("PerformancesPerSongs", songperfTbl.SongColumn, new DataColumn[] { songperfTbl.PerformanceDateColumn, songperfTbl.SongPerfIDColumn });
             tblFile.Add(songperfJSTbl);
 
+            // Bands table:
+            AzureDataSetTableAdapters.bandsTableAdapter bandsAdap = new AzureDataSetTableAdapters.bandsTableAdapter();
+            AzureDataSet.bandsDataTable bandsTbl = new AzureDataSet.bandsDataTable();
+            bandsAdap.FillSortedByBandName(bandsTbl);
+
+            DataColumn[] bandsColumns = new DataColumn[]
+            {
+                bandsTbl.BandIDColumn,
+                bandsTbl.BandNameColumn
+            };
+
+            JSTable bandsJSTbl = new JSTable(bandsTbl, bandsColumns, "bands");
+            bandsJSTbl.IntroComments.Add("bands, sorted by band name");
+            tblFile.Add(bandsJSTbl);
+
+            // Write tables to file:
             tblFile.WriteFile();
         }
 
