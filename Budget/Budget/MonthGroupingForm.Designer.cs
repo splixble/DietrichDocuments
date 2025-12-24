@@ -29,19 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetWithMonthlyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetWithMonthlyTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetWithMonthlyTableAdapter();
             this.trDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountNormalizedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountRefundAdjustedNormalized = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetWithMonthlyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -55,6 +58,7 @@
             this.descripDataGridViewTextBoxColumn,
             this.TrCode,
             this.amountNormalizedDataGridViewTextBoxColumn,
+            this.AmountRefundAdjustedNormalized,
             this.trTypeDataGridViewTextBoxColumn,
             this.accountDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.viewBudgetWithMonthlyBindingSource;
@@ -65,15 +69,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(931, 603);
             this.dataGridView1.TabIndex = 0;
             // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // viewBudgetWithMonthlyBindingSource
             // 
             this.viewBudgetWithMonthlyBindingSource.DataMember = "ViewBudgetWithMonthly";
             this.viewBudgetWithMonthlyBindingSource.DataSource = this.mainDataSet;
+            // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "MainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // viewBudgetWithMonthlyTableAdapter
             // 
@@ -104,9 +108,22 @@
             // amountNormalizedDataGridViewTextBoxColumn
             // 
             this.amountNormalizedDataGridViewTextBoxColumn.DataPropertyName = "AmountNormalized";
-            this.amountNormalizedDataGridViewTextBoxColumn.HeaderText = "AmountNormalized";
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.amountNormalizedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.amountNormalizedDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountNormalizedDataGridViewTextBoxColumn.Name = "amountNormalizedDataGridViewTextBoxColumn";
             this.amountNormalizedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // AmountRefundAdjustedNormalized
+            // 
+            this.AmountRefundAdjustedNormalized.DataPropertyName = "AmountRefundAdjustedNormalized";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.AmountRefundAdjustedNormalized.DefaultCellStyle = dataGridViewCellStyle2;
+            this.AmountRefundAdjustedNormalized.HeaderText = "Amount, refund adj.";
+            this.AmountRefundAdjustedNormalized.Name = "AmountRefundAdjustedNormalized";
+            this.AmountRefundAdjustedNormalized.ReadOnly = true;
             // 
             // trTypeDataGridViewTextBoxColumn
             // 
@@ -132,8 +149,8 @@
             this.Text = "MonthGroupingForm";
             this.Load += new System.EventHandler(this.MonthGroupingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetWithMonthlyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,6 +165,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descripDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn amountNormalizedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountRefundAdjustedNormalized;
         private System.Windows.Forms.DataGridViewTextBoxColumn trTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn accountDataGridViewTextBoxColumn;
     }
