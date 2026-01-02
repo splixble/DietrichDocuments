@@ -82,6 +82,8 @@ namespace Songs {
         
         private global::System.Data.DataRelation relationFK_SongsFlagged_flags;
         
+        private global::System.Data.DataRelation relationFK_songperformances_songs;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -698,6 +700,7 @@ namespace Songs {
             this.relationFK_Repertoire_bands = this.Relations["FK_Repertoire_bands"];
             this.relationFK_Repertoire_songs = this.Relations["FK_Repertoire_songs"];
             this.relationFK_SongsFlagged_flags = this.Relations["FK_SongsFlagged_flags"];
+            this.relationFK_songperformances_songs = this.Relations["FK_songperformances_songs"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -782,6 +785,10 @@ namespace Songs {
                         this.tableflags.FlagIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableSongsFlagged.FlagIDColumn}, false);
             this.Relations.Add(this.relationFK_SongsFlagged_flags);
+            this.relationFK_songperformances_songs = new global::System.Data.DataRelation("FK_songperformances_songs", new global::System.Data.DataColumn[] {
+                        this.tablesongs.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tablesongperformances.SongColumn}, false);
+            this.Relations.Add(this.relationFK_songperformances_songs);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5378,6 +5385,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnSetNumber;
             
+            private global::System.Data.DataColumn columnOrderInSet;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public songperformancesDataTable() {
@@ -5453,6 +5462,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OrderInSetColumn {
+                get {
+                    return this.columnOrderInSet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5488,16 +5505,20 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public songperformancesRow AddsongperformancesRow(performancesRow parentperformancesRowByFK_songperformances_performances, int Song, string Comment, byte SetNumber) {
+            public songperformancesRow AddsongperformancesRow(performancesRow parentperformancesRowByFK_songperformances_performances, songsRow parentsongsRowByFK_songperformances_songs, string Comment, byte SetNumber, byte OrderInSet) {
                 songperformancesRow rowsongperformancesRow = ((songperformancesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        Song,
+                        null,
                         Comment,
-                        SetNumber};
+                        SetNumber,
+                        OrderInSet};
                 if ((parentperformancesRowByFK_songperformances_performances != null)) {
                     columnValuesArray[1] = parentperformancesRowByFK_songperformances_performances[0];
+                }
+                if ((parentsongsRowByFK_songperformances_songs != null)) {
+                    columnValuesArray[2] = parentsongsRowByFK_songperformances_songs[6];
                 }
                 rowsongperformancesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsongperformancesRow);
@@ -5533,6 +5554,7 @@ namespace Songs {
                 this.columnSong = base.Columns["Song"];
                 this.columnComment = base.Columns["Comment"];
                 this.columnSetNumber = base.Columns["SetNumber"];
+                this.columnOrderInSet = base.Columns["OrderInSet"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5548,6 +5570,8 @@ namespace Songs {
                 base.Columns.Add(this.columnComment);
                 this.columnSetNumber = new global::System.Data.DataColumn("SetNumber", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSetNumber);
+                this.columnOrderInSet = new global::System.Data.DataColumn("OrderInSet", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOrderInSet);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -6339,6 +6363,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnSongPerfID;
             
+            private global::System.Data.DataColumn columnOrderInSet;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongperformancesDataTable() {
@@ -6494,6 +6520,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OrderInSetColumn {
+                get {
+                    return this.columnOrderInSet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6529,7 +6563,23 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongperformancesRow AddviewsongperformancesRow(int PerformanceID, int Song, string Comment, byte SetNumber, string PerfComment, string TitleAndArtist, System.DateTime PerformanceDate, bool DidILead, int PerformanceYear, string PerformanceQtr, string PerformanceMonth, string VenueName, int Venue, int PerfID, int SongPerfID) {
+            public viewsongperformancesRow AddviewsongperformancesRow(
+                        int PerformanceID, 
+                        int Song, 
+                        string Comment, 
+                        byte SetNumber, 
+                        string PerfComment, 
+                        string TitleAndArtist, 
+                        System.DateTime PerformanceDate, 
+                        bool DidILead, 
+                        int PerformanceYear, 
+                        string PerformanceQtr, 
+                        string PerformanceMonth, 
+                        string VenueName, 
+                        int Venue, 
+                        int PerfID, 
+                        int SongPerfID, 
+                        byte OrderInSet) {
                 viewsongperformancesRow rowviewsongperformancesRow = ((viewsongperformancesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PerformanceID,
@@ -6546,7 +6596,8 @@ namespace Songs {
                         VenueName,
                         Venue,
                         PerfID,
-                        SongPerfID};
+                        SongPerfID,
+                        OrderInSet};
                 rowviewsongperformancesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewsongperformancesRow);
                 return rowviewsongperformancesRow;
@@ -6591,6 +6642,7 @@ namespace Songs {
                 this.columnVenue = base.Columns["Venue"];
                 this.columnPerfID = base.Columns["PerfID"];
                 this.columnSongPerfID = base.Columns["SongPerfID"];
+                this.columnOrderInSet = base.Columns["OrderInSet"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6626,6 +6678,8 @@ namespace Songs {
                 base.Columns.Add(this.columnPerfID);
                 this.columnSongPerfID = new global::System.Data.DataColumn("SongPerfID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSongPerfID);
+                this.columnOrderInSet = new global::System.Data.DataColumn("OrderInSet", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOrderInSet);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSongPerfID}, true));
                 this.columnPerformanceID.ReadOnly = true;
@@ -8732,6 +8786,17 @@ namespace Songs {
                     return ((RepertoireRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Repertoire_songs"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public songperformancesRow[] GetsongperformancesRows() {
+                if ((this.Table.ChildRelations["FK_songperformances_songs"] == null)) {
+                    return new songperformancesRow[0];
+                }
+                else {
+                    return ((songperformancesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_songperformances_songs"])));
+                }
+            }
         }
         
         /// <summary>
@@ -10632,12 +10697,39 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte OrderInSet {
+                get {
+                    try {
+                        return ((byte)(this[this.tablesongperformances.OrderInSetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OrderInSet\' in table \'songperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesongperformances.OrderInSetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public performancesRow performancesRow {
                 get {
                     return ((performancesRow)(this.GetParentRow(this.Table.ParentRelations["FK_songperformances_performances"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_songperformances_performances"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public songsRow songsRow {
+                get {
+                    return ((songsRow)(this.GetParentRow(this.Table.ParentRelations["FK_songperformances_songs"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_songperformances_songs"]);
                 }
             }
             
@@ -10663,6 +10755,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSetNumberNull() {
                 this[this.tablesongperformances.SetNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOrderInSetNull() {
+                return this.IsNull(this.tablesongperformances.OrderInSetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOrderInSetNull() {
+                this[this.tablesongperformances.OrderInSetColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11128,6 +11232,22 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte OrderInSet {
+                get {
+                    try {
+                        return ((byte)(this[this.tableviewsongperformances.OrderInSetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OrderInSet\' in table \'viewsongperformances\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongperformances.OrderInSetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsPerformanceIDNull() {
                 return this.IsNull(this.tableviewsongperformances.PerformanceIDColumn);
             }
@@ -11220,6 +11340,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPerformanceMonthNull() {
                 this[this.tableviewsongperformances.PerformanceMonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOrderInSetNull() {
+                return this.IsNull(this.tableviewsongperformances.OrderInSetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOrderInSetNull() {
+                this[this.tableviewsongperformances.OrderInSetColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15967,10 +16099,11 @@ SELECT ID, Name, Comment FROM songbook.venues WHERE (ID = @ID) ORDER BY Name";
             tableMapping.ColumnMappings.Add("Song", "Song");
             tableMapping.ColumnMappings.Add("Comment", "Comment");
             tableMapping.ColumnMappings.Add("SetNumber", "SetNumber");
+            tableMapping.ColumnMappings.Add("OrderInSet", "OrderInSet");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songbook].[songperformances] WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [songbook].[songperformances] WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)) AND ((@IsNull_OrderInSet = 1 AND [OrderInSet] IS NULL) OR ([OrderInSet] = @Original_OrderInSet)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -15979,26 +16112,28 @@ SELECT ID, Name, Comment FROM songbook.venues WHERE (ID = @ID) ORDER BY Name";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SetNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OrderInSet", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderInSet", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [songbook].[songperformances] ([Performance], [Song], [Comment], [Set" +
-                "Number]) VALUES (@Performance, @Song, @Comment, @SetNumber);\r\nSELECT ID, Perform" +
-                "ance, Song, Comment, SetNumber FROM songbook.songperformances WHERE (ID = SCOPE_" +
-                "IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [songbook].[songperformances] ([Performance], [Song], [Comment], [SetNumber], [OrderInSet]) VALUES (@Performance, @Song, @Comment, @SetNumber, @OrderInSet);
+SELECT ID, Performance, Song, Comment, SetNumber, OrderInSet FROM songbook.songperformances WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderInSet", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[songperformances] SET [Performance] = @Performance, [Song] = @Song, [Comment] = @Comment, [SetNumber] = @SetNumber WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)));
-SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [songbook].[songperformances] SET [Performance] = @Performance, [Song] = @Song, [Comment] = @Comment, [SetNumber] = @SetNumber, [OrderInSet] = @OrderInSet WHERE (([ID] = @Original_ID) AND ([Performance] = @Original_Performance) AND ([Song] = @Original_Song) AND ((@IsNull_Comment = 1 AND [Comment] IS NULL) OR ([Comment] = @Original_Comment)) AND ((@IsNull_SetNumber = 1 AND [SetNumber] IS NULL) OR ([SetNumber] = @Original_SetNumber)) AND ((@IsNull_OrderInSet = 1 AND [OrderInSet] IS NULL) OR ([OrderInSet] = @Original_OrderInSet)));
+SELECT ID, Performance, Song, Comment, SetNumber, OrderInSet FROM songbook.songperformances WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderInSet", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Performance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Song", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Song", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -16006,6 +16141,8 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comment", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comment", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SetNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SetNumber", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SetNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OrderInSet", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderInSet", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderInSet", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -16019,23 +16156,18 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songbook" +
-                ".songperformances";
+            this._commandCollection[0].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber, OrderInSet\r\nFROM        " +
+                "    songbook.songperformances";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Comment, ID, Performance, SetNumber, Song FROM songbook.songperformances W" +
-                "HERE (Performance = @Performance)";
+            this._commandCollection[1].CommandText = "SELECT Comment, ID, OrderInSet, Performance, SetNumber, Song FROM songbook.songpe" +
+                "rformances WHERE (Performance = @Performance)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Performance", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Performance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        ID, Performance, Song, Comment, SetNumber\r\nFROM            songbook" +
-                ".songperformances\r\nORDER BY Performance, ID";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16058,19 +16190,6 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         public virtual int FillByPerformance(AzureDataSet.songperformancesDataTable dataTable, int Performance) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Performance));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillInPerformanceAndIDOrder(AzureDataSet.songperformancesDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -16111,7 +16230,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber) {
+        public virtual int Delete(int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber, global::System.Nullable<byte> Original_OrderInSet) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Performance));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Song));
@@ -16130,6 +16249,14 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_OrderInSet.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((byte)(Original_OrderInSet.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -16151,7 +16278,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber) {
+        public virtual int Insert(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber, global::System.Nullable<byte> OrderInSet) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Performance));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Song));
             if ((Comment == null)) {
@@ -16165,6 +16292,12 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((OrderInSet.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(OrderInSet.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -16186,7 +16319,7 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber, int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber, int ID) {
+        public virtual int Update(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber, global::System.Nullable<byte> OrderInSet, int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber, global::System.Nullable<byte> Original_OrderInSet, int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Performance));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Song));
             if ((Comment == null)) {
@@ -16201,26 +16334,40 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Performance));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Song));
-            if ((Original_Comment == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            if ((OrderInSet.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(OrderInSet.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Comment));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Performance));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Song));
+            if ((Original_Comment == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Comment));
             }
             if ((Original_SetNumber.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(Original_SetNumber.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(Original_SetNumber.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(ID));
+            if ((Original_OrderInSet.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(Original_OrderInSet.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16241,8 +16388,8 @@ SELECT ID, Performance, Song, Comment, SetNumber FROM songbook.songperformances 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber, int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber) {
-            return this.Update(Performance, Song, Comment, SetNumber, Original_ID, Original_Performance, Original_Song, Original_Comment, Original_SetNumber, Original_ID);
+        public virtual int Update(int Performance, int Song, string Comment, global::System.Nullable<byte> SetNumber, global::System.Nullable<byte> OrderInSet, int Original_ID, int Original_Performance, int Original_Song, string Original_Comment, global::System.Nullable<byte> Original_SetNumber, global::System.Nullable<byte> Original_OrderInSet) {
+            return this.Update(Performance, Song, Comment, SetNumber, OrderInSet, Original_ID, Original_Performance, Original_Song, Original_Comment, Original_SetNumber, Original_OrderInSet, Original_ID);
         }
     }
     
@@ -16860,6 +17007,7 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("Venue", "Venue");
             tableMapping.ColumnMappings.Add("PerfID", "PerfID");
             tableMapping.ColumnMappings.Add("SongPerfID", "SongPerfID");
+            tableMapping.ColumnMappings.Add("OrderInSet", "OrderInSet");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -16876,9 +17024,9 @@ SELECT ID, SongID, ArtistID FROM songbook.alternateartists WHERE (ID = @ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        PerformanceID, Song, Comment, SetNumber, PerfComment, TitleAndArtist, PerformanceDate, DidILead, PerformanceYear, PerformanceQtr, PerformanceMonth, VenueName, Venue, PerfID, SongPerfID
+            this._commandCollection[0].CommandText = @"SELECT        PerformanceID, Song, Comment, SetNumber, PerfComment, TitleAndArtist, PerformanceDate, DidILead, PerformanceYear, PerformanceQtr, PerformanceMonth, VenueName, Venue, PerfID, SongPerfID, OrderInSet
 FROM            songbook.viewsongperformances
-ORDER BY PerformanceID, PerformanceDate, SongPerfID";
+ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

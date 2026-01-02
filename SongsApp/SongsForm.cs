@@ -562,12 +562,13 @@ namespace Songs
                 songperfTbl.CommentColumn,
                 songperfTbl.PerfCommentColumn,
                 songperfTbl.VenueNameColumn,
-                songperfTbl.SetNumberColumn
+                songperfTbl.SetNumberColumn,
+                songperfTbl.OrderInSetColumn
             };
 
             JSTable songperfJSTbl = new JSTable(songperfTbl, songperfColumns, "SongPerformances");
-            songperfJSTbl.IntroComments.Add("ViewSongPerformances, sorted by Performance, Date, and Song Perf. ID");
-            songperfJSTbl.AddGroupingMap("SongsPerPerformance", songperfTbl.PerfIDColumn, new DataColumn[] { songperfTbl.SongPerfIDColumn });
+            songperfJSTbl.IntroComments.Add("ViewSongPerformances, sorted by Performance, Set #, and Order In Set");
+            songperfJSTbl.AddGroupingMap("SongsPerPerformance", songperfTbl.PerfIDColumn, new DataColumn[] { songperfTbl.SetNumberColumn, songperfTbl.OrderInSetColumn });
             songperfJSTbl.AddGroupingMap("PerformancesPerSongs", songperfTbl.SongColumn, new DataColumn[] { songperfTbl.PerformanceDateColumn, songperfTbl.SongPerfIDColumn });
             tblFile.Add(songperfJSTbl);
 
