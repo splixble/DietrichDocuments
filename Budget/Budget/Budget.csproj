@@ -217,11 +217,22 @@
     <Compile Include="BalanceCalculationForm.Designer.cs">
       <DependentUpon>BalanceCalculationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupingAccOwnerIsInvestment.cs" />
+    <Compile Include="MonthlyAverageExpensesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthlyAverageExpensesForm.Designer.cs">
+      <DependentUpon>MonthlyAverageExpensesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyDataByGroupingKey.cs" />
     <Compile Include="RefundsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RefundsForm.Designer.cs">
       <DependentUpon>RefundsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TotalsByGroupingGrid.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TransacEditingGridCtrl.cs">
       <SubType>UserControl</SubType>
@@ -321,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BalanceCalculationForm.resx">
       <DependentUpon>BalanceCalculationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthlyAverageExpensesForm.resx">
+      <DependentUpon>MonthlyAverageExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RefundsForm.resx">
       <DependentUpon>RefundsForm.cs</DependentUpon>

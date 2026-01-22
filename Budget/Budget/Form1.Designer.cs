@@ -51,6 +51,7 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
+            this.chBoxRefunds = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboToMonth = new Budget.MonthComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.chBoxRefunds = new System.Windows.Forms.CheckBox();
+            this.monthlyAverageExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -148,7 +149,8 @@
             this.calculateAccountBalancesToolStripMenuItem,
             this.investmentsToolStripMenuItem,
             this.accountsToolStripMenuItem,
-            this.refundsToolStripMenuItem});
+            this.refundsToolStripMenuItem,
+            this.monthlyAverageExpensesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -300,6 +302,17 @@
             this.splitConOuter.SplitterDistance = 192;
             this.splitConOuter.TabIndex = 7;
             // 
+            // chBoxRefunds
+            // 
+            this.chBoxRefunds.AutoSize = true;
+            this.chBoxRefunds.Location = new System.Drawing.Point(78, 54);
+            this.chBoxRefunds.Name = "chBoxRefunds";
+            this.chBoxRefunds.Size = new System.Drawing.Size(113, 17);
+            this.chBoxRefunds.TabIndex = 15;
+            this.chBoxRefunds.Text = "Adjust for Refunds";
+            this.chBoxRefunds.UseVisualStyleBackColor = true;
+            this.chBoxRefunds.CheckedChanged += new System.EventHandler(this.chBoxRefunds_CheckedChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -386,16 +399,12 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // chBoxRefunds
+            // monthlyAverageExpensesToolStripMenuItem
             // 
-            this.chBoxRefunds.AutoSize = true;
-            this.chBoxRefunds.Location = new System.Drawing.Point(78, 54);
-            this.chBoxRefunds.Name = "chBoxRefunds";
-            this.chBoxRefunds.Size = new System.Drawing.Size(113, 17);
-            this.chBoxRefunds.TabIndex = 15;
-            this.chBoxRefunds.Text = "Adjust for Refunds";
-            this.chBoxRefunds.UseVisualStyleBackColor = true;
-            this.chBoxRefunds.CheckedChanged += new System.EventHandler(this.chBoxRefunds_CheckedChanged);
+            this.monthlyAverageExpensesToolStripMenuItem.Name = "monthlyAverageExpensesToolStripMenuItem";
+            this.monthlyAverageExpensesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.monthlyAverageExpensesToolStripMenuItem.Text = "Monthly Average Expenses";
+            this.monthlyAverageExpensesToolStripMenuItem.Click += new System.EventHandler(this.monthlyAverageExpensesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -465,6 +474,7 @@
         private System.Windows.Forms.ToolStripMenuItem cashPurchasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refundsToolStripMenuItem;
         private System.Windows.Forms.CheckBox chBoxRefunds;
+        private System.Windows.Forms.ToolStripMenuItem monthlyAverageExpensesToolStripMenuItem;
     }
 }
 

@@ -186,6 +186,9 @@ namespace Budget
                 adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, (AssetType == AssetType.Investments ? (byte)1 : (byte)0));
             }
 
+
+            // ############## DIAG MOVED TO TotalsByGroupingGrid ##############
+
             // Fill in missing months gaps in data for each Grouping, AccountOwner, and IsInv with 0-amount rows,
             // to avoid discontinuous lines on the chart:
             // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
@@ -217,6 +220,9 @@ namespace Budget
                 }
             }
 
+            // ############## END OF DIAG MOVED TO TotalsByGroupingGrid ##############
+
+
             DataView dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
 
             BuildGroupingsTree(dataByGroupingKey);
@@ -237,6 +243,8 @@ namespace Budget
             List<string> groupingKeysList = new List<string>();
             foreach (TreeNode node in tvGroupings.Nodes)
                 AddToGroupingListIfChecked(node, ref groupingKeysList);
+
+            // DIAG USE NEW MonthlyDataByGroupingKey class with .AddData()!!
 
             SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
             foreach (string groupingKey in groupingKeysList)
@@ -511,36 +519,6 @@ namespace Budget
             RefreshData();
         }
 
-        struct GroupingAccOwnerIsInvestment : IComparable // internally used type
-        {
-            public string _GroupingKey;
-            public string _AccountOwner;
-            public byte _IsInvestment;
-
-            public GroupingAccOwnerIsInvestment(string groupingKey, string accountOwner, byte isInvestment)
-            {
-                _GroupingKey = groupingKey;
-                _AccountOwner = accountOwner;
-                _IsInvestment = isInvestment;
-            }
-
-            public int CompareTo(object obj) 
-            {
-                GroupingAccOwnerIsInvestment other = (GroupingAccOwnerIsInvestment)obj;
-                int res1 = _GroupingKey.CompareTo(other._GroupingKey);
-                if (res1 == 0) 
-                {
-                    int res2 = _AccountOwner.CompareTo(other._AccountOwner);
-                    if (res2 == 0)
-                        return _IsInvestment.CompareTo(other._IsInvestment);
-                    else
-                        return res2;
-                }
-                else
-                    return res1;
-            }
-        }
-
         private void cashPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CashPurchasesForm form = new CashPurchasesForm();
@@ -556,6 +534,12 @@ namespace Budget
         private void chBoxRefunds_CheckedChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void monthlyAverageExpensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MonthlyAverageExpensesForm form = new MonthlyAverageExpensesForm();
+            form.ShowDialog();
         }
     }
 }
