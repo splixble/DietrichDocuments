@@ -224,13 +224,13 @@
     <Compile Include="MonthlyAverageExpensesForm.Designer.cs">
       <DependentUpon>MonthlyAverageExpensesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MonthlyDataByGroupingKey.cs" />
     <Compile Include="RefundsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RefundsForm.Designer.cs">
       <DependentUpon>RefundsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TotalsByGroupingData.cs" />
     <Compile Include="TotalsByGroupingGrid.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -150,6 +150,7 @@ namespace Budget
 
         void RefreshData()
         {
+            // ############## DIAG MOVED TO TotalsByGroupingData ##############
             if (AssetType == AssetType.Both)
             {
 
@@ -185,9 +186,9 @@ namespace Budget
                 MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
                 adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, (AssetType == AssetType.Investments ? (byte)1 : (byte)0));
             }
+       
 
 
-            // ############## DIAG MOVED TO TotalsByGroupingGrid ##############
 
             // Fill in missing months gaps in data for each Grouping, AccountOwner, and IsInv with 0-amount rows,
             // to avoid discontinuous lines on the chart:
@@ -220,7 +221,7 @@ namespace Budget
                 }
             }
 
-            // ############## END OF DIAG MOVED TO TotalsByGroupingGrid ##############
+            // ############## END OF DIAG MOVED TO TotalsByGroupingData ##############
 
 
             DataView dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);

@@ -12,6 +12,7 @@ namespace Budget
 {
     internal class TotalsByGroupingGrid : DataGridView
     {
+        /*
         public string _AccountOwner;
         public AssetType _AssetType;
         public DateTime _FromMonth;
@@ -21,6 +22,9 @@ namespace Budget
         MainDataSet.ViewMonthlyReportDataTable _DataTbl;
         MainDataSet.ViewGroupingsDataTable _GroupingsTbl;
         List<string> _GroupingKeys;
+        */
+
+        TotalsByGroupingData _TotalsData = null;
 
         public TotalsByGroupingGrid()
         {
@@ -30,9 +34,16 @@ namespace Budget
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         }
 
-        public void RefreshData(MainDataSet.ViewMonthlyReportDataTable dataTbl, MainDataSet.ViewGroupingsDataTable groupingsTbl, List<string> groupingKeys,
-            DateTime fromMonth, DateTime toMonth, DataColumn amountColumn) // DIAG amt col s/b a bool!
+        public void RefreshData(List<string> groupingKeys,
+            DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds) 
         {
+            _TotalsData = new TotalsByGroupingData(adjustForRefunds);
+            _TotalsData.LoadGroupings();
+            _TotalsData.LoadTotals(fromMonth, toMonth, accountOwner, assetType);
+            foreach(string groupingKey in groupingKeys) 
+                _TotalsData.AddViewByGroupingList(groupingKey);
+
+            /*
             _DataTbl = dataTbl;
             _GroupingsTbl = groupingsTbl;
             _GroupingKeys = groupingKeys;
@@ -40,38 +51,9 @@ namespace Budget
             _ToMonth = toMonth;
             _AmountColumn = amountColumn;
 
-            // Fill in missing months gaps in data for each Grouping, AccountOwner, and IsInv with 0-amount rows,
-            // to avoid discontinuous lines on the chart:
-            // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
-            SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>>();
-            foreach (ViewMonthlyReportRow reportRow in _DataTbl)
-            {
-                GroupingAccOwnerIsInvestment outerKey = new GroupingAccOwnerIsInvestment(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.IsInvestment);
-                if (!rowsByKeysAndMonth.ContainsKey(outerKey))
-                    rowsByKeysAndMonth.Add(outerKey, new SortedList<DateTime, object>());
-                rowsByKeysAndMonth[outerKey][reportRow.TrMonth] = null;
-            }
-            foreach (GroupingAccOwnerIsInvestment keyList in rowsByKeysAndMonth.Keys)
-            {
-                // go through each month in specified range, and if there's not a row for it, add one with 0 amount:
-                SortedList<DateTime, object> subList = rowsByKeysAndMonth[keyList];
-                for (DateTime month = _FromMonth; month <= _ToMonth; month = month.AddMonths(1))
-                {
-                    if (!subList.ContainsKey(month))
-                    {
-                        MainDataSet.ViewMonthlyReportRow newRow = _DataTbl.NewViewMonthlyReportRow();
-                        newRow.TrMonth = month;
-                        newRow.GroupingKey = keyList._GroupingKey;
-                        newRow.AccountOwner = keyList._AccountOwner;
-                        newRow.IsInvestment = keyList._IsInvestment;
-                        newRow[_AmountColumn] = 0;
-                        _DataTbl.AddViewMonthlyReportRow(newRow);
-                    }
-                }
-            }
-
             MonthlyDataByGroupingKey reportDataByGroupingKey = new MonthlyDataByGroupingKey(); // should this be a Member?
             reportDataByGroupingKey.AddData(_GroupingKeys, _DataTbl);
+            */
 
             // from Form1.PopulateMainGrid():
             Rows.Clear();
@@ -82,12 +64,12 @@ namespace Budget
             SortedList<DateTime, object> monthsForGridColumns = new SortedList<DateTime, object>(); // Value not used
             SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, Value = Grouping Label
 
-            for (DateTime month = _FromMonth; month <= _ToMonth; month = month.AddMonths(1))
+            for (DateTime month = _TotalsData.FromMonth; month <= _TotalsData.ToMonth; month = month.AddMonths(1))
                 monthsForGridColumns[month] = null;
 
-            foreach (string groupingKey in reportDataByGroupingKey.Keys)
+            foreach (string groupingKey in _TotalsData.ViewsByGroupingList.Keys)
             {
-                MainDataSet.ViewGroupingsRow groupingRow = _GroupingsTbl.FindByGroupingKey(groupingKey);
+                MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
                 groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
             }
 
@@ -122,12 +104,12 @@ namespace Budget
                 row.Tag = groupingsForGridRows.Keys[ri];
             }
 
-            foreach (string grouping in reportDataByGroupingKey.Keys)
+            foreach (string grouping in _TotalsData.ViewsByGroupingList.Keys)
             {
-                foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
+                foreach (DataRowView rowView in _TotalsData.ViewsByGroupingList[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                    this[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[_AmountColumn];
+                    this[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[_TotalsData.AmountColumn];
                 }
             }
         }
@@ -140,7 +122,7 @@ namespace Budget
             DateTime cellMonth = (DateTime)Columns[e.ColumnIndex].Tag;
             string cellGrouping = (string)Rows[e.RowIndex].Tag;
             MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping, _AccountOwner, _AssetType);
+            monthGroupingForm.Initialize(cellMonth, cellGrouping, _TotalsData.AccountOwner, _TotalsData.AssetType);
             monthGroupingForm.ShowDialog();
 
         }

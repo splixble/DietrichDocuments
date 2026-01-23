@@ -25,9 +25,11 @@ namespace Budget
             DateTime toMonth = new DateTime(2025, 12, 1);
             string accountOwner = "D";
             AssetType assetType = AssetType.BankAndCash;
+            bool adjustForRefunds = true;
 
 
-            // DIAG THIS needs to be merged into the grid code
+            // DIAG THIS needs to be merged into the ViewMonthlyReportDataTable code 
+            /*
             MainDataSet.ViewMonthlyReportDataTable dataTbl = new MainDataSet.ViewMonthlyReportDataTable();
 
             MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
@@ -38,11 +40,12 @@ namespace Budget
             groupingsTbl.Clear();
             groupingsAdap.FillInSelectorOrder(groupingsTbl);
 
+            */
             List<string> groupingKeyList = new List<string>();
             groupingKeyList.Add("TGROC");
             groupingKeyList.Add("TNETFLIX");
 
-            grid1.RefreshData(dataTbl, groupingsTbl, groupingKeyList, fromMonth, toMonth, dataTbl.AmountRefundAdjustedNormalizedColumn);
+            grid1.RefreshData(groupingKeyList, fromMonth, toMonth,  accountOwner, assetType, adjustForRefunds);
 
         }
     }
