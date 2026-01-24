@@ -34,6 +34,7 @@ namespace Budget
 
         // View to check whether there are any rows in _TotalsTbl with a particular grouping:
         DataView _TotalsByGroupingView;
+        public DataView TotalsByGroupingView => _TotalsByGroupingView;
 
         public DataColumn AmountColumn
         {
@@ -68,6 +69,12 @@ namespace Budget
             _TotalsTbl = new MainDataSet.ViewMonthlyReportDataTable();
             _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
             _TotalsByGroupingView = new DataView(_TotalsTbl, null, "GroupingKey", DataViewRowState.Unchanged);
+        }
+
+        public void LoadData(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds)
+        {
+            LoadGroupings();
+            LoadTotals(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
         }
 
         public void LoadGroupings()

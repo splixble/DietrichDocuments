@@ -25,14 +25,18 @@ namespace Budget
 {
     public partial class Form1 : Form
     {
+        /* replaced by TotalsData
         // use this?
         public MainDataSet MainData { get { return _MainData; } }
         MainDataSet _MainData = new MainDataSet();
 
         MainDataSet.ViewGroupingsDataTable _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
         MainDataSetTableAdapters.ViewGroupingsTableAdapter _GroupingsAdap = new MainDataSetTableAdapters.ViewGroupingsTableAdapter();
+        */
 
         const int groupingsGridCheckboxColumn = 0;
+
+        TotalsByGroupingData TotalsData => totalsGrid.TotalsData; // used by the groupings tree ctrl and chart as well
 
         public string AccountOwner => comboAccountOwner.SelectedValue as string;
 
@@ -51,9 +55,9 @@ namespace Budget
             get
             {
                 if (chBoxRefunds.Checked)
-                    return MainData.ViewMonthlyReport.AmountRefundAdjustedNormalizedColumn;
+                    return TotalsData.TotalsTbl.AmountRefundAdjustedNormalizedColumn;
                 else
-                    return MainData.ViewMonthlyReport.AmountNormalizedColumn;
+                    return TotalsData.TotalsTbl.AmountNormalizedColumn;
             }
         }
 
@@ -92,8 +96,11 @@ namespace Budget
             // And ordering s/b done in this code, at the tree node construction code.
 
             // Requery the table: 
+            TotalsData.LoadGroupings(); // DIAG do we need to??
+            /*
             _GroupingsTbl.Clear();
             _GroupingsAdap.FillInSelectorOrder(_GroupingsTbl);
+            */
 
             // DIAG filter by AccountOwner, AccountType
             /* with:
@@ -106,7 +113,7 @@ namespace Budget
             // Populate Groupings tree, and save certain nodes for future reference:
 
             // First, add parent nodes:
-            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in TotalsData.GroupingsTbl)
             {
                 if (dataByGroupingKey.Find(groupingRow.GroupingKey) < 0)
                     continue;
@@ -125,7 +132,7 @@ namespace Budget
             }
 
             // Now, add child nodes:
-            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in TotalsData.GroupingsTbl)
             {
                 if (dataByGroupingKey.Find(groupingRow.GroupingKey) < 0)
                     continue;
@@ -161,7 +168,7 @@ namespace Budget
 
         void RefreshData()
         {
-            // ############## DIAG MOVED TO TotalsByGroupingData ##############
+            /* ############# DIAG MOVED TO TotalsByGroupingData ##############
             if (AssetType == AssetType.Both)
             {
 
@@ -235,10 +242,12 @@ namespace Budget
             // ############## END OF DIAG MOVED TO TotalsByGroupingData ##############
 
 
-            // DIAG WILL NOT BE NEEDED, with TotalsByGroupingData's new _DataByGroupingKey
-            DataView dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
+            // DIAG WILL NOT BE NEEDED, with TotalsByGroupingData's new _DataByGroupingKey -- right?
+            DataView dataByGroupingKey = new DataView(TotalsData.TotalsTbl, null, "GroupingKey", DataViewRowState.Unchanged);
+            */
 
-            BuildGroupingsTree(dataByGroupingKey);
+            TotalsData.LoadData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
+            BuildGroupingsTree(TotalsData.TotalsByGroupingView);
 
             RefreshDisplay();
         }
@@ -260,6 +269,7 @@ namespace Budget
                 AddToGroupingListIfChecked(node, ref _GroupingKeysList);
 
             // DIAG USE NEW MonthlyDataByGroupingKey class with .AddData()!!
+            /*
 
             SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
             foreach (string groupingKey in _GroupingKeysList)
@@ -271,13 +281,12 @@ namespace Budget
             }
 
             // gridMain replaced by totalsGrid  --  PopulateMainGrid(reportDataByGroupingKey);
-
+            */
 
             // DIAG new main grid!
-            totalsGrid.RefreshData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
             totalsGrid.RefreshDisplay(_GroupingKeysList);
 
-            DrawChart(reportDataByGroupingKey);
+            DrawChart(TotalsData.TotalViewsByGrouping);
         }
 
         void DrawChart(SortedList<string, DataView> reportDataByGroupingKey)
@@ -336,7 +345,7 @@ namespace Budget
 
             foreach (string groupingKey in reportDataByGroupingKey.Keys)
             {
-                MainDataSet.ViewGroupingsRow groupingRow = _GroupingsTbl.FindByGroupingKey(groupingKey);
+                MainDataSet.ViewGroupingsRow groupingRow = TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
                 DataView view = reportDataByGroupingKey[groupingKey];
                 Series series = new Series(groupingRow.GroupingLabel);
                 series.ChartType = SeriesChartType.Line;
@@ -456,7 +465,7 @@ namespace Budget
             comboFromMonth.Populate(minMonth, maxMonth, fromMonth);
             comboToMonth.Populate(minMonth, maxMonth, toMonth);
 
-            // Make gridMain printable by taking a Printable tag onto it:
+            // Make totalsGrid printable by taking a Printable tag onto it:
             totalsGrid.Tag = new PrintableGridTag(totalsGrid);
 
             RefreshData();

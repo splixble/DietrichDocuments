@@ -41,8 +41,7 @@ namespace Budget
 
         public void RefreshData(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds)
         {
-            _TotalsData.LoadGroupings();
-            _TotalsData.LoadTotals(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
+            _TotalsData.LoadData(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
         }
 
         public void RefreshDisplay(List<string> groupingKeysDisplayed)
