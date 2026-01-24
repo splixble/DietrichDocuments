@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.gridMain = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadSourceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,9 +53,7 @@
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
             this.chBoxRefunds = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboToMonth = new Budget.MonthComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboFromMonth = new Budget.MonthComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboAccountType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -64,9 +61,9 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.totalsByGroupingGrid1 = new Budget.TotalsByGroupingGrid();
-            this.splitContainerTempTest = new System.Windows.Forms.SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
+            this.comboToMonth = new Budget.MonthComboBox();
+            this.comboFromMonth = new Budget.MonthComboBox();
+            this.totalsGrid = new Budget.TotalsByGroupingGrid();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
             this.splitConInner.Panel1.SuspendLayout();
@@ -83,11 +80,7 @@
             this.splitConOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalsByGroupingGrid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerTempTest)).BeginInit();
-            this.splitContainerTempTest.Panel1.SuspendLayout();
-            this.splitContainerTempTest.Panel2.SuspendLayout();
-            this.splitContainerTempTest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -99,19 +92,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(391, 100);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // gridMain
-            // 
-            this.gridMain.AllowUserToAddRows = false;
-            this.gridMain.AllowUserToDeleteRows = false;
-            this.gridMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridMain.Location = new System.Drawing.Point(0, 0);
-            this.gridMain.Name = "gridMain";
-            this.gridMain.ReadOnly = true;
-            this.gridMain.Size = new System.Drawing.Size(389, 161);
-            this.gridMain.TabIndex = 1;
-            this.gridMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMain_CellDoubleClick);
             // 
             // menuStrip1
             // 
@@ -227,7 +207,7 @@
             // 
             // splitConInner.Panel1
             // 
-            this.splitConInner.Panel1.Controls.Add(this.splitContainerTempTest);
+            this.splitConInner.Panel1.Controls.Add(this.totalsGrid);
             // 
             // splitConInner.Panel2
             // 
@@ -261,17 +241,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.BorderlineColor = System.Drawing.Color.DimGray;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(1175, 459);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -336,15 +316,6 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "to";
             // 
-            // comboToMonth
-            // 
-            this.comboToMonth.FormattingEnabled = true;
-            this.comboToMonth.Location = new System.Drawing.Point(129, 77);
-            this.comboToMonth.Name = "comboToMonth";
-            this.comboToMonth.Size = new System.Drawing.Size(63, 21);
-            this.comboToMonth.TabIndex = 13;
-            this.comboToMonth.SelectionChangeCommitted += new System.EventHandler(this.comboToMonth_SelectionChangeCommitted);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -353,15 +324,6 @@
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "From";
-            // 
-            // comboFromMonth
-            // 
-            this.comboFromMonth.FormattingEnabled = true;
-            this.comboFromMonth.Location = new System.Drawing.Point(46, 77);
-            this.comboFromMonth.Name = "comboFromMonth";
-            this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
-            this.comboFromMonth.TabIndex = 11;
-            this.comboFromMonth.SelectionChangeCommitted += new System.EventHandler(this.comboFromMonth_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -413,35 +375,35 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // totalsByGroupingGrid1
+            // comboToMonth
             // 
-            this.totalsByGroupingGrid1.AllowUserToAddRows = false;
-            this.totalsByGroupingGrid1.AllowUserToDeleteRows = false;
-            this.totalsByGroupingGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.totalsByGroupingGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalsByGroupingGrid1.Location = new System.Drawing.Point(0, 0);
-            this.totalsByGroupingGrid1.Name = "totalsByGroupingGrid1";
-            this.totalsByGroupingGrid1.ReadOnly = true;
-            this.totalsByGroupingGrid1.Size = new System.Drawing.Size(778, 161);
-            this.totalsByGroupingGrid1.TabIndex = 2;
+            this.comboToMonth.FormattingEnabled = true;
+            this.comboToMonth.Location = new System.Drawing.Point(129, 77);
+            this.comboToMonth.Name = "comboToMonth";
+            this.comboToMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboToMonth.TabIndex = 13;
+            this.comboToMonth.SelectionChangeCommitted += new System.EventHandler(this.comboToMonth_SelectionChangeCommitted);
             // 
-            // splitContainerTempTest
+            // comboFromMonth
             // 
-            this.splitContainerTempTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainerTempTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerTempTest.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerTempTest.Name = "splitContainerTempTest";
+            this.comboFromMonth.FormattingEnabled = true;
+            this.comboFromMonth.Location = new System.Drawing.Point(46, 77);
+            this.comboFromMonth.Name = "comboFromMonth";
+            this.comboFromMonth.Size = new System.Drawing.Size(63, 21);
+            this.comboFromMonth.TabIndex = 11;
+            this.comboFromMonth.SelectionChangeCommitted += new System.EventHandler(this.comboFromMonth_SelectionChangeCommitted);
             // 
-            // splitContainerTempTest.Panel1
+            // totalsGrid
             // 
-            this.splitContainerTempTest.Panel1.Controls.Add(this.gridMain);
-            // 
-            // splitContainerTempTest.Panel2
-            // 
-            this.splitContainerTempTest.Panel2.Controls.Add(this.totalsByGroupingGrid1);
-            this.splitContainerTempTest.Size = new System.Drawing.Size(1175, 163);
-            this.splitContainerTempTest.SplitterDistance = 391;
-            this.splitContainerTempTest.TabIndex = 3;
+            this.totalsGrid.AllowUserToAddRows = false;
+            this.totalsGrid.AllowUserToDeleteRows = false;
+            this.totalsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.totalsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalsGrid.Location = new System.Drawing.Point(0, 0);
+            this.totalsGrid.Name = "totalsGrid";
+            this.totalsGrid.ReadOnly = true;
+            this.totalsGrid.Size = new System.Drawing.Size(1175, 163);
+            this.totalsGrid.TabIndex = 2;
             // 
             // Form1
             // 
@@ -454,7 +416,6 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridMain)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitConInner.Panel1.ResumeLayout(false);
@@ -473,11 +434,7 @@
             this.splitConOuter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.totalsByGroupingGrid1)).EndInit();
-            this.splitContainerTempTest.Panel1.ResumeLayout(false);
-            this.splitContainerTempTest.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerTempTest)).EndInit();
-            this.splitContainerTempTest.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,7 +443,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.DataGridView gridMain;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -517,8 +473,7 @@
         private System.Windows.Forms.ToolStripMenuItem refundsToolStripMenuItem;
         private System.Windows.Forms.CheckBox chBoxRefunds;
         private System.Windows.Forms.ToolStripMenuItem monthlyAverageExpensesToolStripMenuItem;
-        private TotalsByGroupingGrid totalsByGroupingGrid1;
-        private System.Windows.Forms.SplitContainer splitContainerTempTest;
+        private TotalsByGroupingGrid totalsGrid;
     }
 }
 

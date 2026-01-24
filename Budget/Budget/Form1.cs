@@ -74,7 +74,16 @@ namespace Budget
 
         void BuildGroupingsTree(DataView dataByGroupingKey)
         {
+
+
+
+
             // DIAG redo this to use new TotalsByGroupData class
+
+
+
+
+
 
             // Remove all nodes, of they exist:
             tvGroupings.Nodes.Clear();
@@ -261,12 +270,12 @@ namespace Budget
                 reportDataByGroupingKey.Add(groupingKey, view);
             }
 
-            PopulateMainGrid(reportDataByGroupingKey);
+            // gridMain replaced by totalsGrid  --  PopulateMainGrid(reportDataByGroupingKey);
 
 
             // DIAG new main grid!
-            totalsByGroupingGrid1.RefreshData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
-            totalsByGroupingGrid1.RefreshDisplay(_GroupingKeysList);
+            totalsGrid.RefreshData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
+            totalsGrid.RefreshDisplay(_GroupingKeysList);
 
             DrawChart(reportDataByGroupingKey);
         }
@@ -362,6 +371,7 @@ namespace Budget
             chart1.Series.Clear();
         }
 
+        /* gridMain replaced by totalsGrid
         void PopulateMainGrid(SortedList<string, DataView> reportDataByGroupingKey)
         {
             gridMain.Rows.Clear();
@@ -421,6 +431,7 @@ namespace Budget
                 }
             }
         }
+        */
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -446,11 +457,12 @@ namespace Budget
             comboToMonth.Populate(minMonth, maxMonth, toMonth);
 
             // Make gridMain printable by taking a Printable tag onto it:
-            gridMain.Tag = new PrintableGridTag(gridMain);
+            totalsGrid.Tag = new PrintableGridTag(totalsGrid);
 
             RefreshData();
         }
 
+        /* gridMain replaced by totalsGrid
         private void gridMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
@@ -462,6 +474,7 @@ namespace Budget
             monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner, AssetType);
             monthGroupingForm.ShowDialog();
         }
+        */ 
 
         private void applyTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
