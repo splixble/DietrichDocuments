@@ -46,6 +46,7 @@
             this.investmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthlyAverageExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
             this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -63,7 +64,8 @@
             this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainDataSet = new Budget.MainDataSet();
             this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
-            this.monthlyAverageExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.totalsByGroupingGrid1 = new Budget.TotalsByGroupingGrid();
+            this.splitContainerTempTest = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.gridMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
@@ -81,6 +83,11 @@
             this.splitConOuter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsByGroupingGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerTempTest)).BeginInit();
+            this.splitContainerTempTest.Panel1.SuspendLayout();
+            this.splitContainerTempTest.Panel2.SuspendLayout();
+            this.splitContainerTempTest.SuspendLayout();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -102,7 +109,7 @@
             this.gridMain.Location = new System.Drawing.Point(0, 0);
             this.gridMain.Name = "gridMain";
             this.gridMain.ReadOnly = true;
-            this.gridMain.Size = new System.Drawing.Size(1175, 163);
+            this.gridMain.Size = new System.Drawing.Size(389, 161);
             this.gridMain.TabIndex = 1;
             this.gridMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMain_CellDoubleClick);
             // 
@@ -204,6 +211,13 @@
             this.refundsToolStripMenuItem.Text = "&Refunds";
             this.refundsToolStripMenuItem.Click += new System.EventHandler(this.refundsToolStripMenuItem_Click);
             // 
+            // monthlyAverageExpensesToolStripMenuItem
+            // 
+            this.monthlyAverageExpensesToolStripMenuItem.Name = "monthlyAverageExpensesToolStripMenuItem";
+            this.monthlyAverageExpensesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.monthlyAverageExpensesToolStripMenuItem.Text = "Monthly Average Expenses";
+            this.monthlyAverageExpensesToolStripMenuItem.Click += new System.EventHandler(this.monthlyAverageExpensesToolStripMenuItem_Click);
+            // 
             // splitConInner
             // 
             this.splitConInner.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -213,7 +227,7 @@
             // 
             // splitConInner.Panel1
             // 
-            this.splitConInner.Panel1.Controls.Add(this.gridMain);
+            this.splitConInner.Panel1.Controls.Add(this.splitContainerTempTest);
             // 
             // splitConInner.Panel2
             // 
@@ -399,12 +413,35 @@
             // 
             this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // monthlyAverageExpensesToolStripMenuItem
+            // totalsByGroupingGrid1
             // 
-            this.monthlyAverageExpensesToolStripMenuItem.Name = "monthlyAverageExpensesToolStripMenuItem";
-            this.monthlyAverageExpensesToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.monthlyAverageExpensesToolStripMenuItem.Text = "Monthly Average Expenses";
-            this.monthlyAverageExpensesToolStripMenuItem.Click += new System.EventHandler(this.monthlyAverageExpensesToolStripMenuItem_Click);
+            this.totalsByGroupingGrid1.AllowUserToAddRows = false;
+            this.totalsByGroupingGrid1.AllowUserToDeleteRows = false;
+            this.totalsByGroupingGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.totalsByGroupingGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalsByGroupingGrid1.Location = new System.Drawing.Point(0, 0);
+            this.totalsByGroupingGrid1.Name = "totalsByGroupingGrid1";
+            this.totalsByGroupingGrid1.ReadOnly = true;
+            this.totalsByGroupingGrid1.Size = new System.Drawing.Size(778, 161);
+            this.totalsByGroupingGrid1.TabIndex = 2;
+            // 
+            // splitContainerTempTest
+            // 
+            this.splitContainerTempTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainerTempTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerTempTest.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerTempTest.Name = "splitContainerTempTest";
+            // 
+            // splitContainerTempTest.Panel1
+            // 
+            this.splitContainerTempTest.Panel1.Controls.Add(this.gridMain);
+            // 
+            // splitContainerTempTest.Panel2
+            // 
+            this.splitContainerTempTest.Panel2.Controls.Add(this.totalsByGroupingGrid1);
+            this.splitContainerTempTest.Size = new System.Drawing.Size(1175, 163);
+            this.splitContainerTempTest.SplitterDistance = 391;
+            this.splitContainerTempTest.TabIndex = 3;
             // 
             // Form1
             // 
@@ -436,6 +473,11 @@
             this.splitConOuter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsByGroupingGrid1)).EndInit();
+            this.splitContainerTempTest.Panel1.ResumeLayout(false);
+            this.splitContainerTempTest.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerTempTest)).EndInit();
+            this.splitContainerTempTest.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,6 +517,8 @@
         private System.Windows.Forms.ToolStripMenuItem refundsToolStripMenuItem;
         private System.Windows.Forms.CheckBox chBoxRefunds;
         private System.Windows.Forms.ToolStripMenuItem monthlyAverageExpensesToolStripMenuItem;
+        private TotalsByGroupingGrid totalsByGroupingGrid1;
+        private System.Windows.Forms.SplitContainer splitContainerTempTest;
     }
 }
 

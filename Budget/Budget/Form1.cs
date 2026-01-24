@@ -62,7 +62,7 @@ namespace Budget
             InitializeComponent();
         }
 
-        void AddToGroupingListIfChecked(TreeNode node, ref List<String> groupingsList)
+        void AddToGroupingListIfChecked(TreeNode node, ref List<string> groupingsList)
         {
             if (node.Checked)
                 groupingsList.Add(node.Name);
@@ -234,6 +234,8 @@ namespace Budget
             RefreshDisplay();
         }
 
+        List<string> _GroupingKeysList; 
+
         void RefreshDisplay()
         {
             /* Report Viewer is no longer used
@@ -244,14 +246,14 @@ namespace Budget
             */
 
             // Get groupings to display, from checked 
-            List<string> groupingKeysList = new List<string>();
+            _GroupingKeysList = new List<string>();
             foreach (TreeNode node in tvGroupings.Nodes)
-                AddToGroupingListIfChecked(node, ref groupingKeysList);
+                AddToGroupingListIfChecked(node, ref _GroupingKeysList);
 
             // DIAG USE NEW MonthlyDataByGroupingKey class with .AddData()!!
 
             SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
-            foreach (string groupingKey in groupingKeysList)
+            foreach (string groupingKey in _GroupingKeysList)
             {
                 DataView view = new DataView(MainData.ViewMonthlyReport);
                 view.Sort = "TrMonth ASC";
@@ -260,6 +262,11 @@ namespace Budget
             }
 
             PopulateMainGrid(reportDataByGroupingKey);
+
+
+            // DIAG new main grid!
+            totalsByGroupingGrid1.RefreshData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
+            totalsByGroupingGrid1.RefreshDisplay(_GroupingKeysList);
 
             DrawChart(reportDataByGroupingKey);
         }

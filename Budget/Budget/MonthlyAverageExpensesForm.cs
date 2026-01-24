@@ -50,18 +50,19 @@ namespace Budget
             groupingKeyList.Add("TNETFLIX");
             */
 
-            grid1.TotalsData.DisplayAllGroupingsInTotalData = true; // except for the ones rejected by DisplayingGrouping handler
-            grid1.TotalsData.DisplayingGrouping += TotalsData_DisplayingGrouping;
 
-            grid1.RefreshData(fromMonth, toMonth,  accountOwner, assetType, adjustForRefunds);
 
-        }
+            grid1.RefreshData(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
 
-        private void TotalsData_DisplayingGrouping(TotalsByGroupingData sender, TotalsByGroupingData.DisplayingGroupingEventArgs e)
-        {
-            // DIAG Balances are not correct! All 0!
-            if (e._GroupingRow.IsTopLevel == 1)
-                e.Cancel = true;
+            // Display just the non-top-level groupings that there are total rows for:
+            List<string> keysDisplayed = new List<string>();
+            foreach (string groupingKey in grid1.TotalsData.TotalViewsByGrouping.Keys)
+            {
+                MainDataSet.ViewGroupingsRow groupingRow = grid1.TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
+                if (groupingRow != null && groupingRow.IsTopLevel == 0)
+                    keysDisplayed.Add(groupingKey);
+            }
+            grid1.RefreshDisplay(keysDisplayed);
         }
     }
 }

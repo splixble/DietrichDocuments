@@ -46,6 +46,7 @@ namespace Budget
             }
         }
 
+        /* DIAG REMOVE -- this complictes things unnecessarily
         // events:
         public delegate void DisplayingGroupingHandler(TotalsByGroupingData sender, DisplayingGroupingEventArgs e);
         public event DisplayingGroupingHandler DisplayingGrouping;
@@ -60,6 +61,7 @@ namespace Budget
                 _GroupingRow = groupingRow;
             }
         }
+        */ 
 
         public TotalsByGroupingData()
         {
@@ -149,44 +151,26 @@ namespace Budget
                 }
             }
 
-            if (DisplayAllGroupingsInTotalData)
-                AddAllGroupingsInTotalData();
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
+            {
+                if (_TotalsByGroupingView.Find(groupingRow.GroupingKey) >= 0)
+                    AddTotalViewByGrouping(groupingRow);
+            }
         }
 
-        SortedList<string, DataView> _DisplayedGroupings = new SortedList<string, DataView>();
-        public SortedList<string, DataView> DisplayedGroupings => _DisplayedGroupings;
+        SortedList<string, DataView> _TotalViewsByGrouping = new SortedList<string, DataView>();
+        public SortedList<string, DataView> TotalViewsByGrouping => _TotalViewsByGrouping;
 
-        public void AddDisplayedGrouping(MainDataSet.ViewGroupingsRow groupingRow)
+        public void AddTotalViewByGrouping(MainDataSet.ViewGroupingsRow groupingRow)
         {
-            if (DisplayingGrouping != null)
-            {
-                DisplayingGroupingEventArgs args = new DisplayingGroupingEventArgs(groupingRow);
-                DisplayingGrouping(this, args);
-                if (args.Cancel)
-                    return;
-            }
+            if (_TotalViewsByGrouping.ContainsKey(groupingRow.GroupingKey))
+                return; // dont add duplicate entry
 
             // Create DataView of all the Totals rows with this grouping:
             DataView view = new DataView(_TotalsTbl);
             view.Sort = "TrMonth ASC";
             view.RowFilter = "GroupingKey = '" + groupingRow.GroupingKey + "'";
-            _DisplayedGroupings.Add(groupingRow.GroupingKey, view);
-        }
-
-        public void ClearGroupingKeys()
-        {
-            _DisplayedGroupings.Clear(); 
-        }
-
-        public bool DisplayAllGroupingsInTotalData = false; 
-
-        public void AddAllGroupingsInTotalData()
-        {
-            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
-            {
-                if (_TotalsByGroupingView.Find(groupingRow.GroupingKey) >= 0)
-                    AddDisplayedGrouping(groupingRow);
-            }
+            _TotalViewsByGrouping.Add(groupingRow.GroupingKey, view);
         }
     }
 }

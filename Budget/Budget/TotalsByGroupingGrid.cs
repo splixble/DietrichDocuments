@@ -27,6 +27,8 @@ namespace Budget
         TotalsByGroupingData _TotalsData = null;
         public TotalsByGroupingData TotalsData => _TotalsData;
 
+        List<string> _GroupingKeysDisplayed;
+
         public TotalsByGroupingGrid()
         {
             ReadOnly = true;
@@ -37,15 +39,19 @@ namespace Budget
             _TotalsData = new TotalsByGroupingData();
         }
 
-        public void RefreshData(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds) 
+        public void RefreshData(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds)
         {
             _TotalsData.LoadGroupings();
             _TotalsData.LoadTotals(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
+        }
 
+        public void RefreshDisplay(List<string> groupingKeysDisplayed)
+        { 
+            _GroupingKeysDisplayed = groupingKeysDisplayed;
 
             /*
             foreach(string groupingKey in groupingKeys) 
-                _TotalsData.AddDisplayedGrouping(groupingKey);
+                _TotalsData.AddTotalViewByGrouping(groupingKey);
 
             _DataTbl = dataTbl;
             _GroupingsTbl = groupingsTbl;
@@ -70,7 +76,7 @@ namespace Budget
             for (DateTime month = _TotalsData.FromMonth; month <= _TotalsData.ToMonth; month = month.AddMonths(1))
                 monthsForGridColumns[month] = null;
 
-            foreach (string groupingKey in _TotalsData.DisplayedGroupings.Keys)
+            foreach (string groupingKey in _GroupingKeysDisplayed)
             {
                 MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
                 groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
@@ -107,9 +113,9 @@ namespace Budget
                 row.Tag = groupingsForGridRows.Keys[ri];
             }
 
-            foreach (string grouping in _TotalsData.DisplayedGroupings.Keys)
+            foreach (string grouping in _GroupingKeysDisplayed)
             {
-                foreach (DataRowView rowView in _TotalsData.DisplayedGroupings[grouping])
+                foreach (DataRowView rowView in _TotalsData.TotalViewsByGrouping[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
                     this[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[_TotalsData.AmountColumn];
