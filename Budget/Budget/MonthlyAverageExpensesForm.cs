@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Budget
 {
@@ -25,7 +26,8 @@ namespace Budget
             DateTime toMonth = new DateTime(2025, 12, 1);
             string accountOwner = "D";
             AssetType assetType = AssetType.BankAndCash;
-            bool adjustForRefunds = true;
+            bool adjustForRefunds = false;
+            // DIAG Balances are 0 when adjustForRefunds=true!!!! gotta fix!!
 
 
             // DIAG THIS needs to be merged into the ViewMonthlyReportDataTable code 
@@ -41,12 +43,25 @@ namespace Budget
             groupingsAdap.FillInSelectorOrder(groupingsTbl);
 
             */
+
+            /* DIAG remove, not used
             List<string> groupingKeyList = new List<string>();
             groupingKeyList.Add("TGROC");
             groupingKeyList.Add("TNETFLIX");
+            */
 
-            grid1.RefreshData(groupingKeyList, fromMonth, toMonth,  accountOwner, assetType, adjustForRefunds);
+            grid1.TotalsData.DisplayAllGroupingsInTotalData = true; // except for the ones rejected by DisplayingGrouping handler
+            grid1.TotalsData.DisplayingGrouping += TotalsData_DisplayingGrouping;
 
+            grid1.RefreshData(fromMonth, toMonth,  accountOwner, assetType, adjustForRefunds);
+
+        }
+
+        private void TotalsData_DisplayingGrouping(TotalsByGroupingData sender, TotalsByGroupingData.DisplayingGroupingEventArgs e)
+        {
+            // DIAG Balances are not correct! All 0!
+            if (e._GroupingRow.IsTopLevel == 1)
+                e.Cancel = true;
         }
     }
 }

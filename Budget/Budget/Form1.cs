@@ -74,6 +74,8 @@ namespace Budget
 
         void BuildGroupingsTree(DataView dataByGroupingKey)
         {
+            // DIAG redo this to use new TotalsByGroupData class
+
             // Remove all nodes, of they exist:
             tvGroupings.Nodes.Clear();
 
@@ -224,6 +226,7 @@ namespace Budget
             // ############## END OF DIAG MOVED TO TotalsByGroupingData ##############
 
 
+            // DIAG WILL NOT BE NEEDED, with TotalsByGroupingData's new _DataByGroupingKey
             DataView dataByGroupingKey = new DataView(MainData.ViewMonthlyReport, null, "GroupingKey", DataViewRowState.Unchanged);
 
             BuildGroupingsTree(dataByGroupingKey);

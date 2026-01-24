@@ -25,6 +25,7 @@ namespace Budget
         */
 
         TotalsByGroupingData _TotalsData = null;
+        public TotalsByGroupingData TotalsData => _TotalsData;
 
         public TotalsByGroupingGrid()
         {
@@ -32,18 +33,20 @@ namespace Budget
             AllowUserToAddRows = false;
             AllowUserToDeleteRows = false;
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+            _TotalsData = new TotalsByGroupingData();
         }
 
-        public void RefreshData(List<string> groupingKeys,
-            DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds) 
+        public void RefreshData(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds) 
         {
-            _TotalsData = new TotalsByGroupingData(adjustForRefunds);
             _TotalsData.LoadGroupings();
-            _TotalsData.LoadTotals(fromMonth, toMonth, accountOwner, assetType);
-            foreach(string groupingKey in groupingKeys) 
-                _TotalsData.AddViewByGroupingList(groupingKey);
+            _TotalsData.LoadTotals(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
+
 
             /*
+            foreach(string groupingKey in groupingKeys) 
+                _TotalsData.AddDisplayedGrouping(groupingKey);
+
             _DataTbl = dataTbl;
             _GroupingsTbl = groupingsTbl;
             _GroupingKeys = groupingKeys;
@@ -67,7 +70,7 @@ namespace Budget
             for (DateTime month = _TotalsData.FromMonth; month <= _TotalsData.ToMonth; month = month.AddMonths(1))
                 monthsForGridColumns[month] = null;
 
-            foreach (string groupingKey in _TotalsData.ViewsByGroupingList.Keys)
+            foreach (string groupingKey in _TotalsData.DisplayedGroupings.Keys)
             {
                 MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
                 groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
@@ -104,9 +107,9 @@ namespace Budget
                 row.Tag = groupingsForGridRows.Keys[ri];
             }
 
-            foreach (string grouping in _TotalsData.ViewsByGroupingList.Keys)
+            foreach (string grouping in _TotalsData.DisplayedGroupings.Keys)
             {
-                foreach (DataRowView rowView in _TotalsData.ViewsByGroupingList[grouping])
+                foreach (DataRowView rowView in _TotalsData.DisplayedGroupings[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
                     this[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[_TotalsData.AmountColumn];

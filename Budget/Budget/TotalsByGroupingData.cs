@@ -1,10 +1,8 @@
 ﻿using Microsoft.Data.SqlClient; // NOTE: Must be Microsoft.Data.SqlClient, NOT System.Data.SqlClient
+using PrintLib;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TypeLib;
 using static Budget.MainDataSet;
 //using static TypeLib.DBUtils;
@@ -34,6 +32,9 @@ namespace Budget
         MainDataSet.ViewGroupingsDataTable _GroupingsTbl;
         public MainDataSet.ViewGroupingsDataTable GroupingsTbl => _GroupingsTbl;
 
+        // View to check whether there are any rows in _TotalsTbl with a particular grouping:
+        DataView _TotalsByGroupingView;
+
         public DataColumn AmountColumn
         {
             get
@@ -45,12 +46,26 @@ namespace Budget
             }
         }
 
-        public TotalsByGroupingData( bool adjustForRefunds)
-        {
-            _AdjustForRefunds = adjustForRefunds;
+        // events:
+        public delegate void DisplayingGroupingHandler(TotalsByGroupingData sender, DisplayingGroupingEventArgs e);
+        public event DisplayingGroupingHandler DisplayingGrouping;
 
+        public class DisplayingGroupingEventArgs
+        {
+            public ViewGroupingsRow _GroupingRow;
+            public bool Cancel = false;
+
+            public DisplayingGroupingEventArgs(ViewGroupingsRow groupingRow)
+            {
+                _GroupingRow = groupingRow;
+            }
+        }
+
+        public TotalsByGroupingData()
+        {
             _TotalsTbl = new MainDataSet.ViewMonthlyReportDataTable();
             _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
+            _TotalsByGroupingView = new DataView(_TotalsTbl, null, "GroupingKey", DataViewRowState.Unchanged);
         }
 
         public void LoadGroupings()
@@ -60,13 +75,13 @@ namespace Budget
             groupingsAdap.FillInSelectorOrder(_GroupingsTbl);
         }
 
-        public void LoadTotals(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType)
+        public void LoadTotals(DateTime fromMonth, DateTime toMonth, string accountOwner, AssetType assetType, bool adjustForRefunds)
         { 
             _FromMonth = fromMonth;
             _ToMonth = toMonth;
             _AccountOwner = accountOwner;
             _AssetType = assetType;
-
+            _AdjustForRefunds = adjustForRefunds;
 
             if (_AssetType == AssetType.Both)
             {
@@ -133,17 +148,45 @@ namespace Budget
                     }
                 }
             }
+
+            if (DisplayAllGroupingsInTotalData)
+                AddAllGroupingsInTotalData();
         }
 
-        SortedList<string, DataView> _ViewsByGroupingList = new SortedList<string, DataView>();
-        public SortedList<string, DataView> ViewsByGroupingList => _ViewsByGroupingList;
+        SortedList<string, DataView> _DisplayedGroupings = new SortedList<string, DataView>();
+        public SortedList<string, DataView> DisplayedGroupings => _DisplayedGroupings;
 
-        public void AddViewByGroupingList(string groupingKey)
-        {               
+        public void AddDisplayedGrouping(MainDataSet.ViewGroupingsRow groupingRow)
+        {
+            if (DisplayingGrouping != null)
+            {
+                DisplayingGroupingEventArgs args = new DisplayingGroupingEventArgs(groupingRow);
+                DisplayingGrouping(this, args);
+                if (args.Cancel)
+                    return;
+            }
+
+            // Create DataView of all the Totals rows with this grouping:
             DataView view = new DataView(_TotalsTbl);
             view.Sort = "TrMonth ASC";
-            view.RowFilter = "GroupingKey = '" + groupingKey + "'";
-            _ViewsByGroupingList.Add(groupingKey, view);
+            view.RowFilter = "GroupingKey = '" + groupingRow.GroupingKey + "'";
+            _DisplayedGroupings.Add(groupingRow.GroupingKey, view);
+        }
+
+        public void ClearGroupingKeys()
+        {
+            _DisplayedGroupings.Clear(); 
+        }
+
+        public bool DisplayAllGroupingsInTotalData = false; 
+
+        public void AddAllGroupingsInTotalData()
+        {
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
+            {
+                if (_TotalsByGroupingView.Find(groupingRow.GroupingKey) >= 0)
+                    AddDisplayedGrouping(groupingRow);
+            }
         }
     }
 }
