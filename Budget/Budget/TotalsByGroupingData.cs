@@ -101,7 +101,8 @@ namespace Budget
                     "MAX(GroupingKey) AS GroupingKey, " +
                     "MAX(TrMonth) AS TrMonth, " +
                     "MAX(AccountOwner) AS AccountOwner, " +
-                    "'' AS AccountType " +
+                    "'' AS AccountType, " + // just because we need a dummy value
+                    "0 AS IsInvestment " + // just because we need a dummy value
                     "FROM ViewMonthlyReport " +
                     "WHERE AccountOwner = '" + _AccountOwner + "'" +
                     "AND TrMonth >= " + _FromMonth.SQLDateLiteral() +

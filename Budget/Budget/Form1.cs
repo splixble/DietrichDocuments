@@ -161,6 +161,7 @@ namespace Budget
                     _IncomeNode.Checked = true;
                     break;
                 case AssetType.Investments:
+                case AssetType.Both:
                     _BalanceTotalNode.Checked = true;
                     break;
             }
@@ -286,11 +287,13 @@ namespace Budget
             // DIAG new main grid!
             totalsGrid.RefreshDisplay(_GroupingKeysList);
 
-            DrawChart(TotalsData.TotalViewsByGrouping);
+            DrawChart();
         }
 
-        void DrawChart(SortedList<string, DataView> reportDataByGroupingKey)
+        void DrawChart()
         {
+            // DIAG remov3e this line --  use _GroupingKeysList and TotalsData.TotalViewsByGrouping
+
             // Clear previous things:
             ClearChart();
 
@@ -300,9 +303,9 @@ namespace Budget
             // Y axis (dollar amount) chart settings:
             decimal minAmount = Decimal.MaxValue;
             decimal maxAmount = Decimal.MinValue;
-            foreach (string grouping in reportDataByGroupingKey.Keys)
+            foreach (string grouping in _GroupingKeysList)
             {
-                foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
+                foreach (DataRowView rowView in TotalsData.TotalViewsByGrouping[grouping])
                 {
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
                     decimal amount = (decimal)tblRow[AmountColumn];
@@ -343,10 +346,10 @@ namespace Budget
 
             ChartLineColorGenerator colorGenerator = new ChartLineColorGenerator();
 
-            foreach (string groupingKey in reportDataByGroupingKey.Keys)
+            foreach (string groupingKey in _GroupingKeysList)
             {
                 MainDataSet.ViewGroupingsRow groupingRow = TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
-                DataView view = reportDataByGroupingKey[groupingKey];
+                DataView view = TotalsData.TotalViewsByGrouping[groupingKey];
                 Series series = new Series(groupingRow.GroupingLabel);
                 series.ChartType = SeriesChartType.Line;
                 series.Color = GetChartLineColor(groupingKey, colorGenerator);
