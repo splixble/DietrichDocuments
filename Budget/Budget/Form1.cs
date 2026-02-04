@@ -25,15 +25,6 @@ namespace Budget
 {
     public partial class Form1 : Form
     {
-        /* replaced by TotalsData
-        // use this?
-        public MainDataSet MainData { get { return _MainData; } }
-        MainDataSet _MainData = new MainDataSet();
-
-        MainDataSet.ViewGroupingsDataTable _GroupingsTbl = new MainDataSet.ViewGroupingsDataTable();
-        MainDataSetTableAdapters.ViewGroupingsTableAdapter _GroupingsAdap = new MainDataSetTableAdapters.ViewGroupingsTableAdapter();
-        */
-
         const int groupingsGridCheckboxColumn = 0;
 
         TotalsByGroupingData TotalsData => totalsGrid.TotalsData; // used by the groupings tree ctrl and chart as well
@@ -78,17 +69,6 @@ namespace Budget
 
         void BuildGroupingsTree(DataView dataByGroupingKey)
         {
-
-
-
-
-            // DIAG redo this to use new TotalsByGroupData class
-
-
-
-
-
-
             // Remove all nodes, of they exist:
             tvGroupings.Nodes.Clear();
 
@@ -97,18 +77,6 @@ namespace Budget
 
             // Requery the table: 
             TotalsData.LoadGroupings(); // DIAG do we need to??
-            /*
-            _GroupingsTbl.Clear();
-            _GroupingsAdap.FillInSelectorOrder(_GroupingsTbl);
-            */
-
-            // DIAG filter by AccountOwner, AccountType
-            /* with:
-                    " AND AccountOwner = '" + AccountOwner + "'";
-                    // "WHERE Grouping IN (" + groupingsListString + ")"
-                if (AccountType != Constants.AccountType.BothValue)
-                    selectStr += " AND AccountType = '" + AccountType + "'";
-             */
 
             // Populate Groupings tree, and save certain nodes for future reference:
 
@@ -449,6 +417,8 @@ namespace Budget
         {
             if (!Program.LookupTableSet.LoadWithRetryOption())
                 return;
+
+            // DIAG replace this with new user ctrls:
 
             comboAccountOwner.DataSource = Program.LookupTableSet.MainDataSet.AccountOwner;
             comboAccountOwner.ValueMember = "OwnerID";

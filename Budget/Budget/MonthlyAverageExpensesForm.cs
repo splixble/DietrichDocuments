@@ -16,45 +16,43 @@ namespace Budget
         public MonthlyAverageExpensesForm()
         {
             InitializeComponent();
+
+            selector.SelectionChanged += Selector_SelectionChanged;
+        }
+
+        private void Selector_SelectionChanged(TransacListSelector sender, EventArgs args)
+        {
+            RefreshDisplay();
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
+            RefreshDisplay();
+        }
+
+        void RefreshDisplay()
+        { 
+            /* DIAG remove
             DateTime fromMonth = new DateTime(2025, 7, 1);
             DateTime toMonth = new DateTime(2025, 12, 1);
             string accountOwner = "D";
             AssetType assetType = AssetType.BankAndCash;
             bool adjustForRefunds = false;
-            // DIAG Balances are 0 when adjustForRefunds=true!!!! gotta fix!!
-
-
-            // DIAG THIS needs to be merged into the ViewMonthlyReportDataTable code 
-            /*
-            MainDataSet.ViewMonthlyReportDataTable dataTbl = new MainDataSet.ViewMonthlyReportDataTable();
-
-            MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
-            adap.FillByDateRange(dataTbl, fromMonth, toMonth, accountOwner, (assetType == AssetType.Investments ? (byte)1 : (byte)0));
-
-            MainDataSet.ViewGroupingsDataTable groupingsTbl = new MainDataSet.ViewGroupingsDataTable();
-            MainDataSetTableAdapters.ViewGroupingsTableAdapter groupingsAdap = new MainDataSetTableAdapters.ViewGroupingsTableAdapter();
-            groupingsTbl.Clear();
-            groupingsAdap.FillInSelectorOrder(groupingsTbl);
-
             */
 
-            /* DIAG remove, not used
-            List<string> groupingKeyList = new List<string>();
-            groupingKeyList.Add("TGROC");
-            groupingKeyList.Add("TNETFLIX");
-            */
-
-
-
-            grid1.RefreshData(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
+            grid1.RefreshData(selector.FromMonth, selector.ToMonth, selector.AccountOwner, selector.AssetType, selector.AdjustForRefunds);
 
             // Display just the non-top-level groupings that there are total rows for:
+
+
+
+            // DIAG this not working, "total rows for"!!! when working, put the selector ctrl on main form.
+
+
+
+
             List<string> keysDisplayed = new List<string>();
             foreach (string groupingKey in grid1.TotalsData.TotalViewsByGrouping.Keys)
             {
@@ -62,6 +60,7 @@ namespace Budget
                 if (groupingRow != null && groupingRow.IsTopLevel == 0)
                     keysDisplayed.Add(groupingKey);
             }
+
             grid1.RefreshDisplay(keysDisplayed);
         }
     }
