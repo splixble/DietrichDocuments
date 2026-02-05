@@ -16,6 +16,7 @@ using PrintLib;
 using ChartLib;
 using TypeLib;
 using static TypeLib.DBUtils;
+using static TypeLib.DateTimeExtensions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Budget.Constants;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -29,23 +30,17 @@ namespace Budget
 
         TotalsByGroupingData TotalsData => totalsGrid.TotalsData; // used by the groupings tree ctrl and chart as well
 
-        public string AccountOwner => comboAccountOwner.SelectedValue as string;
-
-        public AssetType AssetType => (AssetType)comboAccountType.SelectedValue;
-
-        public DateTime FromMonth => (DateTime)comboFromMonth.SelectedMonth;
-
-        public DateTime ToMonth => (DateTime)comboToMonth.SelectedMonth;
-
         TreeNode _BalanceTotalNode = null;
         TreeNode _IncomeNode = null;
         TreeNode _ExpensesNode = null;
+
+        public string AccountOwner => SelectorCtrl.AccountOwner;
 
         DataColumn AmountColumn
         {
             get
             {
-                if (chBoxRefunds.Checked)
+                if (SelectorCtrl.AdjustForRefunds)
                     return TotalsData.TotalsTbl.AmountRefundAdjustedNormalizedColumn;
                 else
                     return TotalsData.TotalsTbl.AmountNormalizedColumn;
@@ -112,17 +107,13 @@ namespace Budget
                     if (parentNodeArray.Length > 0) // should never be 0, or >1
                         parentNode = parentNodeArray[0];
                 }
-                /* REMOVE -- s/n need to make this s special case
-                else if (groupingRow.GroupingType == Constants.GroupingType.BalanceOfAccount)
-                    parentNode = _BalanceTotalNode;
-                */
 
                 if (parentNode != null)
                     parentNode.Nodes.Add(groupingRow.GroupingKey, groupingRow.GroupingLabel);
             }
 
             // Check initial default groupings:
-            switch (AssetType)
+            switch (SelectorCtrl.AssetType)
             {
                 case AssetType.BankAndCash:
                     _ExpensesNode.Checked = true;
@@ -137,85 +128,7 @@ namespace Budget
 
         void RefreshData()
         {
-            /* ############# DIAG MOVED TO TotalsByGroupingData ##############
-            if (AssetType == AssetType.Both)
-            {
-
-                // in this case we need to do a special query to combine total balances of both account types:
-                string selectStr = "SELECT SUM(AmountNormalized) AS AmountNormalized, " +
-                    "SUM(AmountRefundAdjustedNormalized) AS AmountRefundAdjustedNormalized, " +
-                    "MAX(GroupingKey) AS GroupingKey, " +
-                    "MAX(TrMonth) AS TrMonth, " +
-                    "MAX(AccountOwner) AS AccountOwner, " +
-                    "'' AS AccountType " +
-                    "FROM ViewMonthlyReport " +
-                    "WHERE AccountOwner = '" + AccountOwner + "'" +
-                    "AND TrMonth >= " + FromMonth.SQLDateLiteral() +
-                    "AND TrMonth <= " + ToMonth.SQLDateLiteral() +
-                    "GROUP BY GroupingKey, TrMonth, AccountOwner";
-
-                using (SqlConnection reportDataConn = new SqlConnection(Properties.Settings.Default.BudgetConnectionString))
-                {
-                    // reportDataConn.Open();
-                    SqlCommand reportDataCmd = new SqlCommand();
-                    // this dont compile: CommandBehavior fillCommandBehavior = FillCommandBehavior;
-                    reportDataCmd.Connection = Program.DbConnection;
-                    reportDataCmd.CommandText = selectStr;
-
-                    SqlDataAdapter reportDataAdap = new SqlDataAdapter(reportDataCmd);
-                    MainData.ViewMonthlyReport.Clear();
-                    reportDataAdap.Fill(MainData.ViewMonthlyReport);
-
-                }
-            }
-            else
-            {
-                MainDataSetTableAdapters.ViewMonthlyReportTableAdapter adap = new MainDataSetTableAdapters.ViewMonthlyReportTableAdapter();
-                adap.FillByDateRange(MainData.ViewMonthlyReport, FromMonth, ToMonth, AccountOwner, (AssetType == AssetType.Investments ? (byte)1 : (byte)0));
-            }
-       
-
-
-
-            // Fill in missing months gaps in data for each Grouping, AccountOwner, and IsInv with 0-amount rows,
-            // to avoid discontinuous lines on the chart:
-            // (outer Key is array of Grouping, AccountOwner, and AccountType; inner Value is not used)
-            SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>> rowsByKeysAndMonth = new SortedList<GroupingAccOwnerIsInvestment, SortedList<DateTime, object>>();
-            foreach (ViewMonthlyReportRow reportRow in MainData.ViewMonthlyReport)
-            {
-                GroupingAccOwnerIsInvestment outerKey = new GroupingAccOwnerIsInvestment(reportRow.GroupingKey, reportRow.AccountOwner, reportRow.IsInvestment);
-                if (!rowsByKeysAndMonth.ContainsKey(outerKey))
-                    rowsByKeysAndMonth.Add(outerKey, new SortedList<DateTime, object>());
-                rowsByKeysAndMonth[outerKey][reportRow.TrMonth] = null;
-            }
-            foreach (GroupingAccOwnerIsInvestment keyList in rowsByKeysAndMonth.Keys)
-            {
-                // go through each month in specified range, and if there's not a row for it, add one with 0 amount:
-                SortedList<DateTime, object> subList = rowsByKeysAndMonth[keyList];
-                for (DateTime month = FromMonth; month <= ToMonth; month = month.AddMonths(1))
-                {
-                    if (!subList.ContainsKey(month))
-                    {
-                        MainDataSet.ViewMonthlyReportRow newRow = MainData.ViewMonthlyReport.NewViewMonthlyReportRow();
-                        newRow.TrMonth = month;
-                        newRow.GroupingKey = keyList._GroupingKey;
-                        newRow.AccountOwner = keyList._AccountOwner;
-                        newRow.IsInvestment = keyList._IsInvestment;
-                        newRow[AmountColumn] = 0;
-                        MainData.ViewMonthlyReport.AddViewMonthlyReportRow(newRow);
-                        // subList.Add(month, null); // DIAG dont need to add it, rite?
-                    }
-                }
-            }
-
-            // ############## END OF DIAG MOVED TO TotalsByGroupingData ##############
-
-
-            // DIAG WILL NOT BE NEEDED, with TotalsByGroupingData's new _DataByGroupingKey -- right?
-            DataView dataByGroupingKey = new DataView(TotalsData.TotalsTbl, null, "GroupingKey", DataViewRowState.Unchanged);
-            */
-
-            TotalsData.LoadData(FromMonth, ToMonth, AccountOwner, AssetType, chBoxRefunds.Checked);
+            TotalsData.LoadData(SelectorCtrl.FromMonth, SelectorCtrl.ToMonth, SelectorCtrl.AccountOwner, SelectorCtrl.AssetType, SelectorCtrl.AdjustForRefunds);
             BuildGroupingsTree(TotalsData.TotalsByGroupingView);
 
             RefreshDisplay();
@@ -225,34 +138,11 @@ namespace Budget
 
         void RefreshDisplay()
         {
-            /* Report Viewer is no longer used
-            ReportDataSource rds = new ReportDataSource("DataSet1", MainData.ViewBudgetMonthlyReport as DataTable);
-            reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.RefreshReport();
-            */
-
             // Get groupings to display, from checked 
             _GroupingKeysList = new List<string>();
             foreach (TreeNode node in tvGroupings.Nodes)
                 AddToGroupingListIfChecked(node, ref _GroupingKeysList);
 
-            // DIAG USE NEW MonthlyDataByGroupingKey class with .AddData()!!
-            /*
-
-            SortedList<string, DataView> reportDataByGroupingKey = new SortedList<string, DataView>();
-            foreach (string groupingKey in _GroupingKeysList)
-            {
-                DataView view = new DataView(MainData.ViewMonthlyReport);
-                view.Sort = "TrMonth ASC";
-                view.RowFilter = "GroupingKey = '" + groupingKey + "'";
-                reportDataByGroupingKey.Add(groupingKey, view);
-            }
-
-            // gridMain replaced by totalsGrid  --  PopulateMainGrid(reportDataByGroupingKey);
-            */
-
-            // DIAG new main grid!
             totalsGrid.RefreshDisplay(_GroupingKeysList);
 
             DrawChart();
@@ -260,8 +150,6 @@ namespace Budget
 
         void DrawChart()
         {
-            // DIAG remov3e this line --  use _GroupingKeysList and TotalsData.TotalViewsByGrouping
-
             // Clear previous things:
             ClearChart();
 
@@ -299,8 +187,8 @@ namespace Budget
             axisY.MajorGrid.LineColor = Color.LightGray;
 
             // X axis (month) chart settings:
-            DateTime minDate = FromMonth;
-            DateTime maxDate = ToMonth;
+            DateTime minDate = SelectorCtrl.FromMonth;
+            DateTime maxDate = SelectorCtrl.ToMonth;
             double xInterval;
             DateTimeIntervalType xIntervalType;
             DateGraphInterval dateInterval;
@@ -351,92 +239,14 @@ namespace Budget
             chart1.Series.Clear();
         }
 
-        /* gridMain replaced by totalsGrid
-        void PopulateMainGrid(SortedList<string, DataView> reportDataByGroupingKey)
+        protected override void OnLoad(EventArgs e)
         {
-            gridMain.Rows.Clear();
-            gridMain.Columns.Clear();
-
-            gridMain.RowHeadersWidth = 120;
-
-            SortedList<DateTime, object> monthsForGridColumns = new SortedList<DateTime, object>(); // Value not used
-            SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, Value = Grouping Label
-
-            for (DateTime month = FromMonth; month <= ToMonth; month = month.AddMonths(1))
-                monthsForGridColumns[month] = null;
-
-            foreach (string groupingKey in reportDataByGroupingKey.Keys)
-            {
-                MainDataSet.ViewGroupingsRow groupingRow = _GroupingsTbl.FindByGroupingKey(groupingKey);
-                groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
-            }
-
-            Dictionary<DateTime, int> colIndices = new Dictionary<DateTime, int>();
-            int colIndex = 0;
-            foreach (DateTime trMonth in monthsForGridColumns.Keys)
-            {
-                colIndices[trMonth] = colIndex;
-                gridMain.Columns.Add("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
-                DataGridViewColumn col = gridMain.Columns[colIndex];
-                col.Width = 70;
-                col.ValueType = typeof(Decimal);
-                col.Tag = trMonth;
-                col.DefaultCellStyle.Format = "$0,0.00";
-                colIndex++;
-            }
-
-            Dictionary<string, int> rowIndices = new Dictionary<string, int>();
-            int rowIndex = 0;
-            foreach (string groupingWithParent in groupingsForGridRows.Keys)
-            {
-                rowIndices[groupingWithParent] = rowIndex;
-                //dataGridView1.Columns.Add("row" + rowIndex.ToString(), trMonth.ToString("MMM yy"));
-                rowIndex++;
-            }
-
-            gridMain.RowCount = rowIndex;
-            for (int ri = 0; ri < gridMain.RowCount; ri++)
-            {
-                DataGridViewRow row = gridMain.Rows[ri];
-                row.HeaderCell.Value = groupingsForGridRows.Values[ri];
-                row.Tag = groupingsForGridRows.Keys[ri];
-            }
-
-            foreach (string grouping in reportDataByGroupingKey.Keys)
-            {
-                foreach (DataRowView rowView in reportDataByGroupingKey[grouping])
-                {
-                    MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                    gridMain[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[AmountColumn];
-                }
-            }
-        }
-        */
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            if (!Program.LookupTableSet.LoadWithRetryOption())
+            if (!Program.LookupTableSet.LoadWithRetryOption()) // load tables before form is loaded
                 return;
 
-            // DIAG replace this with new user ctrls:
+            base.OnLoad(e);
 
-            comboAccountOwner.DataSource = Program.LookupTableSet.MainDataSet.AccountOwner;
-            comboAccountOwner.ValueMember = "OwnerID";
-            comboAccountOwner.DisplayMember = "OwnerDescription";
-            comboAccountOwner.SelectedValue = "D";// initialize it
-
-            comboAccountType.DataSource = AssetTypeClass.List;
-            comboAccountType.ValueMember = "AssetType";
-            comboAccountType.DisplayMember = "Label";
-            comboAccountType.SelectedValue = AssetType.BankAndCash; // initialize it to Bank/Cash          
-
-            DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
-            DateTime maxMonth = DateTime.Today.AddMonths(2);
-            DateTime fromMonth = DateTime.Today.AddMonths(-14);
-            DateTime toMonth = DateTime.Today;
-
-            comboFromMonth.Populate(minMonth, maxMonth, fromMonth);
-            comboToMonth.Populate(minMonth, maxMonth, toMonth);
+            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-15), DateTime.Today.AddMonths(-1));
 
             // Make totalsGrid printable by taking a Printable tag onto it:
             totalsGrid.Tag = new PrintableGridTag(totalsGrid);
@@ -444,19 +254,6 @@ namespace Budget
             RefreshData();
         }
 
-        /* gridMain replaced by totalsGrid
-        private void gridMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0)
-                return;
-
-            DateTime cellMonth = (DateTime)gridMain.Columns[e.ColumnIndex].Tag;
-            string cellGrouping = (string)gridMain.Rows[e.RowIndex].Tag;
-            MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping, AccountOwner, AssetType);
-            monthGroupingForm.ShowDialog();
-        }
-        */ 
 
         private void applyTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -493,16 +290,6 @@ namespace Budget
             printDoc.PrintPreview(splitConInner.Panel1); // contains gridMain. Or can I just pass gridMain in?
         }
 
-        private void comboAccountOwner_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            RefreshData();
-        }
-
-        private void comboAccountType_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            RefreshData();
-        }
-
         private void investmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InvestmentBalancesForm form = new InvestmentBalancesForm();
@@ -513,16 +300,6 @@ namespace Budget
         {
             AccountsForm form = new AccountsForm();
             form.ShowDialog();
-        }
-
-        private void comboFromMonth_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            RefreshData();
-        }
-
-        private void comboToMonth_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            RefreshData();
         }
 
         private void cashPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -537,15 +314,15 @@ namespace Budget
             form.ShowDialog();
         }
 
-        private void chBoxRefunds_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshData();
-        }
-
         private void monthlyAverageExpensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MonthlyAverageExpensesForm form = new MonthlyAverageExpensesForm();
             form.ShowDialog();
+        }
+
+        private void SelectorCtrl_SelectionChanged(TransacListSelector sender, EventArgs args)
+        {
+            RefreshData();
         }
     }
 }

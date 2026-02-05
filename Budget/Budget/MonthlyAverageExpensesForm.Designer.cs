@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.grid1 = new Budget.TotalsByGroupingGrid();
-            this.selector = new Budget.TransacListSelector();
+            this.SelectorCtrl = new Budget.TransacListSelector();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,21 +47,21 @@
             this.grid1.Size = new System.Drawing.Size(971, 434);
             this.grid1.TabIndex = 0;
             // 
-            // selector
+            // SelectorCtrl
             // 
-            this.selector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SelectorCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.selector.Location = new System.Drawing.Point(12, 12);
-            this.selector.Name = "selector";
-            this.selector.Size = new System.Drawing.Size(971, 31);
-            this.selector.TabIndex = 1;
+            this.SelectorCtrl.Location = new System.Drawing.Point(12, 12);
+            this.SelectorCtrl.Name = "SelectorCtrl";
+            this.SelectorCtrl.Size = new System.Drawing.Size(971, 31);
+            this.SelectorCtrl.TabIndex = 1;
             // 
             // MonthlyAverageExpensesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 495);
-            this.Controls.Add(this.selector);
+            this.Controls.Add(this.SelectorCtrl);
             this.Controls.Add(this.grid1);
             this.Name = "MonthlyAverageExpensesForm";
             this.Text = "MonthlyAverageExpensesForm";
@@ -73,6 +73,6 @@
         #endregion
 
         private TotalsByGroupingGrid grid1;
-        private TransacListSelector selector;
+        private TransacListSelector SelectorCtrl;
     }
 }

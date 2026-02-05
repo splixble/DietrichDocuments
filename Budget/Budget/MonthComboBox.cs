@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static TypeLib.DateTimeExtensions;
 
 namespace Budget
 {
@@ -15,23 +16,25 @@ namespace Budget
         {
         }
 
-        public void Populate(DateTime minDate, DateTime maxDate, DateTime initialValue)
+        public void Populate(DateTime minDate, DateTime maxDate)
         {
             DateTime monthToAdd = new DateTime(minDate.Year, minDate.Month, 1);
-            while (monthToAdd < maxDate) 
+            while (monthToAdd < maxDate)
             {
                 _Values.Add(new MonthItem(monthToAdd));
                 monthToAdd = monthToAdd.AddMonths(1);
             }
-            
+
             this.DataSource = _Values;
             this.ValueMember = "Value"; // Why doesnt this point the combo's SelectedValue to the property Value? SelectedValue retuens the MonthItem itself.
             this.DisplayMember = "DisplayValue";
-             
-            SelectedValue = new DateTime(initialValue.Year, initialValue.Month, 1); ;
         }
 
-        public DateTime SelectedMonth => (DateTime)SelectedValue;
+        public DateTime SelectedMonth
+        {
+            get { return (DateTime)SelectedValue; }
+            set { SelectedValue = value.FirstOfMonth(); } // converts it to first of month rather than throwing exception, for convenience
+        }
 
         public class MonthItem
         {

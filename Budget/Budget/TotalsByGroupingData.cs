@@ -159,6 +159,8 @@ namespace Budget
                 }
             }
 
+            // Repopulate _TotalViewsByGrouping list:
+            _TotalViewsByGrouping.Clear();
             foreach (MainDataSet.ViewGroupingsRow groupingRow in _GroupingsTbl)
             {
                 if (_TotalsByGroupingView.Find(groupingRow.GroupingKey) >= 0)

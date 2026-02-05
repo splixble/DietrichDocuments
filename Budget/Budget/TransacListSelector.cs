@@ -13,15 +13,35 @@ namespace Budget
 {
     public partial class TransacListSelector : UserControl
     {
-        public string AccountOwner => comboAccountOwner.SelectedValue as string;
+        public string AccountOwner 
+        {
+            get { return comboAccountOwner.SelectedValue as string; }
+            set { comboAccountOwner.SelectedValue = value; }
+        }
 
-        public AssetType AssetType => (AssetType)comboAccountType.SelectedValue;
+        public AssetType AssetType
+        {
+            get { return (AssetType) comboAccountType.SelectedValue; }
+            set { comboAccountType.SelectedValue = value; }
+        }
 
-        public bool AdjustForRefunds => chBoxRefunds.Checked;
+        public bool AdjustForRefunds
+        {
+            get { return chBoxRefunds.Checked; }
+            set { chBoxRefunds.Checked = value; }
+        }
 
-        public DateTime FromMonth => (DateTime)comboFromMonth.SelectedMonth;
+        public DateTime FromMonth
+        {
+            get { return (DateTime) comboFromMonth.SelectedMonth; }
+            set { comboFromMonth.SelectedMonth = value; }
+        }
 
-        public DateTime ToMonth => (DateTime)comboToMonth.SelectedMonth;
+        public DateTime ToMonth
+        {
+            get { return (DateTime) comboToMonth.SelectedMonth; }
+            set { comboToMonth.SelectedMonth = value; }
+        }
 
         public delegate void SelectionChangedHandler(TransacListSelector sender, EventArgs args);
         public event SelectionChangedHandler SelectionChanged;
@@ -42,27 +62,37 @@ namespace Budget
             comboAccountOwner.DataSource = Program.LookupTableSet.MainDataSet.AccountOwner;
             comboAccountOwner.ValueMember = "OwnerID";
             comboAccountOwner.DisplayMember = "OwnerDescription";
-            comboAccountOwner.SelectedValue = "D";// initialize it
 
             comboAccountType.DataSource = AssetTypeClass.List;
             comboAccountType.ValueMember = "AssetType";
             comboAccountType.DisplayMember = "Label";
-            comboAccountType.SelectedValue = AssetType.BankAndCash; // initialize it to Bank/Cash          
 
             DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
             DateTime maxMonth = DateTime.Today.AddMonths(2);
-            DateTime fromMonth = DateTime.Today.AddMonths(-14);
-            DateTime toMonth = DateTime.Today;
 
-            comboFromMonth.Populate(minMonth, maxMonth, fromMonth);
-            comboToMonth.Populate(minMonth, maxMonth, toMonth);
-
+            comboFromMonth.Populate(minMonth, maxMonth);
+            comboToMonth.Populate(minMonth, maxMonth);
         }
+
+        public void Initialize(string accountOwner, AssetType assetType, bool adjustForRefunds, DateTime fromMonth, DateTime toMonth)
+        {
+            _Initializing = true;
+
+            AccountOwner = accountOwner;
+            AssetType = assetType;
+            AdjustForRefunds = adjustForRefunds;
+            FromMonth = fromMonth;
+            ToMonth = toMonth;
+
+            _Initializing = false;
+        }
+
+        bool _Initializing = false;
 
         private void CtrlSelectionChanged(object sender, EventArgs e)
         {
             // Call the SelectionChanged event handler, if any:
-            if (SelectionChanged != null)
+            if (!_Initializing && SelectionChanged != null)
                 SelectionChanged(this, new EventArgs());
         }
     }
