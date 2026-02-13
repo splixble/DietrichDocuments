@@ -64,6 +64,16 @@ namespace TypeLib
         {
             return new DateTime(dateTime.Year, dateTime.Month, 1);
         }
+
+        public static DateTime FirstOfQuarter(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, (dateTime.Month-1) / 3 + 1, 1);
+        }
+
+        public static int Quarter(this DateTime dateTime)
+        {
+            return (dateTime.Month - 1) / 3 + 1;
+        }
     }
 }
 

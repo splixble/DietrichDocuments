@@ -211,6 +211,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AzureDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BandPromptBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BandPromptBox.Designer.cs">
+      <DependentUpon>BandPromptBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlagsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,9 @@
     <EmbeddedResource Include="ArtistsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ArtistsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BandPromptBox.resx">
+      <DependentUpon>BandPromptBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FlagsForm.resx">
       <SubType>Designer</SubType>

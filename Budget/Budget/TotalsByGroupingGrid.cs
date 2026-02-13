@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static TypeLib.DateTimeExtensions;
 using static Budget.Constants;
 using static Budget.MainDataSet;
 
@@ -12,22 +13,12 @@ namespace Budget
 {
     internal class TotalsByGroupingGrid : DataGridView
     {
-        /*
-        public string _AccountOwner;
-        public AssetType _AssetType;
-        public DateTime _FromMonth;
-        public DateTime _ToMonth;
-        DataColumn _AmountColumn;
-
-        MainDataSet.ViewMonthlyReportDataTable _DataTbl;
-        MainDataSet.ViewGroupingsDataTable _GroupingsTbl;
-        List<string> _GroupingKeys;
-        */
-
         TotalsByGroupingData _TotalsData = null;
         public TotalsByGroupingData TotalsData => _TotalsData;
 
         List<string> _GroupingKeysDisplayed;
+
+        public bool QuarterlyAverages = false;
 
         public TotalsByGroupingGrid()
         {
@@ -48,26 +39,11 @@ namespace Budget
         { 
             _GroupingKeysDisplayed = groupingKeysDisplayed;
 
-            /*
-            foreach(string groupingKey in groupingKeys) 
-                _TotalsData.AddTotalViewByGrouping(groupingKey);
-
-            _DataTbl = dataTbl;
-            _GroupingsTbl = groupingsTbl;
-            _GroupingKeys = groupingKeys;
-            _FromMonth = fromMonth;
-            _ToMonth = toMonth;
-            _AmountColumn = amountColumn;
-
-            MonthlyDataByGroupingKey reportDataByGroupingKey = new MonthlyDataByGroupingKey(); // should this be a Member?
-            reportDataByGroupingKey.AddData(_GroupingKeys, _DataTbl);
-            */
-
             // from Form1.PopulateMainGrid():
             Rows.Clear();
             Columns.Clear();
 
-            RowHeadersWidth = 120; // DIAG should be a const, longer, and should be saved
+            RowHeadersWidth = 250; // DIAG should be a const, and should be saved
 
             SortedList<DateTime, object> monthsForGridColumns = new SortedList<DateTime, object>(); // Value not used
             SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, Value = Grouping Label
@@ -86,13 +62,17 @@ namespace Budget
             foreach (DateTime trMonth in monthsForGridColumns.Keys)
             {
                 colIndices[trMonth] = colIndex;
-                Columns.Add("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
-                DataGridViewColumn col = Columns[colIndex];
-                col.Width = 70;
-                col.ValueType = typeof(Decimal);
-                col.Tag = trMonth;
-                col.DefaultCellStyle.Format = "$0,0.00";
+                DataGridViewColumn col = AddAmountColumn("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
+                col.Tag = new ColumnTag(ColumnTypes.Total, trMonth);
                 colIndex++;
+
+                // Insert a Quarterly Average column?
+                if (QuarterlyAverages && trMonth.Month % 3 == 0)
+                {
+                    DataGridViewColumn qtyCol = AddAmountColumn("colQtrly" + colIndex.ToString(), "Q" + trMonth.Quarter().ToString() + trMonth.ToString(" yy"));
+                    qtyCol.Tag = new ColumnTag(ColumnTypes.QuarterlyAverage, trMonth);
+                    colIndex++;
+                }
             }
 
             Dictionary<string, int> rowIndices = new Dictionary<string, int>();
@@ -122,17 +102,45 @@ namespace Budget
             }
         }
 
+        DataGridViewColumn AddAmountColumn(string columnName, string headerText)
+        {
+            int colIndex = Columns.Add("col" + columnName, headerText);
+            DataGridViewColumn col = Columns[colIndex];
+            col.Width = 70;
+            col.ValueType = typeof(Decimal);
+            col.DefaultCellStyle.Format = "$0,0.00";
+            return col;
+        }
+
         protected override void OnCellDoubleClick(DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
-            DateTime cellMonth = (DateTime)Columns[e.ColumnIndex].Tag;
-            string cellGrouping = (string)Rows[e.RowIndex].Tag;
-            MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
-            monthGroupingForm.Initialize(cellMonth, cellGrouping, _TotalsData.AccountOwner, _TotalsData.AssetType);
-            monthGroupingForm.ShowDialog();
+            ColumnTag colTag = (ColumnTag)Columns[e.ColumnIndex].Tag;
+            if (colTag._ColumnType == ColumnTypes.Total)
+            {
+                string cellGrouping = (string)Rows[e.RowIndex].Tag;
+                MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
+                monthGroupingForm.Initialize(colTag._Month, cellGrouping, _TotalsData.AccountOwner, _TotalsData.AssetType);
+                monthGroupingForm.ShowDialog();
+            }
+        }
 
+        // internally used types:
+
+        enum ColumnTypes { Total, QuarterlyAverage };
+
+        struct ColumnTag
+        {
+            public ColumnTypes _ColumnType;
+            public DateTime _Month; // 1st day of month of total, or 1st day of quarter
+
+            public ColumnTag(ColumnTypes columnType, DateTime month)
+            {
+                _ColumnType = columnType;
+                _Month = month;
+            }
         }
     }
 }

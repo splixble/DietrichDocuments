@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static TypeLib.DateTimeExtensions;
+
 
 namespace Budget
 {
@@ -29,7 +31,9 @@ namespace Budget
         {
             base.OnLoad(e);
 
-            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-12), DateTime.Today.AddMonths(-1));
+            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-12).FirstOfQuarter(), DateTime.Today.AddMonths(-1).FirstOfQuarter());
+
+            grid1.QuarterlyAverages = true;
 
             RefreshDisplay();
         }

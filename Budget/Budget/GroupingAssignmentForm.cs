@@ -73,18 +73,15 @@ namespace Budget
             foreach (MainDataSet.TransacRow budgetRow in transacCtrl.TransacTable)
             {
                 // Does the descrioption contain a regex match for the pattern?
-                if (Regex.IsMatch(budgetRow.Descrip, pattern))
+                if (!budgetRow.IsDescripNull() && Regex.IsMatch(budgetRow.Descrip, pattern))
                 {
                     if (forAcctTransfer)
                     {
                         if (!budgetRow.AcctTransfer)
                             budgetRow.AcctTransfer = true;
                     }
-                    else
-                    {
-                        if (trType != null && (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType))
-                            budgetRow.TrType = trType;
-                    }
+                    if (trType != null && (budgetRow.IsTrTypeNull() || budgetRow.TrType != trType))
+                        budgetRow.TrType = trType;
                 }
             }
             // Now, highlight all grid rows that have modified data:

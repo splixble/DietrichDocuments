@@ -593,8 +593,13 @@ namespace Songs
 
         private void bandRepertoireToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BandPromptBox bandPromptBox = new BandPromptBox();
+            if (bandPromptBox.ShowDialog() != DialogResult.OK
+                || bandPromptBox.BandID == null)
+                return;
+
             ListingForm form = new ListingForm();
-            form.ShowBandRepertoire(1); // TODO: Prompt for which band
+            form.ShowBandRepertoire((int)bandPromptBox.BandID); 
         }
 
         private void grid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
