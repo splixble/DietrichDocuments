@@ -18,6 +18,12 @@ namespace Budget
         {
             public const string FundBalanceChange = "FBC";
         }
+        public static class GroupingType
+        {
+            public const string Transactions = "T";
+            public const string ExpenseTotal = "E";
+            public const string Balance = "B";
+        }
         public static class GroupingKey
         {
             public const string Income = "TIN_";

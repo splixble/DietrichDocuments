@@ -5760,6 +5760,8 @@ namespace Budget {
             
             private global::System.Data.DataColumn columnSelectorTypeOrder;
             
+            private global::System.Data.DataColumn columnIsIncome;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewGroupingsDataTable() {
@@ -5859,6 +5861,14 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsIncomeColumn {
+                get {
+                    return this.columnIsIncome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5894,7 +5904,7 @@ namespace Budget {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewGroupingsRow AddViewGroupingsRow(string GroupingType, string Subkey, string GroupingKey, string GroupingLabel, string ParentKey, int IsTopLevel, string GraphColor, int SelectorTypeOrder) {
+            public ViewGroupingsRow AddViewGroupingsRow(string GroupingType, string Subkey, string GroupingKey, string GroupingLabel, string ParentKey, int IsTopLevel, string GraphColor, int SelectorTypeOrder, int IsIncome) {
                 ViewGroupingsRow rowViewGroupingsRow = ((ViewGroupingsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         GroupingType,
@@ -5904,7 +5914,8 @@ namespace Budget {
                         ParentKey,
                         IsTopLevel,
                         GraphColor,
-                        SelectorTypeOrder};
+                        SelectorTypeOrder,
+                        IsIncome};
                 rowViewGroupingsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewGroupingsRow);
                 return rowViewGroupingsRow;
@@ -5942,6 +5953,7 @@ namespace Budget {
                 this.columnIsTopLevel = base.Columns["IsTopLevel"];
                 this.columnGraphColor = base.Columns["GraphColor"];
                 this.columnSelectorTypeOrder = base.Columns["SelectorTypeOrder"];
+                this.columnIsIncome = base.Columns["IsIncome"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5963,6 +5975,8 @@ namespace Budget {
                 base.Columns.Add(this.columnGraphColor);
                 this.columnSelectorTypeOrder = new global::System.Data.DataColumn("SelectorTypeOrder", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSelectorTypeOrder);
+                this.columnIsIncome = new global::System.Data.DataColumn("IsIncome", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsIncome);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnGroupingKey}, true));
                 this.columnGroupingType.AllowDBNull = false;
@@ -5980,6 +5994,7 @@ namespace Budget {
                 this.columnIsTopLevel.AllowDBNull = false;
                 this.columnGraphColor.MaxLength = 50;
                 this.columnSelectorTypeOrder.AllowDBNull = false;
+                this.columnIsIncome.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10046,6 +10061,17 @@ namespace Budget {
                 }
                 set {
                     this[this.tableViewGroupings.SelectorTypeOrderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IsIncome {
+                get {
+                    return ((int)(this[this.tableViewGroupings.IsIncomeColumn]));
+                }
+                set {
+                    this[this.tableViewGroupings.IsIncomeColumn] = value;
                 }
             }
             
@@ -18813,6 +18839,7 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             tableMapping.ColumnMappings.Add("IsTopLevel", "IsTopLevel");
             tableMapping.ColumnMappings.Add("GraphColor", "GraphColor");
             tableMapping.ColumnMappings.Add("SelectorTypeOrder", "SelectorTypeOrder");
+            tableMapping.ColumnMappings.Add("IsIncome", "IsIncome");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18829,14 +18856,14 @@ SELECT AccountID, AccountName, SourceFileLocation, DefaultFormatAutoEntry, Defau
             this._commandCollection = new global::Microsoft.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GroupingType, Subkey, GroupingKey, GroupingLabel, ParentKey, IsTopLevel, G" +
-                "raphColor, SelectorTypeOrder FROM ViewGroupings";
+            this._commandCollection[0].CommandText = "SELECT        GroupingType, Subkey, GroupingKey, GroupingLabel, ParentKey, IsTopL" +
+                "evel, GraphColor, SelectorTypeOrder, IsIncome\r\nFROM            ViewGroupings";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Microsoft.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT GroupingType, Subkey, GroupingKey, GroupingLabel, ParentKey, IsTopLevel, G" +
-                "raphColor, SelectorTypeOrder FROM ViewGroupings ORDER BY SelectorTypeOrder, Grou" +
-                "pingLabel";
+            this._commandCollection[1].CommandText = "SELECT GraphColor, GroupingKey, GroupingLabel, GroupingType, IsIncome, IsTopLevel" +
+                ", ParentKey, SelectorTypeOrder, Subkey FROM ViewGroupings ORDER BY SelectorTypeO" +
+                "rder, GroupingLabel";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         

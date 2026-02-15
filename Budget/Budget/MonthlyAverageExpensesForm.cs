@@ -35,7 +35,6 @@ namespace Budget
             SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, startOrQuarterOneYearAgo, startOrQuarterOneYearAgo.AddMonths(11));
 
 
-            // DIAG dont display balances
             // DIAG make special month selector option to just display qtrs
 
 
@@ -48,13 +47,13 @@ namespace Budget
         { 
             grid1.RefreshData(SelectorCtrl.FromMonth, SelectorCtrl.ToMonth, SelectorCtrl.AccountOwner, SelectorCtrl.AssetType, SelectorCtrl.AdjustForRefunds);
 
-            // Display just the non-top-level groupings that there are total rows for:
+            // Display just the non-top-level Expense groupings that there are total rows for:
 
             List<string> keysDisplayed = new List<string>();
             foreach (string groupingKey in grid1.TotalsData.TotalViewsByGrouping.Keys)
             {
                 MainDataSet.ViewGroupingsRow groupingRow = grid1.TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
-                if (groupingRow != null && groupingRow.IsTopLevel == 0)
+                if (groupingRow != null && groupingRow.IsTopLevel == 0 && groupingRow.GroupingType == Constants.GroupingType.Transactions && groupingRow.IsIncome == 0)
                     keysDisplayed.Add(groupingKey);
             }
 
