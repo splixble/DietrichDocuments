@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using static TypeLib.DateTimeExtensions;
 using static Budget.Constants;
 using static Budget.MainDataSet;
+using System.Drawing;
 
 namespace Budget
 {
@@ -57,11 +58,12 @@ namespace Budget
                 groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
             }
 
-            Dictionary<DateTime, int> colIndices = new Dictionary<DateTime, int>();
+            Dictionary<DateTime, int> colIndicesOfTotals = new Dictionary<DateTime, int>();
+            Dictionary<DateTime, int> colIndicesOfQtrlyAvgs = new Dictionary<DateTime, int>();
             int colIndex = 0;
             foreach (DateTime trMonth in monthsForGridColumns.Keys)
             {
-                colIndices[trMonth] = colIndex;
+                colIndicesOfTotals[trMonth] = colIndex;
                 DataGridViewColumn col = AddAmountColumn("col" + colIndex.ToString(), trMonth.ToString("MMM yy"));
                 col.Tag = new ColumnTag(ColumnTypes.Total, trMonth);
                 colIndex++;
@@ -69,8 +71,10 @@ namespace Budget
                 // Insert a Quarterly Average column?
                 if (QuarterlyAverages && trMonth.Month % 3 == 0)
                 {
-                    DataGridViewColumn qtyCol = AddAmountColumn("colQtrly" + colIndex.ToString(), "Q" + trMonth.Quarter().ToString() + trMonth.ToString(" yy"));
-                    qtyCol.Tag = new ColumnTag(ColumnTypes.QuarterlyAverage, trMonth);
+                    colIndicesOfQtrlyAvgs[trMonth.FirstOfQuarter()] = colIndex;
+                    DataGridViewColumn qtrCol = AddAmountColumn("colQtrly" + colIndex.ToString(), "Q" + trMonth.Quarter().ToString() + trMonth.ToString(" yy"));
+                    qtrCol.DefaultCellStyle.BackColor = Color.LightSkyBlue;
+                    qtrCol.Tag = new ColumnTag(ColumnTypes.QuarterlyAverage, trMonth);
                     colIndex++;
                 }
             }
@@ -92,12 +96,43 @@ namespace Budget
                 row.Tag = groupingsForGridRows.Keys[ri];
             }
 
+            Dictionary<string, Dictionary<DateTime, decimal>> qtrTotalsByGrouping = new  Dictionary<string, Dictionary<DateTime, decimal>>();
+            // - used only if QuarterlyAverages is set
+
             foreach (string grouping in _GroupingKeysDisplayed)
             {
                 foreach (DataRowView rowView in _TotalsData.TotalViewsByGrouping[grouping])
                 {
+                    // Fill in monthly totals in grid, and calculate quarterly totals for quarterly averages:
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
-                    this[colIndices[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = tblRow[_TotalsData.AmountColumn];
+                    decimal monthlyTotal = (decimal)tblRow[_TotalsData.AmountColumn];
+                    this[colIndicesOfTotals[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = monthlyTotal;
+
+                    if (QuarterlyAverages)
+                    {
+                        if (!qtrTotalsByGrouping.ContainsKey(tblRow.GroupingKey))
+                            qtrTotalsByGrouping[tblRow.GroupingKey] = new Dictionary<DateTime, decimal>();
+                        Dictionary<DateTime, decimal> subdictByQtr = qtrTotalsByGrouping[tblRow.GroupingKey];
+
+                        if (!subdictByQtr.ContainsKey(tblRow.TrMonth.FirstOfQuarter()))
+                            subdictByQtr[tblRow.TrMonth.FirstOfQuarter()] = monthlyTotal;
+                        else
+                            subdictByQtr[tblRow.TrMonth.FirstOfQuarter()] += monthlyTotal;
+                    }
+                }
+            }
+
+            if (QuarterlyAverages)
+            {
+                // Fill in quarterly averages in grid:
+                foreach (string groupingKey in qtrTotalsByGrouping.Keys)
+                {
+                    Dictionary<DateTime, decimal> subdictByQtr = qtrTotalsByGrouping[groupingKey];
+                    foreach (DateTime quarterDate in subdictByQtr.Keys)
+                    {
+                        decimal qtrlyAvg = subdictByQtr[quarterDate] / 3;
+                        this[colIndicesOfQtrlyAvgs[quarterDate], rowIndices[groupingKey]].Value = qtrlyAvg;
+                    }
                 }
             }
         }

@@ -31,7 +31,13 @@ namespace Budget
         {
             base.OnLoad(e);
 
-            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-12).FirstOfQuarter(), DateTime.Today.AddMonths(-1).FirstOfQuarter());
+            DateTime startOrQuarterOneYearAgo = DateTime.Today.AddMonths(-12).FirstOfQuarter();
+            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, startOrQuarterOneYearAgo, startOrQuarterOneYearAgo.AddMonths(11));
+
+
+            // DIAG dont display balances
+            // DIAG make special month selector option to just display qtrs
+
 
             grid1.QuarterlyAverages = true;
 

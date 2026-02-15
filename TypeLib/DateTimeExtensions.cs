@@ -67,7 +67,7 @@ namespace TypeLib
 
         public static DateTime FirstOfQuarter(this DateTime dateTime)
         {
-            return new DateTime(dateTime.Year, (dateTime.Month-1) / 3 + 1, 1);
+            return new DateTime(dateTime.Year, dateTime.Month - ((dateTime.Month-1) % 3), 1);
         }
 
         public static int Quarter(this DateTime dateTime)
