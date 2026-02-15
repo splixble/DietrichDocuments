@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -47,21 +46,17 @@
             this.refundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthlyAverageExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitConInner = new System.Windows.Forms.SplitContainer();
-            this.totalsGrid = new Budget.TotalsByGroupingGrid();
             this.splitContainerCharts = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tvGroupings = new System.Windows.Forms.TreeView();
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
             this.SelectorCtrl = new Budget.TransacListSelector();
-            this.viewBudgetGroupingsInOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDataSet = new Budget.MainDataSet();
-            this.viewBudgetGroupingsInOrderTableAdapter = new Budget.MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter();
+            this.totalsGrid = new Budget.TotalsByGroupingGrid();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).BeginInit();
             this.splitConInner.Panel1.SuspendLayout();
             this.splitConInner.Panel2.SuspendLayout();
             this.splitConInner.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).BeginInit();
             this.splitContainerCharts.Panel1.SuspendLayout();
             this.splitContainerCharts.Panel2.SuspendLayout();
@@ -71,8 +66,7 @@
             this.splitConOuter.Panel1.SuspendLayout();
             this.splitConOuter.Panel2.SuspendLayout();
             this.splitConOuter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -208,18 +202,6 @@
             this.splitConInner.SplitterDistance = 163;
             this.splitConInner.TabIndex = 5;
             // 
-            // totalsGrid
-            // 
-            this.totalsGrid.AllowUserToAddRows = false;
-            this.totalsGrid.AllowUserToDeleteRows = false;
-            this.totalsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.totalsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalsGrid.Location = new System.Drawing.Point(0, 0);
-            this.totalsGrid.Name = "totalsGrid";
-            this.totalsGrid.ReadOnly = true;
-            this.totalsGrid.Size = new System.Drawing.Size(1175, 163);
-            this.totalsGrid.TabIndex = 2;
-            // 
             // splitContainerCharts
             // 
             this.splitContainerCharts.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -302,19 +284,17 @@
             this.SelectorCtrl.TabIndex = 7;
             this.SelectorCtrl.SelectionChanged += new Budget.TransacListSelector.SelectionChangedHandler(this.SelectorCtrl_SelectionChanged);
             // 
-            // viewBudgetGroupingsInOrderBindingSource
+            // totalsGrid
             // 
-            this.viewBudgetGroupingsInOrderBindingSource.DataMember = "ViewBudgetGroupingsInOrder";
-            this.viewBudgetGroupingsInOrderBindingSource.DataSource = this.mainDataSet;
-            // 
-            // mainDataSet
-            // 
-            this.mainDataSet.DataSetName = "MainDataSet";
-            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewBudgetGroupingsInOrderTableAdapter
-            // 
-            this.viewBudgetGroupingsInOrderTableAdapter.ClearBeforeFill = true;
+            this.totalsGrid.AllowUserToAddRows = false;
+            this.totalsGrid.AllowUserToDeleteRows = false;
+            this.totalsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.totalsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalsGrid.Location = new System.Drawing.Point(0, 0);
+            this.totalsGrid.Name = "totalsGrid";
+            this.totalsGrid.ReadOnly = true;
+            this.totalsGrid.Size = new System.Drawing.Size(1175, 163);
+            this.totalsGrid.TabIndex = 2;
             // 
             // Form1
             // 
@@ -332,7 +312,6 @@
             this.splitConInner.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConInner)).EndInit();
             this.splitConInner.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).EndInit();
             this.splitContainerCharts.Panel1.ResumeLayout(false);
             this.splitContainerCharts.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerCharts)).EndInit();
@@ -342,8 +321,7 @@
             this.splitConOuter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).EndInit();
             this.splitConOuter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.viewBudgetGroupingsInOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalsGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,9 +334,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem applyTransactionTypesToolStripMenuItem;
-        private MainDataSet mainDataSet;
-        private System.Windows.Forms.BindingSource viewBudgetGroupingsInOrderBindingSource;
-        private MainDataSetTableAdapters.ViewBudgetGroupingsInOrderTableAdapter viewBudgetGroupingsInOrderTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem editGroupingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSourceFileToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitConInner;
