@@ -43,8 +43,8 @@ namespace Budget
                         // found a "real" balance; check if it matches our calc'd balance:
                         if (currentBalance != row.Balance)
                         {
-                            MessageBox.Show("Discrepancy between calculated balance ($" + currentBalance.ToString("0.00") + 
-                                ") and entered balance($" + row.Balance.ToString("0.00") + "), on ID=" + row.ID.ToString());
+                            MessageBox.Show("Discrepancy between calculated balance ($" + currentBalance.ToString("C") + 
+                                ") and entered balance($" + row.Balance.ToString("C") + "), on ID=" + row.ID.ToString());
                             return;
                         }
                     }

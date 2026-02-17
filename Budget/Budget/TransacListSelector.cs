@@ -31,15 +31,24 @@ namespace Budget
             set { chBoxRefunds.Checked = value; }
         }
 
+        bool _Quarterly = false;
+
         public DateTime FromMonth
         {
-            get { return (DateTime) comboFromMonth.SelectedMonth; }
+            get { return comboFromMonth.SelectedMonth; }
             set { comboFromMonth.SelectedMonth = value; }
         }
 
         public DateTime ToMonth
         {
-            get { return (DateTime) comboToMonth.SelectedMonth; }
+            get
+            { 
+                // if combo is quarterly, return the last month of the quarter:
+                if (_Quarterly)
+                    return comboToMonth.SelectedMonth.AddMonths(2);
+                else
+                    return comboToMonth.SelectedMonth;
+            }
             set { comboToMonth.SelectedMonth = value; }
         }
 
@@ -66,21 +75,27 @@ namespace Budget
             comboAccountType.DataSource = AssetTypeClass.List;
             comboAccountType.ValueMember = "AssetType";
             comboAccountType.DisplayMember = "Label";
-
-            DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
-            DateTime maxMonth = DateTime.Today.AddMonths(2);
-
-            comboFromMonth.Populate(minMonth, maxMonth);
-            comboToMonth.Populate(minMonth, maxMonth);
         }
 
-        public void Initialize(string accountOwner, AssetType assetType, bool adjustForRefunds, DateTime fromMonth, DateTime toMonth)
+        public void Initialize(string accountOwner, AssetType assetType, bool adjustForRefunds, DateTime fromMonth, DateTime toMonth, bool quarterly)
         {
             _Initializing = true;
 
             AccountOwner = accountOwner;
             AssetType = assetType;
             AdjustForRefunds = adjustForRefunds;
+            _Quarterly = quarterly;
+
+            comboFromMonth.Quarterly = _Quarterly;
+            comboToMonth.Quarterly = _Quarterly;
+
+            DateTime minMonth = new DateTime(2022, 1, 1); // DIAG get from config!
+            DateTime maxMonth = DateTime.Today.AddMonths(2);
+
+            comboFromMonth.Populate(minMonth, maxMonth);
+            comboToMonth.Populate(minMonth, maxMonth);
+
+            // have to set combo box selections after they're populated:
             FromMonth = fromMonth;
             ToMonth = toMonth;
 

@@ -32,11 +32,7 @@ namespace Budget
             base.OnLoad(e);
 
             DateTime startOrQuarterOneYearAgo = DateTime.Today.AddMonths(-12).FirstOfQuarter();
-            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, startOrQuarterOneYearAgo, startOrQuarterOneYearAgo.AddMonths(11));
-
-
-            // DIAG make special month selector option to just display qtrs
-
+            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, startOrQuarterOneYearAgo, startOrQuarterOneYearAgo.AddMonths(11), true);
 
             grid1.QuarterlyAverages = true;
 

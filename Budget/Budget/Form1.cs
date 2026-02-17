@@ -246,7 +246,7 @@ namespace Budget
 
             base.OnLoad(e);
 
-            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-15), DateTime.Today.AddMonths(-1));
+            SelectorCtrl.Initialize("D", AssetType.BankAndCash, true, DateTime.Today.AddMonths(-15), DateTime.Today.AddMonths(-1), false);
 
             // Make totalsGrid printable by taking a Printable tag onto it:
             totalsGrid.Tag = new PrintableGridTag(totalsGrid);

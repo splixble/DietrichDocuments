@@ -37,7 +37,7 @@ namespace Budget
         }
 
         public void RefreshDisplay(List<string> groupingKeysDisplayed)
-        { 
+        {
             _GroupingKeysDisplayed = groupingKeysDisplayed;
 
             // from Form1.PopulateMainGrid():
@@ -89,11 +89,26 @@ namespace Budget
             }
 
             RowCount = rowIndex;
+
+            bool colorGridRow = false;
+            MainDataSet.ViewGroupingsRow prevGroupingRow = null;
             for (int ri = 0; ri < RowCount; ri++)
             {
                 DataGridViewRow row = Rows[ri];
                 row.HeaderCell.Value = groupingsForGridRows.Values[ri];
                 row.Tag = groupingsForGridRows.Keys[ri];
+
+                // Stripe the rows, based on grouping key or parent:
+                if (colorGridRow)
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+
+                // toggle row color?
+                MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingsForGridRows.Keys[ri]);
+                if (prevGroupingRow != null &&
+                    (groupingRow.IsParentKeyNull() || prevGroupingRow.IsParentKeyNull() || // either grouping is parent key
+                    groupingRow.ParentKey != prevGroupingRow.ParentKey))  // parent keys are different
+                    colorGridRow = !colorGridRow;
+                prevGroupingRow = groupingRow;
             }
 
             Dictionary<string, Dictionary<DateTime, decimal>> qtrTotalsByGrouping = new  Dictionary<string, Dictionary<DateTime, decimal>>();
@@ -106,7 +121,9 @@ namespace Budget
                     // Fill in monthly totals in grid, and calculate quarterly totals for quarterly averages:
                     MainDataSet.ViewMonthlyReportRow tblRow = rowView.Row as MainDataSet.ViewMonthlyReportRow;
                     decimal monthlyTotal = (decimal)tblRow[_TotalsData.AmountColumn];
-                    this[colIndicesOfTotals[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = monthlyTotal;
+
+                    if (monthlyTotal != 0) // NOTE: CHANGED ON 2/16/26 TO SHOW BLANK FOR 0
+                        this[colIndicesOfTotals[tblRow.TrMonth], rowIndices[tblRow.GroupingKey]].Value = monthlyTotal;
 
                     if (QuarterlyAverages)
                     {
@@ -143,7 +160,7 @@ namespace Budget
             DataGridViewColumn col = Columns[colIndex];
             col.Width = 70;
             col.ValueType = typeof(Decimal);
-            col.DefaultCellStyle.Format = "$0,0.00";
+            col.DefaultCellStyle.Format = "C"; // or "$#,0.00";
             return col;
         }
 
