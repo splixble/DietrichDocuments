@@ -28,6 +28,8 @@ namespace Budget
             AllowUserToDeleteRows = false;
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
+            // EnableHeadersVisualStyles = false;           to recolor row headers
+
             _TotalsData = new TotalsByGroupingData();
         }
 
@@ -36,8 +38,11 @@ namespace Budget
             _TotalsData.LoadData(fromMonth, toMonth, accountOwner, assetType, adjustForRefunds);
         }
 
+        bool[] _StripedGroupingRows;
+
         public void RefreshDisplay(List<string> groupingKeysDisplayed)
         {
+            // DIAG no need to copy to member -- _GroupingKeysDisplayed is only used in this func
             _GroupingKeysDisplayed = groupingKeysDisplayed;
 
             // from Form1.PopulateMainGrid():
@@ -47,7 +52,7 @@ namespace Budget
             RowHeadersWidth = 250; // DIAG should be a const, and should be saved
 
             SortedList<DateTime, object> monthsForGridColumns = new SortedList<DateTime, object>(); // Value not used
-            SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, Value = Grouping Label
+            SortedList<string, object> groupingsForGridRows = new SortedList<string, object>(); // Key = Grouping Key, value not used
 
             for (DateTime month = _TotalsData.FromMonth; month <= _TotalsData.ToMonth; month = month.AddMonths(1))
                 monthsForGridColumns[month] = null;
@@ -55,7 +60,7 @@ namespace Budget
             foreach (string groupingKey in _GroupingKeysDisplayed)
             {
                 MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingKey);
-                groupingsForGridRows[groupingKey] = groupingRow.GroupingLabel;
+                groupingsForGridRows.Add(groupingKey, null);
             }
 
             Dictionary<DateTime, int> colIndicesOfTotals = new Dictionary<DateTime, int>();
@@ -73,43 +78,88 @@ namespace Budget
                 {
                     colIndicesOfQtrlyAvgs[trMonth.FirstOfQuarter()] = colIndex;
                     DataGridViewColumn qtrCol = AddAmountColumn("colQtrly" + colIndex.ToString(), "Q" + trMonth.Quarter().ToString() + trMonth.ToString(" yy"));
-                    qtrCol.DefaultCellStyle.BackColor = Color.LightSkyBlue;
                     qtrCol.Tag = new ColumnTag(ColumnTypes.QuarterlyAverage, trMonth);
                     colIndex++;
                 }
             }
 
-            Dictionary<string, int> rowIndices = new Dictionary<string, int>();
+            // Make list of ViewGrouping rows in same order that they were queried in:
+            List<MainDataSet.ViewGroupingsRow> groupingRowsInGridOrder = new List<MainDataSet.ViewGroupingsRow>();
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _TotalsData.GroupingsTbl)
+                if (groupingsForGridRows.ContainsKey(groupingRow.GroupingKey))
+                    groupingRowsInGridOrder.Add(groupingRow);
+
+            _StripedGroupingRows = new bool[groupingRowsInGridOrder.Count];
+            // - parallels groupingRowsInGridOrder
+            bool colorGridRow = false;
+            MainDataSet.ViewGroupingsRow prevGroupingRow = null;
+            for (int grx = 0; grx < groupingRowsInGridOrder.Count; grx++)
+            {
+                MainDataSet.ViewGroupingsRow groupingRow = groupingRowsInGridOrder[grx];
+                if (prevGroupingRow != null &&
+                    (groupingRow.IsParentKeyNull() || prevGroupingRow.IsParentKeyNull() || // either grouping is parent key
+                    groupingRow.ParentKey != prevGroupingRow.ParentKey))  // parent keys are different
+                    colorGridRow = !colorGridRow;
+                prevGroupingRow = groupingRow;
+
+                // Stripe the rows, based on grouping key or parent:
+                _StripedGroupingRows[grx] = colorGridRow;
+            }
+
+            RowCount = groupingsForGridRows.Count;
+
+            Dictionary<string, int> rowIndices = new Dictionary<string, int>(); // Key = Grouping Key, obj = grid row index
             int rowIndex = 0;
+
+            // DIAG use groupingRowsInGridOrder, dont duplicate filtering:
+            foreach (MainDataSet.ViewGroupingsRow groupingRow in _TotalsData.GroupingsTbl)
+            {
+                if (groupingsForGridRows.ContainsKey(groupingRow.GroupingKey))
+                {
+                    rowIndices[groupingRow.GroupingKey] = rowIndex;
+                    Rows[rowIndex].HeaderCell.Value = groupingRow.GroupingLabel;
+                    Rows[rowIndex].Tag = new RowTag(groupingRow.GroupingKey);
+                    rowIndex++;
+                }
+            }
+            /* Replaces this on 2/17/26:
             foreach (string groupingWithParent in groupingsForGridRows.Keys)
             {
                 rowIndices[groupingWithParent] = rowIndex;
                 //dataGridView1.Columns.Add("row" + rowIndex.ToString(), trMonth.ToString("MMM yy"));
                 rowIndex++;
             }
+            */
 
-            RowCount = rowIndex;
-
+            /* REMOVE
             bool colorGridRow = false;
             MainDataSet.ViewGroupingsRow prevGroupingRow = null;
             for (int ri = 0; ri < RowCount; ri++)
             {
                 DataGridViewRow row = Rows[ri];
+                RowTag rowTag = (RowTag)Rows[ri].Tag;
+
+                /* REMOVE              
+                
+                // NOPE == gotta get row index from ...
+
                 row.HeaderCell.Value = groupingsForGridRows.Values[ri];
                 row.Tag = groupingsForGridRows.Keys[ri];
-
-                // Stripe the rows, based on grouping key or parent:
-                if (colorGridRow)
-                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                * /
 
                 // toggle row color?
-                MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(groupingsForGridRows.Keys[ri]);
+                MainDataSet.ViewGroupingsRow groupingRow = _TotalsData.GroupingsTbl.FindByGroupingKey(rowTag._GroupingKey);
                 if (prevGroupingRow != null &&
                     (groupingRow.IsParentKeyNull() || prevGroupingRow.IsParentKeyNull() || // either grouping is parent key
                     groupingRow.ParentKey != prevGroupingRow.ParentKey))  // parent keys are different
                     colorGridRow = !colorGridRow;
                 prevGroupingRow = groupingRow;
+
+                // Stripe the rows, based on grouping key or parent:
+                if (colorGridRow)
+                    rowTag._StripeTheGridRow = true;
             }
+            */
 
             Dictionary<string, Dictionary<DateTime, decimal>> qtrTotalsByGrouping = new  Dictionary<string, Dictionary<DateTime, decimal>>();
             // - used only if QuarterlyAverages is set
@@ -154,6 +204,25 @@ namespace Budget
             }
         }
 
+        protected override void OnCellFormatting(DataGridViewCellFormattingEventArgs e)
+        {
+            base.OnCellFormatting(e);
+
+            bool quarterlyAverageColumn = Columns[e.ColumnIndex].Tag is ColumnTag && ((ColumnTag)Columns[e.ColumnIndex].Tag)._ColumnType == ColumnTypes.QuarterlyAverage;
+            // REMO bool stripedRow = ((RowTag)Rows[e.RowIndex].Tag)._StripeTheGridRow;
+            bool stripedRow = _StripedGroupingRows[e.RowIndex];
+
+            if (quarterlyAverageColumn)
+            {
+                if (stripedRow)
+                    e.CellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    e.CellStyle.BackColor = Color.LightSkyBlue;
+            }
+            else if (stripedRow)
+                e.CellStyle.BackColor = Color.PaleGreen;
+        }
+
         DataGridViewColumn AddAmountColumn(string columnName, string headerText)
         {
             int colIndex = Columns.Add("col" + columnName, headerText);
@@ -172,7 +241,7 @@ namespace Budget
             ColumnTag colTag = (ColumnTag)Columns[e.ColumnIndex].Tag;
             if (colTag._ColumnType == ColumnTypes.Total)
             {
-                string cellGrouping = (string)Rows[e.RowIndex].Tag;
+                string cellGrouping = ((RowTag)Rows[e.RowIndex].Tag)._GroupingKey;
                 MonthGroupingForm monthGroupingForm = new MonthGroupingForm();
                 monthGroupingForm.Initialize(colTag._Month, cellGrouping, _TotalsData.AccountOwner, _TotalsData.AssetType);
                 monthGroupingForm.ShowDialog();
@@ -192,6 +261,18 @@ namespace Budget
             {
                 _ColumnType = columnType;
                 _Month = month;
+            }
+        }
+
+        struct RowTag
+        {
+            public string _GroupingKey;
+            // REMOVE public bool _StripeTheGridRow;
+
+            public RowTag(string  groupingKey)
+            {
+                _GroupingKey = groupingKey;
+                // REMOVE _StripeTheGridRow = false;
             }
         }
     }
