@@ -28,7 +28,7 @@ namespace Budget
             AllowUserToDeleteRows = false;
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
-            // EnableHeadersVisualStyles = false;           to recolor row headers
+            EnableHeadersVisualStyles = false;        //   to recolor row headers
 
             _TotalsData = new TotalsByGroupingData();
         }
@@ -107,6 +107,13 @@ namespace Budget
             }
 
             RowCount = groupingsForGridRows.Count;
+
+            // color the striped row headers (can't do that with a CelFormatting event handler apparently)
+            for (int r = 0; r < RowCount; r++)
+            {
+                if (_StripedGroupingRows[r])
+                    Rows[r].HeaderCell.Style.BackColor = Color.DarkSeaGreen; // TODO color s/b const
+            }
 
             Dictionary<string, int> rowIndices = new Dictionary<string, int>(); // Key = Grouping Key, obj = grid row index
             int rowIndex = 0;
@@ -214,6 +221,7 @@ namespace Budget
 
             if (quarterlyAverageColumn)
             {
+                // TODO the colors should really be consts
                 if (stripedRow)
                     e.CellStyle.BackColor = Color.LightSeaGreen;
                 else
