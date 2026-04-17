@@ -599,7 +599,7 @@ namespace Songs
                 return;
 
             ListingForm form = new ListingForm();
-            form.ShowBandRepertoire((int)bandPromptBox.BandID); 
+            form.ShowBandRepertoire((int)bandPromptBox.BandID);  
         }
 
         private void grid1_CellContentClick(object sender, DataGridViewCellEventArgs e)

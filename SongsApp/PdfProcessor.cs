@@ -1,13 +1,15 @@
-﻿using System;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
-using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using PdfSharp.Drawing;
+using System.Xml.Linq;
 
 namespace Songs
 {
@@ -141,11 +143,8 @@ namespace Songs
         {
             AzureDataSet.viewsongsforsetlistsDataTable songTable = new AzureDataSet.viewsongsforsetlistsDataTable();
             AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
-            songAdap.FillByInTablet(songTable, false);
 
             PdfDocument document = new PdfDocument();
-            XFont fontHeading = new XFont("Times New Roman", 22);
-            XFont fontSubheading = new XFont("Times New Roman", 18);
 
             // let user pick directory, if different from last usage:
             FolderBrowserDialog dirDlg = new FolderBrowserDialog();
@@ -169,31 +168,54 @@ namespace Songs
             {
                 // write csv heading:
                 csvFileWriter.WriteLine("title;pages;custom;artists;collection"); // NOTE: field name "artist" does not work; has to be "artists"
-
                 int pageNum = 1;
-                foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
-                {
-                    csvFileWriter.WriteLine(songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.ArtistList 
-                        + ";" + songRow.FlagList);
 
-                    PdfPage page = document.AddPage();
-                    page.Size = PdfSharp.PageSize.Letter;
-                    XUnit top = new XUnit(0, XGraphicsUnit.Inch);
-                    XUnit left = new XUnit(0, XGraphicsUnit.Inch);
-                    XGraphics gfx = XGraphics.FromPdfPage(page);
-                    XRect textRect = new XRect(0, new XUnit(1, XGraphicsUnit.Inch), page.Width, new XUnit(1, XGraphicsUnit.Inch));
-
-                    gfx.DrawString(songRow.FullTitle, fontHeading, XBrushes.Black, textRect, XStringFormats.TopCenter);
-                    textRect.Y += new XUnit(.5, XGraphicsUnit.Inch);
-                    gfx.DrawString(songRow.SetlistCaption, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
-
-                    pageNum++;
-                }
+                songAdap.FillByInTablet(songTable, false);
+                WriteSongsToFiles(songTable, csvFileWriter, document, ref pageNum);
+                
+                songAdap.FillWithBandRepertoire(songTable);
+                WriteSongsToFiles(songTable, csvFileWriter, document, ref pageNum);
             }
 
             document.Save(pdfFilePath);
 
             MessageBox.Show("Wrote files:" + Environment.NewLine + csvFilePath + Environment.NewLine + pdfFilePath);
+        }
+
+        void WriteSongsToFiles(AzureDataSet.viewsongsforsetlistsDataTable songTable, StreamWriter csvFileWriter, PdfDocument document, ref int pageNum)
+        {
+            var options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+            XFont fontHeading = new XFont("Segoe UI Symbol", 22, XFontStyle.Bold, options);
+            XFont fontSubheading = new XFont("Segoe UI Symbol", 18, XFontStyle.Bold, options);
+            // NOTE: Segoe UI Symbol is the first font I found that renders the flat symbol (♭)
+
+            foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
+            {
+                csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.ArtistList
+                    + ";" + songRow.FlagList);
+
+                PdfPage page = document.AddPage();
+                page.Size = PdfSharp.PageSize.A5; // half page
+                page.Orientation = PdfSharp.PageOrientation.Landscape;
+                XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
+                XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);
+
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+                XRect textRect = new XRect(halfInch, inch, page.Width - inch, inch);
+
+                gfx.DrawString(songRow.FullTitle, fontHeading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+                textRect.Y += halfInch;
+                gfx.DrawString(songRow.SetlistCaption, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+
+                textRect.Y += halfInch;
+                textRect.Height += inch;
+                XTextFormatter txtFmt = new XTextFormatter(gfx);
+                txtFmt.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
+
+                // gfx.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+
+                pageNum++;
+            }
         }
     }
 }

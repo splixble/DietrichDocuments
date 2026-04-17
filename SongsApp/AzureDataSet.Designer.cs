@@ -4074,6 +4074,14 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnFlagList;
             
+            private global::System.Data.DataColumn columnBandRepertoire;
+            
+            private global::System.Data.DataColumn columnRepertoireBand;
+            
+            private global::System.Data.DataColumn columnRepertoirePrefix;
+            
+            private global::System.Data.DataColumn columnSetlistInfo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongsforsetlistsDataTable() {
@@ -4181,6 +4189,38 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BandRepertoireColumn {
+                get {
+                    return this.columnBandRepertoire;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RepertoireBandColumn {
+                get {
+                    return this.columnRepertoireBand;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RepertoirePrefixColumn {
+                get {
+                    return this.columnRepertoirePrefix;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SetlistInfoColumn {
+                get {
+                    return this.columnSetlistInfo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4216,7 +4256,7 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList, string FlagList) {
+            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList, string FlagList, int BandRepertoire, int RepertoireBand, string RepertoirePrefix, string SetlistInfo) {
                 viewsongsforsetlistsRow rowviewsongsforsetlistsRow = ((viewsongsforsetlistsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -4227,7 +4267,11 @@ namespace Songs {
                         SetlistCaption,
                         FullTitle,
                         ArtistList,
-                        FlagList};
+                        FlagList,
+                        BandRepertoire,
+                        RepertoireBand,
+                        RepertoirePrefix,
+                        SetlistInfo};
                 rowviewsongsforsetlistsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewsongsforsetlistsRow);
                 return rowviewsongsforsetlistsRow;
@@ -4235,9 +4279,10 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongsforsetlistsRow FindByID(int ID) {
+            public viewsongsforsetlistsRow FindByIDRepertoireBand(int ID, int RepertoireBand) {
                 return ((viewsongsforsetlistsRow)(this.Rows.Find(new object[] {
-                            ID})));
+                            ID,
+                            RepertoireBand})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4266,6 +4311,10 @@ namespace Songs {
                 this.columnFullTitle = base.Columns["FullTitle"];
                 this.columnArtistList = base.Columns["ArtistList"];
                 this.columnFlagList = base.Columns["FlagList"];
+                this.columnBandRepertoire = base.Columns["BandRepertoire"];
+                this.columnRepertoireBand = base.Columns["RepertoireBand"];
+                this.columnRepertoirePrefix = base.Columns["RepertoirePrefix"];
+                this.columnSetlistInfo = base.Columns["SetlistInfo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4289,10 +4338,18 @@ namespace Songs {
                 base.Columns.Add(this.columnArtistList);
                 this.columnFlagList = new global::System.Data.DataColumn("FlagList", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFlagList);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
+                this.columnBandRepertoire = new global::System.Data.DataColumn("BandRepertoire", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBandRepertoire);
+                this.columnRepertoireBand = new global::System.Data.DataColumn("RepertoireBand", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRepertoireBand);
+                this.columnRepertoirePrefix = new global::System.Data.DataColumn("RepertoirePrefix", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRepertoirePrefix);
+                this.columnSetlistInfo = new global::System.Data.DataColumn("SetlistInfo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSetlistInfo);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("viewsongsforsetlistsKey1", new global::System.Data.DataColumn[] {
+                                this.columnID,
+                                this.columnRepertoireBand}, true));
                 this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
                 this.columnFullArtistName.ReadOnly = true;
                 this.columnFullArtistName.MaxLength = 2147483647;
                 this.columnDiffPDFName.MaxLength = 2147483647;
@@ -4303,7 +4360,13 @@ namespace Songs {
                 this.columnFullTitle.ReadOnly = true;
                 this.columnFullTitle.MaxLength = 2147483647;
                 this.columnArtistList.MaxLength = 2147483647;
+                this.columnFlagList.AllowDBNull = false;
                 this.columnFlagList.MaxLength = 2147483647;
+                this.columnBandRepertoire.AllowDBNull = false;
+                this.columnRepertoireBand.AllowDBNull = false;
+                this.columnRepertoirePrefix.MaxLength = 26;
+                this.columnSetlistInfo.AllowDBNull = false;
+                this.columnSetlistInfo.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7115,6 +7178,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnBandName;
             
+            private global::System.Data.DataColumn columnAbbrev;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bandsDataTable() {
@@ -7166,6 +7231,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AbbrevColumn {
+                get {
+                    return this.columnAbbrev;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7201,11 +7274,12 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bandsRow AddbandsRow(string BandName) {
+            public bandsRow AddbandsRow(string BandName, string Abbrev) {
                 bandsRow rowbandsRow = ((bandsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        BandName};
+                        BandName,
+                        Abbrev};
                 rowbandsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbandsRow);
                 return rowbandsRow;
@@ -7237,6 +7311,7 @@ namespace Songs {
             internal void InitVars() {
                 this.columnBandID = base.Columns["BandID"];
                 this.columnBandName = base.Columns["BandName"];
+                this.columnAbbrev = base.Columns["Abbrev"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7246,6 +7321,8 @@ namespace Songs {
                 base.Columns.Add(this.columnBandID);
                 this.columnBandName = new global::System.Data.DataColumn("BandName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBandName);
+                this.columnAbbrev = new global::System.Data.DataColumn("Abbrev", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAbbrev);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnBandID}, true));
                 this.columnBandID.AutoIncrement = true;
@@ -7256,6 +7333,7 @@ namespace Songs {
                 this.columnBandID.Unique = true;
                 this.columnBandName.AllowDBNull = false;
                 this.columnBandName.MaxLength = 250;
+                this.columnAbbrev.MaxLength = 24;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10197,15 +10275,60 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string FlagList {
                 get {
-                    try {
-                        return ((string)(this[this.tableviewsongsforsetlists.FlagListColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FlagList\' in table \'viewsongsforsetlists\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableviewsongsforsetlists.FlagListColumn]));
                 }
                 set {
                     this[this.tableviewsongsforsetlists.FlagListColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int BandRepertoire {
+                get {
+                    return ((int)(this[this.tableviewsongsforsetlists.BandRepertoireColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.BandRepertoireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int RepertoireBand {
+                get {
+                    return ((int)(this[this.tableviewsongsforsetlists.RepertoireBandColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.RepertoireBandColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RepertoirePrefix {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.RepertoirePrefixColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RepertoirePrefix\' in table \'viewsongsforsetlists\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.RepertoirePrefixColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SetlistInfo {
+                get {
+                    return ((string)(this[this.tableviewsongsforsetlists.SetlistInfoColumn]));
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.SetlistInfoColumn] = value;
                 }
             }
             
@@ -10271,14 +10394,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsFlagListNull() {
-                return this.IsNull(this.tableviewsongsforsetlists.FlagListColumn);
+            public bool IsRepertoirePrefixNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.RepertoirePrefixColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetFlagListNull() {
-                this[this.tableviewsongsforsetlists.FlagListColumn] = global::System.Convert.DBNull;
+            public void SetRepertoirePrefixNull() {
+                this[this.tableviewsongsforsetlists.RepertoirePrefixColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11471,6 +11594,34 @@ namespace Songs {
                 set {
                     this[this.tablebands.BandNameColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Abbrev {
+                get {
+                    try {
+                        return ((string)(this[this.tablebands.AbbrevColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Abbrev\' in table \'bands\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebands.AbbrevColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAbbrevNull() {
+                return this.IsNull(this.tablebands.AbbrevColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAbbrevNull() {
+                this[this.tablebands.AbbrevColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14890,6 +15041,10 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
             tableMapping.ColumnMappings.Add("FullTitle", "FullTitle");
             tableMapping.ColumnMappings.Add("ArtistList", "ArtistList");
             tableMapping.ColumnMappings.Add("FlagList", "FlagList");
+            tableMapping.ColumnMappings.Add("BandRepertoire", "BandRepertoire");
+            tableMapping.ColumnMappings.Add("RepertoireBand", "RepertoireBand");
+            tableMapping.ColumnMappings.Add("RepertoirePrefix", "RepertoirePrefix");
+            tableMapping.ColumnMappings.Add("SetlistInfo", "SetlistInfo");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -14903,20 +15058,24 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistC" +
-                "aption, FullTitle, ArtistList, FlagList\r\nFROM            songbook.viewsongsforse" +
-                "tlists";
+                "aption, SetlistInfo, FullTitle, ArtistList, FlagList, BandRepertoire, Repertoire" +
+                "Band, RepertoirePrefix\r\nFROM            songbook.viewsongsforsetlists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT ArtistList, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet" +
-                ", SetlistAddable, SetlistCaption FROM songbook.viewsongsforsetlists WHERE (InTab" +
-                "let = @InTablet)";
+            this._commandCollection[1].CommandText = @"SELECT ArtistList, BandRepertoire, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet) AND (BandRepertoire = 0)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InTablet", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "InTablet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT ArtistList, BandRepertoire, DiffPDFName, FlagList, FullArtistName, FullTit" +
+                "le, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCapti" +
+                "on, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (BandRepertoire = 1)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14939,6 +15098,19 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
         public virtual int FillByInTablet(AzureDataSet.viewsongsforsetlistsDataTable dataTable, bool InTablet) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((bool)(InTablet));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillWithBandRepertoire(AzureDataSet.viewsongsforsetlistsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -17326,29 +17498,36 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
             tableMapping.DataSetTable = "bands";
             tableMapping.ColumnMappings.Add("BandID", "BandID");
             tableMapping.ColumnMappings.Add("BandName", "BandName");
+            tableMapping.ColumnMappings.Add("Abbrev", "Abbrev");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [bands] WHERE (([BandID] = @Original_BandID) AND ([BandName] = @Origi" +
-                "nal_BandName))";
+                "nal_BandName) AND ((@IsNull_Abbrev = 1 AND [Abbrev] IS NULL) OR ([Abbrev] = @Ori" +
+                "ginal_Abbrev)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BandID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BandName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Abbrev", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Abbrev", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [bands] ([BandName]) VALUES (@BandName);\r\nSELECT BandID, BandName FRO" +
-                "M bands WHERE (BandID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [bands] ([BandName], [Abbrev]) VALUES (@BandName, @Abbrev);\r\nSELECT B" +
+                "andID, BandName, Abbrev FROM bands WHERE (BandID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BandName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Abbrev", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [bands] SET [BandName] = @BandName WHERE (([BandID] = @Original_BandID) AN" +
-                "D ([BandName] = @Original_BandName));\r\nSELECT BandID, BandName FROM bands WHERE " +
-                "(BandID = @BandID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [bands] SET [BandName] = @BandName, [Abbrev] = @Abbrev WHERE (([BandID] = @Original_BandID) AND ([BandName] = @Original_BandName) AND ((@IsNull_Abbrev = 1 AND [Abbrev] IS NULL) OR ([Abbrev] = @Original_Abbrev)));
+SELECT BandID, BandName, Abbrev FROM bands WHERE (BandID = @BandID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BandName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Abbrev", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BandID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BandName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BandName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Abbrev", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Abbrev", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Abbrev", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BandID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "BandID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -17365,11 +17544,11 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        BandID, BandName\r\nFROM            bands";
+            this._commandCollection[0].CommandText = "SELECT BandID, BandName, Abbrev FROM bands";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        BandID, BandName\r\nFROM            bands\r\nORDER BY BandName";
+            this._commandCollection[1].CommandText = "SELECT Abbrev, BandID, BandName FROM bands ORDER BY BandName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -17432,13 +17611,21 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_BandID, string Original_BandName) {
+        public virtual int Delete(int Original_BandID, string Original_BandName, string Original_Abbrev) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_BandID));
             if ((Original_BandName == null)) {
                 throw new global::System.ArgumentNullException("Original_BandName");
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_BandName));
+            }
+            if ((Original_Abbrev == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Abbrev));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17460,12 +17647,18 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string BandName) {
+        public virtual int Insert(string BandName, string Abbrev) {
             if ((BandName == null)) {
                 throw new global::System.ArgumentNullException("BandName");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(BandName));
+            }
+            if ((Abbrev == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Abbrev));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17487,21 +17680,35 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string BandName, int Original_BandID, string Original_BandName, int BandID) {
+        public virtual int Update(string BandName, string Abbrev, int Original_BandID, string Original_BandName, string Original_Abbrev, int BandID) {
             if ((BandName == null)) {
                 throw new global::System.ArgumentNullException("BandName");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(BandName));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_BandID));
+            if ((Abbrev == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Abbrev));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_BandID));
             if ((Original_BandName == null)) {
                 throw new global::System.ArgumentNullException("Original_BandName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_BandName));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_BandName));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(BandID));
+            if ((Original_Abbrev == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Abbrev));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(BandID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17522,8 +17729,8 @@ ORDER BY PerfID, SetNumber, OrderInSet, SongPerfID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string BandName, int Original_BandID, string Original_BandName) {
-            return this.Update(BandName, Original_BandID, Original_BandName, Original_BandID);
+        public virtual int Update(string BandName, string Abbrev, int Original_BandID, string Original_BandName, string Original_Abbrev) {
+            return this.Update(BandName, Abbrev, Original_BandID, Original_BandName, Original_Abbrev, Original_BandID);
         }
     }
     

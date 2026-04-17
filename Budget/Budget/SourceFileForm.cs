@@ -239,8 +239,9 @@ namespace Budget
 
         private void btnImportManualText_Click(object sender, EventArgs e)
         {
+            if (_Processor == null) // added 4/10/26 -- don't want to replace the SourceFileProcessor it's already created, which could contain new SourceFile row:
+                CreateDefaultSourceFileProcessor(SelectedAccount, SelectedFileFormat);
 
-            CreateDefaultSourceFileProcessor(SelectedAccount, SelectedFileFormat);
             PreImport();
 
             _Processor.ProcessManualLines(tbFileText.Lines);
