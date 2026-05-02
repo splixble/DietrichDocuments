@@ -4082,6 +4082,8 @@ namespace Songs {
             
             private global::System.Data.DataColumn columnSetlistInfo;
             
+            private global::System.Data.DataColumn columnCollectionList;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public viewsongsforsetlistsDataTable() {
@@ -4221,6 +4223,14 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CollectionListColumn {
+                get {
+                    return this.columnCollectionList;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4256,7 +4266,7 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList, string FlagList, int BandRepertoire, int RepertoireBand, string RepertoirePrefix, string SetlistInfo) {
+            public viewsongsforsetlistsRow AddviewsongsforsetlistsRow(int ID, string FullArtistName, string DiffPDFName, bool SetlistAddable, bool InTablet, string SetlistCaption, string FullTitle, string ArtistList, string FlagList, int BandRepertoire, int RepertoireBand, string RepertoirePrefix, string SetlistInfo, string CollectionList) {
                 viewsongsforsetlistsRow rowviewsongsforsetlistsRow = ((viewsongsforsetlistsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -4271,7 +4281,8 @@ namespace Songs {
                         BandRepertoire,
                         RepertoireBand,
                         RepertoirePrefix,
-                        SetlistInfo};
+                        SetlistInfo,
+                        CollectionList};
                 rowviewsongsforsetlistsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviewsongsforsetlistsRow);
                 return rowviewsongsforsetlistsRow;
@@ -4315,6 +4326,7 @@ namespace Songs {
                 this.columnRepertoireBand = base.Columns["RepertoireBand"];
                 this.columnRepertoirePrefix = base.Columns["RepertoirePrefix"];
                 this.columnSetlistInfo = base.Columns["SetlistInfo"];
+                this.columnCollectionList = base.Columns["CollectionList"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4346,6 +4358,8 @@ namespace Songs {
                 base.Columns.Add(this.columnRepertoirePrefix);
                 this.columnSetlistInfo = new global::System.Data.DataColumn("SetlistInfo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSetlistInfo);
+                this.columnCollectionList = new global::System.Data.DataColumn("CollectionList", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCollectionList);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("viewsongsforsetlistsKey1", new global::System.Data.DataColumn[] {
                                 this.columnID,
                                 this.columnRepertoireBand}, true));
@@ -4367,6 +4381,7 @@ namespace Songs {
                 this.columnRepertoirePrefix.MaxLength = 26;
                 this.columnSetlistInfo.AllowDBNull = false;
                 this.columnSetlistInfo.MaxLength = 2147483647;
+                this.columnCollectionList.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10334,6 +10349,22 @@ namespace Songs {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CollectionList {
+                get {
+                    try {
+                        return ((string)(this[this.tableviewsongsforsetlists.CollectionListColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CollectionList\' in table \'viewsongsforsetlists\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableviewsongsforsetlists.CollectionListColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFullArtistNameNull() {
                 return this.IsNull(this.tableviewsongsforsetlists.FullArtistNameColumn);
             }
@@ -10402,6 +10433,18 @@ namespace Songs {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetRepertoirePrefixNull() {
                 this[this.tableviewsongsforsetlists.RepertoirePrefixColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCollectionListNull() {
+                return this.IsNull(this.tableviewsongsforsetlists.CollectionListColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCollectionListNull() {
+                this[this.tableviewsongsforsetlists.CollectionListColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15045,6 +15088,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
             tableMapping.ColumnMappings.Add("RepertoireBand", "RepertoireBand");
             tableMapping.ColumnMappings.Add("RepertoirePrefix", "RepertoirePrefix");
             tableMapping.ColumnMappings.Add("SetlistInfo", "SetlistInfo");
+            tableMapping.ColumnMappings.Add("CollectionList", "CollectionList");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -15063,18 +15107,20 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistC" +
                 "aption, SetlistInfo, FullTitle, ArtistList, FlagList, BandRepertoire, Repertoire" +
-                "Band, RepertoirePrefix\r\nFROM            songbook.viewsongsforsetlists";
+                "Band, RepertoirePrefix, CollectionList\r\nFROM            songbook.viewsongsforset" +
+                "lists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT ArtistList, BandRepertoire, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet) AND (BandRepertoire = 0)";
+            this._commandCollection[1].CommandText = @"SELECT ArtistList, BandRepertoire, CollectionList, DiffPDFName, FlagList, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet) AND (BandRepertoire = 0)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InTablet", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "InTablet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT ArtistList, BandRepertoire, DiffPDFName, FlagList, FullArtistName, FullTit" +
-                "le, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCapti" +
-                "on, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (BandRepertoire = 1)";
+            this._commandCollection[2].CommandText = "SELECT ArtistList, BandRepertoire, CollectionList, DiffPDFName, FlagList, FullArt" +
+                "istName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddab" +
+                "le, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (BandRe" +
+                "pertoire = 1)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
