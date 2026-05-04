@@ -171,10 +171,10 @@ namespace Songs
                 int pageNum = 1;
 
                 songAdap.FillByInTablet(songTable, false);
-                WriteSongsToFiles(songTable, csvFileWriter, document, ref pageNum);
+                WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
                 
                 songAdap.FillWithBandRepertoire(songTable);
-                WriteSongsToFiles(songTable, csvFileWriter, document, ref pageNum);
+                WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
             }
 
             document.Save(pdfFilePath);
@@ -182,11 +182,11 @@ namespace Songs
             MessageBox.Show("Wrote files:" + Environment.NewLine + csvFilePath + Environment.NewLine + pdfFilePath);
         }
 
-        void WriteSongsToFiles(AzureDataSet.viewsongsforsetlistsDataTable songTable, StreamWriter csvFileWriter, PdfDocument document, ref int pageNum)
+        void WriteSongsToCSVAndPDFFiles(AzureDataSet.viewsongsforsetlistsDataTable songTable, StreamWriter csvFileWriter, PdfDocument document, ref int pageNum)
         {
             var options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-            XFont fontHeading = new XFont("Segoe UI Symbol", 22, XFontStyle.Bold, options);
-            XFont fontSubheading = new XFont("Segoe UI Symbol", 18, XFontStyle.Bold, options);
+            XFont fontHeading = new XFont("Segoe UI Symbol", 30, XFontStyle.Bold, options);
+            XFont fontSubheading = new XFont("Segoe UI Symbol", 22, XFontStyle.Bold, options);
             // NOTE: Segoe UI Symbol is the first font I found that renders the flat symbol (♭)
 
             foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
@@ -194,28 +194,53 @@ namespace Songs
                 csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.ArtistList
                     + ";" + songRow.CollectionList);
 
-                PdfPage page = document.AddPage();
-                page.Size = PdfSharp.PageSize.Letter; // but compressed by MobileSheets
-                page.Orientation = PdfSharp.PageOrientation.Landscape;
                 XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
                 XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);
 
+                XUnit titleTop = new XUnit(0.5, XGraphicsUnit.Inch);
+                XUnit captionTop = new XUnit(1, XGraphicsUnit.Inch);
+                XUnit infoTop = new XUnit(1.5, XGraphicsUnit.Inch);
+
+                PdfPage page = document.AddPage();
+                page.Size = PdfSharp.PageSize.Letter;
+                page.Orientation = PdfSharp.PageOrientation.Landscape;
                 XGraphics gfx = XGraphics.FromPdfPage(page);
-                XRect textRect = new XRect(halfInch, inch, page.Width - inch, inch);
 
-                gfx.DrawString(songRow.FullTitle, fontHeading, XBrushes.Black, textRect, XStringFormats.TopCenter);
-                textRect.Y += halfInch;
-                gfx.DrawString(songRow.SetlistCaption, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+                // Calculate the height of the SetlistInfo (the one variable dimension on the page), then reset the page size so that it takes up
+                // no more vertical space than necessary:
+                double infoTextHeight = GetTextHeight(gfx, fontSubheading, songRow.SetlistInfo, page.Width - inch);
+                page.Height = infoTop + infoTextHeight + halfInch;
 
-                textRect.Y += halfInch;
-                textRect.Height += inch;
+                XRect textRect = new XRect(halfInch, titleTop, page.Width - inch, inch);
+                gfx.DrawString(songRow.FullTitle, fontHeading, XBrushes.Black, textRect, XStringFormats.TopLeft);
+
+                textRect.Y = captionTop;
+                gfx.DrawString(songRow.SetlistCaption, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
+
+                textRect.Y = infoTop;
+                textRect.Height = infoTextHeight;
                 XTextFormatter txtFmt = new XTextFormatter(gfx);
                 txtFmt.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
-
                 // gfx.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
 
                 pageNum++;
             }
         }
+
+        // this is adapted from https://stackoverflow.com/questions/21947827/measuring-text-height-within-a-rectangle-pdfsharp : 
+        private double GetTextHeight(XGraphics gfx, XFont font, string text, double rectWidth)
+        {
+            var fontHeight = font.GetHeight();
+            var absoluteTextHeight = gfx.MeasureString(text, font).Height;
+            var absoluteTextWidth = gfx.MeasureString(text, font).Width;
+
+            if (absoluteTextWidth > rectWidth)
+            {
+                var linesToAdd = (int)Math.Ceiling(absoluteTextWidth / 290) - 1;
+                return absoluteTextHeight + linesToAdd * (fontHeight);
+            }
+            return absoluteTextHeight;
+        }
+
     }
 }
