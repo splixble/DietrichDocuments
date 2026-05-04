@@ -85,8 +85,8 @@ namespace Songs
                     string inputfile = pdfDir + "\\" + pdfFileName;
                     string outputfile = pdfDir + "\\Altered\\" + pdfFileName; // because norton firewall wont let me change in place...DIAG wtat to do?
                     string custValue = pdfsInDir[pdfFileName].SetlistCaption;
-                    string artistsValue = pdfsInDir[pdfFileName].ArtistList;
-                    string collectionsValue = pdfsInDir[pdfFileName].CollectionList;
+                    string artistsValue = pdfsInDir[pdfFileName].ArtistListCommas;
+                    string collectionsValue = pdfsInDir[pdfFileName].CollectionListCommas;
                     PdfDocument document = PdfReader.Open(inputfile);
 
                     bool setCustomProperty;
@@ -191,8 +191,8 @@ namespace Songs
 
             foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
             {
-                csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption + ";" + songRow.ArtistList
-                    + ";" + songRow.CollectionList);
+                csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption 
+                    + ";" + songRow.ArtistListVirgules + ";" + songRow.CollectionListVirgules);
 
                 XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
                 XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);

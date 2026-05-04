@@ -337,7 +337,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>szqo+hD5ggeFqCrulSXwibz/EQNLRaEtBY4+Jg8R+fI=</dsig:DigestValue>
+        <dsig:DigestValue>xYY8SZ4CEm63trpOKhYzcBvst1Cvf6lDb0GWrJ6FEq8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -349,19 +349,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4+ps69BU3dMKQuvJIXz3Eo853jAxdcqB7WGWcJyWzoY=</dsig:DigestValue>
+        <dsig:DigestValue>oIk9kVq8eVyIoKjNHO7qY0KBwX6w+xeMz1yVdE8tFhI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="454656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Songs.exe" size="456192">
       <assemblyIdentity name="Songs" version="6.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cSh5im4xheI3tbbDbNl0flZhVnoUFqUrB/4pdCwC58g=</dsig:DigestValue>
+        <dsig:DigestValue>n2ZEVEdOuvk3CT+8h7zKd4nyyE5/XSSupdDDVZsX96Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
