@@ -120,6 +120,36 @@ namespace Songs
             form.TB.Text = listingText;
             form.ShowDialog();
         }
+
+        private void btnSetSongOrder_Click(object sender, EventArgs e)
+        {
+            byte? prevOldSetNum = null;
+            byte newSetNum = 0;
+            byte newOrderNum = 1;
+            for (int gridRow = 0; gridRow < grid1.RowCount; gridRow++)
+            {
+                object obRowItem = grid1.Rows[gridRow].DataBoundItem;
+                if (obRowItem is DataRowView && ((DataRowView)obRowItem).Row is AzureDataSet.songperformancesRow)
+                {
+                    AzureDataSet.songperformancesRow songPerfRow = ((DataRowView)obRowItem).Row as AzureDataSet.songperformancesRow;
+
+                    bool incrementSetNum = (gridRow == 0) // gotta reset set num on very 1st element
+                        ||  !songPerfRow.IsSetNumberNull() && songPerfRow.SetNumber != prevOldSetNum;
+                    prevOldSetNum = songPerfRow.IsSetNumberNull() ? (byte?)null : songPerfRow.SetNumber;
+
+                    if (incrementSetNum)
+                    {
+                        newSetNum++;
+                        newOrderNum = 1;
+                    }
+                    else
+                        newOrderNum++;
+
+                    songPerfRow.SetNumber = newSetNum;
+                    songPerfRow.OrderInSet = newOrderNum;
+                }
+            }
+        }
     }
 }
  

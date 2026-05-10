@@ -32,28 +32,29 @@ namespace Songs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PerformanceDetailForm));
             this.btnSave = new System.Windows.Forms.Button();
             this.grid1 = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AzureDataSet = new Songs.AzureDataSet();
+            this.SetNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderInSet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songperformancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDate = new System.Windows.Forms.Label();
+            this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.lblVenue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPrintSetlistWithPerformanceNotes = new System.Windows.Forms.Button();
-            this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.AzureDataSet = new Songs.AzureDataSet();
-            this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.songperformancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.songperformancesTableAdapter = new Songs.AzureDataSetTableAdapters.songperformancesTableAdapter();
             this.performancesTableAdapter = new Songs.AzureDataSetTableAdapters.performancesTableAdapter();
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.songDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.SetNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderInSet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSetSongOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.songperformancesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -87,6 +88,65 @@ namespace Songs
             this.grid1.Size = new System.Drawing.Size(831, 227);
             this.grid1.TabIndex = 8;
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // songDataGridViewTextBoxColumn
+            // 
+            this.songDataGridViewTextBoxColumn.DataPropertyName = "Song";
+            this.songDataGridViewTextBoxColumn.DataSource = this.viewSongsSingleFieldBindingSource;
+            this.songDataGridViewTextBoxColumn.DisplayMember = "TitleAndArtist";
+            this.songDataGridViewTextBoxColumn.FillWeight = 300F;
+            this.songDataGridViewTextBoxColumn.HeaderText = "Song";
+            this.songDataGridViewTextBoxColumn.Name = "songDataGridViewTextBoxColumn";
+            this.songDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.songDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.songDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.songDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // viewSongsSingleFieldBindingSource
+            // 
+            this.viewSongsSingleFieldBindingSource.DataMember = "ViewSongsSingleField";
+            this.viewSongsSingleFieldBindingSource.DataSource = this.AzureDataSet;
+            this.viewSongsSingleFieldBindingSource.Sort = "SongFull";
+            // 
+            // AzureDataSet
+            // 
+            this.AzureDataSet.DataSetName = "AzureDataSet";
+            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // SetNumber
+            // 
+            this.SetNumber.DataPropertyName = "SetNumber";
+            this.SetNumber.HeaderText = "Set #";
+            this.SetNumber.Name = "SetNumber";
+            this.SetNumber.Width = 42;
+            // 
+            // OrderInSet
+            // 
+            this.OrderInSet.DataPropertyName = "OrderInSet";
+            this.OrderInSet.HeaderText = "# in set";
+            this.OrderInSet.Name = "OrderInSet";
+            this.OrderInSet.Width = 42;
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            // 
+            // songperformancesBindingSource
+            // 
+            this.songperformancesBindingSource.DataMember = "songperformances";
+            this.songperformancesBindingSource.DataSource = this.AzureDataSet;
+            this.songperformancesBindingSource.CurrentItemChanged += new System.EventHandler(this.songperformancesBindingSource_CurrentItemChanged);
+            // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
@@ -96,6 +156,11 @@ namespace Songs
             this.lblDate.Size = new System.Drawing.Size(35, 13);
             this.lblDate.TabIndex = 13;
             this.lblDate.Text = "label4";
+            // 
+            // performancesBindingSource
+            // 
+            this.performancesBindingSource.DataMember = "performances";
+            this.performancesBindingSource.DataSource = this.AzureDataSet;
             // 
             // label3
             // 
@@ -136,28 +201,6 @@ namespace Songs
             this.btnPrintSetlistWithPerformanceNotes.UseVisualStyleBackColor = false;
             this.btnPrintSetlistWithPerformanceNotes.Click += new System.EventHandler(this.btnPrintSetlistWithPerformanceNotes_Click);
             // 
-            // performancesBindingSource
-            // 
-            this.performancesBindingSource.DataMember = "performances";
-            this.performancesBindingSource.DataSource = this.AzureDataSet;
-            // 
-            // AzureDataSet
-            // 
-            this.AzureDataSet.DataSetName = "AzureDataSet";
-            this.AzureDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewSongsSingleFieldBindingSource
-            // 
-            this.viewSongsSingleFieldBindingSource.DataMember = "ViewSongsSingleField";
-            this.viewSongsSingleFieldBindingSource.DataSource = this.AzureDataSet;
-            this.viewSongsSingleFieldBindingSource.Sort = "SongFull";
-            // 
-            // songperformancesBindingSource
-            // 
-            this.songperformancesBindingSource.DataMember = "songperformances";
-            this.songperformancesBindingSource.DataSource = this.AzureDataSet;
-            this.songperformancesBindingSource.CurrentItemChanged += new System.EventHandler(this.songperformancesBindingSource_CurrentItemChanged);
-            // 
             // songperformancesTableAdapter
             // 
             this.songperformancesTableAdapter.ClearBeforeFill = true;
@@ -170,47 +213,17 @@ namespace Songs
             // 
             this.viewSongsSingleFieldTableAdapter.ClearBeforeFill = true;
             // 
-            // iDDataGridViewTextBoxColumn
+            // btnSetSongOrder
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // songDataGridViewTextBoxColumn
-            // 
-            this.songDataGridViewTextBoxColumn.DataPropertyName = "Song";
-            this.songDataGridViewTextBoxColumn.DataSource = this.viewSongsSingleFieldBindingSource;
-            this.songDataGridViewTextBoxColumn.DisplayMember = "TitleAndArtist";
-            this.songDataGridViewTextBoxColumn.FillWeight = 300F;
-            this.songDataGridViewTextBoxColumn.HeaderText = "Song";
-            this.songDataGridViewTextBoxColumn.Name = "songDataGridViewTextBoxColumn";
-            this.songDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.songDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.songDataGridViewTextBoxColumn.ValueMember = "ID";
-            this.songDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // SetNumber
-            // 
-            this.SetNumber.DataPropertyName = "SetNumber";
-            this.SetNumber.HeaderText = "Set #";
-            this.SetNumber.Name = "SetNumber";
-            this.SetNumber.Width = 42;
-            // 
-            // OrderInSet
-            // 
-            this.OrderInSet.DataPropertyName = "OrderInSet";
-            this.OrderInSet.HeaderText = "# in set";
-            this.OrderInSet.Name = "OrderInSet";
-            this.OrderInSet.Width = 42;
-            // 
-            // commentDataGridViewTextBoxColumn
-            // 
-            this.commentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.btnSetSongOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetSongOrder.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSetSongOrder.Location = new System.Drawing.Point(619, 12);
+            this.btnSetSongOrder.Name = "btnSetSongOrder";
+            this.btnSetSongOrder.Size = new System.Drawing.Size(94, 42);
+            this.btnSetSongOrder.TabIndex = 15;
+            this.btnSetSongOrder.Text = "Set order of songs in sets";
+            this.btnSetSongOrder.UseVisualStyleBackColor = false;
+            this.btnSetSongOrder.Click += new System.EventHandler(this.btnSetSongOrder_Click);
             // 
             // PerformanceDetailForm
             // 
@@ -218,6 +231,7 @@ namespace Songs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(855, 329);
+            this.Controls.Add(this.btnSetSongOrder);
             this.Controls.Add(this.btnPrintSetlistWithPerformanceNotes);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.label3);
@@ -231,10 +245,10 @@ namespace Songs
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PerformanceDetailForm_FormClosing);
             this.Load += new System.EventHandler(this.PerformanceDetailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewSongsSingleFieldBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AzureDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.songperformancesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +275,6 @@ namespace Songs
         private System.Windows.Forms.DataGridViewTextBoxColumn SetNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderInSet;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnSetSongOrder;
     }
 }
