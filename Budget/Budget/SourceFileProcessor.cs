@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 using static Budget.BudgetSourceFileProcessor;
 using static Budget.MainDataSet;
@@ -110,7 +111,9 @@ namespace Budget
                     else if (destColumn.DataType == typeof(Decimal))
                     {
                         Decimal fileValue;
-                        if (Decimal.TryParse(fileFields[formatColIndex], out fileValue))
+                        if (Decimal.TryParse(fileFields[formatColIndex], 
+                            NumberStyles.Number | NumberStyles.AllowCurrencySymbol | NumberStyles.AllowParentheses | NumberStyles.AllowThousands, 
+                            CultureInfo.CurrentCulture, out fileValue))
                         {
                             // For Amount and Balance columns, handle the special case in which source file lists credits as negative and debits as positive:
                             if (_SourceFileFormatRow.CreditsAreNegative)
