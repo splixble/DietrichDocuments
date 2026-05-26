@@ -2,6 +2,7 @@
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using Songs.AzureDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static MySql.Utility.Forms.InfoDialog;
 
 namespace Songs
 {
@@ -191,6 +193,9 @@ namespace Songs
                     // include band repertoire songs of all bands:
                     songAdap.FillWithBandRepertoire(songTable);
                     WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
+
+                    // include setlist placeholders:
+                    WriteSetlistPlaceholdersToCSVAndPDFFiles(csvFileWriter, document, ref pageNum);
                 }
                 else
                 {
@@ -205,6 +210,37 @@ namespace Songs
             MessageBox.Show("Wrote files:" + Environment.NewLine + csvFilePath + Environment.NewLine + pdfFilePath);
         }
 
+        void WriteSetlistPlaceholdersToCSVAndPDFFiles(StreamWriter csvFileWriter, PdfDocument document, ref int pageNum)
+        {
+            var options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+            XFont fontHeading = new XFont("Times New Roman", 42, XFontStyle.Bold, options);
+
+            AzureDataSet.SetlistPlaceholdersDataTable placeholdersTable = new AzureDataSet.SetlistPlaceholdersDataTable();
+            SetlistPlaceholdersTableAdapter placeholdersAdap = new SetlistPlaceholdersTableAdapter();
+            placeholdersAdap.Fill(placeholdersTable);
+
+            XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
+            XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);
+            XUnit titleTop = new XUnit(0.5, XGraphicsUnit.Inch);
+            XUnit pageHeight = new XUnit(1.6, XGraphicsUnit.Inch);
+
+            foreach (AzureDataSet.SetlistPlaceholdersRow placeholderRow in placeholdersTable)
+            {
+                csvFileWriter.WriteLine(placeholderRow.PlaceholderLabel + ";" + pageNum.ToString() + ";;;Placeholders");
+
+                PdfPage page = document.AddPage();
+                page.Size = PdfSharp.PageSize.Letter;
+                page.Orientation = PdfSharp.PageOrientation.Landscape;
+                page.Height = pageHeight;
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                XRect textRect = new XRect(halfInch, titleTop, page.Width - inch, inch);
+                gfx.DrawString(placeholderRow.PlaceholderLabel, fontHeading, XBrushes.Navy, textRect, XStringFormats.TopLeft);
+
+                pageNum++;
+            }
+        }
+
         void WriteSongsToCSVAndPDFFiles(AzureDataSet.viewsongsforsetlistsDataTable songTable, StreamWriter csvFileWriter, PdfDocument document, ref int pageNum)
         {
             var options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
@@ -212,17 +248,17 @@ namespace Songs
             XFont fontSubheading = new XFont("Segoe UI Symbol", 22, XFontStyle.Bold, options);
             // NOTE: Segoe UI Symbol is the first font I found that renders the flat symbol (♭)
 
+            XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
+            XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);
+
+            XUnit titleTop = new XUnit(0.5, XGraphicsUnit.Inch);
+            XUnit captionTop = new XUnit(1, XGraphicsUnit.Inch);
+            XUnit infoTop = new XUnit(1.5, XGraphicsUnit.Inch);
+
             foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
             {
                 csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption 
                     + ";" + songRow.ArtistListVirgules + ";" + songRow.CollectionListVirgules);
-
-                XUnit inch = new XUnit(1, XGraphicsUnit.Inch);
-                XUnit halfInch = new XUnit(0.5, XGraphicsUnit.Inch);
-
-                XUnit titleTop = new XUnit(0.5, XGraphicsUnit.Inch);
-                XUnit captionTop = new XUnit(1, XGraphicsUnit.Inch);
-                XUnit infoTop = new XUnit(1.5, XGraphicsUnit.Inch);
 
                 PdfPage page = document.AddPage();
                 page.Size = PdfSharp.PageSize.Letter;
