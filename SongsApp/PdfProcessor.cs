@@ -139,8 +139,19 @@ namespace Songs
                 "No DB record found for " + pdfsWithoutRec);
         }
 
-        public void CreateNoLyricFiles()
+        public void CreateNoLyricFiles(int? bandID)
+            // if bandID is non-null, it lists only the indicated band's repertoire. Otherwise, it lists all no-lyric songs. 
         {
+            string bandAbbrev = "";
+            if (bandID != null)
+            {
+                AzureDataSet.bandsDataTable bandsTable = new AzureDataSet.bandsDataTable();
+                AzureDataSetTableAdapters.bandsTableAdapter bandsAdap = new AzureDataSetTableAdapters.bandsTableAdapter();
+                bandsAdap.Fill(bandsTable);
+                AzureDataSet.bandsRow bandRow = bandsTable.FindByBandID((int)bandID);
+                bandAbbrev = bandRow.Abbrev;
+            }
+
             AzureDataSet.viewsongsforsetlistsDataTable songTable = new AzureDataSet.viewsongsforsetlistsDataTable();
             AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter songAdap = new AzureDataSetTableAdapters.viewsongsforsetlistsTableAdapter();
 
@@ -161,8 +172,9 @@ namespace Songs
             }
 
             string dir = dirDlg.SelectedPath;
-            string pdfFilePath = dir + "\\NoLyrics" + DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + ".pdf";
-            string csvFilePath = dir + "\\NoLyrics" + DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss") + ".csv";
+            string filenameBody = (bandID == null ? "NoLyrics" : bandAbbrev) + "-" + DateTime.Now.ToString("yyyy-MM-dd hh.mm.ss");
+            string pdfFilePath = dir + "\\" + filenameBody + ".pdf";
+            string csvFilePath = dir + "\\" + filenameBody + ".csv";
 
             using (StreamWriter csvFileWriter = new StreamWriter(csvFilePath))
             {
@@ -170,11 +182,22 @@ namespace Songs
                 csvFileWriter.WriteLine("title;pages;custom;artists;collection"); // NOTE: field name "artist" does not work; has to be "artists"
                 int pageNum = 1;
 
-                songAdap.FillByInTablet(songTable, false);
-                WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
-                
-                songAdap.FillWithBandRepertoire(songTable);
-                WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
+                if (bandID == null)
+                {
+                    // include all no-lyric songs in tablet:
+                    songAdap.FillByInTablet(songTable, false);
+                    WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
+
+                    // include band repertoire songs of all bands:
+                    songAdap.FillWithBandRepertoire(songTable);
+                    WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
+                }
+                else
+                {
+                    // only include repertoire songs of one band:
+                    songAdap.FillRepertoireByBand(songTable, (int)bandID);
+                    WriteSongsToCSVAndPDFFiles(songTable, csvFileWriter, document, ref pageNum);
+                }
             }
 
             document.Save(pdfFilePath);

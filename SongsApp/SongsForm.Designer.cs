@@ -62,6 +62,7 @@ namespace Songs
             this.flagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.performancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.venuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandRepertoireToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNoLyricsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,7 @@ namespace Songs
             this.viewSongsSingleFieldBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.viewSongsSingleFieldTableAdapter = new Songs.AzureDataSetTableAdapters.ViewSongsSingleFieldTableAdapter();
             this.songsFlaggedTableAdapter1 = new Songs.AzureDataSetTableAdapters.SongsFlaggedTableAdapter();
-            this.bandRepertoireToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBandRepertoireListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewArtistNameForListBoxBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -356,36 +357,44 @@ namespace Songs
             // artistsToolStripMenuItem
             // 
             this.artistsToolStripMenuItem.Name = "artistsToolStripMenuItem";
-            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.artistsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.artistsToolStripMenuItem.Text = "&Artists";
             this.artistsToolStripMenuItem.Click += new System.EventHandler(this.artistsToolStripMenuItem_Click);
             // 
             // flagsToolStripMenuItem
             // 
             this.flagsToolStripMenuItem.Name = "flagsToolStripMenuItem";
-            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.flagsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.flagsToolStripMenuItem.Text = "&Flags";
             this.flagsToolStripMenuItem.Click += new System.EventHandler(this.flagsToolStripMenuItem_Click);
             // 
             // performancesToolStripMenuItem
             // 
             this.performancesToolStripMenuItem.Name = "performancesToolStripMenuItem";
-            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.performancesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.performancesToolStripMenuItem.Text = "&Performances";
             this.performancesToolStripMenuItem.Click += new System.EventHandler(this.performancesToolStripMenuItem_Click);
             // 
             // venuesToolStripMenuItem
             // 
             this.venuesToolStripMenuItem.Name = "venuesToolStripMenuItem";
-            this.venuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.venuesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.venuesToolStripMenuItem.Text = "&Venues";
             this.venuesToolStripMenuItem.Click += new System.EventHandler(this.venuesToolStripMenuItem_Click);
+            // 
+            // bandRepertoireToolStripMenuItem1
+            // 
+            this.bandRepertoireToolStripMenuItem1.Name = "bandRepertoireToolStripMenuItem1";
+            this.bandRepertoireToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.bandRepertoireToolStripMenuItem1.Text = "Band &Repertoire";
+            this.bandRepertoireToolStripMenuItem1.Click += new System.EventHandler(this.bandRepertoireToolStripMenuItem1_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pDFToolStripMenuItem,
-            this.createNoLyricsListToolStripMenuItem});
+            this.createNoLyricsListToolStripMenuItem,
+            this.createBandRepertoireListToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "T&ools";
@@ -393,14 +402,14 @@ namespace Songs
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
             this.pDFToolStripMenuItem.Click += new System.EventHandler(this.pDFToolStripMenuItem_Click);
             // 
             // createNoLyricsListToolStripMenuItem
             // 
             this.createNoLyricsListToolStripMenuItem.Name = "createNoLyricsListToolStripMenuItem";
-            this.createNoLyricsListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createNoLyricsListToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.createNoLyricsListToolStripMenuItem.Text = "Create No Lyrics List";
             this.createNoLyricsListToolStripMenuItem.Click += new System.EventHandler(this.createNoLyricsListToolStripMenuItem_Click);
             // 
@@ -604,12 +613,12 @@ namespace Songs
             // 
             this.songsFlaggedTableAdapter1.ClearBeforeFill = true;
             // 
-            // bandRepertoireToolStripMenuItem1
+            // createBandRepertoireListToolStripMenuItem
             // 
-            this.bandRepertoireToolStripMenuItem1.Name = "bandRepertoireToolStripMenuItem1";
-            this.bandRepertoireToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.bandRepertoireToolStripMenuItem1.Text = "Band &Repertoire";
-            this.bandRepertoireToolStripMenuItem1.Click += new System.EventHandler(this.bandRepertoireToolStripMenuItem1_Click);
+            this.createBandRepertoireListToolStripMenuItem.Name = "createBandRepertoireListToolStripMenuItem";
+            this.createBandRepertoireListToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.createBandRepertoireListToolStripMenuItem.Text = "Create Band Repertoire List";
+            this.createBandRepertoireListToolStripMenuItem.Click += new System.EventHandler(this.createBandRepertoireListToolStripMenuItem_Click);
             // 
             // SongsForm
             // 
@@ -709,6 +718,7 @@ namespace Songs
         private System.Windows.Forms.ToolStripMenuItem bandRepertoireToolStripMenuItem;
         private AzureDataSetTableAdapters.SongsFlaggedTableAdapter songsFlaggedTableAdapter1;
         private System.Windows.Forms.ToolStripMenuItem bandRepertoireToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem createBandRepertoireListToolStripMenuItem;
     }
 }
 

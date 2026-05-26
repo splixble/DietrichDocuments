@@ -15166,7 +15166,7 @@ SELECT FlagID, FlagName, FlagDescription, FlagCode, Active FROM songbook.flags W
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        ID, FullArtistName, DiffPDFName, SetlistAddable, InTablet, SetlistCaption, SetlistInfo, FullTitle, BandRepertoire, RepertoireBand, RepertoirePrefix, ArtistListVirgules, CollectionListVirgules, ArtistListCommas, 
@@ -15175,13 +15175,30 @@ FROM            songbook.viewsongsforsetlists";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT ArtistListCommas, ArtistListVirgules, BandRepertoire, CollectionListCommas, CollectionListVirgules, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (InTablet = @InTablet) AND (BandRepertoire = 0)";
+            this._commandCollection[1].CommandText = @"SELECT        ArtistListCommas, ArtistListVirgules, BandRepertoire, CollectionListCommas, CollectionListVirgules, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, 
+                         SetlistInfo
+FROM            songbook.viewsongsforsetlists
+WHERE        (InTablet = @InTablet) AND (BandRepertoire = 0)
+ORDER BY FullTitle, FullArtistName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InTablet", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "InTablet", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT ArtistListCommas, ArtistListVirgules, BandRepertoire, CollectionListCommas, CollectionListVirgules, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, SetlistInfo FROM songbook.viewsongsforsetlists WHERE (BandRepertoire = 1)";
+            this._commandCollection[2].CommandText = @"SELECT        ArtistListCommas, ArtistListVirgules, BandRepertoire, CollectionListCommas, CollectionListVirgules, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, 
+                         SetlistInfo
+FROM            songbook.viewsongsforsetlists
+WHERE        (BandRepertoire = 1) AND (RepertoireBand = @BandID)
+ORDER BY FullTitle, FullArtistName";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BandID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "RepertoireBand", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        ArtistListCommas, ArtistListVirgules, BandRepertoire, CollectionListCommas, CollectionListVirgules, DiffPDFName, FullArtistName, FullTitle, ID, InTablet, RepertoireBand, RepertoirePrefix, SetlistAddable, SetlistCaption, 
+                         SetlistInfo
+FROM            songbook.viewsongsforsetlists
+WHERE        (BandRepertoire = 1)
+ORDER BY RepertoireBand, FullTitle, FullArtistName";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15215,8 +15232,22 @@ FROM            songbook.viewsongsforsetlists";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillWithBandRepertoire(AzureDataSet.viewsongsforsetlistsDataTable dataTable) {
+        public virtual int FillRepertoireByBand(AzureDataSet.viewsongsforsetlistsDataTable dataTable, int BandID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BandID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillWithBandRepertoire(AzureDataSet.viewsongsforsetlistsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }

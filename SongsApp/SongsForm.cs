@@ -468,10 +468,23 @@ namespace Songs
             proc.ProcessPDFs();
         }
 
+
+        private void createBandRepertoireListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BandPromptBox bandPromptBox = new BandPromptBox();
+            if (bandPromptBox.ShowDialog() != DialogResult.OK
+                || bandPromptBox.BandID == null)
+                return;
+
+            PdfProcessor pdfProc = new PdfProcessor();
+            pdfProc.CreateNoLyricFiles(bandPromptBox.BandID);
+        }
+
+
         private void createNoLyricsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PdfProcessor pdfProc = new PdfProcessor();
-            pdfProc.CreateNoLyricFiles();
+            pdfProc.CreateNoLyricFiles(null);
         }
 
         private void venuesToolStripMenuItem_Click(object sender, EventArgs e)
