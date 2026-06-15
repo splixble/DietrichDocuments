@@ -552,7 +552,8 @@ namespace Songs
                 perfTbl.PerformanceDateColumn,
                 perfTbl.VenueColumn,
                 perfTbl.CommentColumn,
-                perfTbl.DidILeadColumn
+                perfTbl.DidILeadColumn,
+                perfTbl.BandColumn,
             };
 
             JSTable perfJSTbl = new JSTable(perfTbl, perfColumns, "Performances");
