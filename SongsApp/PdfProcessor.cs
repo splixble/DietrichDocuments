@@ -279,7 +279,15 @@ namespace Songs
                 textRect.Y = infoTop;
                 textRect.Height = infoTextHeight;
                 XTextFormatter txtFmt = new XTextFormatter(gfx);
-                txtFmt.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
+
+                // DIAGBO
+                string setlistInfoFormatted;
+                if (songRow.BandRepertoire == 1)
+                    setlistInfoFormatted = SongsUtils.FormatBandRepertoirePerformanceNotes(songRow.SetlistInfo, true);
+                else
+                    setlistInfoFormatted = songRow.SetlistInfo;
+
+                txtFmt.DrawString(setlistInfoFormatted, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
                 // gfx.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
 
                 pageNum++;

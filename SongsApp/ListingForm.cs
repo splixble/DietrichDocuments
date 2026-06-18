@@ -121,10 +121,11 @@ namespace Songs
 
             foreach (AzureDataSet.ViewRepertoireRow row in repTable)
             {
-                tb.Text += row.TitleAndArtist; 
+                tb.Text += row.TitleAndArtist;
                 if (!row.IsPerformanceNotesNull() && row.PerformanceNotes != "")
-                    tb.Text += ": " + row.PerformanceNotes;
+                    tb.Text += ": " + SongsUtils.FormatBandRepertoirePerformanceNotes(row.PerformanceNotes, false);
                 tb.Text += Environment.NewLine;
+                // DIAGBO
             }
 
             ShowDialog();
