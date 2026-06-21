@@ -112,7 +112,6 @@ namespace Songs
                 if (repertoireRow != null && !repertoireRow.IsPerformanceNotesNull() && repertoireRow.PerformanceNotes != "")
                     listingText += ": " + SongsUtils.FormatBandRepertoirePerformanceNotes(repertoireRow.PerformanceNotes, false);
                 listingText += Environment.NewLine;
-                // DIAGBO
 
                 // DIAG put set breaks in
             }

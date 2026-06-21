@@ -280,7 +280,6 @@ namespace Songs
                 textRect.Height = infoTextHeight;
                 XTextFormatter txtFmt = new XTextFormatter(gfx);
 
-                // DIAGBO
                 string setlistInfoFormatted;
                 if (songRow.BandRepertoire == 1)
                     setlistInfoFormatted = SongsUtils.FormatBandRepertoirePerformanceNotes(songRow.SetlistInfo, true);

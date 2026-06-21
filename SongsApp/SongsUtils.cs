@@ -11,9 +11,8 @@ namespace Songs
     {
         public static string FormatBandRepertoirePerformanceNotes(string perfNotesText, bool pdf)
         {
-            // DIAGBO  hey! \u200C duddin work. Google soft line break char in PdfSharp.
-            return perfNotesText.Replace("\\n", pdf? "\u200C" : "\v").Replace("\\t", "    ");
-            // -- replace \n in strings from database with soft line break, and \t with consectutive spaces
+            return perfNotesText.Replace("\\n", pdf? "\n" : "\v").Replace("\\t", "    ");
+            // -- replace \n in strings from database with line break (soft line break for text going into Word file), and \t with consectutive spaces
 
         }
     }

@@ -125,7 +125,6 @@ namespace Songs
                 if (!row.IsPerformanceNotesNull() && row.PerformanceNotes != "")
                     tb.Text += ": " + SongsUtils.FormatBandRepertoirePerformanceNotes(row.PerformanceNotes, false);
                 tb.Text += Environment.NewLine;
-                // DIAGBO
             }
 
             ShowDialog();
