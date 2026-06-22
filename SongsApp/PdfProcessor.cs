@@ -257,7 +257,7 @@ namespace Songs
 
             foreach (AzureDataSet.viewsongsforsetlistsRow songRow in songTable)
             {
-                csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption 
+                csvFileWriter.WriteLine(songRow.RepertoirePrefix + songRow.FullTitle + ";" + pageNum.ToString() + ";" + songRow.SetlistCaption
                     + ";" + songRow.ArtistListVirgules + ";" + songRow.CollectionListVirgules);
 
                 PdfPage page = document.AddPage();
@@ -265,10 +265,42 @@ namespace Songs
                 page.Orientation = PdfSharp.PageOrientation.Landscape;
                 XGraphics gfx = XGraphics.FromPdfPage(page);
 
-                // Calculate the height of the SetlistInfo (the one variable dimension on the page), then reset the page size so that it takes up
-                // no more vertical space than necessary:
-                double infoTextHeight = GetTextHeight(gfx, fontSubheading, songRow.SetlistInfo, page.Width - inch);
-                page.Height = infoTop + infoTextHeight + halfInch;
+                string setlistInfoFormatted;
+                if (songRow.BandRepertoire == 1)
+                    setlistInfoFormatted = SongsUtils.FormatBandRepertoirePerformanceNotes(songRow.SetlistInfo, true);
+                else
+                    setlistInfoFormatted = songRow.SetlistInfo;
+
+
+                // Use the XTextFormatterEx to correctly calculate necessary text box height for text wrapping AND newline chars.
+                // XTextFormatterEx is from the measure-text-height variant of PdfSharp, which I discovered in 
+                // https://stackoverflow.com/questions/15461052/pdfsharp-measuring-height-of-long-text-with-word-wrap/15478864#15478864
+                // and the source code is availoable on 
+                // https://github.com/yolpsoftware/PdfSharp/tree/measure-text-height
+                if (setlistInfoFormatted.Length > 0)
+                {
+                    // First, calculate the SetlistInfo's text box height, which is variable:
+                    XRect setlistInfoRect = new XRect(halfInch, infoTop, page.Width - inch, double.MaxValue);
+
+                    XTextFormatterEx txtFmt = new XTextFormatterEx(gfx);
+                    int lastFittingChar;
+                    setlistInfoRect.Height = double.MaxValue;
+                    double setlistInfoTextHeight = 0; // default, in case there is no setlist info text
+                    txtFmt.PrepareDrawString(setlistInfoFormatted, fontSubheading, setlistInfoRect, out lastFittingChar, out setlistInfoTextHeight);
+
+                    setlistInfoRect.Height = setlistInfoTextHeight;
+
+                    // Reset the page size so that it takes up no more vertical space than necessary:
+                    page.Height = infoTop + setlistInfoTextHeight + halfInch;
+
+                    txtFmt.DrawString(setlistInfoFormatted, fontSubheading, XBrushes.Black, setlistInfoRect, XStringFormats.TopLeft);
+                    // gfx.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+                }
+                else 
+                { 
+                    // Reset the page size so that it takes up no more vertical space than necessary:
+                    page.Height = infoTop + halfInch;
+                }
 
                 XRect textRect = new XRect(halfInch, titleTop, page.Width - inch, inch);
                 gfx.DrawString(songRow.FullTitle, fontHeading, XBrushes.Black, textRect, XStringFormats.TopLeft);
@@ -277,22 +309,13 @@ namespace Songs
                 gfx.DrawString(songRow.SetlistCaption, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
 
                 textRect.Y = infoTop;
-                textRect.Height = infoTextHeight;
-                XTextFormatter txtFmt = new XTextFormatter(gfx);
-
-                string setlistInfoFormatted;
-                if (songRow.BandRepertoire == 1)
-                    setlistInfoFormatted = SongsUtils.FormatBandRepertoirePerformanceNotes(songRow.SetlistInfo, true);
-                else
-                    setlistInfoFormatted = songRow.SetlistInfo;
-
-                txtFmt.DrawString(setlistInfoFormatted, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopLeft);
-                // gfx.DrawString(songRow.SetlistInfo, fontSubheading, XBrushes.Black, textRect, XStringFormats.TopCenter);
+                // REMOVED 21Jun26: textRect.Height = infoTextHeight;
 
                 pageNum++;
             }
         }
 
+        /* REMOVED 21Jun26, now that we're using XTextFormatterEx to correctly calculate necessary text box height for text wrapping AND newline chars
         // this is adapted from https://stackoverflow.com/questions/21947827/measuring-text-height-within-a-rectangle-pdfsharp : 
         private double GetTextHeight(XGraphics gfx, XFont font, string text, double rectWidth)
         {
@@ -307,6 +330,7 @@ namespace Songs
             }
             return absoluteTextHeight;
         }
+        */
 
     }
 }

@@ -427,8 +427,8 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PDFsharp\src\PdfSharp\PdfSharp.csproj">
-      <Project>{5a6055bc-bf86-4fdd-9f62-0109db7a303b}</Project>
+    <ProjectReference Include="..\PDFsharpWithMeasureString\PdfSharp\PdfSharp.csproj">
+      <Project>{5384ce57-1f94-4d22-860d-2e9c1ac12ddf}</Project>
       <Name>PdfSharp</Name>
     </ProjectReference>
   </ItemGroup>

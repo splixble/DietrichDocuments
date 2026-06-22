@@ -71,6 +71,7 @@
     <Compile Include="Drawing.BarCodes\ThickThinBarcodeRenderer.cs" />
     <Compile Include="Drawing.Layout\enums\XParagraphAlignment.cs" />
     <Compile Include="Drawing.Layout\XTextFormatter.cs" />
+    <Compile Include="Drawing.Layout\XTextFormatterEx.cs" />
     <Compile Include="Drawing.Pdf\enums\DirtyFlags.cs" />
     <Compile Include="Drawing.Pdf\enums\StreamMode.cs" />
     <Compile Include="Drawing.Pdf\PdfGraphicsState.cs" />
