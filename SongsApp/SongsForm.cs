@@ -293,7 +293,7 @@ namespace Songs
             // flags?
             if (cbWithFlag.Checked && comboFlag.SelectedValue != DBNull.Value)
             {
-                clauses.Add("ID in (SELECT Song FROM FlaggedSongs WHERE FlagID = " + comboFlag.SelectedValue.ToString() + ")");
+                clauses.Add("ID in (SELECT SongID FROM SongsFlagged WHERE FlagID = " + comboFlag.SelectedValue.ToString() + ")");
             }
 
             string clauseString = "";

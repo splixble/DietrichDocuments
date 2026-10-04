@@ -80,7 +80,7 @@ namespace Songs
             foreach (AzureDataSet.flagsRow flagsRow in flagsTable)
             {
                 tb.Text += "`" + flagsRow.FlagName + Environment.NewLine;
-                string songsWhereClause = "WHERE (ID in (SELECT Song FROM FlaggedSongs WHERE FlagID = " +
+                string songsWhereClause = "WHERE (ID in (SELECT SongID FROM SongsFlagged WHERE FlagID = " +
                     flagsRow.FlagID + "))";
                 GenerateList(songsWhereClause);
             }
