@@ -46,5 +46,17 @@ namespace PhotoTools.Properties {
                 this["RawFilesPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSelectionsCSVPath {
+            get {
+                return ((string)(this["LastSelectionsCSVPath"]));
+            }
+            set {
+                this["LastSelectionsCSVPath"] = value;
+            }
+        }
     }
 }

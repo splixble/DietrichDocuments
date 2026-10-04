@@ -34,9 +34,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPhotoDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSelectionsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSelectionsInCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSelectionsToCSVAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectedPicsToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUnmatchedRAWFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblInfoBar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).BeginInit();
             this.splitConOuter.Panel1.SuspendLayout();
             this.splitConOuter.Panel2.SuspendLayout();
@@ -53,6 +57,7 @@
             // 
             // splitConOuter.Panel1
             // 
+            this.splitConOuter.Panel1.Controls.Add(this.lblInfoBar);
             this.splitConOuter.Panel1.Controls.Add(this.listFiles);
             // 
             // splitConOuter.Panel2
@@ -64,12 +69,14 @@
             // 
             // listFiles
             // 
+            this.listFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listFiles.CheckBoxes = true;
-            this.listFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listFiles.HideSelection = false;
-            this.listFiles.Location = new System.Drawing.Point(0, 0);
+            this.listFiles.Location = new System.Drawing.Point(0, 58);
             this.listFiles.Name = "listFiles";
-            this.listFiles.Size = new System.Drawing.Size(630, 958);
+            this.listFiles.Size = new System.Drawing.Size(630, 900);
             this.listFiles.TabIndex = 0;
             this.listFiles.UseCompatibleStateImageBehavior = false;
             this.listFiles.View = System.Windows.Forms.View.List;
@@ -102,24 +109,48 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openPhotoDirectoryToolStripMenuItem,
-            this.saveSelectionsInCSVToolStripMenuItem});
+            this.openSelectionsCSVToolStripMenuItem,
+            this.saveSelectionsInCSVToolStripMenuItem,
+            this.saveSelectionsToCSVAsToolStripMenuItem,
+            this.copySelectedPicsToFolderToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(62, 34);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Text = "&File";
             // 
             // openPhotoDirectoryToolStripMenuItem
             // 
             this.openPhotoDirectoryToolStripMenuItem.Name = "openPhotoDirectoryToolStripMenuItem";
-            this.openPhotoDirectoryToolStripMenuItem.Size = new System.Drawing.Size(339, 40);
+            this.openPhotoDirectoryToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
             this.openPhotoDirectoryToolStripMenuItem.Text = "Open Photo Directory";
             this.openPhotoDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openPhotoDirectoryToolStripMenuItem_Click);
+            // 
+            // openSelectionsCSVToolStripMenuItem
+            // 
+            this.openSelectionsCSVToolStripMenuItem.Name = "openSelectionsCSVToolStripMenuItem";
+            this.openSelectionsCSVToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
+            this.openSelectionsCSVToolStripMenuItem.Text = "&Open Selections CSV";
+            this.openSelectionsCSVToolStripMenuItem.Click += new System.EventHandler(this.openSelectionsCSVToolStripMenuItem_Click);
             // 
             // saveSelectionsInCSVToolStripMenuItem
             // 
             this.saveSelectionsInCSVToolStripMenuItem.Name = "saveSelectionsInCSVToolStripMenuItem";
-            this.saveSelectionsInCSVToolStripMenuItem.Size = new System.Drawing.Size(339, 40);
-            this.saveSelectionsInCSVToolStripMenuItem.Text = "Save Selections in CSV";
-            this.saveSelectionsInCSVToolStripMenuItem.Click += new System.EventHandler(this.saveSelectionsInCSVToolStripMenuItem_Click);
+            this.saveSelectionsInCSVToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
+            this.saveSelectionsInCSVToolStripMenuItem.Text = "&Save Selections to CSV";
+            this.saveSelectionsInCSVToolStripMenuItem.Click += new System.EventHandler(this.SaveSelectionsInCSV);
+            // 
+            // saveSelectionsToCSVAsToolStripMenuItem
+            // 
+            this.saveSelectionsToCSVAsToolStripMenuItem.Name = "saveSelectionsToCSVAsToolStripMenuItem";
+            this.saveSelectionsToCSVAsToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
+            this.saveSelectionsToCSVAsToolStripMenuItem.Text = "S&ave Selections to CSV As...";
+            this.saveSelectionsToCSVAsToolStripMenuItem.Click += new System.EventHandler(this.saveSelectionsToCSVAsToolStripMenuItem_Click);
+            // 
+            // copySelectedPicsToFolderToolStripMenuItem
+            // 
+            this.copySelectedPicsToFolderToolStripMenuItem.Name = "copySelectedPicsToFolderToolStripMenuItem";
+            this.copySelectedPicsToFolderToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
+            this.copySelectedPicsToFolderToolStripMenuItem.Text = "Copy &Selected Pics To Folder";
+            this.copySelectedPicsToFolderToolStripMenuItem.Click += new System.EventHandler(this.copySelectedPicsToFolderToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -135,6 +166,17 @@
             this.deleteUnmatchedRAWFilesToolStripMenuItem.Size = new System.Drawing.Size(402, 40);
             this.deleteUnmatchedRAWFilesToolStripMenuItem.Text = "Delete Unmatched RAW Files";
             this.deleteUnmatchedRAWFilesToolStripMenuItem.Click += new System.EventHandler(this.deleteUnmatchedRAWFilesToolStripMenuItem_Click);
+            // 
+            // lblInfoBar
+            // 
+            this.lblInfoBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInfoBar.ForeColor = System.Drawing.Color.Red;
+            this.lblInfoBar.Location = new System.Drawing.Point(12, 2);
+            this.lblInfoBar.Name = "lblInfoBar";
+            this.lblInfoBar.Size = new System.Drawing.Size(615, 53);
+            this.lblInfoBar.TabIndex = 1;
+            this.lblInfoBar.Text = "InfoBar";
             // 
             // FormMain
             // 
@@ -169,6 +211,10 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSelectionsInCSVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteUnmatchedRAWFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSelectionsCSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedPicsToFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveSelectionsToCSVAsToolStripMenuItem;
+        private System.Windows.Forms.Label lblInfoBar;
     }
 }
 
