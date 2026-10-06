@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitConOuter = new System.Windows.Forms.SplitContainer();
+            this.lblInfoBar = new System.Windows.Forms.Label();
             this.listFiles = new System.Windows.Forms.ListView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -40,7 +41,7 @@
             this.copySelectedPicsToFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUnmatchedRAWFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblInfoBar = new System.Windows.Forms.Label();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitConOuter)).BeginInit();
             this.splitConOuter.Panel1.SuspendLayout();
             this.splitConOuter.Panel2.SuspendLayout();
@@ -66,6 +67,17 @@
             this.splitConOuter.Size = new System.Drawing.Size(2922, 958);
             this.splitConOuter.SplitterDistance = 630;
             this.splitConOuter.TabIndex = 0;
+            // 
+            // lblInfoBar
+            // 
+            this.lblInfoBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInfoBar.ForeColor = System.Drawing.Color.Red;
+            this.lblInfoBar.Location = new System.Drawing.Point(12, 2);
+            this.lblInfoBar.Name = "lblInfoBar";
+            this.lblInfoBar.Size = new System.Drawing.Size(615, 53);
+            this.lblInfoBar.TabIndex = 1;
+            this.lblInfoBar.Text = "InfoBar";
             // 
             // listFiles
             // 
@@ -112,7 +124,8 @@
             this.openSelectionsCSVToolStripMenuItem,
             this.saveSelectionsInCSVToolStripMenuItem,
             this.saveSelectionsToCSVAsToolStripMenuItem,
-            this.copySelectedPicsToFolderToolStripMenuItem});
+            this.copySelectedPicsToFolderToolStripMenuItem,
+            this.updateToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(62, 34);
             this.fileToolStripMenuItem.Text = "&File";
@@ -128,21 +141,21 @@
             // 
             this.openSelectionsCSVToolStripMenuItem.Name = "openSelectionsCSVToolStripMenuItem";
             this.openSelectionsCSVToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
-            this.openSelectionsCSVToolStripMenuItem.Text = "&Open Selections CSV";
+            this.openSelectionsCSVToolStripMenuItem.Text = "&Open Pic List";
             this.openSelectionsCSVToolStripMenuItem.Click += new System.EventHandler(this.openSelectionsCSVToolStripMenuItem_Click);
             // 
             // saveSelectionsInCSVToolStripMenuItem
             // 
             this.saveSelectionsInCSVToolStripMenuItem.Name = "saveSelectionsInCSVToolStripMenuItem";
             this.saveSelectionsInCSVToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
-            this.saveSelectionsInCSVToolStripMenuItem.Text = "&Save Selections to CSV";
+            this.saveSelectionsInCSVToolStripMenuItem.Text = "&Save Pic List";
             this.saveSelectionsInCSVToolStripMenuItem.Click += new System.EventHandler(this.SaveSelectionsInCSV);
             // 
             // saveSelectionsToCSVAsToolStripMenuItem
             // 
             this.saveSelectionsToCSVAsToolStripMenuItem.Name = "saveSelectionsToCSVAsToolStripMenuItem";
             this.saveSelectionsToCSVAsToolStripMenuItem.Size = new System.Drawing.Size(394, 40);
-            this.saveSelectionsToCSVAsToolStripMenuItem.Text = "S&ave Selections to CSV As...";
+            this.saveSelectionsToCSVAsToolStripMenuItem.Text = "S&ave Pic List As...";
             this.saveSelectionsToCSVAsToolStripMenuItem.Click += new System.EventHandler(this.saveSelectionsToCSVAsToolStripMenuItem_Click);
             // 
             // copySelectedPicsToFolderToolStripMenuItem
@@ -167,16 +180,12 @@
             this.deleteUnmatchedRAWFilesToolStripMenuItem.Text = "Delete Unmatched RAW Files";
             this.deleteUnmatchedRAWFilesToolStripMenuItem.Click += new System.EventHandler(this.deleteUnmatchedRAWFilesToolStripMenuItem_Click);
             // 
-            // lblInfoBar
+            // updateToolStripMenuItem
             // 
-            this.lblInfoBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblInfoBar.ForeColor = System.Drawing.Color.Red;
-            this.lblInfoBar.Location = new System.Drawing.Point(12, 2);
-            this.lblInfoBar.Name = "lblInfoBar";
-            this.lblInfoBar.Size = new System.Drawing.Size(615, 53);
-            this.lblInfoBar.TabIndex = 1;
-            this.lblInfoBar.Text = "InfoBar";
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(539, 40);
+            this.updateToolStripMenuItem.Text = "&Update Selections to Match Folder Contents";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -215,6 +224,7 @@
         private System.Windows.Forms.ToolStripMenuItem copySelectedPicsToFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSelectionsToCSVAsToolStripMenuItem;
         private System.Windows.Forms.Label lblInfoBar;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
     }
 }
 

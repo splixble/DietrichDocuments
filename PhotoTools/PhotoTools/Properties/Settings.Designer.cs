@@ -58,5 +58,17 @@ namespace PhotoTools.Properties {
                 this["LastSelectionsCSVPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSelectionsDir {
+            get {
+                return ((string)(this["LastSelectionsDir"]));
+            }
+            set {
+                this["LastSelectionsDir"] = value;
+            }
+        }
     }
 }

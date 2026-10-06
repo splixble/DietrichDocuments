@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace PhotoTools
@@ -52,6 +53,20 @@ namespace PhotoTools
                 if (value != Properties.Settings.Default.LastSelectionsCSVPath)
                 {
                     Properties.Settings.Default.LastSelectionsCSVPath = value;
+                    Properties.Settings.Default.Save();
+                    UpdateInfoBar();
+                }
+            }
+        }
+
+        string LastSelectionsDir
+        {
+            get => Properties.Settings.Default.LastSelectionsDir;
+            set
+            {
+                if (value != Properties.Settings.Default.LastSelectionsDir)
+                {
+                    Properties.Settings.Default.LastSelectionsDir = value;
                     Properties.Settings.Default.Save();
                     UpdateInfoBar();
                 }
@@ -151,7 +166,7 @@ namespace PhotoTools
             if (LastSelectionsCSVPath != null)
             {
                 dlg.FileName = LastSelectionsCSVPath; // or Path.GetFileName(LastSelectionsCSVPath);
-                                                          //dlg.InitialDirectory = Path.GetDirectoryName(LastSelectionsCSVPath);
+                                                      //dlg.InitialDirectory = Path.GetDirectoryName(LastSelectionsCSVPath);
             }
             else
                 dlg.InitialDirectory = PicsPath;
@@ -271,7 +286,6 @@ namespace PhotoTools
             string[] rawFiles = Directory.GetFiles(RawFilesPath);
             foreach (string rawFile in rawFiles)
             {
-
                 if (Path.GetExtension(rawFile) == rawExtension  // Is it a RAW file?
                     && !(picFilesDict.ContainsKey(Path.GetFileNameWithoutExtension(rawFile))))
                     unmatchedRawFiles.Add(rawFile);
@@ -303,21 +317,34 @@ namespace PhotoTools
             Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
         }
 
-        private void copySelectedPicsToFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        string PromptForDirectory(string promptText, string initialPath)
         {
-            string picsPath = Properties.Settings.Default.PicsPath;
-            string destPath = picsPath;
+            // returns full path of directory selected, or null if user cancels out
 
-            // let user pick directory, if different from last usage:
             FolderBrowserDialog dirDlg = new FolderBrowserDialog();
-            dirDlg.Description = "Copy pics to:";
-            if (destPath != null && destPath != "")
-                dirDlg.SelectedPath = destPath;
+            dirDlg.Description = promptText;
+            if (initialPath != null && initialPath != "")
+                dirDlg.SelectedPath = initialPath;
 
             if (dirDlg.ShowDialog() == DialogResult.Cancel)
-                return;
+                return null;
             else
-                destPath = dirDlg.SelectedPath;
+                return dirDlg.SelectedPath;
+        }
+
+        private void copySelectedPicsToFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // let user pick directory, if different from last usage:
+            string destPath;
+            if (LastSelectionsDir != null && LastSelectionsDir.Length > 0)
+                destPath = LastSelectionsDir;
+            else
+                destPath = PicsPath;
+
+            destPath = PromptForDirectory("Copy pics to:", PicsPath);
+            if (destPath == null)
+                return;
+            LastSelectionsDir = destPath;
 
             // Now, copy pics to new dest:
             int numCopied = 0;
@@ -330,7 +357,7 @@ namespace PhotoTools
                         numSkipped++;
                     else
                     {
-                        File.Copy(Path.Combine(picsPath, item.Text), Path.Combine(destPath, item.Text));
+                        File.Copy(Path.Combine(PicsPath, item.Text), Path.Combine(destPath, item.Text));
                         numCopied++;
                     }
                 }
@@ -339,6 +366,40 @@ namespace PhotoTools
             if (numSkipped > 0)
                 doneMsg += "; " + numSkipped.ToString() + " already exist in destination";
             MessageBox.Show(doneMsg);
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // let user pick directory, if different from last usage:
+            string selectionDir = PromptForDirectory("Update checklist from dir:", LastSelectionsDir);
+            if (selectionDir == null)
+                return;
+            LastSelectionsDir = selectionDir;
+
+            // Clear checkboxes (loop backwards through only the checked items to uncheck them efficiently):
+            for (int i = listFiles.CheckedItems.Count - 1; i >= 0; i--)
+                listFiles.CheckedItems[i].Checked = false;
+
+            string[] selectedFiles = Directory.GetFiles(selectionDir);
+            string picsNotFoundInChecklist = "";
+            foreach (string selectedFilePath in selectedFiles)
+            {
+                string selectedFile = Path.GetFileName(selectedFilePath);
+                ListViewItem item = listFiles.FindItemWithText(selectedFile);
+                if (item == null)
+                {
+                    if (picsNotFoundInChecklist != "")
+                        picsNotFoundInChecklist += ", ";
+                    picsNotFoundInChecklist += selectedFile;
+                }
+                else
+                    item.Checked = true;
+            }
+
+            if (picsNotFoundInChecklist == "")
+                MessageBox.Show("Checklist updated.");
+            else
+                MessageBox.Show("Pics not found in checklist: " + picsNotFoundInChecklist);
         }
     }
 }
