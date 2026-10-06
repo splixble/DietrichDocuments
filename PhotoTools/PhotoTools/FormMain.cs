@@ -321,15 +321,24 @@ namespace PhotoTools
 
             // Now, copy pics to new dest:
             int numCopied = 0;
+            int numSkipped = 0;
             foreach (ListViewItem item in listFiles.Items)
             {
                 if (item.Checked)
                 {
-                    File.Copy(Path.Combine(picsPath, item.Text), Path.Combine(destPath, item.Text));
-                    numCopied++;
+                    if (File.Exists(Path.Combine(destPath, item.Text)))
+                        numSkipped++;
+                    else
+                    {
+                        File.Copy(Path.Combine(picsPath, item.Text), Path.Combine(destPath, item.Text));
+                        numCopied++;
+                    }
                 }
             }
-            MessageBox.Show(numCopied.ToString() + " pics copied");
+            string doneMsg = numCopied.ToString() + " pics copied";
+            if (numSkipped > 0)
+                doneMsg += "; " + numSkipped.ToString() + " already exist in destination";
+            MessageBox.Show(doneMsg);
         }
     }
 }
